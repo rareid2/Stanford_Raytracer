@@ -6,13 +6,13 @@ ifeq "$(OS)" "Windows_NT"
 RM = del
 EXT= .exe
 # necessary to keep it from linking to a silly dll
-FLAGS += -static-libgcc 
+FLAGS += -static-libgcc
 # ifeq "$(G95)" "gfortran"
 # FLAGS += -static-libgfortran
 # endif
 else
 RM = rm -f
-EXT = 
+EXT =
 endif
 
 sources = \
@@ -38,8 +38,8 @@ sources = \
 	blas.f95
 
 
-FLAGS += -O3 -Wall 
-#FLAGS += -fdefault-real-8 
+FLAGS += -O3 -Wall
+#FLAGS += -fdefault-real-8
 #FLAGS += -g -fbounds-check
 
 INCLUDES = -I../tricubic-for
@@ -56,16 +56,16 @@ clean:
 	${RM} *.a
 
 ../bin/dumpmodel${EXT}: dumpmodel.f95 ${OBJECTS}
-	${G95} ${FLAGS} ${INCLUDES} -o ../bin/dumpmodel${EXT} dumpmodel.f95 ${OBJECTS} ${LIBS} 
+	${G95} ${FLAGS} ${INCLUDES} -o ../bin/dumpmodel${EXT} dumpmodel.f95 ${OBJECTS} ${LIBS}
 
 ../bin/gcpm_dens_model_buildgrid${EXT}: gcpm_dens_model_buildgrid.f95 ${OBJECTS}
-	${G95} ${FLAGS} ${INCLUDES} -o ../bin/gcpm_dens_model_buildgrid${EXT} gcpm_dens_model_buildgrid.f95 ${OBJECTS} ${LIBS} 
+	${G95} ${FLAGS} ${INCLUDES} -o ../bin/gcpm_dens_model_buildgrid${EXT} gcpm_dens_model_buildgrid.f95 ${OBJECTS} ${LIBS}
 
 ../bin/gcpm_dens_model_buildgrid_random${EXT}: gcpm_dens_model_buildgrid_random.f95 ${OBJECTS}
-	${G95} ${FLAGS} ${INCLUDES} -o ../bin/gcpm_dens_model_buildgrid_random${EXT} gcpm_dens_model_buildgrid_random.f95 ${OBJECTS} ${LIBS} 
+	${G95} ${FLAGS} ${INCLUDES} -o ../bin/gcpm_dens_model_buildgrid_random${EXT} gcpm_dens_model_buildgrid_random.f95 ${OBJECTS} ${LIBS}
 
 ../bin/raytracer${EXT}: raytracer_driver.f95 ${OBJECTS}
-	${G95} ${FLAGS} ${INCLUDES} -o ../bin/raytracer${EXT} raytracer_driver.f95 ${OBJECTS} ${LIBS} 
+	${G95} ${FLAGS} ${INCLUDES} -o ../bin/raytracer${EXT} raytracer_driver.f95 ${OBJECTS} ${LIBS}
 
 bmodel_dipole.f95 : util.o constants.o types.o
 
@@ -91,7 +91,7 @@ constants.f95 : types.o
 
 util.f95 : types.o
 
-randomsampling_mod.f95 : types.o kdtree_mod.o constants.o 
+randomsampling_mod.f95 : types.o kdtree_mod.o constants.o
 
 gcpm_dens_model_buildgrid_random.f95 : constants.o util.o kdtree_mod.o gcpm_dens_model_adapter.o randomsampling_mod.o gcpm_dens_model_buildgrid_random_helpermod.o
 
@@ -99,7 +99,7 @@ kdtree_mod.f95 : types.o
 
 lsinterp_mod.f95 : kdtree_mod.o types.o util.o constants.o bmodel_dipole.o kdtree_mod.o blas.o
 
-%.o : %.mod  
+%.o : %.mod
 
 .f95.o:
 	${G95} ${FLAGS} ${INCLUDES} -c $<
