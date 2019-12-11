@@ -6,7 +6,12 @@ ifeq "${G95}" "g95"
 export FLAGS = -Wall -fstatic -ffixed-line-length-132 -ffree-line-length-huge
 endif
 ifeq "${G95}" "gfortran"
+<<<<<<< HEAD
 export FLAGS = -Wall -ffixed-line-length-132 -ffree-line-length-132 -fd-lines-as-comments -finit-local-zero -fdefault-double-8
+=======
+# export FLAGS = -Wall -fno-automatic -ffixed-line-length-132 -ffree-line-length-132 -fd-lines-as-comments -finit-local-zero
+export FLAGS = -Wall -ffixed-line-length-132 -ffree-line-length-132 -fd-lines-as-comments -finit-local-zero
+>>>>>>> upstream/master
 endif
 ifeq "${G95}" "gcc"
 export FLAGS = -Wall
