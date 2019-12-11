@@ -2,12 +2,11 @@
 
 # FLAGS += -static-libgfortran
 
-
 ifeq "$(OS)" "Windows_NT"
 RM = del
-EXT = .exe
+EXT= .exe
 # necessary to keep it from linking to a silly dll
-FLAGS = -static-libgcc
+FLAGS += -static-libgcc 
 # ifeq "$(G95)" "gfortran"
 # FLAGS += -static-libgfortran
 # endif
@@ -39,7 +38,8 @@ sources = \
 	blas.f95
 
 
-FLAGS += -O3 -Wall
+FLAGS += -O3 -Wall 
+#FLAGS += -fdefault-real-8 
 #FLAGS += -g -fbounds-check
 
 INCLUDES = -I../tricubic-for

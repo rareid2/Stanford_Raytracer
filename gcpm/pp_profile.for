@@ -33,7 +33,7 @@
 	amlt_old=amlt
 !
 !  compute 10**factor in such a way to avoid floating overflow
-	factor=amin1(27.75,2.0*(a9-1.0)*dlog10(al/a8))
+	factor=amin1(27.75,2.0*(a9-1.0)*log10(al/a8))
 	pp_profile=(1.0+10.0**factor)**(-a9/(a9-1.0))
 
 !     print *,'leaving pp_profile:',pp_profile,factor,a8,a9,centroid

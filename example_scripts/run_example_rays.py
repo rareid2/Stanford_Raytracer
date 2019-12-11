@@ -32,10 +32,10 @@ use_tsyg = 1    # Use the Tsyganenko magnetic field model corrections
 minalt   = (R_E + 800)*1e3 # cutoff altitude in meters
 
 # -------------- Starting ray parameters -------------
-inp_lat = 45;               # launch latitude (geomagnetic)
-inp_lon = 256.6;            # launch longitude (geomagnetic)
+inp_lat = 50;               # launch latitude (geomagnetic)
+inp_lon = 0;            # launch longitude (geomagnetic)
 freq = 440;                 # ray frequency in Hz. How about concert A?
-inp_alt = (R_E + 1000)*1e3  # Launch altitude in meters
+inp_alt = (R_E + 6000)*1e3  # Launch altitude in meters
 launch_direction = 'field-aligned'
 
 # -------------- Environmental parameters -------------
@@ -44,7 +44,7 @@ yearday = '2010001'		#YYYYDDD
 milliseconds_day = 0;	# milliseconds into the day
 ray_datenum = datetime.datetime(2010, 1, 1, 0, 0, 0);
 
-Kp    = 2 
+Kp    = 2
 AE    = 1.6
 Pdyn  = 4
 Dst   = 1.0
@@ -61,7 +61,7 @@ W = [0.132,    0.303,    0.083,    0.070,    0.211,    0.308 ]  # Doesn't matter
 #   5 - (not real)
 #   6 - Simplified GCPM from Austin Sousa's thesis
 
-modes_to_do = [1,6]
+modes_to_do = [1]
 
 # Should we include a geometric focusing term in the damping?
 include_geom_factor = 1 # 1 for yes
@@ -93,7 +93,7 @@ pos0 = tmp_coords.convert('SM','car')
 pos0 = np.array([1,0,1])
 pos0 = pos0/np.linalg.norm(pos0)
 pos0*= inp_alt
-        
+
 if launch_direction is 'field-aligned':
     dir0 = np.zeros(3)                # Field aligned (set in raytracer)
 else:
@@ -109,7 +109,7 @@ f.close()
 
 
 
-# GCPM model and damping code needs to be run in the same directory 
+# GCPM model and damping code needs to be run in the same directory
 # as the binary file (and all the misc data files)
 cwd = os.getcwd();
 os.chdir('../bin')
@@ -198,10 +198,10 @@ for mode in modes_to_do:
 
     os.system(ray_cmd)
 
-    print("------- Running damping, mode %d -------"%damp_mode)
+    #print("------- Running damping, mode %d -------"%damp_mode)
 
-    print(damp_cmd)
-    os.system(damp_cmd)
+    #print(damp_cmd)
+    #os.system(damp_cmd)
 
 # Move back to the working directory
 os.chdir(cwd)

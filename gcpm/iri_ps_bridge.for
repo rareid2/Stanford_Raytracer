@@ -134,7 +134,7 @@ d	  print *,'No bridge required, istat=-1 ',al,r2
 	eqh=(al-1.0)*re
 d      print *,'bridge=',ah1,ah2,eqh,transh,antransh
 d      print *,'      =',an1,an2,eq_iri_ps_trough
-      alpha=-dlog10(an1/an2)/dlog10(ah1/ah2)
+      alpha=-log10(an1/an2)/log10(ah1/ah2)
       ano=an1*ah1**alpha
 d      print *,'intial alpha,ano:',alpha,ano
       
@@ -148,13 +148,13 @@ c set up use of switch term that will not function by default
       if (eq_iri_ps_trough .ge. an3) then
         if(an2.le.eq_iri_ps_trough) then
 d     print *,'inverse IRI-eq:'
-          alpha=dlog10(antransh/eq_iri_ps_trough)/dlog10(transh/eqh)
+          alpha=log10(antransh/eq_iri_ps_trough)/log10(transh/eqh)
           ano=antransh*transh**alpha
           dno=ano
         else
 d      print *,'greater than or equal too'
           co=eq_iri_ps_trough - an3
-          alpha=-dlog10((an1-co)/(an2-co))/dlog10(ah1/ah2)
+          alpha=-log10((an1-co)/(an2-co))/log10(ah1/ah2)
           ano=(an1-co)*ah1**alpha
           dno=ano
         endif

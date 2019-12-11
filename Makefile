@@ -6,7 +6,7 @@ ifeq "${G95}" "g95"
 export FLAGS = -Wall -fstatic -ffixed-line-length-132 -ffree-line-length-huge
 endif
 ifeq "${G95}" "gfortran"
-export FLAGS = -Wall -fno-automatic -ffixed-line-length-132 -ffree-line-length-132 -fd-lines-as-comments -finit-local-zero
+export FLAGS = -Wall -ffixed-line-length-132 -ffree-line-length-132 -fd-lines-as-comments -finit-local-zero -fdefault-double-8
 endif
 ifeq "${G95}" "gcc"
 export FLAGS = -Wall
@@ -55,6 +55,3 @@ tidy:
 	# $(MAKE) -C tricubic-for clean
 	$(MAKE) -C gcpm clean
 	$(MAKE) -C fortran clean
-
-
-
