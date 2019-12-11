@@ -173,8 +173,8 @@ contains
       arglr = 0.0
       delroh = 0.0
 
-      cosz2 = dcos(z(2))
-      sinz2 = dsin(z(2))
+      cosz2 = cos(z(2))
+      sinz2 = sin(z(2))
       cosz22 = cosz2*cosz2
       sinz22 = sinz2*sinz2
       if (init .gt. 0) go to 110
@@ -186,7 +186,7 @@ contains
   105    alpha(i) = 0.0
 !           electron and ion densities.
   110 gph = rbase*(1.0-rbase/z(1))
-      exnor(2) = dexp(-gph/sh(2))
+      exnor(2) = exp(-gph/sh(2))
       exnor(3) = exnor(2)*exnor(2)*exnor(2)*exnor(2)
       exnor(4) = exnor(3)*exnor(3)*exnor(3)*exnor(3)
       q = 0.0
@@ -205,7 +205,7 @@ contains
       arg = (z(1)- rzero)/scbot
       if (arg.lt.13.0) go to 222
          arg = 13.0
-  222 exarg = dexp(-arg*arg)
+  222 exarg = exp(-arg*arg)
       anli = 1.0-exarg
       dlnlid  = arg*exarg*2./(scbot*anli)
       l = z(1)/(r0*sinz22)
@@ -224,12 +224,12 @@ contains
             argl = deltal*deltal/(d2*2.0)
             if (argl.lt.80.00) go to 400
                argl = 80.00
-  400       f = dexp(-argl)
+  400       f = exp(-argl)
             trm = (rconsn/z(1))**expk
             argr = (z(1)-rconsn)/scr
             if (argr.lt.12.50) go to 405
                argr = 12.5
-  405       fr = dexp(-argr*argr)
+  405       fr = exp(-argr*argr)
             trmodl = trm+(1.-trm)*fr
             dtrmdr = -expk*trm*(1.-fr)/z(1)-(1.-trm)*fr*2.*argr/scr
             anlk = f+trmodl*(1.0-f)
@@ -250,7 +250,7 @@ contains
 !              the knee --  sinusoidal perturbation begins here
                if (l .le. critl) go to 990
                   argl = 2.0*pi*deltal/dd(2)
-                  delnl = (def(2)/2.)*(1.+dcos(argl))
+                  delnl = (def(2)/2.)*(1.+cos(argl))
                   if (latitu.le.0 .and. z(1).le.rducus(2)) go to 950
                   if (latitu.ge.0 .and. z(1).le.rducun(2)) go to 950
 !                    continue only if point lies above rducun and rducus
@@ -259,7 +259,7 @@ contains
                      if (latitu.le.0) arglr = delr*delr/hu2s(2)
                      if (latitu.ge.0) arglr = delr*delr/hu2n(2)
                      if (arglr.ge.75.0) go to  990
-                        frduct = dexp(-arglr)
+                        frduct = exp(-arglr)
                         if (latitu.le.0) delroh = 2.0*delr/hu2s(2)
                         if (latitu.ge.0) delroh = 2.0*delr/hu2n(2)
                         go to 960
@@ -272,17 +272,17 @@ contains
                       if (latitu.le.0) arglr = delr*delr/hl2s(2)  
                       if (latitu.ge.0) arglr = delr*delr/hl2n(2)
                       if (arglr.ge.75.0) go to  990
-                         frduct = dexp(-arglr)
+                         frduct = exp(-arglr)
                          if (latitu.ge.0) delroh = 2.0*delr/hl2n(2)
                          if (latitu.le.0) delroh = 2.0*delr/hl2s(2)
   960                    delnl = delnl*frduct
                          anl = 1.0+delnl
-                         fac = pi*def(2)*l*dsin(argl)/(dd(2)*anl)
+                         fac = pi*def(2)*l*sin(argl)/(dd(2)*anl)
                          onedut = fac*2.0*cotz2
                          onedur = -fac/z(1) - delnl*delroh/anl
                          go to 980
   970              anl = 1.0+delnl
-                   fac = pi*def(2)*l*dsin(argl)/(dd(2)*anl)
+                   fac = pi*def(2)*l*sin(argl)/(dd(2)*anl)
                    onedut = fac*2.0*cotz2
                    onedur = -fac/z(1)
   980              dlnldr = dlnldr+onedur
@@ -297,7 +297,7 @@ contains
  1200          d2 = dd(kduc)*dd(kduc)
                argl = deltal*deltal/(d2*2.0)
                if (argl.gt. 80.0 ) go to 240
-                  delnl = def(kduc)*dexp(-argl)
+                  delnl = def(kduc)*exp(-argl)
                   if (latitu.ge.0 .and. z(1).le.rducun(kduc)) goto 1500
                   if (latitu.le.0 .and. z(1).le.rducus(kduc)) goto 1500
 !                    continue only if point lies above rducs and rducun
@@ -306,7 +306,7 @@ contains
                      if (latitu.ge.0) arglr = delr*delr/hu2n(kduc)
                      if (latitu.le.0) arglr = delr*delr/hu2s(kduc)
                      if (arglr.ge.75.0) go to 240
-                        frduct = dexp(-arglr)
+                        frduct = exp(-arglr)
                         if (latitu.ge.0) delroh = 2.0*delr/hu2n(kduc)
                         if (latitu.le.0) delroh = 2.0*delr/hu2s(kduc)
                         go to 1600
@@ -319,7 +319,7 @@ contains
                      if (latitu.ge.0) arglr = delr*delr/hl2n(kduc)
                      if (latitu.le.0) arglr = delr*delr/hl2s(kduc)
                      if (arglr.ge.75.0) go to 240
-                        frduct = dexp(-arglr)
+                        frduct = exp(-arglr)
                         if (latitu.ge.0) delroh = 2.0*delr/hl2n(kduc)
                         if (latitu.le.0) delroh = 2.0*delr/hl2s(kduc)
  1600                   delnl = delnl*frduct

@@ -99,7 +99,7 @@ c calculate where this initial power law intersects the plasmasphere profile
       psh=2000.0
       do ii=1,5
 d       print *,'psh interation:',ii,psh,ano,alphao,am1,b1
-        psh=10.0**((am1*(psh/re+1.0)+b1+x234+6.0_DP-dlog10(ano))/(-alphao))
+        psh=10.0**((am1*(psh/re+1.0)+b1+x234+6.0_DP-log10(ano))/(-alphao))
                           ! inner plasmasphere density calculation
       enddo
       psL=psh/re+1.0
@@ -118,7 +118,7 @@ d     print *,'psh final:',psh
 c new power law value, alpha, needs to match the ionosphere at the point
 c of maximum slope and the interior plasmaspheric density where the initial
 c power law slope matches the plasmasphere interior density slope
-      alpha=-dlog10(dens/psden)/dlog10(transh/psh)
+      alpha=-log10(dens/psden)/log10(transh/psh)
       ano=dens/transh**(-alpha)
 d     print *,'reworked bridge:',psL,psh,psden,am1,b1
 d	print *,'leaving iri_ps_eq_bridge',alpha,ano,dens,ro,transh
