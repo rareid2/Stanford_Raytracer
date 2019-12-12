@@ -4,4 +4,9 @@
 *.a
 *.o
 *.mod
+
+# Exclude all files in the bin folder
 bin/*
+
+# Make sure we include the folder itself tho
+!bin/.gitkeep
