@@ -198,10 +198,10 @@ for mode in modes_to_do:
 
     os.system(ray_cmd)
 
-    #print("------- Running damping, mode %d -------"%damp_mode)
+    print("------- Running damping, mode %d -------"%damp_mode)
 
-    #print(damp_cmd)
-    #os.system(damp_cmd)
+    print(damp_cmd)
+    os.system(damp_cmd)
 
 # Move back to the working directory
 os.chdir(cwd)
