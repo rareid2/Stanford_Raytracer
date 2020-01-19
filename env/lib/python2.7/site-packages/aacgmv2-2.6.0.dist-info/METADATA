@@ -1,0 +1,287 @@
+Metadata-Version: 2.1
+Name: aacgmv2
+Version: 2.6.0
+Summary: A Python wrapper for AACGM-v2 magnetic coordinates
+Home-page: https://github.com/aburrell/aacgmv2
+Author: Angeline G. Burrell, Christer van der Meeren
+Author-email: angeline.burrell@nrl.navy.mil
+License: MIT
+Keywords: aacgm,aacgm-v2,aacgmv2,magnetic coordinates,altitude adjusted corrected geomagnetic coordinates,mlt,magnetic local time,conversion,converting
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: Unix
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Topic :: Scientific/Engineering :: Physics
+Classifier: Topic :: Utilities
+Provides-Extra: test
+Requires-Dist: numpy
+Provides-Extra: test
+Requires-Dist: pytest; extra == 'test'
+
+========
+Overview
+========
+
+|docs| |version| |doi|
+
+This is a Python wrapper for the `AACGM-v2 C library
+<http://superdarn.thayer.dartmouth.edu/aacgm.html>`_, which allows
+converting between geographic and magnetic coordinates. The currently included
+version of the C library is 2.6.  The package is free software
+(MIT license).  When referencing this package, please cite both the package DOI
+and the AACGM-v2 journal article:
+
+Shepherd, S. G. (2014), Altitude‐adjusted corrected geomagnetic coordinates:
+Definition and functional approximations, Journal of Geophysical Research:
+Space Physics, 119, 7501–7521, doi:10.1002/2014JA020264.
+
+Quick start
+===========
+
+Install (requires NumPy)::
+
+    pip install aacgmv2
+
+Convert between AACGM and geographic coordinates::
+
+    >>> import aacgmv2
+    >>> import datetime as dt
+    >>> import numpy as np
+    >>> np.set_printoptions(formatter={'float_kind': lambda x:'{:.4f}'.format(x)})
+    >>> # geo to AACGM, single numbers
+    >>> dtime = dt.datetime(2013, 11, 3)
+    >>> np.array(aacgmv2.get_aacgm_coord(60, 15, 300, dtime))
+    array([57.4736, 93.6111, 1.4816])
+    >>> # AACGM to geo, mix arrays/numbers
+    >>> np.array2string(np.array(aacgmv2.convert_latlon_arr([90, -90], 0, 0, dtime, method_code="A2G"))).replace('\n', '')
+    '[[82.9686 -74.3390] [-84.6501 125.8476] [14.1246 12.8772]]'
+
+Convert between AACGM and MLT::
+
+    >>> import aacgmv2
+    >>> import datetime as dt
+    >>> import numpy as np
+    >>> np.set_printoptions(formatter={'float_kind': lambda x:'{:.4f}'.format(x)})
+    >>> # MLT to AACGM
+    >>> dtime = dt.datetime(2013, 11, 3, 0, 0, 0)
+    >>> np.array(aacgmv2.convert_mlt([1.4822189, 12], dtime, m2a=True))
+    array([93.6203, -108.6130])
+
+If you don't know or use Python, you can also use the command line. See details
+in the full documentation.
+
+Documentation
+=============
+
+https://aacgmv2.readthedocs.org/
+
+http://superdarn.thayer.dartmouth.edu/aacgm.html
+
+Badges
+======
+
+.. list-table::
+    :stub-columns: 1
+
+    * - docs
+      - |docs|
+    * - tests
+      - | |travis| |appveyor| |requires|
+        | |landscape|  |codeclimate|
+        | |scrutinizer| |codacy|
+    * - package
+      - | |version| |supported-versions|
+        | |wheel| |supported-implementations|
+
+.. |docs| image:: https://readthedocs.org/projects/aacgmv2/badge/?version=stable&style=flat
+    :target: https://readthedocs.org/projects/aacgmv2
+    :alt: Documentation Status
+
+.. |travis| image:: https://travis-ci.org/aburrell/aacgmv2.svg?branch=master
+    :alt: Travis-CI Build Status
+    :target: https://travis-ci.org/aburrell/aacgmv2
+
+.. |appveyor| image:: https://ci.appveyor.com/api/projects/status/github/aburrell/aacgmv2?branch=master&svg=true
+    :alt: AppVeyor Build Status
+    :target: https://ci.appveyor.com/project/aburrell/aacgmv2
+
+.. |requires| image:: https://requires.io/github/aburrell/aacgmv2/requirements.svg?branch=master
+    :alt: Requirements Status
+    :target: https://requires.io/github/aburrell/aacgmv2/requirements/?branch=master
+
+.. |coveralls| image:: https://coveralls.io/repos/aburrell/aacgmv2/badge.svg?branch=master&service=github
+    :alt: Coverage Status
+    :target: https://coveralls.io/github/aburrell/aacgmv2
+
+.. |codecov| image:: https://codecov.io/github/aburrell/aacgmv2/coverage.svg?branch=master
+    :alt: Coverage Status
+    :target: https://codecov.io/github/aburrell/aacgmv2
+
+.. |landscape| image:: https://landscape.io/github/aburrell/aacgmv2/master/landscape.svg?style=flat
+    :target: https://landscape.io/github/aburrell/aacgmv2/master
+    :alt: Code Quality Status
+
+.. |codacy| image:: https://api.codacy.com/project/badge/Grade/b64ee44194f148f5bdb0f00c7cf16ab8
+    :target: https://www.codacy.com/app/aburrell/aacgmv2?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=aburrell/aacgmv2&amp;utm_campaign=Badge_Grade
+   :alt: Codacy Code Quality Status
+
+.. |codeclimate| image:: https://codeclimate.com/github/aburrell/aacgmv2/badges/gpa.svg
+   :target: https://codeclimate.com/github/aburrell/aacgmv2
+   :alt: CodeClimate Quality Status
+.. |version| image:: https://img.shields.io/pypi/v/aacgmv2.svg?style=flat
+    :alt: PyPI Package latest release
+    :target: https://pypi.python.org/pypi/aacgmv2
+
+.. |downloads| image:: https://img.shields.io/pypi/dm/aacgmv2.svg?style=flat
+    :alt: PyPI Package monthly downloads
+    :target: https://pypi.python.org/pypi/aacgmv2
+
+.. |wheel| image:: https://img.shields.io/pypi/wheel/aacgmv2.svg?style=flat
+    :alt: PyPI Wheel
+    :target: https://pypi.python.org/pypi/aacgmv2
+
+.. |supported-versions| image:: https://img.shields.io/pypi/pyversions/aacgmv2.svg?style=flat
+    :alt: Supported versions
+    :target: https://pypi.python.org/pypi/aacgmv2
+
+.. |supported-implementations| image:: https://img.shields.io/pypi/implementation/aacgmv2.svg?style=flat
+    :alt: Supported implementations
+    :target: https://pypi.python.org/pypi/aacgmv2
+
+.. |scrutinizer| image:: https://img.shields.io/scrutinizer/g/aburrell/aacgmv2/master.svg?style=flat
+    :alt: Scrutinizer Status
+    :target: https://scrutinizer-ci.com/g/aburrell/aacgmv2/
+
+.. |doi| image:: https://zenodo.org/badge/42864636.svg
+   :target: https://zenodo.org/badge/latestdoi/42864636
+
+
+Changelog
+=========
+2.6.0 (2020-01-06)
+-----------------------------------------
+* Updated AACGM-v2 coefficients derived using the IGRF13 model
+* Updated IGRF and GUFM1 coefficients using the IGRF13 model
+* Added additional checks to the C code for reading the IGRF13 coefficient file
+* Removed `convert` routine in `deprecated.py`
+* Pushed back keyword argument deprecation of `code`
+* Scheduled deprecation for remaining routines in `deprecated.py`
+* Parametrized several unit tests
+* Updated `README.md` examples
+* Updated CI to include python 3.8
+
+
+2.5.3 (2019-12-23)
+-----------------------------------------
+* Changed log warning about array functions to info
+* Changed default method from `TRACE` to `ALLOWTRACE`
+* Added C wrappers for list input, removing inefficient use of `np.vectorize`
+* Fixed documentation for use of `method_code`
+* Added FutureWarning for deprecated use of `code` keyword argument
+* Updated previous version's changelog to encompass all changes
+* Improved docstrings to make documentation easier to read
+* Removed failing twine commands from `appveyor.yml`
+* Removed `RuntimeWarning` filter from `tox.ini`
+
+
+2.5.2 (2019-08-27)
+-----------------------------------------
+* Added FutureWarning to deprecated functions
+* Updated names in licenses
+* Moved module structure routine tests to their own class
+* Added high altitude limit to avoid while-loop hanging
+* Changed version support to 2.7, 3.6, and 3.7
+* Removed logbook dependency
+* Added logic to avoid reseting environment variables if not necessary
+* Added copyright and license disclaimer to module-specific program files
+* Changed keyword argument `code` to `method_code`
+
+
+2.5.1 (2018-10-19)
+-----------------------------------------
+* Commented out debug statement in C code
+* Updated environment variable warning to output to stderr instead of stdout
+* Added templates for pull requests, issues, and a code of conduct
+
+
+2.5.0 (2018-08-08)
+-----------------------------------------
+* Updated C code and coefficients to version 2.5.  Changes in python
+  code reflect changes in C code (includes going back to using environment
+  variables instead of strings for coefficient file locations)
+* Added decorators to some of the test functions
+* Specified AppVeyor Visual Studio version, since it was defaulting to 2010 and
+  that version doesn't work with python 3
+
+
+2.4.2 (2018-05-21)
+-----------------------------------------
+* Fixed bug in convert_mlt that caused all time inputs to occur
+  at 00:00:00 UT
+* Fixed year of last two updates in changelog
+
+
+2.4.1 (2018-04-04)
+-----------------------------------------
+* Fix bug in installation that caused files to be placed in the wrong
+  directory
+* Added DOI
+
+2.4.0 (2018-03-21)
+-----------------------------------------
+
+* Update to use AACGM-v2.4, which includes changes to the inverse MLT and
+  dipole tilt functions and some minor bug fixes
+* Updated file structure
+* Updated methods, retaining old methods in deprecated module
+* Added testing for python 3.6
+* Updated dependencies, removing support for python 3.3
+* Tested on Mac OSX
+* Updated comments to include units for input and output
+
+2.0.0 (2016-11-03)
+-----------------------------------------
+
+* Change method of calculating MLT, see documentation of convert_mlt for details
+
+
+1.0.13 (2015-10-30)
+-----------------------------------------
+
+* Correctly convert output of subsol() to geodetic coordinates (the error in MLT/mlon conversion was not large, typically two decimal places and below)
+
+
+1.0.12 (2015-10-26)
+-----------------------------------------
+
+* Return nan in forbidden region instead of throwing exception
+
+
+1.0.11 (2015-10-26)
+-----------------------------------------
+
+* Fix bug in subsolar/MLT conversion
+
+
+1.0.10 (2015-10-08)
+-----------------------------------------
+
+* No code changes, debugged automatic build/upload process and needed new version numbers along the way
+
+
+1.0.0 (2015-10-07)
+-----------------------------------------
+
+* Initial release
+
+

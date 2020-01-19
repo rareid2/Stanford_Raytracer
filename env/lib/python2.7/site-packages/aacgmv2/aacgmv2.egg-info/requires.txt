@@ -1,0 +1,5 @@
+numpy
+logbook
+
+[test]
+pytest
