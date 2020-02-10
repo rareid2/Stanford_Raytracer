@@ -1,0 +1,3 @@
+[submodule "damping"]
+	path = damping
+	url = https://github.com/rareid2/damping.git
