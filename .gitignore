@@ -8,7 +8,7 @@
 # Exclude all files in the bin and env folder
 bin/*
 env/*
-idea/*
+.idea/*
 
 # Make sure we include the folder itself tho
 !bin/.gitkeep
