@@ -4,11 +4,11 @@
 *.a
 *.o
 *.mod
-*.idea
 
 # Exclude all files in the bin and env folder
 bin/*
 env/*
+idea/*
 
 # Make sure we include the folder itself tho
 !bin/.gitkeep
