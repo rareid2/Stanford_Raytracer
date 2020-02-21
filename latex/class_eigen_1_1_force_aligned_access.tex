@@ -1,0 +1,97 @@
+\hypertarget{class_eigen_1_1_force_aligned_access}{}\doxysection{Eigen\+::Force\+Aligned\+Access$<$ Expression\+Type $>$ Class Template Reference}
+\label{class_eigen_1_1_force_aligned_access}\index{Eigen::ForceAlignedAccess$<$ ExpressionType $>$@{Eigen::ForceAlignedAccess$<$ ExpressionType $>$}}
+
+
+Enforce aligned packet loads and stores regardless of what is requested.  
+
+
+
+
+{\ttfamily \#include $<$Force\+Aligned\+Access.\+h$>$}
+
+Inheritance diagram for Eigen\+::Force\+Aligned\+Access$<$ Expression\+Type $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_eigen_1_1_force_aligned_access}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_force_aligned_access_ab13595a959d9a280955904706f055e47}\label{class_eigen_1_1_force_aligned_access_ab13595a959d9a280955904706f055e47}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1dense__xpr__base}{internal\+::dense\+\_\+xpr\+\_\+base}}$<$ \mbox{\hyperlink{class_eigen_1_1_force_aligned_access}{Force\+Aligned\+Access}} $>$\+::type {\bfseries Base}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_force_aligned_access_a154c0fa31a48ac44675adf4bf3c1936d}\label{class_eigen_1_1_force_aligned_access_a154c0fa31a48ac44675adf4bf3c1936d}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC {\bfseries Force\+Aligned\+Access} (const Expression\+Type \&matrix)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_force_aligned_access_a111e76fdf776c5809030d96b94982fde}\label{class_eigen_1_1_force_aligned_access_a111e76fdf776c5809030d96b94982fde}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries rows} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_force_aligned_access_adf9b0bc1f93ea10c9b97d55f83bec576}\label{class_eigen_1_1_force_aligned_access_adf9b0bc1f93ea10c9b97d55f83bec576}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries cols} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_force_aligned_access_a0b98054ef784a6d3e6010315bb4f09f4}\label{class_eigen_1_1_force_aligned_access_a0b98054ef784a6d3e6010315bb4f09f4}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries outer\+Stride} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_force_aligned_access_a4e3ecdb1a214e427f7977bf7fddb6f4f}\label{class_eigen_1_1_force_aligned_access_a4e3ecdb1a214e427f7977bf7fddb6f4f}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries inner\+Stride} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_force_aligned_access_a55d7ea9562b121c7b9ef5fbcf6ff3ff0}\label{class_eigen_1_1_force_aligned_access_a55d7ea9562b121c7b9ef5fbcf6ff3ff0}} 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Coeff\+Return\+Type {\bfseries coeff} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_force_aligned_access_a129676e5a79ef7b741fef6a5a05ba775}\label{class_eigen_1_1_force_aligned_access_a129676e5a79ef7b741fef6a5a05ba775}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Scalar \& {\bfseries coeff\+Ref} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_force_aligned_access_ac90ac0bc1bb3c7bef50c4f4e753670eb}\label{class_eigen_1_1_force_aligned_access_ac90ac0bc1bb3c7bef50c4f4e753670eb}} 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Coeff\+Return\+Type {\bfseries coeff} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} index) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_force_aligned_access_a9f9837d4b6dc5a266b2414d4fb1e3734}\label{class_eigen_1_1_force_aligned_access_a9f9837d4b6dc5a266b2414d4fb1e3734}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Scalar \& {\bfseries coeff\+Ref} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} index)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_force_aligned_access_a226e07b7136c99d39512d69e6ab2e543}\label{class_eigen_1_1_force_aligned_access_a226e07b7136c99d39512d69e6ab2e543}} 
+{\footnotesize template$<$int Load\+Mode$>$ }\\const Packet\+Scalar {\bfseries packet} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_force_aligned_access_a33a9f296519b2df0c4df5ff2d95e2f7d}\label{class_eigen_1_1_force_aligned_access_a33a9f296519b2df0c4df5ff2d95e2f7d}} 
+{\footnotesize template$<$int Load\+Mode$>$ }\\void {\bfseries write\+Packet} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col, const Packet\+Scalar \&x)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_force_aligned_access_a4d18db0f8749f29e9da0a2e73dc4156f}\label{class_eigen_1_1_force_aligned_access_a4d18db0f8749f29e9da0a2e73dc4156f}} 
+{\footnotesize template$<$int Load\+Mode$>$ }\\const Packet\+Scalar {\bfseries packet} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} index) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_force_aligned_access_a4312741489535e524aafca73e4268dae}\label{class_eigen_1_1_force_aligned_access_a4312741489535e524aafca73e4268dae}} 
+{\footnotesize template$<$int Load\+Mode$>$ }\\void {\bfseries write\+Packet} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} index, const Packet\+Scalar \&x)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_force_aligned_access_aecded324b795ce691d99000a70ddeecb}\label{class_eigen_1_1_force_aligned_access_aecded324b795ce691d99000a70ddeecb}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC {\bfseries operator const Expression\+Type \&} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_force_aligned_access_ab920b840c2c24e1fddf7ee8600dd7df7}\label{class_eigen_1_1_force_aligned_access_ab920b840c2c24e1fddf7ee8600dd7df7}} 
+const Expression\+Type \& {\bfseries m\+\_\+expression}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Expression\+Type$>$\newline
+class Eigen\+::\+Force\+Aligned\+Access$<$ Expression\+Type $>$}
+
+Enforce aligned packet loads and stores regardless of what is requested. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Expression\+Type} & the type of the object of which we are forcing aligned packet access\\
+\hline
+\end{DoxyParams}
+This class is the return type of Matrix\+Base\+::force\+Aligned\+Access() and most of the time this is the only way it is used.
+
+\begin{DoxySeeAlso}{See also}
+Matrix\+Base\+::force\+Aligned\+Access() 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/Force\+Aligned\+Access.\+h\end{DoxyCompactItemize}

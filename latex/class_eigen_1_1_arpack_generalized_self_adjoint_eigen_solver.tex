@@ -1,0 +1,355 @@
+\hypertarget{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver}{}\doxysection{Eigen\+::Arpack\+Generalized\+Self\+Adjoint\+Eigen\+Solver$<$ Matrix\+Type, Matrix\+Solver, Bis\+S\+PD $>$ Class Template Reference}
+\label{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver}\index{Eigen::ArpackGeneralizedSelfAdjointEigenSolver$<$ MatrixType, MatrixSolver, BisSPD $>$@{Eigen::ArpackGeneralizedSelfAdjointEigenSolver$<$ MatrixType, MatrixSolver, BisSPD $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_ab1182405bfe87a505d4b7a8311c661ec}\label{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_ab1182405bfe87a505d4b7a8311c661ec}} 
+typedef Matrix\+Type\+::\+Scalar \mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_ab1182405bfe87a505d4b7a8311c661ec}{Scalar}}
+\begin{DoxyCompactList}\small\item\em Scalar type for matrices of type {\ttfamily Matrix\+Type}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a2593f8953630418bd5641086151610c1}\label{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a2593f8953630418bd5641086151610c1}} 
+typedef Matrix\+Type\+::\+Index {\bfseries Index}
+\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_ab1182405bfe87a505d4b7a8311c661ec}{Scalar}} $>$\+::Real \mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a2555af55e53bf9de894a49e639be2e1e}{Real\+Scalar}}
+\begin{DoxyCompactList}\small\item\em Real scalar type for {\ttfamily Matrix\+Type}. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1plain__col__type}{internal\+::plain\+\_\+col\+\_\+type}}$<$ Matrix\+Type, \mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a2555af55e53bf9de894a49e639be2e1e}{Real\+Scalar}} $>$\+::type \mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a47a5becb6dda25dbd90a1704a8247dd8}{Real\+Vector\+Type}}
+\begin{DoxyCompactList}\small\item\em Type for vector of eigenvalues as returned by \mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_ab46900dafdd11a8ac05a662c6b41480d}{eigenvalues()}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_aab45c05af4937baddb38e26bffe80a42}{Arpack\+Generalized\+Self\+Adjoint\+Eigen\+Solver}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_ab67d6c5218fd84e74fc03d55acd0c89e}{Arpack\+Generalized\+Self\+Adjoint\+Eigen\+Solver}} (const Matrix\+Type \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, const Matrix\+Type \&\mbox{\hyperlink{class_eigen_1_1_matrix}{B}}, Index nbr\+Eigenvalues, std\+::string eigs\+\_\+sigma=\char`\"{}LM\char`\"{}, int options=\mbox{\hyperlink{group__enums_ggae3e239fb70022eb8747994cf5d68b4a9a7f7d17fba3c9bb92158e346d5979d0f4}{Compute\+Eigenvectors}}, \mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a2555af55e53bf9de894a49e639be2e1e}{Real\+Scalar}} tol=0.\+0)
+\begin{DoxyCompactList}\small\item\em Constructor; computes generalized eigenvalues of given matrix with respect to another matrix. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a896d444b17b59c3b061800f579317a73}{Arpack\+Generalized\+Self\+Adjoint\+Eigen\+Solver}} (const Matrix\+Type \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, Index nbr\+Eigenvalues, std\+::string eigs\+\_\+sigma=\char`\"{}LM\char`\"{}, int options=\mbox{\hyperlink{group__enums_ggae3e239fb70022eb8747994cf5d68b4a9a7f7d17fba3c9bb92158e346d5979d0f4}{Compute\+Eigenvectors}}, \mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a2555af55e53bf9de894a49e639be2e1e}{Real\+Scalar}} tol=0.\+0)
+\begin{DoxyCompactList}\small\item\em Constructor; computes eigenvalues of given matrix. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver}{Arpack\+Generalized\+Self\+Adjoint\+Eigen\+Solver}} \& \mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a1a905e5e65e82e559a2cc394a9f42385}{compute}} (const Matrix\+Type \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, const Matrix\+Type \&\mbox{\hyperlink{class_eigen_1_1_matrix}{B}}, Index nbr\+Eigenvalues, std\+::string eigs\+\_\+sigma=\char`\"{}LM\char`\"{}, int options=\mbox{\hyperlink{group__enums_ggae3e239fb70022eb8747994cf5d68b4a9a7f7d17fba3c9bb92158e346d5979d0f4}{Compute\+Eigenvectors}}, \mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a2555af55e53bf9de894a49e639be2e1e}{Real\+Scalar}} tol=0.\+0)
+\begin{DoxyCompactList}\small\item\em Computes generalized eigenvalues / eigenvectors of given matrix using the external A\+R\+P\+A\+CK library. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver}{Arpack\+Generalized\+Self\+Adjoint\+Eigen\+Solver}} \& \mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a781369cb32c8e4623894da79909612c4}{compute}} (const Matrix\+Type \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, Index nbr\+Eigenvalues, std\+::string eigs\+\_\+sigma=\char`\"{}LM\char`\"{}, int options=\mbox{\hyperlink{group__enums_ggae3e239fb70022eb8747994cf5d68b4a9a7f7d17fba3c9bb92158e346d5979d0f4}{Compute\+Eigenvectors}}, \mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a2555af55e53bf9de894a49e639be2e1e}{Real\+Scalar}} tol=0.\+0)
+\begin{DoxyCompactList}\small\item\em Computes eigenvalues / eigenvectors of given matrix using the external A\+R\+P\+A\+CK library. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_ab1182405bfe87a505d4b7a8311c661ec}{Scalar}}, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}} $>$ \& \mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a183825135568364792a955efc55a0773}{eigenvectors}} () const
+\begin{DoxyCompactList}\small\item\em Returns the eigenvectors of given matrix. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_ab1182405bfe87a505d4b7a8311c661ec}{Scalar}}, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}, 1 $>$ \& \mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_ab46900dafdd11a8ac05a662c6b41480d}{eigenvalues}} () const
+\begin{DoxyCompactList}\small\item\em Returns the eigenvalues of given matrix. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_ab1182405bfe87a505d4b7a8311c661ec}{Scalar}}, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}} $>$ \mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a7522aad061ebccc065b254c0bc67d3b0}{operator\+Sqrt}} () const
+\begin{DoxyCompactList}\small\item\em Computes the positive-\/definite square root of the matrix. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_ab1182405bfe87a505d4b7a8311c661ec}{Scalar}}, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}} $>$ \mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_ad55f052b675f1deaea220d0cc225622a}{operator\+Inverse\+Sqrt}} () const
+\begin{DoxyCompactList}\small\item\em Computes the inverse square root of the matrix. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} \mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a6f952eed50efe01b8cb91726e6a93b68}{info}} () const
+\begin{DoxyCompactList}\small\item\em Reports whether previous computation was successful. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a932fe19093ee98c14c1c6d28a8c829b0}\label{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a932fe19093ee98c14c1c6d28a8c829b0}} 
+size\+\_\+t {\bfseries get\+Nbr\+Converged\+Eigen\+Values} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_afa3f79bab571b043f970ec4ca685a99c}\label{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_afa3f79bab571b043f970ec4ca685a99c}} 
+size\+\_\+t {\bfseries get\+Nbr\+Iterations} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_aaa658a0326868dbebe839c5ed642aafb}\label{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_aaa658a0326868dbebe839c5ed642aafb}} 
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_ab1182405bfe87a505d4b7a8311c661ec}{Scalar}}, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}} $>$ {\bfseries m\+\_\+eivec}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_adaa5ac07280af518f60c4b9acdaf7bd0}\label{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_adaa5ac07280af518f60c4b9acdaf7bd0}} 
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_ab1182405bfe87a505d4b7a8311c661ec}{Scalar}}, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}, 1 $>$ {\bfseries m\+\_\+eivalues}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a6e86882767bd4071e6e94d798f209f6b}\label{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a6e86882767bd4071e6e94d798f209f6b}} 
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} {\bfseries m\+\_\+info}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_ab62886592ebee77ff8b612284b9273ef}\label{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_ab62886592ebee77ff8b612284b9273ef}} 
+bool {\bfseries m\+\_\+is\+Initialized}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a9621edab5d5fa5aac8495a15509352c3}\label{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a9621edab5d5fa5aac8495a15509352c3}} 
+bool {\bfseries m\+\_\+eigenvectors\+Ok}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_aebd2b15826b43d59c5df989968e2a71e}\label{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_aebd2b15826b43d59c5df989968e2a71e}} 
+size\+\_\+t {\bfseries m\+\_\+nbr\+Converged}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a834d1236ca84d0a6b26b7c9da3534b81}\label{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a834d1236ca84d0a6b26b7c9da3534b81}} 
+size\+\_\+t {\bfseries m\+\_\+nbr\+Iterations}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a2555af55e53bf9de894a49e639be2e1e}\label{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a2555af55e53bf9de894a49e639be2e1e}} 
+\index{Eigen::ArpackGeneralizedSelfAdjointEigenSolver$<$ MatrixType, MatrixSolver, BisSPD $>$@{Eigen::ArpackGeneralizedSelfAdjointEigenSolver$<$ MatrixType, MatrixSolver, BisSPD $>$}!RealScalar@{RealScalar}}
+\index{RealScalar@{RealScalar}!Eigen::ArpackGeneralizedSelfAdjointEigenSolver$<$ MatrixType, MatrixSolver, BisSPD $>$@{Eigen::ArpackGeneralizedSelfAdjointEigenSolver$<$ MatrixType, MatrixSolver, BisSPD $>$}}
+\doxysubsubsection{\texorpdfstring{RealScalar}{RealScalar}}
+{\footnotesize\ttfamily template$<$typename Matrix\+Type , typename Matrix\+Solver  = Simplicial\+L\+L\+T$<$\+Matrix\+Type$>$, bool Bis\+S\+PD = false$>$ \\
+typedef \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$\mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_ab1182405bfe87a505d4b7a8311c661ec}{Scalar}}$>$\+::Real \mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver}{Eigen\+::\+Arpack\+Generalized\+Self\+Adjoint\+Eigen\+Solver}}$<$ Matrix\+Type, Matrix\+Solver, Bis\+S\+PD $>$\+::\mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a2555af55e53bf9de894a49e639be2e1e}{Real\+Scalar}}}
+
+
+
+Real scalar type for {\ttfamily Matrix\+Type}. 
+
+This is just {\ttfamily Scalar} if \mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_ab1182405bfe87a505d4b7a8311c661ec}{Scalar}} is real (e.\+g., {\ttfamily float} or {\ttfamily Scalar}), and the type of the real part of {\ttfamily Scalar} if \mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_ab1182405bfe87a505d4b7a8311c661ec}{Scalar}} is complex. \mbox{\Hypertarget{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a47a5becb6dda25dbd90a1704a8247dd8}\label{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a47a5becb6dda25dbd90a1704a8247dd8}} 
+\index{Eigen::ArpackGeneralizedSelfAdjointEigenSolver$<$ MatrixType, MatrixSolver, BisSPD $>$@{Eigen::ArpackGeneralizedSelfAdjointEigenSolver$<$ MatrixType, MatrixSolver, BisSPD $>$}!RealVectorType@{RealVectorType}}
+\index{RealVectorType@{RealVectorType}!Eigen::ArpackGeneralizedSelfAdjointEigenSolver$<$ MatrixType, MatrixSolver, BisSPD $>$@{Eigen::ArpackGeneralizedSelfAdjointEigenSolver$<$ MatrixType, MatrixSolver, BisSPD $>$}}
+\doxysubsubsection{\texorpdfstring{RealVectorType}{RealVectorType}}
+{\footnotesize\ttfamily template$<$typename Matrix\+Type , typename Matrix\+Solver  = Simplicial\+L\+L\+T$<$\+Matrix\+Type$>$, bool Bis\+S\+PD = false$>$ \\
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1plain__col__type}{internal\+::plain\+\_\+col\+\_\+type}}$<$Matrix\+Type, \mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a2555af55e53bf9de894a49e639be2e1e}{Real\+Scalar}}$>$\+::type \mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver}{Eigen\+::\+Arpack\+Generalized\+Self\+Adjoint\+Eigen\+Solver}}$<$ Matrix\+Type, Matrix\+Solver, Bis\+S\+PD $>$\+::\mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a47a5becb6dda25dbd90a1704a8247dd8}{Real\+Vector\+Type}}}
+
+
+
+Type for vector of eigenvalues as returned by \mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_ab46900dafdd11a8ac05a662c6b41480d}{eigenvalues()}}. 
+
+This is a column vector with entries of type \mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a2555af55e53bf9de894a49e639be2e1e}{Real\+Scalar}}. The length of the vector is the size of {\ttfamily nbr\+Eigenvalues}. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_aab45c05af4937baddb38e26bffe80a42}\label{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_aab45c05af4937baddb38e26bffe80a42}} 
+\index{Eigen::ArpackGeneralizedSelfAdjointEigenSolver$<$ MatrixType, MatrixSolver, BisSPD $>$@{Eigen::ArpackGeneralizedSelfAdjointEigenSolver$<$ MatrixType, MatrixSolver, BisSPD $>$}!ArpackGeneralizedSelfAdjointEigenSolver@{ArpackGeneralizedSelfAdjointEigenSolver}}
+\index{ArpackGeneralizedSelfAdjointEigenSolver@{ArpackGeneralizedSelfAdjointEigenSolver}!Eigen::ArpackGeneralizedSelfAdjointEigenSolver$<$ MatrixType, MatrixSolver, BisSPD $>$@{Eigen::ArpackGeneralizedSelfAdjointEigenSolver$<$ MatrixType, MatrixSolver, BisSPD $>$}}
+\doxysubsubsection{\texorpdfstring{ArpackGeneralizedSelfAdjointEigenSolver()}{ArpackGeneralizedSelfAdjointEigenSolver()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename Matrix\+Type , typename Matrix\+Solver  = Simplicial\+L\+L\+T$<$\+Matrix\+Type$>$, bool Bis\+S\+PD = false$>$ \\
+\mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver}{Eigen\+::\+Arpack\+Generalized\+Self\+Adjoint\+Eigen\+Solver}}$<$ Matrix\+Type, Matrix\+Solver, Bis\+S\+PD $>$\+::\mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver}{Arpack\+Generalized\+Self\+Adjoint\+Eigen\+Solver}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default constructor. 
+
+The default constructor is for cases in which the user intends to perform decompositions via \mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a1a905e5e65e82e559a2cc394a9f42385}{compute()}}. \mbox{\Hypertarget{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_ab67d6c5218fd84e74fc03d55acd0c89e}\label{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_ab67d6c5218fd84e74fc03d55acd0c89e}} 
+\index{Eigen::ArpackGeneralizedSelfAdjointEigenSolver$<$ MatrixType, MatrixSolver, BisSPD $>$@{Eigen::ArpackGeneralizedSelfAdjointEigenSolver$<$ MatrixType, MatrixSolver, BisSPD $>$}!ArpackGeneralizedSelfAdjointEigenSolver@{ArpackGeneralizedSelfAdjointEigenSolver}}
+\index{ArpackGeneralizedSelfAdjointEigenSolver@{ArpackGeneralizedSelfAdjointEigenSolver}!Eigen::ArpackGeneralizedSelfAdjointEigenSolver$<$ MatrixType, MatrixSolver, BisSPD $>$@{Eigen::ArpackGeneralizedSelfAdjointEigenSolver$<$ MatrixType, MatrixSolver, BisSPD $>$}}
+\doxysubsubsection{\texorpdfstring{ArpackGeneralizedSelfAdjointEigenSolver()}{ArpackGeneralizedSelfAdjointEigenSolver()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename Matrix\+Type , typename Matrix\+Solver  = Simplicial\+L\+L\+T$<$\+Matrix\+Type$>$, bool Bis\+S\+PD = false$>$ \\
+\mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver}{Eigen\+::\+Arpack\+Generalized\+Self\+Adjoint\+Eigen\+Solver}}$<$ Matrix\+Type, Matrix\+Solver, Bis\+S\+PD $>$\+::\mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver}{Arpack\+Generalized\+Self\+Adjoint\+Eigen\+Solver}} (\begin{DoxyParamCaption}\item[{const Matrix\+Type \&}]{A,  }\item[{const Matrix\+Type \&}]{B,  }\item[{Index}]{nbr\+Eigenvalues,  }\item[{std\+::string}]{eigs\+\_\+sigma = {\ttfamily \char`\"{}LM\char`\"{}},  }\item[{int}]{options = {\ttfamily \mbox{\hyperlink{group__enums_ggae3e239fb70022eb8747994cf5d68b4a9a7f7d17fba3c9bb92158e346d5979d0f4}{Compute\+Eigenvectors}}},  }\item[{\mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a2555af55e53bf9de894a49e639be2e1e}{Real\+Scalar}}}]{tol = {\ttfamily 0.0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor; computes generalized eigenvalues of given matrix with respect to another matrix. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em A} & Self-\/adjoint matrix whose eigenvalues / eigenvectors will computed. By default, the upper triangular part is used, but can be changed through the template parameter. \\
+\hline
+\mbox{\texttt{ in}}  & {\em B} & Self-\/adjoint matrix for the generalized eigenvalue problem. \\
+\hline
+\mbox{\texttt{ in}}  & {\em nbr\+Eigenvalues} & The number of eigenvalues / eigenvectors to compute. Must be less than the size of the input matrix, or an error is returned. \\
+\hline
+\mbox{\texttt{ in}}  & {\em eigs\+\_\+sigma} & String containing either \char`\"{}\+L\+M\char`\"{}, \char`\"{}\+S\+M\char`\"{}, \char`\"{}\+L\+A\char`\"{}, or \char`\"{}\+S\+A\char`\"{}, with respective meanings to find the largest magnitude , smallest magnitude, largest algebraic, or smallest algebraic eigenvalues. Alternatively, this value can contain floating point value in string form, in which case the eigenvalues closest to this value will be found. \\
+\hline
+\mbox{\texttt{ in}}  & {\em options} & Can be \mbox{\hyperlink{group__enums_ggae3e239fb70022eb8747994cf5d68b4a9a7f7d17fba3c9bb92158e346d5979d0f4}{Compute\+Eigenvectors}} (default) or \mbox{\hyperlink{group__enums_ggae3e239fb70022eb8747994cf5d68b4a9afd06633f270207c373875fd7ca03e906}{Eigenvalues\+Only}}. \\
+\hline
+\mbox{\texttt{ in}}  & {\em tol} & What tolerance to find the eigenvalues to. Default is 0, which means machine precision.\\
+\hline
+\end{DoxyParams}
+This constructor calls \mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a1a905e5e65e82e559a2cc394a9f42385}{compute(const Matrix\+Type\&, const Matrix\+Type\&, Index, string, int, Real\+Scalar)}} to compute the eigenvalues of the matrix {\ttfamily A} with respect to {\ttfamily B}. The eigenvectors are computed if {\ttfamily options} equals \mbox{\hyperlink{group__enums_ggae3e239fb70022eb8747994cf5d68b4a9a7f7d17fba3c9bb92158e346d5979d0f4}{Compute\+Eigenvectors}}. \mbox{\Hypertarget{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a896d444b17b59c3b061800f579317a73}\label{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a896d444b17b59c3b061800f579317a73}} 
+\index{Eigen::ArpackGeneralizedSelfAdjointEigenSolver$<$ MatrixType, MatrixSolver, BisSPD $>$@{Eigen::ArpackGeneralizedSelfAdjointEigenSolver$<$ MatrixType, MatrixSolver, BisSPD $>$}!ArpackGeneralizedSelfAdjointEigenSolver@{ArpackGeneralizedSelfAdjointEigenSolver}}
+\index{ArpackGeneralizedSelfAdjointEigenSolver@{ArpackGeneralizedSelfAdjointEigenSolver}!Eigen::ArpackGeneralizedSelfAdjointEigenSolver$<$ MatrixType, MatrixSolver, BisSPD $>$@{Eigen::ArpackGeneralizedSelfAdjointEigenSolver$<$ MatrixType, MatrixSolver, BisSPD $>$}}
+\doxysubsubsection{\texorpdfstring{ArpackGeneralizedSelfAdjointEigenSolver()}{ArpackGeneralizedSelfAdjointEigenSolver()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename Matrix\+Type , typename Matrix\+Solver  = Simplicial\+L\+L\+T$<$\+Matrix\+Type$>$, bool Bis\+S\+PD = false$>$ \\
+\mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver}{Eigen\+::\+Arpack\+Generalized\+Self\+Adjoint\+Eigen\+Solver}}$<$ Matrix\+Type, Matrix\+Solver, Bis\+S\+PD $>$\+::\mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver}{Arpack\+Generalized\+Self\+Adjoint\+Eigen\+Solver}} (\begin{DoxyParamCaption}\item[{const Matrix\+Type \&}]{A,  }\item[{Index}]{nbr\+Eigenvalues,  }\item[{std\+::string}]{eigs\+\_\+sigma = {\ttfamily \char`\"{}LM\char`\"{}},  }\item[{int}]{options = {\ttfamily \mbox{\hyperlink{group__enums_ggae3e239fb70022eb8747994cf5d68b4a9a7f7d17fba3c9bb92158e346d5979d0f4}{Compute\+Eigenvectors}}},  }\item[{\mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a2555af55e53bf9de894a49e639be2e1e}{Real\+Scalar}}}]{tol = {\ttfamily 0.0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor; computes eigenvalues of given matrix. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em A} & Self-\/adjoint matrix whose eigenvalues / eigenvectors will computed. By default, the upper triangular part is used, but can be changed through the template parameter. \\
+\hline
+\mbox{\texttt{ in}}  & {\em nbr\+Eigenvalues} & The number of eigenvalues / eigenvectors to compute. Must be less than the size of the input matrix, or an error is returned. \\
+\hline
+\mbox{\texttt{ in}}  & {\em eigs\+\_\+sigma} & String containing either \char`\"{}\+L\+M\char`\"{}, \char`\"{}\+S\+M\char`\"{}, \char`\"{}\+L\+A\char`\"{}, or \char`\"{}\+S\+A\char`\"{}, with respective meanings to find the largest magnitude , smallest magnitude, largest algebraic, or smallest algebraic eigenvalues. Alternatively, this value can contain floating point value in string form, in which case the eigenvalues closest to this value will be found. \\
+\hline
+\mbox{\texttt{ in}}  & {\em options} & Can be \mbox{\hyperlink{group__enums_ggae3e239fb70022eb8747994cf5d68b4a9a7f7d17fba3c9bb92158e346d5979d0f4}{Compute\+Eigenvectors}} (default) or \mbox{\hyperlink{group__enums_ggae3e239fb70022eb8747994cf5d68b4a9afd06633f270207c373875fd7ca03e906}{Eigenvalues\+Only}}. \\
+\hline
+\mbox{\texttt{ in}}  & {\em tol} & What tolerance to find the eigenvalues to. Default is 0, which means machine precision.\\
+\hline
+\end{DoxyParams}
+This constructor calls \mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a781369cb32c8e4623894da79909612c4}{compute(const Matrix\+Type\&, Index, string, int, Real\+Scalar)}} to compute the eigenvalues of the matrix {\ttfamily A}. The eigenvectors are computed if {\ttfamily options} equals \mbox{\hyperlink{group__enums_ggae3e239fb70022eb8747994cf5d68b4a9a7f7d17fba3c9bb92158e346d5979d0f4}{Compute\+Eigenvectors}}. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a1a905e5e65e82e559a2cc394a9f42385}\label{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a1a905e5e65e82e559a2cc394a9f42385}} 
+\index{Eigen::ArpackGeneralizedSelfAdjointEigenSolver$<$ MatrixType, MatrixSolver, BisSPD $>$@{Eigen::ArpackGeneralizedSelfAdjointEigenSolver$<$ MatrixType, MatrixSolver, BisSPD $>$}!compute@{compute}}
+\index{compute@{compute}!Eigen::ArpackGeneralizedSelfAdjointEigenSolver$<$ MatrixType, MatrixSolver, BisSPD $>$@{Eigen::ArpackGeneralizedSelfAdjointEigenSolver$<$ MatrixType, MatrixSolver, BisSPD $>$}}
+\doxysubsubsection{\texorpdfstring{compute()}{compute()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Matrix\+Type , typename Matrix\+Solver , bool Bis\+S\+PD$>$ \\
+\mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver}{Arpack\+Generalized\+Self\+Adjoint\+Eigen\+Solver}}$<$ Matrix\+Type, Matrix\+Solver, Bis\+S\+PD $>$ \& \mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver}{Eigen\+::\+Arpack\+Generalized\+Self\+Adjoint\+Eigen\+Solver}}$<$ Matrix\+Type, Matrix\+Solver, Bis\+S\+PD $>$\+::compute (\begin{DoxyParamCaption}\item[{const Matrix\+Type \&}]{A,  }\item[{const Matrix\+Type \&}]{B,  }\item[{Index}]{nbr\+Eigenvalues,  }\item[{std\+::string}]{eigs\+\_\+sigma = {\ttfamily \char`\"{}LM\char`\"{}},  }\item[{int}]{options = {\ttfamily \mbox{\hyperlink{group__enums_ggae3e239fb70022eb8747994cf5d68b4a9a7f7d17fba3c9bb92158e346d5979d0f4}{Compute\+Eigenvectors}}},  }\item[{\mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a2555af55e53bf9de894a49e639be2e1e}{Real\+Scalar}}}]{tol = {\ttfamily 0.0} }\end{DoxyParamCaption})}
+
+
+
+Computes generalized eigenvalues / eigenvectors of given matrix using the external A\+R\+P\+A\+CK library. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em A} & Selfadjoint matrix whose eigendecomposition is to be computed. \\
+\hline
+\mbox{\texttt{ in}}  & {\em B} & Selfadjoint matrix for generalized eigenvalues. \\
+\hline
+\mbox{\texttt{ in}}  & {\em nbr\+Eigenvalues} & The number of eigenvalues / eigenvectors to compute. Must be less than the size of the input matrix, or an error is returned. \\
+\hline
+\mbox{\texttt{ in}}  & {\em eigs\+\_\+sigma} & String containing either \char`\"{}\+L\+M\char`\"{}, \char`\"{}\+S\+M\char`\"{}, \char`\"{}\+L\+A\char`\"{}, or \char`\"{}\+S\+A\char`\"{}, with respective meanings to find the largest magnitude , smallest magnitude, largest algebraic, or smallest algebraic eigenvalues. Alternatively, this value can contain floating point value in string form, in which case the eigenvalues closest to this value will be found. \\
+\hline
+\mbox{\texttt{ in}}  & {\em options} & Can be \mbox{\hyperlink{group__enums_ggae3e239fb70022eb8747994cf5d68b4a9a7f7d17fba3c9bb92158e346d5979d0f4}{Compute\+Eigenvectors}} (default) or \mbox{\hyperlink{group__enums_ggae3e239fb70022eb8747994cf5d68b4a9afd06633f270207c373875fd7ca03e906}{Eigenvalues\+Only}}. \\
+\hline
+\mbox{\texttt{ in}}  & {\em tol} & What tolerance to find the eigenvalues to. Default is 0, which means machine precision.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to {\ttfamily $\ast$this} 
+\end{DoxyReturn}
+This function computes the generalized eigenvalues of {\ttfamily A} with respect to {\ttfamily B} using A\+R\+P\+A\+CK. The \mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_ab46900dafdd11a8ac05a662c6b41480d}{eigenvalues()}} function can be used to retrieve them. If {\ttfamily options} equals \mbox{\hyperlink{group__enums_ggae3e239fb70022eb8747994cf5d68b4a9a7f7d17fba3c9bb92158e346d5979d0f4}{Compute\+Eigenvectors}}, then the eigenvectors are also computed and can be retrieved by calling \mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a183825135568364792a955efc55a0773}{eigenvectors()}}. \mbox{\Hypertarget{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a781369cb32c8e4623894da79909612c4}\label{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a781369cb32c8e4623894da79909612c4}} 
+\index{Eigen::ArpackGeneralizedSelfAdjointEigenSolver$<$ MatrixType, MatrixSolver, BisSPD $>$@{Eigen::ArpackGeneralizedSelfAdjointEigenSolver$<$ MatrixType, MatrixSolver, BisSPD $>$}!compute@{compute}}
+\index{compute@{compute}!Eigen::ArpackGeneralizedSelfAdjointEigenSolver$<$ MatrixType, MatrixSolver, BisSPD $>$@{Eigen::ArpackGeneralizedSelfAdjointEigenSolver$<$ MatrixType, MatrixSolver, BisSPD $>$}}
+\doxysubsubsection{\texorpdfstring{compute()}{compute()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Matrix\+Type , typename Matrix\+Solver , bool Bis\+S\+PD$>$ \\
+\mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver}{Arpack\+Generalized\+Self\+Adjoint\+Eigen\+Solver}}$<$ Matrix\+Type, Matrix\+Solver, Bis\+S\+PD $>$ \& \mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver}{Eigen\+::\+Arpack\+Generalized\+Self\+Adjoint\+Eigen\+Solver}}$<$ Matrix\+Type, Matrix\+Solver, Bis\+S\+PD $>$\+::compute (\begin{DoxyParamCaption}\item[{const Matrix\+Type \&}]{A,  }\item[{Index}]{nbr\+Eigenvalues,  }\item[{std\+::string}]{eigs\+\_\+sigma = {\ttfamily \char`\"{}LM\char`\"{}},  }\item[{int}]{options = {\ttfamily \mbox{\hyperlink{group__enums_ggae3e239fb70022eb8747994cf5d68b4a9a7f7d17fba3c9bb92158e346d5979d0f4}{Compute\+Eigenvectors}}},  }\item[{\mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a2555af55e53bf9de894a49e639be2e1e}{Real\+Scalar}}}]{tol = {\ttfamily 0.0} }\end{DoxyParamCaption})}
+
+
+
+Computes eigenvalues / eigenvectors of given matrix using the external A\+R\+P\+A\+CK library. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em A} & Selfadjoint matrix whose eigendecomposition is to be computed. \\
+\hline
+\mbox{\texttt{ in}}  & {\em nbr\+Eigenvalues} & The number of eigenvalues / eigenvectors to compute. Must be less than the size of the input matrix, or an error is returned. \\
+\hline
+\mbox{\texttt{ in}}  & {\em eigs\+\_\+sigma} & String containing either \char`\"{}\+L\+M\char`\"{}, \char`\"{}\+S\+M\char`\"{}, \char`\"{}\+L\+A\char`\"{}, or \char`\"{}\+S\+A\char`\"{}, with respective meanings to find the largest magnitude , smallest magnitude, largest algebraic, or smallest algebraic eigenvalues. Alternatively, this value can contain floating point value in string form, in which case the eigenvalues closest to this value will be found. \\
+\hline
+\mbox{\texttt{ in}}  & {\em options} & Can be \mbox{\hyperlink{group__enums_ggae3e239fb70022eb8747994cf5d68b4a9a7f7d17fba3c9bb92158e346d5979d0f4}{Compute\+Eigenvectors}} (default) or \mbox{\hyperlink{group__enums_ggae3e239fb70022eb8747994cf5d68b4a9afd06633f270207c373875fd7ca03e906}{Eigenvalues\+Only}}. \\
+\hline
+\mbox{\texttt{ in}}  & {\em tol} & What tolerance to find the eigenvalues to. Default is 0, which means machine precision.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to {\ttfamily $\ast$this} 
+\end{DoxyReturn}
+This function computes the eigenvalues of {\ttfamily A} using A\+R\+P\+A\+CK. The \mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_ab46900dafdd11a8ac05a662c6b41480d}{eigenvalues()}} function can be used to retrieve them. If {\ttfamily options} equals \mbox{\hyperlink{group__enums_ggae3e239fb70022eb8747994cf5d68b4a9a7f7d17fba3c9bb92158e346d5979d0f4}{Compute\+Eigenvectors}}, then the eigenvectors are also computed and can be retrieved by calling \mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a183825135568364792a955efc55a0773}{eigenvectors()}}. \mbox{\Hypertarget{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_ab46900dafdd11a8ac05a662c6b41480d}\label{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_ab46900dafdd11a8ac05a662c6b41480d}} 
+\index{Eigen::ArpackGeneralizedSelfAdjointEigenSolver$<$ MatrixType, MatrixSolver, BisSPD $>$@{Eigen::ArpackGeneralizedSelfAdjointEigenSolver$<$ MatrixType, MatrixSolver, BisSPD $>$}!eigenvalues@{eigenvalues}}
+\index{eigenvalues@{eigenvalues}!Eigen::ArpackGeneralizedSelfAdjointEigenSolver$<$ MatrixType, MatrixSolver, BisSPD $>$@{Eigen::ArpackGeneralizedSelfAdjointEigenSolver$<$ MatrixType, MatrixSolver, BisSPD $>$}}
+\doxysubsubsection{\texorpdfstring{eigenvalues()}{eigenvalues()}}
+{\footnotesize\ttfamily template$<$typename Matrix\+Type , typename Matrix\+Solver  = Simplicial\+L\+L\+T$<$\+Matrix\+Type$>$, bool Bis\+S\+PD = false$>$ \\
+const \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$\mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_ab1182405bfe87a505d4b7a8311c661ec}{Scalar}}, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}, 1$>$\& \mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver}{Eigen\+::\+Arpack\+Generalized\+Self\+Adjoint\+Eigen\+Solver}}$<$ Matrix\+Type, Matrix\+Solver, Bis\+S\+PD $>$\+::eigenvalues (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the eigenvalues of given matrix. 
+
+\begin{DoxyReturn}{Returns}
+A const reference to the column vector containing the eigenvalues.
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondition}
+The eigenvalues have been computed before.
+\end{DoxyPrecond}
+The eigenvalues are repeated according to their algebraic multiplicity, so there are as many eigenvalues as rows in the matrix. The eigenvalues are sorted in increasing order.
+
+Example\+: 
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a183825135568364792a955efc55a0773}{eigenvectors()}}, \mbox{\hyperlink{class_eigen_1_1_matrix_base_a30430fa3d5b4e74d312fd4f502ac984d}{Matrix\+Base\+::eigenvalues()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a183825135568364792a955efc55a0773}\label{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a183825135568364792a955efc55a0773}} 
+\index{Eigen::ArpackGeneralizedSelfAdjointEigenSolver$<$ MatrixType, MatrixSolver, BisSPD $>$@{Eigen::ArpackGeneralizedSelfAdjointEigenSolver$<$ MatrixType, MatrixSolver, BisSPD $>$}!eigenvectors@{eigenvectors}}
+\index{eigenvectors@{eigenvectors}!Eigen::ArpackGeneralizedSelfAdjointEigenSolver$<$ MatrixType, MatrixSolver, BisSPD $>$@{Eigen::ArpackGeneralizedSelfAdjointEigenSolver$<$ MatrixType, MatrixSolver, BisSPD $>$}}
+\doxysubsubsection{\texorpdfstring{eigenvectors()}{eigenvectors()}}
+{\footnotesize\ttfamily template$<$typename Matrix\+Type , typename Matrix\+Solver  = Simplicial\+L\+L\+T$<$\+Matrix\+Type$>$, bool Bis\+S\+PD = false$>$ \\
+const \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$\mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_ab1182405bfe87a505d4b7a8311c661ec}{Scalar}}, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}$>$\& \mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver}{Eigen\+::\+Arpack\+Generalized\+Self\+Adjoint\+Eigen\+Solver}}$<$ Matrix\+Type, Matrix\+Solver, Bis\+S\+PD $>$\+::eigenvectors (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the eigenvectors of given matrix. 
+
+\begin{DoxyReturn}{Returns}
+A const reference to the matrix whose columns are the eigenvectors.
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondition}
+The eigenvectors have been computed before.
+\end{DoxyPrecond}
+Column $ k $ of the returned matrix is an eigenvector corresponding to eigenvalue number $ k $ as returned by \mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_ab46900dafdd11a8ac05a662c6b41480d}{eigenvalues()}}. The eigenvectors are normalized to have (Euclidean) norm equal to one. If this object was used to solve the eigenproblem for the selfadjoint matrix $ A $, then the matrix returned by this function is the matrix $ V $ in the eigendecomposition $ A V = D V $. For the generalized eigenproblem, the matrix returned is the solution $ A V = D B V $
+
+Example\+: 
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_ab46900dafdd11a8ac05a662c6b41480d}{eigenvalues()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a6f952eed50efe01b8cb91726e6a93b68}\label{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a6f952eed50efe01b8cb91726e6a93b68}} 
+\index{Eigen::ArpackGeneralizedSelfAdjointEigenSolver$<$ MatrixType, MatrixSolver, BisSPD $>$@{Eigen::ArpackGeneralizedSelfAdjointEigenSolver$<$ MatrixType, MatrixSolver, BisSPD $>$}!info@{info}}
+\index{info@{info}!Eigen::ArpackGeneralizedSelfAdjointEigenSolver$<$ MatrixType, MatrixSolver, BisSPD $>$@{Eigen::ArpackGeneralizedSelfAdjointEigenSolver$<$ MatrixType, MatrixSolver, BisSPD $>$}}
+\doxysubsubsection{\texorpdfstring{info()}{info()}}
+{\footnotesize\ttfamily template$<$typename Matrix\+Type , typename Matrix\+Solver  = Simplicial\+L\+L\+T$<$\+Matrix\+Type$>$, bool Bis\+S\+PD = false$>$ \\
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} \mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver}{Eigen\+::\+Arpack\+Generalized\+Self\+Adjoint\+Eigen\+Solver}}$<$ Matrix\+Type, Matrix\+Solver, Bis\+S\+PD $>$\+::info (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Reports whether previous computation was successful. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily Success} if computation was succesful, {\ttfamily No\+Convergence} otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_ad55f052b675f1deaea220d0cc225622a}\label{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_ad55f052b675f1deaea220d0cc225622a}} 
+\index{Eigen::ArpackGeneralizedSelfAdjointEigenSolver$<$ MatrixType, MatrixSolver, BisSPD $>$@{Eigen::ArpackGeneralizedSelfAdjointEigenSolver$<$ MatrixType, MatrixSolver, BisSPD $>$}!operatorInverseSqrt@{operatorInverseSqrt}}
+\index{operatorInverseSqrt@{operatorInverseSqrt}!Eigen::ArpackGeneralizedSelfAdjointEigenSolver$<$ MatrixType, MatrixSolver, BisSPD $>$@{Eigen::ArpackGeneralizedSelfAdjointEigenSolver$<$ MatrixType, MatrixSolver, BisSPD $>$}}
+\doxysubsubsection{\texorpdfstring{operatorInverseSqrt()}{operatorInverseSqrt()}}
+{\footnotesize\ttfamily template$<$typename Matrix\+Type , typename Matrix\+Solver  = Simplicial\+L\+L\+T$<$\+Matrix\+Type$>$, bool Bis\+S\+PD = false$>$ \\
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$\mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_ab1182405bfe87a505d4b7a8311c661ec}{Scalar}}, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}$>$ \mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver}{Eigen\+::\+Arpack\+Generalized\+Self\+Adjoint\+Eigen\+Solver}}$<$ Matrix\+Type, Matrix\+Solver, Bis\+S\+PD $>$\+::operator\+Inverse\+Sqrt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Computes the inverse square root of the matrix. 
+
+\begin{DoxyReturn}{Returns}
+the inverse positive-\/definite square root of the matrix
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondition}
+The eigenvalues and eigenvectors of a positive-\/definite matrix have been computed before.
+\end{DoxyPrecond}
+This function uses the eigendecomposition $ A = V D V^{-1} $ to compute the inverse square root as $ V D^{-1/2} V^{-1} $. This is cheaper than first computing the square root with \mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a7522aad061ebccc065b254c0bc67d3b0}{operator\+Sqrt()}} and then its inverse with \mbox{\hyperlink{class_eigen_1_1_matrix_base_a7712eb69e8ea3c8f7b8da1c44dbdeebf}{Matrix\+Base\+::inverse()}}.
+
+Example\+: 
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a7522aad061ebccc065b254c0bc67d3b0}{operator\+Sqrt()}}, \mbox{\hyperlink{class_eigen_1_1_matrix_base_a7712eb69e8ea3c8f7b8da1c44dbdeebf}{Matrix\+Base\+::inverse()}}, Matrix\+Functions Module 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a7522aad061ebccc065b254c0bc67d3b0}\label{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_a7522aad061ebccc065b254c0bc67d3b0}} 
+\index{Eigen::ArpackGeneralizedSelfAdjointEigenSolver$<$ MatrixType, MatrixSolver, BisSPD $>$@{Eigen::ArpackGeneralizedSelfAdjointEigenSolver$<$ MatrixType, MatrixSolver, BisSPD $>$}!operatorSqrt@{operatorSqrt}}
+\index{operatorSqrt@{operatorSqrt}!Eigen::ArpackGeneralizedSelfAdjointEigenSolver$<$ MatrixType, MatrixSolver, BisSPD $>$@{Eigen::ArpackGeneralizedSelfAdjointEigenSolver$<$ MatrixType, MatrixSolver, BisSPD $>$}}
+\doxysubsubsection{\texorpdfstring{operatorSqrt()}{operatorSqrt()}}
+{\footnotesize\ttfamily template$<$typename Matrix\+Type , typename Matrix\+Solver  = Simplicial\+L\+L\+T$<$\+Matrix\+Type$>$, bool Bis\+S\+PD = false$>$ \\
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$\mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_ab1182405bfe87a505d4b7a8311c661ec}{Scalar}}, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}$>$ \mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver}{Eigen\+::\+Arpack\+Generalized\+Self\+Adjoint\+Eigen\+Solver}}$<$ Matrix\+Type, Matrix\+Solver, Bis\+S\+PD $>$\+::operator\+Sqrt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Computes the positive-\/definite square root of the matrix. 
+
+\begin{DoxyReturn}{Returns}
+the positive-\/definite square root of the matrix
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondition}
+The eigenvalues and eigenvectors of a positive-\/definite matrix have been computed before.
+\end{DoxyPrecond}
+The square root of a positive-\/definite matrix $ A $ is the positive-\/definite matrix whose square equals $ A $. This function uses the eigendecomposition $ A = V D V^{-1} $ to compute the square root as $ A^{1/2} = V D^{1/2} V^{-1} $.
+
+Example\+: 
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_arpack_generalized_self_adjoint_eigen_solver_ad55f052b675f1deaea220d0cc225622a}{operator\+Inverse\+Sqrt()}}, Matrix\+Functions Module 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/src/\+Eigenvalues/Arpack\+Self\+Adjoint\+Eigen\+Solver.\+h\end{DoxyCompactItemize}

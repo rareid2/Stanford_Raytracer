@@ -1,0 +1,71 @@
+\hypertarget{struct_eigen_1_1internal_1_1sparse__conjunction__evaluator_3_01_xpr_type_00_01_iterator_based_00_01_index_based_01_4}{}\doxysection{Eigen\+::internal\+::sparse\+\_\+conjunction\+\_\+evaluator$<$ Xpr\+Type, Iterator\+Based, Index\+Based $>$ Struct Template Reference}
+\label{struct_eigen_1_1internal_1_1sparse__conjunction__evaluator_3_01_xpr_type_00_01_iterator_based_00_01_index_based_01_4}\index{Eigen::internal::sparse\_conjunction\_evaluator$<$ XprType, IteratorBased, IndexBased $>$@{Eigen::internal::sparse\_conjunction\_evaluator$<$ XprType, IteratorBased, IndexBased $>$}}
+Inheritance diagram for Eigen\+::internal\+::sparse\+\_\+conjunction\+\_\+evaluator$<$ Xpr\+Type, Iterator\+Based, Index\+Based $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{struct_eigen_1_1internal_1_1sparse__conjunction__evaluator_3_01_xpr_type_00_01_iterator_based_00_01_index_based_01_4}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_eigen_1_1internal_1_1sparse__conjunction__evaluator_3_01_xpr_type_00_01_iterator_based_00_a6ef5c4f649d544c873e35b2b7e6dc62}{Inner\+Iterator}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1sparse__conjunction__evaluator_3_01_xpr_type_00_01_iterator_based_00_01_index_based_01_4_a1adfc4ea592a9bc240d1f92b755cc169}\label{struct_eigen_1_1internal_1_1sparse__conjunction__evaluator_3_01_xpr_type_00_01_iterator_based_00_01_index_based_01_4_a1adfc4ea592a9bc240d1f92b755cc169}} 
+enum \{ {\bfseries Coeff\+Read\+Cost} = evaluator$<$Lhs\+Arg$>$\+::Coeff\+Read\+Cost + evaluator$<$Rhs\+Arg$>$\+::Coeff\+Read\+Cost + functor\+\_\+traits$<$Binary\+Op$>$\+::Cost, 
+{\bfseries Flags} = (Xpr\+Type\+::Flags \& $\sim$\+Row\+Major\+Bit) $\vert$ (int(Lhs\+Arg\+::Flags)\&Row\+Major\+Bit)
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1sparse__conjunction__evaluator_3_01_xpr_type_00_01_iterator_based_00_01_index_based_01_4_a33a395e07160ff99d2e762a6b0df0f95}\label{struct_eigen_1_1internal_1_1sparse__conjunction__evaluator_3_01_xpr_type_00_01_iterator_based_00_01_index_based_01_4_a33a395e07160ff99d2e762a6b0df0f95}} 
+{\bfseries sparse\+\_\+conjunction\+\_\+evaluator} (const Xpr\+Type \&xpr)
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1sparse__conjunction__evaluator_3_01_xpr_type_00_01_iterator_based_00_01_index_based_01_4_a673e48ccfe672182ee821daddea4c72b}\label{struct_eigen_1_1internal_1_1sparse__conjunction__evaluator_3_01_xpr_type_00_01_iterator_based_00_01_index_based_01_4_a673e48ccfe672182ee821daddea4c72b}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries non\+Zeros\+Estimate} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1sparse__conjunction__evaluator_3_01_xpr_type_00_01_iterator_based_00_01_index_based_01_4_a63bed5f236c6090d2f1da26f3be10676}\label{struct_eigen_1_1internal_1_1sparse__conjunction__evaluator_3_01_xpr_type_00_01_iterator_based_00_01_index_based_01_4_a63bed5f236c6090d2f1da26f3be10676}} 
+typedef Xpr\+Type\+::\+Functor {\bfseries Binary\+Op}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1sparse__conjunction__evaluator_3_01_xpr_type_00_01_iterator_based_00_01_index_based_01_4_aef0b1774a4406198d85fdc910a09f169}\label{struct_eigen_1_1internal_1_1sparse__conjunction__evaluator_3_01_xpr_type_00_01_iterator_based_00_01_index_based_01_4_aef0b1774a4406198d85fdc910a09f169}} 
+typedef Xpr\+Type\+::\+Lhs {\bfseries Lhs\+Arg}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1sparse__conjunction__evaluator_3_01_xpr_type_00_01_iterator_based_00_01_index_based_01_4_a5f2fd1a9fba4ad55aa2b9113bbcff2d8}\label{struct_eigen_1_1internal_1_1sparse__conjunction__evaluator_3_01_xpr_type_00_01_iterator_based_00_01_index_based_01_4_a5f2fd1a9fba4ad55aa2b9113bbcff2d8}} 
+typedef Xpr\+Type\+::\+Rhs {\bfseries Rhs\+Arg}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1sparse__conjunction__evaluator_3_01_xpr_type_00_01_iterator_based_00_01_index_based_01_4_aee1b844c160d1c76f1e8fc71dfd2830b}\label{struct_eigen_1_1internal_1_1sparse__conjunction__evaluator_3_01_xpr_type_00_01_iterator_based_00_01_index_based_01_4_aee1b844c160d1c76f1e8fc71dfd2830b}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1evaluator}{evaluator}}$<$ Lhs\+Arg $>$\+::\mbox{\hyperlink{class_eigen_1_1_inner_iterator}{Inner\+Iterator}} {\bfseries Lhs\+Iterator}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1sparse__conjunction__evaluator_3_01_xpr_type_00_01_iterator_based_00_01_index_based_01_4_ac040f371d8a7da984303c7d590f6a284}\label{struct_eigen_1_1internal_1_1sparse__conjunction__evaluator_3_01_xpr_type_00_01_iterator_based_00_01_index_based_01_4_ac040f371d8a7da984303c7d590f6a284}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1evaluator}{evaluator}}$<$ Rhs\+Arg $>$ {\bfseries Rhs\+Evaluator}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1sparse__conjunction__evaluator_3_01_xpr_type_00_01_iterator_based_00_01_index_based_01_4_a6a061ddc4c2d59f42771c11cc6b9a5ff}\label{struct_eigen_1_1internal_1_1sparse__conjunction__evaluator_3_01_xpr_type_00_01_iterator_based_00_01_index_based_01_4_a6a061ddc4c2d59f42771c11cc6b9a5ff}} 
+typedef Xpr\+Type\+::\+Storage\+Index {\bfseries Storage\+Index}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1sparse__conjunction__evaluator_3_01_xpr_type_00_01_iterator_based_00_01_index_based_01_4_aa15c5da58517dc68a7a8c573aa800b2c}\label{struct_eigen_1_1internal_1_1sparse__conjunction__evaluator_3_01_xpr_type_00_01_iterator_based_00_01_index_based_01_4_aa15c5da58517dc68a7a8c573aa800b2c}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{traits}}$<$ Xpr\+Type $>$\+::Scalar {\bfseries Scalar}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1sparse__conjunction__evaluator_3_01_xpr_type_00_01_iterator_based_00_01_index_based_01_4_ac3a3f68da00f55e0ea869769e8be0283}\label{struct_eigen_1_1internal_1_1sparse__conjunction__evaluator_3_01_xpr_type_00_01_iterator_based_00_01_index_based_01_4_ac3a3f68da00f55e0ea869769e8be0283}} 
+const Binary\+Op {\bfseries m\+\_\+functor}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1sparse__conjunction__evaluator_3_01_xpr_type_00_01_iterator_based_00_01_index_based_01_4_a7da2a785684d32cde5368edd998bcf92}\label{struct_eigen_1_1internal_1_1sparse__conjunction__evaluator_3_01_xpr_type_00_01_iterator_based_00_01_index_based_01_4_a7da2a785684d32cde5368edd998bcf92}} 
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1evaluator}{evaluator}}$<$ Lhs\+Arg $>$ {\bfseries m\+\_\+lhs\+Impl}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1sparse__conjunction__evaluator_3_01_xpr_type_00_01_iterator_based_00_01_index_based_01_4_a1eff754f769386b232f927ff202cce17}\label{struct_eigen_1_1internal_1_1sparse__conjunction__evaluator_3_01_xpr_type_00_01_iterator_based_00_01_index_based_01_4_a1eff754f769386b232f927ff202cce17}} 
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1evaluator}{evaluator}}$<$ Rhs\+Arg $>$ {\bfseries m\+\_\+rhs\+Impl}
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Sparse\+Core/Sparse\+Cwise\+Binary\+Op.\+h\end{DoxyCompactItemize}

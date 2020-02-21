@@ -1,0 +1,41 @@
+\hypertarget{struct_eigen_1_1internal_1_1blas__traits}{}\doxysection{Eigen\+::internal\+::blas\+\_\+traits$<$ Xpr\+Type $>$ Struct Template Reference}
+\label{struct_eigen_1_1internal_1_1blas__traits}\index{Eigen::internal::blas\_traits$<$ XprType $>$@{Eigen::internal::blas\_traits$<$ XprType $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1blas__traits_a538133f62658a8244caf8a00db403cde}\label{struct_eigen_1_1internal_1_1blas__traits_a538133f62658a8244caf8a00db403cde}} 
+enum \{ {\bfseries Is\+Complex} = Num\+Traits$<$Scalar$>$\+::Is\+Complex, 
+{\bfseries Is\+Transposed} = false, 
+{\bfseries Need\+To\+Conjugate} = false, 
+{\bfseries Has\+Usable\+Direct\+Access}
+ \}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1blas__traits_ac5b1b5ec7dfe61418c561674e47a5cdd}\label{struct_eigen_1_1internal_1_1blas__traits_ac5b1b5ec7dfe61418c561674e47a5cdd}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{traits}}$<$ Xpr\+Type $>$\+::Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1blas__traits_ada873c310e824caadb8bd690cac37316}\label{struct_eigen_1_1internal_1_1blas__traits_ada873c310e824caadb8bd690cac37316}} 
+typedef Xpr\+Type {\bfseries \+\_\+\+Extract\+Type}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1blas__traits_a6c3057fb89fc7a4257c3b06e9931438f}\label{struct_eigen_1_1internal_1_1blas__traits_a6c3057fb89fc7a4257c3b06e9931438f}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1conditional}{conditional}}$<$ bool(Has\+Usable\+Direct\+Access), Extract\+Type, typename \+\_\+\+Extract\+Type\+::\+Plain\+Object $>$\+::type {\bfseries Direct\+Linear\+Access\+Type}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1blas__traits_a05d6cd2ebeac5e92aee45db28b416023}\label{struct_eigen_1_1internal_1_1blas__traits_a05d6cd2ebeac5e92aee45db28b416023}} 
+static Extract\+Type {\bfseries extract} (const Xpr\+Type \&x)
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1blas__traits_a49bf936917523bf20c00633e30787352}\label{struct_eigen_1_1internal_1_1blas__traits_a49bf936917523bf20c00633e30787352}} 
+static const Scalar {\bfseries extract\+Scalar\+Factor} (const Xpr\+Type \&)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1blas__traits_ad81b72ce1d2baf5d9482080a946f78a4}\label{struct_eigen_1_1internal_1_1blas__traits_ad81b72ce1d2baf5d9482080a946f78a4}} 
+const typedef Xpr\+Type \& {\bfseries Extract\+Type}
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/util/Blas\+Util.\+h\end{DoxyCompactItemize}

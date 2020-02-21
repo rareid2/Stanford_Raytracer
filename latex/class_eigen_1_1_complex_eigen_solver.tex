@@ -1,0 +1,314 @@
+\hypertarget{class_eigen_1_1_complex_eigen_solver}{}\doxysection{Eigen\+::Complex\+Eigen\+Solver$<$ \+\_\+\+Matrix\+Type $>$ Class Template Reference}
+\label{class_eigen_1_1_complex_eigen_solver}\index{Eigen::ComplexEigenSolver$<$ \_MatrixType $>$@{Eigen::ComplexEigenSolver$<$ \_MatrixType $>$}}
+
+
+Computes eigenvalues and eigenvectors of general complex matrices.  
+
+
+
+
+{\ttfamily \#include $<$Complex\+Eigen\+Solver.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_complex_eigen_solver_afbb6094f421874621734f4a5ede01641}\label{class_eigen_1_1_complex_eigen_solver_afbb6094f421874621734f4a5ede01641}} 
+enum \{ \newline
+{\bfseries Rows\+At\+Compile\+Time} = Matrix\+Type\+::Rows\+At\+Compile\+Time, 
+{\bfseries Cols\+At\+Compile\+Time} = Matrix\+Type\+::Cols\+At\+Compile\+Time, 
+{\bfseries Options} = Matrix\+Type\+::Options, 
+{\bfseries Max\+Rows\+At\+Compile\+Time} = Matrix\+Type\+::Max\+Rows\+At\+Compile\+Time, 
+\newline
+{\bfseries Max\+Cols\+At\+Compile\+Time} = Matrix\+Type\+::Max\+Cols\+At\+Compile\+Time
+ \}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_complex_eigen_solver_ad61f6278843a601096276c9a72c0252f}\label{class_eigen_1_1_complex_eigen_solver_ad61f6278843a601096276c9a72c0252f}} 
+typedef \+\_\+\+Matrix\+Type \mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_ad61f6278843a601096276c9a72c0252f}{Matrix\+Type}}
+\begin{DoxyCompactList}\small\item\em Synonym for the template parameter {\ttfamily \+\_\+\+Matrix\+Type}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_eigen_1_1_complex_eigen_solver_a61035d40c9498bb1d47628cdd4946785}\label{class_eigen_1_1_complex_eigen_solver_a61035d40c9498bb1d47628cdd4946785}} 
+typedef Matrix\+Type\+::\+Scalar \mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_a61035d40c9498bb1d47628cdd4946785}{Scalar}}
+\begin{DoxyCompactList}\small\item\em Scalar type for matrices of type \mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_ad61f6278843a601096276c9a72c0252f}{Matrix\+Type}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_eigen_1_1_complex_eigen_solver_a7c2f4ce02837e653f92d40a3f3acad87}\label{class_eigen_1_1_complex_eigen_solver_a7c2f4ce02837e653f92d40a3f3acad87}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_a61035d40c9498bb1d47628cdd4946785}{Scalar}} $>$\+::Real {\bfseries Real\+Scalar}
+\item 
+typedef \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Eigen\+::\+Index}} \mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_abc0218d8b902af0d6c759bfc0a8a8d74}{Index}}
+\item 
+typedef std\+::complex$<$ Real\+Scalar $>$ \mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_a3604c99a69fac3bee42c88cb2b589143}{Complex\+Scalar}}
+\begin{DoxyCompactList}\small\item\em Complex scalar type for \mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_ad61f6278843a601096276c9a72c0252f}{Matrix\+Type}}. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_a3604c99a69fac3bee42c88cb2b589143}{Complex\+Scalar}}, Cols\+At\+Compile\+Time, 1, Options \&($\sim$\mbox{\hyperlink{group__enums_ggaacded1a18ae58b0f554751f6cdf9eb13a77c993a8d9f6efe5c1159fb2ab07dd4f}{Row\+Major}}), Max\+Cols\+At\+Compile\+Time, 1 $>$ \mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_ad3a663b1ff5200a098dabbbf9b7162b1}{Eigenvalue\+Type}}
+\begin{DoxyCompactList}\small\item\em Type for vector of eigenvalues as returned by \mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_a10c25c7620e7faedcd39991cce3a757b}{eigenvalues()}}. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_a3604c99a69fac3bee42c88cb2b589143}{Complex\+Scalar}}, Rows\+At\+Compile\+Time, Cols\+At\+Compile\+Time, Options, Max\+Rows\+At\+Compile\+Time, Max\+Cols\+At\+Compile\+Time $>$ \mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_a67cd4d20590abfd86b2639c4c8ea3dd6}{Eigenvector\+Type}}
+\begin{DoxyCompactList}\small\item\em Type for matrix of eigenvectors as returned by \mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_a3aa5e27800349990778da8fa532c1270}{eigenvectors()}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_a3322a21574c61eefd450c003515ad802}{Complex\+Eigen\+Solver}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_a86751f64ebcd5c554551fb5eaaa02db7}{Complex\+Eigen\+Solver}} (\mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_abc0218d8b902af0d6c759bfc0a8a8d74}{Index}} size)
+\begin{DoxyCompactList}\small\item\em Default Constructor with memory preallocation. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Input\+Type $>$ }\\\mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_a748de5c1e7f730e16421e6d451437600}{Complex\+Eigen\+Solver}} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&matrix, bool compute\+Eigenvectors=true)
+\begin{DoxyCompactList}\small\item\em Constructor; computes eigendecomposition of given matrix. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_a67cd4d20590abfd86b2639c4c8ea3dd6}{Eigenvector\+Type}} \& \mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_a3aa5e27800349990778da8fa532c1270}{eigenvectors}} () const
+\begin{DoxyCompactList}\small\item\em Returns the eigenvectors of given matrix. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_ad3a663b1ff5200a098dabbbf9b7162b1}{Eigenvalue\+Type}} \& \mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_a10c25c7620e7faedcd39991cce3a757b}{eigenvalues}} () const
+\begin{DoxyCompactList}\small\item\em Returns the eigenvalues of given matrix. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Input\+Type $>$ }\\\mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver}{Complex\+Eigen\+Solver}} \& \mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_aeb7e38c6db5369f5c974f3786e94c1f0}{compute}} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&matrix, bool compute\+Eigenvectors=true)
+\begin{DoxyCompactList}\small\item\em Computes eigendecomposition of given matrix. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} \mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_ad4d9d8b90145900b9686d2dabbe46730}{info}} () const
+\begin{DoxyCompactList}\small\item\em Reports whether previous computation was successful. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_eigen_1_1_complex_eigen_solver_a0c5a974da17774d75be41e351e6bda62}\label{class_eigen_1_1_complex_eigen_solver_a0c5a974da17774d75be41e351e6bda62}} 
+\mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver}{Complex\+Eigen\+Solver}} \& \mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_a0c5a974da17774d75be41e351e6bda62}{set\+Max\+Iterations}} (\mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_abc0218d8b902af0d6c759bfc0a8a8d74}{Index}} max\+Iters)
+\begin{DoxyCompactList}\small\item\em Sets the maximum number of iterations allowed. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_eigen_1_1_complex_eigen_solver_aeec4754e32bf2d1c650bf3aed110c3d3}\label{class_eigen_1_1_complex_eigen_solver_aeec4754e32bf2d1c650bf3aed110c3d3}} 
+\mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_abc0218d8b902af0d6c759bfc0a8a8d74}{Index}} \mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_aeec4754e32bf2d1c650bf3aed110c3d3}{get\+Max\+Iterations}} ()
+\begin{DoxyCompactList}\small\item\em Returns the maximum number of iterations. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_eigen_1_1_complex_eigen_solver_a077a28fcef2f7eecb6041380cfcd83fd}\label{class_eigen_1_1_complex_eigen_solver_a077a28fcef2f7eecb6041380cfcd83fd}} 
+{\footnotesize template$<$typename Input\+Type $>$ }\\\mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver}{Complex\+Eigen\+Solver}}$<$ \mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_ad61f6278843a601096276c9a72c0252f}{Matrix\+Type}} $>$ \& {\bfseries compute} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&matrix, bool compute\+Eigenvectors)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_complex_eigen_solver_ad20cfdbbbeb1013d37dc1d82e20405ec}\label{class_eigen_1_1_complex_eigen_solver_ad20cfdbbbeb1013d37dc1d82e20405ec}} 
+static void {\bfseries check\+\_\+template\+\_\+parameters} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_complex_eigen_solver_a2d507484b14171d4d1137d7f2b04576e}\label{class_eigen_1_1_complex_eigen_solver_a2d507484b14171d4d1137d7f2b04576e}} 
+\mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_a67cd4d20590abfd86b2639c4c8ea3dd6}{Eigenvector\+Type}} {\bfseries m\+\_\+eivec}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_complex_eigen_solver_a2dbb933120321d03761975a2b690a07b}\label{class_eigen_1_1_complex_eigen_solver_a2dbb933120321d03761975a2b690a07b}} 
+\mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_ad3a663b1ff5200a098dabbbf9b7162b1}{Eigenvalue\+Type}} {\bfseries m\+\_\+eivalues}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_complex_eigen_solver_abfdd3bc09d7f5f298c3ec8e0a715daab}\label{class_eigen_1_1_complex_eigen_solver_abfdd3bc09d7f5f298c3ec8e0a715daab}} 
+\mbox{\hyperlink{class_eigen_1_1_complex_schur}{Complex\+Schur}}$<$ \mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_ad61f6278843a601096276c9a72c0252f}{Matrix\+Type}} $>$ {\bfseries m\+\_\+schur}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_complex_eigen_solver_a50049111bc1de16bd271cdb55e40f87b}\label{class_eigen_1_1_complex_eigen_solver_a50049111bc1de16bd271cdb55e40f87b}} 
+bool {\bfseries m\+\_\+is\+Initialized}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_complex_eigen_solver_aaae579b2c6a89d7bdba009bdb89f1a6e}\label{class_eigen_1_1_complex_eigen_solver_aaae579b2c6a89d7bdba009bdb89f1a6e}} 
+bool {\bfseries m\+\_\+eigenvectors\+Ok}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_complex_eigen_solver_a5af4bbd1177ecb5f6017a98c682862ee}\label{class_eigen_1_1_complex_eigen_solver_a5af4bbd1177ecb5f6017a98c682862ee}} 
+\mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_a67cd4d20590abfd86b2639c4c8ea3dd6}{Eigenvector\+Type}} {\bfseries m\+\_\+matX}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Matrix\+Type$>$\newline
+class Eigen\+::\+Complex\+Eigen\+Solver$<$ \+\_\+\+Matrix\+Type $>$}
+
+Computes eigenvalues and eigenvectors of general complex matrices. 
+
+\textbackslash{}eigenvalues\+\_\+module
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Matrix\+Type} & the type of the matrix of which we are computing the eigendecomposition; this is expected to be an instantiation of the \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}} class template.\\
+\hline
+\end{DoxyTemplParams}
+The eigenvalues and eigenvectors of a matrix $ A $ are scalars $ \lambda $ and vectors $ v $ such that $ Av = \lambda v $. If $ D $ is a diagonal matrix with the eigenvalues on the diagonal, and $ V $ is a matrix with the eigenvectors as its columns, then $ A V = V D $. The matrix $ V $ is almost always invertible, in which case we have $ A = V D V^{-1} $. This is called the eigendecomposition.
+
+The main function in this class is \mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_aeb7e38c6db5369f5c974f3786e94c1f0}{compute()}}, which computes the eigenvalues and eigenvectors of a given function. The documentation for that function contains an example showing the main features of the class.
+
+\begin{DoxySeeAlso}{See also}
+class \mbox{\hyperlink{class_eigen_1_1_eigen_solver}{Eigen\+Solver}}, class \mbox{\hyperlink{class_eigen_1_1_self_adjoint_eigen_solver}{Self\+Adjoint\+Eigen\+Solver}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_complex_eigen_solver_a3604c99a69fac3bee42c88cb2b589143}\label{class_eigen_1_1_complex_eigen_solver_a3604c99a69fac3bee42c88cb2b589143}} 
+\index{Eigen::ComplexEigenSolver$<$ \_MatrixType $>$@{Eigen::ComplexEigenSolver$<$ \_MatrixType $>$}!ComplexScalar@{ComplexScalar}}
+\index{ComplexScalar@{ComplexScalar}!Eigen::ComplexEigenSolver$<$ \_MatrixType $>$@{Eigen::ComplexEigenSolver$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{ComplexScalar}{ComplexScalar}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+typedef std\+::complex$<$Real\+Scalar$>$ \mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver}{Eigen\+::\+Complex\+Eigen\+Solver}}$<$ \+\_\+\+Matrix\+Type $>$\+::\mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_a3604c99a69fac3bee42c88cb2b589143}{Complex\+Scalar}}}
+
+
+
+Complex scalar type for \mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_ad61f6278843a601096276c9a72c0252f}{Matrix\+Type}}. 
+
+This is {\ttfamily std\+::complex$<$\+Scalar$>$} if \mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_a61035d40c9498bb1d47628cdd4946785}{Scalar}} is real (e.\+g., {\ttfamily float} or {\ttfamily double}) and just {\ttfamily Scalar} if \mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_a61035d40c9498bb1d47628cdd4946785}{Scalar}} is complex. \mbox{\Hypertarget{class_eigen_1_1_complex_eigen_solver_ad3a663b1ff5200a098dabbbf9b7162b1}\label{class_eigen_1_1_complex_eigen_solver_ad3a663b1ff5200a098dabbbf9b7162b1}} 
+\index{Eigen::ComplexEigenSolver$<$ \_MatrixType $>$@{Eigen::ComplexEigenSolver$<$ \_MatrixType $>$}!EigenvalueType@{EigenvalueType}}
+\index{EigenvalueType@{EigenvalueType}!Eigen::ComplexEigenSolver$<$ \_MatrixType $>$@{Eigen::ComplexEigenSolver$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{EigenvalueType}{EigenvalueType}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$\mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_a3604c99a69fac3bee42c88cb2b589143}{Complex\+Scalar}}, Cols\+At\+Compile\+Time, 1, Options\&($\sim$\mbox{\hyperlink{group__enums_ggaacded1a18ae58b0f554751f6cdf9eb13a77c993a8d9f6efe5c1159fb2ab07dd4f}{Row\+Major}}), Max\+Cols\+At\+Compile\+Time, 1$>$ \mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver}{Eigen\+::\+Complex\+Eigen\+Solver}}$<$ \+\_\+\+Matrix\+Type $>$\+::\mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_ad3a663b1ff5200a098dabbbf9b7162b1}{Eigenvalue\+Type}}}
+
+
+
+Type for vector of eigenvalues as returned by \mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_a10c25c7620e7faedcd39991cce3a757b}{eigenvalues()}}. 
+
+This is a column vector with entries of type \mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_a3604c99a69fac3bee42c88cb2b589143}{Complex\+Scalar}}. The length of the vector is the size of \mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_ad61f6278843a601096276c9a72c0252f}{Matrix\+Type}}. \mbox{\Hypertarget{class_eigen_1_1_complex_eigen_solver_a67cd4d20590abfd86b2639c4c8ea3dd6}\label{class_eigen_1_1_complex_eigen_solver_a67cd4d20590abfd86b2639c4c8ea3dd6}} 
+\index{Eigen::ComplexEigenSolver$<$ \_MatrixType $>$@{Eigen::ComplexEigenSolver$<$ \_MatrixType $>$}!EigenvectorType@{EigenvectorType}}
+\index{EigenvectorType@{EigenvectorType}!Eigen::ComplexEigenSolver$<$ \_MatrixType $>$@{Eigen::ComplexEigenSolver$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{EigenvectorType}{EigenvectorType}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$\mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_a3604c99a69fac3bee42c88cb2b589143}{Complex\+Scalar}}, Rows\+At\+Compile\+Time, Cols\+At\+Compile\+Time, Options, Max\+Rows\+At\+Compile\+Time, Max\+Cols\+At\+Compile\+Time$>$ \mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver}{Eigen\+::\+Complex\+Eigen\+Solver}}$<$ \+\_\+\+Matrix\+Type $>$\+::\mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_a67cd4d20590abfd86b2639c4c8ea3dd6}{Eigenvector\+Type}}}
+
+
+
+Type for matrix of eigenvectors as returned by \mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_a3aa5e27800349990778da8fa532c1270}{eigenvectors()}}. 
+
+This is a square matrix with entries of type \mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_a3604c99a69fac3bee42c88cb2b589143}{Complex\+Scalar}}. The size is the same as the size of \mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_ad61f6278843a601096276c9a72c0252f}{Matrix\+Type}}. \mbox{\Hypertarget{class_eigen_1_1_complex_eigen_solver_abc0218d8b902af0d6c759bfc0a8a8d74}\label{class_eigen_1_1_complex_eigen_solver_abc0218d8b902af0d6c759bfc0a8a8d74}} 
+\index{Eigen::ComplexEigenSolver$<$ \_MatrixType $>$@{Eigen::ComplexEigenSolver$<$ \_MatrixType $>$}!Index@{Index}}
+\index{Index@{Index}!Eigen::ComplexEigenSolver$<$ \_MatrixType $>$@{Eigen::ComplexEigenSolver$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{Index}{Index}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+typedef \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Eigen\+::\+Index}} \mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver}{Eigen\+::\+Complex\+Eigen\+Solver}}$<$ \+\_\+\+Matrix\+Type $>$\+::\mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_abc0218d8b902af0d6c759bfc0a8a8d74}{Index}}}
+
+\begin{DoxyRefDesc}{Deprecated}
+\item[\mbox{\hyperlink{deprecated__deprecated000016}{Deprecated}}]since \mbox{\hyperlink{namespace_eigen}{Eigen}} 3.\+3 \end{DoxyRefDesc}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_complex_eigen_solver_a3322a21574c61eefd450c003515ad802}\label{class_eigen_1_1_complex_eigen_solver_a3322a21574c61eefd450c003515ad802}} 
+\index{Eigen::ComplexEigenSolver$<$ \_MatrixType $>$@{Eigen::ComplexEigenSolver$<$ \_MatrixType $>$}!ComplexEigenSolver@{ComplexEigenSolver}}
+\index{ComplexEigenSolver@{ComplexEigenSolver}!Eigen::ComplexEigenSolver$<$ \_MatrixType $>$@{Eigen::ComplexEigenSolver$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{ComplexEigenSolver()}{ComplexEigenSolver()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver}{Eigen\+::\+Complex\+Eigen\+Solver}}$<$ \+\_\+\+Matrix\+Type $>$\+::\mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver}{Complex\+Eigen\+Solver}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default constructor. 
+
+The default constructor is useful in cases in which the user intends to perform decompositions via \mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_aeb7e38c6db5369f5c974f3786e94c1f0}{compute()}}. \mbox{\Hypertarget{class_eigen_1_1_complex_eigen_solver_a86751f64ebcd5c554551fb5eaaa02db7}\label{class_eigen_1_1_complex_eigen_solver_a86751f64ebcd5c554551fb5eaaa02db7}} 
+\index{Eigen::ComplexEigenSolver$<$ \_MatrixType $>$@{Eigen::ComplexEigenSolver$<$ \_MatrixType $>$}!ComplexEigenSolver@{ComplexEigenSolver}}
+\index{ComplexEigenSolver@{ComplexEigenSolver}!Eigen::ComplexEigenSolver$<$ \_MatrixType $>$@{Eigen::ComplexEigenSolver$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{ComplexEigenSolver()}{ComplexEigenSolver()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver}{Eigen\+::\+Complex\+Eigen\+Solver}}$<$ \+\_\+\+Matrix\+Type $>$\+::\mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver}{Complex\+Eigen\+Solver}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_abc0218d8b902af0d6c759bfc0a8a8d74}{Index}}}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Default Constructor with memory preallocation. 
+
+Like the default constructor but with preallocation of the internal data according to the specified problem {\itshape size}. \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_a3322a21574c61eefd450c003515ad802}{Complex\+Eigen\+Solver()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_complex_eigen_solver_a748de5c1e7f730e16421e6d451437600}\label{class_eigen_1_1_complex_eigen_solver_a748de5c1e7f730e16421e6d451437600}} 
+\index{Eigen::ComplexEigenSolver$<$ \_MatrixType $>$@{Eigen::ComplexEigenSolver$<$ \_MatrixType $>$}!ComplexEigenSolver@{ComplexEigenSolver}}
+\index{ComplexEigenSolver@{ComplexEigenSolver}!Eigen::ComplexEigenSolver$<$ \_MatrixType $>$@{Eigen::ComplexEigenSolver$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{ComplexEigenSolver()}{ComplexEigenSolver()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+template$<$typename Input\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver}{Eigen\+::\+Complex\+Eigen\+Solver}}$<$ \+\_\+\+Matrix\+Type $>$\+::\mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver}{Complex\+Eigen\+Solver}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&}]{matrix,  }\item[{bool}]{compute\+Eigenvectors = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Constructor; computes eigendecomposition of given matrix. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em matrix} & Square matrix whose eigendecomposition is to be computed. \\
+\hline
+\mbox{\texttt{ in}}  & {\em compute\+Eigenvectors} & If true, both the eigenvectors and the eigenvalues are computed; if false, only the eigenvalues are computed.\\
+\hline
+\end{DoxyParams}
+This constructor calls \mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_aeb7e38c6db5369f5c974f3786e94c1f0}{compute()}} to compute the eigendecomposition. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_complex_eigen_solver_aeb7e38c6db5369f5c974f3786e94c1f0}\label{class_eigen_1_1_complex_eigen_solver_aeb7e38c6db5369f5c974f3786e94c1f0}} 
+\index{Eigen::ComplexEigenSolver$<$ \_MatrixType $>$@{Eigen::ComplexEigenSolver$<$ \_MatrixType $>$}!compute@{compute}}
+\index{compute@{compute}!Eigen::ComplexEigenSolver$<$ \_MatrixType $>$@{Eigen::ComplexEigenSolver$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{compute()}{compute()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+template$<$typename Input\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver}{Complex\+Eigen\+Solver}}\& \mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver}{Eigen\+::\+Complex\+Eigen\+Solver}}$<$ \+\_\+\+Matrix\+Type $>$\+::compute (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&}]{matrix,  }\item[{bool}]{compute\+Eigenvectors = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Computes eigendecomposition of given matrix. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em matrix} & Square matrix whose eigendecomposition is to be computed. \\
+\hline
+\mbox{\texttt{ in}}  & {\em compute\+Eigenvectors} & If true, both the eigenvectors and the eigenvalues are computed; if false, only the eigenvalues are computed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to {\ttfamily $\ast$this} 
+\end{DoxyReturn}
+This function computes the eigenvalues of the complex matrix {\ttfamily matrix}. The \mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_a10c25c7620e7faedcd39991cce3a757b}{eigenvalues()}} function can be used to retrieve them. If {\ttfamily compute\+Eigenvectors} is true, then the eigenvectors are also computed and can be retrieved by calling \mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_a3aa5e27800349990778da8fa532c1270}{eigenvectors()}}.
+
+The matrix is first reduced to Schur form using the \mbox{\hyperlink{class_eigen_1_1_complex_schur}{Complex\+Schur}} class. The Schur decomposition is then used to compute the eigenvalues and eigenvectors.
+
+The cost of the computation is dominated by the cost of the Schur decomposition, which is $ O(n^3) $ where $ n $ is the size of the matrix.
+
+Example\+: 
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+ \mbox{\Hypertarget{class_eigen_1_1_complex_eigen_solver_a10c25c7620e7faedcd39991cce3a757b}\label{class_eigen_1_1_complex_eigen_solver_a10c25c7620e7faedcd39991cce3a757b}} 
+\index{Eigen::ComplexEigenSolver$<$ \_MatrixType $>$@{Eigen::ComplexEigenSolver$<$ \_MatrixType $>$}!eigenvalues@{eigenvalues}}
+\index{eigenvalues@{eigenvalues}!Eigen::ComplexEigenSolver$<$ \_MatrixType $>$@{Eigen::ComplexEigenSolver$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{eigenvalues()}{eigenvalues()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+const \mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_ad3a663b1ff5200a098dabbbf9b7162b1}{Eigenvalue\+Type}}\& \mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver}{Eigen\+::\+Complex\+Eigen\+Solver}}$<$ \+\_\+\+Matrix\+Type $>$\+::eigenvalues (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the eigenvalues of given matrix. 
+
+\begin{DoxyReturn}{Returns}
+A const reference to the column vector containing the eigenvalues.
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondition}
+Either the constructor Complex\+Eigen\+Solver(const Matrix\+Type\& matrix, bool) or the member function compute(const Matrix\+Type\& matrix, bool) has been called before to compute the eigendecomposition of a matrix.
+\end{DoxyPrecond}
+This function returns a column vector containing the eigenvalues. Eigenvalues are repeated according to their algebraic multiplicity, so there are as many eigenvalues as rows in the matrix. The eigenvalues are not sorted in any particular order.
+
+Example\+: 
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+ \mbox{\Hypertarget{class_eigen_1_1_complex_eigen_solver_a3aa5e27800349990778da8fa532c1270}\label{class_eigen_1_1_complex_eigen_solver_a3aa5e27800349990778da8fa532c1270}} 
+\index{Eigen::ComplexEigenSolver$<$ \_MatrixType $>$@{Eigen::ComplexEigenSolver$<$ \_MatrixType $>$}!eigenvectors@{eigenvectors}}
+\index{eigenvectors@{eigenvectors}!Eigen::ComplexEigenSolver$<$ \_MatrixType $>$@{Eigen::ComplexEigenSolver$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{eigenvectors()}{eigenvectors()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+const \mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_a67cd4d20590abfd86b2639c4c8ea3dd6}{Eigenvector\+Type}}\& \mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver}{Eigen\+::\+Complex\+Eigen\+Solver}}$<$ \+\_\+\+Matrix\+Type $>$\+::eigenvectors (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the eigenvectors of given matrix. 
+
+\begin{DoxyReturn}{Returns}
+A const reference to the matrix whose columns are the eigenvectors.
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondition}
+Either the constructor Complex\+Eigen\+Solver(const Matrix\+Type\& matrix, bool) or the member function compute(const Matrix\+Type\& matrix, bool) has been called before to compute the eigendecomposition of a matrix, and {\ttfamily compute\+Eigenvectors} was set to true (the default).
+\end{DoxyPrecond}
+This function returns a matrix whose columns are the eigenvectors. Column $ k $ is an eigenvector corresponding to eigenvalue number $ k $ as returned by \mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver_a10c25c7620e7faedcd39991cce3a757b}{eigenvalues()}}. The eigenvectors are normalized to have (Euclidean) norm equal to one. The matrix returned by this function is the matrix $ V $ in the eigendecomposition $ A = V D V^{-1} $, if it exists.
+
+Example\+: 
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+ \mbox{\Hypertarget{class_eigen_1_1_complex_eigen_solver_ad4d9d8b90145900b9686d2dabbe46730}\label{class_eigen_1_1_complex_eigen_solver_ad4d9d8b90145900b9686d2dabbe46730}} 
+\index{Eigen::ComplexEigenSolver$<$ \_MatrixType $>$@{Eigen::ComplexEigenSolver$<$ \_MatrixType $>$}!info@{info}}
+\index{info@{info}!Eigen::ComplexEigenSolver$<$ \_MatrixType $>$@{Eigen::ComplexEigenSolver$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{info()}{info()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} \mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver}{Eigen\+::\+Complex\+Eigen\+Solver}}$<$ \+\_\+\+Matrix\+Type $>$\+::info (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Reports whether previous computation was successful. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily Success} if computation was succesful, {\ttfamily No\+Convergence} otherwise. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Eigenvalues/Complex\+Eigen\+Solver.\+h\end{DoxyCompactItemize}

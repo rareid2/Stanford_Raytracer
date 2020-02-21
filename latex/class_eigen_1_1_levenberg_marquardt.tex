@@ -1,0 +1,467 @@
+\hypertarget{class_eigen_1_1_levenberg_marquardt}{}\doxysection{Eigen\+::Levenberg\+Marquardt$<$ \+\_\+\+Functor\+Type $>$ Class Template Reference}
+\label{class_eigen_1_1_levenberg_marquardt}\index{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}}
+
+
+Performs non linear optimization over a non-\/linear function, using a variant of the Levenberg Marquardt algorithm.  
+
+
+
+
+{\ttfamily \#include $<$Levenberg\+Marquardt.\+h$>$}
+
+Inheritance diagram for Eigen\+::Levenberg\+Marquardt$<$ \+\_\+\+Functor\+Type $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_eigen_1_1_levenberg_marquardt}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_eigen_1_1_levenberg_marquardt_1_1_parameters}{Parameters}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_a2aaf05c8858ad8f48f655349cd31a21e}\label{class_eigen_1_1_levenberg_marquardt_a2aaf05c8858ad8f48f655349cd31a21e}} 
+typedef \+\_\+\+Functor\+Type {\bfseries Functor\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_a0d5fc4346945f92aaeac1c6f60e7223c}\label{class_eigen_1_1_levenberg_marquardt_a0d5fc4346945f92aaeac1c6f60e7223c}} 
+typedef Functor\+Type\+::\+Q\+R\+Solver {\bfseries Q\+R\+Solver}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_a46de8f98bf9a71684e17c81d1190c96f}\label{class_eigen_1_1_levenberg_marquardt_a46de8f98bf9a71684e17c81d1190c96f}} 
+typedef Functor\+Type\+::\+Jacobian\+Type {\bfseries Jacobian\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_a7986f6a71de42b4b03be67b8884ee220}\label{class_eigen_1_1_levenberg_marquardt_a7986f6a71de42b4b03be67b8884ee220}} 
+typedef Jacobian\+Type\+::\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_a6e285e5f1243c1b95e5c05dbf7fb049f}\label{class_eigen_1_1_levenberg_marquardt_a6e285e5f1243c1b95e5c05dbf7fb049f}} 
+typedef Jacobian\+Type\+::\+Real\+Scalar {\bfseries Real\+Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_a33acdaa2cd3629b784aced44c6434f16}\label{class_eigen_1_1_levenberg_marquardt_a33acdaa2cd3629b784aced44c6434f16}} 
+typedef Q\+R\+Solver\+::\+Storage\+Index {\bfseries Perm\+Index}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_af89008c12d6a15c46f84618473ba7722}\label{class_eigen_1_1_levenberg_marquardt_af89008c12d6a15c46f84618473ba7722}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ Scalar, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}, 1 $>$ {\bfseries F\+Vector\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_aa6348163797848feba7d1fef97e4d1ad}\label{class_eigen_1_1_levenberg_marquardt_aa6348163797848feba7d1fef97e4d1ad}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Matrix}}$<$ \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}} $>$ {\bfseries Permutation\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_acc1d494619ab4e56941de78ec0dd8a81}\label{class_eigen_1_1_levenberg_marquardt_acc1d494619ab4e56941de78ec0dd8a81}} 
+typedef Dense\+Index {\bfseries Index}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_a8eb4ba1ef8765c0e2387e7cdfce97a09}\label{class_eigen_1_1_levenberg_marquardt_a8eb4ba1ef8765c0e2387e7cdfce97a09}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ Scalar, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}, 1 $>$ {\bfseries F\+Vector\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_ab5836240f9acd2280276710216d185b5}\label{class_eigen_1_1_levenberg_marquardt_ab5836240f9acd2280276710216d185b5}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ Scalar, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}} $>$ {\bfseries Jacobian\+Type}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_ac6f47b62a823190b3e28b3eb634e1cca}\label{class_eigen_1_1_levenberg_marquardt_ac6f47b62a823190b3e28b3eb634e1cca}} 
+{\bfseries Levenberg\+Marquardt} (Functor\+Type \&functor)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_a5c1ef387601af15f7d2474165bb82865}\label{class_eigen_1_1_levenberg_marquardt_a5c1ef387601af15f7d2474165bb82865}} 
+Levenberg\+Marquardt\+Space\+::\+Status {\bfseries minimize} (\mbox{\hyperlink{class_eigen_1_1_matrix}{F\+Vector\+Type}} \&x)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_ad1b2467f6143a874e023416db0832810}\label{class_eigen_1_1_levenberg_marquardt_ad1b2467f6143a874e023416db0832810}} 
+Levenberg\+Marquardt\+Space\+::\+Status {\bfseries minimize\+Init} (\mbox{\hyperlink{class_eigen_1_1_matrix}{F\+Vector\+Type}} \&x)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_a1347316132f0bd7bf2541788d9e12637}\label{class_eigen_1_1_levenberg_marquardt_a1347316132f0bd7bf2541788d9e12637}} 
+Levenberg\+Marquardt\+Space\+::\+Status {\bfseries minimize\+One\+Step} (\mbox{\hyperlink{class_eigen_1_1_matrix}{F\+Vector\+Type}} \&x)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_a88cddb5e5cabffcf7a00f1c303e37652}\label{class_eigen_1_1_levenberg_marquardt_a88cddb5e5cabffcf7a00f1c303e37652}} 
+Levenberg\+Marquardt\+Space\+::\+Status {\bfseries lmder1} (\mbox{\hyperlink{class_eigen_1_1_matrix}{F\+Vector\+Type}} \&x, const Scalar tol=std\+::sqrt(\mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$ Scalar $>$\+::\mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_aac799068926ca0bc3387b2dc5c0eb113}{epsilon}}()))
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a16172a2048058ea0a908213a7b0f8971}{reset\+Parameters}} ()
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a691b571366630f1329d2de7a5e40e7a5}{set\+Xtol}} (Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a25a7629ea877d8f08670536b3d234897}{xtol}})
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a09c0852c6a4534b84a16ac5d9c631c12}{set\+Ftol}} (Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a957ac071ec775779bb03d10b463ddfbc}{ftol}})
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_ad5610b2353f1ce5e0c7357ed1b215fea}{set\+Gtol}} (Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a18597c537ec7d492ee6d43788178e458}{gtol}})
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a3054eeba042b197ae8d415729770db69}{set\+Factor}} (Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a282e28b8331376b9875429dab1e280ba}{factor}})
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a3e13f6631ae59be984ee1ea196899cd7}{set\+Epsilon}} (Real\+Scalar epsfcn)
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_af072d0f89c44415d8ed284df8b4a634a}{set\+Maxfev}} (Index \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a495894dde1fedfba97721f6b4a076901}{maxfev}})
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a4af7d41545ec5908485357493839e6f6}{set\+External\+Scaling}} (bool value)
+\item 
+Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a25a7629ea877d8f08670536b3d234897}{xtol}} () const
+\item 
+Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a957ac071ec775779bb03d10b463ddfbc}{ftol}} () const
+\item 
+Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a18597c537ec7d492ee6d43788178e458}{gtol}} () const
+\item 
+Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a282e28b8331376b9875429dab1e280ba}{factor}} () const
+\item 
+Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_aac799068926ca0bc3387b2dc5c0eb113}{epsilon}} () const
+\item 
+Index \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a495894dde1fedfba97721f6b4a076901}{maxfev}} () const
+\item 
+\mbox{\hyperlink{class_eigen_1_1_matrix}{F\+Vector\+Type}} \& \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a6e237ca1f23cdf5caa98fe23c6bcf464}{diag}} ()
+\item 
+Index \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_aeb094683f0abe9c29ee89be0677de744}{iterations}} ()
+\item 
+Index \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_ad9563c6abeb33c0aba82e55fd72c64a6}{nfev}} ()
+\item 
+Index \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a31bedcc92106ed170fde5750559a62a5}{njev}} ()
+\item 
+Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_ac30c5ce96ac91663b287b2ba7ec7c712}{fnorm}} ()
+\item 
+Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_ab91ec0507fb508a2402ac0dfa15af776}{gnorm}} ()
+\item 
+Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_aa8aa0d8c1dab58ac51df999587609e09}{lm\+\_\+param}} (void)
+\item 
+\mbox{\hyperlink{class_eigen_1_1_matrix}{F\+Vector\+Type}} \& \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a6c296a4a5b91f0ecc398b479a67c242d}{fvec}} ()
+\item 
+Jacobian\+Type \& \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_aaf2179310fdf873483f5d8b46f15da8c}{jacobian}} ()
+\item 
+Jacobian\+Type \& \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_afd6cd64fdd7ca32cc71a83d91432ea69}{matrixR}} ()
+\item 
+\mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Type}} \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_a691142ba877e072c58016b4be77e9855}{permutation}} ()
+\item 
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_ae65bdccd2487989ae9b25f9c2e9dfab9}{info}} () const
+\begin{DoxyCompactList}\small\item\em Reports whether the minimization was successful. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_abb90eff5a097e6558dd5be015691affd}\label{class_eigen_1_1_levenberg_marquardt_abb90eff5a097e6558dd5be015691affd}} 
+{\bfseries Levenberg\+Marquardt} (Functor\+Type \&\+\_\+functor)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_abb948f8bbcb5ea8a571c8a3def531501}\label{class_eigen_1_1_levenberg_marquardt_abb948f8bbcb5ea8a571c8a3def531501}} 
+Levenberg\+Marquardt\+Space\+::\+Status {\bfseries lmder1} (\mbox{\hyperlink{class_eigen_1_1_matrix}{F\+Vector\+Type}} \&x, const Scalar tol=sqrt\+\_\+epsilon())
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_a5b7c5decf3d9a37c6cfacf795766e928}\label{class_eigen_1_1_levenberg_marquardt_a5b7c5decf3d9a37c6cfacf795766e928}} 
+Levenberg\+Marquardt\+Space\+::\+Status {\bfseries minimize} (\mbox{\hyperlink{class_eigen_1_1_matrix}{F\+Vector\+Type}} \&x)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_ad22b48fa04cad42ea372101d3e1e0e72}\label{class_eigen_1_1_levenberg_marquardt_ad22b48fa04cad42ea372101d3e1e0e72}} 
+Levenberg\+Marquardt\+Space\+::\+Status {\bfseries minimize\+Init} (\mbox{\hyperlink{class_eigen_1_1_matrix}{F\+Vector\+Type}} \&x)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_a6a9a7e5a6c1acf2bcf3ada782454f31e}\label{class_eigen_1_1_levenberg_marquardt_a6a9a7e5a6c1acf2bcf3ada782454f31e}} 
+Levenberg\+Marquardt\+Space\+::\+Status {\bfseries minimize\+One\+Step} (\mbox{\hyperlink{class_eigen_1_1_matrix}{F\+Vector\+Type}} \&x)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_a64a9b31cebebff02579c993166e9dd06}\label{class_eigen_1_1_levenberg_marquardt_a64a9b31cebebff02579c993166e9dd06}} 
+Levenberg\+Marquardt\+Space\+::\+Status {\bfseries lmstr1} (\mbox{\hyperlink{class_eigen_1_1_matrix}{F\+Vector\+Type}} \&x, const Scalar tol=sqrt\+\_\+epsilon())
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_a9155635b9a341b6b316adf099dee0a81}\label{class_eigen_1_1_levenberg_marquardt_a9155635b9a341b6b316adf099dee0a81}} 
+Levenberg\+Marquardt\+Space\+::\+Status {\bfseries minimize\+Optimum\+Storage} (\mbox{\hyperlink{class_eigen_1_1_matrix}{F\+Vector\+Type}} \&x)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_ae030991964c12f229f5e823eb3430191}\label{class_eigen_1_1_levenberg_marquardt_ae030991964c12f229f5e823eb3430191}} 
+Levenberg\+Marquardt\+Space\+::\+Status {\bfseries minimize\+Optimum\+Storage\+Init} (\mbox{\hyperlink{class_eigen_1_1_matrix}{F\+Vector\+Type}} \&x)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_a3384bfd1e2036f9122cf1d3344a5e3d2}\label{class_eigen_1_1_levenberg_marquardt_a3384bfd1e2036f9122cf1d3344a5e3d2}} 
+Levenberg\+Marquardt\+Space\+::\+Status {\bfseries minimize\+Optimum\+Storage\+One\+Step} (\mbox{\hyperlink{class_eigen_1_1_matrix}{F\+Vector\+Type}} \&x)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_a722c2aee55299d786f79fd7316d6d2cb}\label{class_eigen_1_1_levenberg_marquardt_a722c2aee55299d786f79fd7316d6d2cb}} 
+void {\bfseries reset\+Parameters} (void)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_a8cb0d7b10c479262e643a9d2b83ce144}\label{class_eigen_1_1_levenberg_marquardt_a8cb0d7b10c479262e643a9d2b83ce144}} 
+Scalar {\bfseries lm\+\_\+param} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_a03d503a4bd73715bb770e3e4c659d4ab}\label{class_eigen_1_1_levenberg_marquardt_a03d503a4bd73715bb770e3e4c659d4ab}} 
+static Levenberg\+Marquardt\+Space\+::\+Status {\bfseries lmdif1} (Functor\+Type \&functor, \mbox{\hyperlink{class_eigen_1_1_matrix}{F\+Vector\+Type}} \&x, Index $\ast$nfev, const Scalar tol=std\+::sqrt(\mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$ Scalar $>$\+::\mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_aac799068926ca0bc3387b2dc5c0eb113}{epsilon}}()))
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_a85defc7cf1063f2595b5f5766db4647f}\label{class_eigen_1_1_levenberg_marquardt_a85defc7cf1063f2595b5f5766db4647f}} 
+static Levenberg\+Marquardt\+Space\+::\+Status {\bfseries lmdif1} (Functor\+Type \&functor, \mbox{\hyperlink{class_eigen_1_1_matrix}{F\+Vector\+Type}} \&x, Index $\ast$nfev, const Scalar tol=sqrt\+\_\+epsilon())
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_a3ef697e5bd259bfcfa0c8b413a2f167d}\label{class_eigen_1_1_levenberg_marquardt_a3ef697e5bd259bfcfa0c8b413a2f167d}} 
+\mbox{\hyperlink{struct_eigen_1_1_levenberg_marquardt_1_1_parameters}{Parameters}} {\bfseries parameters}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_a9b00b65a3ca96df91fab2b0a7f22f9c7}\label{class_eigen_1_1_levenberg_marquardt_a9b00b65a3ca96df91fab2b0a7f22f9c7}} 
+\mbox{\hyperlink{class_eigen_1_1_matrix}{F\+Vector\+Type}} {\bfseries fvec}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_aa34d7013c00ceed3166acba516b0538c}\label{class_eigen_1_1_levenberg_marquardt_aa34d7013c00ceed3166acba516b0538c}} 
+\mbox{\hyperlink{class_eigen_1_1_matrix}{F\+Vector\+Type}} {\bfseries qtf}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_a41ac4eb082fcf86911abe6c0443807cc}\label{class_eigen_1_1_levenberg_marquardt_a41ac4eb082fcf86911abe6c0443807cc}} 
+\mbox{\hyperlink{class_eigen_1_1_matrix}{F\+Vector\+Type}} {\bfseries diag}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_adfa100bb0f5d0abd3dbff94800c08b9c}\label{class_eigen_1_1_levenberg_marquardt_adfa100bb0f5d0abd3dbff94800c08b9c}} 
+Jacobian\+Type {\bfseries fjac}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_a08a01da869f0f9ce595ec336b96775a4}\label{class_eigen_1_1_levenberg_marquardt_a08a01da869f0f9ce595ec336b96775a4}} 
+\mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Matrix}}$<$ \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}} $>$ {\bfseries permutation}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_a73420eb0d25ef0cf050f94168d0e7e02}\label{class_eigen_1_1_levenberg_marquardt_a73420eb0d25ef0cf050f94168d0e7e02}} 
+Index {\bfseries nfev}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_af49b9fd5194c0e9abe949a00b9096f8b}\label{class_eigen_1_1_levenberg_marquardt_af49b9fd5194c0e9abe949a00b9096f8b}} 
+Index {\bfseries njev}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_a6e360685f776f224d37ac5381764cf40}\label{class_eigen_1_1_levenberg_marquardt_a6e360685f776f224d37ac5381764cf40}} 
+Index {\bfseries iter}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_a0b1213dbe34b56e7be470613ae02ce4f}\label{class_eigen_1_1_levenberg_marquardt_a0b1213dbe34b56e7be470613ae02ce4f}} 
+Scalar {\bfseries fnorm}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_abb98d67345ec05581634246e620fed3b}\label{class_eigen_1_1_levenberg_marquardt_abb98d67345ec05581634246e620fed3b}} 
+Scalar {\bfseries gnorm}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_a923bdb3e34ff8f16cb6e99348c78bd94}\label{class_eigen_1_1_levenberg_marquardt_a923bdb3e34ff8f16cb6e99348c78bd94}} 
+bool {\bfseries use\+External\+Scaling}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Functor\+Type$>$\newline
+class Eigen\+::\+Levenberg\+Marquardt$<$ \+\_\+\+Functor\+Type $>$}
+
+Performs non linear optimization over a non-\/linear function, using a variant of the Levenberg Marquardt algorithm. 
+
+Check wikipedia for more information. \href{http://en.wikipedia.org/wiki/Levenberg\%E2\%80\%93Marquardt_algorithm}{\texttt{ http\+://en.\+wikipedia.\+org/wiki/\+Levenberg\%\+E2\%80\%93\+Marquardt\+\_\+algorithm}} 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_a6e237ca1f23cdf5caa98fe23c6bcf464}\label{class_eigen_1_1_levenberg_marquardt_a6e237ca1f23cdf5caa98fe23c6bcf464}} 
+\index{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}!diag@{diag}}
+\index{diag@{diag}!Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}}
+\doxysubsubsection{\texorpdfstring{diag()}{diag()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Functor\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_matrix}{F\+Vector\+Type}}\& \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt}{Eigen\+::\+Levenberg\+Marquardt}}$<$ \+\_\+\+Functor\+Type $>$\+::diag (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a reference to the diagonal of the jacobian 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_aac799068926ca0bc3387b2dc5c0eb113}\label{class_eigen_1_1_levenberg_marquardt_aac799068926ca0bc3387b2dc5c0eb113}} 
+\index{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}!epsilon@{epsilon}}
+\index{epsilon@{epsilon}!Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}}
+\doxysubsubsection{\texorpdfstring{epsilon()}{epsilon()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Functor\+Type $>$ \\
+Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt}{Eigen\+::\+Levenberg\+Marquardt}}$<$ \+\_\+\+Functor\+Type $>$\+::epsilon (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the error precision 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_a282e28b8331376b9875429dab1e280ba}\label{class_eigen_1_1_levenberg_marquardt_a282e28b8331376b9875429dab1e280ba}} 
+\index{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}!factor@{factor}}
+\index{factor@{factor}!Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}}
+\doxysubsubsection{\texorpdfstring{factor()}{factor()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Functor\+Type $>$ \\
+Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt}{Eigen\+::\+Levenberg\+Marquardt}}$<$ \+\_\+\+Functor\+Type $>$\+::factor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the step bound for the diagonal shift 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_ac30c5ce96ac91663b287b2ba7ec7c712}\label{class_eigen_1_1_levenberg_marquardt_ac30c5ce96ac91663b287b2ba7ec7c712}} 
+\index{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}!fnorm@{fnorm}}
+\index{fnorm@{fnorm}!Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}}
+\doxysubsubsection{\texorpdfstring{fnorm()}{fnorm()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Functor\+Type $>$ \\
+Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt}{Eigen\+::\+Levenberg\+Marquardt}}$<$ \+\_\+\+Functor\+Type $>$\+::fnorm (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the norm of current vector function 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_a957ac071ec775779bb03d10b463ddfbc}\label{class_eigen_1_1_levenberg_marquardt_a957ac071ec775779bb03d10b463ddfbc}} 
+\index{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}!ftol@{ftol}}
+\index{ftol@{ftol}!Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}}
+\doxysubsubsection{\texorpdfstring{ftol()}{ftol()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Functor\+Type $>$ \\
+Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt}{Eigen\+::\+Levenberg\+Marquardt}}$<$ \+\_\+\+Functor\+Type $>$\+::ftol (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the tolerance for the norm of the vector function 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_a6c296a4a5b91f0ecc398b479a67c242d}\label{class_eigen_1_1_levenberg_marquardt_a6c296a4a5b91f0ecc398b479a67c242d}} 
+\index{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}!fvec@{fvec}}
+\index{fvec@{fvec}!Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}}
+\doxysubsubsection{\texorpdfstring{fvec()}{fvec()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Functor\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_matrix}{F\+Vector\+Type}}\& \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt}{Eigen\+::\+Levenberg\+Marquardt}}$<$ \+\_\+\+Functor\+Type $>$\+::fvec (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a reference to the current vector function 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_ab91ec0507fb508a2402ac0dfa15af776}\label{class_eigen_1_1_levenberg_marquardt_ab91ec0507fb508a2402ac0dfa15af776}} 
+\index{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}!gnorm@{gnorm}}
+\index{gnorm@{gnorm}!Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}}
+\doxysubsubsection{\texorpdfstring{gnorm()}{gnorm()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Functor\+Type $>$ \\
+Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt}{Eigen\+::\+Levenberg\+Marquardt}}$<$ \+\_\+\+Functor\+Type $>$\+::gnorm (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the norm of the gradient of the error 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_a18597c537ec7d492ee6d43788178e458}\label{class_eigen_1_1_levenberg_marquardt_a18597c537ec7d492ee6d43788178e458}} 
+\index{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}!gtol@{gtol}}
+\index{gtol@{gtol}!Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}}
+\doxysubsubsection{\texorpdfstring{gtol()}{gtol()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Functor\+Type $>$ \\
+Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt}{Eigen\+::\+Levenberg\+Marquardt}}$<$ \+\_\+\+Functor\+Type $>$\+::gtol (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the tolerance for the norm of the gradient of the error vector 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_ae65bdccd2487989ae9b25f9c2e9dfab9}\label{class_eigen_1_1_levenberg_marquardt_ae65bdccd2487989ae9b25f9c2e9dfab9}} 
+\index{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}!info@{info}}
+\index{info@{info}!Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}}
+\doxysubsubsection{\texorpdfstring{info()}{info()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Functor\+Type $>$ \\
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt}{Eigen\+::\+Levenberg\+Marquardt}}$<$ \+\_\+\+Functor\+Type $>$\+::info (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Reports whether the minimization was successful. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily Success} if the minimization was succesful, {\ttfamily Numerical\+Issue} if a numerical problem arises during the minimization process, for exemple during the QR factorization {\ttfamily No\+Convergence} if the minimization did not converge after the maximum number of function evaluation allowed {\ttfamily Invalid\+Input} if the input matrix is invalid 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_aeb094683f0abe9c29ee89be0677de744}\label{class_eigen_1_1_levenberg_marquardt_aeb094683f0abe9c29ee89be0677de744}} 
+\index{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}!iterations@{iterations}}
+\index{iterations@{iterations}!Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}}
+\doxysubsubsection{\texorpdfstring{iterations()}{iterations()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Functor\+Type $>$ \\
+Index \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt}{Eigen\+::\+Levenberg\+Marquardt}}$<$ \+\_\+\+Functor\+Type $>$\+::iterations (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the number of iterations performed 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_aaf2179310fdf873483f5d8b46f15da8c}\label{class_eigen_1_1_levenberg_marquardt_aaf2179310fdf873483f5d8b46f15da8c}} 
+\index{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}!jacobian@{jacobian}}
+\index{jacobian@{jacobian}!Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}}
+\doxysubsubsection{\texorpdfstring{jacobian()}{jacobian()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Functor\+Type $>$ \\
+Jacobian\+Type\& \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt}{Eigen\+::\+Levenberg\+Marquardt}}$<$ \+\_\+\+Functor\+Type $>$\+::jacobian (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a reference to the matrix where the current Jacobian matrix is stored 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_aa8aa0d8c1dab58ac51df999587609e09}\label{class_eigen_1_1_levenberg_marquardt_aa8aa0d8c1dab58ac51df999587609e09}} 
+\index{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}!lm\_param@{lm\_param}}
+\index{lm\_param@{lm\_param}!Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}}
+\doxysubsubsection{\texorpdfstring{lm\_param()}{lm\_param()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Functor\+Type $>$ \\
+Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt}{Eigen\+::\+Levenberg\+Marquardt}}$<$ \+\_\+\+Functor\+Type $>$\+::lm\+\_\+param (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt}{Levenberg\+Marquardt}} parameter 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_afd6cd64fdd7ca32cc71a83d91432ea69}\label{class_eigen_1_1_levenberg_marquardt_afd6cd64fdd7ca32cc71a83d91432ea69}} 
+\index{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}!matrixR@{matrixR}}
+\index{matrixR@{matrixR}!Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}}
+\doxysubsubsection{\texorpdfstring{matrixR()}{matrixR()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Functor\+Type $>$ \\
+Jacobian\+Type\& \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt}{Eigen\+::\+Levenberg\+Marquardt}}$<$ \+\_\+\+Functor\+Type $>$\+::matrixR (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a reference to the triangular matrix R from the QR of the jacobian matrix. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt_aaf2179310fdf873483f5d8b46f15da8c}{jacobian()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_a495894dde1fedfba97721f6b4a076901}\label{class_eigen_1_1_levenberg_marquardt_a495894dde1fedfba97721f6b4a076901}} 
+\index{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}!maxfev@{maxfev}}
+\index{maxfev@{maxfev}!Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}}
+\doxysubsubsection{\texorpdfstring{maxfev()}{maxfev()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Functor\+Type $>$ \\
+Index \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt}{Eigen\+::\+Levenberg\+Marquardt}}$<$ \+\_\+\+Functor\+Type $>$\+::maxfev (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the maximum number of function evaluation 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_ad9563c6abeb33c0aba82e55fd72c64a6}\label{class_eigen_1_1_levenberg_marquardt_ad9563c6abeb33c0aba82e55fd72c64a6}} 
+\index{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}!nfev@{nfev}}
+\index{nfev@{nfev}!Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}}
+\doxysubsubsection{\texorpdfstring{nfev()}{nfev()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Functor\+Type $>$ \\
+Index \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt}{Eigen\+::\+Levenberg\+Marquardt}}$<$ \+\_\+\+Functor\+Type $>$\+::nfev (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the number of functions evaluation 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_a31bedcc92106ed170fde5750559a62a5}\label{class_eigen_1_1_levenberg_marquardt_a31bedcc92106ed170fde5750559a62a5}} 
+\index{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}!njev@{njev}}
+\index{njev@{njev}!Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}}
+\doxysubsubsection{\texorpdfstring{njev()}{njev()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Functor\+Type $>$ \\
+Index \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt}{Eigen\+::\+Levenberg\+Marquardt}}$<$ \+\_\+\+Functor\+Type $>$\+::njev (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the number of jacobian evaluation 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_a691142ba877e072c58016b4be77e9855}\label{class_eigen_1_1_levenberg_marquardt_a691142ba877e072c58016b4be77e9855}} 
+\index{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}!permutation@{permutation}}
+\index{permutation@{permutation}!Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}}
+\doxysubsubsection{\texorpdfstring{permutation()}{permutation()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Functor\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Type}} \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt}{Eigen\+::\+Levenberg\+Marquardt}}$<$ \+\_\+\+Functor\+Type $>$\+::permutation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+the permutation used in the QR factorization \mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_a16172a2048058ea0a908213a7b0f8971}\label{class_eigen_1_1_levenberg_marquardt_a16172a2048058ea0a908213a7b0f8971}} 
+\index{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}!resetParameters@{resetParameters}}
+\index{resetParameters@{resetParameters}!Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}}
+\doxysubsubsection{\texorpdfstring{resetParameters()}{resetParameters()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Functor\+Type $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt}{Eigen\+::\+Levenberg\+Marquardt}}$<$ \+\_\+\+Functor\+Type $>$\+::reset\+Parameters (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the default parameters \mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_a3e13f6631ae59be984ee1ea196899cd7}\label{class_eigen_1_1_levenberg_marquardt_a3e13f6631ae59be984ee1ea196899cd7}} 
+\index{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}!setEpsilon@{setEpsilon}}
+\index{setEpsilon@{setEpsilon}!Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}}
+\doxysubsubsection{\texorpdfstring{setEpsilon()}{setEpsilon()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Functor\+Type $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt}{Eigen\+::\+Levenberg\+Marquardt}}$<$ \+\_\+\+Functor\+Type $>$\+::set\+Epsilon (\begin{DoxyParamCaption}\item[{Real\+Scalar}]{epsfcn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the error precision ~\newline
+ \mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_a4af7d41545ec5908485357493839e6f6}\label{class_eigen_1_1_levenberg_marquardt_a4af7d41545ec5908485357493839e6f6}} 
+\index{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}!setExternalScaling@{setExternalScaling}}
+\index{setExternalScaling@{setExternalScaling}!Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}}
+\doxysubsubsection{\texorpdfstring{setExternalScaling()}{setExternalScaling()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Functor\+Type $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt}{Eigen\+::\+Levenberg\+Marquardt}}$<$ \+\_\+\+Functor\+Type $>$\+::set\+External\+Scaling (\begin{DoxyParamCaption}\item[{bool}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Use an external \mbox{\hyperlink{class_scaling}{Scaling}}. If set to true, pass a nonzero diagonal to diag() \mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_a3054eeba042b197ae8d415729770db69}\label{class_eigen_1_1_levenberg_marquardt_a3054eeba042b197ae8d415729770db69}} 
+\index{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}!setFactor@{setFactor}}
+\index{setFactor@{setFactor}!Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}}
+\doxysubsubsection{\texorpdfstring{setFactor()}{setFactor()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Functor\+Type $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt}{Eigen\+::\+Levenberg\+Marquardt}}$<$ \+\_\+\+Functor\+Type $>$\+::set\+Factor (\begin{DoxyParamCaption}\item[{Real\+Scalar}]{factor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the step bound for the diagonal shift \mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_a09c0852c6a4534b84a16ac5d9c631c12}\label{class_eigen_1_1_levenberg_marquardt_a09c0852c6a4534b84a16ac5d9c631c12}} 
+\index{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}!setFtol@{setFtol}}
+\index{setFtol@{setFtol}!Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}}
+\doxysubsubsection{\texorpdfstring{setFtol()}{setFtol()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Functor\+Type $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt}{Eigen\+::\+Levenberg\+Marquardt}}$<$ \+\_\+\+Functor\+Type $>$\+::set\+Ftol (\begin{DoxyParamCaption}\item[{Real\+Scalar}]{ftol }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the tolerance for the norm of the vector function \mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_ad5610b2353f1ce5e0c7357ed1b215fea}\label{class_eigen_1_1_levenberg_marquardt_ad5610b2353f1ce5e0c7357ed1b215fea}} 
+\index{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}!setGtol@{setGtol}}
+\index{setGtol@{setGtol}!Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}}
+\doxysubsubsection{\texorpdfstring{setGtol()}{setGtol()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Functor\+Type $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt}{Eigen\+::\+Levenberg\+Marquardt}}$<$ \+\_\+\+Functor\+Type $>$\+::set\+Gtol (\begin{DoxyParamCaption}\item[{Real\+Scalar}]{gtol }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the tolerance for the norm of the gradient of the error vector \mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_af072d0f89c44415d8ed284df8b4a634a}\label{class_eigen_1_1_levenberg_marquardt_af072d0f89c44415d8ed284df8b4a634a}} 
+\index{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}!setMaxfev@{setMaxfev}}
+\index{setMaxfev@{setMaxfev}!Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}}
+\doxysubsubsection{\texorpdfstring{setMaxfev()}{setMaxfev()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Functor\+Type $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt}{Eigen\+::\+Levenberg\+Marquardt}}$<$ \+\_\+\+Functor\+Type $>$\+::set\+Maxfev (\begin{DoxyParamCaption}\item[{Index}]{maxfev }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the maximum number of function evaluation \mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_a691b571366630f1329d2de7a5e40e7a5}\label{class_eigen_1_1_levenberg_marquardt_a691b571366630f1329d2de7a5e40e7a5}} 
+\index{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}!setXtol@{setXtol}}
+\index{setXtol@{setXtol}!Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}}
+\doxysubsubsection{\texorpdfstring{setXtol()}{setXtol()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Functor\+Type $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt}{Eigen\+::\+Levenberg\+Marquardt}}$<$ \+\_\+\+Functor\+Type $>$\+::set\+Xtol (\begin{DoxyParamCaption}\item[{Real\+Scalar}]{xtol }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the tolerance for the norm of the solution vector \mbox{\Hypertarget{class_eigen_1_1_levenberg_marquardt_a25a7629ea877d8f08670536b3d234897}\label{class_eigen_1_1_levenberg_marquardt_a25a7629ea877d8f08670536b3d234897}} 
+\index{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}!xtol@{xtol}}
+\index{xtol@{xtol}!Eigen::LevenbergMarquardt$<$ \_FunctorType $>$@{Eigen::LevenbergMarquardt$<$ \_FunctorType $>$}}
+\doxysubsubsection{\texorpdfstring{xtol()}{xtol()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Functor\+Type $>$ \\
+Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_levenberg_marquardt}{Eigen\+::\+Levenberg\+Marquardt}}$<$ \+\_\+\+Functor\+Type $>$\+::xtol (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the tolerance for the norm of the solution vector 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/src/\+Levenberg\+Marquardt/Levenberg\+Marquardt.\+h\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/src/\+Levenberg\+Marquardt/L\+Monestep.\+h\end{DoxyCompactItemize}

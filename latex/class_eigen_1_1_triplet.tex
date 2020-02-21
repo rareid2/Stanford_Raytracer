@@ -1,0 +1,84 @@
+\hypertarget{class_eigen_1_1_triplet}{}\doxysection{Eigen\+::Triplet$<$ Scalar, Storage\+Index $>$ Class Template Reference}
+\label{class_eigen_1_1_triplet}\index{Eigen::Triplet$<$ Scalar, StorageIndex $>$@{Eigen::Triplet$<$ Scalar, StorageIndex $>$}}
+
+
+A small structure to hold a non zero as a triplet (i,j,value).  
+
+
+
+
+{\ttfamily \#include $<$Sparse\+Util.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_triplet_aba38920ed9d7e9b917cab2f701f9ca62}\label{class_eigen_1_1_triplet_aba38920ed9d7e9b917cab2f701f9ca62}} 
+{\bfseries Triplet} (const Storage\+Index \&i, const Storage\+Index \&j, const Scalar \&v=Scalar(0))
+\item 
+const Storage\+Index \& \mbox{\hyperlink{class_eigen_1_1_triplet_ae88b0ad6d31daa53e298b9cc4201fdee}{row}} () const
+\item 
+const Storage\+Index \& \mbox{\hyperlink{class_eigen_1_1_triplet_a3531e3e2098507a069a368d72d46471e}{col}} () const
+\item 
+const Scalar \& \mbox{\hyperlink{class_eigen_1_1_triplet_a003ea53c6559b106406f7916d6610547}{value}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_triplet_a131514b3dd98e819d0e95bed8061b89c}\label{class_eigen_1_1_triplet_a131514b3dd98e819d0e95bed8061b89c}} 
+Storage\+Index {\bfseries m\+\_\+row}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_triplet_a5c18e694e1d03d97c6be31adc0b32a04}\label{class_eigen_1_1_triplet_a5c18e694e1d03d97c6be31adc0b32a04}} 
+Storage\+Index {\bfseries m\+\_\+col}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_triplet_ad50e9b16b92ffa57c5190d3285fca830}\label{class_eigen_1_1_triplet_ad50e9b16b92ffa57c5190d3285fca830}} 
+Scalar {\bfseries m\+\_\+value}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Scalar, typename Storage\+Index = typename Sparse\+Matrix$<$\+Scalar$>$\+::\+Storage\+Index$>$\newline
+class Eigen\+::\+Triplet$<$ Scalar, Storage\+Index $>$}
+
+A small structure to hold a non zero as a triplet (i,j,value). 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_sparse_matrix_acc35051d698e3973f1de5b9b78dbe345}{Sparse\+Matrix\+::set\+From\+Triplets()}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_triplet_a3531e3e2098507a069a368d72d46471e}\label{class_eigen_1_1_triplet_a3531e3e2098507a069a368d72d46471e}} 
+\index{Eigen::Triplet$<$ Scalar, StorageIndex $>$@{Eigen::Triplet$<$ Scalar, StorageIndex $>$}!col@{col}}
+\index{col@{col}!Eigen::Triplet$<$ Scalar, StorageIndex $>$@{Eigen::Triplet$<$ Scalar, StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{col()}{col()}}
+{\footnotesize\ttfamily template$<$typename Scalar , typename Storage\+Index  = typename Sparse\+Matrix$<$\+Scalar$>$\+::\+Storage\+Index$>$ \\
+const Storage\+Index\& \mbox{\hyperlink{class_eigen_1_1_triplet}{Eigen\+::\+Triplet}}$<$ Scalar, Storage\+Index $>$\+::col (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the column index of the element 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_triplet_ae88b0ad6d31daa53e298b9cc4201fdee}\label{class_eigen_1_1_triplet_ae88b0ad6d31daa53e298b9cc4201fdee}} 
+\index{Eigen::Triplet$<$ Scalar, StorageIndex $>$@{Eigen::Triplet$<$ Scalar, StorageIndex $>$}!row@{row}}
+\index{row@{row}!Eigen::Triplet$<$ Scalar, StorageIndex $>$@{Eigen::Triplet$<$ Scalar, StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{row()}{row()}}
+{\footnotesize\ttfamily template$<$typename Scalar , typename Storage\+Index  = typename Sparse\+Matrix$<$\+Scalar$>$\+::\+Storage\+Index$>$ \\
+const Storage\+Index\& \mbox{\hyperlink{class_eigen_1_1_triplet}{Eigen\+::\+Triplet}}$<$ Scalar, Storage\+Index $>$\+::row (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the row index of the element 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_triplet_a003ea53c6559b106406f7916d6610547}\label{class_eigen_1_1_triplet_a003ea53c6559b106406f7916d6610547}} 
+\index{Eigen::Triplet$<$ Scalar, StorageIndex $>$@{Eigen::Triplet$<$ Scalar, StorageIndex $>$}!value@{value}}
+\index{value@{value}!Eigen::Triplet$<$ Scalar, StorageIndex $>$@{Eigen::Triplet$<$ Scalar, StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{value()}{value()}}
+{\footnotesize\ttfamily template$<$typename Scalar , typename Storage\+Index  = typename Sparse\+Matrix$<$\+Scalar$>$\+::\+Storage\+Index$>$ \\
+const Scalar\& \mbox{\hyperlink{class_eigen_1_1_triplet}{Eigen\+::\+Triplet}}$<$ Scalar, Storage\+Index $>$\+::value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the value of the element 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Sparse\+Core/Sparse\+Util.\+h\end{DoxyCompactItemize}

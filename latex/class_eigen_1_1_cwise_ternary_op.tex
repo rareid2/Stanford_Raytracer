@@ -1,0 +1,159 @@
+\hypertarget{class_eigen_1_1_cwise_ternary_op}{}\doxysection{Eigen\+::Cwise\+Ternary\+Op$<$ Ternary\+Op, Arg1\+Type, Arg2\+Type, Arg3\+Type $>$ Class Template Reference}
+\label{class_eigen_1_1_cwise_ternary_op}\index{Eigen::CwiseTernaryOp$<$ TernaryOp, Arg1Type, Arg2Type, Arg3Type $>$@{Eigen::CwiseTernaryOp$<$ TernaryOp, Arg1Type, Arg2Type, Arg3Type $>$}}
+
+
+Generic expression where a coefficient-\/wise ternary operator is applied to two expressions.  
+
+
+
+
+{\ttfamily \#include $<$Cwise\+Ternary\+Op.\+h$>$}
+
+Inheritance diagram for Eigen\+::Cwise\+Ternary\+Op$<$ Ternary\+Op, Arg1\+Type, Arg2\+Type, Arg3\+Type $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=0.804598cm]{class_eigen_1_1_cwise_ternary_op}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_cwise_ternary_op_aa4563b92c245f9f0a75849f42202199d}\label{class_eigen_1_1_cwise_ternary_op_aa4563b92c245f9f0a75849f42202199d}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{internal\+::remove\+\_\+all}}$<$ Arg1\+Type $>$\+::type {\bfseries Arg1}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_cwise_ternary_op_a9d8a0e6d666fc184102738e64d730faf}\label{class_eigen_1_1_cwise_ternary_op_a9d8a0e6d666fc184102738e64d730faf}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{internal\+::remove\+\_\+all}}$<$ Arg2\+Type $>$\+::type {\bfseries Arg2}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_cwise_ternary_op_a2701e2558b2337fe322a86a9275abb70}\label{class_eigen_1_1_cwise_ternary_op_a2701e2558b2337fe322a86a9275abb70}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{internal\+::remove\+\_\+all}}$<$ Arg3\+Type $>$\+::type {\bfseries Arg3}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_cwise_ternary_op_af957246bf43f609178608885582b2579}\label{class_eigen_1_1_cwise_ternary_op_af957246bf43f609178608885582b2579}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_cwise_ternary_op_impl}{Cwise\+Ternary\+Op\+Impl}}$<$ Ternary\+Op, Arg1\+Type, Arg2\+Type, Arg3\+Type, typename \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ Arg1\+Type $>$\+::Storage\+Kind $>$\+::Base {\bfseries Base}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_cwise_ternary_op_a0843a161ab52e659474482a58490c446}\label{class_eigen_1_1_cwise_ternary_op_a0843a161ab52e659474482a58490c446}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1ref__selector}{internal\+::ref\+\_\+selector}}$<$ Arg1\+Type $>$\+::type {\bfseries Arg1\+Nested}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_cwise_ternary_op_ab6d00b9e39860793557efff176a76123}\label{class_eigen_1_1_cwise_ternary_op_ab6d00b9e39860793557efff176a76123}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1ref__selector}{internal\+::ref\+\_\+selector}}$<$ Arg2\+Type $>$\+::type {\bfseries Arg2\+Nested}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_cwise_ternary_op_a293ceb5e15a473f006ce0c81d4116ba8}\label{class_eigen_1_1_cwise_ternary_op_a293ceb5e15a473f006ce0c81d4116ba8}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1ref__selector}{internal\+::ref\+\_\+selector}}$<$ Arg3\+Type $>$\+::type {\bfseries Arg3\+Nested}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_cwise_ternary_op_acfbcc6e2474e1b8ba96582ef2e1c75d3}\label{class_eigen_1_1_cwise_ternary_op_acfbcc6e2474e1b8ba96582ef2e1c75d3}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__reference}{internal\+::remove\+\_\+reference}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Arg1\+Nested}} $>$\+::type {\bfseries \+\_\+\+Arg1\+Nested}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_cwise_ternary_op_acdb863f22f9575ec1bd8a3ccc25885dc}\label{class_eigen_1_1_cwise_ternary_op_acdb863f22f9575ec1bd8a3ccc25885dc}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__reference}{internal\+::remove\+\_\+reference}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Arg2\+Nested}} $>$\+::type {\bfseries \+\_\+\+Arg2\+Nested}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_cwise_ternary_op_adf09bd0b71027f26593dacc861617ff6}\label{class_eigen_1_1_cwise_ternary_op_adf09bd0b71027f26593dacc861617ff6}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__reference}{internal\+::remove\+\_\+reference}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Arg3\+Nested}} $>$\+::type {\bfseries \+\_\+\+Arg3\+Nested}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_cwise_ternary_op_ac64f71c7d7630c6d16c0e767d1651012}\label{class_eigen_1_1_cwise_ternary_op_ac64f71c7d7630c6d16c0e767d1651012}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE {\bfseries Cwise\+Ternary\+Op} (const \mbox{\hyperlink{class_eigen_1_1_triplet}{Arg1}} \&a1, const \mbox{\hyperlink{class_eigen_1_1_triplet}{Arg2}} \&a2, const \mbox{\hyperlink{class_eigen_1_1_triplet}{Arg3}} \&a3, const Ternary\+Op \&\mbox{\hyperlink{structfunc}{func}}=Ternary\+Op())
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_cwise_ternary_op_a44c041d7333ce3516c298d1bb0bd9b70}\label{class_eigen_1_1_cwise_ternary_op_a44c041d7333ce3516c298d1bb0bd9b70}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries rows} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_cwise_ternary_op_ac0a585377faac0ab8b756dfe758477cc}\label{class_eigen_1_1_cwise_ternary_op_ac0a585377faac0ab8b756dfe758477cc}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries cols} () const
+\item 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_triplet}{\+\_\+\+Arg1\+Nested}} \& \mbox{\hyperlink{class_eigen_1_1_cwise_ternary_op_a22d8805eb6e0b62d4275544045fcdaf7}{arg1}} () const
+\item 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_triplet}{\+\_\+\+Arg2\+Nested}} \& \mbox{\hyperlink{class_eigen_1_1_cwise_ternary_op_a5a04dcce0c3f3de309de542b2cdc2d03}{arg2}} () const
+\item 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_triplet}{\+\_\+\+Arg3\+Nested}} \& \mbox{\hyperlink{class_eigen_1_1_cwise_ternary_op_a5dfe99c3fadb28e57d0f5c985f74261e}{arg3}} () const
+\item 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Ternary\+Op \& \mbox{\hyperlink{class_eigen_1_1_cwise_ternary_op_a20707e9593d89b571ac520144cfdd943}{functor}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_cwise_ternary_op_a4893685eed4b6cc89cc5bf49de5abd27}\label{class_eigen_1_1_cwise_ternary_op_a4893685eed4b6cc89cc5bf49de5abd27}} 
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Arg1\+Nested}} {\bfseries m\+\_\+arg1}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_cwise_ternary_op_a722d63231b2bac72fe3158ff0deac588}\label{class_eigen_1_1_cwise_ternary_op_a722d63231b2bac72fe3158ff0deac588}} 
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Arg2\+Nested}} {\bfseries m\+\_\+arg2}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_cwise_ternary_op_a99b7ccb1290bb0bbd2ff72e92b7a7bee}\label{class_eigen_1_1_cwise_ternary_op_a99b7ccb1290bb0bbd2ff72e92b7a7bee}} 
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Arg3\+Nested}} {\bfseries m\+\_\+arg3}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_cwise_ternary_op_ac58df3092f0c8329fd3fb8dfad6c2631}\label{class_eigen_1_1_cwise_ternary_op_ac58df3092f0c8329fd3fb8dfad6c2631}} 
+const Ternary\+Op {\bfseries m\+\_\+functor}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Ternary\+Op, typename Arg1\+Type, typename Arg2\+Type, typename Arg3\+Type$>$\newline
+class Eigen\+::\+Cwise\+Ternary\+Op$<$ Ternary\+Op, Arg1\+Type, Arg2\+Type, Arg3\+Type $>$}
+
+Generic expression where a coefficient-\/wise ternary operator is applied to two expressions. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Ternary\+Op} & template functor implementing the operator \\
+\hline
+{\em Arg1\+Type} & the type of the first argument \\
+\hline
+{\em Arg2\+Type} & the type of the second argument \\
+\hline
+{\em Arg3\+Type} & the type of the third argument\\
+\hline
+\end{DoxyTemplParams}
+This class represents an expression where a coefficient-\/wise ternary operator is applied to three expressions. It is the return type of ternary operators, by which we mean only those ternary operators where all three arguments are \mbox{\hyperlink{namespace_eigen}{Eigen}} expressions. For example, the return type of betainc(matrix1, matrix2, matrix3) is a \mbox{\hyperlink{class_eigen_1_1_cwise_ternary_op}{Cwise\+Ternary\+Op}}.
+
+Most of the time, this is the only way that it is used, so you typically don\textquotesingle{}t have to name \mbox{\hyperlink{class_eigen_1_1_cwise_ternary_op}{Cwise\+Ternary\+Op}} types explicitly.
+
+\begin{DoxySeeAlso}{See also}
+Matrix\+Base\+::ternary\+Expr(const Matrix\+Base$<$\+Argument2$>$ \&, const Matrix\+Base$<$\+Argument3$>$ \&, const Custom\+Ternary\+Op \&) const, class \mbox{\hyperlink{class_eigen_1_1_cwise_binary_op}{Cwise\+Binary\+Op}}, class \mbox{\hyperlink{class_eigen_1_1_cwise_unary_op}{Cwise\+Unary\+Op}}, class \mbox{\hyperlink{class_eigen_1_1_cwise_nullary_op}{Cwise\+Nullary\+Op}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_cwise_ternary_op_a22d8805eb6e0b62d4275544045fcdaf7}\label{class_eigen_1_1_cwise_ternary_op_a22d8805eb6e0b62d4275544045fcdaf7}} 
+\index{Eigen::CwiseTernaryOp$<$ TernaryOp, Arg1Type, Arg2Type, Arg3Type $>$@{Eigen::CwiseTernaryOp$<$ TernaryOp, Arg1Type, Arg2Type, Arg3Type $>$}!arg1@{arg1}}
+\index{arg1@{arg1}!Eigen::CwiseTernaryOp$<$ TernaryOp, Arg1Type, Arg2Type, Arg3Type $>$@{Eigen::CwiseTernaryOp$<$ TernaryOp, Arg1Type, Arg2Type, Arg3Type $>$}}
+\doxysubsubsection{\texorpdfstring{arg1()}{arg1()}}
+{\footnotesize\ttfamily template$<$typename Ternary\+Op , typename Arg1\+Type , typename Arg2\+Type , typename Arg3\+Type $>$ \\
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_triplet}{\+\_\+\+Arg1\+Nested}}\& \mbox{\hyperlink{class_eigen_1_1_cwise_ternary_op}{Eigen\+::\+Cwise\+Ternary\+Op}}$<$ Ternary\+Op, Arg1\+Type, Arg2\+Type, Arg3\+Type $>$\+::arg1 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the first argument nested expression 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_cwise_ternary_op_a5a04dcce0c3f3de309de542b2cdc2d03}\label{class_eigen_1_1_cwise_ternary_op_a5a04dcce0c3f3de309de542b2cdc2d03}} 
+\index{Eigen::CwiseTernaryOp$<$ TernaryOp, Arg1Type, Arg2Type, Arg3Type $>$@{Eigen::CwiseTernaryOp$<$ TernaryOp, Arg1Type, Arg2Type, Arg3Type $>$}!arg2@{arg2}}
+\index{arg2@{arg2}!Eigen::CwiseTernaryOp$<$ TernaryOp, Arg1Type, Arg2Type, Arg3Type $>$@{Eigen::CwiseTernaryOp$<$ TernaryOp, Arg1Type, Arg2Type, Arg3Type $>$}}
+\doxysubsubsection{\texorpdfstring{arg2()}{arg2()}}
+{\footnotesize\ttfamily template$<$typename Ternary\+Op , typename Arg1\+Type , typename Arg2\+Type , typename Arg3\+Type $>$ \\
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_triplet}{\+\_\+\+Arg2\+Nested}}\& \mbox{\hyperlink{class_eigen_1_1_cwise_ternary_op}{Eigen\+::\+Cwise\+Ternary\+Op}}$<$ Ternary\+Op, Arg1\+Type, Arg2\+Type, Arg3\+Type $>$\+::arg2 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the first argument nested expression 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_cwise_ternary_op_a5dfe99c3fadb28e57d0f5c985f74261e}\label{class_eigen_1_1_cwise_ternary_op_a5dfe99c3fadb28e57d0f5c985f74261e}} 
+\index{Eigen::CwiseTernaryOp$<$ TernaryOp, Arg1Type, Arg2Type, Arg3Type $>$@{Eigen::CwiseTernaryOp$<$ TernaryOp, Arg1Type, Arg2Type, Arg3Type $>$}!arg3@{arg3}}
+\index{arg3@{arg3}!Eigen::CwiseTernaryOp$<$ TernaryOp, Arg1Type, Arg2Type, Arg3Type $>$@{Eigen::CwiseTernaryOp$<$ TernaryOp, Arg1Type, Arg2Type, Arg3Type $>$}}
+\doxysubsubsection{\texorpdfstring{arg3()}{arg3()}}
+{\footnotesize\ttfamily template$<$typename Ternary\+Op , typename Arg1\+Type , typename Arg2\+Type , typename Arg3\+Type $>$ \\
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_triplet}{\+\_\+\+Arg3\+Nested}}\& \mbox{\hyperlink{class_eigen_1_1_cwise_ternary_op}{Eigen\+::\+Cwise\+Ternary\+Op}}$<$ Ternary\+Op, Arg1\+Type, Arg2\+Type, Arg3\+Type $>$\+::arg3 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the third argument nested expression 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_cwise_ternary_op_a20707e9593d89b571ac520144cfdd943}\label{class_eigen_1_1_cwise_ternary_op_a20707e9593d89b571ac520144cfdd943}} 
+\index{Eigen::CwiseTernaryOp$<$ TernaryOp, Arg1Type, Arg2Type, Arg3Type $>$@{Eigen::CwiseTernaryOp$<$ TernaryOp, Arg1Type, Arg2Type, Arg3Type $>$}!functor@{functor}}
+\index{functor@{functor}!Eigen::CwiseTernaryOp$<$ TernaryOp, Arg1Type, Arg2Type, Arg3Type $>$@{Eigen::CwiseTernaryOp$<$ TernaryOp, Arg1Type, Arg2Type, Arg3Type $>$}}
+\doxysubsubsection{\texorpdfstring{functor()}{functor()}}
+{\footnotesize\ttfamily template$<$typename Ternary\+Op , typename Arg1\+Type , typename Arg2\+Type , typename Arg3\+Type $>$ \\
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Ternary\+Op\& \mbox{\hyperlink{class_eigen_1_1_cwise_ternary_op}{Eigen\+::\+Cwise\+Ternary\+Op}}$<$ Ternary\+Op, Arg1\+Type, Arg2\+Type, Arg3\+Type $>$\+::functor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the functor representing the ternary operation 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/Cwise\+Ternary\+Op.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,67 @@
+\hypertarget{class_eigen_1_1_auto_diff_jacobian}{}\doxysection{Eigen\+::Auto\+Diff\+Jacobian$<$ Functor $>$ Class Template Reference}
+\label{class_eigen_1_1_auto_diff_jacobian}\index{Eigen::AutoDiffJacobian$<$ Functor $>$@{Eigen::AutoDiffJacobian$<$ Functor $>$}}
+Inheritance diagram for Eigen\+::Auto\+Diff\+Jacobian$<$ Functor $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_eigen_1_1_auto_diff_jacobian}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_auto_diff_jacobian_a30b23fb4e1f1c9c7c703901eaff196a9}\label{class_eigen_1_1_auto_diff_jacobian_a30b23fb4e1f1c9c7c703901eaff196a9}} 
+enum \{ {\bfseries Inputs\+At\+Compile\+Time} = Input\+Type\+::Rows\+At\+Compile\+Time, 
+{\bfseries Values\+At\+Compile\+Time} = Value\+Type\+::Rows\+At\+Compile\+Time
+ \}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_auto_diff_jacobian_a25e2937641e16ba80edcf48a12b16b9c}\label{class_eigen_1_1_auto_diff_jacobian_a25e2937641e16ba80edcf48a12b16b9c}} 
+typedef Functor\+::\+Input\+Type {\bfseries Input\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_auto_diff_jacobian_a6a4ed984810a6561e7f89e885ceeb6aa}\label{class_eigen_1_1_auto_diff_jacobian_a6a4ed984810a6561e7f89e885ceeb6aa}} 
+typedef Functor\+::\+Value\+Type {\bfseries Value\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_auto_diff_jacobian_a5d223badd23a9e5985965eff26a2fa6b}\label{class_eigen_1_1_auto_diff_jacobian_a5d223badd23a9e5985965eff26a2fa6b}} 
+typedef Value\+Type\+::\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_auto_diff_jacobian_acd5c9daf8db336d70ad61cc75e62af22}\label{class_eigen_1_1_auto_diff_jacobian_acd5c9daf8db336d70ad61cc75e62af22}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ Scalar, Values\+At\+Compile\+Time, Inputs\+At\+Compile\+Time $>$ {\bfseries Jacobian\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_auto_diff_jacobian_ae6a173d8a90810c34fe9aceb4e5c04a1}\label{class_eigen_1_1_auto_diff_jacobian_ae6a173d8a90810c34fe9aceb4e5c04a1}} 
+typedef Jacobian\+Type\+::\+Index {\bfseries Index}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_auto_diff_jacobian_aa1655a735186d0a04c3cfd8d36b7e4af}\label{class_eigen_1_1_auto_diff_jacobian_aa1655a735186d0a04c3cfd8d36b7e4af}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ Scalar, Inputs\+At\+Compile\+Time, 1 $>$ {\bfseries Derivative\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_auto_diff_jacobian_aa06772173c0ca9e1357c45f3119e1e05}\label{class_eigen_1_1_auto_diff_jacobian_aa06772173c0ca9e1357c45f3119e1e05}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_auto_diff_scalar}{Auto\+Diff\+Scalar}}$<$ \mbox{\hyperlink{class_eigen_1_1_matrix}{Derivative\+Type}} $>$ {\bfseries Active\+Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_auto_diff_jacobian_aeb988484a6e31fa78c963912a2eba925}\label{class_eigen_1_1_auto_diff_jacobian_aeb988484a6e31fa78c963912a2eba925}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{class_eigen_1_1_auto_diff_scalar}{Active\+Scalar}}, Inputs\+At\+Compile\+Time, 1 $>$ {\bfseries Active\+Input}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_auto_diff_jacobian_ad9142ab47c010bd49a572dbf82ebbf8e}\label{class_eigen_1_1_auto_diff_jacobian_ad9142ab47c010bd49a572dbf82ebbf8e}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{class_eigen_1_1_auto_diff_scalar}{Active\+Scalar}}, Values\+At\+Compile\+Time, 1 $>$ {\bfseries Active\+Value}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_auto_diff_jacobian_af28bf6fab1a0dafe1429d6d04acfe396}\label{class_eigen_1_1_auto_diff_jacobian_af28bf6fab1a0dafe1429d6d04acfe396}} 
+{\bfseries Auto\+Diff\+Jacobian} (const \mbox{\hyperlink{struct_functor}{Functor}} \&f)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_auto_diff_jacobian_a8e78187ab2df1d09395c9910e182b305}\label{class_eigen_1_1_auto_diff_jacobian_a8e78187ab2df1d09395c9910e182b305}} 
+{\footnotesize template$<$typename T0 $>$ }\\{\bfseries Auto\+Diff\+Jacobian} (const T0 \&a0)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_auto_diff_jacobian_a459df1c8203bd0aef5ea3ed964d6e8f1}\label{class_eigen_1_1_auto_diff_jacobian_a459df1c8203bd0aef5ea3ed964d6e8f1}} 
+{\footnotesize template$<$typename T0 , typename T1 $>$ }\\{\bfseries Auto\+Diff\+Jacobian} (const T0 \&a0, const T1 \&a1)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_auto_diff_jacobian_abcc3d282a198c67c3c0b15ee81763f5c}\label{class_eigen_1_1_auto_diff_jacobian_abcc3d282a198c67c3c0b15ee81763f5c}} 
+{\footnotesize template$<$typename T0 , typename T1 , typename T2 $>$ }\\{\bfseries Auto\+Diff\+Jacobian} (const T0 \&a0, const T1 \&a1, const T2 \&a2)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_auto_diff_jacobian_a7e9380a43f2f256ad3f00d683a943f1e}\label{class_eigen_1_1_auto_diff_jacobian_a7e9380a43f2f256ad3f00d683a943f1e}} 
+void {\bfseries operator()} (const Input\+Type \&x, Value\+Type $\ast$v, \mbox{\hyperlink{class_eigen_1_1_matrix}{Jacobian\+Type}} $\ast$\+\_\+jac=0) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/src/\+Auto\+Diff/Auto\+Diff\+Jacobian.\+h\end{DoxyCompactItemize}

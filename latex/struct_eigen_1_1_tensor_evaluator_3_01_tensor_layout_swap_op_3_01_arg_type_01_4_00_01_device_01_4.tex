@@ -1,0 +1,54 @@
+\hypertarget{struct_eigen_1_1_tensor_evaluator_3_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4}{}\doxysection{Eigen\+::Tensor\+Evaluator$<$ Tensor\+Layout\+Swap\+Op$<$ Arg\+Type $>$, Device $>$ Struct Template Reference}
+\label{struct_eigen_1_1_tensor_evaluator_3_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4}\index{Eigen::TensorEvaluator$<$ TensorLayoutSwapOp$<$ ArgType $>$, Device $>$@{Eigen::TensorEvaluator$<$ TensorLayoutSwapOp$<$ ArgType $>$, Device $>$}}
+Inheritance diagram for Eigen\+::Tensor\+Evaluator$<$ Tensor\+Layout\+Swap\+Op$<$ Arg\+Type $>$, Device $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{struct_eigen_1_1_tensor_evaluator_3_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_a5f5a59ea24305166de5469bc6ac29027}\label{struct_eigen_1_1_tensor_evaluator_3_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_a5f5a59ea24305166de5469bc6ac29027}} 
+enum \{ {\bfseries Is\+Aligned} = Tensor\+Evaluator$<$Arg\+Type, Device$>$\+::Is\+Aligned, 
+{\bfseries Packet\+Access} = Tensor\+Evaluator$<$Arg\+Type, Device$>$\+::Packet\+Access, 
+{\bfseries Layout} = (static\+\_\+cast$<$int$>$(Tensor\+Evaluator$<$Arg\+Type, Device$>$\+::Layout) == static\+\_\+cast$<$int$>$(Col\+Major)) ? Row\+Major \+: Col\+Major, 
+{\bfseries Coord\+Access} = false
+ \}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_a7fb384490817bd637b679e949c359209}\label{struct_eigen_1_1_tensor_evaluator_3_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_a7fb384490817bd637b679e949c359209}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{Tensor\+Evaluator}}$<$ const \mbox{\hyperlink{class_eigen_1_1_tensor_layout_swap_op}{Tensor\+Layout\+Swap\+Op}}$<$ Arg\+Type $>$, Device $>$ {\bfseries Base}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_a53f5b7a8594a3bf0f4c8330daa2b49bc}\label{struct_eigen_1_1_tensor_evaluator_3_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_a53f5b7a8594a3bf0f4c8330daa2b49bc}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_tensor_layout_swap_op}{Tensor\+Layout\+Swap\+Op}}$<$ Arg\+Type $>$ {\bfseries Xpr\+Type}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_a3855fab94ecee4dbcb52c64c65e0cc19}\label{struct_eigen_1_1_tensor_evaluator_3_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_a3855fab94ecee4dbcb52c64c65e0cc19}} 
+typedef Xpr\+Type\+::\+Index {\bfseries Index}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_a2b2752a1174b904494c6f3e40236cac7}\label{struct_eigen_1_1_tensor_evaluator_3_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_a2b2752a1174b904494c6f3e40236cac7}} 
+typedef Xpr\+Type\+::\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_ae8bb3c761e3644ab3500529869ea8c8a}\label{struct_eigen_1_1_tensor_evaluator_3_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_ae8bb3c761e3644ab3500529869ea8c8a}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_triplet}{Xpr\+Type\+::\+Coeff\+Return\+Type}} {\bfseries Coeff\+Return\+Type}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_a28358bea90b5806128cd22e7024921c7}\label{struct_eigen_1_1_tensor_evaluator_3_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_a28358bea90b5806128cd22e7024921c7}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}}$<$ \mbox{\hyperlink{class_eigen_1_1_triplet}{Coeff\+Return\+Type}}, Device $>$\+::type {\bfseries Packet\+Return\+Type}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_aac2a4279b03440895789ebcb07b9d95a}\label{struct_eigen_1_1_tensor_evaluator_3_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_aac2a4279b03440895789ebcb07b9d95a}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE {\bfseries Tensor\+Evaluator} (const \mbox{\hyperlink{class_eigen_1_1_tensor_layout_swap_op}{Xpr\+Type}} \&op, const Device \&device)
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_af6b35eff16e9d3337396d9a4935d9b39}\label{struct_eigen_1_1_tensor_evaluator_3_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_af6b35eff16e9d3337396d9a4935d9b39}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_triplet}{Coeff\+Return\+Type}} \& {\bfseries coeff\+Ref} (Index index)
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_a6470ad4d4223afec700ca7fcc7f62888}\label{struct_eigen_1_1_tensor_evaluator_3_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_a6470ad4d4223afec700ca7fcc7f62888}} 
+{\footnotesize template$<$int Store\+Mode$>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE void {\bfseries write\+Packet} (Index index, const \mbox{\hyperlink{class_eigen_1_1_triplet}{Packet\+Return\+Type}} \&x)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/\+C\+X\+X11/src/\+Tensor/Tensor\+Layout\+Swap.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,121 @@
+\hypertarget{class_eigen_1_1_auto_diff_vector}{}\doxysection{Eigen\+::Auto\+Diff\+Vector$<$ Value\+Type, Jacobian\+Type $>$ Class Template Reference}
+\label{class_eigen_1_1_auto_diff_vector}\index{Eigen::AutoDiffVector$<$ ValueType, JacobianType $>$@{Eigen::AutoDiffVector$<$ ValueType, JacobianType $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_auto_diff_vector_a6e773836add85ed4408d76edc11f9a44}\label{class_eigen_1_1_auto_diff_vector_a6e773836add85ed4408d76edc11f9a44}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ Value\+Type $>$\+::\mbox{\hyperlink{class_eigen_1_1_auto_diff_scalar}{Scalar}} {\bfseries Base\+Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_auto_diff_vector_a048526857fa96b35452716b4da209591}\label{class_eigen_1_1_auto_diff_vector_a048526857fa96b35452716b4da209591}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_auto_diff_scalar}{Auto\+Diff\+Scalar}}$<$ \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ Base\+Scalar, Jacobian\+Type\+::\+Rows\+At\+Compile\+Time, 1 $>$ $>$ {\bfseries Active\+Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_auto_diff_vector_aece477c877459511bbaf4aab630727ea}\label{class_eigen_1_1_auto_diff_vector_aece477c877459511bbaf4aab630727ea}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_auto_diff_scalar}{Active\+Scalar}} {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_auto_diff_vector_a3b6605c69ba58741f7b88e91a1edf501}\label{class_eigen_1_1_auto_diff_vector_a3b6605c69ba58741f7b88e91a1edf501}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_auto_diff_scalar}{Auto\+Diff\+Scalar}}$<$ typename Jacobian\+Type\+::\+Col\+Xpr $>$ {\bfseries Coeff\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_auto_diff_vector_a49bfdebfc40fc86a3043fbbc458c667d}\label{class_eigen_1_1_auto_diff_vector_a49bfdebfc40fc86a3043fbbc458c667d}} 
+typedef Jacobian\+Type\+::\+Index {\bfseries Index}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_auto_diff_vector_a4427a857c98519614c6eb3f643f76e77}\label{class_eigen_1_1_auto_diff_vector_a4427a857c98519614c6eb3f643f76e77}} 
+{\bfseries Auto\+Diff\+Vector} (const Value\+Type \&values)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_auto_diff_vector_a45afba6ef103699021bae60557dcc43c}\label{class_eigen_1_1_auto_diff_vector_a45afba6ef103699021bae60557dcc43c}} 
+\mbox{\hyperlink{class_eigen_1_1_auto_diff_scalar}{Coeff\+Type}} {\bfseries operator\mbox{[}$\,$\mbox{]}} (Index i)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_auto_diff_vector_a50fd1a00b5bbb6ad78c93537173f035b}\label{class_eigen_1_1_auto_diff_vector_a50fd1a00b5bbb6ad78c93537173f035b}} 
+const \mbox{\hyperlink{class_eigen_1_1_auto_diff_scalar}{Coeff\+Type}} {\bfseries operator\mbox{[}$\,$\mbox{]}} (Index i) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_auto_diff_vector_ae34829cdff8ec421a2468805c1f9a265}\label{class_eigen_1_1_auto_diff_vector_ae34829cdff8ec421a2468805c1f9a265}} 
+\mbox{\hyperlink{class_eigen_1_1_auto_diff_scalar}{Coeff\+Type}} {\bfseries operator()} (Index i)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_auto_diff_vector_a830625bf5751aab2c7e18dd514140908}\label{class_eigen_1_1_auto_diff_vector_a830625bf5751aab2c7e18dd514140908}} 
+const \mbox{\hyperlink{class_eigen_1_1_auto_diff_scalar}{Coeff\+Type}} {\bfseries operator()} (Index i) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_auto_diff_vector_a3e932caba9f4d4c131caab80e255f97d}\label{class_eigen_1_1_auto_diff_vector_a3e932caba9f4d4c131caab80e255f97d}} 
+\mbox{\hyperlink{class_eigen_1_1_auto_diff_scalar}{Coeff\+Type}} {\bfseries coeff\+Ref} (Index i)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_auto_diff_vector_a783b34af73b298817436cc112c96a2d9}\label{class_eigen_1_1_auto_diff_vector_a783b34af73b298817436cc112c96a2d9}} 
+const \mbox{\hyperlink{class_eigen_1_1_auto_diff_scalar}{Coeff\+Type}} {\bfseries coeff\+Ref} (Index i) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_auto_diff_vector_a2313e11718a7a613603b6bc8e7c19a76}\label{class_eigen_1_1_auto_diff_vector_a2313e11718a7a613603b6bc8e7c19a76}} 
+Index {\bfseries size} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_auto_diff_vector_afacee684d50566591abb11c7654661b2}\label{class_eigen_1_1_auto_diff_vector_afacee684d50566591abb11c7654661b2}} 
+\mbox{\hyperlink{class_eigen_1_1_auto_diff_scalar}{Scalar}} {\bfseries sum} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_auto_diff_vector_a63ca0218770504e623af4211150af918}\label{class_eigen_1_1_auto_diff_vector_a63ca0218770504e623af4211150af918}} 
+{\bfseries Auto\+Diff\+Vector} (const Value\+Type \&values, const Jacobian\+Type \&jac)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_auto_diff_vector_ac0e6c4be6a7273fe031534143855941b}\label{class_eigen_1_1_auto_diff_vector_ac0e6c4be6a7273fe031534143855941b}} 
+{\footnotesize template$<$typename Other\+Value\+Type , typename Other\+Jacobian\+Type $>$ }\\{\bfseries Auto\+Diff\+Vector} (const \mbox{\hyperlink{class_eigen_1_1_auto_diff_vector}{Auto\+Diff\+Vector}}$<$ Other\+Value\+Type, Other\+Jacobian\+Type $>$ \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_auto_diff_vector_a8594f8d205158989d0d1cb38c53ffe0a}\label{class_eigen_1_1_auto_diff_vector_a8594f8d205158989d0d1cb38c53ffe0a}} 
+{\bfseries Auto\+Diff\+Vector} (const \mbox{\hyperlink{class_eigen_1_1_auto_diff_vector}{Auto\+Diff\+Vector}} \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_auto_diff_vector_a1a2b89be2583d4fb8b4386d1447e02d4}\label{class_eigen_1_1_auto_diff_vector_a1a2b89be2583d4fb8b4386d1447e02d4}} 
+{\footnotesize template$<$typename Other\+Value\+Type , typename Other\+Jacobian\+Type $>$ }\\\mbox{\hyperlink{class_eigen_1_1_auto_diff_vector}{Auto\+Diff\+Vector}} \& {\bfseries operator=} (const \mbox{\hyperlink{class_eigen_1_1_auto_diff_vector}{Auto\+Diff\+Vector}}$<$ Other\+Value\+Type, Other\+Jacobian\+Type $>$ \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_auto_diff_vector_a3af21d242fcc99f1424c2cf1f8cef77e}\label{class_eigen_1_1_auto_diff_vector_a3af21d242fcc99f1424c2cf1f8cef77e}} 
+\mbox{\hyperlink{class_eigen_1_1_auto_diff_vector}{Auto\+Diff\+Vector}} \& {\bfseries operator=} (const \mbox{\hyperlink{class_eigen_1_1_auto_diff_vector}{Auto\+Diff\+Vector}} \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_auto_diff_vector_a9d15830cda59daaf925f307948eea607}\label{class_eigen_1_1_auto_diff_vector_a9d15830cda59daaf925f307948eea607}} 
+const Value\+Type \& {\bfseries values} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_auto_diff_vector_aea993221c8ef59c1ce651d51ea5c021b}\label{class_eigen_1_1_auto_diff_vector_aea993221c8ef59c1ce651d51ea5c021b}} 
+Value\+Type \& {\bfseries values} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_auto_diff_vector_aca679f1915a6bd0e1456532c1f6caba3}\label{class_eigen_1_1_auto_diff_vector_aca679f1915a6bd0e1456532c1f6caba3}} 
+const Jacobian\+Type \& {\bfseries jacobian} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_auto_diff_vector_a1ea93cae4362f213c53c6ae09ad32f70}\label{class_eigen_1_1_auto_diff_vector_a1ea93cae4362f213c53c6ae09ad32f70}} 
+Jacobian\+Type \& {\bfseries jacobian} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_auto_diff_vector_ad123a9ee90c10e965dbb7d32ffc48565}\label{class_eigen_1_1_auto_diff_vector_ad123a9ee90c10e965dbb7d32ffc48565}} 
+{\footnotesize template$<$typename Other\+Value\+Type , typename Other\+Jacobian\+Type $>$ }\\const \mbox{\hyperlink{class_eigen_1_1_auto_diff_vector}{Auto\+Diff\+Vector}}$<$ typename Make\+Cwise\+Binary\+Op$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__sum__op}{internal\+::scalar\+\_\+sum\+\_\+op}}$<$ Base\+Scalar $>$, Value\+Type, Other\+Value\+Type $>$\+::Type, typename Make\+Cwise\+Binary\+Op$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__sum__op}{internal\+::scalar\+\_\+sum\+\_\+op}}$<$ Base\+Scalar $>$, Jacobian\+Type, Other\+Jacobian\+Type $>$\+::Type $>$ {\bfseries operator+} (const \mbox{\hyperlink{class_eigen_1_1_auto_diff_vector}{Auto\+Diff\+Vector}}$<$ Other\+Value\+Type, Other\+Jacobian\+Type $>$ \&other) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_auto_diff_vector_a2459ccb5fe11565e0350c8265ff91c4e}\label{class_eigen_1_1_auto_diff_vector_a2459ccb5fe11565e0350c8265ff91c4e}} 
+{\footnotesize template$<$typename Other\+Value\+Type , typename Other\+Jacobian\+Type $>$ }\\\mbox{\hyperlink{class_eigen_1_1_auto_diff_vector}{Auto\+Diff\+Vector}} \& {\bfseries operator+=} (const \mbox{\hyperlink{class_eigen_1_1_auto_diff_vector}{Auto\+Diff\+Vector}}$<$ Other\+Value\+Type, Other\+Jacobian\+Type $>$ \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_auto_diff_vector_a90ba44e4e394a5cde3dd6706d42f90df}\label{class_eigen_1_1_auto_diff_vector_a90ba44e4e394a5cde3dd6706d42f90df}} 
+{\footnotesize template$<$typename Other\+Value\+Type , typename Other\+Jacobian\+Type $>$ }\\const \mbox{\hyperlink{class_eigen_1_1_auto_diff_vector}{Auto\+Diff\+Vector}}$<$ typename Make\+Cwise\+Binary\+Op$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__difference__op}{internal\+::scalar\+\_\+difference\+\_\+op}}$<$ \mbox{\hyperlink{class_eigen_1_1_auto_diff_scalar}{Scalar}} $>$, Value\+Type, Other\+Value\+Type $>$\+::Type, typename Make\+Cwise\+Binary\+Op$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__difference__op}{internal\+::scalar\+\_\+difference\+\_\+op}}$<$ \mbox{\hyperlink{class_eigen_1_1_auto_diff_scalar}{Scalar}} $>$, Jacobian\+Type, Other\+Jacobian\+Type $>$\+::Type $>$ {\bfseries operator-\/} (const \mbox{\hyperlink{class_eigen_1_1_auto_diff_vector}{Auto\+Diff\+Vector}}$<$ Other\+Value\+Type, Other\+Jacobian\+Type $>$ \&other) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_auto_diff_vector_a8643a9d4537d9ea19edd4fb8911b532a}\label{class_eigen_1_1_auto_diff_vector_a8643a9d4537d9ea19edd4fb8911b532a}} 
+{\footnotesize template$<$typename Other\+Value\+Type , typename Other\+Jacobian\+Type $>$ }\\\mbox{\hyperlink{class_eigen_1_1_auto_diff_vector}{Auto\+Diff\+Vector}} \& {\bfseries operator-\/=} (const \mbox{\hyperlink{class_eigen_1_1_auto_diff_vector}{Auto\+Diff\+Vector}}$<$ Other\+Value\+Type, Other\+Jacobian\+Type $>$ \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_auto_diff_vector_a5b60e5830761efb351d6dd410c824b4e}\label{class_eigen_1_1_auto_diff_vector_a5b60e5830761efb351d6dd410c824b4e}} 
+const \mbox{\hyperlink{class_eigen_1_1_auto_diff_vector}{Auto\+Diff\+Vector}}$<$ typename Make\+Cwise\+Unary\+Op$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__opposite__op}{internal\+::scalar\+\_\+opposite\+\_\+op}}$<$ \mbox{\hyperlink{class_eigen_1_1_auto_diff_scalar}{Scalar}} $>$, Value\+Type $>$\+::Type, typename Make\+Cwise\+Unary\+Op$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__opposite__op}{internal\+::scalar\+\_\+opposite\+\_\+op}}$<$ \mbox{\hyperlink{class_eigen_1_1_auto_diff_scalar}{Scalar}} $>$, Jacobian\+Type $>$\+::Type $>$ {\bfseries operator-\/} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_auto_diff_vector_a05674ef2fa708ff752109d194c53d60e}\label{class_eigen_1_1_auto_diff_vector_a05674ef2fa708ff752109d194c53d60e}} 
+const \mbox{\hyperlink{class_eigen_1_1_auto_diff_vector}{Auto\+Diff\+Vector}}$<$ typename Make\+Cwise\+Unary\+Op$<$ internal\+::scalar\+\_\+multiple\+\_\+op$<$ \mbox{\hyperlink{class_eigen_1_1_auto_diff_scalar}{Scalar}} $>$, Value\+Type $>$\+::Type, typename Make\+Cwise\+Unary\+Op$<$ internal\+::scalar\+\_\+multiple\+\_\+op$<$ \mbox{\hyperlink{class_eigen_1_1_auto_diff_scalar}{Scalar}} $>$, Jacobian\+Type $>$\+::Type $>$ {\bfseries operator$\ast$} (const Base\+Scalar \&other) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_auto_diff_vector_ab2de57504c49deaf117ae61d3ccce06e}\label{class_eigen_1_1_auto_diff_vector_ab2de57504c49deaf117ae61d3ccce06e}} 
+\mbox{\hyperlink{class_eigen_1_1_auto_diff_vector}{Auto\+Diff\+Vector}} \& {\bfseries operator$\ast$=} (const \mbox{\hyperlink{class_eigen_1_1_auto_diff_scalar}{Scalar}} \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_auto_diff_vector_abbe56ed8af87801f3315665668544660}\label{class_eigen_1_1_auto_diff_vector_abbe56ed8af87801f3315665668544660}} 
+{\footnotesize template$<$typename Other\+Value\+Type , typename Other\+Jacobian\+Type $>$ }\\\mbox{\hyperlink{class_eigen_1_1_auto_diff_vector}{Auto\+Diff\+Vector}} \& {\bfseries operator$\ast$=} (const \mbox{\hyperlink{class_eigen_1_1_auto_diff_vector}{Auto\+Diff\+Vector}}$<$ Other\+Value\+Type, Other\+Jacobian\+Type $>$ \&other)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_auto_diff_vector_a28c4ebee2675ca7537f67f4a1202f2a3}\label{class_eigen_1_1_auto_diff_vector_a28c4ebee2675ca7537f67f4a1202f2a3}} 
+Value\+Type {\bfseries m\+\_\+values}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_auto_diff_vector_af0ea9a93266b29ce929aa019abb55904}\label{class_eigen_1_1_auto_diff_vector_af0ea9a93266b29ce929aa019abb55904}} 
+Jacobian\+Type {\bfseries m\+\_\+jacobian}
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_auto_diff_vector_a2a1319c79942cc5f030c8e54bccf80a1}\label{class_eigen_1_1_auto_diff_vector_a2a1319c79942cc5f030c8e54bccf80a1}} 
+const friend \mbox{\hyperlink{class_eigen_1_1_auto_diff_vector}{Auto\+Diff\+Vector}}$<$ typename Make\+Cwise\+Unary\+Op$<$ internal\+::scalar\+\_\+multiple\+\_\+op$<$ \mbox{\hyperlink{class_eigen_1_1_auto_diff_scalar}{Scalar}} $>$, Value\+Type $>$\+::Type, typename Make\+Cwise\+Unary\+Op$<$ internal\+::scalar\+\_\+multiple\+\_\+op$<$ \mbox{\hyperlink{class_eigen_1_1_auto_diff_scalar}{Scalar}} $>$, Jacobian\+Type $>$\+::Type $>$ {\bfseries operator$\ast$} (const \mbox{\hyperlink{class_eigen_1_1_auto_diff_scalar}{Scalar}} \&other, const \mbox{\hyperlink{class_eigen_1_1_auto_diff_vector}{Auto\+Diff\+Vector}} \&v)
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/src/\+Auto\+Diff/Auto\+Diff\+Vector.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,313 @@
+\hypertarget{class_eigen_1_1_hessenberg_decomposition}{}\doxysection{Eigen\+::Hessenberg\+Decomposition$<$ \+\_\+\+Matrix\+Type $>$ Class Template Reference}
+\label{class_eigen_1_1_hessenberg_decomposition}\index{Eigen::HessenbergDecomposition$<$ \_MatrixType $>$@{Eigen::HessenbergDecomposition$<$ \_MatrixType $>$}}
+
+
+Reduces a square matrix to Hessenberg form by an orthogonal similarity transformation.  
+
+
+
+
+{\ttfamily \#include $<$Hessenberg\+Decomposition.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_hessenberg_decomposition_ad60402858c08c7020256f11543c52d29}\label{class_eigen_1_1_hessenberg_decomposition_ad60402858c08c7020256f11543c52d29}} 
+enum \{ \newline
+{\bfseries Size} = Matrix\+Type\+::Rows\+At\+Compile\+Time, 
+{\bfseries Size\+Minus\+One} = Size == Dynamic ? Dynamic \+: Size -\/ 1, 
+{\bfseries Options} = Matrix\+Type\+::Options, 
+{\bfseries Max\+Size} = Matrix\+Type\+::Max\+Rows\+At\+Compile\+Time, 
+\newline
+{\bfseries Max\+Size\+Minus\+One} = Max\+Size == Dynamic ? Dynamic \+: Max\+Size -\/ 1
+ \}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_hessenberg_decomposition_a93a611350a7db9d1da18f2c828ecea9f}\label{class_eigen_1_1_hessenberg_decomposition_a93a611350a7db9d1da18f2c828ecea9f}} 
+typedef \+\_\+\+Matrix\+Type \mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition_a93a611350a7db9d1da18f2c828ecea9f}{Matrix\+Type}}
+\begin{DoxyCompactList}\small\item\em Synonym for the template parameter {\ttfamily \+\_\+\+Matrix\+Type}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_eigen_1_1_hessenberg_decomposition_a9420c36226cae7d92da8308a3f97ac2f}\label{class_eigen_1_1_hessenberg_decomposition_a9420c36226cae7d92da8308a3f97ac2f}} 
+typedef Matrix\+Type\+::\+Scalar \mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition_a9420c36226cae7d92da8308a3f97ac2f}{Scalar}}
+\begin{DoxyCompactList}\small\item\em Scalar type for matrices of type \mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition_a93a611350a7db9d1da18f2c828ecea9f}{Matrix\+Type}}. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Eigen\+::\+Index}} \mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition_a8e287ac222f53e2c8ce82faa43e95ac6}{Index}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition_a9420c36226cae7d92da8308a3f97ac2f}{Scalar}}, Size\+Minus\+One, 1, Options \&$\sim$\mbox{\hyperlink{group__enums_ggaacded1a18ae58b0f554751f6cdf9eb13a77c993a8d9f6efe5c1159fb2ab07dd4f}{Row\+Major}}, Max\+Size\+Minus\+One, 1 $>$ \mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition_a567f99f3770365777b67bf9832b6fac1}{Coeff\+Vector\+Type}}
+\begin{DoxyCompactList}\small\item\em Type for vector of Householder coefficients. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_eigen_1_1_hessenberg_decomposition_a7c1188cd5d8f550c8941df75a50a7d08}\label{class_eigen_1_1_hessenberg_decomposition_a7c1188cd5d8f550c8941df75a50a7d08}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_householder_sequence}{Householder\+Sequence}}$<$ \mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition_a93a611350a7db9d1da18f2c828ecea9f}{Matrix\+Type}}, typename \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{internal\+::remove\+\_\+all}}$<$ typename Coeff\+Vector\+Type\+::\+Conjugate\+Return\+Type $>$\+::type $>$ \mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition_a7c1188cd5d8f550c8941df75a50a7d08}{Householder\+Sequence\+Type}}
+\begin{DoxyCompactList}\small\item\em Return type of \mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition_a346441e4902a58d43d698ac3da6ff791}{matrix\+Q()}} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_eigen_1_1_hessenberg_decomposition_accca4cb1b5d78bc41defe77f01b4aada}\label{class_eigen_1_1_hessenberg_decomposition_accca4cb1b5d78bc41defe77f01b4aada}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1_hessenberg_decomposition_matrix_h_return_type}{internal\+::\+Hessenberg\+Decomposition\+Matrix\+H\+Return\+Type}}$<$ \mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition_a93a611350a7db9d1da18f2c828ecea9f}{Matrix\+Type}} $>$ {\bfseries Matrix\+H\+Return\+Type}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition_aee1724cb6418ede1a8b9045036a5a319}{Hessenberg\+Decomposition}} (\mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition_a8e287ac222f53e2c8ce82faa43e95ac6}{Index}} size=Size==\mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}} ? 2 \+:Size)
+\begin{DoxyCompactList}\small\item\em Default constructor; the decomposition will be computed later. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Input\+Type $>$ }\\\mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition_acd22602a3e3e5a02f79990ba1e445dc9}{Hessenberg\+Decomposition}} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&matrix)
+\begin{DoxyCompactList}\small\item\em Constructor; computes Hessenberg decomposition of given matrix. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Input\+Type $>$ }\\\mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition}{Hessenberg\+Decomposition}} \& \mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition_a239a6fd42c57aab3c0b048c47fde3004}{compute}} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&matrix)
+\begin{DoxyCompactList}\small\item\em Computes Hessenberg decomposition of given matrix. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition_a567f99f3770365777b67bf9832b6fac1}{Coeff\+Vector\+Type}} \& \mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition_a65fa81ce79d956baa59a30a6d82f8a84}{householder\+Coefficients}} () const
+\begin{DoxyCompactList}\small\item\em Returns the Householder coefficients. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition_a93a611350a7db9d1da18f2c828ecea9f}{Matrix\+Type}} \& \mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition_a1f72b7612fd4edc5a6f31005e433e1dd}{packed\+Matrix}} () const
+\begin{DoxyCompactList}\small\item\em Returns the internal representation of the decomposition. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition_a7c1188cd5d8f550c8941df75a50a7d08}{Householder\+Sequence\+Type}} \mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition_a346441e4902a58d43d698ac3da6ff791}{matrixQ}} () const
+\begin{DoxyCompactList}\small\item\em Reconstructs the orthogonal matrix Q in the decomposition. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1_hessenberg_decomposition_matrix_h_return_type}{Matrix\+H\+Return\+Type}} \mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition_a8e781d2e22a2304647bcf0ae913cc8ea}{matrixH}} () const
+\begin{DoxyCompactList}\small\item\em Constructs the Hessenberg matrix H in the decomposition. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_hessenberg_decomposition_aa37e9ef28812c38b5d2a99ebdd67277f}\label{class_eigen_1_1_hessenberg_decomposition_aa37e9ef28812c38b5d2a99ebdd67277f}} 
+\mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition_a93a611350a7db9d1da18f2c828ecea9f}{Matrix\+Type}} {\bfseries m\+\_\+matrix}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_hessenberg_decomposition_a65281ce248fefb2c6cf4ebb0eba5289c}\label{class_eigen_1_1_hessenberg_decomposition_a65281ce248fefb2c6cf4ebb0eba5289c}} 
+\mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition_a567f99f3770365777b67bf9832b6fac1}{Coeff\+Vector\+Type}} {\bfseries m\+\_\+h\+Coeffs}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_hessenberg_decomposition_a5b3d07e71cfdd559089eb8fb3d17394d}\label{class_eigen_1_1_hessenberg_decomposition_a5b3d07e71cfdd559089eb8fb3d17394d}} 
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} {\bfseries m\+\_\+temp}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_hessenberg_decomposition_a44ab95fd14edfdb937776d841e24af7b}\label{class_eigen_1_1_hessenberg_decomposition_a44ab95fd14edfdb937776d841e24af7b}} 
+bool {\bfseries m\+\_\+is\+Initialized}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Matrix\+Type$>$\newline
+class Eigen\+::\+Hessenberg\+Decomposition$<$ \+\_\+\+Matrix\+Type $>$}
+
+Reduces a square matrix to Hessenberg form by an orthogonal similarity transformation. 
+
+\textbackslash{}eigenvalues\+\_\+module
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Matrix\+Type} & the type of the matrix of which we are computing the Hessenberg decomposition\\
+\hline
+\end{DoxyTemplParams}
+This class performs an Hessenberg decomposition of a matrix $ A $. In the real case, the Hessenberg decomposition consists of an orthogonal matrix $ Q $ and a Hessenberg matrix $ H $ such that $ A = Q H Q^T $. An orthogonal matrix is a matrix whose inverse equals its transpose ( $ Q^{-1} = Q^T $). A Hessenberg matrix has zeros below the subdiagonal, so it is almost upper triangular. The Hessenberg decomposition of a complex matrix is $ A = Q H Q^* $ with $ Q $ unitary (that is, $ Q^{-1} = Q^* $).
+
+Call the function \mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition_a239a6fd42c57aab3c0b048c47fde3004}{compute()}} to compute the Hessenberg decomposition of a given matrix. Alternatively, you can use the Hessenberg\+Decomposition(const Matrix\+Type\&) constructor which computes the Hessenberg decomposition at construction time. Once the decomposition is computed, you can use the \mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition_a8e781d2e22a2304647bcf0ae913cc8ea}{matrix\+H()}} and \mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition_a346441e4902a58d43d698ac3da6ff791}{matrix\+Q()}} functions to construct the matrices H and Q in the decomposition.
+
+The documentation for \mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition_a8e781d2e22a2304647bcf0ae913cc8ea}{matrix\+H()}} contains an example of the typical use of this class.
+
+\begin{DoxySeeAlso}{See also}
+class \mbox{\hyperlink{class_eigen_1_1_complex_schur}{Complex\+Schur}}, class \mbox{\hyperlink{class_eigen_1_1_tridiagonalization}{Tridiagonalization}}, \mbox{\hyperlink{group___q_r___module}{QR Module}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_hessenberg_decomposition_a567f99f3770365777b67bf9832b6fac1}\label{class_eigen_1_1_hessenberg_decomposition_a567f99f3770365777b67bf9832b6fac1}} 
+\index{Eigen::HessenbergDecomposition$<$ \_MatrixType $>$@{Eigen::HessenbergDecomposition$<$ \_MatrixType $>$}!CoeffVectorType@{CoeffVectorType}}
+\index{CoeffVectorType@{CoeffVectorType}!Eigen::HessenbergDecomposition$<$ \_MatrixType $>$@{Eigen::HessenbergDecomposition$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{CoeffVectorType}{CoeffVectorType}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$\mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition_a9420c36226cae7d92da8308a3f97ac2f}{Scalar}}, Size\+Minus\+One, 1, Options \& $\sim$\mbox{\hyperlink{group__enums_ggaacded1a18ae58b0f554751f6cdf9eb13a77c993a8d9f6efe5c1159fb2ab07dd4f}{Row\+Major}}, Max\+Size\+Minus\+One, 1$>$ \mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition}{Eigen\+::\+Hessenberg\+Decomposition}}$<$ \+\_\+\+Matrix\+Type $>$\+::\mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition_a567f99f3770365777b67bf9832b6fac1}{Coeff\+Vector\+Type}}}
+
+
+
+Type for vector of Householder coefficients. 
+
+This is column vector with entries of type \mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition_a9420c36226cae7d92da8308a3f97ac2f}{Scalar}}. The length of the vector is one less than the size of \mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition_a93a611350a7db9d1da18f2c828ecea9f}{Matrix\+Type}}, if it is a fixed-\/side type. \mbox{\Hypertarget{class_eigen_1_1_hessenberg_decomposition_a8e287ac222f53e2c8ce82faa43e95ac6}\label{class_eigen_1_1_hessenberg_decomposition_a8e287ac222f53e2c8ce82faa43e95ac6}} 
+\index{Eigen::HessenbergDecomposition$<$ \_MatrixType $>$@{Eigen::HessenbergDecomposition$<$ \_MatrixType $>$}!Index@{Index}}
+\index{Index@{Index}!Eigen::HessenbergDecomposition$<$ \_MatrixType $>$@{Eigen::HessenbergDecomposition$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{Index}{Index}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+typedef \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Eigen\+::\+Index}} \mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition}{Eigen\+::\+Hessenberg\+Decomposition}}$<$ \+\_\+\+Matrix\+Type $>$\+::\mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition_a8e287ac222f53e2c8ce82faa43e95ac6}{Index}}}
+
+\begin{DoxyRefDesc}{Deprecated}
+\item[\mbox{\hyperlink{deprecated__deprecated000020}{Deprecated}}]since \mbox{\hyperlink{namespace_eigen}{Eigen}} 3.\+3 \end{DoxyRefDesc}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_hessenberg_decomposition_aee1724cb6418ede1a8b9045036a5a319}\label{class_eigen_1_1_hessenberg_decomposition_aee1724cb6418ede1a8b9045036a5a319}} 
+\index{Eigen::HessenbergDecomposition$<$ \_MatrixType $>$@{Eigen::HessenbergDecomposition$<$ \_MatrixType $>$}!HessenbergDecomposition@{HessenbergDecomposition}}
+\index{HessenbergDecomposition@{HessenbergDecomposition}!Eigen::HessenbergDecomposition$<$ \_MatrixType $>$@{Eigen::HessenbergDecomposition$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{HessenbergDecomposition()}{HessenbergDecomposition()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition}{Eigen\+::\+Hessenberg\+Decomposition}}$<$ \+\_\+\+Matrix\+Type $>$\+::\mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition}{Hessenberg\+Decomposition}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition_a8e287ac222f53e2c8ce82faa43e95ac6}{Index}}}]{size = {\ttfamily Size==\mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}~?~2~\+:~Size} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Default constructor; the decomposition will be computed later. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em size} & The size of the matrix whose Hessenberg decomposition will be computed.\\
+\hline
+\end{DoxyParams}
+The default constructor is useful in cases in which the user intends to perform decompositions via \mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition_a239a6fd42c57aab3c0b048c47fde3004}{compute()}}. The {\ttfamily size} parameter is only used as a hint. It is not an error to give a wrong {\ttfamily size}, but it may impair performance.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition_a239a6fd42c57aab3c0b048c47fde3004}{compute()}} for an example. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_hessenberg_decomposition_acd22602a3e3e5a02f79990ba1e445dc9}\label{class_eigen_1_1_hessenberg_decomposition_acd22602a3e3e5a02f79990ba1e445dc9}} 
+\index{Eigen::HessenbergDecomposition$<$ \_MatrixType $>$@{Eigen::HessenbergDecomposition$<$ \_MatrixType $>$}!HessenbergDecomposition@{HessenbergDecomposition}}
+\index{HessenbergDecomposition@{HessenbergDecomposition}!Eigen::HessenbergDecomposition$<$ \_MatrixType $>$@{Eigen::HessenbergDecomposition$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{HessenbergDecomposition()}{HessenbergDecomposition()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+template$<$typename Input\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition}{Eigen\+::\+Hessenberg\+Decomposition}}$<$ \+\_\+\+Matrix\+Type $>$\+::\mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition}{Hessenberg\+Decomposition}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&}]{matrix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Constructor; computes Hessenberg decomposition of given matrix. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em matrix} & Square matrix whose Hessenberg decomposition is to be computed.\\
+\hline
+\end{DoxyParams}
+This constructor calls \mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition_a239a6fd42c57aab3c0b048c47fde3004}{compute()}} to compute the Hessenberg decomposition.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition_a8e781d2e22a2304647bcf0ae913cc8ea}{matrix\+H()}} for an example. 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_hessenberg_decomposition_a239a6fd42c57aab3c0b048c47fde3004}\label{class_eigen_1_1_hessenberg_decomposition_a239a6fd42c57aab3c0b048c47fde3004}} 
+\index{Eigen::HessenbergDecomposition$<$ \_MatrixType $>$@{Eigen::HessenbergDecomposition$<$ \_MatrixType $>$}!compute@{compute}}
+\index{compute@{compute}!Eigen::HessenbergDecomposition$<$ \_MatrixType $>$@{Eigen::HessenbergDecomposition$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{compute()}{compute()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+template$<$typename Input\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition}{Hessenberg\+Decomposition}}\& \mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition}{Eigen\+::\+Hessenberg\+Decomposition}}$<$ \+\_\+\+Matrix\+Type $>$\+::compute (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&}]{matrix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Computes Hessenberg decomposition of given matrix. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em matrix} & Square matrix whose Hessenberg decomposition is to be computed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to {\ttfamily $\ast$this} 
+\end{DoxyReturn}
+The Hessenberg decomposition is computed by bringing the columns of the matrix successively in the required form using Householder reflections (see, e.\+g., Algorithm 7.\+4.\+2 in Golub \& Van Loan, {\itshape Matrix Computations}). The cost is $ 10n^3/3 $ flops, where $ n $ denotes the size of the given matrix.
+
+This method reuses of the allocated data in the \mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition}{Hessenberg\+Decomposition}} object.
+
+Example\+: 
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+ \mbox{\Hypertarget{class_eigen_1_1_hessenberg_decomposition_a65fa81ce79d956baa59a30a6d82f8a84}\label{class_eigen_1_1_hessenberg_decomposition_a65fa81ce79d956baa59a30a6d82f8a84}} 
+\index{Eigen::HessenbergDecomposition$<$ \_MatrixType $>$@{Eigen::HessenbergDecomposition$<$ \_MatrixType $>$}!householderCoefficients@{householderCoefficients}}
+\index{householderCoefficients@{householderCoefficients}!Eigen::HessenbergDecomposition$<$ \_MatrixType $>$@{Eigen::HessenbergDecomposition$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{householderCoefficients()}{householderCoefficients()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+const \mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition_a567f99f3770365777b67bf9832b6fac1}{Coeff\+Vector\+Type}}\& \mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition}{Eigen\+::\+Hessenberg\+Decomposition}}$<$ \+\_\+\+Matrix\+Type $>$\+::householder\+Coefficients (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the Householder coefficients. 
+
+\begin{DoxyReturn}{Returns}
+a const reference to the vector of Householder coefficients
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondition}
+Either the constructor Hessenberg\+Decomposition(const Matrix\+Type\&) or the member function compute(const Matrix\+Type\&) has been called before to compute the Hessenberg decomposition of a matrix.
+\end{DoxyPrecond}
+The Householder coefficients allow the reconstruction of the matrix $ Q $ in the Hessenberg decomposition from the packed data.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition_a1f72b7612fd4edc5a6f31005e433e1dd}{packed\+Matrix()}}, \mbox{\hyperlink{group___householder___module}{Householder module}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_hessenberg_decomposition_a8e781d2e22a2304647bcf0ae913cc8ea}\label{class_eigen_1_1_hessenberg_decomposition_a8e781d2e22a2304647bcf0ae913cc8ea}} 
+\index{Eigen::HessenbergDecomposition$<$ \_MatrixType $>$@{Eigen::HessenbergDecomposition$<$ \_MatrixType $>$}!matrixH@{matrixH}}
+\index{matrixH@{matrixH}!Eigen::HessenbergDecomposition$<$ \_MatrixType $>$@{Eigen::HessenbergDecomposition$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{matrixH()}{matrixH()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1_hessenberg_decomposition_matrix_h_return_type}{Matrix\+H\+Return\+Type}} \mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition}{Eigen\+::\+Hessenberg\+Decomposition}}$<$ \+\_\+\+Matrix\+Type $>$\+::matrixH (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs the Hessenberg matrix H in the decomposition. 
+
+\begin{DoxyReturn}{Returns}
+expression object representing the matrix H
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondition}
+Either the constructor Hessenberg\+Decomposition(const Matrix\+Type\&) or the member function compute(const Matrix\+Type\&) has been called before to compute the Hessenberg decomposition of a matrix.
+\end{DoxyPrecond}
+The object returned by this function constructs the Hessenberg matrix H when it is assigned to a matrix or otherwise evaluated. The matrix H is constructed from the packed matrix as returned by \mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition_a1f72b7612fd4edc5a6f31005e433e1dd}{packed\+Matrix()}}\+: The upper part (including the subdiagonal) of the packed matrix contains the matrix H. It may sometimes be better to directly use the packed matrix instead of constructing the matrix H.
+
+Example\+: 
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition_a346441e4902a58d43d698ac3da6ff791}{matrix\+Q()}}, \mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition_a1f72b7612fd4edc5a6f31005e433e1dd}{packed\+Matrix()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_hessenberg_decomposition_a346441e4902a58d43d698ac3da6ff791}\label{class_eigen_1_1_hessenberg_decomposition_a346441e4902a58d43d698ac3da6ff791}} 
+\index{Eigen::HessenbergDecomposition$<$ \_MatrixType $>$@{Eigen::HessenbergDecomposition$<$ \_MatrixType $>$}!matrixQ@{matrixQ}}
+\index{matrixQ@{matrixQ}!Eigen::HessenbergDecomposition$<$ \_MatrixType $>$@{Eigen::HessenbergDecomposition$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{matrixQ()}{matrixQ()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition_a7c1188cd5d8f550c8941df75a50a7d08}{Householder\+Sequence\+Type}} \mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition}{Eigen\+::\+Hessenberg\+Decomposition}}$<$ \+\_\+\+Matrix\+Type $>$\+::matrixQ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Reconstructs the orthogonal matrix Q in the decomposition. 
+
+\begin{DoxyReturn}{Returns}
+object representing the matrix Q
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondition}
+Either the constructor Hessenberg\+Decomposition(const Matrix\+Type\&) or the member function compute(const Matrix\+Type\&) has been called before to compute the Hessenberg decomposition of a matrix.
+\end{DoxyPrecond}
+This function returns a light-\/weight object of template class \mbox{\hyperlink{class_eigen_1_1_householder_sequence}{Householder\+Sequence}}. You can either apply it directly to a matrix or you can convert it to a matrix of type \mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition_a93a611350a7db9d1da18f2c828ecea9f}{Matrix\+Type}}.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition_a8e781d2e22a2304647bcf0ae913cc8ea}{matrix\+H()}} for an example, class \mbox{\hyperlink{class_eigen_1_1_householder_sequence}{Householder\+Sequence}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_hessenberg_decomposition_a1f72b7612fd4edc5a6f31005e433e1dd}\label{class_eigen_1_1_hessenberg_decomposition_a1f72b7612fd4edc5a6f31005e433e1dd}} 
+\index{Eigen::HessenbergDecomposition$<$ \_MatrixType $>$@{Eigen::HessenbergDecomposition$<$ \_MatrixType $>$}!packedMatrix@{packedMatrix}}
+\index{packedMatrix@{packedMatrix}!Eigen::HessenbergDecomposition$<$ \_MatrixType $>$@{Eigen::HessenbergDecomposition$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{packedMatrix()}{packedMatrix()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+const \mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition_a93a611350a7db9d1da18f2c828ecea9f}{Matrix\+Type}}\& \mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition}{Eigen\+::\+Hessenberg\+Decomposition}}$<$ \+\_\+\+Matrix\+Type $>$\+::packed\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the internal representation of the decomposition. 
+
+\begin{DoxyReturn}{Returns}
+a const reference to a matrix with the internal representation of the decomposition.
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondition}
+Either the constructor Hessenberg\+Decomposition(const Matrix\+Type\&) or the member function compute(const Matrix\+Type\&) has been called before to compute the Hessenberg decomposition of a matrix.
+\end{DoxyPrecond}
+The returned matrix contains the following information\+:
+\begin{DoxyItemize}
+\item the upper part and lower sub-\/diagonal represent the Hessenberg matrix H
+\item the rest of the lower part contains the Householder vectors that, combined with Householder coefficients returned by \mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition_a65fa81ce79d956baa59a30a6d82f8a84}{householder\+Coefficients()}}, allows to reconstruct the matrix Q as $ Q = H_{N-1} \ldots H_1 H_0 $. Here, the matrices $ H_i $ are the Householder transformations $ H_i = (I - h_i v_i v_i^T) $ where $ h_i $ is the $ i $th Householder coefficient and $ v_i $ is the Householder vector defined by $ v_i = [ 0, \ldots, 0, 1, M(i+2,i), \ldots, M(N-1,i) ]^T $ with M the matrix returned by this function.
+\end{DoxyItemize}
+
+See L\+A\+P\+A\+CK for further details on this packed storage.
+
+Example\+: 
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition_a65fa81ce79d956baa59a30a6d82f8a84}{householder\+Coefficients()}} 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Eigenvalues/Hessenberg\+Decomposition.\+h\end{DoxyCompactItemize}

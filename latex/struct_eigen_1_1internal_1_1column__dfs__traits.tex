@@ -1,0 +1,53 @@
+\hypertarget{struct_eigen_1_1internal_1_1column__dfs__traits}{}\doxysection{Eigen\+::internal\+::column\+\_\+dfs\+\_\+traits$<$ Index\+Vector, Scalar\+Vector $>$ Struct Template Reference}
+\label{struct_eigen_1_1internal_1_1column__dfs__traits}\index{Eigen::internal::column\_dfs\_traits$<$ IndexVector, ScalarVector $>$@{Eigen::internal::column\_dfs\_traits$<$ IndexVector, ScalarVector $>$}}
+Inheritance diagram for Eigen\+::internal\+::column\+\_\+dfs\+\_\+traits$<$ Index\+Vector, Scalar\+Vector $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{struct_eigen_1_1internal_1_1column__dfs__traits}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1column__dfs__traits_a32e6e73d80100c6d8715e6ed0f76aa79}\label{struct_eigen_1_1internal_1_1column__dfs__traits_a32e6e73d80100c6d8715e6ed0f76aa79}} 
+enum \{ {\bfseries Expand\+Mem} = true
+ \}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1column__dfs__traits_a8adc38f8b5e97c0ab3c8a90b1fd5cb9b}\label{struct_eigen_1_1internal_1_1column__dfs__traits_a8adc38f8b5e97c0ab3c8a90b1fd5cb9b}} 
+typedef Scalar\+Vector\+::\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1column__dfs__traits_a7c5616d5178c49c1374613aefa1d68ec}\label{struct_eigen_1_1internal_1_1column__dfs__traits_a7c5616d5178c49c1374613aefa1d68ec}} 
+typedef Index\+Vector\+::\+Scalar {\bfseries Storage\+Index}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1column__dfs__traits_a84be35a20707d05cdf72d18e7755ae96}\label{struct_eigen_1_1internal_1_1column__dfs__traits_a84be35a20707d05cdf72d18e7755ae96}} 
+{\bfseries column\+\_\+dfs\+\_\+traits} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} jcol, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \&jsuper, typename \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl}{Sparse\+L\+U\+Impl}}$<$ Scalar, Storage\+Index $>$\+::Global\+L\+U\+\_\+t \&glu, \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl}{Sparse\+L\+U\+Impl}}$<$ Scalar, Storage\+Index $>$ \&lu\+Impl)
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1column__dfs__traits_a034a1bf7ad2d7a4ba7e8c91463dc3f36}\label{struct_eigen_1_1internal_1_1column__dfs__traits_a034a1bf7ad2d7a4ba7e8c91463dc3f36}} 
+bool {\bfseries update\+\_\+segrep} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}})
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1column__dfs__traits_a5b48ce6fa5fa373fd784033df70959ff}\label{struct_eigen_1_1internal_1_1column__dfs__traits_a5b48ce6fa5fa373fd784033df70959ff}} 
+void {\bfseries mem\+\_\+expand} (Index\+Vector \&lsub, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \&nextl, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} chmark)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1column__dfs__traits_aeb425429d726efde9a63eea217549a0d}\label{struct_eigen_1_1internal_1_1column__dfs__traits_aeb425429d726efde9a63eea217549a0d}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries m\+\_\+jcol}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1column__dfs__traits_a899dbc434353f1d05b512169a2f57e87}\label{struct_eigen_1_1internal_1_1column__dfs__traits_a899dbc434353f1d05b512169a2f57e87}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \& {\bfseries m\+\_\+jsuper\+\_\+ref}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1column__dfs__traits_a8a373ddef6de2fd2462c06534a052118}\label{struct_eigen_1_1internal_1_1column__dfs__traits_a8a373ddef6de2fd2462c06534a052118}} 
+\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl}{Sparse\+L\+U\+Impl}}$<$ Scalar, Storage\+Index $>$\+::Global\+L\+U\+\_\+t \& {\bfseries m\+\_\+glu}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1column__dfs__traits_a0bfbf67afd5463fd9b10fc6d9bcefedb}\label{struct_eigen_1_1internal_1_1column__dfs__traits_a0bfbf67afd5463fd9b10fc6d9bcefedb}} 
+\mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl}{Sparse\+L\+U\+Impl}}$<$ Scalar, Storage\+Index $>$ \& {\bfseries m\+\_\+lu\+Impl}
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Sparse\+L\+U/Sparse\+L\+U\+\_\+column\+\_\+dfs.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,109 @@
+\hypertarget{class_eigen_1_1_block}{}\doxysection{Eigen\+::Block$<$ Xpr\+Type, Block\+Rows, Block\+Cols, Inner\+Panel $>$ Class Template Reference}
+\label{class_eigen_1_1_block}\index{Eigen::Block$<$ XprType, BlockRows, BlockCols, InnerPanel $>$@{Eigen::Block$<$ XprType, BlockRows, BlockCols, InnerPanel $>$}}
+
+
+Expression of a fixed-\/size or dynamic-\/size block.  
+
+
+
+
+{\ttfamily \#include $<$Block.\+h$>$}
+
+Inheritance diagram for Eigen\+::Block$<$ Xpr\+Type, Block\+Rows, Block\+Cols, Inner\+Panel $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.803543cm]{class_eigen_1_1_block}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_block_ab6380a1694e62dd00877746c0073ad88}\label{class_eigen_1_1_block_ab6380a1694e62dd00877746c0073ad88}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_block_impl}{Impl}} {\bfseries Base}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_block_a5674d819d24fcf80d9349447f8f523ce}\label{class_eigen_1_1_block_a5674d819d24fcf80d9349447f8f523ce}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{internal\+::remove\+\_\+all}}$<$ Xpr\+Type $>$\+::type {\bfseries Nested\+Expression}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_block_ab45272f7223731c9a61937e55795c728}{Block}} (Xpr\+Type \&xpr, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} i)
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_block_afdf396b628ef3874414bbfc4ebd72ab4}{Block}} (Xpr\+Type \&xpr, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} start\+Row, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} start\+Col)
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_block_a09e495968e1c52a5838bfd102978e09e}{Block}} (Xpr\+Type \&xpr, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} start\+Row, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} start\+Col, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} block\+Rows, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} block\+Cols)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Xpr\+Type, int Block\+Rows, int Block\+Cols, bool Inner\+Panel$>$\newline
+class Eigen\+::\+Block$<$ Xpr\+Type, Block\+Rows, Block\+Cols, Inner\+Panel $>$}
+
+Expression of a fixed-\/size or dynamic-\/size block. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Xpr\+Type} & the type of the expression in which we are taking a block \\
+\hline
+{\em Block\+Rows} & the number of rows of the block we are taking at compile time (optional) \\
+\hline
+{\em Block\+Cols} & the number of columns of the block we are taking at compile time (optional) \\
+\hline
+{\em Inner\+Panel} & is true, if the block maps to a set of rows of a row major matrix or to set of columns of a column major matrix (optional). The parameter allows to determine at compile time whether aligned access is possible on the block expression.\\
+\hline
+\end{DoxyTemplParams}
+This class represents an expression of either a fixed-\/size or dynamic-\/size block. It is the return type of Dense\+Base\+::block(\+Index,\+Index,\+Index,\+Index) and Dense\+Base\+::block$<$int,int$>$(\+Index,\+Index) and most of the time this is the only way it is used.
+
+However, if you want to directly maniputate block expressions, for instance if you want to write a function returning such an expression, you will need to use this class.
+
+Here is an example illustrating the dynamic case\+: 
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+
+
+\begin{DoxyNote}{Note}
+Even though this expression has dynamic size, in the case where {\itshape Xpr\+Type} has fixed size, this expression inherits a fixed maximal size which means that evaluating it does not cause a dynamic memory allocation.
+\end{DoxyNote}
+Here is an example illustrating the fixed-\/size case\+: 
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+
+
+\begin{DoxySeeAlso}{See also}
+Dense\+Base\+::block(\+Index,\+Index,\+Index,\+Index), Dense\+Base\+::block(\+Index,\+Index), class \mbox{\hyperlink{class_eigen_1_1_vector_block}{Vector\+Block}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_block_ab45272f7223731c9a61937e55795c728}\label{class_eigen_1_1_block_ab45272f7223731c9a61937e55795c728}} 
+\index{Eigen::Block$<$ XprType, BlockRows, BlockCols, InnerPanel $>$@{Eigen::Block$<$ XprType, BlockRows, BlockCols, InnerPanel $>$}!Block@{Block}}
+\index{Block@{Block}!Eigen::Block$<$ XprType, BlockRows, BlockCols, InnerPanel $>$@{Eigen::Block$<$ XprType, BlockRows, BlockCols, InnerPanel $>$}}
+\doxysubsubsection{\texorpdfstring{Block()}{Block()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename Xpr\+Type , int Block\+Rows, int Block\+Cols, bool Inner\+Panel$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_block}{Eigen\+::\+Block}}$<$ Xpr\+Type, Block\+Rows, Block\+Cols, Inner\+Panel $>$\+::\mbox{\hyperlink{class_eigen_1_1_block}{Block}} (\begin{DoxyParamCaption}\item[{Xpr\+Type \&}]{xpr,  }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Column or Row constructor \mbox{\Hypertarget{class_eigen_1_1_block_afdf396b628ef3874414bbfc4ebd72ab4}\label{class_eigen_1_1_block_afdf396b628ef3874414bbfc4ebd72ab4}} 
+\index{Eigen::Block$<$ XprType, BlockRows, BlockCols, InnerPanel $>$@{Eigen::Block$<$ XprType, BlockRows, BlockCols, InnerPanel $>$}!Block@{Block}}
+\index{Block@{Block}!Eigen::Block$<$ XprType, BlockRows, BlockCols, InnerPanel $>$@{Eigen::Block$<$ XprType, BlockRows, BlockCols, InnerPanel $>$}}
+\doxysubsubsection{\texorpdfstring{Block()}{Block()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename Xpr\+Type , int Block\+Rows, int Block\+Cols, bool Inner\+Panel$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_block}{Eigen\+::\+Block}}$<$ Xpr\+Type, Block\+Rows, Block\+Cols, Inner\+Panel $>$\+::\mbox{\hyperlink{class_eigen_1_1_block}{Block}} (\begin{DoxyParamCaption}\item[{Xpr\+Type \&}]{xpr,  }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{start\+Row,  }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{start\+Col }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Fixed-\/size constructor \mbox{\Hypertarget{class_eigen_1_1_block_a09e495968e1c52a5838bfd102978e09e}\label{class_eigen_1_1_block_a09e495968e1c52a5838bfd102978e09e}} 
+\index{Eigen::Block$<$ XprType, BlockRows, BlockCols, InnerPanel $>$@{Eigen::Block$<$ XprType, BlockRows, BlockCols, InnerPanel $>$}!Block@{Block}}
+\index{Block@{Block}!Eigen::Block$<$ XprType, BlockRows, BlockCols, InnerPanel $>$@{Eigen::Block$<$ XprType, BlockRows, BlockCols, InnerPanel $>$}}
+\doxysubsubsection{\texorpdfstring{Block()}{Block()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename Xpr\+Type , int Block\+Rows, int Block\+Cols, bool Inner\+Panel$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_block}{Eigen\+::\+Block}}$<$ Xpr\+Type, Block\+Rows, Block\+Cols, Inner\+Panel $>$\+::\mbox{\hyperlink{class_eigen_1_1_block}{Block}} (\begin{DoxyParamCaption}\item[{Xpr\+Type \&}]{xpr,  }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{start\+Row,  }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{start\+Col,  }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{block\+Rows,  }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{block\+Cols }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Dynamic-\/size constructor 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/Block.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,79 @@
+\hypertarget{struct_eigen_1_1internal_1_1mapbase__evaluator}{}\doxysection{Eigen\+::internal\+::mapbase\+\_\+evaluator$<$ Derived, Plain\+Object\+Type $>$ Struct Template Reference}
+\label{struct_eigen_1_1internal_1_1mapbase__evaluator}\index{Eigen::internal::mapbase\_evaluator$<$ Derived, PlainObjectType $>$@{Eigen::internal::mapbase\_evaluator$<$ Derived, PlainObjectType $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1mapbase__evaluator_add137190d3c3582d8ce5b7b4950f0e0d}\label{struct_eigen_1_1internal_1_1mapbase__evaluator_add137190d3c3582d8ce5b7b4950f0e0d}} 
+enum \{ {\bfseries Is\+Row\+Major} = Xpr\+Type\+::Rows\+At\+Compile\+Time, 
+{\bfseries Cols\+At\+Compile\+Time} = Xpr\+Type\+::Cols\+At\+Compile\+Time, 
+{\bfseries Coeff\+Read\+Cost} = Num\+Traits$<$Scalar$>$\+::Read\+Cost
+ \}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1mapbase__evaluator_afba84e56a1b0084898f7558ab110837c}\label{struct_eigen_1_1internal_1_1mapbase__evaluator_afba84e56a1b0084898f7558ab110837c}} 
+typedef Derived {\bfseries Xpr\+Type}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1mapbase__evaluator_a70ec31b534c7d98abad460b037be78a4}\label{struct_eigen_1_1internal_1_1mapbase__evaluator_a70ec31b534c7d98abad460b037be78a4}} 
+typedef Xpr\+Type\+::\+Pointer\+Type {\bfseries Pointer\+Type}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1mapbase__evaluator_a6ed4dac31c67f289147e3136e51f4284}\label{struct_eigen_1_1internal_1_1mapbase__evaluator_a6ed4dac31c67f289147e3136e51f4284}} 
+typedef Xpr\+Type\+::\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1mapbase__evaluator_a8ecbb62e5ec7872f86b2a1ea087358ca}\label{struct_eigen_1_1internal_1_1mapbase__evaluator_a8ecbb62e5ec7872f86b2a1ea087358ca}} 
+typedef Xpr\+Type\+::\+Coeff\+Return\+Type {\bfseries Coeff\+Return\+Type}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1mapbase__evaluator_adeebd40502dff8fa523e7c17aa06abb2}\label{struct_eigen_1_1internal_1_1mapbase__evaluator_adeebd40502dff8fa523e7c17aa06abb2}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC {\bfseries mapbase\+\_\+evaluator} (const Xpr\+Type \&map)
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1mapbase__evaluator_a4dbe712d8bdb561e02b1420abdcc6cdc}\label{struct_eigen_1_1internal_1_1mapbase__evaluator_a4dbe712d8bdb561e02b1420abdcc6cdc}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Coeff\+Return\+Type {\bfseries coeff} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col) const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1mapbase__evaluator_a36d8eb7d3a2e378aa1bfde1d353f5382}\label{struct_eigen_1_1internal_1_1mapbase__evaluator_a36d8eb7d3a2e378aa1bfde1d353f5382}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Coeff\+Return\+Type {\bfseries coeff} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} index) const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1mapbase__evaluator_ac9694e32bc42a9bf79e048ead295107b}\label{struct_eigen_1_1internal_1_1mapbase__evaluator_ac9694e32bc42a9bf79e048ead295107b}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Scalar \& {\bfseries coeff\+Ref} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col)
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1mapbase__evaluator_a62d6d58da26d33a14ed1a755acecd97d}\label{struct_eigen_1_1internal_1_1mapbase__evaluator_a62d6d58da26d33a14ed1a755acecd97d}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Scalar \& {\bfseries coeff\+Ref} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} index)
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1mapbase__evaluator_afb33856cd493fbdffb2f57915dcd8888}\label{struct_eigen_1_1internal_1_1mapbase__evaluator_afb33856cd493fbdffb2f57915dcd8888}} 
+{\footnotesize template$<$int Load\+Mode, typename Packet\+Type $>$ }\\E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}} {\bfseries packet} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col) const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1mapbase__evaluator_a783c32aa529b4b3085190eef66fb2039}\label{struct_eigen_1_1internal_1_1mapbase__evaluator_a783c32aa529b4b3085190eef66fb2039}} 
+{\footnotesize template$<$int Load\+Mode, typename Packet\+Type $>$ }\\E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}} {\bfseries packet} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} index) const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1mapbase__evaluator_a4b7f13fced92d667256c097caccfba90}\label{struct_eigen_1_1internal_1_1mapbase__evaluator_a4b7f13fced92d667256c097caccfba90}} 
+{\footnotesize template$<$int Store\+Mode, typename Packet\+Type $>$ }\\E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE void {\bfseries write\+Packet} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col, const \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}} \&x)
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1mapbase__evaluator_ad86d8fc9ce0db49235ab5c80ba380ab1}\label{struct_eigen_1_1internal_1_1mapbase__evaluator_ad86d8fc9ce0db49235ab5c80ba380ab1}} 
+{\footnotesize template$<$int Store\+Mode, typename Packet\+Type $>$ }\\E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE void {\bfseries write\+Packet} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} index, const \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}} \&x)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1mapbase__evaluator_a16a5a69b900487af930bcdaef6881c1d}\label{struct_eigen_1_1internal_1_1mapbase__evaluator_a16a5a69b900487af930bcdaef6881c1d}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries row\+Stride} () const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1mapbase__evaluator_aab4179c764a64617f409ec9fb1c710c8}\label{struct_eigen_1_1internal_1_1mapbase__evaluator_aab4179c764a64617f409ec9fb1c710c8}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries col\+Stride} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1mapbase__evaluator_a1fd0a4a8d3565c6f4bd9783e10c01fd1}\label{struct_eigen_1_1internal_1_1mapbase__evaluator_a1fd0a4a8d3565c6f4bd9783e10c01fd1}} 
+Pointer\+Type {\bfseries m\+\_\+data}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1mapbase__evaluator_a7256fafe663393f7f64f83f71fa05501}\label{struct_eigen_1_1internal_1_1mapbase__evaluator_a7256fafe663393f7f64f83f71fa05501}} 
+const \mbox{\hyperlink{class_eigen_1_1internal_1_1variable__if__dynamic}{internal\+::variable\+\_\+if\+\_\+dynamic}}$<$ \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}, Xpr\+Type\+::\+Inner\+Stride\+At\+Compile\+Time $>$ {\bfseries m\+\_\+inner\+Stride}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1mapbase__evaluator_addf5c5a411f67341faaba7cb196630fb}\label{struct_eigen_1_1internal_1_1mapbase__evaluator_addf5c5a411f67341faaba7cb196630fb}} 
+const \mbox{\hyperlink{class_eigen_1_1internal_1_1variable__if__dynamic}{internal\+::variable\+\_\+if\+\_\+dynamic}}$<$ \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}, Xpr\+Type\+::\+Outer\+Stride\+At\+Compile\+Time $>$ {\bfseries m\+\_\+outer\+Stride}
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/Core\+Evaluators.\+h\end{DoxyCompactItemize}

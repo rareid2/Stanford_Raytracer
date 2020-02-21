@@ -1,0 +1,62 @@
+\hypertarget{class_eigen_1_1_tensor_generator_op}{}\doxysection{Eigen\+::Tensor\+Generator\+Op Class Reference}
+\label{class_eigen_1_1_tensor_generator_op}\index{Eigen::TensorGeneratorOp@{Eigen::TensorGeneratorOp}}
+
+
+\mbox{\hyperlink{class_eigen_1_1_tensor}{Tensor}} generator class.  
+
+
+
+
+{\ttfamily \#include $<$Tensor\+Generator.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_generator_op_a92ef7e48960a0f1362c93811c63dbea3}\label{class_eigen_1_1_tensor_generator_op_a92ef7e48960a0f1362c93811c63dbea3}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{Eigen\+::internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_tensor_generator_op}{Tensor\+Generator\+Op}} $>$\+::Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_generator_op_a2137710d10a31ee49fe7fd590ce2723b}\label{class_eigen_1_1_tensor_generator_op_a2137710d10a31ee49fe7fd590ce2723b}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Eigen\+::\+Num\+Traits}}$<$ Scalar $>$\+::Real {\bfseries Real\+Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_generator_op_a976407ef2860dbebde14fe46b27f9402}\label{class_eigen_1_1_tensor_generator_op_a976407ef2860dbebde14fe46b27f9402}} 
+typedef Xpr\+Type\+::\+Coeff\+Return\+Type {\bfseries Coeff\+Return\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_generator_op_ac4bebc7174635c532b4ec3a25315ba88}\label{class_eigen_1_1_tensor_generator_op_ac4bebc7174635c532b4ec3a25315ba88}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1nested}{Eigen\+::internal\+::nested}}$<$ \mbox{\hyperlink{class_eigen_1_1_tensor_generator_op}{Tensor\+Generator\+Op}} $>$\+::type {\bfseries Nested}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_generator_op_a5aa32de6f8eb37f41f38bf151f3209a8}\label{class_eigen_1_1_tensor_generator_op_a5aa32de6f8eb37f41f38bf151f3209a8}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{Eigen\+::internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_tensor_generator_op}{Tensor\+Generator\+Op}} $>$\+::Storage\+Kind {\bfseries Storage\+Kind}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_generator_op_a26ef6275d121bebaccd289af4e7e2fce}\label{class_eigen_1_1_tensor_generator_op_a26ef6275d121bebaccd289af4e7e2fce}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{Eigen\+::internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_tensor_generator_op}{Tensor\+Generator\+Op}} $>$\+::Index {\bfseries Index}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_generator_op_a847e55eddde0bfb62c441ce89caceaa9}\label{class_eigen_1_1_tensor_generator_op_a847e55eddde0bfb62c441ce89caceaa9}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE {\bfseries Tensor\+Generator\+Op} (const Xpr\+Type \&expr, const Generator \&generator)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_generator_op_ae2f8c7054d76d4b40688577de3bee34e}\label{class_eigen_1_1_tensor_generator_op_ae2f8c7054d76d4b40688577de3bee34e}} 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Generator \& {\bfseries generator} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_generator_op_a9273805b87232b006e5e98a29d972f85}\label{class_eigen_1_1_tensor_generator_op_a9273805b87232b006e5e98a29d972f85}} 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{internal\+::remove\+\_\+all}}$<$ typename Xpr\+Type\+::\+Nested $>$\+::type \& {\bfseries expression} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_generator_op_a8065068dedec33f4e64a5423035bccb3}\label{class_eigen_1_1_tensor_generator_op_a8065068dedec33f4e64a5423035bccb3}} 
+Xpr\+Type\+::\+Nested {\bfseries m\+\_\+xpr}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_generator_op_a75703e270c7463ee44fb66c4691a3d22}\label{class_eigen_1_1_tensor_generator_op_a75703e270c7463ee44fb66c4691a3d22}} 
+const Generator {\bfseries m\+\_\+generator}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_eigen_1_1_tensor}{Tensor}} generator class. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/\+C\+X\+X11/src/\+Tensor/Tensor\+Forward\+Declarations.\+h\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/\+C\+X\+X11/src/\+Tensor/Tensor\+Generator.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,94 @@
+\hypertarget{struct_eigen_1_1_matrix_exponential_return_value}{}\doxysection{Eigen\+::Matrix\+Exponential\+Return\+Value$<$ Derived $>$ Struct Template Reference}
+\label{struct_eigen_1_1_matrix_exponential_return_value}\index{Eigen::MatrixExponentialReturnValue$<$ Derived $>$@{Eigen::MatrixExponentialReturnValue$<$ Derived $>$}}
+
+
+Proxy for the matrix exponential of some matrix (expression).  
+
+
+
+
+{\ttfamily \#include $<$Matrix\+Exponential.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_matrix_exponential_return_value_a1ed14d884b1e3551a5b468afa415ff72}\label{struct_eigen_1_1_matrix_exponential_return_value_a1ed14d884b1e3551a5b468afa415ff72}} 
+typedef Derived\+::\+Index {\bfseries Index}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_eigen_1_1_matrix_exponential_return_value_a4048419b1ee2befc51564703ba11acab}{Matrix\+Exponential\+Return\+Value}} (const Derived \&src)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Result\+Type $>$ }\\void \mbox{\hyperlink{struct_eigen_1_1_matrix_exponential_return_value_a3dd2c65c7c6cdc41ab17415ee11899a0}{eval\+To}} (Result\+Type \&result) const
+\begin{DoxyCompactList}\small\item\em Compute the matrix exponential. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_eigen_1_1_matrix_exponential_return_value_a79e39d9a80c94d30122b82c71523a950}\label{struct_eigen_1_1_matrix_exponential_return_value_a79e39d9a80c94d30122b82c71523a950}} 
+Index {\bfseries rows} () const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_matrix_exponential_return_value_af817682d9e7d860f799bbe3b6b749eb3}\label{struct_eigen_1_1_matrix_exponential_return_value_af817682d9e7d860f799bbe3b6b749eb3}} 
+Index {\bfseries cols} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_matrix_exponential_return_value_aa24f98f94fbacccc2f2a81c09ea67568}\label{struct_eigen_1_1_matrix_exponential_return_value_aa24f98f94fbacccc2f2a81c09ea67568}} 
+const \mbox{\hyperlink{struct_eigen_1_1internal_1_1ref__selector}{internal\+::ref\+\_\+selector}}$<$ Derived $>$\+::type {\bfseries m\+\_\+src}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Derived$>$\newline
+struct Eigen\+::\+Matrix\+Exponential\+Return\+Value$<$ Derived $>$}
+
+Proxy for the matrix exponential of some matrix (expression). 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Derived} & Type of the argument to the matrix exponential.\\
+\hline
+\end{DoxyTemplParams}
+This class holds the argument to the matrix exponential until it is assigned or evaluated for some other reason (so the argument should not be changed in the meantime). It is the return type of Matrix\+Base\+::exp() and most of the time this is the only way it is used. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{struct_eigen_1_1_matrix_exponential_return_value_a4048419b1ee2befc51564703ba11acab}\label{struct_eigen_1_1_matrix_exponential_return_value_a4048419b1ee2befc51564703ba11acab}} 
+\index{Eigen::MatrixExponentialReturnValue$<$ Derived $>$@{Eigen::MatrixExponentialReturnValue$<$ Derived $>$}!MatrixExponentialReturnValue@{MatrixExponentialReturnValue}}
+\index{MatrixExponentialReturnValue@{MatrixExponentialReturnValue}!Eigen::MatrixExponentialReturnValue$<$ Derived $>$@{Eigen::MatrixExponentialReturnValue$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{MatrixExponentialReturnValue()}{MatrixExponentialReturnValue()}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+\mbox{\hyperlink{struct_eigen_1_1_matrix_exponential_return_value}{Eigen\+::\+Matrix\+Exponential\+Return\+Value}}$<$ Derived $>$\+::\mbox{\hyperlink{struct_eigen_1_1_matrix_exponential_return_value}{Matrix\+Exponential\+Return\+Value}} (\begin{DoxyParamCaption}\item[{const Derived \&}]{src }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em src} & Matrix (expression) forming the argument of the matrix exponential. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{struct_eigen_1_1_matrix_exponential_return_value_a3dd2c65c7c6cdc41ab17415ee11899a0}\label{struct_eigen_1_1_matrix_exponential_return_value_a3dd2c65c7c6cdc41ab17415ee11899a0}} 
+\index{Eigen::MatrixExponentialReturnValue$<$ Derived $>$@{Eigen::MatrixExponentialReturnValue$<$ Derived $>$}!evalTo@{evalTo}}
+\index{evalTo@{evalTo}!Eigen::MatrixExponentialReturnValue$<$ Derived $>$@{Eigen::MatrixExponentialReturnValue$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{evalTo()}{evalTo()}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+template$<$typename Result\+Type $>$ \\
+void \mbox{\hyperlink{struct_eigen_1_1_matrix_exponential_return_value}{Eigen\+::\+Matrix\+Exponential\+Return\+Value}}$<$ Derived $>$\+::eval\+To (\begin{DoxyParamCaption}\item[{Result\+Type \&}]{result }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Compute the matrix exponential. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em result} & the matrix exponential of {\ttfamily src} in the constructor. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/util/Forward\+Declarations.\+h\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/src/\+Matrix\+Functions/Matrix\+Exponential.\+h\end{DoxyCompactItemize}

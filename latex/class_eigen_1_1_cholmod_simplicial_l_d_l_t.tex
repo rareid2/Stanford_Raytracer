@@ -1,0 +1,68 @@
+\hypertarget{class_eigen_1_1_cholmod_simplicial_l_d_l_t}{}\doxysection{Eigen\+::Cholmod\+Simplicial\+L\+D\+LT$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo $>$ Class Template Reference}
+\label{class_eigen_1_1_cholmod_simplicial_l_d_l_t}\index{Eigen::CholmodSimplicialLDLT$<$ \_MatrixType, \_UpLo $>$@{Eigen::CholmodSimplicialLDLT$<$ \_MatrixType, \_UpLo $>$}}
+
+
+A simplicial direct Cholesky (\mbox{\hyperlink{class_eigen_1_1_l_d_l_t}{L\+D\+LT}}) factorization and solver based on Cholmod.  
+
+
+
+
+{\ttfamily \#include $<$Cholmod\+Support.\+h$>$}
+
+Inheritance diagram for Eigen\+::Cholmod\+Simplicial\+L\+D\+LT$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{class_eigen_1_1_cholmod_simplicial_l_d_l_t}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_cholmod_simplicial_l_d_l_t_a25eb39d9c0d5baef08fda965444cb27e}\label{class_eigen_1_1_cholmod_simplicial_l_d_l_t_a25eb39d9c0d5baef08fda965444cb27e}} 
+typedef \+\_\+\+Matrix\+Type {\bfseries Matrix\+Type}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_cholmod_simplicial_l_d_l_t_a98280cac66601a0ef98d28de1a430061}\label{class_eigen_1_1_cholmod_simplicial_l_d_l_t_a98280cac66601a0ef98d28de1a430061}} 
+{\bfseries Cholmod\+Simplicial\+L\+D\+LT} (const Matrix\+Type \&matrix)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_cholmod_simplicial_l_d_l_t_a368110df5fb61cbebbce2c43bcc8faa7}\label{class_eigen_1_1_cholmod_simplicial_l_d_l_t_a368110df5fb61cbebbce2c43bcc8faa7}} 
+void {\bfseries init} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Matrix\+Type, int \+\_\+\+Up\+Lo = Lower$>$\newline
+class Eigen\+::\+Cholmod\+Simplicial\+L\+D\+L\+T$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo $>$}
+
+A simplicial direct Cholesky (\mbox{\hyperlink{class_eigen_1_1_l_d_l_t}{L\+D\+LT}}) factorization and solver based on Cholmod. 
+
+This class allows to solve for A.\+X = B sparse linear problems via a simplicial L\+D\+L$^\wedge$T Cholesky factorization using the Cholmod library. This simplicial variant is equivalent to \mbox{\hyperlink{namespace_eigen}{Eigen}}\textquotesingle{}s built-\/in \mbox{\hyperlink{class_eigen_1_1_simplicial_l_d_l_t}{Simplicial\+L\+D\+LT}} class. Therefore, it has little practical interest. The sparse matrix A must be selfadjoint and positive definite. The vectors or matrices X and B can be either dense or sparse.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Matrix\+Type} & the type of the sparse matrix A, it must be a Sparse\+Matrix$<$$>$ \\
+\hline
+{\em \+\_\+\+Up\+Lo} & the triangular part that will be used for the computations. It can be Lower or Upper. Default is Lower.\\
+\hline
+\end{DoxyTemplParams}
+\textbackslash{}implsparsesolverconcept
+
+This class supports all kind of Sparse\+Matrix$<$$>$\+: row or column major; upper, lower, or both; compressed or non compressed.
+
+\begin{DoxyWarning}{Warning}
+Only double precision real and complex scalar types are supported by Cholmod.
+\end{DoxyWarning}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{SparseLinearSystems.dox_TutorialSparseSolverConcept}{Sparse solver concept}}, class \mbox{\hyperlink{class_eigen_1_1_cholmod_supernodal_l_l_t}{Cholmod\+Supernodal\+L\+LT}}, class \mbox{\hyperlink{class_eigen_1_1_simplicial_l_d_l_t}{Simplicial\+L\+D\+LT}} 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Cholmod\+Support/Cholmod\+Support.\+h\end{DoxyCompactItemize}

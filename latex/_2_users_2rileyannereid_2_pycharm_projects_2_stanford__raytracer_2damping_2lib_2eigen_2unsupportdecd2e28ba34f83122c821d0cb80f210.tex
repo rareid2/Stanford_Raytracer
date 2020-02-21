@@ -1,0 +1,196 @@
+\hypertarget{_2_users_2rileyannereid_2_pycharm_projects_2_stanford__raytracer_2damping_2lib_2eigen_2unsupportdecd2e28ba34f83122c821d0cb80f210}{}\doxysection{/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/\+C\+X\+X11/src/\+Tensor/\+Tensor\+Layout\+Swap.\+h}
+Tensor$<$float, 2, Col\+Major$>$ input(2, 4); Tensor$<$float, 2, Row\+Major$>$ output = input.\+swap\+\_\+layout(); eigen\+\_\+assert(output.\+dimension(0) == 4); eigen\+\_\+assert(output.\+dimension(1) == 2);
+
+array$<$int, 2$>$ shuffle(1, 0); output = input.\+swap\+\_\+layout().shuffle(shuffle); eigen\+\_\+assert(output.\+dimension(0) == 2); eigen\+\_\+assert(output.\+dimension(1) == 4);
+
+
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{\textcolor{comment}{// This file is part of Eigen, a lightweight C++ template library}}
+\DoxyCodeLine{\textcolor{comment}{// for linear algebra.}}
+\DoxyCodeLine{\textcolor{comment}{//}}
+\DoxyCodeLine{\textcolor{comment}{// Copyright (C) 2014 Benoit Steiner <benoit.steiner.goog@gmail.com>}}
+\DoxyCodeLine{\textcolor{comment}{//}}
+\DoxyCodeLine{\textcolor{comment}{// This Source Code Form is subject to the terms of the Mozilla}}
+\DoxyCodeLine{\textcolor{comment}{// Public License v. 2.0. If a copy of the MPL was not distributed}}
+\DoxyCodeLine{\textcolor{comment}{// with this file, You can obtain one at http://mozilla.org/MPL/2.0/.}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#ifndef EIGEN\_CXX11\_TENSOR\_TENSOR\_LAYOUT\_SWAP\_H}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define EIGEN\_CXX11\_TENSOR\_TENSOR\_LAYOUT\_SWAP\_H}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{namespace }\mbox{\hyperlink{namespace_eigen}{Eigen}} \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{namespace }internal \{}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename} XprType>}
+\DoxyCodeLine{\textcolor{keyword}{struct }traits<TensorLayoutSwapOp<XprType> > : \textcolor{keyword}{public} traits<XprType>}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  \textcolor{keyword}{typedef} \textcolor{keyword}{typename} XprType::Scalar Scalar;}
+\DoxyCodeLine{  \textcolor{keyword}{typedef} traits<XprType> XprTraits;}
+\DoxyCodeLine{  \textcolor{keyword}{typedef} \textcolor{keyword}{typename} XprTraits::StorageKind StorageKind;}
+\DoxyCodeLine{  \textcolor{keyword}{typedef} \textcolor{keyword}{typename} XprTraits::Index \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}};}
+\DoxyCodeLine{  \textcolor{keyword}{typedef} \textcolor{keyword}{typename} XprType::Nested Nested;}
+\DoxyCodeLine{  \textcolor{keyword}{typedef} \textcolor{keyword}{typename} remove\_reference<Nested>::type \_Nested;}
+\DoxyCodeLine{  \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{int} NumDimensions = traits<XprType>::NumDimensions;}
+\DoxyCodeLine{  \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{int} Layout = (traits<XprType>::Layout == \mbox{\hyperlink{group__enums_ggaacded1a18ae58b0f554751f6cdf9eb13a0103672ae41005ab03b4176c765afd62}{ColMajor}}) ? \mbox{\hyperlink{group__enums_ggaacded1a18ae58b0f554751f6cdf9eb13a77c993a8d9f6efe5c1159fb2ab07dd4f}{RowMajor}} : \mbox{\hyperlink{group__enums_ggaacded1a18ae58b0f554751f6cdf9eb13a0103672ae41005ab03b4176c765afd62}{ColMajor}};}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename} XprType>}
+\DoxyCodeLine{\textcolor{keyword}{struct }eval<TensorLayoutSwapOp<XprType>, \mbox{\hyperlink{namespace_eigen}{Eigen}}::Dense>}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  \textcolor{keyword}{typedef} \textcolor{keyword}{const} TensorLayoutSwapOp<XprType>\& type;}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename} XprType>}
+\DoxyCodeLine{\textcolor{keyword}{struct }nested<TensorLayoutSwapOp<XprType>, 1, typename eval<TensorLayoutSwapOp<XprType> >::type>}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  \textcolor{keyword}{typedef} TensorLayoutSwapOp<XprType> type;}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\}  \textcolor{comment}{// end namespace internal}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename} XprType>}
+\DoxyCodeLine{\textcolor{keyword}{class }TensorLayoutSwapOp : \textcolor{keyword}{public} TensorBase<TensorLayoutSwapOp<XprType>, WriteAccessors>}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  \textcolor{keyword}{public}:}
+\DoxyCodeLine{  \textcolor{keyword}{typedef} \textcolor{keyword}{typename} \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{Eigen::internal::traits<TensorLayoutSwapOp>::Scalar}} Scalar;}
+\DoxyCodeLine{  \textcolor{keyword}{typedef} \textcolor{keyword}{typename} Eigen::NumTraits<Scalar>::Real RealScalar;}
+\DoxyCodeLine{  \textcolor{keyword}{typedef} \textcolor{keyword}{typename} internal::remove\_const<typename XprType::CoeffReturnType>::type CoeffReturnType;}
+\DoxyCodeLine{  \textcolor{keyword}{typedef} \textcolor{keyword}{typename} \mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Eigen::internal::nested<TensorLayoutSwapOp>::type}} Nested;}
+\DoxyCodeLine{  \textcolor{keyword}{typedef} \textcolor{keyword}{typename} \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{Eigen::internal::traits<TensorLayoutSwapOp>::StorageKind}} StorageKind;}
+\DoxyCodeLine{  \textcolor{keyword}{typedef} \textcolor{keyword}{typename} \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{Eigen::internal::traits<TensorLayoutSwapOp>::Index}} Index;}
+\DoxyCodeLine{}
+\DoxyCodeLine{  EIGEN\_DEVICE\_FUNC EIGEN\_STRONG\_INLINE TensorLayoutSwapOp(\textcolor{keyword}{const} XprType\& expr)}
+\DoxyCodeLine{      : m\_xpr(expr) \{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    EIGEN\_DEVICE\_FUNC}
+\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keyword}{typename} internal::remove\_all<typename XprType::Nested>::type\&}
+\DoxyCodeLine{    expression()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_xpr; \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    EIGEN\_DEVICE\_FUNC}
+\DoxyCodeLine{    EIGEN\_STRONG\_INLINE TensorLayoutSwapOp\& operator = (\textcolor{keyword}{const} TensorLayoutSwapOp\& other)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{      \textcolor{keyword}{typedef} TensorAssignOp<TensorLayoutSwapOp, const TensorLayoutSwapOp> Assign;}
+\DoxyCodeLine{      Assign assign(*\textcolor{keyword}{this}, other);}
+\DoxyCodeLine{      internal::TensorExecutor<const Assign, DefaultDevice>::run(assign, DefaultDevice());}
+\DoxyCodeLine{      \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{template}<\textcolor{keyword}{typename} OtherDerived>}
+\DoxyCodeLine{    EIGEN\_DEVICE\_FUNC}
+\DoxyCodeLine{    EIGEN\_STRONG\_INLINE TensorLayoutSwapOp\& operator = (\textcolor{keyword}{const} OtherDerived\& other)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{      \textcolor{keyword}{typedef} TensorAssignOp<TensorLayoutSwapOp, const OtherDerived> Assign;}
+\DoxyCodeLine{      Assign assign(*\textcolor{keyword}{this}, other);}
+\DoxyCodeLine{      internal::TensorExecutor<const Assign, DefaultDevice>::run(assign, DefaultDevice());}
+\DoxyCodeLine{      \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{  \textcolor{keyword}{protected}:}
+\DoxyCodeLine{    \textcolor{keyword}{typename} XprType::Nested m\_xpr;}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{// Eval as rvalue}}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename} ArgType, \textcolor{keyword}{typename} Device>}
+\DoxyCodeLine{\textcolor{keyword}{struct }TensorEvaluator<const TensorLayoutSwapOp<ArgType>, Device>}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  \textcolor{keyword}{typedef} TensorLayoutSwapOp<ArgType> XprType;}
+\DoxyCodeLine{  \textcolor{keyword}{typedef} \textcolor{keyword}{typename} XprType::Index Index;}
+\DoxyCodeLine{  \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{int} NumDims = internal::array\_size<typename TensorEvaluator<ArgType, Device>::Dimensions>::value;}
+\DoxyCodeLine{  \textcolor{keyword}{typedef} DSizes<Index, NumDims> Dimensions;}
+\DoxyCodeLine{}
+\DoxyCodeLine{  \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{    IsAligned = TensorEvaluator<ArgType, Device>::IsAligned,}
+\DoxyCodeLine{    PacketAccess = TensorEvaluator<ArgType, Device>::PacketAccess,}
+\DoxyCodeLine{    Layout = (\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(TensorEvaluator<ArgType, Device>::Layout) == \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(\mbox{\hyperlink{group__enums_ggaacded1a18ae58b0f554751f6cdf9eb13a0103672ae41005ab03b4176c765afd62}{ColMajor}})) ? \mbox{\hyperlink{group__enums_ggaacded1a18ae58b0f554751f6cdf9eb13a77c993a8d9f6efe5c1159fb2ab07dd4f}{RowMajor}} : \mbox{\hyperlink{group__enums_ggaacded1a18ae58b0f554751f6cdf9eb13a0103672ae41005ab03b4176c765afd62}{ColMajor}},}
+\DoxyCodeLine{    CoordAccess = \textcolor{keyword}{false},  \textcolor{comment}{// to be implemented}}
+\DoxyCodeLine{    RawAccess = TensorEvaluator<ArgType, Device>::RawAccess}
+\DoxyCodeLine{  \};}
+\DoxyCodeLine{}
+\DoxyCodeLine{  EIGEN\_DEVICE\_FUNC EIGEN\_STRONG\_INLINE TensorEvaluator(\textcolor{keyword}{const} XprType\& op, \textcolor{keyword}{const} Device\& \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_a98b51809ed8f7a1f736eb7b952b9636e}{device}})}
+\DoxyCodeLine{      : m\_impl(op.expression(), \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_a98b51809ed8f7a1f736eb7b952b9636e}{device}})}
+\DoxyCodeLine{  \{}
+\DoxyCodeLine{    \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i = 0; i < NumDims; ++i) \{}
+\DoxyCodeLine{      m\_dimensions[i] = m\_impl.dimensions()[NumDims-\/1-\/i];}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{  \textcolor{keyword}{typedef} \textcolor{keyword}{typename} XprType::Scalar Scalar;}
+\DoxyCodeLine{  \textcolor{keyword}{typedef} \textcolor{keyword}{typename} XprType::CoeffReturnType CoeffReturnType;}
+\DoxyCodeLine{  \textcolor{keyword}{typedef} \textcolor{keyword}{typename} PacketType<CoeffReturnType, Device>::type PacketReturnType;}
+\DoxyCodeLine{}
+\DoxyCodeLine{  EIGEN\_DEVICE\_FUNC EIGEN\_STRONG\_INLINE \textcolor{keyword}{const} Dimensions\& dimensions()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_dimensions; \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{  EIGEN\_DEVICE\_FUNC EIGEN\_STRONG\_INLINE \textcolor{keywordtype}{bool} evalSubExprsIfNeeded(CoeffReturnType* data) \{}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} m\_impl.evalSubExprsIfNeeded(data);}
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{  EIGEN\_DEVICE\_FUNC EIGEN\_STRONG\_INLINE \textcolor{keywordtype}{void} cleanup() \{}
+\DoxyCodeLine{    m\_impl.cleanup();}
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{  EIGEN\_DEVICE\_FUNC EIGEN\_STRONG\_INLINE CoeffReturnType coeff(\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} index)\textcolor{keyword}{ const}}
+\DoxyCodeLine{\textcolor{keyword}{  }\{}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} m\_impl.coeff(index);}
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{  \textcolor{keyword}{template}<\textcolor{keywordtype}{int} LoadMode>}
+\DoxyCodeLine{  EIGEN\_DEVICE\_FUNC EIGEN\_STRONG\_INLINE PacketReturnType packet(\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} index)\textcolor{keyword}{ const}}
+\DoxyCodeLine{\textcolor{keyword}{  }\{}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} m\_impl.template packet<LoadMode>(index);}
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{  EIGEN\_DEVICE\_FUNC EIGEN\_STRONG\_INLINE TensorOpCost costPerCoeff(\textcolor{keywordtype}{bool} vectorized)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} m\_impl.costPerCoeff(vectorized);}
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{  EIGEN\_DEVICE\_FUNC Scalar* data()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_impl.data(); \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{  \textcolor{keyword}{const} TensorEvaluator<ArgType, Device>\& impl()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_impl; \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{  TensorEvaluator<ArgType, Device> m\_impl;}
+\DoxyCodeLine{  Dimensions m\_dimensions;}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{// Eval as lvalue}}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename} ArgType, \textcolor{keyword}{typename} Device>}
+\DoxyCodeLine{  \textcolor{keyword}{struct }TensorEvaluator<TensorLayoutSwapOp<ArgType>, Device>}
+\DoxyCodeLine{  : \textcolor{keyword}{public} TensorEvaluator<const TensorLayoutSwapOp<ArgType>, Device>}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  \textcolor{keyword}{typedef} TensorEvaluator<const TensorLayoutSwapOp<ArgType>, Device> Base;}
+\DoxyCodeLine{  \textcolor{keyword}{typedef} TensorLayoutSwapOp<ArgType> XprType;}
+\DoxyCodeLine{}
+\DoxyCodeLine{  \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{    IsAligned = TensorEvaluator<ArgType, Device>::IsAligned,}
+\DoxyCodeLine{    PacketAccess = TensorEvaluator<ArgType, Device>::PacketAccess,}
+\DoxyCodeLine{    Layout = (\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(TensorEvaluator<ArgType, Device>::Layout) == \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(\mbox{\hyperlink{group__enums_ggaacded1a18ae58b0f554751f6cdf9eb13a0103672ae41005ab03b4176c765afd62}{ColMajor}})) ? \mbox{\hyperlink{group__enums_ggaacded1a18ae58b0f554751f6cdf9eb13a77c993a8d9f6efe5c1159fb2ab07dd4f}{RowMajor}} : \mbox{\hyperlink{group__enums_ggaacded1a18ae58b0f554751f6cdf9eb13a0103672ae41005ab03b4176c765afd62}{ColMajor}},}
+\DoxyCodeLine{    CoordAccess = \textcolor{keyword}{false}  \textcolor{comment}{// to be implemented}}
+\DoxyCodeLine{  \};}
+\DoxyCodeLine{}
+\DoxyCodeLine{  EIGEN\_DEVICE\_FUNC EIGEN\_STRONG\_INLINE TensorEvaluator(\textcolor{keyword}{const} XprType\& op, \textcolor{keyword}{const} Device\& \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_a98b51809ed8f7a1f736eb7b952b9636e}{device}})}
+\DoxyCodeLine{    : Base(op, \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_a98b51809ed8f7a1f736eb7b952b9636e}{device}})}
+\DoxyCodeLine{  \{ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{  \textcolor{keyword}{typedef} \textcolor{keyword}{typename} XprType::Index Index;}
+\DoxyCodeLine{  \textcolor{keyword}{typedef} \textcolor{keyword}{typename} XprType::Scalar Scalar;}
+\DoxyCodeLine{  \textcolor{keyword}{typedef} \textcolor{keyword}{typename} XprType::CoeffReturnType CoeffReturnType;}
+\DoxyCodeLine{  \textcolor{keyword}{typedef} \textcolor{keyword}{typename} PacketType<CoeffReturnType, Device>::type PacketReturnType;}
+\DoxyCodeLine{}
+\DoxyCodeLine{  EIGEN\_DEVICE\_FUNC EIGEN\_STRONG\_INLINE CoeffReturnType\& coeffRef(\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} index)}
+\DoxyCodeLine{  \{}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} this-\/>m\_impl.coeffRef(index);}
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{  \textcolor{keyword}{template} <\textcolor{keywordtype}{int} StoreMode> EIGEN\_DEVICE\_FUNC EIGEN\_STRONG\_INLINE}
+\DoxyCodeLine{  \textcolor{keywordtype}{void} writePacket(\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} index, \textcolor{keyword}{const} PacketReturnType\& x)}
+\DoxyCodeLine{  \{}
+\DoxyCodeLine{    this-\/>m\_impl.template writePacket<StoreMode>(index, x);}
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\} \textcolor{comment}{// end namespace Eigen}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#endif // EIGEN\_CXX11\_TENSOR\_TENSOR\_LAYOUT\_SWAP\_H}}
+\end{DoxyCodeInclude}
+ 

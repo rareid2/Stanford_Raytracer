@@ -1,0 +1,23 @@
+\hypertarget{struct_eigen_1_1internal_1_1_band_matrix_base_1_1_diagonal_int_return_type}{}\doxysection{Eigen\+::internal\+::Band\+Matrix\+Base$<$ Derived $>$\+::Diagonal\+Int\+Return\+Type$<$ Index $>$ Struct Template Reference}
+\label{struct_eigen_1_1internal_1_1_band_matrix_base_1_1_diagonal_int_return_type}\index{Eigen::internal::BandMatrixBase$<$ Derived $>$::DiagonalIntReturnType$<$ Index $>$@{Eigen::internal::BandMatrixBase$<$ Derived $>$::DiagonalIntReturnType$<$ Index $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1_band_matrix_base_1_1_diagonal_int_return_type_a5c2760033ba163955133be90bae8779c}\label{struct_eigen_1_1internal_1_1_band_matrix_base_1_1_diagonal_int_return_type_a5c2760033ba163955133be90bae8779c}} 
+enum \{ {\bfseries Return\+Opposite} = (Options\&Self\+Adjoint) \&\& (((Index)$>$0 \&\& Supers==0) $\vert$$\vert$ ((Index)$<$0 \&\& Subs==0)), 
+{\bfseries Conjugate} = Return\+Opposite \&\& Num\+Traits$<$Scalar$>$\+::Is\+Complex, 
+{\bfseries Actual\+Index} = Return\+Opposite ? -\/Index \+: Index, 
+{\bfseries Diagonal\+Size}
+ \}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1_band_matrix_base_1_1_diagonal_int_return_type_af5b1872c1f56aea6549d756fa9b4b140}\label{struct_eigen_1_1internal_1_1_band_matrix_base_1_1_diagonal_int_return_type_af5b1872c1f56aea6549d756fa9b4b140}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_block}{Block}}$<$ Coefficients\+Type, 1, Diagonal\+Size $>$ {\bfseries Build\+Type}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1_band_matrix_base_1_1_diagonal_int_return_type_ab71da0865441b0fdc0cfa64491dd3e00}\label{struct_eigen_1_1internal_1_1_band_matrix_base_1_1_diagonal_int_return_type_ab71da0865441b0fdc0cfa64491dd3e00}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1conditional}{internal\+::conditional}}$<$ \mbox{\hyperlink{class_eigen_1_1_conjugate}{Conjugate}}, \mbox{\hyperlink{class_eigen_1_1_cwise_unary_op}{Cwise\+Unary\+Op}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__conjugate__op}{internal\+::scalar\+\_\+conjugate\+\_\+op}}$<$ Scalar $>$, \mbox{\hyperlink{class_eigen_1_1_block}{Build\+Type}} $>$, \mbox{\hyperlink{class_eigen_1_1_block}{Build\+Type}} $>$\+::type {\bfseries Type}
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/Band\+Matrix.\+h\end{DoxyCompactItemize}

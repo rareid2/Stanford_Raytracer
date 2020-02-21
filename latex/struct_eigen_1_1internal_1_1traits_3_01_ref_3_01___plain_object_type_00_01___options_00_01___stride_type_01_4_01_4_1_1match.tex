@@ -1,0 +1,26 @@
+\hypertarget{struct_eigen_1_1internal_1_1traits_3_01_ref_3_01___plain_object_type_00_01___options_00_01___stride_type_01_4_01_4_1_1match}{}\doxysection{Eigen\+::internal\+::traits$<$ Ref$<$ \+\_\+\+Plain\+Object\+Type, \+\_\+\+Options, \+\_\+\+Stride\+Type $>$ $>$\+::match$<$ Derived $>$ Struct Template Reference}
+\label{struct_eigen_1_1internal_1_1traits_3_01_ref_3_01___plain_object_type_00_01___options_00_01___stride_type_01_4_01_4_1_1match}\index{Eigen::internal::traits$<$ Ref$<$ \_PlainObjectType, \_Options, \_StrideType $>$ $>$::match$<$ Derived $>$@{Eigen::internal::traits$<$ Ref$<$ \_PlainObjectType, \_Options, \_StrideType $>$ $>$::match$<$ Derived $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_ref_3_01___plain_object_type_00_01___options_00_01___stride_type_01_4_01_4_1_1match_ae7c6477d3647d560b97d1bfec2e6e8c8}\label{struct_eigen_1_1internal_1_1traits_3_01_ref_3_01___plain_object_type_00_01___options_00_01___stride_type_01_4_01_4_1_1match_ae7c6477d3647d560b97d1bfec2e6e8c8}} 
+enum \{ \newline
+{\bfseries Has\+Direct\+Access} = internal\+::has\+\_\+direct\+\_\+access$<$Derived$>$\+::ret, 
+{\bfseries Storage\+Order\+Match} = Plain\+Object\+Type\+::Is\+Vector\+At\+Compile\+Time $\vert$$\vert$ Derived\+::Is\+Vector\+At\+Compile\+Time $\vert$$\vert$ ((Plain\+Object\+Type\+::Flags\&Row\+Major\+Bit)==(Derived\+::Flags\&Row\+Major\+Bit)), 
+{\bfseries Inner\+Stride\+Match}, 
+{\bfseries Outer\+Stride\+Match}, 
+\newline
+{\bfseries Derived\+Alignment} = int(evaluator$<$Derived$>$\+::Alignment), 
+{\bfseries Alignment\+Match} = (int(traits$<$Plain\+Object\+Type$>$\+::Alignment)==int(Unaligned)) $\vert$$\vert$ (Derived\+Alignment $>$= int(Alignment)), 
+{\bfseries Scalar\+Type\+Match} = internal\+::is\+\_\+same$<$typename Plain\+Object\+Type\+::Scalar, typename Derived\+::Scalar$>$\+::value, 
+{\bfseries Match\+At\+Compile\+Time} = Has\+Direct\+Access \&\& Storage\+Order\+Match \&\& Inner\+Stride\+Match \&\& Outer\+Stride\+Match \&\& Alignment\+Match \&\& Scalar\+Type\+Match
+ \}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_ref_3_01___plain_object_type_00_01___options_00_01___stride_type_01_4_01_4_1_1match_a80261b560ce9ffdd3a0a150a10bfbd57}\label{struct_eigen_1_1internal_1_1traits_3_01_ref_3_01___plain_object_type_00_01___options_00_01___stride_type_01_4_01_4_1_1match_a80261b560ce9ffdd3a0a150a10bfbd57}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1conditional}{internal\+::conditional}}$<$ Match\+At\+Compile\+Time, \mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{internal\+::true\+\_\+type}}, \mbox{\hyperlink{struct_eigen_1_1internal_1_1false__type}{internal\+::false\+\_\+type}} $>$\+::\mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{type}} {\bfseries type}
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/Ref.\+h\end{DoxyCompactItemize}

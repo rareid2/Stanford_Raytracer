@@ -1,0 +1,81 @@
+\hypertarget{class_eigen_1_1internal_1_1_ambi_vector_1_1_iterator}{}\doxysection{Eigen\+::internal\+::Ambi\+Vector$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$\+::Iterator Class Reference}
+\label{class_eigen_1_1internal_1_1_ambi_vector_1_1_iterator}\index{Eigen::internal::AmbiVector$<$ \_Scalar, \_StorageIndex $>$::Iterator@{Eigen::internal::AmbiVector$<$ \_Scalar, \_StorageIndex $>$::Iterator}}
+
+
+{\ttfamily \#include $<$Ambi\+Vector.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_ambi_vector_1_1_iterator_a4b9558b98ec8e7e2f70550d848bba83e}\label{class_eigen_1_1internal_1_1_ambi_vector_1_1_iterator_a4b9558b98ec8e7e2f70550d848bba83e}} 
+typedef \+\_\+\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_ambi_vector_1_1_iterator_afadc74f988834ec6abc9a96e00cce8bd}\label{class_eigen_1_1internal_1_1_ambi_vector_1_1_iterator_afadc74f988834ec6abc9a96e00cce8bd}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$ Scalar $>$\+::Real {\bfseries Real\+Scalar}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1internal_1_1_ambi_vector_1_1_iterator_a2201eecfa8e104d9f2017e47c5f24583}{Iterator}} (const \mbox{\hyperlink{class_eigen_1_1internal_1_1_ambi_vector}{Ambi\+Vector}} \&vec, const Real\+Scalar \&epsilon=0)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_ambi_vector_1_1_iterator_a60d302a0d837b10f02287c3de4f519ad}\label{class_eigen_1_1internal_1_1_ambi_vector_1_1_iterator_a60d302a0d837b10f02287c3de4f519ad}} 
+Storage\+Index {\bfseries index} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_ambi_vector_1_1_iterator_a7722c457498fd469be1e2adcc9c9c9fe}\label{class_eigen_1_1internal_1_1_ambi_vector_1_1_iterator_a7722c457498fd469be1e2adcc9c9c9fe}} 
+Scalar {\bfseries value} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_ambi_vector_1_1_iterator_a9a5264787033e4f7c46dba391a55e04d}\label{class_eigen_1_1internal_1_1_ambi_vector_1_1_iterator_a9a5264787033e4f7c46dba391a55e04d}} 
+{\bfseries operator bool} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_ambi_vector_1_1_iterator_a567260746471f2963051cf51ebe38860}\label{class_eigen_1_1internal_1_1_ambi_vector_1_1_iterator_a567260746471f2963051cf51ebe38860}} 
+\mbox{\hyperlink{class_eigen_1_1internal_1_1_ambi_vector_1_1_iterator}{Iterator}} \& {\bfseries operator++} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_ambi_vector_1_1_iterator_a71598fd5614d5a700f943c1c2df37d07}\label{class_eigen_1_1internal_1_1_ambi_vector_1_1_iterator_a71598fd5614d5a700f943c1c2df37d07}} 
+const \mbox{\hyperlink{class_eigen_1_1internal_1_1_ambi_vector}{Ambi\+Vector}} \& {\bfseries m\+\_\+vector}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_ambi_vector_1_1_iterator_ac830f5372f90d74d9fde178e92da4a94}\label{class_eigen_1_1internal_1_1_ambi_vector_1_1_iterator_ac830f5372f90d74d9fde178e92da4a94}} 
+Storage\+Index {\bfseries m\+\_\+current\+El}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_ambi_vector_1_1_iterator_ae1b2966ffa93413df690dfe6351bab79}\label{class_eigen_1_1internal_1_1_ambi_vector_1_1_iterator_ae1b2966ffa93413df690dfe6351bab79}} 
+Real\+Scalar {\bfseries m\+\_\+epsilon}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_ambi_vector_1_1_iterator_a234f49172c6f1540bbc5799ef7928d05}\label{class_eigen_1_1internal_1_1_ambi_vector_1_1_iterator_a234f49172c6f1540bbc5799ef7928d05}} 
+Storage\+Index {\bfseries m\+\_\+cached\+Index}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_ambi_vector_1_1_iterator_a1acd30f0d40f023eaf16e85e46ab1f14}\label{class_eigen_1_1internal_1_1_ambi_vector_1_1_iterator_a1acd30f0d40f023eaf16e85e46ab1f14}} 
+Scalar {\bfseries m\+\_\+cached\+Value}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_ambi_vector_1_1_iterator_a49a8f2a6ad0822711f974524f73835fa}\label{class_eigen_1_1internal_1_1_ambi_vector_1_1_iterator_a49a8f2a6ad0822711f974524f73835fa}} 
+bool {\bfseries m\+\_\+is\+Dense}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Scalar, typename \+\_\+\+Storage\+Index$>$\newline
+class Eigen\+::internal\+::\+Ambi\+Vector$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$\+::\+Iterator}
+
+\mbox{\hyperlink{class_eigen_1_1internal_1_1_ambi_vector_1_1_iterator}{Iterator}} over the nonzero coefficients 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_ambi_vector_1_1_iterator_a2201eecfa8e104d9f2017e47c5f24583}\label{class_eigen_1_1internal_1_1_ambi_vector_1_1_iterator_a2201eecfa8e104d9f2017e47c5f24583}} 
+\index{Eigen::internal::AmbiVector$<$ \_Scalar, \_StorageIndex $>$::Iterator@{Eigen::internal::AmbiVector$<$ \_Scalar, \_StorageIndex $>$::Iterator}!Iterator@{Iterator}}
+\index{Iterator@{Iterator}!Eigen::internal::AmbiVector$<$ \_Scalar, \_StorageIndex $>$::Iterator@{Eigen::internal::AmbiVector$<$ \_Scalar, \_StorageIndex $>$::Iterator}}
+\doxysubsubsection{\texorpdfstring{Iterator()}{Iterator()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Storage\+Index $>$ \\
+\mbox{\hyperlink{class_eigen_1_1internal_1_1_ambi_vector}{Eigen\+::internal\+::\+Ambi\+Vector}}$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$\+::Iterator\+::\+Iterator (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1internal_1_1_ambi_vector}{Ambi\+Vector}} \&}]{vec,  }\item[{const Real\+Scalar \&}]{epsilon = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+Default constructor 
+\begin{DoxyParams}{Parameters}
+{\em vec} & the vector on which we iterate \\
+\hline
+{\em epsilon} & the minimal value used to prune zero coefficients. In practice, all coefficients having a magnitude smaller than {\itshape epsilon} are skipped. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Sparse\+Core/Ambi\+Vector.\+h\end{DoxyCompactItemize}

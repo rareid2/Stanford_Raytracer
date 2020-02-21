@@ -1,0 +1,113 @@
+\hypertarget{class_eigen_1_1_hybrid_non_linear_solver}{}\doxysection{Eigen\+::Hybrid\+Non\+Linear\+Solver$<$ Functor\+Type, Scalar $>$ Class Template Reference}
+\label{class_eigen_1_1_hybrid_non_linear_solver}\index{Eigen::HybridNonLinearSolver$<$ FunctorType, Scalar $>$@{Eigen::HybridNonLinearSolver$<$ FunctorType, Scalar $>$}}
+
+
+Finds a zero of a system of n nonlinear functions in n variables by a modification of the Powell hybrid method (\char`\"{}dogleg\char`\"{}).  
+
+
+
+
+{\ttfamily \#include $<$Hybrid\+Non\+Linear\+Solver.\+h$>$}
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_eigen_1_1_hybrid_non_linear_solver_1_1_parameters}{Parameters}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_hybrid_non_linear_solver_a7d18b9b4dfd016ba552961903afd40e2}\label{class_eigen_1_1_hybrid_non_linear_solver_a7d18b9b4dfd016ba552961903afd40e2}} 
+typedef Dense\+Index {\bfseries Index}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_hybrid_non_linear_solver_a6b474d4da7339c9aa89cf223796e3a69}\label{class_eigen_1_1_hybrid_non_linear_solver_a6b474d4da7339c9aa89cf223796e3a69}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ Scalar, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}, 1 $>$ {\bfseries F\+Vector\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_hybrid_non_linear_solver_a55713d5bb80e014eb649b7d621ab3562}\label{class_eigen_1_1_hybrid_non_linear_solver_a55713d5bb80e014eb649b7d621ab3562}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ Scalar, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}} $>$ {\bfseries Jacobian\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_hybrid_non_linear_solver_afd427708a3c3b71bfbeda613ed68febb}\label{class_eigen_1_1_hybrid_non_linear_solver_afd427708a3c3b71bfbeda613ed68febb}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ Scalar, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}} $>$ {\bfseries Upper\+Triangular\+Type}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_hybrid_non_linear_solver_aaf90e23a6bad869ca1a9cadf62af0dd4}\label{class_eigen_1_1_hybrid_non_linear_solver_aaf90e23a6bad869ca1a9cadf62af0dd4}} 
+{\bfseries Hybrid\+Non\+Linear\+Solver} (Functor\+Type \&\+\_\+functor)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_hybrid_non_linear_solver_a1b5eddcc7f215e790b740ad94f0e4389}\label{class_eigen_1_1_hybrid_non_linear_solver_a1b5eddcc7f215e790b740ad94f0e4389}} 
+Hybrid\+Non\+Linear\+Solver\+Space\+::\+Status {\bfseries hybrj1} (\mbox{\hyperlink{class_eigen_1_1_matrix}{F\+Vector\+Type}} \&x, const Scalar tol=std\+::sqrt(\mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$ Scalar $>$\+::epsilon()))
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_hybrid_non_linear_solver_a197044e0f63c1077846a0279e47e934f}\label{class_eigen_1_1_hybrid_non_linear_solver_a197044e0f63c1077846a0279e47e934f}} 
+Hybrid\+Non\+Linear\+Solver\+Space\+::\+Status {\bfseries solve\+Init} (\mbox{\hyperlink{class_eigen_1_1_matrix}{F\+Vector\+Type}} \&x)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_hybrid_non_linear_solver_a64c9d49fa4645ad58a45dedcb1491252}\label{class_eigen_1_1_hybrid_non_linear_solver_a64c9d49fa4645ad58a45dedcb1491252}} 
+Hybrid\+Non\+Linear\+Solver\+Space\+::\+Status {\bfseries solve\+One\+Step} (\mbox{\hyperlink{class_eigen_1_1_matrix}{F\+Vector\+Type}} \&x)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_hybrid_non_linear_solver_a4e1cfd23e2ee4c7e16ed0fd353b3807e}\label{class_eigen_1_1_hybrid_non_linear_solver_a4e1cfd23e2ee4c7e16ed0fd353b3807e}} 
+Hybrid\+Non\+Linear\+Solver\+Space\+::\+Status {\bfseries solve} (\mbox{\hyperlink{class_eigen_1_1_matrix}{F\+Vector\+Type}} \&x)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_hybrid_non_linear_solver_ac901db3e3eacb7f17537d40e6703d1e4}\label{class_eigen_1_1_hybrid_non_linear_solver_ac901db3e3eacb7f17537d40e6703d1e4}} 
+Hybrid\+Non\+Linear\+Solver\+Space\+::\+Status {\bfseries hybrd1} (\mbox{\hyperlink{class_eigen_1_1_matrix}{F\+Vector\+Type}} \&x, const Scalar tol=std\+::sqrt(\mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$ Scalar $>$\+::epsilon()))
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_hybrid_non_linear_solver_a03e013471915c4395578affbd2e29e26}\label{class_eigen_1_1_hybrid_non_linear_solver_a03e013471915c4395578affbd2e29e26}} 
+Hybrid\+Non\+Linear\+Solver\+Space\+::\+Status {\bfseries solve\+Numerical\+Diff\+Init} (\mbox{\hyperlink{class_eigen_1_1_matrix}{F\+Vector\+Type}} \&x)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_hybrid_non_linear_solver_a73ce76462a048e23cdfcd18c18bd187b}\label{class_eigen_1_1_hybrid_non_linear_solver_a73ce76462a048e23cdfcd18c18bd187b}} 
+Hybrid\+Non\+Linear\+Solver\+Space\+::\+Status {\bfseries solve\+Numerical\+Diff\+One\+Step} (\mbox{\hyperlink{class_eigen_1_1_matrix}{F\+Vector\+Type}} \&x)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_hybrid_non_linear_solver_a019c209d3c67020247583dce00a5e760}\label{class_eigen_1_1_hybrid_non_linear_solver_a019c209d3c67020247583dce00a5e760}} 
+Hybrid\+Non\+Linear\+Solver\+Space\+::\+Status {\bfseries solve\+Numerical\+Diff} (\mbox{\hyperlink{class_eigen_1_1_matrix}{F\+Vector\+Type}} \&x)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_hybrid_non_linear_solver_a08b1a535646ff113b502b495594782bc}\label{class_eigen_1_1_hybrid_non_linear_solver_a08b1a535646ff113b502b495594782bc}} 
+void {\bfseries reset\+Parameters} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_hybrid_non_linear_solver_a5abdf349cd4c8c144d4e13168d0780c1}\label{class_eigen_1_1_hybrid_non_linear_solver_a5abdf349cd4c8c144d4e13168d0780c1}} 
+\mbox{\hyperlink{struct_eigen_1_1_hybrid_non_linear_solver_1_1_parameters}{Parameters}} {\bfseries parameters}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_hybrid_non_linear_solver_a093a1b90bca17c7c35b1715ad5b881a6}\label{class_eigen_1_1_hybrid_non_linear_solver_a093a1b90bca17c7c35b1715ad5b881a6}} 
+\mbox{\hyperlink{class_eigen_1_1_matrix}{F\+Vector\+Type}} {\bfseries fvec}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_hybrid_non_linear_solver_abf7599fb5cced060cc4d5b7ca7f0da59}\label{class_eigen_1_1_hybrid_non_linear_solver_abf7599fb5cced060cc4d5b7ca7f0da59}} 
+\mbox{\hyperlink{class_eigen_1_1_matrix}{F\+Vector\+Type}} {\bfseries qtf}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_hybrid_non_linear_solver_aedd9dc3b8e06fa994d94d5a1c4b9786d}\label{class_eigen_1_1_hybrid_non_linear_solver_aedd9dc3b8e06fa994d94d5a1c4b9786d}} 
+\mbox{\hyperlink{class_eigen_1_1_matrix}{F\+Vector\+Type}} {\bfseries diag}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_hybrid_non_linear_solver_aba1f6608e9ad2daabfdf9acec571860a}\label{class_eigen_1_1_hybrid_non_linear_solver_aba1f6608e9ad2daabfdf9acec571860a}} 
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Jacobian\+Type}} {\bfseries fjac}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_hybrid_non_linear_solver_a3772d7513630aaa22785129e69505fcd}\label{class_eigen_1_1_hybrid_non_linear_solver_a3772d7513630aaa22785129e69505fcd}} 
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Upper\+Triangular\+Type}} {\bfseries R}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_hybrid_non_linear_solver_a68ef73496f04e7a832cda7cdd21dc807}\label{class_eigen_1_1_hybrid_non_linear_solver_a68ef73496f04e7a832cda7cdd21dc807}} 
+Index {\bfseries nfev}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_hybrid_non_linear_solver_ac1026391306e8a8038cd40d8763d9e9e}\label{class_eigen_1_1_hybrid_non_linear_solver_ac1026391306e8a8038cd40d8763d9e9e}} 
+Index {\bfseries njev}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_hybrid_non_linear_solver_a1fb82aaeaf6aa1ae3ab3f7d0b33b4e3f}\label{class_eigen_1_1_hybrid_non_linear_solver_a1fb82aaeaf6aa1ae3ab3f7d0b33b4e3f}} 
+Index {\bfseries iter}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_hybrid_non_linear_solver_a7472a71945ab2be2a7813c84f63ab871}\label{class_eigen_1_1_hybrid_non_linear_solver_a7472a71945ab2be2a7813c84f63ab871}} 
+Scalar {\bfseries fnorm}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_hybrid_non_linear_solver_a29cf13648a7d6accc89fd1dc621eb92b}\label{class_eigen_1_1_hybrid_non_linear_solver_a29cf13648a7d6accc89fd1dc621eb92b}} 
+bool {\bfseries use\+External\+Scaling}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Functor\+Type, typename Scalar = double$>$\newline
+class Eigen\+::\+Hybrid\+Non\+Linear\+Solver$<$ Functor\+Type, Scalar $>$}
+
+Finds a zero of a system of n nonlinear functions in n variables by a modification of the Powell hybrid method (\char`\"{}dogleg\char`\"{}). 
+
+The user must provide a subroutine which calculates the functions. The Jacobian is either provided by the user, or approximated using a forward-\/difference method. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/src/\+Non\+Linear\+Optimization/Hybrid\+Non\+Linear\+Solver.\+h\end{DoxyCompactItemize}

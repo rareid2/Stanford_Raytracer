@@ -1,0 +1,46 @@
+\hypertarget{class_eigen_1_1_metis_ordering}{}\doxysection{Eigen\+::Metis\+Ordering$<$ Storage\+Index $>$ Class Template Reference}
+\label{class_eigen_1_1_metis_ordering}\index{Eigen::MetisOrdering$<$ StorageIndex $>$@{Eigen::MetisOrdering$<$ StorageIndex $>$}}
+
+
+{\ttfamily \#include $<$Metis\+Support.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_metis_ordering_a23b6007ffa970edf2557c84279e22ce5}\label{class_eigen_1_1_metis_ordering_a23b6007ffa970edf2557c84279e22ce5}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Matrix}}$<$ \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}, Storage\+Index $>$ {\bfseries Permutation\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_metis_ordering_af043ef38d59d1ff5a0fff6c297fbebcd}\label{class_eigen_1_1_metis_ordering_af043ef38d59d1ff5a0fff6c297fbebcd}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ Storage\+Index, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}, 1 $>$ {\bfseries Index\+Vector}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_metis_ordering_ab3919cd70a1bfe70df6b6fc822e9b42b}\label{class_eigen_1_1_metis_ordering_ab3919cd70a1bfe70df6b6fc822e9b42b}} 
+{\footnotesize template$<$typename Matrix\+Type $>$ }\\void {\bfseries get\+\_\+symmetrized\+\_\+graph} (const Matrix\+Type \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}})
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_metis_ordering_a48e1dc18153e426849b8f20c3a03a9c6}\label{class_eigen_1_1_metis_ordering_a48e1dc18153e426849b8f20c3a03a9c6}} 
+{\footnotesize template$<$typename Matrix\+Type $>$ }\\void {\bfseries operator()} (const Matrix\+Type \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, \mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Type}} \&matperm)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_metis_ordering_aad9795eab17371180f140e344c2c3e36}\label{class_eigen_1_1_metis_ordering_aad9795eab17371180f140e344c2c3e36}} 
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Index\+Vector}} {\bfseries m\+\_\+index\+Ptr}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_metis_ordering_ad094d620880147d0c138eb2d1790ab32}\label{class_eigen_1_1_metis_ordering_ad094d620880147d0c138eb2d1790ab32}} 
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Index\+Vector}} {\bfseries m\+\_\+inner\+Indices}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Storage\+Index$>$\newline
+class Eigen\+::\+Metis\+Ordering$<$ Storage\+Index $>$}
+
+Get the fill-\/reducing ordering from the M\+E\+T\+IS package
+
+If A is the original matrix and Ap is the permuted matrix, the fill-\/reducing permutation is defined as follows \+: Row (column) i of A is the matperm(i) row (column) of Ap. W\+A\+R\+N\+I\+NG\+: As computed by M\+E\+T\+IS, this corresponds to the vector iperm (instead of perm) 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Metis\+Support/Metis\+Support.\+h\end{DoxyCompactItemize}

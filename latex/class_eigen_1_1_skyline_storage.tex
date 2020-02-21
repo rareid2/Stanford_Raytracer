@@ -1,0 +1,143 @@
+\hypertarget{class_eigen_1_1_skyline_storage}{}\doxysection{Eigen\+::Skyline\+Storage$<$ Scalar $>$ Class Template Reference}
+\label{class_eigen_1_1_skyline_storage}\index{Eigen::SkylineStorage$<$ Scalar $>$@{Eigen::SkylineStorage$<$ Scalar $>$}}
+
+
+{\ttfamily \#include $<$Skyline\+Storage.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_storage_a3c14a6c60c59bce3651ab41049bb4c4f}\label{class_eigen_1_1_skyline_storage_a3c14a6c60c59bce3651ab41049bb4c4f}} 
+{\bfseries Skyline\+Storage} (const \mbox{\hyperlink{class_eigen_1_1_skyline_storage}{Skyline\+Storage}} \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_storage_a7738010c4f6de76370ec7796ed06c7d1}\label{class_eigen_1_1_skyline_storage_a7738010c4f6de76370ec7796ed06c7d1}} 
+\mbox{\hyperlink{class_eigen_1_1_skyline_storage}{Skyline\+Storage}} \& {\bfseries operator=} (const \mbox{\hyperlink{class_eigen_1_1_skyline_storage}{Skyline\+Storage}} \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_storage_a36cb5d6dee2f6e9ee3929799840be1c5}\label{class_eigen_1_1_skyline_storage_a36cb5d6dee2f6e9ee3929799840be1c5}} 
+void {\bfseries swap} (\mbox{\hyperlink{class_eigen_1_1_skyline_storage}{Skyline\+Storage}} \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_storage_a4b124e460d00bb59e892bf14f2b466a6}\label{class_eigen_1_1_skyline_storage_a4b124e460d00bb59e892bf14f2b466a6}} 
+void {\bfseries reserve} (Index size, Index upper\+Profile\+Size, Index lower\+Profile\+Size, Index upper\+Size, Index lower\+Size)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_storage_a6be0d1708b4048b5bfef64c296b12f59}\label{class_eigen_1_1_skyline_storage_a6be0d1708b4048b5bfef64c296b12f59}} 
+void {\bfseries squeeze} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_storage_a4735650ecee3ca2348d4225315260576}\label{class_eigen_1_1_skyline_storage_a4735650ecee3ca2348d4225315260576}} 
+void {\bfseries resize} (Index diag\+Size, Index upper\+Profile\+Size, Index lower\+Profile\+Size, Index upper\+Size, Index lower\+Size, float reserve\+Size\+Factor=0)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_storage_ada9ba5ea1f995baa78919b5539e9a053}\label{class_eigen_1_1_skyline_storage_ada9ba5ea1f995baa78919b5539e9a053}} 
+Index {\bfseries diag\+Size} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_storage_a4e04b8e3bda251623773b5ef46cd450a}\label{class_eigen_1_1_skyline_storage_a4e04b8e3bda251623773b5ef46cd450a}} 
+Index {\bfseries upper\+Size} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_storage_aaecc67214f7bf0d4aa91b37d58465390}\label{class_eigen_1_1_skyline_storage_aaecc67214f7bf0d4aa91b37d58465390}} 
+Index {\bfseries lower\+Size} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_storage_aefe237af538d4524a94e07db8fc4c2b2}\label{class_eigen_1_1_skyline_storage_aefe237af538d4524a94e07db8fc4c2b2}} 
+Index {\bfseries upper\+Profile\+Size} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_storage_ad74e038e80620800e021ca8661a4e17a}\label{class_eigen_1_1_skyline_storage_ad74e038e80620800e021ca8661a4e17a}} 
+Index {\bfseries lower\+Profile\+Size} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_storage_a014a97044c2103152e1f74c2d7717723}\label{class_eigen_1_1_skyline_storage_a014a97044c2103152e1f74c2d7717723}} 
+Index {\bfseries allocated\+Size} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_storage_a2b3d7c288b7b38bf045c2aaa0d7e4bde}\label{class_eigen_1_1_skyline_storage_a2b3d7c288b7b38bf045c2aaa0d7e4bde}} 
+void {\bfseries clear} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_storage_afe1d84e8c95831ff4f2ecdc8a300e9d3}\label{class_eigen_1_1_skyline_storage_afe1d84e8c95831ff4f2ecdc8a300e9d3}} 
+Scalar \& {\bfseries diag} (Index i)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_storage_a3ca83bc7c3a6d12647bcb8bea9c0fdb7}\label{class_eigen_1_1_skyline_storage_a3ca83bc7c3a6d12647bcb8bea9c0fdb7}} 
+const Scalar \& {\bfseries diag} (Index i) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_storage_aeaadf72ec6e2a7e4ce7773d7c0495666}\label{class_eigen_1_1_skyline_storage_aeaadf72ec6e2a7e4ce7773d7c0495666}} 
+Scalar \& {\bfseries upper} (Index i)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_storage_a20345ff02429b01249ce42781d64344c}\label{class_eigen_1_1_skyline_storage_a20345ff02429b01249ce42781d64344c}} 
+const Scalar \& {\bfseries upper} (Index i) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_storage_a844f3b6e4223791e73f946aedd8ff04d}\label{class_eigen_1_1_skyline_storage_a844f3b6e4223791e73f946aedd8ff04d}} 
+Scalar \& {\bfseries lower} (Index i)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_storage_ad65c2adb1faa0647e7874933f9a5e4b8}\label{class_eigen_1_1_skyline_storage_ad65c2adb1faa0647e7874933f9a5e4b8}} 
+const Scalar \& {\bfseries lower} (Index i) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_storage_a113fbc2bef6d7a61235d2fd36894bd5b}\label{class_eigen_1_1_skyline_storage_a113fbc2bef6d7a61235d2fd36894bd5b}} 
+Index \& {\bfseries upper\+Profile} (Index i)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_storage_a395ccb86a4d455d7dc3fcf9513e64454}\label{class_eigen_1_1_skyline_storage_a395ccb86a4d455d7dc3fcf9513e64454}} 
+const Index \& {\bfseries upper\+Profile} (Index i) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_storage_a1e9e0fc36cf307cebf3ef4d50bd2d0a5}\label{class_eigen_1_1_skyline_storage_a1e9e0fc36cf307cebf3ef4d50bd2d0a5}} 
+Index \& {\bfseries lower\+Profile} (Index i)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_storage_a35c879bb44a9a88706bbff6323b7c61b}\label{class_eigen_1_1_skyline_storage_a35c879bb44a9a88706bbff6323b7c61b}} 
+const Index \& {\bfseries lower\+Profile} (Index i) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_storage_a2cec483a57f255f956f6a42d6bac6b57}\label{class_eigen_1_1_skyline_storage_a2cec483a57f255f956f6a42d6bac6b57}} 
+void {\bfseries reset} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_storage_a9b7d56e2715fe6db7a10b9f151a98bbe}\label{class_eigen_1_1_skyline_storage_a9b7d56e2715fe6db7a10b9f151a98bbe}} 
+void {\bfseries prune} (Scalar reference, Real\+Scalar epsilon=dummy\+\_\+precision$<$ Real\+Scalar $>$())
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_storage_a8b75a16ed77d3f0b4027899b69aceffe}\label{class_eigen_1_1_skyline_storage_a8b75a16ed77d3f0b4027899b69aceffe}} 
+static \mbox{\hyperlink{class_eigen_1_1_skyline_storage}{Skyline\+Storage}} {\bfseries Map} (Index $\ast$upper\+Profile, Index $\ast$lower\+Profile, Scalar $\ast$diag, Scalar $\ast$upper, Scalar $\ast$lower, Index size, Index upper\+Size, Index lower\+Size)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_storage_a3b654d3d3605eb54c9d327b9bf9823b6}\label{class_eigen_1_1_skyline_storage_a3b654d3d3605eb54c9d327b9bf9823b6}} 
+Scalar $\ast$ {\bfseries m\+\_\+diag}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_storage_a7ce15f48f1798840bfbdeee2c58d05d3}\label{class_eigen_1_1_skyline_storage_a7ce15f48f1798840bfbdeee2c58d05d3}} 
+Scalar $\ast$ {\bfseries m\+\_\+upper}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_storage_a18109ba3dc8535268ccb957c1d428d15}\label{class_eigen_1_1_skyline_storage_a18109ba3dc8535268ccb957c1d428d15}} 
+Scalar $\ast$ {\bfseries m\+\_\+lower}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_storage_acd28024d55fc0c871234cdc8c8c61575}\label{class_eigen_1_1_skyline_storage_acd28024d55fc0c871234cdc8c8c61575}} 
+Index $\ast$ {\bfseries m\+\_\+upper\+Profile}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_storage_adcd870f6893217584535aec2e9f4e69e}\label{class_eigen_1_1_skyline_storage_adcd870f6893217584535aec2e9f4e69e}} 
+Index $\ast$ {\bfseries m\+\_\+lower\+Profile}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_storage_ab75495597d9657cf105119b9b8fa7f19}\label{class_eigen_1_1_skyline_storage_ab75495597d9657cf105119b9b8fa7f19}} 
+Index {\bfseries m\+\_\+diag\+Size}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_storage_a3739e788493f69f7d0ec6268addfc0a2}\label{class_eigen_1_1_skyline_storage_a3739e788493f69f7d0ec6268addfc0a2}} 
+Index {\bfseries m\+\_\+upper\+Size}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_storage_a2d9e2a7f7a2ca8ebc8bb4cd3f2df0de6}\label{class_eigen_1_1_skyline_storage_a2d9e2a7f7a2ca8ebc8bb4cd3f2df0de6}} 
+Index {\bfseries m\+\_\+lower\+Size}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_storage_a76c51728077b5ed876c0da6dc8a29ab9}\label{class_eigen_1_1_skyline_storage_a76c51728077b5ed876c0da6dc8a29ab9}} 
+Index {\bfseries m\+\_\+upper\+Profile\+Size}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_storage_a63e3191aa19d188a12927ffaede00a25}\label{class_eigen_1_1_skyline_storage_a63e3191aa19d188a12927ffaede00a25}} 
+Index {\bfseries m\+\_\+lower\+Profile\+Size}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_storage_ad14e4b23afd26b844f42791b54338479}\label{class_eigen_1_1_skyline_storage_ad14e4b23afd26b844f42791b54338479}} 
+Index {\bfseries m\+\_\+allocated\+Size}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_storage_adbd0f2125fc8ac1a85fc2740835b9bbe}\label{class_eigen_1_1_skyline_storage_adbd0f2125fc8ac1a85fc2740835b9bbe}} 
+void {\bfseries reallocate} (Index diag\+Size, Index upper\+Profile\+Size, Index lower\+Profile\+Size, Index upper\+Size, Index lower\+Size)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Scalar$>$\newline
+class Eigen\+::\+Skyline\+Storage$<$ Scalar $>$}
+
+Stores a skyline set of values in three structures \+: The diagonal elements The upper elements The lower elements 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/src/\+Skyline/Skyline\+Storage.\+h\end{DoxyCompactItemize}

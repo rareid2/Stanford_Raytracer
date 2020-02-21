@@ -1,0 +1,166 @@
+\hypertarget{class_eigen_1_1internal_1_1_compressed_storage}{}\doxysection{Eigen\+::internal\+::Compressed\+Storage$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$ Class Template Reference}
+\label{class_eigen_1_1internal_1_1_compressed_storage}\index{Eigen::internal::CompressedStorage$<$ \_Scalar, \_StorageIndex $>$@{Eigen::internal::CompressedStorage$<$ \_Scalar, \_StorageIndex $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_compressed_storage_a6714e298df525bf3e02d175b08cd6cba}\label{class_eigen_1_1internal_1_1_compressed_storage_a6714e298df525bf3e02d175b08cd6cba}} 
+typedef \+\_\+\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_compressed_storage_ad2b97b9facd3f5d9735f0dfc062e31de}\label{class_eigen_1_1internal_1_1_compressed_storage_ad2b97b9facd3f5d9735f0dfc062e31de}} 
+typedef \+\_\+\+Storage\+Index {\bfseries Storage\+Index}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_compressed_storage_a259255414bcca5b0f874422b814adcd8}\label{class_eigen_1_1internal_1_1_compressed_storage_a259255414bcca5b0f874422b814adcd8}} 
+{\bfseries Compressed\+Storage} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} size)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_compressed_storage_a58e4d0458b53f8261fbb6547ae2c5cb7}\label{class_eigen_1_1internal_1_1_compressed_storage_a58e4d0458b53f8261fbb6547ae2c5cb7}} 
+{\bfseries Compressed\+Storage} (const \mbox{\hyperlink{class_eigen_1_1internal_1_1_compressed_storage}{Compressed\+Storage}} \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_compressed_storage_a76413b8626d4ef2bd1681cbfb7d16dbd}\label{class_eigen_1_1internal_1_1_compressed_storage_a76413b8626d4ef2bd1681cbfb7d16dbd}} 
+\mbox{\hyperlink{class_eigen_1_1internal_1_1_compressed_storage}{Compressed\+Storage}} \& {\bfseries operator=} (const \mbox{\hyperlink{class_eigen_1_1internal_1_1_compressed_storage}{Compressed\+Storage}} \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_compressed_storage_ab767a66ceffd14d21475675eb4f6fb23}\label{class_eigen_1_1internal_1_1_compressed_storage_ab767a66ceffd14d21475675eb4f6fb23}} 
+void {\bfseries swap} (\mbox{\hyperlink{class_eigen_1_1internal_1_1_compressed_storage}{Compressed\+Storage}} \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_compressed_storage_a1c32b23ec703d56e9087ae378f96c311}\label{class_eigen_1_1internal_1_1_compressed_storage_a1c32b23ec703d56e9087ae378f96c311}} 
+void {\bfseries reserve} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} size)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_compressed_storage_aa8809423ddf2e140945668acecc32ad5}\label{class_eigen_1_1internal_1_1_compressed_storage_aa8809423ddf2e140945668acecc32ad5}} 
+void {\bfseries squeeze} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_compressed_storage_ab303161d4a86c4b562b1d604025dafbd}\label{class_eigen_1_1internal_1_1_compressed_storage_ab303161d4a86c4b562b1d604025dafbd}} 
+void {\bfseries resize} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} size, double reserve\+Size\+Factor=0)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_compressed_storage_a881cd25a78ee12eb7b775c537e95e89d}\label{class_eigen_1_1internal_1_1_compressed_storage_a881cd25a78ee12eb7b775c537e95e89d}} 
+void {\bfseries append} (const Scalar \&v, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} i)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_compressed_storage_a3af1e9ce60526daec87ddb034d017dd5}\label{class_eigen_1_1internal_1_1_compressed_storage_a3af1e9ce60526daec87ddb034d017dd5}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries size} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_compressed_storage_a5bbb43e8d508c3e96acb1dab527bdd1c}\label{class_eigen_1_1internal_1_1_compressed_storage_a5bbb43e8d508c3e96acb1dab527bdd1c}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries allocated\+Size} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_compressed_storage_a827850622e91b53a2fafd0d15fcfcc8f}\label{class_eigen_1_1internal_1_1_compressed_storage_a827850622e91b53a2fafd0d15fcfcc8f}} 
+void {\bfseries clear} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_compressed_storage_a8f8804967f17640208ce219d06ae9892}\label{class_eigen_1_1internal_1_1_compressed_storage_a8f8804967f17640208ce219d06ae9892}} 
+const Scalar $\ast$ {\bfseries value\+Ptr} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_compressed_storage_ad65af688bcf021fc1da716b15f11712a}\label{class_eigen_1_1internal_1_1_compressed_storage_ad65af688bcf021fc1da716b15f11712a}} 
+Scalar $\ast$ {\bfseries value\+Ptr} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_compressed_storage_a9e973b7ef77b5d46b369b5523e81d4b0}\label{class_eigen_1_1internal_1_1_compressed_storage_a9e973b7ef77b5d46b369b5523e81d4b0}} 
+const Storage\+Index $\ast$ {\bfseries index\+Ptr} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_compressed_storage_a7ad2418d8872a7c45893cf7214e38b0c}\label{class_eigen_1_1internal_1_1_compressed_storage_a7ad2418d8872a7c45893cf7214e38b0c}} 
+Storage\+Index $\ast$ {\bfseries index\+Ptr} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_compressed_storage_ad6a4470fdf50980c03ddf7b8bebaea41}\label{class_eigen_1_1internal_1_1_compressed_storage_ad6a4470fdf50980c03ddf7b8bebaea41}} 
+Scalar \& {\bfseries value} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} i)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_compressed_storage_adf4c880439d02baea59468a63f7cb14f}\label{class_eigen_1_1internal_1_1_compressed_storage_adf4c880439d02baea59468a63f7cb14f}} 
+const Scalar \& {\bfseries value} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} i) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_compressed_storage_a04f1c912dad61d2620a53c9418a9f906}\label{class_eigen_1_1internal_1_1_compressed_storage_a04f1c912dad61d2620a53c9418a9f906}} 
+Storage\+Index \& {\bfseries index} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} i)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_compressed_storage_a7bec4e88206a90b374af95e64e1879f3}\label{class_eigen_1_1internal_1_1_compressed_storage_a7bec4e88206a90b374af95e64e1879f3}} 
+const Storage\+Index \& {\bfseries index} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} i) const
+\item 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_compressed_storage_ad96105b5ab19886e96076513eab77da5}{search\+Lower\+Index}} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} key) const
+\item 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_compressed_storage_a250b3282557fc6da7cf505f93ab5ad59}{search\+Lower\+Index}} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} start, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} end, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} key) const
+\item 
+Scalar \mbox{\hyperlink{class_eigen_1_1internal_1_1_compressed_storage_a0fe151c0217177fd43df764e8e0cdec2}{at}} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} key, const Scalar \&default\+Value=Scalar(0)) const
+\item 
+Scalar \mbox{\hyperlink{class_eigen_1_1internal_1_1_compressed_storage_a70c2745dd270aaa44b415ec2e9bf2ae0}{at\+In\+Range}} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} start, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} end, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} key, const Scalar \&default\+Value=Scalar(0)) const
+\item 
+Scalar \& \mbox{\hyperlink{class_eigen_1_1internal_1_1_compressed_storage_a8621aa0d1d0e27b025d41b9321968357}{at\+With\+Insertion}} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} key, const Scalar \&default\+Value=Scalar(0))
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_compressed_storage_ab82e42c20bd4522475aec0dd61835259}\label{class_eigen_1_1internal_1_1_compressed_storage_ab82e42c20bd4522475aec0dd61835259}} 
+void {\bfseries prune} (const Scalar \&reference, const Real\+Scalar \&epsilon=\mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$ Real\+Scalar $>$\+::dummy\+\_\+precision())
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_compressed_storage_ac74d44c0ee51ef7b98d274c6a10fbf93}\label{class_eigen_1_1internal_1_1_compressed_storage_ac74d44c0ee51ef7b98d274c6a10fbf93}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$ Scalar $>$\+::Real {\bfseries Real\+Scalar}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_compressed_storage_ad9e41dc861c361ecc304fcff83da9ecd}\label{class_eigen_1_1internal_1_1_compressed_storage_ad9e41dc861c361ecc304fcff83da9ecd}} 
+void {\bfseries reallocate} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} size)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_compressed_storage_ac620bc6061b228c215b81cf106c728c8}\label{class_eigen_1_1internal_1_1_compressed_storage_ac620bc6061b228c215b81cf106c728c8}} 
+Scalar $\ast$ {\bfseries m\+\_\+values}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_compressed_storage_a41723f152d917dcf64f5b6e8b967f2e3}\label{class_eigen_1_1internal_1_1_compressed_storage_a41723f152d917dcf64f5b6e8b967f2e3}} 
+Storage\+Index $\ast$ {\bfseries m\+\_\+indices}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_compressed_storage_a8ef874ccc231de5fa4ee688092d31d1f}\label{class_eigen_1_1internal_1_1_compressed_storage_a8ef874ccc231de5fa4ee688092d31d1f}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries m\+\_\+size}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_compressed_storage_a9e133beed1bcc4582da39c00d9d08ee2}\label{class_eigen_1_1internal_1_1_compressed_storage_a9e133beed1bcc4582da39c00d9d08ee2}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries m\+\_\+allocated\+Size}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_compressed_storage_a0fe151c0217177fd43df764e8e0cdec2}\label{class_eigen_1_1internal_1_1_compressed_storage_a0fe151c0217177fd43df764e8e0cdec2}} 
+\index{Eigen::internal::CompressedStorage$<$ \_Scalar, \_StorageIndex $>$@{Eigen::internal::CompressedStorage$<$ \_Scalar, \_StorageIndex $>$}!at@{at}}
+\index{at@{at}!Eigen::internal::CompressedStorage$<$ \_Scalar, \_StorageIndex $>$@{Eigen::internal::CompressedStorage$<$ \_Scalar, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{at()}{at()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Storage\+Index $>$ \\
+Scalar \mbox{\hyperlink{class_eigen_1_1internal_1_1_compressed_storage}{Eigen\+::internal\+::\+Compressed\+Storage}}$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$\+::at (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{key,  }\item[{const Scalar \&}]{default\+Value = {\ttfamily Scalar(0)} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the stored value at index {\itshape key} If the value does not exist, then the value {\itshape default\+Value} is returned without any insertion. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_compressed_storage_a70c2745dd270aaa44b415ec2e9bf2ae0}\label{class_eigen_1_1internal_1_1_compressed_storage_a70c2745dd270aaa44b415ec2e9bf2ae0}} 
+\index{Eigen::internal::CompressedStorage$<$ \_Scalar, \_StorageIndex $>$@{Eigen::internal::CompressedStorage$<$ \_Scalar, \_StorageIndex $>$}!atInRange@{atInRange}}
+\index{atInRange@{atInRange}!Eigen::internal::CompressedStorage$<$ \_Scalar, \_StorageIndex $>$@{Eigen::internal::CompressedStorage$<$ \_Scalar, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{atInRange()}{atInRange()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Storage\+Index $>$ \\
+Scalar \mbox{\hyperlink{class_eigen_1_1internal_1_1_compressed_storage}{Eigen\+::internal\+::\+Compressed\+Storage}}$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$\+::at\+In\+Range (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{start,  }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{end,  }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{key,  }\item[{const Scalar \&}]{default\+Value = {\ttfamily Scalar(0)} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Like \mbox{\hyperlink{class_eigen_1_1internal_1_1_compressed_storage_a0fe151c0217177fd43df764e8e0cdec2}{at()}}, but the search is performed in the range \mbox{[}start,end) \mbox{\Hypertarget{class_eigen_1_1internal_1_1_compressed_storage_a8621aa0d1d0e27b025d41b9321968357}\label{class_eigen_1_1internal_1_1_compressed_storage_a8621aa0d1d0e27b025d41b9321968357}} 
+\index{Eigen::internal::CompressedStorage$<$ \_Scalar, \_StorageIndex $>$@{Eigen::internal::CompressedStorage$<$ \_Scalar, \_StorageIndex $>$}!atWithInsertion@{atWithInsertion}}
+\index{atWithInsertion@{atWithInsertion}!Eigen::internal::CompressedStorage$<$ \_Scalar, \_StorageIndex $>$@{Eigen::internal::CompressedStorage$<$ \_Scalar, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{atWithInsertion()}{atWithInsertion()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Storage\+Index $>$ \\
+Scalar\& \mbox{\hyperlink{class_eigen_1_1internal_1_1_compressed_storage}{Eigen\+::internal\+::\+Compressed\+Storage}}$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$\+::at\+With\+Insertion (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{key,  }\item[{const Scalar \&}]{default\+Value = {\ttfamily Scalar(0)} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a reference to the value at index {\itshape key} If the value does not exist, then the value {\itshape default\+Value} is inserted such that the keys are sorted. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_compressed_storage_ad96105b5ab19886e96076513eab77da5}\label{class_eigen_1_1internal_1_1_compressed_storage_ad96105b5ab19886e96076513eab77da5}} 
+\index{Eigen::internal::CompressedStorage$<$ \_Scalar, \_StorageIndex $>$@{Eigen::internal::CompressedStorage$<$ \_Scalar, \_StorageIndex $>$}!searchLowerIndex@{searchLowerIndex}}
+\index{searchLowerIndex@{searchLowerIndex}!Eigen::internal::CompressedStorage$<$ \_Scalar, \_StorageIndex $>$@{Eigen::internal::CompressedStorage$<$ \_Scalar, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{searchLowerIndex()}{searchLowerIndex()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Storage\+Index $>$ \\
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_compressed_storage}{Eigen\+::internal\+::\+Compressed\+Storage}}$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$\+::search\+Lower\+Index (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{key }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the largest {\ttfamily k} such that for all {\ttfamily j} in \mbox{[}0,k) index\mbox{[}{\ttfamily j}\mbox{]}$<${\itshape key} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_compressed_storage_a250b3282557fc6da7cf505f93ab5ad59}\label{class_eigen_1_1internal_1_1_compressed_storage_a250b3282557fc6da7cf505f93ab5ad59}} 
+\index{Eigen::internal::CompressedStorage$<$ \_Scalar, \_StorageIndex $>$@{Eigen::internal::CompressedStorage$<$ \_Scalar, \_StorageIndex $>$}!searchLowerIndex@{searchLowerIndex}}
+\index{searchLowerIndex@{searchLowerIndex}!Eigen::internal::CompressedStorage$<$ \_Scalar, \_StorageIndex $>$@{Eigen::internal::CompressedStorage$<$ \_Scalar, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{searchLowerIndex()}{searchLowerIndex()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Storage\+Index $>$ \\
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_compressed_storage}{Eigen\+::internal\+::\+Compressed\+Storage}}$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$\+::search\+Lower\+Index (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{start,  }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{end,  }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{key }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the largest {\ttfamily k} in \mbox{[}start,end) such that for all {\ttfamily j} in \mbox{[}start,k) index\mbox{[}{\ttfamily j}\mbox{]}$<${\itshape key} 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Sparse\+Core/Compressed\+Storage.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,165 @@
+\hypertarget{class_eigen_1_1_sparse_map_base_3_01_derived_00_01_write_accessors_01_4}{}\doxysection{Eigen\+::Sparse\+Map\+Base$<$ Derived, Write\+Accessors $>$ Class Template Reference}
+\label{class_eigen_1_1_sparse_map_base_3_01_derived_00_01_write_accessors_01_4}\index{Eigen::SparseMapBase$<$ Derived, WriteAccessors $>$@{Eigen::SparseMapBase$<$ Derived, WriteAccessors $>$}}
+
+
+Common base class for writable \mbox{\hyperlink{class_eigen_1_1_map}{Map}} and \mbox{\hyperlink{class_eigen_1_1_ref}{Ref}} instance of sparse matrix and vector.  
+
+
+
+
+{\ttfamily \#include $<$Sparse\+Map.\+h$>$}
+
+Inheritance diagram for Eigen\+::Sparse\+Map\+Base$<$ Derived, Write\+Accessors $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_eigen_1_1_sparse_map_base_3_01_derived_00_01_write_accessors_01_4}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_map_base_3_01_derived_00_01_write_accessors_01_4_aa0d69fce402191a8f7803d88e998621f}\label{class_eigen_1_1_sparse_map_base_3_01_derived_00_01_write_accessors_01_4_aa0d69fce402191a8f7803d88e998621f}} 
+enum \{ {\bfseries Is\+Row\+Major} = Base\+::Is\+Row\+Major
+ \}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_map_base_3_01_derived_00_01_write_accessors_01_4_ae33622dce3c8800de55534a78c673540}\label{class_eigen_1_1_sparse_map_base_3_01_derived_00_01_write_accessors_01_4_ae33622dce3c8800de55534a78c673540}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_sparse_map_base}{Sparse\+Map\+Base}}$<$ Derived, \mbox{\hyperlink{group__enums_gga9f93eac38eb83deb0e8dbd42ddf11d5daa1f2b0e6a668b11f2958940965d2b572}{Read\+Only\+Accessors}} $>$ {\bfseries Base}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_map_base_3_01_derived_00_01_write_accessors_01_4_ad78fc4c39908fb26839cfdd6aa838b0b}\label{class_eigen_1_1_sparse_map_base_3_01_derived_00_01_write_accessors_01_4_ad78fc4c39908fb26839cfdd6aa838b0b}} 
+typedef Base\+::\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_map_base_3_01_derived_00_01_write_accessors_01_4_a62e0d49b60be6e2139a0f032ec251b1c}\label{class_eigen_1_1_sparse_map_base_3_01_derived_00_01_write_accessors_01_4_a62e0d49b60be6e2139a0f032ec251b1c}} 
+typedef Base\+::\+Storage\+Index {\bfseries Storage\+Index}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Scalar $\ast$ \mbox{\hyperlink{class_eigen_1_1_sparse_map_base_3_01_derived_00_01_write_accessors_01_4_af91648a18729ae8ff29cb1d8751c5655}{value\+Ptr}} ()
+\item 
+Storage\+Index $\ast$ \mbox{\hyperlink{class_eigen_1_1_sparse_map_base_3_01_derived_00_01_write_accessors_01_4_af5cd1f13dde8578eb9891a4ac4a11977}{inner\+Index\+Ptr}} ()
+\item 
+Storage\+Index $\ast$ \mbox{\hyperlink{class_eigen_1_1_sparse_map_base_3_01_derived_00_01_write_accessors_01_4_a3b74af754254837fc591cd9936688b95}{outer\+Index\+Ptr}} ()
+\item 
+Storage\+Index $\ast$ \mbox{\hyperlink{class_eigen_1_1_sparse_map_base_3_01_derived_00_01_write_accessors_01_4_af877ea4e285a4497f80987fea66f7459}{inner\+Non\+Zero\+Ptr}} ()
+\item 
+Scalar \& \mbox{\hyperlink{class_eigen_1_1_sparse_map_base_3_01_derived_00_01_write_accessors_01_4_aa9c42d48b9dd6f947ce3c257fe4bf2ca}{coeff\+Ref}} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_map_base_3_01_derived_00_01_write_accessors_01_4_a4d5c87bc7ef16390eb48763853859c83}\label{class_eigen_1_1_sparse_map_base_3_01_derived_00_01_write_accessors_01_4_a4d5c87bc7ef16390eb48763853859c83}} 
+{\bfseries Sparse\+Map\+Base} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_sparse_map_base_3_01_derived_00_01_read_only_accessors_01_4_a3cdd6cab0abd7ac01925a695fc315d34}{rows}}, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_sparse_map_base_3_01_derived_00_01_read_only_accessors_01_4_a0fc44f3781a869a3a410edd6691fd899}{cols}}, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} nnz, Storage\+Index $\ast$\mbox{\hyperlink{class_eigen_1_1_sparse_map_base_3_01_derived_00_01_write_accessors_01_4_a3b74af754254837fc591cd9936688b95}{outer\+Index\+Ptr}}, Storage\+Index $\ast$\mbox{\hyperlink{class_eigen_1_1_sparse_map_base_3_01_derived_00_01_write_accessors_01_4_af5cd1f13dde8578eb9891a4ac4a11977}{inner\+Index\+Ptr}}, Scalar $\ast$\mbox{\hyperlink{class_eigen_1_1_sparse_map_base_3_01_derived_00_01_write_accessors_01_4_af91648a18729ae8ff29cb1d8751c5655}{value\+Ptr}}, Storage\+Index $\ast$inner\+Non\+Zeros\+Ptr=0)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_map_base_3_01_derived_00_01_write_accessors_01_4_a13d2e01e0bb556db1e6e8ebc0dcc9d13}\label{class_eigen_1_1_sparse_map_base_3_01_derived_00_01_write_accessors_01_4_a13d2e01e0bb556db1e6e8ebc0dcc9d13}} 
+{\bfseries Sparse\+Map\+Base} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} size, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} nnz, Storage\+Index $\ast$\mbox{\hyperlink{class_eigen_1_1_sparse_map_base_3_01_derived_00_01_write_accessors_01_4_af5cd1f13dde8578eb9891a4ac4a11977}{inner\+Index\+Ptr}}, Scalar $\ast$\mbox{\hyperlink{class_eigen_1_1_sparse_map_base_3_01_derived_00_01_write_accessors_01_4_af91648a18729ae8ff29cb1d8751c5655}{value\+Ptr}})
+\item 
+\mbox{\hyperlink{class_eigen_1_1_sparse_map_base_3_01_derived_00_01_write_accessors_01_4_a4dfbcf3ac411885b1710ad04892c984d}{$\sim$\+Sparse\+Map\+Base}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Derived$>$\newline
+class Eigen\+::\+Sparse\+Map\+Base$<$ Derived, Write\+Accessors $>$}
+
+Common base class for writable \mbox{\hyperlink{class_eigen_1_1_map}{Map}} and \mbox{\hyperlink{class_eigen_1_1_ref}{Ref}} instance of sparse matrix and vector. 
+
+class \mbox{\hyperlink{class_eigen_1_1_sparse_map_base}{Sparse\+Map\+Base}} 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_map_base_3_01_derived_00_01_write_accessors_01_4_a4dfbcf3ac411885b1710ad04892c984d}\label{class_eigen_1_1_sparse_map_base_3_01_derived_00_01_write_accessors_01_4_a4dfbcf3ac411885b1710ad04892c984d}} 
+\index{Eigen::SparseMapBase$<$ Derived, WriteAccessors $>$@{Eigen::SparseMapBase$<$ Derived, WriteAccessors $>$}!````~SparseMapBase@{$\sim$SparseMapBase}}
+\index{````~SparseMapBase@{$\sim$SparseMapBase}!Eigen::SparseMapBase$<$ Derived, WriteAccessors $>$@{Eigen::SparseMapBase$<$ Derived, WriteAccessors $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$SparseMapBase()}{~SparseMapBase()}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_sparse_map_base}{Eigen\+::\+Sparse\+Map\+Base}}$<$ Derived, \mbox{\hyperlink{group__enums_gga9f93eac38eb83deb0e8dbd42ddf11d5dabcadf08230fb1a5ef7b3195745d3a458}{Write\+Accessors}} $>$\+::$\sim$\mbox{\hyperlink{class_eigen_1_1_sparse_map_base}{Sparse\+Map\+Base}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Empty destructor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_map_base_3_01_derived_00_01_write_accessors_01_4_aa9c42d48b9dd6f947ce3c257fe4bf2ca}\label{class_eigen_1_1_sparse_map_base_3_01_derived_00_01_write_accessors_01_4_aa9c42d48b9dd6f947ce3c257fe4bf2ca}} 
+\index{Eigen::SparseMapBase$<$ Derived, WriteAccessors $>$@{Eigen::SparseMapBase$<$ Derived, WriteAccessors $>$}!coeffRef@{coeffRef}}
+\index{coeffRef@{coeffRef}!Eigen::SparseMapBase$<$ Derived, WriteAccessors $>$@{Eigen::SparseMapBase$<$ Derived, WriteAccessors $>$}}
+\doxysubsubsection{\texorpdfstring{coeffRef()}{coeffRef()}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+Scalar\& \mbox{\hyperlink{class_eigen_1_1_sparse_map_base}{Eigen\+::\+Sparse\+Map\+Base}}$<$ Derived, \mbox{\hyperlink{group__enums_gga9f93eac38eb83deb0e8dbd42ddf11d5dabcadf08230fb1a5ef7b3195745d3a458}{Write\+Accessors}} $>$\+::coeff\+Ref (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{row,  }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{col }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+\begin{DoxyReturn}{Returns}
+a non-\/const reference to the value of the matrix at position {\itshape i}, {\itshape j} 
+\end{DoxyReturn}
+If the element does not exist then it is inserted via the insert(\+Index,\+Index) function which itself turns the matrix into a non compressed form if that was not the case.
+
+This is a O(log(nnz\+\_\+j)) operation (binary search) plus the cost of insert(\+Index,\+Index) function if the element does not already exist. \mbox{\Hypertarget{class_eigen_1_1_sparse_map_base_3_01_derived_00_01_write_accessors_01_4_af5cd1f13dde8578eb9891a4ac4a11977}\label{class_eigen_1_1_sparse_map_base_3_01_derived_00_01_write_accessors_01_4_af5cd1f13dde8578eb9891a4ac4a11977}} 
+\index{Eigen::SparseMapBase$<$ Derived, WriteAccessors $>$@{Eigen::SparseMapBase$<$ Derived, WriteAccessors $>$}!innerIndexPtr@{innerIndexPtr}}
+\index{innerIndexPtr@{innerIndexPtr}!Eigen::SparseMapBase$<$ Derived, WriteAccessors $>$@{Eigen::SparseMapBase$<$ Derived, WriteAccessors $>$}}
+\doxysubsubsection{\texorpdfstring{innerIndexPtr()}{innerIndexPtr()}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+Storage\+Index$\ast$ \mbox{\hyperlink{class_eigen_1_1_sparse_map_base}{Eigen\+::\+Sparse\+Map\+Base}}$<$ Derived, \mbox{\hyperlink{group__enums_gga9f93eac38eb83deb0e8dbd42ddf11d5dabcadf08230fb1a5ef7b3195745d3a458}{Write\+Accessors}} $>$\+::inner\+Index\+Ptr (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+\begin{DoxyReturn}{Returns}
+a const pointer to the array of inner indices. This function is aimed at interoperability with other libraries. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_sparse_map_base_3_01_derived_00_01_write_accessors_01_4_af91648a18729ae8ff29cb1d8751c5655}{value\+Ptr()}}, \mbox{\hyperlink{class_eigen_1_1_sparse_map_base_3_01_derived_00_01_write_accessors_01_4_a3b74af754254837fc591cd9936688b95}{outer\+Index\+Ptr()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_map_base_3_01_derived_00_01_write_accessors_01_4_af877ea4e285a4497f80987fea66f7459}\label{class_eigen_1_1_sparse_map_base_3_01_derived_00_01_write_accessors_01_4_af877ea4e285a4497f80987fea66f7459}} 
+\index{Eigen::SparseMapBase$<$ Derived, WriteAccessors $>$@{Eigen::SparseMapBase$<$ Derived, WriteAccessors $>$}!innerNonZeroPtr@{innerNonZeroPtr}}
+\index{innerNonZeroPtr@{innerNonZeroPtr}!Eigen::SparseMapBase$<$ Derived, WriteAccessors $>$@{Eigen::SparseMapBase$<$ Derived, WriteAccessors $>$}}
+\doxysubsubsection{\texorpdfstring{innerNonZeroPtr()}{innerNonZeroPtr()}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+Storage\+Index$\ast$ \mbox{\hyperlink{class_eigen_1_1_sparse_map_base}{Eigen\+::\+Sparse\+Map\+Base}}$<$ Derived, \mbox{\hyperlink{group__enums_gga9f93eac38eb83deb0e8dbd42ddf11d5dabcadf08230fb1a5ef7b3195745d3a458}{Write\+Accessors}} $>$\+::inner\+Non\+Zero\+Ptr (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+\begin{DoxyReturn}{Returns}
+a const pointer to the array of the number of non zeros of the inner vectors. This function is aimed at interoperability with other libraries. 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+it returns the null pointer 0 in compressed mode 
+\end{DoxyWarning}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_map_base_3_01_derived_00_01_write_accessors_01_4_a3b74af754254837fc591cd9936688b95}\label{class_eigen_1_1_sparse_map_base_3_01_derived_00_01_write_accessors_01_4_a3b74af754254837fc591cd9936688b95}} 
+\index{Eigen::SparseMapBase$<$ Derived, WriteAccessors $>$@{Eigen::SparseMapBase$<$ Derived, WriteAccessors $>$}!outerIndexPtr@{outerIndexPtr}}
+\index{outerIndexPtr@{outerIndexPtr}!Eigen::SparseMapBase$<$ Derived, WriteAccessors $>$@{Eigen::SparseMapBase$<$ Derived, WriteAccessors $>$}}
+\doxysubsubsection{\texorpdfstring{outerIndexPtr()}{outerIndexPtr()}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+Storage\+Index$\ast$ \mbox{\hyperlink{class_eigen_1_1_sparse_map_base}{Eigen\+::\+Sparse\+Map\+Base}}$<$ Derived, \mbox{\hyperlink{group__enums_gga9f93eac38eb83deb0e8dbd42ddf11d5dabcadf08230fb1a5ef7b3195745d3a458}{Write\+Accessors}} $>$\+::outer\+Index\+Ptr (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+\begin{DoxyReturn}{Returns}
+a const pointer to the array of the starting positions of the inner vectors. This function is aimed at interoperability with other libraries. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_sparse_map_base_3_01_derived_00_01_write_accessors_01_4_af91648a18729ae8ff29cb1d8751c5655}{value\+Ptr()}}, \mbox{\hyperlink{class_eigen_1_1_sparse_map_base_3_01_derived_00_01_write_accessors_01_4_af5cd1f13dde8578eb9891a4ac4a11977}{inner\+Index\+Ptr()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_map_base_3_01_derived_00_01_write_accessors_01_4_af91648a18729ae8ff29cb1d8751c5655}\label{class_eigen_1_1_sparse_map_base_3_01_derived_00_01_write_accessors_01_4_af91648a18729ae8ff29cb1d8751c5655}} 
+\index{Eigen::SparseMapBase$<$ Derived, WriteAccessors $>$@{Eigen::SparseMapBase$<$ Derived, WriteAccessors $>$}!valuePtr@{valuePtr}}
+\index{valuePtr@{valuePtr}!Eigen::SparseMapBase$<$ Derived, WriteAccessors $>$@{Eigen::SparseMapBase$<$ Derived, WriteAccessors $>$}}
+\doxysubsubsection{\texorpdfstring{valuePtr()}{valuePtr()}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+Scalar$\ast$ \mbox{\hyperlink{class_eigen_1_1_sparse_map_base}{Eigen\+::\+Sparse\+Map\+Base}}$<$ Derived, \mbox{\hyperlink{group__enums_gga9f93eac38eb83deb0e8dbd42ddf11d5dabcadf08230fb1a5ef7b3195745d3a458}{Write\+Accessors}} $>$\+::value\+Ptr (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+\begin{DoxyReturn}{Returns}
+a const pointer to the array of values. This function is aimed at interoperability with other libraries. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_sparse_map_base_3_01_derived_00_01_write_accessors_01_4_af5cd1f13dde8578eb9891a4ac4a11977}{inner\+Index\+Ptr()}}, \mbox{\hyperlink{class_eigen_1_1_sparse_map_base_3_01_derived_00_01_write_accessors_01_4_a3b74af754254837fc591cd9936688b95}{outer\+Index\+Ptr()}} 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Sparse\+Core/Sparse\+Map.\+h\end{DoxyCompactItemize}

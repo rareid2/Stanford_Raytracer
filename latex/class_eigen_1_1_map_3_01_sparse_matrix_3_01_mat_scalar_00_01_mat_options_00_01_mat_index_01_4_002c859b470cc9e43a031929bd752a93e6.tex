@@ -1,0 +1,76 @@
+\hypertarget{class_eigen_1_1_map_3_01_sparse_matrix_3_01_mat_scalar_00_01_mat_options_00_01_mat_index_01_4_002c859b470cc9e43a031929bd752a93e6}{}\doxysection{Eigen\+::Map$<$ Sparse\+Matrix$<$ Mat\+Scalar, Mat\+Options, Mat\+Index $>$, Options, Stride\+Type $>$ Class Template Reference}
+\label{class_eigen_1_1_map_3_01_sparse_matrix_3_01_mat_scalar_00_01_mat_options_00_01_mat_index_01_4_002c859b470cc9e43a031929bd752a93e6}\index{Eigen::Map$<$ SparseMatrix$<$ MatScalar, MatOptions, MatIndex $>$, Options, StrideType $>$@{Eigen::Map$<$ SparseMatrix$<$ MatScalar, MatOptions, MatIndex $>$, Options, StrideType $>$}}
+
+
+Specialization of class \mbox{\hyperlink{class_eigen_1_1_map}{Map}} for Sparse\+Matrix-\/like storage.  
+
+
+
+
+{\ttfamily \#include $<$Sparse\+Map.\+h$>$}
+
+Inheritance diagram for Eigen\+::Map$<$ Sparse\+Matrix$<$ Mat\+Scalar, Mat\+Options, Mat\+Index $>$, Options, Stride\+Type $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.761006cm]{class_eigen_1_1_map_3_01_sparse_matrix_3_01_mat_scalar_00_01_mat_options_00_01_mat_index_01_4_002c859b470cc9e43a031929bd752a93e6}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_map_3_01_sparse_matrix_3_01_mat_scalar_00_01_mat_options_00_01_mat_index_01_4_002c859b470cc9e43a031929bd752a93e6_aa71cafb24f9bce601c68595f8b906e0b}\label{class_eigen_1_1_map_3_01_sparse_matrix_3_01_mat_scalar_00_01_mat_options_00_01_mat_index_01_4_002c859b470cc9e43a031929bd752a93e6_aa71cafb24f9bce601c68595f8b906e0b}} 
+enum \{ {\bfseries Is\+Row\+Major} = Base\+::Is\+Row\+Major
+ \}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_map_3_01_sparse_matrix_3_01_mat_scalar_00_01_mat_options_00_01_mat_index_01_4_002c859b470cc9e43a031929bd752a93e6_a46ebd3daf3b4cd2a77b48c6150b56e36}\label{class_eigen_1_1_map_3_01_sparse_matrix_3_01_mat_scalar_00_01_mat_options_00_01_mat_index_01_4_002c859b470cc9e43a031929bd752a93e6_a46ebd3daf3b4cd2a77b48c6150b56e36}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_sparse_map_base}{Sparse\+Map\+Base}}$<$ \mbox{\hyperlink{class_eigen_1_1_map}{Map}} $>$ {\bfseries Base}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_map_3_01_sparse_matrix_3_01_mat_scalar_00_01_mat_options_00_01_mat_index_01_4_002c859b470cc9e43a031929bd752a93e6_a634ffe6952d21716ca879e107f620f19}{Map}} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} rows, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} cols, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} nnz, Storage\+Index $\ast$outer\+Index\+Ptr, Storage\+Index $\ast$inner\+Index\+Ptr, Scalar $\ast$value\+Ptr, Storage\+Index $\ast$inner\+Non\+Zeros\+Ptr=0)
+\item 
+\mbox{\hyperlink{class_eigen_1_1_map_3_01_sparse_matrix_3_01_mat_scalar_00_01_mat_options_00_01_mat_index_01_4_002c859b470cc9e43a031929bd752a93e6_a4d2900fdd8c973d24c4cfb0f0ee4f53f}{$\sim$\+Map}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Mat\+Scalar, int Mat\+Options, typename Mat\+Index, int Options, typename Stride\+Type$>$\newline
+class Eigen\+::\+Map$<$ Sparse\+Matrix$<$ Mat\+Scalar, Mat\+Options, Mat\+Index $>$, Options, Stride\+Type $>$}
+
+Specialization of class \mbox{\hyperlink{class_eigen_1_1_map}{Map}} for Sparse\+Matrix-\/like storage. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Sparse\+Matrix\+Type} & the equivalent sparse matrix type of the referenced data, it must be a template instance of class \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}}.\\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxySeeAlso}{See also}
+class \mbox{\hyperlink{class_eigen_1_1_map}{Map}}, class \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}}, class Ref$<$\+Sparse\+Matrix\+Type,\+Options$>$ 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_map_3_01_sparse_matrix_3_01_mat_scalar_00_01_mat_options_00_01_mat_index_01_4_002c859b470cc9e43a031929bd752a93e6_a634ffe6952d21716ca879e107f620f19}\label{class_eigen_1_1_map_3_01_sparse_matrix_3_01_mat_scalar_00_01_mat_options_00_01_mat_index_01_4_002c859b470cc9e43a031929bd752a93e6_a634ffe6952d21716ca879e107f620f19}} 
+\index{Eigen::Map$<$ SparseMatrix$<$ MatScalar, MatOptions, MatIndex $>$, Options, StrideType $>$@{Eigen::Map$<$ SparseMatrix$<$ MatScalar, MatOptions, MatIndex $>$, Options, StrideType $>$}!Map@{Map}}
+\index{Map@{Map}!Eigen::Map$<$ SparseMatrix$<$ MatScalar, MatOptions, MatIndex $>$, Options, StrideType $>$@{Eigen::Map$<$ SparseMatrix$<$ MatScalar, MatOptions, MatIndex $>$, Options, StrideType $>$}}
+\doxysubsubsection{\texorpdfstring{Map()}{Map()}}
+{\footnotesize\ttfamily template$<$typename Mat\+Scalar , int Mat\+Options, typename Mat\+Index , int Options, typename Stride\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_map}{Eigen\+::\+Map}}$<$ \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}}$<$ Mat\+Scalar, Mat\+Options, Mat\+Index $>$, Options, Stride\+Type $>$\+::\mbox{\hyperlink{class_eigen_1_1_map}{Map}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{rows,  }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{cols,  }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{nnz,  }\item[{Storage\+Index $\ast$}]{outer\+Index\+Ptr,  }\item[{Storage\+Index $\ast$}]{inner\+Index\+Ptr,  }\item[{Scalar $\ast$}]{value\+Ptr,  }\item[{Storage\+Index $\ast$}]{inner\+Non\+Zeros\+Ptr = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructs a read-\/write \mbox{\hyperlink{class_eigen_1_1_map}{Map}} to a sparse matrix of size {\itshape rows} x {\itshape cols}, containing {\itshape nnz} non-\/zero coefficients, stored as a sparse format as defined by the pointers {\itshape outer\+Index\+Ptr}, {\itshape inner\+Index\+Ptr}, and {\itshape value\+Ptr}. If the optional parameter {\itshape inner\+Non\+Zeros\+Ptr} is the null pointer, then a standard compressed format is assumed.
+
+This constructor is available only if {\ttfamily Sparse\+Matrix\+Type} is non-\/const.
+
+More details on the expected storage schemes are given in the \mbox{\hyperlink{group___tutorial_sparse}{manual pages}}. \mbox{\Hypertarget{class_eigen_1_1_map_3_01_sparse_matrix_3_01_mat_scalar_00_01_mat_options_00_01_mat_index_01_4_002c859b470cc9e43a031929bd752a93e6_a4d2900fdd8c973d24c4cfb0f0ee4f53f}\label{class_eigen_1_1_map_3_01_sparse_matrix_3_01_mat_scalar_00_01_mat_options_00_01_mat_index_01_4_002c859b470cc9e43a031929bd752a93e6_a4d2900fdd8c973d24c4cfb0f0ee4f53f}} 
+\index{Eigen::Map$<$ SparseMatrix$<$ MatScalar, MatOptions, MatIndex $>$, Options, StrideType $>$@{Eigen::Map$<$ SparseMatrix$<$ MatScalar, MatOptions, MatIndex $>$, Options, StrideType $>$}!````~Map@{$\sim$Map}}
+\index{````~Map@{$\sim$Map}!Eigen::Map$<$ SparseMatrix$<$ MatScalar, MatOptions, MatIndex $>$, Options, StrideType $>$@{Eigen::Map$<$ SparseMatrix$<$ MatScalar, MatOptions, MatIndex $>$, Options, StrideType $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$Map()}{~Map()}}
+{\footnotesize\ttfamily template$<$typename Mat\+Scalar , int Mat\+Options, typename Mat\+Index , int Options, typename Stride\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_map}{Eigen\+::\+Map}}$<$ \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}}$<$ Mat\+Scalar, Mat\+Options, Mat\+Index $>$, Options, Stride\+Type $>$\+::$\sim$\mbox{\hyperlink{class_eigen_1_1_map}{Map}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Empty destructor 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Sparse\+Core/Sparse\+Map.\+h\end{DoxyCompactItemize}

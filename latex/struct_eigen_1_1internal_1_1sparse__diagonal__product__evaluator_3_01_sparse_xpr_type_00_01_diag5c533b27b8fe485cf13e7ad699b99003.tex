@@ -1,0 +1,42 @@
+\hypertarget{struct_eigen_1_1internal_1_1sparse__diagonal__product__evaluator_3_01_sparse_xpr_type_00_01_diag5c533b27b8fe485cf13e7ad699b99003}{}\doxysection{Eigen\+::internal\+::sparse\+\_\+diagonal\+\_\+product\+\_\+evaluator$<$ Sparse\+Xpr\+Type, Diag\+Coeff\+Type, S\+D\+P\+\_\+\+As\+Cwise\+Product $>$ Struct Template Reference}
+\label{struct_eigen_1_1internal_1_1sparse__diagonal__product__evaluator_3_01_sparse_xpr_type_00_01_diag5c533b27b8fe485cf13e7ad699b99003}\index{Eigen::internal::sparse\_diagonal\_product\_evaluator$<$ SparseXprType, DiagCoeffType, SDP\_AsCwiseProduct $>$@{Eigen::internal::sparse\_diagonal\_product\_evaluator$<$ SparseXprType, DiagCoeffType, SDP\_AsCwiseProduct $>$}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_eigen_1_1internal_1_1sparse__diagonal__product__evaluator_3_01_sparse_xpr_type_00_01_diag_f44167c623880e382ac76ec71f78299c}{Inner\+Iterator}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1sparse__diagonal__product__evaluator_3_01_sparse_xpr_type_00_01_diag5c533b27b8fe485cf13e7ad699b99003_a3cc0c942755594bbab6d47924f9f4d90}\label{struct_eigen_1_1internal_1_1sparse__diagonal__product__evaluator_3_01_sparse_xpr_type_00_01_diag5c533b27b8fe485cf13e7ad699b99003_a3cc0c942755594bbab6d47924f9f4d90}} 
+typedef Sparse\+Xpr\+Type\+::\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1sparse__diagonal__product__evaluator_3_01_sparse_xpr_type_00_01_diag5c533b27b8fe485cf13e7ad699b99003_ac566430035277187cbefefe893d20e5b}\label{struct_eigen_1_1internal_1_1sparse__diagonal__product__evaluator_3_01_sparse_xpr_type_00_01_diag5c533b27b8fe485cf13e7ad699b99003_ac566430035277187cbefefe893d20e5b}} 
+typedef Sparse\+Xpr\+Type\+::\+Storage\+Index {\bfseries Storage\+Index}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1sparse__diagonal__product__evaluator_3_01_sparse_xpr_type_00_01_diag5c533b27b8fe485cf13e7ad699b99003_a5643daa5d8bda695a2452f53a3bf0c17}\label{struct_eigen_1_1internal_1_1sparse__diagonal__product__evaluator_3_01_sparse_xpr_type_00_01_diag5c533b27b8fe485cf13e7ad699b99003_a5643daa5d8bda695a2452f53a3bf0c17}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1nested__eval}{nested\+\_\+eval}}$<$ Diag\+Coeff\+Type, Sparse\+Xpr\+Type\+::\+Is\+Row\+Major ? Sparse\+Xpr\+Type\+::\+Rows\+At\+Compile\+Time \+:Sparse\+Xpr\+Type\+::\+Cols\+At\+Compile\+Time $>$\+::type {\bfseries Diag\+Coeff\+Nested}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1sparse__diagonal__product__evaluator_3_01_sparse_xpr_type_00_01_diag5c533b27b8fe485cf13e7ad699b99003_af38a1fdbcec00837065684a356004d77}\label{struct_eigen_1_1internal_1_1sparse__diagonal__product__evaluator_3_01_sparse_xpr_type_00_01_diag5c533b27b8fe485cf13e7ad699b99003_af38a1fdbcec00837065684a356004d77}} 
+{\bfseries sparse\+\_\+diagonal\+\_\+product\+\_\+evaluator} (const Sparse\+Xpr\+Type \&sparse\+Xpr, const Diag\+Coeff\+Type \&diag\+Coeff)
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1sparse__diagonal__product__evaluator_3_01_sparse_xpr_type_00_01_diag5c533b27b8fe485cf13e7ad699b99003_a542f770b604b2d8c009169b23fe05265}\label{struct_eigen_1_1internal_1_1sparse__diagonal__product__evaluator_3_01_sparse_xpr_type_00_01_diag5c533b27b8fe485cf13e7ad699b99003_a542f770b604b2d8c009169b23fe05265}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries non\+Zeros\+Estimate} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1sparse__diagonal__product__evaluator_3_01_sparse_xpr_type_00_01_diag5c533b27b8fe485cf13e7ad699b99003_a480dc7703547d27943d9c582e3bd3873}\label{struct_eigen_1_1internal_1_1sparse__diagonal__product__evaluator_3_01_sparse_xpr_type_00_01_diag5c533b27b8fe485cf13e7ad699b99003_a480dc7703547d27943d9c582e3bd3873}} 
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1evaluator}{evaluator}}$<$ Sparse\+Xpr\+Type $>$ {\bfseries m\+\_\+sparse\+Xpr\+Eval}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1sparse__diagonal__product__evaluator_3_01_sparse_xpr_type_00_01_diag5c533b27b8fe485cf13e7ad699b99003_a7409f9ccdab3310c04bc195a04f5d8e0}\label{struct_eigen_1_1internal_1_1sparse__diagonal__product__evaluator_3_01_sparse_xpr_type_00_01_diag5c533b27b8fe485cf13e7ad699b99003_a7409f9ccdab3310c04bc195a04f5d8e0}} 
+Diag\+Coeff\+Nested {\bfseries m\+\_\+diag\+Coeff\+Nested}
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Sparse\+Core/Sparse\+Diagonal\+Product.\+h\end{DoxyCompactItemize}

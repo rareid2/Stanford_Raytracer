@@ -1,0 +1,89 @@
+\hypertarget{class_eigen_1_1_triangular_view_impl_3_01_matrix_type_00_01_mode_00_01_sparse_01_4}{}\doxysection{Eigen\+::Triangular\+View\+Impl$<$ Matrix\+Type, Mode, Sparse $>$ Class Template Reference}
+\label{class_eigen_1_1_triangular_view_impl_3_01_matrix_type_00_01_mode_00_01_sparse_01_4}\index{Eigen::TriangularViewImpl$<$ MatrixType, Mode, Sparse $>$@{Eigen::TriangularViewImpl$<$ MatrixType, Mode, Sparse $>$}}
+
+
+Base class for a triangular part in a {\bfseries{sparse}} matrix.  
+
+
+
+
+{\ttfamily \#include $<$Sparse\+Triangular\+View.\+h$>$}
+
+Inheritance diagram for Eigen\+::Triangular\+View\+Impl$<$ Matrix\+Type, Mode, Sparse $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_eigen_1_1_triangular_view_impl_3_01_matrix_type_00_01_mode_00_01_sparse_01_4}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_triangular_view_impl_3_01_matrix_type_00_01_mode_00_01_sparse_01_4_a262b4f203eaea2a8fefad54c7249cff1}\label{class_eigen_1_1_triangular_view_impl_3_01_matrix_type_00_01_mode_00_01_sparse_01_4_a262b4f203eaea2a8fefad54c7249cff1}} 
+typedef Matrix\+Type\+::\+Nested {\bfseries Matrix\+Type\+Nested}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_triangular_view_impl_3_01_matrix_type_00_01_mode_00_01_sparse_01_4_a7a3130ba4b539de4c76561ca79607f93}\label{class_eigen_1_1_triangular_view_impl_3_01_matrix_type_00_01_mode_00_01_sparse_01_4_a7a3130ba4b539de4c76561ca79607f93}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__reference}{internal\+::remove\+\_\+reference}}$<$ Matrix\+Type\+Nested $>$\+::type {\bfseries Matrix\+Type\+Nested\+Non\+Ref}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_triangular_view_impl_3_01_matrix_type_00_01_mode_00_01_sparse_01_4_a4ae2e6282dc49f205fa3c70fb4053c81}\label{class_eigen_1_1_triangular_view_impl_3_01_matrix_type_00_01_mode_00_01_sparse_01_4_a4ae2e6282dc49f205fa3c70fb4053c81}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{internal\+::remove\+\_\+all}}$<$ Matrix\+Type\+Nested $>$\+::type {\bfseries Matrix\+Type\+Nested\+Cleaned}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_triangular_view_impl_3_01_matrix_type_00_01_mode_00_01_sparse_01_4_a6a290dc48e4276fcbf574c6af28af5cc}\label{class_eigen_1_1_triangular_view_impl_3_01_matrix_type_00_01_mode_00_01_sparse_01_4_a6a290dc48e4276fcbf574c6af28af5cc}} 
+{\footnotesize template$<$typename Rhs\+Type , typename Dst\+Type $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE void {\bfseries \+\_\+solve\+\_\+impl} (const Rhs\+Type \&rhs, Dst\+Type \&dst) const
+\item 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\void \mbox{\hyperlink{class_eigen_1_1_triangular_view_impl_3_01_matrix_type_00_01_mode_00_01_sparse_01_4_a3f3385e827fcc0bf27d1ec21c80740bc}{solve\+In\+Place}} (\mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Other\+Derived $>$ \&other) const
+\item 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\void \mbox{\hyperlink{class_eigen_1_1_triangular_view_impl_3_01_matrix_type_00_01_mode_00_01_sparse_01_4_a70190d4105e1fd4f27abbf73365dfa0c}{solve\+In\+Place}} (\mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base}{Sparse\+Matrix\+Base}}$<$ Other\+Derived $>$ \&other) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_triangular_view_impl_3_01_matrix_type_00_01_mode_00_01_sparse_01_4_a3b021ddc08edc7915d178d27d269a272}\label{class_eigen_1_1_triangular_view_impl_3_01_matrix_type_00_01_mode_00_01_sparse_01_4_a3b021ddc08edc7915d178d27d269a272}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base}{Sparse\+Matrix\+Base}}$<$ \mbox{\hyperlink{class_eigen_1_1_triangular_view}{Triangular\+View\+Type}} $>$ {\bfseries Base}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_triangular_view_impl_3_01_matrix_type_00_01_mode_00_01_sparse_01_4_a47379381e1682f59b85212cf856bab2a}\label{class_eigen_1_1_triangular_view_impl_3_01_matrix_type_00_01_mode_00_01_sparse_01_4_a47379381e1682f59b85212cf856bab2a}} 
+void {\bfseries solve} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Matrix\+Type, unsigned int Mode$>$\newline
+class Eigen\+::\+Triangular\+View\+Impl$<$ Matrix\+Type, Mode, Sparse $>$}
+
+Base class for a triangular part in a {\bfseries{sparse}} matrix. 
+
+This class is an abstract base class of class \mbox{\hyperlink{class_eigen_1_1_triangular_view}{Triangular\+View}}, and objects of type \mbox{\hyperlink{class_eigen_1_1_triangular_view_impl}{Triangular\+View\+Impl}} cannot be instantiated. It extends class \mbox{\hyperlink{class_eigen_1_1_triangular_view}{Triangular\+View}} with additional methods which are available for sparse expressions only.
+
+\begin{DoxySeeAlso}{See also}
+class \mbox{\hyperlink{class_eigen_1_1_triangular_view}{Triangular\+View}}, Sparse\+Matrix\+Base\+::triangular\+View() 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_triangular_view_impl_3_01_matrix_type_00_01_mode_00_01_sparse_01_4_a3f3385e827fcc0bf27d1ec21c80740bc}\label{class_eigen_1_1_triangular_view_impl_3_01_matrix_type_00_01_mode_00_01_sparse_01_4_a3f3385e827fcc0bf27d1ec21c80740bc}} 
+\index{Eigen::TriangularViewImpl$<$ MatrixType, Mode, Sparse $>$@{Eigen::TriangularViewImpl$<$ MatrixType, Mode, Sparse $>$}!solveInPlace@{solveInPlace}}
+\index{solveInPlace@{solveInPlace}!Eigen::TriangularViewImpl$<$ MatrixType, Mode, Sparse $>$@{Eigen::TriangularViewImpl$<$ MatrixType, Mode, Sparse $>$}}
+\doxysubsubsection{\texorpdfstring{solveInPlace()}{solveInPlace()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Matrix\+Type , unsigned int Mode$>$ \\
+template$<$typename Other\+Derived $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_triangular_view_impl}{Eigen\+::\+Triangular\+View\+Impl}}$<$ Matrix\+Type, Mode, \mbox{\hyperlink{struct_eigen_1_1_sparse}{Sparse}} $>$\+::solve\+In\+Place (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Other\+Derived $>$ \&}]{other }\end{DoxyParamCaption}) const}
+
+Applies the inverse of {\ttfamily $\ast$this} to the dense vector or matrix {\itshape other}, \char`\"{}in-\/place\char`\"{} \mbox{\Hypertarget{class_eigen_1_1_triangular_view_impl_3_01_matrix_type_00_01_mode_00_01_sparse_01_4_a70190d4105e1fd4f27abbf73365dfa0c}\label{class_eigen_1_1_triangular_view_impl_3_01_matrix_type_00_01_mode_00_01_sparse_01_4_a70190d4105e1fd4f27abbf73365dfa0c}} 
+\index{Eigen::TriangularViewImpl$<$ MatrixType, Mode, Sparse $>$@{Eigen::TriangularViewImpl$<$ MatrixType, Mode, Sparse $>$}!solveInPlace@{solveInPlace}}
+\index{solveInPlace@{solveInPlace}!Eigen::TriangularViewImpl$<$ MatrixType, Mode, Sparse $>$@{Eigen::TriangularViewImpl$<$ MatrixType, Mode, Sparse $>$}}
+\doxysubsubsection{\texorpdfstring{solveInPlace()}{solveInPlace()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Matrix\+Type , unsigned int Mode$>$ \\
+template$<$typename Other\+Derived $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_triangular_view_impl}{Eigen\+::\+Triangular\+View\+Impl}}$<$ Matrix\+Type, Mode, \mbox{\hyperlink{struct_eigen_1_1_sparse}{Sparse}} $>$\+::solve\+In\+Place (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base}{Sparse\+Matrix\+Base}}$<$ Other\+Derived $>$ \&}]{other }\end{DoxyParamCaption}) const}
+
+Applies the inverse of {\ttfamily $\ast$this} to the sparse vector or matrix {\itshape other}, \char`\"{}in-\/place\char`\"{} 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Sparse\+Core/Sparse\+Triangular\+View.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,93 @@
+\hypertarget{class_eigen_1_1_diagonal_base}{}\doxysection{Eigen\+::Diagonal\+Base$<$ Derived $>$ Class Template Reference}
+\label{class_eigen_1_1_diagonal_base}\index{Eigen::DiagonalBase$<$ Derived $>$@{Eigen::DiagonalBase$<$ Derived $>$}}
+Inheritance diagram for Eigen\+::Diagonal\+Base$<$ Derived $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_eigen_1_1_diagonal_base}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_diagonal_base_a82808174d74c303961e40e75ee76a9b0}\label{class_eigen_1_1_diagonal_base_a82808174d74c303961e40e75ee76a9b0}} 
+enum \{ \newline
+{\bfseries Rows\+At\+Compile\+Time} = Diagonal\+Vector\+Type\+::Size\+At\+Compile\+Time, 
+{\bfseries Cols\+At\+Compile\+Time} = Diagonal\+Vector\+Type\+::Size\+At\+Compile\+Time, 
+{\bfseries Max\+Rows\+At\+Compile\+Time} = Diagonal\+Vector\+Type\+::Max\+Size\+At\+Compile\+Time, 
+{\bfseries Max\+Cols\+At\+Compile\+Time} = Diagonal\+Vector\+Type\+::Max\+Size\+At\+Compile\+Time, 
+\newline
+{\bfseries Is\+Vector\+At\+Compile\+Time} = 0, 
+{\bfseries Flags} = No\+Preferred\+Storage\+Order\+Bit
+ \}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_diagonal_base_a1f8d7fbcf424eca7f639213484a2d51b}\label{class_eigen_1_1_diagonal_base_a1f8d7fbcf424eca7f639213484a2d51b}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ Derived $>$\+::Diagonal\+Vector\+Type {\bfseries Diagonal\+Vector\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_diagonal_base_a1e21c32c49ea8d2053c03dab3a2e698b}\label{class_eigen_1_1_diagonal_base_a1e21c32c49ea8d2053c03dab3a2e698b}} 
+typedef Diagonal\+Vector\+Type\+::\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_diagonal_base_a8d046c4e1744039ba3bd8bcfdbc47fab}\label{class_eigen_1_1_diagonal_base_a8d046c4e1744039ba3bd8bcfdbc47fab}} 
+typedef Diagonal\+Vector\+Type\+::\+Real\+Scalar {\bfseries Real\+Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_diagonal_base_a093f1f20c042b2624e42645e407a2d6a}\label{class_eigen_1_1_diagonal_base_a093f1f20c042b2624e42645e407a2d6a}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ Derived $>$\+::Storage\+Kind {\bfseries Storage\+Kind}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_diagonal_base_a0850b562c94689d6f1b24805749fa127}\label{class_eigen_1_1_diagonal_base_a0850b562c94689d6f1b24805749fa127}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ Derived $>$\+::Storage\+Index {\bfseries Storage\+Index}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_diagonal_base_a5b03ccd914288064b6db84176fde6643}\label{class_eigen_1_1_diagonal_base_a5b03ccd914288064b6db84176fde6643}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ Scalar, Rows\+At\+Compile\+Time, Cols\+At\+Compile\+Time, 0, Max\+Rows\+At\+Compile\+Time, Max\+Cols\+At\+Compile\+Time $>$ {\bfseries Dense\+Matrix\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_diagonal_base_ab57e4c5bcb838b2fbfb7bcc6c828e3b1}\label{class_eigen_1_1_diagonal_base_ab57e4c5bcb838b2fbfb7bcc6c828e3b1}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Dense\+Matrix\+Type}} {\bfseries Dense\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_diagonal_base_a12790179b6a63c133521233851728448}\label{class_eigen_1_1_diagonal_base_a12790179b6a63c133521233851728448}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_diagonal_matrix}{Diagonal\+Matrix}}$<$ Scalar, Diagonal\+Vector\+Type\+::\+Size\+At\+Compile\+Time, Diagonal\+Vector\+Type\+::\+Max\+Size\+At\+Compile\+Time $>$ {\bfseries Plain\+Object}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_diagonal_base_abf3d0ad516e702c213e11f28bae2eb14}\label{class_eigen_1_1_diagonal_base_abf3d0ad516e702c213e11f28bae2eb14}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_diagonal_wrapper}{Diagonal\+Wrapper}}$<$ const \mbox{\hyperlink{class_eigen_1_1_cwise_unary_op}{Cwise\+Unary\+Op}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__inverse__op}{internal\+::scalar\+\_\+inverse\+\_\+op}}$<$ Scalar $>$, const Diagonal\+Vector\+Type $>$ $>$ {\bfseries Inverse\+Return\+Type}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_diagonal_base_a540c7bb89e7b6d22f16e86206352d44b}\label{class_eigen_1_1_diagonal_base_a540c7bb89e7b6d22f16e86206352d44b}} 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Derived \& {\bfseries derived} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_diagonal_base_a7469600c500a349e1b728ba86eb9b267}\label{class_eigen_1_1_diagonal_base_a7469600c500a349e1b728ba86eb9b267}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Derived \& {\bfseries derived} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_diagonal_base_a578b87659abce86f82c21e012577f64a}\label{class_eigen_1_1_diagonal_base_a578b87659abce86f82c21e012577f64a}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_matrix}{Dense\+Matrix\+Type}} {\bfseries to\+Dense\+Matrix} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_diagonal_base_a9ab78e6881fe42d3b3802b80d17d6dd7}\label{class_eigen_1_1_diagonal_base_a9ab78e6881fe42d3b3802b80d17d6dd7}} 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Diagonal\+Vector\+Type \& {\bfseries diagonal} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_diagonal_base_a094f1467bf3ebbbe0db30520275940f6}\label{class_eigen_1_1_diagonal_base_a094f1467bf3ebbbe0db30520275940f6}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Diagonal\+Vector\+Type \& {\bfseries diagonal} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_diagonal_base_a29c20477a3fc4092919fd3b0b28574f3}\label{class_eigen_1_1_diagonal_base_a29c20477a3fc4092919fd3b0b28574f3}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} {\bfseries rows} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_diagonal_base_ab2f60c33e1a0024414d6bb129d34bb4b}\label{class_eigen_1_1_diagonal_base_ab2f60c33e1a0024414d6bb129d34bb4b}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} {\bfseries cols} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_diagonal_base_af0adf1b2cb657c3adccb8d32859963bf}\label{class_eigen_1_1_diagonal_base_af0adf1b2cb657c3adccb8d32859963bf}} 
+{\footnotesize template$<$typename Matrix\+Derived $>$ }\\const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_product}{Product}}$<$ Derived, Matrix\+Derived, Lazy\+Product $>$ {\bfseries operator$\ast$} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Matrix\+Derived $>$ \&matrix) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_diagonal_base_ac8f63fcf74a74d42478d58a60ead15d7}\label{class_eigen_1_1_diagonal_base_ac8f63fcf74a74d42478d58a60ead15d7}} 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_diagonal_wrapper}{Inverse\+Return\+Type}} {\bfseries inverse} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_diagonal_base_afe87fea0023a654bc1c056415f52f292}\label{class_eigen_1_1_diagonal_base_afe87fea0023a654bc1c056415f52f292}} 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_diagonal_wrapper}{Diagonal\+Wrapper}}$<$ const E\+I\+G\+E\+N\+\_\+\+E\+X\+P\+R\+\_\+\+B\+I\+N\+A\+R\+Y\+O\+P\+\_\+\+S\+C\+A\+L\+A\+R\+\_\+\+R\+E\+T\+U\+R\+N\+\_\+\+T\+Y\+PE(Diagonal\+Vector\+Type, Scalar, product) $>$ {\bfseries operator$\ast$} (const Scalar \&scalar) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_diagonal_base_a1e152b0b7dde8955853fbdb3654e7488}\label{class_eigen_1_1_diagonal_base_a1e152b0b7dde8955853fbdb3654e7488}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const friend \mbox{\hyperlink{class_eigen_1_1_diagonal_wrapper}{Diagonal\+Wrapper}}$<$ const E\+I\+G\+E\+N\+\_\+\+S\+C\+A\+L\+A\+R\+\_\+\+B\+I\+N\+A\+R\+Y\+O\+P\+\_\+\+E\+X\+P\+R\+\_\+\+R\+E\+T\+U\+R\+N\+\_\+\+T\+Y\+PE(Scalar, Diagonal\+Vector\+Type, product) $>$ {\bfseries operator$\ast$} (const Scalar \&scalar, const \mbox{\hyperlink{class_eigen_1_1_diagonal_base}{Diagonal\+Base}} \&other)
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/Diagonal\+Matrix.\+h\end{DoxyCompactItemize}

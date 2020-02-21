@@ -1,0 +1,348 @@
+Eigen can be extended in several ways, for instance, by defining global methods, by inserting custom methods within main Eigen\textquotesingle{}s classes through the \mbox{\hyperlink{TopicCustomizing_Plugins}{plugin}} mechanism, by adding support to \mbox{\hyperlink{TopicCustomizing_CustomScalar}{custom scalar types}} etc. See below for the respective sub-\/topics.
+\begin{DoxyItemize}
+\item \mbox{\hyperlink{TopicCustomizing_Plugins}{Extending Matrix\+Base (and other classes)}}
+\item \mbox{\hyperlink{TopicCustomizing_InheritingMatrix}{Inheriting from Matrix}}
+\item \mbox{\hyperlink{TopicCustomizing_CustomScalar}{Using custom scalar types}}
+\item \mbox{\hyperlink{TopicCustomizing_NullaryExpr}{Matrix manipulation via nullary-\/expressions}}
+\item \mbox{\hyperlink{TopicNewExpressionType}{Adding a new expression type}} \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{TopicPreprocessorDirectives}{Preprocessor directives}} 
+\end{DoxySeeAlso}
+
+\end{DoxyItemize}\hypertarget{TopicCustomizing_Plugins}{}\doxysection{Extending Matrix\+Base (and other classes)}\label{TopicCustomizing_Plugins}
+In this section we will see how to add custom methods to \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}. Since all expressions and matrix types inherit \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}, adding a method to \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}} make it immediately available to all expressions ! A typical use case is, for instance, to make \mbox{\hyperlink{namespace_eigen}{Eigen}} compatible with another A\+PI.
+
+You certainly know that in C++ it is not possible to add methods to an existing class. So how that\textquotesingle{}s possible ? Here the trick is to include in the declaration of \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}} a file defined by the preprocessor token {\ttfamily E\+I\+G\+E\+N\+\_\+\+M\+A\+T\+R\+I\+X\+B\+A\+S\+E\+\_\+\+P\+L\+U\+G\+IN\+:} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{class }MatrixBase \{}
+\DoxyCodeLine{  \textcolor{comment}{// ...}}
+\DoxyCodeLine{\textcolor{preprocessor}{  \#ifdef EIGEN\_MATRIXBASE\_PLUGIN}}
+\DoxyCodeLine{\textcolor{preprocessor}{  \#include EIGEN\_MATRIXBASE\_PLUGIN}}
+\DoxyCodeLine{\textcolor{preprocessor}{  \#endif}}
+\DoxyCodeLine{\textcolor{preprocessor}{\};}}
+\end{DoxyCode}
+ Therefore to extend \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}} with your own methods you just have to create a file with your method declaration and define E\+I\+G\+E\+N\+\_\+\+M\+A\+T\+R\+I\+X\+B\+A\+S\+E\+\_\+\+P\+L\+U\+G\+IN before you include any \mbox{\hyperlink{namespace_eigen}{Eigen}}\textquotesingle{}s header file.
+
+You can extend many of the other classes used in \mbox{\hyperlink{namespace_eigen}{Eigen}} by defining similarly named preprocessor symbols. For instance, define {\ttfamily E\+I\+G\+E\+N\+\_\+\+A\+R\+R\+A\+Y\+B\+A\+S\+E\+\_\+\+P\+L\+U\+G\+IN} if you want to extend the \mbox{\hyperlink{class_eigen_1_1_array_base}{Array\+Base}} class. A full list of classes that can be extended in this way and the corresponding preprocessor symbols can be found on our page \mbox{\hyperlink{TopicPreprocessorDirectives}{Preprocessor directives}}.
+
+Here is an example of an extension file for adding methods to \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}\+: ~\newline
+{\bfseries{Matrix\+Base\+Addons.\+h}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{inline} Scalar at(uint i, uint j)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} this-\/>operator()(i,j); \}}
+\DoxyCodeLine{\textcolor{keyword}{inline} Scalar\& at(uint i, uint j) \{ \textcolor{keywordflow}{return} this-\/>operator()(i,j); \}}
+\DoxyCodeLine{\textcolor{keyword}{inline} Scalar at(uint i)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} this-\/>operator[](i); \}}
+\DoxyCodeLine{\textcolor{keyword}{inline} Scalar\& at(uint i) \{ \textcolor{keywordflow}{return} this-\/>operator[](i); \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{inline} RealScalar squaredLength()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} squaredNorm(); \}}
+\DoxyCodeLine{\textcolor{keyword}{inline} RealScalar length()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} norm(); \}}
+\DoxyCodeLine{\textcolor{keyword}{inline} RealScalar invLength(\textcolor{keywordtype}{void})\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} fast\_inv\_sqrt(squaredNorm()); \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename} OtherDerived>}
+\DoxyCodeLine{\textcolor{keyword}{inline} Scalar squaredDistanceTo(\textcolor{keyword}{const} MatrixBase<OtherDerived>\& other)\textcolor{keyword}{ const}}
+\DoxyCodeLine{\textcolor{keyword}{}\{ \textcolor{keywordflow}{return} (derived() -\/ other.derived()).squaredNorm(); \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename} OtherDerived>}
+\DoxyCodeLine{\textcolor{keyword}{inline} RealScalar distanceTo(\textcolor{keyword}{const} MatrixBase<OtherDerived>\& other)\textcolor{keyword}{ const}}
+\DoxyCodeLine{\textcolor{keyword}{}\{ \textcolor{keywordflow}{return} internal::sqrt(derived().squaredDistanceTo(other)); \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{inline} \textcolor{keywordtype}{void} scaleTo(RealScalar l) \{ RealScalar vl = norm(); \textcolor{keywordflow}{if} (vl>1e-\/9) derived() *= (l/vl); \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{inline} Transpose<Derived> transposed() \{\textcolor{keywordflow}{return} this-\/>transpose();\}}
+\DoxyCodeLine{\textcolor{keyword}{inline} \textcolor{keyword}{const} Transpose<Derived> transposed()\textcolor{keyword}{ const }\{\textcolor{keywordflow}{return} this-\/>transpose();\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{inline} uint minComponentId(\textcolor{keywordtype}{void})\textcolor{keyword}{ const  }\{ \textcolor{keywordtype}{int} i; this-\/>minCoeff(\&i); \textcolor{keywordflow}{return} i; \}}
+\DoxyCodeLine{\textcolor{keyword}{inline} uint maxComponentId(\textcolor{keywordtype}{void})\textcolor{keyword}{ const  }\{ \textcolor{keywordtype}{int} i; this-\/>maxCoeff(\&i); \textcolor{keywordflow}{return} i; \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename} OtherDerived>}
+\DoxyCodeLine{\textcolor{keywordtype}{void} makeFloor(\textcolor{keyword}{const} MatrixBase<OtherDerived>\& other) \{ derived() = derived().cwiseMin(other.derived()); \}}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename} OtherDerived>}
+\DoxyCodeLine{\textcolor{keywordtype}{void} makeCeil(\textcolor{keyword}{const} MatrixBase<OtherDerived>\& other) \{ derived() = derived().cwiseMax(other.derived()); \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{const} CwiseBinaryOp<internal::scalar\_sum\_op<Scalar>, \textcolor{keyword}{const} Derived, \textcolor{keyword}{const} ConstantReturnType>}
+\DoxyCodeLine{operator+(\textcolor{keyword}{const} Scalar\& scalar)\textcolor{keyword}{ const}}
+\DoxyCodeLine{\textcolor{keyword}{}\{ \textcolor{keywordflow}{return} CwiseBinaryOp<internal::scalar\_sum\_op<Scalar>, \textcolor{keyword}{const} Derived, \textcolor{keyword}{const} ConstantReturnType>(derived(), Constant(rows(),cols(),scalar)); \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{friend} \textcolor{keyword}{const} CwiseBinaryOp<internal::scalar\_sum\_op<Scalar>, \textcolor{keyword}{const} ConstantReturnType, Derived>}
+\DoxyCodeLine{operator+(\textcolor{keyword}{const} Scalar\& scalar, \textcolor{keyword}{const} MatrixBase<Derived>\& mat)}
+\DoxyCodeLine{\{ \textcolor{keywordflow}{return} CwiseBinaryOp<internal::scalar\_sum\_op<Scalar>, \textcolor{keyword}{const} ConstantReturnType, Derived>(Constant(rows(),cols(),scalar), mat.derived()); \}}
+\end{DoxyCode}
+
+
+Then one can the following declaration in the config.\+h or whatever prerequisites header file of his project\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define EIGEN\_MATRIXBASE\_PLUGIN "MatrixBaseAddons.h"}}
+\end{DoxyCode}
+ \hypertarget{TopicCustomizing_InheritingMatrix}{}\doxysection{Inheriting from Matrix}\label{TopicCustomizing_InheritingMatrix}
+Before inheriting from \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}, be really, I mean R\+E\+A\+L\+LY, sure that using E\+I\+G\+E\+N\+\_\+\+M\+A\+T\+R\+I\+X\+\_\+\+P\+L\+U\+G\+IN is not what you really want (see previous section). If you just need to add few members to \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}, this is the way to go.
+
+An example of when you actually need to inherit \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}, is when you have several layers of heritage such as My\+Very\+Specific\+Vector1, My\+Very\+Specific\+Vector2 -\/$>$ My\+Vector1 -\/$>$ \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}} and My\+Very\+Specific\+Vector3, My\+Very\+Specific\+Vector4 -\/$>$ My\+Vector2 -\/$>$ \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}.
+
+In order for your object to work within the Eigen framework, you need to define a few members in your inherited class.
+
+Here is a minimalistic example\+:
+
+
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+
+
+Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+
+
+This is the kind of error you can get if you don\textquotesingle{}t provide those methods \begin{DoxyVerb}error: no match for ‘operator=’ in ‘v = Eigen::operator*(
+const Eigen::MatrixBase<Eigen::Matrix<double, -0x000000001, 1, 0, -0x000000001, 1> >::Scalar&, 
+const Eigen::MatrixBase<Eigen::Matrix<double, -0x000000001, 1> >::StorageBaseType&)
+(((const Eigen::MatrixBase<Eigen::Matrix<double, -0x000000001, 1> >::StorageBaseType&)
+((const Eigen::MatrixBase<Eigen::Matrix<double, -0x000000001, 1> >::StorageBaseType*)(& v))))’
+\end{DoxyVerb}
+ \hypertarget{TopicCustomizing_CustomScalar}{}\doxysection{Using custom scalar types}\label{TopicCustomizing_CustomScalar}
+\label{_topic_customizing__custom_scalar_user_defined_scalars}%
+\Hypertarget{_topic_customizing__custom_scalar_user_defined_scalars}%
+ By default, \mbox{\hyperlink{namespace_eigen}{Eigen}} currently supports standard floating-\/point types ({\ttfamily float}, {\ttfamily double}, {\ttfamily std\+::complex$<$float$>$}, {\ttfamily std\+::complex$<$double$>$}, {\ttfamily long} {\ttfamily double}), as well as all native integer types (e.\+g., {\ttfamily int}, {\ttfamily unsigned} {\ttfamily int}, {\ttfamily short}, etc.), and {\ttfamily bool}. On x86-\/64 systems, {\ttfamily long} {\ttfamily double} permits to locally enforces the use of x87 registers with extended accuracy (in comparison to S\+SE).
+
+In order to add support for a custom type {\ttfamily T} you need\+:
+\begin{DoxyEnumerate}
+\item make sure the common operator (+,-\/,$\ast$,/,etc.) are supported by the type {\ttfamily T} 
+\item add a specialization of struct Eigen\+::\+Num\+Traits$<$\+T$>$ (see \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}})
+\item define the math functions that makes sense for your type. This includes standard ones like sqrt, pow, sin, tan, conj, real, imag, etc, as well as abs2 which is \mbox{\hyperlink{namespace_eigen}{Eigen}} specific. (see the file \mbox{\hyperlink{_eigen_2src_2_core_2_math_functions_8h_source}{Eigen/src/\+Core/\+Math\+Functions.\+h}})
+\end{DoxyEnumerate}
+
+The math function should be defined in the same namespace than {\ttfamily T}, or in the {\ttfamily std} namespace though that second approach is not recommended.
+
+Here is a concrete example adding support for the Adolc\textquotesingle{}s {\ttfamily adouble} type. \href{https://projects.coin-or.org/ADOL-C}{\texttt{ Adolc}} is an automatic differentiation library. The type {\ttfamily adouble} is basically a real value tracking the values of any number of partial derivatives.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#ifndef ADOLCSUPPORT\_H}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define ADOLCSUPPORT\_H}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define ADOLC\_TAPELESS}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <adolc/adouble.h>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <Eigen/Core>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{namespace }\mbox{\hyperlink{namespace_eigen}{Eigen}} \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{template}<> \textcolor{keyword}{struct }NumTraits<adtl::adouble>}
+\DoxyCodeLine{ : NumTraits<double> \textcolor{comment}{// permits to get the epsilon, dummy\_precision, lowest, highest functions}}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  \textcolor{keyword}{typedef} adtl::adouble Real;}
+\DoxyCodeLine{  \textcolor{keyword}{typedef} adtl::adouble NonInteger;}
+\DoxyCodeLine{  \textcolor{keyword}{typedef} adtl::adouble Nested;}
+\DoxyCodeLine{}
+\DoxyCodeLine{  \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{    IsComplex = 0,}
+\DoxyCodeLine{    IsInteger = 0,}
+\DoxyCodeLine{    IsSigned = 1,}
+\DoxyCodeLine{    RequireInitialization = 1,}
+\DoxyCodeLine{    ReadCost = 1,}
+\DoxyCodeLine{    AddCost = 3,}
+\DoxyCodeLine{    MulCost = 3}
+\DoxyCodeLine{  \};}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{namespace }adtl \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{inline} \textcolor{keyword}{const} adouble\& conj(\textcolor{keyword}{const} adouble\& x)  \{ \textcolor{keywordflow}{return} x; \}}
+\DoxyCodeLine{\textcolor{keyword}{inline} \textcolor{keyword}{const} adouble\& real(\textcolor{keyword}{const} adouble\& x)  \{ \textcolor{keywordflow}{return} x; \}}
+\DoxyCodeLine{\textcolor{keyword}{inline} adouble imag(\textcolor{keyword}{const} adouble\&)    \{ \textcolor{keywordflow}{return} 0.; \}}
+\DoxyCodeLine{\textcolor{keyword}{inline} adouble abs(\textcolor{keyword}{const} adouble\&  x)  \{ \textcolor{keywordflow}{return} fabs(x); \}}
+\DoxyCodeLine{\textcolor{keyword}{inline} adouble abs2(\textcolor{keyword}{const} adouble\& x)  \{ \textcolor{keywordflow}{return} x*x; \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#endif // ADOLCSUPPORT\_H}}
+\end{DoxyCode}
+
+
+This other example adds support for the {\ttfamily mpq\+\_\+class} type from \href{https://gmplib.org/}{\texttt{ G\+MP}}. It shows in particular how to change the way \mbox{\hyperlink{namespace_eigen}{Eigen}} picks the best pivot during LU factorization. It selects the coefficient with the highest score, where the score is by default the absolute value of a number, but we can define a different score, for instance to prefer pivots with a more compact representation (this is an example, not a recommendation). Note that the scores should always be non-\/negative and only zero is allowed to have a score of zero. Also, this can interact badly with thresholds for inexact scalar types.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <gmpxx.h>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <Eigen/Core>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <boost/operators.hpp>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{namespace }\mbox{\hyperlink{namespace_eigen}{Eigen}} \{}
+\DoxyCodeLine{  \textcolor{keyword}{template}<> \textcolor{keyword}{struct }NumTraits<mpq\_class> : GenericNumTraits<mpq\_class>}
+\DoxyCodeLine{  \{}
+\DoxyCodeLine{    \textcolor{keyword}{typedef} mpq\_class Real;}
+\DoxyCodeLine{    \textcolor{keyword}{typedef} mpq\_class NonInteger;}
+\DoxyCodeLine{    \textcolor{keyword}{typedef} mpq\_class Nested;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{static} \textcolor{keyword}{inline} Real epsilon() \{ \textcolor{keywordflow}{return} 0; \}}
+\DoxyCodeLine{    \textcolor{keyword}{static} \textcolor{keyword}{inline} Real dummy\_precision() \{ \textcolor{keywordflow}{return} 0; \}}
+\DoxyCodeLine{    \textcolor{keyword}{static} \textcolor{keyword}{inline} Real digits10() \{ \textcolor{keywordflow}{return} 0; \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{      IsInteger = 0,}
+\DoxyCodeLine{      IsSigned = 1,}
+\DoxyCodeLine{      IsComplex = 0,}
+\DoxyCodeLine{      RequireInitialization = 1,}
+\DoxyCodeLine{      ReadCost = 6,}
+\DoxyCodeLine{      AddCost = 150,}
+\DoxyCodeLine{      MulCost = 100}
+\DoxyCodeLine{    \};}
+\DoxyCodeLine{  \};}
+\DoxyCodeLine{}
+\DoxyCodeLine{  \textcolor{keyword}{namespace }internal \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{template}<> \textcolor{keyword}{struct }scalar\_score\_coeff\_op<mpq\_class> \{}
+\DoxyCodeLine{      \textcolor{keyword}{struct }result\_type : boost::totally\_ordered1<result\_type> \{}
+\DoxyCodeLine{        std::size\_t len;}
+\DoxyCodeLine{        result\_type(\textcolor{keywordtype}{int} i = 0) : len(i) \{\} \textcolor{comment}{// Eigen uses Score(0) and Score()}}
+\DoxyCodeLine{        result\_type(mpq\_class \textcolor{keyword}{const}\& q) :}
+\DoxyCodeLine{          len(mpz\_size(q.get\_num\_mpz\_t())+}
+\DoxyCodeLine{              mpz\_size(q.get\_den\_mpz\_t())-\/1) \{\}}
+\DoxyCodeLine{        \textcolor{keyword}{friend} \textcolor{keywordtype}{bool} operator<(result\_type x, result\_type y) \{}
+\DoxyCodeLine{          \textcolor{comment}{// 0 is the worst possible pivot}}
+\DoxyCodeLine{          \textcolor{keywordflow}{if} (x.len == 0) \textcolor{keywordflow}{return} y.len > 0;}
+\DoxyCodeLine{          \textcolor{keywordflow}{if} (y.len == 0) \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{          \textcolor{comment}{// Prefer a pivot with a small representation}}
+\DoxyCodeLine{          \textcolor{keywordflow}{return} x.len > y.len;}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{        \textcolor{keyword}{friend} \textcolor{keywordtype}{bool} operator==(result\_type x, result\_type y) \{}
+\DoxyCodeLine{          \textcolor{comment}{// Only used to test if the score is 0}}
+\DoxyCodeLine{          \textcolor{keywordflow}{return} x.len == y.len;}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{      \};}
+\DoxyCodeLine{      result\_type operator()(mpq\_class \textcolor{keyword}{const}\& x)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} x; \}}
+\DoxyCodeLine{    \};}
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{\}}
+\end{DoxyCode}
+ \hypertarget{TopicCustomizing_NullaryExpr}{}\doxysection{Matrix manipulation via nullary-\/expressions}\label{TopicCustomizing_NullaryExpr}
+The main purpose of the class \mbox{\hyperlink{class_eigen_1_1_cwise_nullary_op}{Cwise\+Nullary\+Op}} is to define {\itshape procedural} matrices such as constant or random matrices as returned by the Ones(), Zero(), Constant(), Identity() and Random() methods. Nevertheless, with some imagination it is possible to accomplish very sophisticated matrix manipulation with minimal efforts such that \mbox{\hyperlink{TopicNewExpressionType}{implementing new expression}} is rarely needed.\hypertarget{_topic_customizing__nullary_expr_NullaryExpr_Circulant}{}\doxysubsection{Example 1\+: circulant matrix}\label{_topic_customizing__nullary_expr_NullaryExpr_Circulant}
+To explore these possibilities let us start with the {\itshape circulant} example of the \mbox{\hyperlink{TopicNewExpressionType}{implementing new expression}} topic. Let us recall that a circulant matrix is a matrix where each column is the same as the column to the left, except that it is cyclically shifted downwards. For example, here is a 4-\/by-\/4 circulant matrix\+: \[ \begin{bmatrix} 1 & 8 & 4 & 2 \\ 2 & 1 & 8 & 4 \\ 4 & 2 & 1 & 8 \\ 8 & 4 & 2 & 1 \end{bmatrix} \] A circulant matrix is uniquely determined by its first column. We wish to write a function {\ttfamily make\+Circulant} which, given the first column, returns an expression representing the circulant matrix.
+
+For this exercise, the return type of {\ttfamily make\+Circulant} will be a \mbox{\hyperlink{class_eigen_1_1_cwise_nullary_op}{Cwise\+Nullary\+Op}} that we need to instantiate with\+: 1 -\/ a proper {\ttfamily \mbox{\hyperlink{classcirculant__functor}{circulant\+\_\+functor}}} storing the input vector and implementing the adequate coefficient accessor {\ttfamily operator(i,j)} 2 -\/ a template instantiation of class \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}} conveying compile-\/time information such as the scalar type, sizes, and preferred storage layout.
+
+Calling {\ttfamily Arg\+Type} the type of the input vector, we can construct the equivalent squared \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}} type as follows\+:
+
+
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ This little helper structure will help us to implement our {\ttfamily make\+Circulant} function as follows\+:
+
+
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ As usual, our function takes as argument a {\ttfamily \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}} (see this \mbox{\hyperlink{TopicFunctionTakingEigenTypes}{page}} for more details). Then, the \mbox{\hyperlink{class_eigen_1_1_cwise_nullary_op}{Cwise\+Nullary\+Op}} object is constructed through the Dense\+Base\+::\+Nullary\+Expr static method with the adequate runtime sizes.
+
+Then, we need to implement our {\ttfamily \mbox{\hyperlink{classcirculant__functor}{circulant\+\_\+functor}}}, which is a straightforward exercise\+:
+
+
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ We are now all set to try our new feature\+:
+
+
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+
+
+If all the fragments are combined, the following output is produced, showing that the program works as expected\+:
+
+
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+
+
+This implementation of {\ttfamily make\+Circulant} is much simpler than \mbox{\hyperlink{TopicNewExpressionType}{defining a new expression}} from scratch.\hypertarget{_topic_customizing__nullary_expr_NullaryExpr_Indexing}{}\doxysubsection{Example 2\+: indexing rows and columns}\label{_topic_customizing__nullary_expr_NullaryExpr_Indexing}
+The goal here is to mimic Mat\+Lab\textquotesingle{}s ability to index a matrix through two vectors of indices referencing the rows and columns to be picked respectively, like this\+:
+
+
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ To this end, let us first write a nullary-\/functor storing references to the input matrix and to the two arrays of indices, and implementing the required {\ttfamily operator()(i,j)}\+:
+
+
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ Then, let\textquotesingle{}s create an {\ttfamily indexing(\+A,rows,cols)} function creating the nullary expression\+:
+
+
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ Finally, here is an example of how this function can be used\+:
+
+
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ This straightforward implementation is already quite powerful as the row or column index arrays can also be expressions to perform offsetting, modulo, striding, reverse, etc.
+
+
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ and the output is\+:
+
+
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+\hypertarget{TopicNewExpressionType}{}\doxysection{Adding a new expression type}\label{TopicNewExpressionType}
+\begin{DoxyWarning}{Warning}
+Disclaimer\+: this page is tailored to very advanced users who are not afraid of dealing with some Eigen\textquotesingle{}s internal aspects. In most cases, a custom expression can be avoided by either using custom unary or binary functors, while extremely complex matrix manipulations can be achieved by a nullary functors as described in the \mbox{\hyperlink{TopicCustomizing_NullaryExpr}{previous page}}.
+\end{DoxyWarning}
+This page describes with the help of an example how to implement a new light-\/weight expression type in Eigen. This consists of three parts\+: the expression type itself, a traits class containing compile-\/time information about the expression, and the evaluator class which is used to evaluate the expression to a matrix.
+
+{\bfseries{TO}} {\bfseries{DO\+:}} Write a page explaining the design, with details on vectorization etc., and refer to that page here.
+
+\textbackslash{}eigen\+Auto\+Toc\hypertarget{_topic_new_expression_type_TopicSetting}{}\doxysubsection{The setting}\label{_topic_new_expression_type_TopicSetting}
+A circulant matrix is a matrix where each column is the same as the column to the left, except that it is cyclically shifted downwards. For example, here is a 4-\/by-\/4 circulant matrix\+: \[ \begin{bmatrix} 1 & 8 & 4 & 2 \\ 2 & 1 & 8 & 4 \\ 4 & 2 & 1 & 8 \\ 8 & 4 & 2 & 1 \end{bmatrix} \] A circulant matrix is uniquely determined by its first column. We wish to write a function {\ttfamily make\+Circulant} which, given the first column, returns an expression representing the circulant matrix.
+
+For simplicity, we restrict the {\ttfamily make\+Circulant} function to dense matrices. It may make sense to also allow arrays, or sparse matrices, but we will not do so here. We also do not want to support vectorization.\hypertarget{_topic_new_expression_type_TopicPreamble}{}\doxysubsection{Getting started}\label{_topic_new_expression_type_TopicPreamble}
+We will present the file implementing the {\ttfamily make\+Circulant} function part by part. We start by including the appropriate header files and forward declaring the expression class, which we will call {\ttfamily Circulant}. The {\ttfamily make\+Circulant} function will return an object of this type. The class {\ttfamily Circulant} is in fact a class template; the template argument {\ttfamily Arg\+Type} refers to the type of the vector passed to the {\ttfamily make\+Circulant} function.
+
+
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+\hypertarget{_topic_new_expression_type_TopicTraits}{}\doxysubsection{The traits class}\label{_topic_new_expression_type_TopicTraits}
+For every expression class {\ttfamily X}, there should be a traits class {\ttfamily Traits$<$\+X$>$} in the {\ttfamily Eigen\+::internal} namespace containing information about {\ttfamily X} known as compile time.
+
+As explained in \mbox{\hyperlink{_topic_new_expression_type_TopicSetting}{The setting}}, we designed the {\ttfamily Circulant} expression class to refer to dense matrices. The entries of the circulant matrix have the same type as the entries of the vector passed to the {\ttfamily make\+Circulant} function. The type used to index the entries is also the same. Again for simplicity, we will only return column-\/major matrices. Finally, the circulant matrix is a square matrix (number of rows equals number of columns), and the number of rows equals the number of rows of the column vector passed to the {\ttfamily make\+Circulant} function. If this is a dynamic-\/size vector, then the size of the circulant matrix is not known at compile-\/time.
+
+This leads to the following code\+:
+
+
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+\hypertarget{_topic_new_expression_type_TopicExpression}{}\doxysubsection{The expression class}\label{_topic_new_expression_type_TopicExpression}
+The next step is to define the expression class itself. In our case, we want to inherit from {\ttfamily \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}} in order to expose the interface for dense matrices. In the constructor, we check that we are passed a column vector (see \mbox{\hyperlink{TopicAssertions}{Assertions}}) and we store the vector from which we are going to build the circulant matrix in the member variable {\ttfamily m\+\_\+arg}. Finally, the expression class should compute the size of the corresponding circulant matrix. As explained above, this is a square matrix with as many columns as the vector used to construct the matrix.
+
+{\bfseries{TO}} {\bfseries{DO\+:}} What about the {\ttfamily Nested} typedef? It seems to be necessary; is this only temporary?
+
+
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+\hypertarget{_topic_new_expression_type_TopicEvaluator}{}\doxysubsection{The evaluator}\label{_topic_new_expression_type_TopicEvaluator}
+The last big fragment implements the evaluator for the {\ttfamily Circulant} expression. The evaluator computes the entries of the circulant matrix; this is done in the {\ttfamily }.coeff() member function. The entries are computed by finding the corresponding entry of the vector from which the circulant matrix is constructed. Getting this entry may actually be non-\/trivial when the circulant matrix is constructed from a vector which is given by a complicated expression, so we use the evaluator which corresponds to the vector.
+
+The {\ttfamily Coeff\+Read\+Cost} constant records the cost of computing an entry of the circulant matrix; we ignore the index computation and say that this is the same as the cost of computing an entry of the vector from which the circulant matrix is constructed.
+
+In the constructor, we save the evaluator for the column vector which defined the circulant matrix. We also save the size of that vector; remember that we can query an expression object to find the size but not the evaluator.
+
+
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+\hypertarget{_topic_new_expression_type_TopicEntry}{}\doxysubsection{The entry point}\label{_topic_new_expression_type_TopicEntry}
+After all this, the {\ttfamily make\+Circulant} function is very simple. It simply creates an expression object and returns it.
+
+
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+\hypertarget{_topic_new_expression_type_TopicMain}{}\doxysubsection{A simple main function for testing}\label{_topic_new_expression_type_TopicMain}
+Finally, a short {\ttfamily main} function that shows how the {\ttfamily make\+Circulant} function can be called.
+
+
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+
+
+If all the fragments are combined, the following output is produced, showing that the program works as expected\+:
+
+
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ 

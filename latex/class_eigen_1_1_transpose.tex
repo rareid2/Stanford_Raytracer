@@ -1,0 +1,100 @@
+\hypertarget{class_eigen_1_1_transpose}{}\doxysection{Eigen\+::Transpose$<$ Matrix\+Type $>$ Class Template Reference}
+\label{class_eigen_1_1_transpose}\index{Eigen::Transpose$<$ MatrixType $>$@{Eigen::Transpose$<$ MatrixType $>$}}
+
+
+Expression of the transpose of a matrix.  
+
+
+
+
+{\ttfamily \#include $<$Transpose.\+h$>$}
+
+Inheritance diagram for Eigen\+::Transpose$<$ Matrix\+Type $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_eigen_1_1_transpose}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transpose_ae5ed6d63c0030faf63214011f4c6e92e}\label{class_eigen_1_1_transpose_ae5ed6d63c0030faf63214011f4c6e92e}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1ref__selector}{internal\+::ref\+\_\+selector}}$<$ Matrix\+Type $>$\+::non\+\_\+const\+\_\+type {\bfseries Matrix\+Type\+Nested}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transpose_a5b3e9a3e042dcc01657dfcd5277ccf4f}\label{class_eigen_1_1_transpose_a5b3e9a3e042dcc01657dfcd5277ccf4f}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_transpose_impl}{Transpose\+Impl}}$<$ Matrix\+Type, typename \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ Matrix\+Type $>$\+::Storage\+Kind $>$\+::Base {\bfseries Base}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transpose_ad647d12ef19ec62e9c549b162e2d55c3}\label{class_eigen_1_1_transpose_ad647d12ef19ec62e9c549b162e2d55c3}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{internal\+::remove\+\_\+all}}$<$ Matrix\+Type $>$\+::type {\bfseries Nested\+Expression}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transpose_a5469f683c4bbcce2a40a2b43dad8a465}\label{class_eigen_1_1_transpose_a5469f683c4bbcce2a40a2b43dad8a465}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC {\bfseries Transpose} (Matrix\+Type \&matrix)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transpose_a96ee3f0ac8d9d95671e5dda0e5e21356}\label{class_eigen_1_1_transpose_a96ee3f0ac8d9d95671e5dda0e5e21356}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries rows} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transpose_a809b0d34821ca6ade698561f3495adca}\label{class_eigen_1_1_transpose_a809b0d34821ca6ade698561f3495adca}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries cols} () const
+\item 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{internal\+::remove\+\_\+all}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Matrix\+Type\+Nested}} $>$\+::type \& \mbox{\hyperlink{class_eigen_1_1_transpose_aef36dc66719628ae3c22e33fa5ef813f}{nested\+Expression}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__reference}{internal\+::remove\+\_\+reference}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Matrix\+Type\+Nested}} $>$\+::type \& \mbox{\hyperlink{class_eigen_1_1_transpose_a3265292cf912f401a32eea99975e47ea}{nested\+Expression}} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transpose_acdfe991ea04dd20939171780fef09818}\label{class_eigen_1_1_transpose_acdfe991ea04dd20939171780fef09818}} 
+void {\bfseries resize} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} nrows, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} ncols)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transpose_ad67b9a99f0c2859e56128159db5a749d}\label{class_eigen_1_1_transpose_ad67b9a99f0c2859e56128159db5a749d}} 
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1ref__selector}{internal\+::ref\+\_\+selector}}$<$ Matrix\+Type $>$\+::non\+\_\+const\+\_\+type {\bfseries m\+\_\+matrix}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Matrix\+Type$>$\newline
+class Eigen\+::\+Transpose$<$ Matrix\+Type $>$}
+
+Expression of the transpose of a matrix. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Matrix\+Type} & the type of the object of which we are taking the transpose\\
+\hline
+\end{DoxyTemplParams}
+This class represents an expression of the transpose of a matrix. It is the return type of \mbox{\hyperlink{class_eigen_1_1_dense_base_ac575a73f01b20b628bb910d0f395cb33}{Matrix\+Base\+::transpose()}} and \mbox{\hyperlink{class_eigen_1_1_matrix_base_afacca1f88da57e5cd87dd07c8ff926bb}{Matrix\+Base\+::adjoint()}} and most of the time this is the only way it is used.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_dense_base_ac575a73f01b20b628bb910d0f395cb33}{Matrix\+Base\+::transpose()}}, \mbox{\hyperlink{class_eigen_1_1_matrix_base_afacca1f88da57e5cd87dd07c8ff926bb}{Matrix\+Base\+::adjoint()}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_transpose_a3265292cf912f401a32eea99975e47ea}\label{class_eigen_1_1_transpose_a3265292cf912f401a32eea99975e47ea}} 
+\index{Eigen::Transpose$<$ MatrixType $>$@{Eigen::Transpose$<$ MatrixType $>$}!nestedExpression@{nestedExpression}}
+\index{nestedExpression@{nestedExpression}!Eigen::Transpose$<$ MatrixType $>$@{Eigen::Transpose$<$ MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{nestedExpression()}{nestedExpression()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Matrix\+Type $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__reference}{internal\+::remove\+\_\+reference}}$<$\mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Matrix\+Type\+Nested}}$>$\+::type\& \mbox{\hyperlink{class_eigen_1_1_transpose}{Eigen\+::\+Transpose}}$<$ Matrix\+Type $>$\+::nested\+Expression (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the nested expression 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_transpose_aef36dc66719628ae3c22e33fa5ef813f}\label{class_eigen_1_1_transpose_aef36dc66719628ae3c22e33fa5ef813f}} 
+\index{Eigen::Transpose$<$ MatrixType $>$@{Eigen::Transpose$<$ MatrixType $>$}!nestedExpression@{nestedExpression}}
+\index{nestedExpression@{nestedExpression}!Eigen::Transpose$<$ MatrixType $>$@{Eigen::Transpose$<$ MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{nestedExpression()}{nestedExpression()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Matrix\+Type $>$ \\
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{internal\+::remove\+\_\+all}}$<$\mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Matrix\+Type\+Nested}}$>$\+::type\& \mbox{\hyperlink{class_eigen_1_1_transpose}{Eigen\+::\+Transpose}}$<$ Matrix\+Type $>$\+::nested\+Expression (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the nested expression 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/Transpose.\+h\end{DoxyCompactItemize}

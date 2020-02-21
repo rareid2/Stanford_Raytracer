@@ -1,0 +1,30 @@
+\hypertarget{struct_eigen_1_1internal_1_1triangular__assignment__loop}{}\doxysection{Eigen\+::internal\+::triangular\+\_\+assignment\+\_\+loop$<$ Kernel, Mode, Unroll\+Count, Set\+Opposite $>$ Struct Template Reference}
+\label{struct_eigen_1_1internal_1_1triangular__assignment__loop}\index{Eigen::internal::triangular\_assignment\_loop$<$ Kernel, Mode, UnrollCount, SetOpposite $>$@{Eigen::internal::triangular\_assignment\_loop$<$ Kernel, Mode, UnrollCount, SetOpposite $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1triangular__assignment__loop_a93cb6cbaea142eddf1b203180b3a7d45}\label{struct_eigen_1_1internal_1_1triangular__assignment__loop_a93cb6cbaea142eddf1b203180b3a7d45}} 
+enum \{ {\bfseries col} = (Unroll\+Count-\/1) / Dst\+Xpr\+Type\+::Rows\+At\+Compile\+Time, 
+{\bfseries row} = (Unroll\+Count-\/1) \% Dst\+Xpr\+Type\+::Rows\+At\+Compile\+Time
+ \}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1triangular__assignment__loop_ad3b34b01e072c973b4ae85356f9984a1}\label{struct_eigen_1_1internal_1_1triangular__assignment__loop_ad3b34b01e072c973b4ae85356f9984a1}} 
+typedef Kernel\+::\+Dst\+Evaluator\+Type {\bfseries Dst\+Evaluator\+Type}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1triangular__assignment__loop_ab2f24d7211c8c3c2f3dad07ebfff4848}\label{struct_eigen_1_1internal_1_1triangular__assignment__loop_ab2f24d7211c8c3c2f3dad07ebfff4848}} 
+typedef Dst\+Evaluator\+Type\+::\+Xpr\+Type {\bfseries Dst\+Xpr\+Type}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1triangular__assignment__loop_a47a7999acf8ec526cce8fb63c6c49ab9}\label{struct_eigen_1_1internal_1_1triangular__assignment__loop_a47a7999acf8ec526cce8fb63c6c49ab9}} 
+typedef Kernel\+::\+Scalar {\bfseries Scalar}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1triangular__assignment__loop_adac5998cbef1f81240d3dfbdc46fa269}\label{struct_eigen_1_1internal_1_1triangular__assignment__loop_adac5998cbef1f81240d3dfbdc46fa269}} 
+static E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC void {\bfseries run} (Kernel \&kernel)
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/Triangular\+Matrix.\+h\end{DoxyCompactItemize}

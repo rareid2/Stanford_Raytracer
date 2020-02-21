@@ -1,0 +1,193 @@
+\hypertarget{class_eigen_1_1_dense_coeffs_base_3_01_derived_00_01_direct_accessors_01_4}{}\doxysection{Eigen\+::Dense\+Coeffs\+Base$<$ Derived, Direct\+Accessors $>$ Class Template Reference}
+\label{class_eigen_1_1_dense_coeffs_base_3_01_derived_00_01_direct_accessors_01_4}\index{Eigen::DenseCoeffsBase$<$ Derived, DirectAccessors $>$@{Eigen::DenseCoeffsBase$<$ Derived, DirectAccessors $>$}}
+
+
+Base class providing direct read-\/only coefficient access to matrices and arrays.  
+
+
+
+
+{\ttfamily \#include $<$Dense\+Coeffs\+Base.\+h$>$}
+
+Inheritance diagram for Eigen\+::Dense\+Coeffs\+Base$<$ Derived, Direct\+Accessors $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_eigen_1_1_dense_coeffs_base_3_01_derived_00_01_direct_accessors_01_4}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_dense_coeffs_base_3_01_derived_00_01_direct_accessors_01_4_a6a4e2f420a246c18de1869783acd757c}\label{class_eigen_1_1_dense_coeffs_base_3_01_derived_00_01_direct_accessors_01_4_a6a4e2f420a246c18de1869783acd757c}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_dense_coeffs_base}{Dense\+Coeffs\+Base}}$<$ Derived, \mbox{\hyperlink{group__enums_gga9f93eac38eb83deb0e8dbd42ddf11d5daa1f2b0e6a668b11f2958940965d2b572}{Read\+Only\+Accessors}} $>$ {\bfseries Base}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_dense_coeffs_base_3_01_derived_00_01_direct_accessors_01_4_ac30ce384a95fd47985a95a69901f2a83}\label{class_eigen_1_1_dense_coeffs_base_3_01_derived_00_01_direct_accessors_01_4_ac30ce384a95fd47985a95a69901f2a83}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ Derived $>$\+::Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_dense_coeffs_base_3_01_derived_00_01_direct_accessors_01_4_aa8c5011e94b3e004c6064903f94a8a97}\label{class_eigen_1_1_dense_coeffs_base_3_01_derived_00_01_direct_accessors_01_4_aa8c5011e94b3e004c6064903f94a8a97}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$ Scalar $>$\+::Real {\bfseries Real\+Scalar}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} \mbox{\hyperlink{class_eigen_1_1_dense_coeffs_base_3_01_derived_00_01_direct_accessors_01_4_a4f877f649686a935771dceaf3569b1fc}{inner\+Stride}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} \mbox{\hyperlink{class_eigen_1_1_dense_coeffs_base_3_01_derived_00_01_direct_accessors_01_4_aa5b9d836576cb6fa037d32a7414b1110}{outer\+Stride}} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_dense_coeffs_base_3_01_derived_00_01_direct_accessors_01_4_a52e428842f0c06b7947fad07ca07ca83}\label{class_eigen_1_1_dense_coeffs_base_3_01_derived_00_01_direct_accessors_01_4_a52e428842f0c06b7947fad07ca07ca83}} 
+\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} {\bfseries stride} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} \mbox{\hyperlink{class_eigen_1_1_dense_coeffs_base_3_01_derived_00_01_direct_accessors_01_4_aaf7d19edb8f92962ab2e3ab475d2a879}{row\+Stride}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} \mbox{\hyperlink{class_eigen_1_1_dense_coeffs_base_3_01_derived_00_01_direct_accessors_01_4_ab4ec982807214e8e7ce4d27f7009a43d}{col\+Stride}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} \mbox{\hyperlink{class_eigen_1_1_dense_coeffs_base_3_01_derived_00_01_direct_accessors_01_4_a8141320ba8df384426c298b32b000d8e}{rows}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} \mbox{\hyperlink{class_eigen_1_1_dense_coeffs_base_3_01_derived_00_01_direct_accessors_01_4_a7b0b45c7351847696c911ce8aa2abbdb}{cols}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} \mbox{\hyperlink{class_eigen_1_1_dense_coeffs_base_3_01_derived_00_01_direct_accessors_01_4_ac2c9348df3bb9c0044dbae6c278a8977}{size}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Derived \& \mbox{\hyperlink{class_eigen_1_1_dense_coeffs_base_3_01_derived_00_01_direct_accessors_01_4_a324b16961a11d2ecfd2d1b7dd7946545}{derived}} ()
+\item 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Derived \& \mbox{\hyperlink{class_eigen_1_1_dense_coeffs_base_3_01_derived_00_01_direct_accessors_01_4_affa3cf01b59af4c503f5f126b3601907}{derived}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Derived$>$\newline
+class Eigen\+::\+Dense\+Coeffs\+Base$<$ Derived, Direct\+Accessors $>$}
+
+Base class providing direct read-\/only coefficient access to matrices and arrays. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Derived} & Type of the derived class \\
+\hline
+{\em \mbox{\hyperlink{group__enums_gga9f93eac38eb83deb0e8dbd42ddf11d5da50108ad00095928de06228470ceab09e}{Direct\+Accessors}}} & Constant indicating direct access\\
+\hline
+\end{DoxyTemplParams}
+This class defines functions to work with strides which can be used to access entries directly. This class inherits \mbox{\hyperlink{class_eigen_1_1_dense_coeffs_base_3_01_derived_00_01_read_only_accessors_01_4}{Dense\+Coeffs\+Base$<$\+Derived, Read\+Only\+Accessors$>$}} which defines functions to access entries read-\/only using {\ttfamily operator()} .
+
+\begin{DoxySeeAlso}{See also}
+\textbackslash{}blank \mbox{\hyperlink{TopicClassHierarchy}{The class hierarchy}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_dense_coeffs_base_3_01_derived_00_01_direct_accessors_01_4_a7b0b45c7351847696c911ce8aa2abbdb}\label{class_eigen_1_1_dense_coeffs_base_3_01_derived_00_01_direct_accessors_01_4_a7b0b45c7351847696c911ce8aa2abbdb}} 
+\index{Eigen::DenseCoeffsBase$<$ Derived, DirectAccessors $>$@{Eigen::DenseCoeffsBase$<$ Derived, DirectAccessors $>$}!cols@{cols}}
+\index{cols@{cols}!Eigen::DenseCoeffsBase$<$ Derived, DirectAccessors $>$@{Eigen::DenseCoeffsBase$<$ Derived, DirectAccessors $>$}}
+\doxysubsubsection{\texorpdfstring{cols()}{cols()}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+::\+Eigen\+Base}}$<$ Derived $>$\+::cols\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the number of columns. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a8141320ba8df384426c298b32b000d8e}{rows()}}, Cols\+At\+Compile\+Time 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_dense_coeffs_base_3_01_derived_00_01_direct_accessors_01_4_ab4ec982807214e8e7ce4d27f7009a43d}\label{class_eigen_1_1_dense_coeffs_base_3_01_derived_00_01_direct_accessors_01_4_ab4ec982807214e8e7ce4d27f7009a43d}} 
+\index{Eigen::DenseCoeffsBase$<$ Derived, DirectAccessors $>$@{Eigen::DenseCoeffsBase$<$ Derived, DirectAccessors $>$}!colStride@{colStride}}
+\index{colStride@{colStride}!Eigen::DenseCoeffsBase$<$ Derived, DirectAccessors $>$@{Eigen::DenseCoeffsBase$<$ Derived, DirectAccessors $>$}}
+\doxysubsubsection{\texorpdfstring{colStride()}{colStride()}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} \mbox{\hyperlink{class_eigen_1_1_dense_coeffs_base}{Eigen\+::\+Dense\+Coeffs\+Base}}$<$ Derived, \mbox{\hyperlink{group__enums_gga9f93eac38eb83deb0e8dbd42ddf11d5da50108ad00095928de06228470ceab09e}{Direct\+Accessors}} $>$\+::col\+Stride (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the pointer increment between two consecutive columns.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+inner\+Stride(), outer\+Stride(), row\+Stride() 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_dense_coeffs_base_3_01_derived_00_01_direct_accessors_01_4_a324b16961a11d2ecfd2d1b7dd7946545}\label{class_eigen_1_1_dense_coeffs_base_3_01_derived_00_01_direct_accessors_01_4_a324b16961a11d2ecfd2d1b7dd7946545}} 
+\index{Eigen::DenseCoeffsBase$<$ Derived, DirectAccessors $>$@{Eigen::DenseCoeffsBase$<$ Derived, DirectAccessors $>$}!derived@{derived}}
+\index{derived@{derived}!Eigen::DenseCoeffsBase$<$ Derived, DirectAccessors $>$@{Eigen::DenseCoeffsBase$<$ Derived, DirectAccessors $>$}}
+\doxysubsubsection{\texorpdfstring{derived()}{derived()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Derived\& \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+::\+Eigen\+Base}}$<$ Derived $>$\+::derived\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a reference to the derived object 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_dense_coeffs_base_3_01_derived_00_01_direct_accessors_01_4_affa3cf01b59af4c503f5f126b3601907}\label{class_eigen_1_1_dense_coeffs_base_3_01_derived_00_01_direct_accessors_01_4_affa3cf01b59af4c503f5f126b3601907}} 
+\index{Eigen::DenseCoeffsBase$<$ Derived, DirectAccessors $>$@{Eigen::DenseCoeffsBase$<$ Derived, DirectAccessors $>$}!derived@{derived}}
+\index{derived@{derived}!Eigen::DenseCoeffsBase$<$ Derived, DirectAccessors $>$@{Eigen::DenseCoeffsBase$<$ Derived, DirectAccessors $>$}}
+\doxysubsubsection{\texorpdfstring{derived()}{derived()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Derived\& \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+::\+Eigen\+Base}}$<$ Derived $>$\+::derived\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a const reference to the derived object 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_dense_coeffs_base_3_01_derived_00_01_direct_accessors_01_4_a4f877f649686a935771dceaf3569b1fc}\label{class_eigen_1_1_dense_coeffs_base_3_01_derived_00_01_direct_accessors_01_4_a4f877f649686a935771dceaf3569b1fc}} 
+\index{Eigen::DenseCoeffsBase$<$ Derived, DirectAccessors $>$@{Eigen::DenseCoeffsBase$<$ Derived, DirectAccessors $>$}!innerStride@{innerStride}}
+\index{innerStride@{innerStride}!Eigen::DenseCoeffsBase$<$ Derived, DirectAccessors $>$@{Eigen::DenseCoeffsBase$<$ Derived, DirectAccessors $>$}}
+\doxysubsubsection{\texorpdfstring{innerStride()}{innerStride()}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} \mbox{\hyperlink{class_eigen_1_1_dense_coeffs_base}{Eigen\+::\+Dense\+Coeffs\+Base}}$<$ Derived, \mbox{\hyperlink{group__enums_gga9f93eac38eb83deb0e8dbd42ddf11d5da50108ad00095928de06228470ceab09e}{Direct\+Accessors}} $>$\+::inner\+Stride (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the pointer increment between two consecutive elements within a slice in the inner direction.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+outer\+Stride(), row\+Stride(), col\+Stride() 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_dense_coeffs_base_3_01_derived_00_01_direct_accessors_01_4_aa5b9d836576cb6fa037d32a7414b1110}\label{class_eigen_1_1_dense_coeffs_base_3_01_derived_00_01_direct_accessors_01_4_aa5b9d836576cb6fa037d32a7414b1110}} 
+\index{Eigen::DenseCoeffsBase$<$ Derived, DirectAccessors $>$@{Eigen::DenseCoeffsBase$<$ Derived, DirectAccessors $>$}!outerStride@{outerStride}}
+\index{outerStride@{outerStride}!Eigen::DenseCoeffsBase$<$ Derived, DirectAccessors $>$@{Eigen::DenseCoeffsBase$<$ Derived, DirectAccessors $>$}}
+\doxysubsubsection{\texorpdfstring{outerStride()}{outerStride()}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} \mbox{\hyperlink{class_eigen_1_1_dense_coeffs_base}{Eigen\+::\+Dense\+Coeffs\+Base}}$<$ Derived, \mbox{\hyperlink{group__enums_gga9f93eac38eb83deb0e8dbd42ddf11d5da50108ad00095928de06228470ceab09e}{Direct\+Accessors}} $>$\+::outer\+Stride (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the pointer increment between two consecutive inner slices (for example, between two consecutive columns in a column-\/major matrix).
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+inner\+Stride(), row\+Stride(), col\+Stride() 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_dense_coeffs_base_3_01_derived_00_01_direct_accessors_01_4_a8141320ba8df384426c298b32b000d8e}\label{class_eigen_1_1_dense_coeffs_base_3_01_derived_00_01_direct_accessors_01_4_a8141320ba8df384426c298b32b000d8e}} 
+\index{Eigen::DenseCoeffsBase$<$ Derived, DirectAccessors $>$@{Eigen::DenseCoeffsBase$<$ Derived, DirectAccessors $>$}!rows@{rows}}
+\index{rows@{rows}!Eigen::DenseCoeffsBase$<$ Derived, DirectAccessors $>$@{Eigen::DenseCoeffsBase$<$ Derived, DirectAccessors $>$}}
+\doxysubsubsection{\texorpdfstring{rows()}{rows()}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+::\+Eigen\+Base}}$<$ Derived $>$\+::rows\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the number of rows. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a7b0b45c7351847696c911ce8aa2abbdb}{cols()}}, Rows\+At\+Compile\+Time 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_dense_coeffs_base_3_01_derived_00_01_direct_accessors_01_4_aaf7d19edb8f92962ab2e3ab475d2a879}\label{class_eigen_1_1_dense_coeffs_base_3_01_derived_00_01_direct_accessors_01_4_aaf7d19edb8f92962ab2e3ab475d2a879}} 
+\index{Eigen::DenseCoeffsBase$<$ Derived, DirectAccessors $>$@{Eigen::DenseCoeffsBase$<$ Derived, DirectAccessors $>$}!rowStride@{rowStride}}
+\index{rowStride@{rowStride}!Eigen::DenseCoeffsBase$<$ Derived, DirectAccessors $>$@{Eigen::DenseCoeffsBase$<$ Derived, DirectAccessors $>$}}
+\doxysubsubsection{\texorpdfstring{rowStride()}{rowStride()}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} \mbox{\hyperlink{class_eigen_1_1_dense_coeffs_base}{Eigen\+::\+Dense\+Coeffs\+Base}}$<$ Derived, \mbox{\hyperlink{group__enums_gga9f93eac38eb83deb0e8dbd42ddf11d5da50108ad00095928de06228470ceab09e}{Direct\+Accessors}} $>$\+::row\+Stride (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the pointer increment between two consecutive rows.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+inner\+Stride(), outer\+Stride(), col\+Stride() 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_dense_coeffs_base_3_01_derived_00_01_direct_accessors_01_4_ac2c9348df3bb9c0044dbae6c278a8977}\label{class_eigen_1_1_dense_coeffs_base_3_01_derived_00_01_direct_accessors_01_4_ac2c9348df3bb9c0044dbae6c278a8977}} 
+\index{Eigen::DenseCoeffsBase$<$ Derived, DirectAccessors $>$@{Eigen::DenseCoeffsBase$<$ Derived, DirectAccessors $>$}!size@{size}}
+\index{size@{size}!Eigen::DenseCoeffsBase$<$ Derived, DirectAccessors $>$@{Eigen::DenseCoeffsBase$<$ Derived, DirectAccessors $>$}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+::\+Eigen\+Base}}$<$ Derived $>$\+::size\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the number of coefficients, which is \mbox{\hyperlink{struct_eigen_1_1_eigen_base_a8141320ba8df384426c298b32b000d8e}{rows()}}$\ast$cols(). 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a8141320ba8df384426c298b32b000d8e}{rows()}}, \mbox{\hyperlink{struct_eigen_1_1_eigen_base_a7b0b45c7351847696c911ce8aa2abbdb}{cols()}}, Size\+At\+Compile\+Time. 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/Dense\+Coeffs\+Base.\+h\end{DoxyCompactItemize}

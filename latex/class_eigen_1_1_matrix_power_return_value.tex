@@ -1,0 +1,96 @@
+\hypertarget{class_eigen_1_1_matrix_power_return_value}{}\doxysection{Eigen\+::Matrix\+Power\+Return\+Value$<$ Derived $>$ Class Template Reference}
+\label{class_eigen_1_1_matrix_power_return_value}\index{Eigen::MatrixPowerReturnValue$<$ Derived $>$@{Eigen::MatrixPowerReturnValue$<$ Derived $>$}}
+
+
+Proxy for the matrix power of some matrix (expression).  
+
+
+
+
+{\ttfamily \#include $<$Matrix\+Power.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_matrix_power_return_value_acb032a9e2bea82ee03a8bfdb512641c1}\label{class_eigen_1_1_matrix_power_return_value_acb032a9e2bea82ee03a8bfdb512641c1}} 
+typedef Derived\+::\+Plain\+Object {\bfseries Plain\+Object}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_matrix_power_return_value_a37d33214821749595a28956e75746349}\label{class_eigen_1_1_matrix_power_return_value_a37d33214821749595a28956e75746349}} 
+typedef Derived\+::\+Real\+Scalar {\bfseries Real\+Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_matrix_power_return_value_a1a41f8c1f82156b8f0c1d938627997e0}\label{class_eigen_1_1_matrix_power_return_value_a1a41f8c1f82156b8f0c1d938627997e0}} 
+typedef Derived\+::\+Index {\bfseries Index}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_matrix_power_return_value_a3067e09b352f967a23bb2a9c50afee88}{Matrix\+Power\+Return\+Value}} (const Derived \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, Real\+Scalar p)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Result\+Type $>$ }\\void \mbox{\hyperlink{class_eigen_1_1_matrix_power_return_value_a5f15ad16576debad4d4cc0798ff63172}{eval\+To}} (Result\+Type \&result) const
+\begin{DoxyCompactList}\small\item\em Compute the matrix power. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_eigen_1_1_matrix_power_return_value_a91d8d3744aa95cdce4830c6baa1ccf06}\label{class_eigen_1_1_matrix_power_return_value_a91d8d3744aa95cdce4830c6baa1ccf06}} 
+Index {\bfseries rows} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_matrix_power_return_value_a1feb1c3c50dc939a3e720824b4501abc}\label{class_eigen_1_1_matrix_power_return_value_a1feb1c3c50dc939a3e720824b4501abc}} 
+Index {\bfseries cols} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Derived$>$\newline
+class Eigen\+::\+Matrix\+Power\+Return\+Value$<$ Derived $>$}
+
+Proxy for the matrix power of some matrix (expression). 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Derived} & type of the base, a matrix (expression).\\
+\hline
+\end{DoxyTemplParams}
+This class holds the arguments to the matrix power until it is assigned or evaluated for some other reason (so the argument should not be changed in the meantime). It is the return type of Matrix\+Base\+::pow() and related functions and most of the time this is the only way it is used. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_matrix_power_return_value_a3067e09b352f967a23bb2a9c50afee88}\label{class_eigen_1_1_matrix_power_return_value_a3067e09b352f967a23bb2a9c50afee88}} 
+\index{Eigen::MatrixPowerReturnValue$<$ Derived $>$@{Eigen::MatrixPowerReturnValue$<$ Derived $>$}!MatrixPowerReturnValue@{MatrixPowerReturnValue}}
+\index{MatrixPowerReturnValue@{MatrixPowerReturnValue}!Eigen::MatrixPowerReturnValue$<$ Derived $>$@{Eigen::MatrixPowerReturnValue$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{MatrixPowerReturnValue()}{MatrixPowerReturnValue()}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_matrix_power_return_value}{Eigen\+::\+Matrix\+Power\+Return\+Value}}$<$ Derived $>$\+::\mbox{\hyperlink{class_eigen_1_1_matrix_power_return_value}{Matrix\+Power\+Return\+Value}} (\begin{DoxyParamCaption}\item[{const Derived \&}]{A,  }\item[{Real\+Scalar}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em A} & Matrix (expression), the base of the matrix power. \\
+\hline
+\mbox{\texttt{ in}}  & {\em p} & real scalar, the exponent of the matrix power. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_matrix_power_return_value_a5f15ad16576debad4d4cc0798ff63172}\label{class_eigen_1_1_matrix_power_return_value_a5f15ad16576debad4d4cc0798ff63172}} 
+\index{Eigen::MatrixPowerReturnValue$<$ Derived $>$@{Eigen::MatrixPowerReturnValue$<$ Derived $>$}!evalTo@{evalTo}}
+\index{evalTo@{evalTo}!Eigen::MatrixPowerReturnValue$<$ Derived $>$@{Eigen::MatrixPowerReturnValue$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{evalTo()}{evalTo()}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+template$<$typename Result\+Type $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_matrix_power_return_value}{Eigen\+::\+Matrix\+Power\+Return\+Value}}$<$ Derived $>$\+::eval\+To (\begin{DoxyParamCaption}\item[{Result\+Type \&}]{result }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Compute the matrix power. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em result} & $ A^p $ where {\ttfamily A} and {\ttfamily p} are as in the constructor. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/util/Forward\+Declarations.\+h\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/src/\+Matrix\+Functions/Matrix\+Power.\+h\end{DoxyCompactItemize}

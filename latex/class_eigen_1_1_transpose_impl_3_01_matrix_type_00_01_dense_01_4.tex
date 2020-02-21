@@ -1,0 +1,43 @@
+\hypertarget{class_eigen_1_1_transpose_impl_3_01_matrix_type_00_01_dense_01_4}{}\doxysection{Eigen\+::Transpose\+Impl$<$ Matrix\+Type, Dense $>$ Class Template Reference}
+\label{class_eigen_1_1_transpose_impl_3_01_matrix_type_00_01_dense_01_4}\index{Eigen::TransposeImpl$<$ MatrixType, Dense $>$@{Eigen::TransposeImpl$<$ MatrixType, Dense $>$}}
+Inheritance diagram for Eigen\+::Transpose\+Impl$<$ Matrix\+Type, Dense $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_eigen_1_1_transpose_impl_3_01_matrix_type_00_01_dense_01_4}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transpose_impl_3_01_matrix_type_00_01_dense_01_4_adca85c1badef95fe3dffea3abd200920}\label{class_eigen_1_1_transpose_impl_3_01_matrix_type_00_01_dense_01_4_adca85c1badef95fe3dffea3abd200920}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1_transpose_impl__base}{internal\+::\+Transpose\+Impl\+\_\+base}}$<$ Matrix\+Type $>$\+::type {\bfseries Base}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transpose_impl_3_01_matrix_type_00_01_dense_01_4_a8db358fcda2f858bc1bda7cfafe5b172}\label{class_eigen_1_1_transpose_impl_3_01_matrix_type_00_01_dense_01_4_a8db358fcda2f858bc1bda7cfafe5b172}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1conditional}{internal\+::conditional}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1is__lvalue}{internal\+::is\+\_\+lvalue}}$<$ Matrix\+Type $>$\+::value, Scalar, const Scalar $>$\+::type {\bfseries Scalar\+With\+Const\+If\+Not\+Lvalue}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transpose_impl_3_01_matrix_type_00_01_dense_01_4_a7998b3bc5f9b696c4bdcc4f99ea5b561}\label{class_eigen_1_1_transpose_impl_3_01_matrix_type_00_01_dense_01_4_a7998b3bc5f9b696c4bdcc4f99ea5b561}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries inner\+Stride} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transpose_impl_3_01_matrix_type_00_01_dense_01_4_ad266062577d8fd6965996e028c8745a4}\label{class_eigen_1_1_transpose_impl_3_01_matrix_type_00_01_dense_01_4_ad266062577d8fd6965996e028c8745a4}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries outer\+Stride} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transpose_impl_3_01_matrix_type_00_01_dense_01_4_a5c25d8591ef27b7732f4335a78f04d20}\label{class_eigen_1_1_transpose_impl_3_01_matrix_type_00_01_dense_01_4_a5c25d8591ef27b7732f4335a78f04d20}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Scalar\+With\+Const\+If\+Not\+Lvalue}} $\ast$ {\bfseries data} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transpose_impl_3_01_matrix_type_00_01_dense_01_4_a7f3eba1b2e5942e2eb6e73ac99e6ce06}\label{class_eigen_1_1_transpose_impl_3_01_matrix_type_00_01_dense_01_4_a7f3eba1b2e5942e2eb6e73ac99e6ce06}} 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Scalar $\ast$ {\bfseries data} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transpose_impl_3_01_matrix_type_00_01_dense_01_4_a401ef930fb096c35b287706f08af0ef7}\label{class_eigen_1_1_transpose_impl_3_01_matrix_type_00_01_dense_01_4_a401ef930fb096c35b287706f08af0ef7}} 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Scalar \& {\bfseries coeff\+Ref} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row\+Id, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col\+Id) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transpose_impl_3_01_matrix_type_00_01_dense_01_4_a5da514265d9001f3e46d7289d1fd3622}\label{class_eigen_1_1_transpose_impl_3_01_matrix_type_00_01_dense_01_4_a5da514265d9001f3e46d7289d1fd3622}} 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Scalar \& {\bfseries coeff\+Ref} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} index) const
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/Transpose.\+h\end{DoxyCompactItemize}

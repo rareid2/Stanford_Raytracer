@@ -1,0 +1,59 @@
+\hypertarget{class_eigen_1_1_tensor_eval_to_op}{}\doxysection{Eigen\+::Tensor\+Eval\+To\+Op$<$ Xpr\+Type, Make\+Pointer\+\_\+ $>$ Class Template Reference}
+\label{class_eigen_1_1_tensor_eval_to_op}\index{Eigen::TensorEvalToOp$<$ XprType, MakePointer\_ $>$@{Eigen::TensorEvalToOp$<$ XprType, MakePointer\_ $>$}}
+Inheritance diagram for Eigen\+::Tensor\+Eval\+To\+Op$<$ Xpr\+Type, Make\+Pointer\+\_\+ $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_eigen_1_1_tensor_eval_to_op}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_eval_to_op_ae23381e5562d9ae2ff5c6ef56a6e0594}\label{class_eigen_1_1_tensor_eval_to_op_ae23381e5562d9ae2ff5c6ef56a6e0594}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{Eigen\+::internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_tensor_eval_to_op}{Tensor\+Eval\+To\+Op}} $>$\+::Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_eval_to_op_a6ac1d179859bfd347528b1849a352a7c}\label{class_eigen_1_1_tensor_eval_to_op_a6ac1d179859bfd347528b1849a352a7c}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Eigen\+::\+Num\+Traits}}$<$ Scalar $>$\+::Real {\bfseries Real\+Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_eval_to_op_a60130cd1135644b1dacf60f663b6b15a}\label{class_eigen_1_1_tensor_eval_to_op_a60130cd1135644b1dacf60f663b6b15a}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__const}{internal\+::remove\+\_\+const}}$<$ typename Xpr\+Type\+::\+Coeff\+Return\+Type $>$\+::type {\bfseries Coeff\+Return\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_eval_to_op_a3b269b528cfa6bca5424d51c7a591a1f}\label{class_eigen_1_1_tensor_eval_to_op_a3b269b528cfa6bca5424d51c7a591a1f}} 
+typedef Make\+Pointer\+\_\+$<$ \mbox{\hyperlink{class_eigen_1_1_triplet}{Coeff\+Return\+Type}} $>$\+::Type {\bfseries Pointer\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_eval_to_op_aceaa479fb7337589344bc6cee0401836}\label{class_eigen_1_1_tensor_eval_to_op_aceaa479fb7337589344bc6cee0401836}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1nested}{Eigen\+::internal\+::nested}}$<$ \mbox{\hyperlink{class_eigen_1_1_tensor_eval_to_op}{Tensor\+Eval\+To\+Op}} $>$\+::type {\bfseries Nested}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_eval_to_op_a39cea47c21d4906be6a18fa6f2e47064}\label{class_eigen_1_1_tensor_eval_to_op_a39cea47c21d4906be6a18fa6f2e47064}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{Eigen\+::internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_tensor_eval_to_op}{Tensor\+Eval\+To\+Op}} $>$\+::Storage\+Kind {\bfseries Storage\+Kind}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_eval_to_op_a890764064c48d0beb506f834bda6191d}\label{class_eigen_1_1_tensor_eval_to_op_a890764064c48d0beb506f834bda6191d}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{Eigen\+::internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_tensor_eval_to_op}{Tensor\+Eval\+To\+Op}} $>$\+::Index {\bfseries Index}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_eval_to_op_a6238ee2a3065a404d3a59a1637aa8313}\label{class_eigen_1_1_tensor_eval_to_op_a6238ee2a3065a404d3a59a1637aa8313}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE {\bfseries Tensor\+Eval\+To\+Op} (Pointer\+Type buffer, const Xpr\+Type \&expr)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_eval_to_op_abfecddb6a3967eb0a909d792ba6988a6}\label{class_eigen_1_1_tensor_eval_to_op_abfecddb6a3967eb0a909d792ba6988a6}} 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{internal\+::remove\+\_\+all}}$<$ typename Xpr\+Type\+::\+Nested $>$\+::type \& {\bfseries expression} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_eval_to_op_aa6daefee5cf8675cb3e51bc004933f4d}\label{class_eigen_1_1_tensor_eval_to_op_aa6daefee5cf8675cb3e51bc004933f4d}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Pointer\+Type {\bfseries buffer} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_eval_to_op_a13c4d636d03dcb2980da14545f719bea}\label{class_eigen_1_1_tensor_eval_to_op_a13c4d636d03dcb2980da14545f719bea}} 
+Xpr\+Type\+::\+Nested {\bfseries m\+\_\+xpr}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_eval_to_op_a9c0db4e7ec94ade7427cce553077fc21}\label{class_eigen_1_1_tensor_eval_to_op_a9c0db4e7ec94ade7427cce553077fc21}} 
+Pointer\+Type {\bfseries m\+\_\+buffer}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/\+C\+X\+X11/src/\+Tensor/Tensor\+Eval\+To.\+h\end{DoxyCompactItemize}

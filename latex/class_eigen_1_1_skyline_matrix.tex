@@ -1,0 +1,284 @@
+\hypertarget{class_eigen_1_1_skyline_matrix}{}\doxysection{Eigen\+::Skyline\+Matrix$<$ \+\_\+\+Scalar, \+\_\+\+Options $>$ Class Template Reference}
+\label{class_eigen_1_1_skyline_matrix}\index{Eigen::SkylineMatrix$<$ \_Scalar, \_Options $>$@{Eigen::SkylineMatrix$<$ \_Scalar, \_Options $>$}}
+
+
+The main skyline matrix class.  
+
+
+
+
+{\ttfamily \#include $<$Skyline\+Matrix.\+h$>$}
+
+Inheritance diagram for Eigen\+::Skyline\+Matrix$<$ \+\_\+\+Scalar, \+\_\+\+Options $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_eigen_1_1_skyline_matrix}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_eigen_1_1_skyline_matrix_1_1_inner_lower_iterator}{Inner\+Lower\+Iterator}}
+\item 
+class \mbox{\hyperlink{class_eigen_1_1_skyline_matrix_1_1_inner_upper_iterator}{Inner\+Upper\+Iterator}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_aef3e3427735c8603eb4b7c33ac13646c}\label{class_eigen_1_1_skyline_matrix_aef3e3427735c8603eb4b7c33ac13646c}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries rows} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_a4309fe0edce42fcab84301b0b94d21bb}\label{class_eigen_1_1_skyline_matrix_a4309fe0edce42fcab84301b0b94d21bb}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries cols} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_ad6f7ee3facbf06074e47e2eb09582146}\label{class_eigen_1_1_skyline_matrix_ad6f7ee3facbf06074e47e2eb09582146}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries inner\+Size} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_a10e9b4d8e2f0aa5e15ae619c7db3964a}\label{class_eigen_1_1_skyline_matrix_a10e9b4d8e2f0aa5e15ae619c7db3964a}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries outer\+Size} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_a7dd385299f783331917605eedb1064af}\label{class_eigen_1_1_skyline_matrix_a7dd385299f783331917605eedb1064af}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries upper\+Non\+Zeros} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_a1351b90968640286a3a5d61779dd2d1f}\label{class_eigen_1_1_skyline_matrix_a1351b90968640286a3a5d61779dd2d1f}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries lower\+Non\+Zeros} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_ae23d0b6cb0d28f6a3de316298b821bc7}\label{class_eigen_1_1_skyline_matrix_ae23d0b6cb0d28f6a3de316298b821bc7}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries upper\+Non\+Zeros} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} j) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_ab57d5d92445dcc8b95ba5ac8637a0aae}\label{class_eigen_1_1_skyline_matrix_ab57d5d92445dcc8b95ba5ac8637a0aae}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries lower\+Non\+Zeros} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} j) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_a17ee83273853d2fef6198bc2c471ff32}\label{class_eigen_1_1_skyline_matrix_a17ee83273853d2fef6198bc2c471ff32}} 
+const Scalar $\ast$ {\bfseries \+\_\+diag\+Ptr} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_a15110b0e41e56f3e1a3c58c90215bb83}\label{class_eigen_1_1_skyline_matrix_a15110b0e41e56f3e1a3c58c90215bb83}} 
+Scalar $\ast$ {\bfseries \+\_\+diag\+Ptr} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_a0ca7d9fb84b9d3ca1c7f211b4eed3d51}\label{class_eigen_1_1_skyline_matrix_a0ca7d9fb84b9d3ca1c7f211b4eed3d51}} 
+const Scalar $\ast$ {\bfseries \+\_\+upper\+Ptr} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_a642d4b2a242d1f8eb4e01d78bf2eae38}\label{class_eigen_1_1_skyline_matrix_a642d4b2a242d1f8eb4e01d78bf2eae38}} 
+Scalar $\ast$ {\bfseries \+\_\+upper\+Ptr} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_ab65541d6acdc786f8061c1b89c7132dc}\label{class_eigen_1_1_skyline_matrix_ab65541d6acdc786f8061c1b89c7132dc}} 
+const Scalar $\ast$ {\bfseries \+\_\+lower\+Ptr} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_ab38d7139304acb44a491070bbd8339b5}\label{class_eigen_1_1_skyline_matrix_ab38d7139304acb44a491070bbd8339b5}} 
+Scalar $\ast$ {\bfseries \+\_\+lower\+Ptr} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_aa62d2cde6c6014ae98ec12b22a1eee99}\label{class_eigen_1_1_skyline_matrix_aa62d2cde6c6014ae98ec12b22a1eee99}} 
+const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} $\ast$ {\bfseries \+\_\+upper\+Profile\+Ptr} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_afaecf9f513ad5fa45e1b0580e3512443}\label{class_eigen_1_1_skyline_matrix_afaecf9f513ad5fa45e1b0580e3512443}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} $\ast$ {\bfseries \+\_\+upper\+Profile\+Ptr} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_ac46cb4dd1367b665285e479be56974a3}\label{class_eigen_1_1_skyline_matrix_ac46cb4dd1367b665285e479be56974a3}} 
+const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} $\ast$ {\bfseries \+\_\+lower\+Profile\+Ptr} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_aa88015b7039b8aaed1434a9b547d2edd}\label{class_eigen_1_1_skyline_matrix_aa88015b7039b8aaed1434a9b547d2edd}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} $\ast$ {\bfseries \+\_\+lower\+Profile\+Ptr} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_af7b922a2e767eee5680c2d7a227e5cca}\label{class_eigen_1_1_skyline_matrix_af7b922a2e767eee5680c2d7a227e5cca}} 
+Scalar {\bfseries coeff} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_a227b54aa3317ac2807825481b40b010f}\label{class_eigen_1_1_skyline_matrix_a227b54aa3317ac2807825481b40b010f}} 
+Scalar \& {\bfseries coeff\+Ref} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_a5aae548b86b0ff3f5ad6d0be858e546e}\label{class_eigen_1_1_skyline_matrix_a5aae548b86b0ff3f5ad6d0be858e546e}} 
+Scalar {\bfseries coeff\+Diag} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} idx) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_acf6ff1e183918c9f9ca631a75bfd3e99}\label{class_eigen_1_1_skyline_matrix_acf6ff1e183918c9f9ca631a75bfd3e99}} 
+Scalar {\bfseries coeff\+Lower} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_a4471b1a767ebc6cce5c6305d1cb0e9b4}\label{class_eigen_1_1_skyline_matrix_a4471b1a767ebc6cce5c6305d1cb0e9b4}} 
+Scalar {\bfseries coeff\+Upper} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_ac01006c1dc072b92dbfc007d26a2072e}\label{class_eigen_1_1_skyline_matrix_ac01006c1dc072b92dbfc007d26a2072e}} 
+Scalar \& {\bfseries coeff\+Ref\+Diag} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} idx)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_af844129d30a78a6d0ce5d4fac96a0417}\label{class_eigen_1_1_skyline_matrix_af844129d30a78a6d0ce5d4fac96a0417}} 
+Scalar \& {\bfseries coeff\+Ref\+Lower} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_a30808fc10f3c0e0add1f410013c9937c}\label{class_eigen_1_1_skyline_matrix_a30808fc10f3c0e0add1f410013c9937c}} 
+bool {\bfseries coeff\+Exist\+Lower} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_ab7fdd73227a49ea3fde214d36f48dd53}\label{class_eigen_1_1_skyline_matrix_ab7fdd73227a49ea3fde214d36f48dd53}} 
+Scalar \& {\bfseries coeff\+Ref\+Upper} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_aaa87a38402be32756e4d64790c5a9f67}\label{class_eigen_1_1_skyline_matrix_aaa87a38402be32756e4d64790c5a9f67}} 
+bool {\bfseries coeff\+Exist\+Upper} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col)
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_skyline_matrix_afeb349e5dc4b5d8c107ff067b44438f5}{set\+Zero}} ()
+\item 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_skyline_matrix_aea6d3b694cef560f15a7d18c1f010604}{non\+Zeros}} () const
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_skyline_matrix_aac6da20a87fca9d4cb6b871504497577}{reserve}} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} reserve\+Size, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} reserve\+Upper\+Size, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} reserve\+Lower\+Size)
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+O\+N\+T\+\_\+\+I\+N\+L\+I\+NE Scalar \& \mbox{\hyperlink{class_eigen_1_1_skyline_matrix_a6e2d550f29d0dd59f83aa9d568d92c23}{insert}} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col)
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_skyline_matrix_a1269310d041fb3ca2a980644f3cfe5a2}{finalize}} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_a96b5819fc711164e746450262dae8693}\label{class_eigen_1_1_skyline_matrix_a96b5819fc711164e746450262dae8693}} 
+void {\bfseries squeeze} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_afda234e34b8312fd2bf93fc4f6935cb3}\label{class_eigen_1_1_skyline_matrix_afda234e34b8312fd2bf93fc4f6935cb3}} 
+void {\bfseries prune} (Scalar reference, \mbox{\hyperlink{class_eigen_1_1_skyline_matrix_base_a24c532ab7e339b956a637a4a968e1565}{Real\+Scalar}} epsilon=dummy\+\_\+precision$<$ \mbox{\hyperlink{class_eigen_1_1_skyline_matrix_base_a24c532ab7e339b956a637a4a968e1565}{Real\+Scalar}} $>$())
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_skyline_matrix_a918eed5cc583f6d402f0db60c5c5ad52}{resize}} (size\+\_\+t rows, size\+\_\+t cols)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_a050a0ba5d47a1373a8ed9e1f7d02388e}\label{class_eigen_1_1_skyline_matrix_a050a0ba5d47a1373a8ed9e1f7d02388e}} 
+void {\bfseries resize\+Non\+Zeros} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_skyline_matrix_base_a635234baea6bd59f97e6bd219adbdb64}{size}})
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_a5615b6d198de88f00219877fbc4c9304}\label{class_eigen_1_1_skyline_matrix_a5615b6d198de88f00219877fbc4c9304}} 
+{\bfseries Skyline\+Matrix} (size\+\_\+t rows, size\+\_\+t cols)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_a8dbe4249614b89be421470e78592ce5b}\label{class_eigen_1_1_skyline_matrix_a8dbe4249614b89be421470e78592ce5b}} 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\{\bfseries Skyline\+Matrix} (const \mbox{\hyperlink{class_eigen_1_1_skyline_matrix_base}{Skyline\+Matrix\+Base}}$<$ Other\+Derived $>$ \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_af121abd994f8cb8a8b2c71eeaa843237}\label{class_eigen_1_1_skyline_matrix_af121abd994f8cb8a8b2c71eeaa843237}} 
+{\bfseries Skyline\+Matrix} (const \mbox{\hyperlink{class_eigen_1_1_skyline_matrix}{Skyline\+Matrix}} \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_ab7c63da758aec8c76c3702c09b5f76a9}\label{class_eigen_1_1_skyline_matrix_ab7c63da758aec8c76c3702c09b5f76a9}} 
+void {\bfseries swap} (\mbox{\hyperlink{class_eigen_1_1_skyline_matrix}{Skyline\+Matrix}} \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_a00f9f9d0c8006efcc90074d8d6b046a2}\label{class_eigen_1_1_skyline_matrix_a00f9f9d0c8006efcc90074d8d6b046a2}} 
+\mbox{\hyperlink{class_eigen_1_1_skyline_matrix}{Skyline\+Matrix}} \& {\bfseries operator=} (const \mbox{\hyperlink{class_eigen_1_1_skyline_matrix}{Skyline\+Matrix}} \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_a1f0aa06c7086d658416dc57076642525}\label{class_eigen_1_1_skyline_matrix_a1f0aa06c7086d658416dc57076642525}} 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\\mbox{\hyperlink{class_eigen_1_1_skyline_matrix}{Skyline\+Matrix}} \& {\bfseries operator=} (const \mbox{\hyperlink{class_eigen_1_1_skyline_matrix_base}{Skyline\+Matrix\+Base}}$<$ Other\+Derived $>$ \&other)
+\item 
+\mbox{\hyperlink{class_eigen_1_1_skyline_matrix_a456b254a757d26580b2c05fe270eaae7}{$\sim$\+Skyline\+Matrix}} ()
+\item 
+Scalar \mbox{\hyperlink{class_eigen_1_1_skyline_matrix_a56c9841de52e52744a2d5e6593979154}{sum}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_ab7a44fdfdb023bb966e6d0a57171a5ca}\label{class_eigen_1_1_skyline_matrix_ab7a44fdfdb023bb966e6d0a57171a5ca}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} $\ast$ {\bfseries m\+\_\+col\+Start\+Index}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_af1a8308329ec5ce393af4d3c3cdbaa6a}\label{class_eigen_1_1_skyline_matrix_af1a8308329ec5ce393af4d3c3cdbaa6a}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} $\ast$ {\bfseries m\+\_\+row\+Start\+Index}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_a6b554ff208378f9a8bae50a71bc30120}\label{class_eigen_1_1_skyline_matrix_a6b554ff208378f9a8bae50a71bc30120}} 
+\mbox{\hyperlink{class_eigen_1_1_skyline_storage}{Skyline\+Storage}}$<$ Scalar $>$ {\bfseries m\+\_\+data}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_ad24e6b67dae215b0d37f40c35b63e343}\label{class_eigen_1_1_skyline_matrix_ad24e6b67dae215b0d37f40c35b63e343}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_skyline_matrix}{Skyline\+Matrix}}$<$ Scalar,(\mbox{\hyperlink{class_eigen_1_1_skyline_matrix_base_a0d1f8ae5e8004bd6f71db58f0282dc2fa687566e95391ffd9783432d3fee5d655}{Flags}} \&$\sim$\mbox{\hyperlink{group__flags_gae4f56c2a60bbe4bd2e44c5b19cbe8762}{Row\+Major\+Bit}})$\vert$(Is\+Row\+Major ? \mbox{\hyperlink{group__flags_gae4f56c2a60bbe4bd2e44c5b19cbe8762}{Row\+Major\+Bit}} \+:0) $>$ {\bfseries Transposed\+Skyline\+Matrix}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_afc2112b0b77ab1937c2adbdcb4c23e5f}\label{class_eigen_1_1_skyline_matrix_afc2112b0b77ab1937c2adbdcb4c23e5f}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries m\+\_\+outer\+Size}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_acc7668f1df272117e2a4681a947bf082}\label{class_eigen_1_1_skyline_matrix_acc7668f1df272117e2a4681a947bf082}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries m\+\_\+inner\+Size}
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_a3edffb2dac6fdd2868b1ac37916c3a4c}\label{class_eigen_1_1_skyline_matrix_a3edffb2dac6fdd2868b1ac37916c3a4c}} 
+std\+::ostream \& {\bfseries operator$<$$<$} (std\+::ostream \&s, const \mbox{\hyperlink{class_eigen_1_1_skyline_matrix}{Skyline\+Matrix}} \&m)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Scalar, int \+\_\+\+Options$>$\newline
+class Eigen\+::\+Skyline\+Matrix$<$ \+\_\+\+Scalar, \+\_\+\+Options $>$}
+
+The main skyline matrix class. 
+
+This class implements a skyline matrix using the very uncommon storage scheme.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+Scalar} & the scalar type, i.\+e. the type of the coefficients \\
+\hline
+{\em \+\_\+\+Options} & Union of bit flags controlling the storage scheme. Currently the only possibility is Row\+Major. The default is 0 which means column-\/major. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_a456b254a757d26580b2c05fe270eaae7}\label{class_eigen_1_1_skyline_matrix_a456b254a757d26580b2c05fe270eaae7}} 
+\index{Eigen::SkylineMatrix$<$ \_Scalar, \_Options $>$@{Eigen::SkylineMatrix$<$ \_Scalar, \_Options $>$}!````~SkylineMatrix@{$\sim$SkylineMatrix}}
+\index{````~SkylineMatrix@{$\sim$SkylineMatrix}!Eigen::SkylineMatrix$<$ \_Scalar, \_Options $>$@{Eigen::SkylineMatrix$<$ \_Scalar, \_Options $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$SkylineMatrix()}{~SkylineMatrix()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Options$>$ \\
+\mbox{\hyperlink{class_eigen_1_1_skyline_matrix}{Eigen\+::\+Skyline\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Options $>$\+::$\sim$\mbox{\hyperlink{class_eigen_1_1_skyline_matrix}{Skyline\+Matrix}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Destructor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_a1269310d041fb3ca2a980644f3cfe5a2}\label{class_eigen_1_1_skyline_matrix_a1269310d041fb3ca2a980644f3cfe5a2}} 
+\index{Eigen::SkylineMatrix$<$ \_Scalar, \_Options $>$@{Eigen::SkylineMatrix$<$ \_Scalar, \_Options $>$}!finalize@{finalize}}
+\index{finalize@{finalize}!Eigen::SkylineMatrix$<$ \_Scalar, \_Options $>$@{Eigen::SkylineMatrix$<$ \_Scalar, \_Options $>$}}
+\doxysubsubsection{\texorpdfstring{finalize()}{finalize()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Options$>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_skyline_matrix}{Eigen\+::\+Skyline\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Options $>$\+::finalize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Must be called after inserting a set of non zero entries. \mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_a6e2d550f29d0dd59f83aa9d568d92c23}\label{class_eigen_1_1_skyline_matrix_a6e2d550f29d0dd59f83aa9d568d92c23}} 
+\index{Eigen::SkylineMatrix$<$ \_Scalar, \_Options $>$@{Eigen::SkylineMatrix$<$ \_Scalar, \_Options $>$}!insert@{insert}}
+\index{insert@{insert}!Eigen::SkylineMatrix$<$ \_Scalar, \_Options $>$@{Eigen::SkylineMatrix$<$ \_Scalar, \_Options $>$}}
+\doxysubsubsection{\texorpdfstring{insert()}{insert()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Options$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+O\+N\+T\+\_\+\+I\+N\+L\+I\+NE Scalar\& \mbox{\hyperlink{class_eigen_1_1_skyline_matrix}{Eigen\+::\+Skyline\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Options $>$\+::insert (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{row,  }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{col }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a reference to a novel non zero coefficient with coordinates {\itshape row} x {\itshape col}.
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+This function can be extremely slow if the non zero coefficients are not inserted in a coherent order.
+\end{DoxyWarning}
+After an insertion session, you should call the \mbox{\hyperlink{class_eigen_1_1_skyline_matrix_a1269310d041fb3ca2a980644f3cfe5a2}{finalize()}} function. \mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_aea6d3b694cef560f15a7d18c1f010604}\label{class_eigen_1_1_skyline_matrix_aea6d3b694cef560f15a7d18c1f010604}} 
+\index{Eigen::SkylineMatrix$<$ \_Scalar, \_Options $>$@{Eigen::SkylineMatrix$<$ \_Scalar, \_Options $>$}!nonZeros@{nonZeros}}
+\index{nonZeros@{nonZeros}!Eigen::SkylineMatrix$<$ \_Scalar, \_Options $>$@{Eigen::SkylineMatrix$<$ \_Scalar, \_Options $>$}}
+\doxysubsubsection{\texorpdfstring{nonZeros()}{nonZeros()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Options$>$ \\
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_skyline_matrix}{Eigen\+::\+Skyline\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Options $>$\+::non\+Zeros (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the number of non zero coefficients 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_aac6da20a87fca9d4cb6b871504497577}\label{class_eigen_1_1_skyline_matrix_aac6da20a87fca9d4cb6b871504497577}} 
+\index{Eigen::SkylineMatrix$<$ \_Scalar, \_Options $>$@{Eigen::SkylineMatrix$<$ \_Scalar, \_Options $>$}!reserve@{reserve}}
+\index{reserve@{reserve}!Eigen::SkylineMatrix$<$ \_Scalar, \_Options $>$@{Eigen::SkylineMatrix$<$ \_Scalar, \_Options $>$}}
+\doxysubsubsection{\texorpdfstring{reserve()}{reserve()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Options$>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_skyline_matrix}{Eigen\+::\+Skyline\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Options $>$\+::reserve (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{reserve\+Size,  }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{reserve\+Upper\+Size,  }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{reserve\+Lower\+Size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Preallocates {\itshape reserve\+Size} non zeros \mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_a918eed5cc583f6d402f0db60c5c5ad52}\label{class_eigen_1_1_skyline_matrix_a918eed5cc583f6d402f0db60c5c5ad52}} 
+\index{Eigen::SkylineMatrix$<$ \_Scalar, \_Options $>$@{Eigen::SkylineMatrix$<$ \_Scalar, \_Options $>$}!resize@{resize}}
+\index{resize@{resize}!Eigen::SkylineMatrix$<$ \_Scalar, \_Options $>$@{Eigen::SkylineMatrix$<$ \_Scalar, \_Options $>$}}
+\doxysubsubsection{\texorpdfstring{resize()}{resize()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Options$>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_skyline_matrix}{Eigen\+::\+Skyline\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Options $>$\+::resize (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{rows,  }\item[{size\+\_\+t}]{cols }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Resizes the matrix to a {\itshape rows} x {\itshape cols} matrix and initializes it to zero \begin{DoxySeeAlso}{See also}
+resize\+Non\+Zeros(\+Index), \mbox{\hyperlink{class_eigen_1_1_skyline_matrix_aac6da20a87fca9d4cb6b871504497577}{reserve()}}, \mbox{\hyperlink{class_eigen_1_1_skyline_matrix_afeb349e5dc4b5d8c107ff067b44438f5}{set\+Zero()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_afeb349e5dc4b5d8c107ff067b44438f5}\label{class_eigen_1_1_skyline_matrix_afeb349e5dc4b5d8c107ff067b44438f5}} 
+\index{Eigen::SkylineMatrix$<$ \_Scalar, \_Options $>$@{Eigen::SkylineMatrix$<$ \_Scalar, \_Options $>$}!setZero@{setZero}}
+\index{setZero@{setZero}!Eigen::SkylineMatrix$<$ \_Scalar, \_Options $>$@{Eigen::SkylineMatrix$<$ \_Scalar, \_Options $>$}}
+\doxysubsubsection{\texorpdfstring{setZero()}{setZero()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Options$>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_skyline_matrix}{Eigen\+::\+Skyline\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Options $>$\+::set\+Zero (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Removes all non zeros \mbox{\Hypertarget{class_eigen_1_1_skyline_matrix_a56c9841de52e52744a2d5e6593979154}\label{class_eigen_1_1_skyline_matrix_a56c9841de52e52744a2d5e6593979154}} 
+\index{Eigen::SkylineMatrix$<$ \_Scalar, \_Options $>$@{Eigen::SkylineMatrix$<$ \_Scalar, \_Options $>$}!sum@{sum}}
+\index{sum@{sum}!Eigen::SkylineMatrix$<$ \_Scalar, \_Options $>$@{Eigen::SkylineMatrix$<$ \_Scalar, \_Options $>$}}
+\doxysubsubsection{\texorpdfstring{sum()}{sum()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Options$>$ \\
+Scalar \mbox{\hyperlink{class_eigen_1_1_skyline_matrix}{Eigen\+::\+Skyline\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Options $>$\+::sum (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Overloaded for performance 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/src/\+Skyline/Skyline\+Matrix.\+h\end{DoxyCompactItemize}

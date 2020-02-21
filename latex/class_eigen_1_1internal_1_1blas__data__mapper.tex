@@ -1,0 +1,70 @@
+\hypertarget{class_eigen_1_1internal_1_1blas__data__mapper}{}\doxysection{Eigen\+::internal\+::blas\+\_\+data\+\_\+mapper$<$ Scalar, Index, Storage\+Order, Alignment\+Type $>$ Class Template Reference}
+\label{class_eigen_1_1internal_1_1blas__data__mapper}\index{Eigen::internal::blas\_data\_mapper$<$ Scalar, Index, StorageOrder, AlignmentType $>$@{Eigen::internal::blas\_data\_mapper$<$ Scalar, Index, StorageOrder, AlignmentType $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1blas__data__mapper_a6b3a9094d6d25aaecebb80ea9d0cd802}\label{class_eigen_1_1internal_1_1blas__data__mapper_a6b3a9094d6d25aaecebb80ea9d0cd802}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1packet__traits}{packet\+\_\+traits}}$<$ Scalar $>$\+::type {\bfseries Packet}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1blas__data__mapper_a2a7e2cc9f49b1328b3c730a4ea94dda0}\label{class_eigen_1_1internal_1_1blas__data__mapper_a2a7e2cc9f49b1328b3c730a4ea94dda0}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1packet__traits}{packet\+\_\+traits}}$<$ Scalar $>$\+::\mbox{\hyperlink{struct_eigen_1_1half}{half}} {\bfseries Half\+Packet}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1blas__data__mapper_a6ece4295a96eb25888a84b66d74ecea1}\label{class_eigen_1_1internal_1_1blas__data__mapper_a6ece4295a96eb25888a84b66d74ecea1}} 
+typedef \mbox{\hyperlink{class_eigen_1_1internal_1_1_blas_linear_mapper}{Blas\+Linear\+Mapper}}$<$ Scalar, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}, \mbox{\hyperlink{group__enums_ga45fe06e29902b7a2773de05ba27b47a1}{Alignment\+Type}} $>$ {\bfseries Linear\+Mapper}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1blas__data__mapper_a6af2e5b42bf8920514caed0900e136ea}\label{class_eigen_1_1internal_1_1blas__data__mapper_a6af2e5b42bf8920514caed0900e136ea}} 
+typedef \mbox{\hyperlink{class_eigen_1_1internal_1_1_blas_vector_mapper}{Blas\+Vector\+Mapper}}$<$ Scalar, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} $>$ {\bfseries Vector\+Mapper}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1blas__data__mapper_adb0990f4121cc371ff39e18243fa7f75}\label{class_eigen_1_1internal_1_1blas__data__mapper_adb0990f4121cc371ff39e18243fa7f75}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+A\+L\+W\+A\+Y\+S\+\_\+\+I\+N\+L\+I\+NE {\bfseries blas\+\_\+data\+\_\+mapper} (Scalar $\ast$data, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} stride)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1blas__data__mapper_a3ec8250149dcb94a1adabeaca916e022}\label{class_eigen_1_1internal_1_1blas__data__mapper_a3ec8250149dcb94a1adabeaca916e022}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+A\+L\+W\+A\+Y\+S\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1internal_1_1blas__data__mapper}{blas\+\_\+data\+\_\+mapper}}$<$ Scalar, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}, Storage\+Order, \mbox{\hyperlink{group__enums_ga45fe06e29902b7a2773de05ba27b47a1}{Alignment\+Type}} $>$ {\bfseries get\+Sub\+Mapper} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} i, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} j) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1blas__data__mapper_a8564af1d8d9304f73e40bd11caf319f7}\label{class_eigen_1_1internal_1_1blas__data__mapper_a8564af1d8d9304f73e40bd11caf319f7}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+A\+L\+W\+A\+Y\+S\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1internal_1_1_blas_linear_mapper}{Linear\+Mapper}} {\bfseries get\+Linear\+Mapper} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} i, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} j) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1blas__data__mapper_acd275391ce4e8698f1c4001bdc7f17e6}\label{class_eigen_1_1internal_1_1blas__data__mapper_acd275391ce4e8698f1c4001bdc7f17e6}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+A\+L\+W\+A\+Y\+S\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1internal_1_1_blas_vector_mapper}{Vector\+Mapper}} {\bfseries get\+Vector\+Mapper} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} i, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} j) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1blas__data__mapper_acfc17ca5e17082a5ec461875239dfdbc}\label{class_eigen_1_1internal_1_1blas__data__mapper_acfc17ca5e17082a5ec461875239dfdbc}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+A\+L\+W\+A\+Y\+S\+\_\+\+I\+N\+L\+I\+NE Scalar \& {\bfseries operator()} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} i, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} j) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1blas__data__mapper_ad82c65c2daa3e60f0ab6d96eab37b4f8}\label{class_eigen_1_1internal_1_1blas__data__mapper_ad82c65c2daa3e60f0ab6d96eab37b4f8}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+A\+L\+W\+A\+Y\+S\+\_\+\+I\+N\+L\+I\+NE Packet {\bfseries load\+Packet} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} i, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} j) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1blas__data__mapper_ab20e83fe585195cf86f2f4f46409a186}\label{class_eigen_1_1internal_1_1blas__data__mapper_ab20e83fe585195cf86f2f4f46409a186}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+A\+L\+W\+A\+Y\+S\+\_\+\+I\+N\+L\+I\+NE Half\+Packet {\bfseries load\+Half\+Packet} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} i, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} j) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1blas__data__mapper_a026a62809b2eff9e14ccc8c22b26e5f0}\label{class_eigen_1_1internal_1_1blas__data__mapper_a026a62809b2eff9e14ccc8c22b26e5f0}} 
+{\footnotesize template$<$typename Sub\+Packet $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+A\+L\+W\+A\+Y\+S\+\_\+\+I\+N\+L\+I\+NE void {\bfseries scatter\+Packet} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} i, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} j, const Sub\+Packet \&p) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1blas__data__mapper_ae947afd5dceca7c8f1d5c5f054e2ffcf}\label{class_eigen_1_1internal_1_1blas__data__mapper_ae947afd5dceca7c8f1d5c5f054e2ffcf}} 
+{\footnotesize template$<$typename Sub\+Packet $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+A\+L\+W\+A\+Y\+S\+\_\+\+I\+N\+L\+I\+NE Sub\+Packet {\bfseries gather\+Packet} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} i, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} j) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1blas__data__mapper_a94a1a2c7c8dd8c42d97919b147c1b402}\label{class_eigen_1_1internal_1_1blas__data__mapper_a94a1a2c7c8dd8c42d97919b147c1b402}} 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries stride} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1blas__data__mapper_a7790230181b793f9a78177523d42940c}\label{class_eigen_1_1internal_1_1blas__data__mapper_a7790230181b793f9a78177523d42940c}} 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Scalar $\ast$ {\bfseries data} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1blas__data__mapper_a45b684d956b18a77fa5a1e4d84e7cd26}\label{class_eigen_1_1internal_1_1blas__data__mapper_a45b684d956b18a77fa5a1e4d84e7cd26}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries first\+Aligned} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} size) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1blas__data__mapper_ae0833ea4b5bb89f042f6c582be6baf48}\label{class_eigen_1_1internal_1_1blas__data__mapper_ae0833ea4b5bb89f042f6c582be6baf48}} 
+Scalar $\ast$E\+I\+G\+E\+N\+\_\+\+R\+E\+S\+T\+R\+I\+CT {\bfseries m\+\_\+data}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1blas__data__mapper_a9547e7778e522ac1c4276a8dd04a959f}\label{class_eigen_1_1internal_1_1blas__data__mapper_a9547e7778e522ac1c4276a8dd04a959f}} 
+const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries m\+\_\+stride}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/util/Blas\+Util.\+h\end{DoxyCompactItemize}

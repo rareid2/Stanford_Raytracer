@@ -1,0 +1,907 @@
+\hypertarget{class_eigen_1_1_transform}{}\doxysection{Eigen\+::Transform Class Reference}
+\label{class_eigen_1_1_transform}\index{Eigen::Transform@{Eigen::Transform}}
+
+
+Represents an homogeneous transformation in a N dimensional space.  
+
+
+
+
+{\ttfamily \#include $<$Transform.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transform_ac73254d3fea011341a008b4440197e03}\label{class_eigen_1_1_transform_ac73254d3fea011341a008b4440197e03}} 
+enum \{ {\bfseries Transform\+Time\+Diagonal\+Mode} = ((Mode==int(Isometry))?Affine\+:int(Mode))
+ \}
+\item 
+typedef \+\_\+\+Scalar \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transform_a5de7deffc83a7c1372a1a3bd41bd5433}\label{class_eigen_1_1_transform_a5de7deffc83a7c1372a1a3bd41bd5433}} 
+typedef \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Eigen\+::\+Index}} {\bfseries Storage\+Index}
+\item 
+typedef \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Eigen\+::\+Index}} \mbox{\hyperlink{class_eigen_1_1_transform_af586d6317531d250d23ebe1f41502595}{Index}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1internal_1_1make__proper__matrix__type}{internal\+::make\+\_\+proper\+\_\+matrix\+\_\+type}}$<$ \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}}, Rows, H\+Dim, Options $>$\+::type \mbox{\hyperlink{class_eigen_1_1_transform_ade0fbd1fcacd613083e63671bc7ea1fa}{Matrix\+Type}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}}, Dim, Dim, Options $>$ \mbox{\hyperlink{class_eigen_1_1_transform_a607434a96cb732a951af896fa5c27634}{Linear\+Matrix\+Type}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_block}{Block}}$<$ \mbox{\hyperlink{class_eigen_1_1_transform_ade0fbd1fcacd613083e63671bc7ea1fa}{Matrix\+Type}}, Dim, Dim, int(Mode)==(\mbox{\hyperlink{group__enums_ggaee59a86102f150923b0cac6d4ff05107a8192e8fdb2ec3ec46d92956cc83ef490}{Affine\+Compact}}) \&\&(Options \&\mbox{\hyperlink{group__enums_ggaacded1a18ae58b0f554751f6cdf9eb13a77c993a8d9f6efe5c1159fb2ab07dd4f}{Row\+Major}})==0 $>$ \mbox{\hyperlink{class_eigen_1_1_transform_a58fadcc854f6150e3e38d088c4dcc265}{Linear\+Part}}
+\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1conditional}{internal\+::conditional}}$<$ int(Mode)==int(\mbox{\hyperlink{group__enums_ggaee59a86102f150923b0cac6d4ff05107a8192e8fdb2ec3ec46d92956cc83ef490}{Affine\+Compact}}), \mbox{\hyperlink{class_eigen_1_1_transform_ade0fbd1fcacd613083e63671bc7ea1fa}{Matrix\+Type}} \&, \mbox{\hyperlink{class_eigen_1_1_block}{Block}}$<$ \mbox{\hyperlink{class_eigen_1_1_transform_ade0fbd1fcacd613083e63671bc7ea1fa}{Matrix\+Type}}, Dim, H\+Dim $>$ $>$\+::type \mbox{\hyperlink{class_eigen_1_1_transform_ae7d9f424ba9b30a5a44ddbaa79c8917e}{Affine\+Part}}
+\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1conditional}{internal\+::conditional}}$<$ int(Mode)==int(\mbox{\hyperlink{group__enums_ggaee59a86102f150923b0cac6d4ff05107a8192e8fdb2ec3ec46d92956cc83ef490}{Affine\+Compact}}), const \mbox{\hyperlink{class_eigen_1_1_transform_ade0fbd1fcacd613083e63671bc7ea1fa}{Matrix\+Type}} \&, const \mbox{\hyperlink{class_eigen_1_1_block}{Block}}$<$ const \mbox{\hyperlink{class_eigen_1_1_transform_ade0fbd1fcacd613083e63671bc7ea1fa}{Matrix\+Type}}, Dim, H\+Dim $>$ $>$\+::type \mbox{\hyperlink{class_eigen_1_1_transform_ac909bfb8aa6ad7651acfd7e3b3333999}{Const\+Affine\+Part}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}}, Dim, 1 $>$ \mbox{\hyperlink{class_eigen_1_1_transform_a5e247ecac67af07898d17c205907f090}{Vector\+Type}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_block}{Block}}$<$ \mbox{\hyperlink{class_eigen_1_1_transform_ade0fbd1fcacd613083e63671bc7ea1fa}{Matrix\+Type}}, Dim, 1,!(\mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_transform_ade0fbd1fcacd613083e63671bc7ea1fa}{Matrix\+Type}} $>$\+::Flags \&\mbox{\hyperlink{group__flags_gae4f56c2a60bbe4bd2e44c5b19cbe8762}{Row\+Major\+Bit}})$>$ \mbox{\hyperlink{class_eigen_1_1_transform_ac666bc39a7db53d1f3537b44a67ada4b}{Translation\+Part}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_translation}{Translation}}$<$ \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}}, Dim $>$ \mbox{\hyperlink{class_eigen_1_1_transform_a9cfef2ae86496b3d5b8a96921587b6ad}{Translation\+Type}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$ \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}}, Dim, Transform\+Time\+Diagonal\+Mode $>$ \mbox{\hyperlink{class_eigen_1_1_transform_a95931b09214436fbaa3630d5ef3b1bd0}{Transform\+Time\+Diagonal\+Return\+Type}}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transform_aea6ffde28647e284d4a6fa6f96c14fc6}\label{class_eigen_1_1_transform_aea6ffde28647e284d4a6fa6f96c14fc6}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1transform__take__affine__part}{internal\+::transform\+\_\+take\+\_\+affine\+\_\+part}}$<$ \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}} $>$ {\bfseries take\+\_\+affine\+\_\+part}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_transform_a6b2bd9a93737948a9725c9bf31330b89}{E\+I\+G\+E\+N\+\_\+\+M\+A\+K\+E\+\_\+\+A\+L\+I\+G\+N\+E\+D\+\_\+\+O\+P\+E\+R\+A\+T\+O\+R\+\_\+\+N\+E\+W\+\_\+\+I\+F\+\_\+\+V\+E\+C\+T\+O\+R\+I\+Z\+A\+B\+L\+E\+\_\+\+F\+I\+X\+E\+D\+\_\+\+S\+I\+ZE}} (\+\_\+\+Scalar, \+\_\+\+Dim==\mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}} ? \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}} \+:(\+\_\+\+Dim+1) $\ast$(\+\_\+\+Dim+1)) enum
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform_aafb7652e1b94acc0e8914f6e4b4dc9c5}{Transform}} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transform_a6781870e6c1f6136f66d4644387b6740}\label{class_eigen_1_1_transform_a6781870e6c1f6136f66d4644387b6740}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC {\bfseries Transform} (const \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}} \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transform_a1f0f4c8c0daead1ad00f5c4eeadc3ccb}\label{class_eigen_1_1_transform_a1f0f4c8c0daead1ad00f5c4eeadc3ccb}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC {\bfseries Transform} (const \mbox{\hyperlink{class_eigen_1_1_transform_a9cfef2ae86496b3d5b8a96921587b6ad}{Translation\+Type}} \&t)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transform_a9c84dd2a998484315ab03243fd39aa6b}\label{class_eigen_1_1_transform_a9c84dd2a998484315ab03243fd39aa6b}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC {\bfseries Transform} (const \mbox{\hyperlink{class_eigen_1_1_uniform_scaling}{Uniform\+Scaling}}$<$ \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}} $>$ \&s)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transform_a9a9c51f229713cea8492b90e10874dfe}\label{class_eigen_1_1_transform_a9a9c51f229713cea8492b90e10874dfe}} 
+{\footnotesize template$<$typename Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC {\bfseries Transform} (const \mbox{\hyperlink{class_eigen_1_1_rotation_base}{Rotation\+Base}}$<$ Derived, Dim $>$ \&r)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transform_aa4e1bdf697b66c4a797dc15a36927f6a}\label{class_eigen_1_1_transform_aa4e1bdf697b66c4a797dc15a36927f6a}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}} \& {\bfseries operator=} (const \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}} \&other)
+\item 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform_aeb4dd065353cee8561a1444e61c33d30}{Transform}} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Other\+Derived $>$ \&other)
+\item 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}} \& \mbox{\hyperlink{class_eigen_1_1_transform_a9b4831037efcb1954d6fe78eac02518d}{operator=}} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Other\+Derived $>$ \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transform_a795bd7a4ac66060a4b8e3551c67ff975}\label{class_eigen_1_1_transform_a795bd7a4ac66060a4b8e3551c67ff975}} 
+{\footnotesize template$<$int Other\+Options$>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC {\bfseries Transform} (const \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$ \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}}, Dim, Mode, Other\+Options $>$ \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transform_a0754b296ad0d2567fccf21275ff17f59}\label{class_eigen_1_1_transform_a0754b296ad0d2567fccf21275ff17f59}} 
+{\footnotesize template$<$int Other\+Mode, int Other\+Options$>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC {\bfseries Transform} (const \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$ \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}}, Dim, Other\+Mode, Other\+Options $>$ \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transform_a12297b55769774f8651336b2ac554b49}\label{class_eigen_1_1_transform_a12297b55769774f8651336b2ac554b49}} 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC {\bfseries Transform} (const \mbox{\hyperlink{class_eigen_1_1_return_by_value}{Return\+By\+Value}}$<$ Other\+Derived $>$ \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transform_a35dbf8caddbc003706875ce7273e0388}\label{class_eigen_1_1_transform_a35dbf8caddbc003706875ce7273e0388}} 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}} \& {\bfseries operator=} (const \mbox{\hyperlink{class_eigen_1_1_return_by_value}{Return\+By\+Value}}$<$ Other\+Derived $>$ \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transform_a88f089ef8b1b375a4d6f7260fbf11c90}\label{class_eigen_1_1_transform_a88f089ef8b1b375a4d6f7260fbf11c90}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform_af586d6317531d250d23ebe1f41502595}{Index}} {\bfseries rows} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transform_af55fa7bb18c4dc073c4be3e5092753d6}\label{class_eigen_1_1_transform_af55fa7bb18c4dc073c4be3e5092753d6}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform_af586d6317531d250d23ebe1f41502595}{Index}} {\bfseries cols} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}} \mbox{\hyperlink{class_eigen_1_1_transform_ac72817b241d363aef1f2ffa4228242e9}{operator()}} (\mbox{\hyperlink{class_eigen_1_1_transform_af586d6317531d250d23ebe1f41502595}{Index}} row, \mbox{\hyperlink{class_eigen_1_1_transform_af586d6317531d250d23ebe1f41502595}{Index}} col) const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}} \& \mbox{\hyperlink{class_eigen_1_1_transform_ac40a7c201d4e0f3983fe6a1e2d340a5b}{operator()}} (\mbox{\hyperlink{class_eigen_1_1_transform_af586d6317531d250d23ebe1f41502595}{Index}} row, \mbox{\hyperlink{class_eigen_1_1_transform_af586d6317531d250d23ebe1f41502595}{Index}} col)
+\item 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform_ade0fbd1fcacd613083e63671bc7ea1fa}{Matrix\+Type}} \& \mbox{\hyperlink{class_eigen_1_1_transform_adbcd83c08de1aac4a7358430048dbdfa}{matrix}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform_ade0fbd1fcacd613083e63671bc7ea1fa}{Matrix\+Type}} \& \mbox{\hyperlink{class_eigen_1_1_transform_ae6f1560f239d3f658045cb88927c0c64}{matrix}} ()
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform_a18e0244314705da1942ed6784b1b93d8}{Const\+Linear\+Part}} \mbox{\hyperlink{class_eigen_1_1_transform_a53fd3fbe10032ac51cadfb87467c8dca}{linear}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform_a58fadcc854f6150e3e38d088c4dcc265}{Linear\+Part}} \mbox{\hyperlink{class_eigen_1_1_transform_ae939c0c9740e4e2b34567f355a5ca0f4}{linear}} ()
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform_ac909bfb8aa6ad7651acfd7e3b3333999}{Const\+Affine\+Part}} \mbox{\hyperlink{class_eigen_1_1_transform_a3f7b266387deae80c2b4f41122e66c24}{affine}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform_ae7d9f424ba9b30a5a44ddbaa79c8917e}{Affine\+Part}} \mbox{\hyperlink{class_eigen_1_1_transform_ac410cb6256c9342332ded7b8e1854523}{affine}} ()
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform_a620e6387a3ce1dea8f37c3d7abb230b1}{Const\+Translation\+Part}} \mbox{\hyperlink{class_eigen_1_1_transform_a544609d7a64b17d35e26d7ec2e4b74c6}{translation}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform_ac666bc39a7db53d1f3537b44a67ada4b}{Translation\+Part}} \mbox{\hyperlink{class_eigen_1_1_transform_ab60263dcc11f87cf613e920a0508c2d7}{translation}} ()
+\item 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{struct_eigen_1_1internal_1_1transform__right__product__impl}{internal\+::transform\+\_\+right\+\_\+product\+\_\+impl}}$<$ \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}, Other\+Derived $>$\+::Result\+Type \mbox{\hyperlink{class_eigen_1_1_transform_a498740a41c6f07091a8e6acf5439d42c}{operator$\ast$}} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Other\+Derived $>$ \&other) const
+\item 
+{\footnotesize template$<$typename Diagonal\+Derived $>$ }\\const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform_a95931b09214436fbaa3630d5ef3b1bd0}{Transform\+Time\+Diagonal\+Return\+Type}} \mbox{\hyperlink{class_eigen_1_1_transform_a540c312b82144e408b9936ef6cfc3a17}{operator$\ast$}} (const \mbox{\hyperlink{class_eigen_1_1_diagonal_base}{Diagonal\+Base}}$<$ Diagonal\+Derived $>$ \&b) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transform_a37eb9b995d5b36d86c6d0be82aff6414}\label{class_eigen_1_1_transform_a37eb9b995d5b36d86c6d0be82aff6414}} 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}} \& {\bfseries operator$\ast$=} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Other\+Derived $>$ \&other)
+\item 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}} \mbox{\hyperlink{class_eigen_1_1_transform_ad6652ef519c023614b62aeffe6f99401}{operator$\ast$}} (const \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}} \&other) const
+\item 
+{\footnotesize template$<$int Other\+Mode, int Other\+Options$>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1internal_1_1transform__transform__product__impl}{internal\+::transform\+\_\+transform\+\_\+product\+\_\+impl}}$<$ \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}, \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$ \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}}, Dim, Other\+Mode, Other\+Options $>$ $>$\+::Result\+Type \mbox{\hyperlink{class_eigen_1_1_transform_afcfbd2a0de2bbede01e8d2a1684094f8}{operator$\ast$}} (const \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$ \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}}, Dim, Other\+Mode, Other\+Options $>$ \&other) const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC void \mbox{\hyperlink{class_eigen_1_1_transform_a095cb776ce13324b59c4d4e718083e1c}{set\+Identity}} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transform_ae4af05399ba8f067c13f25b34517d11c}\label{class_eigen_1_1_transform_ae4af05399ba8f067c13f25b34517d11c}} 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}} \& {\bfseries scale} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Other\+Derived $>$ \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transform_a5b8a9985824d4634c350a90fa9e2e95e}\label{class_eigen_1_1_transform_a5b8a9985824d4634c350a90fa9e2e95e}} 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}} \& {\bfseries prescale} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Other\+Derived $>$ \&other)
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}} \& \mbox{\hyperlink{class_eigen_1_1_transform_a8f721efe989f8525d3b4a6db6cfed8a0}{scale}} (const \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}} \&s)
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}} \& \mbox{\hyperlink{class_eigen_1_1_transform_ae7f49b674771f028f2824072c5d704c0}{prescale}} (const \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}} \&s)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transform_a3ec4c591a2136d338a307f16b0b04820}\label{class_eigen_1_1_transform_a3ec4c591a2136d338a307f16b0b04820}} 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}} \& {\bfseries translate} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Other\+Derived $>$ \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transform_accad976f5f2500ccf5a96ae374c56c7c}\label{class_eigen_1_1_transform_accad976f5f2500ccf5a96ae374c56c7c}} 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}} \& {\bfseries pretranslate} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Other\+Derived $>$ \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transform_ab26ecb0d2aaa890df8b5afbc55680392}\label{class_eigen_1_1_transform_ab26ecb0d2aaa890df8b5afbc55680392}} 
+{\footnotesize template$<$typename Rotation\+Type $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}} \& {\bfseries rotate} (const Rotation\+Type \&\mbox{\hyperlink{class_eigen_1_1_transform_af9ca550648df4170bb8bbc2382dce4e6}{rotation}})
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transform_a8f9d16cccabac45086e1e857e1852b89}\label{class_eigen_1_1_transform_a8f9d16cccabac45086e1e857e1852b89}} 
+{\footnotesize template$<$typename Rotation\+Type $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}} \& {\bfseries prerotate} (const Rotation\+Type \&\mbox{\hyperlink{class_eigen_1_1_transform_af9ca550648df4170bb8bbc2382dce4e6}{rotation}})
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}} \& \mbox{\hyperlink{class_eigen_1_1_transform_adf1850a41e891083fe534331e86c8064}{shear}} (const \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}} \&sx, const \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}} \&sy)
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}} \& \mbox{\hyperlink{class_eigen_1_1_transform_af10be0893b653947606f496a450bbd28}{preshear}} (const \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}} \&sx, const \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}} \&sy)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transform_a8b93c5cef6834f137b4608d41976f98a}\label{class_eigen_1_1_transform_a8b93c5cef6834f137b4608d41976f98a}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}} \& {\bfseries operator=} (const \mbox{\hyperlink{class_eigen_1_1_transform_a9cfef2ae86496b3d5b8a96921587b6ad}{Translation\+Type}} \&t)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transform_af5e9921992693a1cccc376342a554e23}\label{class_eigen_1_1_transform_af5e9921992693a1cccc376342a554e23}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}} \& {\bfseries operator$\ast$=} (const \mbox{\hyperlink{class_eigen_1_1_transform_a9cfef2ae86496b3d5b8a96921587b6ad}{Translation\+Type}} \&t)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transform_a73ff7f71980ce7b5a09d84ef34f368ab}\label{class_eigen_1_1_transform_a73ff7f71980ce7b5a09d84ef34f368ab}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}} {\bfseries operator$\ast$} (const \mbox{\hyperlink{class_eigen_1_1_transform_a9cfef2ae86496b3d5b8a96921587b6ad}{Translation\+Type}} \&t) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transform_a9244728a9a3e14296eba750959423e3d}\label{class_eigen_1_1_transform_a9244728a9a3e14296eba750959423e3d}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}} \& {\bfseries operator=} (const \mbox{\hyperlink{class_eigen_1_1_uniform_scaling}{Uniform\+Scaling}}$<$ \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}} $>$ \&t)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transform_ae7697ef0359d82e3f510bb9d50f27f56}\label{class_eigen_1_1_transform_ae7697ef0359d82e3f510bb9d50f27f56}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}} \& {\bfseries operator$\ast$=} (const \mbox{\hyperlink{class_eigen_1_1_uniform_scaling}{Uniform\+Scaling}}$<$ \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}} $>$ \&s)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transform_a555ffaface39972cf389bdcd528b052f}\label{class_eigen_1_1_transform_a555ffaface39972cf389bdcd528b052f}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform_a95931b09214436fbaa3630d5ef3b1bd0}{Transform\+Time\+Diagonal\+Return\+Type}} {\bfseries operator$\ast$} (const \mbox{\hyperlink{class_eigen_1_1_uniform_scaling}{Uniform\+Scaling}}$<$ \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}} $>$ \&s) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transform_ad65663ae5d944079a685e186128088d7}\label{class_eigen_1_1_transform_ad65663ae5d944079a685e186128088d7}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}} \& {\bfseries operator$\ast$=} (const \mbox{\hyperlink{class_eigen_1_1_diagonal_matrix}{Diagonal\+Matrix}}$<$ \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}}, Dim $>$ \&s)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transform_a4b540c836518e8b94849f74f0528e3da}\label{class_eigen_1_1_transform_a4b540c836518e8b94849f74f0528e3da}} 
+{\footnotesize template$<$typename Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}} \& {\bfseries operator=} (const \mbox{\hyperlink{class_eigen_1_1_rotation_base}{Rotation\+Base}}$<$ Derived, Dim $>$ \&r)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transform_ae215ea7dc19d9d429b57957aa168e34a}\label{class_eigen_1_1_transform_ae215ea7dc19d9d429b57957aa168e34a}} 
+{\footnotesize template$<$typename Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}} \& {\bfseries operator$\ast$=} (const \mbox{\hyperlink{class_eigen_1_1_rotation_base}{Rotation\+Base}}$<$ Derived, Dim $>$ \&r)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transform_ac127ca29c80926d2cac249ec0e34c016}\label{class_eigen_1_1_transform_ac127ca29c80926d2cac249ec0e34c016}} 
+{\footnotesize template$<$typename Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}} {\bfseries operator$\ast$} (const \mbox{\hyperlink{class_eigen_1_1_rotation_base}{Rotation\+Base}}$<$ Derived, Dim $>$ \&r) const
+\item 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform_a607434a96cb732a951af896fa5c27634}{Linear\+Matrix\+Type}} \mbox{\hyperlink{class_eigen_1_1_transform_af9ca550648df4170bb8bbc2382dce4e6}{rotation}} () const
+\item 
+{\footnotesize template$<$typename Rotation\+Matrix\+Type , typename Scaling\+Matrix\+Type $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC void \mbox{\hyperlink{class_eigen_1_1_transform_a92513752f71cf33c32b7c9cf9eaa3a8f}{compute\+Rotation\+Scaling}} (Rotation\+Matrix\+Type $\ast$\mbox{\hyperlink{class_eigen_1_1_transform_af9ca550648df4170bb8bbc2382dce4e6}{rotation}}, Scaling\+Matrix\+Type $\ast$scaling) const
+\item 
+{\footnotesize template$<$typename Scaling\+Matrix\+Type , typename Rotation\+Matrix\+Type $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC void \mbox{\hyperlink{class_eigen_1_1_transform_aa39b7f8fee5e2893e1dcf7e3b6722e08}{compute\+Scaling\+Rotation}} (Scaling\+Matrix\+Type $\ast$scaling, Rotation\+Matrix\+Type $\ast$\mbox{\hyperlink{class_eigen_1_1_transform_af9ca550648df4170bb8bbc2382dce4e6}{rotation}}) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transform_a2a5308f2e132d4c306390bac5619930c}\label{class_eigen_1_1_transform_a2a5308f2e132d4c306390bac5619930c}} 
+{\footnotesize template$<$typename Position\+Derived , typename Orientation\+Type , typename Scale\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}} \& {\bfseries from\+Position\+Orientation\+Scale} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Position\+Derived $>$ \&position, const Orientation\+Type \&orientation, const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Scale\+Derived $>$ \&scale)
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}} \mbox{\hyperlink{class_eigen_1_1_transform_a4b5f305ec6387ddbc058dbd5f07e8247}{inverse}} (\mbox{\hyperlink{group__enums_gaee59a86102f150923b0cac6d4ff05107}{Transform\+Traits}} traits=(\mbox{\hyperlink{group__enums_gaee59a86102f150923b0cac6d4ff05107}{Transform\+Traits}}) Mode) const
+\item 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}} $\ast$ \mbox{\hyperlink{class_eigen_1_1_transform_a4fa2a9fd29068dcb39fa587f31d6b8e5}{data}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}} $\ast$ \mbox{\hyperlink{class_eigen_1_1_transform_af22a8b76ec4290110650490e21769025}{data}} ()
+\item 
+{\footnotesize template$<$typename New\+Scalar\+Type $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1internal_1_1cast__return__type}{internal\+::cast\+\_\+return\+\_\+type}}$<$ \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}, \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$ New\+Scalar\+Type, Dim, Mode, Options $>$ $>$\+::type \mbox{\hyperlink{class_eigen_1_1_transform_afc5db7459a2cbe44fff759ec3947db98}{cast}} () const
+\item 
+{\footnotesize template$<$typename Other\+Scalar\+Type $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform_a6ec505eabef54aab3347add911f195f2}{Transform}} (const \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$ Other\+Scalar\+Type, Dim, Mode, Options $>$ \&other)
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC bool \mbox{\hyperlink{class_eigen_1_1_transform_a0aa85aa67a8979516f9b50dda15db321}{is\+Approx}} (const \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}} \&other, const typename \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}} $>$\+::Real \&prec=\mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}} $>$\+::dummy\+\_\+precision()) const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC void \mbox{\hyperlink{class_eigen_1_1_transform_ad98894b1084d4c78799125c73c347f1c}{make\+Affine}} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transform_a3d8e961cab11a657d1a8f250845cb370}\label{class_eigen_1_1_transform_a3d8e961cab11a657d1a8f250845cb370}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_block}{Block}}$<$ \mbox{\hyperlink{class_eigen_1_1_transform_ade0fbd1fcacd613083e63671bc7ea1fa}{Matrix\+Type}}, int(Mode)==int(\mbox{\hyperlink{group__enums_ggaee59a86102f150923b0cac6d4ff05107a0f7338b8672884554e8642bce9e44183}{Projective}})?H\+Dim\+:\+Dim, Dim $>$ {\bfseries linear\+Ext} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transform_a4aa077cf6c5f23fe2bf2093b53710548}\label{class_eigen_1_1_transform_a4aa077cf6c5f23fe2bf2093b53710548}} 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_block}{Block}}$<$ \mbox{\hyperlink{class_eigen_1_1_transform_ade0fbd1fcacd613083e63671bc7ea1fa}{Matrix\+Type}}, int(Mode)==int(\mbox{\hyperlink{group__enums_ggaee59a86102f150923b0cac6d4ff05107a0f7338b8672884554e8642bce9e44183}{Projective}})?H\+Dim\+:\+Dim, Dim $>$ {\bfseries linear\+Ext} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transform_a8ff7b724e7b8f4db3388d05743408219}\label{class_eigen_1_1_transform_a8ff7b724e7b8f4db3388d05743408219}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_block}{Block}}$<$ \mbox{\hyperlink{class_eigen_1_1_transform_ade0fbd1fcacd613083e63671bc7ea1fa}{Matrix\+Type}}, int(Mode)==int(\mbox{\hyperlink{group__enums_ggaee59a86102f150923b0cac6d4ff05107a0f7338b8672884554e8642bce9e44183}{Projective}})?H\+Dim\+:\+Dim, 1 $>$ {\bfseries translation\+Ext} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transform_ad4ea4de1725457730e029c2b3150c503}\label{class_eigen_1_1_transform_ad4ea4de1725457730e029c2b3150c503}} 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_block}{Block}}$<$ \mbox{\hyperlink{class_eigen_1_1_transform_ade0fbd1fcacd613083e63671bc7ea1fa}{Matrix\+Type}}, int(Mode)==int(\mbox{\hyperlink{group__enums_ggaee59a86102f150923b0cac6d4ff05107a0f7338b8672884554e8642bce9e44183}{Projective}})?H\+Dim\+:\+Dim, 1 $>$ {\bfseries translation\+Ext} () const
+\item 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$ \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}}, Dim, Mode, Options $>$ \& \mbox{\hyperlink{class_eigen_1_1_transform_a09f7567c497ceb5c756c612dcf10534f}{scale}} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Other\+Derived $>$ \&other)
+\item 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$ \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}}, Dim, Mode, Options $>$ \& \mbox{\hyperlink{class_eigen_1_1_transform_a3568a9ce30d43c19cacee51020a9f08d}{prescale}} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Other\+Derived $>$ \&other)
+\item 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$ \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}}, Dim, Mode, Options $>$ \& \mbox{\hyperlink{class_eigen_1_1_transform_a4ccdae983a8f750bdadfc1b100f5bdfa}{translate}} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Other\+Derived $>$ \&other)
+\item 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$ \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}}, Dim, Mode, Options $>$ \& \mbox{\hyperlink{class_eigen_1_1_transform_abce0b2e4389f07309eca5bbad428a1c6}{pretranslate}} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Other\+Derived $>$ \&other)
+\item 
+{\footnotesize template$<$typename Rotation\+Type $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$ \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}}, Dim, Mode, Options $>$ \& \mbox{\hyperlink{class_eigen_1_1_transform_a14a83bb3a05a9c02425eafcf1a77232e}{rotate}} (const Rotation\+Type \&\mbox{\hyperlink{class_eigen_1_1_transform_af9ca550648df4170bb8bbc2382dce4e6}{rotation}})
+\item 
+{\footnotesize template$<$typename Rotation\+Type $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$ \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}}, Dim, Mode, Options $>$ \& \mbox{\hyperlink{class_eigen_1_1_transform_af12f104aea6bcf67083dc465c05c293b}{prerotate}} (const Rotation\+Type \&\mbox{\hyperlink{class_eigen_1_1_transform_af9ca550648df4170bb8bbc2382dce4e6}{rotation}})
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transform_aa8bfef7228085166a4debfa189e9feca}\label{class_eigen_1_1_transform_aa8bfef7228085166a4debfa189e9feca}} 
+{\footnotesize template$<$typename Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$ \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}}, Dim, Mode, Options $>$ \& {\bfseries operator=} (const \mbox{\hyperlink{class_eigen_1_1_rotation_base}{Rotation\+Base}}$<$ Derived, Dim $>$ \&r)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transform_ac75d13d79f9ad1050e14e686e3427eac}\label{class_eigen_1_1_transform_ac75d13d79f9ad1050e14e686e3427eac}} 
+{\footnotesize template$<$typename Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$ \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}}, Dim, Mode, Options $>$ {\bfseries operator$\ast$} (const \mbox{\hyperlink{class_eigen_1_1_rotation_base}{Rotation\+Base}}$<$ Derived, Dim $>$ \&r) const
+\item 
+{\footnotesize template$<$typename Position\+Derived , typename Orientation\+Type , typename Scale\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$ \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}}, Dim, Mode, Options $>$ \& \mbox{\hyperlink{class_eigen_1_1_transform_a310dfb4dbfe7c1ce6104e6ebba7aa4f9}{from\+Position\+Orientation\+Scale}} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Position\+Derived $>$ \&position, const Orientation\+Type \&orientation, const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Scale\+Derived $>$ \&scale)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}} \mbox{\hyperlink{class_eigen_1_1_transform_a62fc34fbc47a39c0d77598fff602e762}{Identity}} ()
+\begin{DoxyCompactList}\small\item\em Returns an identity transformation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const typedef \mbox{\hyperlink{class_eigen_1_1_transform_ade0fbd1fcacd613083e63671bc7ea1fa}{Matrix\+Type}} \mbox{\hyperlink{class_eigen_1_1_transform_af0ec1d676ce6f36161a3eb1490c056af}{Const\+Matrix\+Type}}
+\item 
+const typedef \mbox{\hyperlink{class_eigen_1_1_block}{Block}}$<$ \mbox{\hyperlink{class_eigen_1_1_map}{Const\+Matrix\+Type}}, Dim, Dim, int(Mode)==(\mbox{\hyperlink{group__enums_ggaee59a86102f150923b0cac6d4ff05107a8192e8fdb2ec3ec46d92956cc83ef490}{Affine\+Compact}}) \&\&(Options \&\mbox{\hyperlink{group__enums_ggaacded1a18ae58b0f554751f6cdf9eb13a77c993a8d9f6efe5c1159fb2ab07dd4f}{Row\+Major}})==0 $>$ \mbox{\hyperlink{class_eigen_1_1_transform_a18e0244314705da1942ed6784b1b93d8}{Const\+Linear\+Part}}
+\item 
+const typedef \mbox{\hyperlink{class_eigen_1_1_block}{Block}}$<$ \mbox{\hyperlink{class_eigen_1_1_map}{Const\+Matrix\+Type}}, Dim, 1,!(\mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_transform_ade0fbd1fcacd613083e63671bc7ea1fa}{Matrix\+Type}} $>$\+::Flags \&\mbox{\hyperlink{group__flags_gae4f56c2a60bbe4bd2e44c5b19cbe8762}{Row\+Major\+Bit}})$>$ \mbox{\hyperlink{class_eigen_1_1_transform_a620e6387a3ce1dea8f37c3d7abb230b1}{Const\+Translation\+Part}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transform_a84de2d38b6f1ef22f49b0200618b548d}\label{class_eigen_1_1_transform_a84de2d38b6f1ef22f49b0200618b548d}} 
+static E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE void {\bfseries check\+\_\+template\+\_\+params} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transform_a4e51484aff443fb2f0cc514323d6266e}\label{class_eigen_1_1_transform_a4e51484aff443fb2f0cc514323d6266e}} 
+\mbox{\hyperlink{class_eigen_1_1_transform_ade0fbd1fcacd613083e63671bc7ea1fa}{Matrix\+Type}} {\bfseries m\+\_\+matrix}
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1internal_1_1transform__left__product__impl}{internal\+::transform\+\_\+left\+\_\+product\+\_\+impl}}$<$ Other\+Derived, Mode, Options, \+\_\+\+Dim, \+\_\+\+Dim+1 $>$\+::Result\+Type \mbox{\hyperlink{class_eigen_1_1_transform_a2708be617bae62104e2adfb03542f5ba}{operator$\ast$}} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Other\+Derived $>$ \&a, const \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}} \&b)
+\item 
+{\footnotesize template$<$typename Diagonal\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC friend \mbox{\hyperlink{class_eigen_1_1_transform_a95931b09214436fbaa3630d5ef3b1bd0}{Transform\+Time\+Diagonal\+Return\+Type}} \mbox{\hyperlink{class_eigen_1_1_transform_a1ee8a506136a4ac8084b2913cc249ec8}{operator$\ast$}} (const \mbox{\hyperlink{class_eigen_1_1_diagonal_base}{Diagonal\+Base}}$<$ Diagonal\+Derived $>$ \&a, const \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}} \&b)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents an homogeneous transformation in a N dimensional space. 
+
+\textbackslash{}geometry\+\_\+module
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Scalar} & the scalar type, i.\+e., the type of the coefficients \\
+\hline
+{\em \+\_\+\+Dim} & the dimension of the space \\
+\hline
+{\em \+\_\+\+Mode} & the type of the transformation. Can be\+:
+\begin{DoxyItemize}
+\item \mbox{\hyperlink{group__enums_ggaee59a86102f150923b0cac6d4ff05107a0872f0a82453aaae40339c33acbb31fb}{Affine}}\+: the transformation is stored as a (Dim+1)$^\wedge$2 matrix, where the last row is assumed to be \mbox{[}0 ... 0 1\mbox{]}.
+\item \mbox{\hyperlink{group__enums_ggaee59a86102f150923b0cac6d4ff05107a8192e8fdb2ec3ec46d92956cc83ef490}{Affine\+Compact}}\+: the transformation is stored as a (Dim)x(Dim+1) matrix.
+\item \mbox{\hyperlink{group__enums_ggaee59a86102f150923b0cac6d4ff05107a0f7338b8672884554e8642bce9e44183}{Projective}}\+: the transformation is stored as a (Dim+1)$^\wedge$2 matrix without any assumption. 
+\end{DoxyItemize}\\
+\hline
+{\em \+\_\+\+Options} & has the same meaning as in class \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}. It allows to specify Dont\+Align and/or Row\+Major. These Options are passed directly to the underlying matrix type.\\
+\hline
+\end{DoxyTemplParams}
+The homography is internally represented and stored by a matrix which is available through the \mbox{\hyperlink{class_eigen_1_1_transform_ae6f1560f239d3f658045cb88927c0c64}{matrix()}} method. To understand the behavior of this class you have to think a \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}} object as its internal matrix representation. The chosen convention is right multiply\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{v\textcolor{stringliteral}{' = T * v }}
+\end{DoxyCode}
+
+
+Therefore, an affine transformation matrix M is shaped like this\+:
+
+$ \left( \begin{array}{cc} linear & translation\\ 0 ... 0 & 1 \end{array} \right) $
+
+Note that for a projective transformation the last row can be anything, and then the interpretation of different parts might be sightly different.
+
+However, unlike a plain matrix, the \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}} class provides many features simplifying both its assembly and usage. In particular, it can be composed with any other transformations (\mbox{\hyperlink{class_eigen_1_1_transform}{Transform}},\mbox{\hyperlink{class_eigen_1_1_translation}{Translation}},\mbox{\hyperlink{class_eigen_1_1_rotation_base}{Rotation\+Base}},\mbox{\hyperlink{class_eigen_1_1_diagonal_matrix}{Diagonal\+Matrix}}) and can be directly used to transform implicit homogeneous vectors. All these operations are handled via the operator$\ast$. For the composition of transformations, its principle consists to first convert the right/left hand sides of the product to a compatible (Dim+1)$^\wedge$2 matrix and then perform a pure matrix product. Of course, internally, operator$\ast$ tries to perform the minimal number of operations according to the nature of each terms. Likewise, when applying the transform to points, the latters are automatically promoted to homogeneous vectors before doing the matrix product. The conventions to homogeneous representations are performed as follow\+:
+
+{\bfseries{\mbox{\hyperlink{class_eigen_1_1_translation}{Translation}}}} t (Dim)x(1)\+: $ \left( \begin{array}{cc} I & t \\ 0\,...\,0 & 1 \end{array} \right) $
+
+{\bfseries{Rotation}} R (Dim)x(\+Dim)\+: $ \left( \begin{array}{cc} R & 0\\ 0\,...\,0 & 1 \end{array} \right) $
+
+{\bfseries{\mbox{\hyperlink{class_scaling}{Scaling}}}} {\bfseries{\mbox{\hyperlink{class_eigen_1_1_diagonal_matrix}{Diagonal\+Matrix}}}} S (Dim)x(\+Dim)\+: $ \left( \begin{array}{cc} S & 0\\ 0\,...\,0 & 1 \end{array} \right) $
+
+{\bfseries{Column}} {\bfseries{point}} v (Dim)x(1)\+: $ \left( \begin{array}{c} v\\ 1 \end{array} \right) $
+
+{\bfseries{Set}} {\bfseries{of}} {\bfseries{column}} {\bfseries{points}} V1...Vn (Dim)x(n)\+: $ \left( \begin{array}{ccc} v_1 & ... & v_n\\ 1 & ... & 1 \end{array} \right) $
+
+The concatenation of a \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}} object with any kind of other transformation always returns a \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}} object.
+
+A little exception to the \char`\"{}as pure matrix product\char`\"{} rule is the case of the transformation of non homogeneous vectors by an affine transformation. In that case the last matrix row can be ignored, and the product returns non homogeneous vectors.
+
+Since, for instance, a Dim x Dim matrix is interpreted as a linear transformation, it is not possible to directly transform Dim vectors stored in a Dim x Dim matrix. The solution is either to use a Dim x Dynamic matrix or explicitly request a vector transformation by making the vector homogeneous\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{m\textcolor{stringliteral}{' = T * m.colwise().homogeneous();}}
+\end{DoxyCode}
+ Note that there is zero overhead.
+
+Conversion methods from/to Qt\textquotesingle{}s Q\+Matrix and Q\+Transform are available if the preprocessor token E\+I\+G\+E\+N\+\_\+\+Q\+T\+\_\+\+S\+U\+P\+P\+O\+RT is defined.
+
+This class can be extended with the help of the plugin mechanism described on the page \mbox{\hyperlink{TopicCustomizing_Plugins}{Extending Matrix\+Base (and other classes)}} by defining the preprocessor symbol {\ttfamily E\+I\+G\+E\+N\+\_\+\+T\+R\+A\+N\+S\+F\+O\+R\+M\+\_\+\+P\+L\+U\+G\+IN}.
+
+\begin{DoxySeeAlso}{See also}
+class \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}, class \mbox{\hyperlink{class_eigen_1_1_quaternion}{Quaternion}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_transform_ae7d9f424ba9b30a5a44ddbaa79c8917e}\label{class_eigen_1_1_transform_ae7d9f424ba9b30a5a44ddbaa79c8917e}} 
+\index{Eigen::Transform@{Eigen::Transform}!AffinePart@{AffinePart}}
+\index{AffinePart@{AffinePart}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{AffinePart}{AffinePart}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1conditional}{internal\+::conditional}}$<$int(Mode)==int(\mbox{\hyperlink{group__enums_ggaee59a86102f150923b0cac6d4ff05107a8192e8fdb2ec3ec46d92956cc83ef490}{Affine\+Compact}}), \mbox{\hyperlink{class_eigen_1_1_transform_ade0fbd1fcacd613083e63671bc7ea1fa}{Matrix\+Type}}\&, \mbox{\hyperlink{class_eigen_1_1_block}{Block}}$<$\mbox{\hyperlink{class_eigen_1_1_transform_ade0fbd1fcacd613083e63671bc7ea1fa}{Matrix\+Type}},Dim,H\+Dim$>$ $>$\+::type \mbox{\hyperlink{class_eigen_1_1_transform_ae7d9f424ba9b30a5a44ddbaa79c8917e}{Eigen\+::\+Transform\+::\+Affine\+Part}}}
+
+type of read/write reference to the affine part of the transformation \mbox{\Hypertarget{class_eigen_1_1_transform_ac909bfb8aa6ad7651acfd7e3b3333999}\label{class_eigen_1_1_transform_ac909bfb8aa6ad7651acfd7e3b3333999}} 
+\index{Eigen::Transform@{Eigen::Transform}!ConstAffinePart@{ConstAffinePart}}
+\index{ConstAffinePart@{ConstAffinePart}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{ConstAffinePart}{ConstAffinePart}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1conditional}{internal\+::conditional}}$<$int(Mode)==int(\mbox{\hyperlink{group__enums_ggaee59a86102f150923b0cac6d4ff05107a8192e8fdb2ec3ec46d92956cc83ef490}{Affine\+Compact}}), const \mbox{\hyperlink{class_eigen_1_1_transform_ade0fbd1fcacd613083e63671bc7ea1fa}{Matrix\+Type}}\&, const \mbox{\hyperlink{class_eigen_1_1_block}{Block}}$<$const \mbox{\hyperlink{class_eigen_1_1_transform_ade0fbd1fcacd613083e63671bc7ea1fa}{Matrix\+Type}},Dim,H\+Dim$>$ $>$\+::type \mbox{\hyperlink{class_eigen_1_1_transform_ac909bfb8aa6ad7651acfd7e3b3333999}{Eigen\+::\+Transform\+::\+Const\+Affine\+Part}}}
+
+type of read reference to the affine part of the transformation \mbox{\Hypertarget{class_eigen_1_1_transform_af586d6317531d250d23ebe1f41502595}\label{class_eigen_1_1_transform_af586d6317531d250d23ebe1f41502595}} 
+\index{Eigen::Transform@{Eigen::Transform}!Index@{Index}}
+\index{Index@{Index}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{Index}{Index}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Eigen\+::\+Index}} \mbox{\hyperlink{class_eigen_1_1_transform_af586d6317531d250d23ebe1f41502595}{Eigen\+::\+Transform\+::\+Index}}}
+
+\begin{DoxyRefDesc}{Deprecated}
+\item[\mbox{\hyperlink{deprecated__deprecated000035}{Deprecated}}]since \mbox{\hyperlink{namespace_eigen}{Eigen}} 3.\+3 \end{DoxyRefDesc}
+\mbox{\Hypertarget{class_eigen_1_1_transform_a607434a96cb732a951af896fa5c27634}\label{class_eigen_1_1_transform_a607434a96cb732a951af896fa5c27634}} 
+\index{Eigen::Transform@{Eigen::Transform}!LinearMatrixType@{LinearMatrixType}}
+\index{LinearMatrixType@{LinearMatrixType}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{LinearMatrixType}{LinearMatrixType}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$\mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}},Dim,Dim,Options$>$ \mbox{\hyperlink{class_eigen_1_1_transform_a607434a96cb732a951af896fa5c27634}{Eigen\+::\+Transform\+::\+Linear\+Matrix\+Type}}}
+
+type of the matrix used to represent the linear part of the transformation \mbox{\Hypertarget{class_eigen_1_1_transform_a58fadcc854f6150e3e38d088c4dcc265}\label{class_eigen_1_1_transform_a58fadcc854f6150e3e38d088c4dcc265}} 
+\index{Eigen::Transform@{Eigen::Transform}!LinearPart@{LinearPart}}
+\index{LinearPart@{LinearPart}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{LinearPart}{LinearPart}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{class_eigen_1_1_block}{Block}}$<$\mbox{\hyperlink{class_eigen_1_1_transform_ade0fbd1fcacd613083e63671bc7ea1fa}{Matrix\+Type}},Dim,Dim,int(Mode)==(\mbox{\hyperlink{group__enums_ggaee59a86102f150923b0cac6d4ff05107a8192e8fdb2ec3ec46d92956cc83ef490}{Affine\+Compact}}) \&\& (Options\&\mbox{\hyperlink{group__enums_ggaacded1a18ae58b0f554751f6cdf9eb13a77c993a8d9f6efe5c1159fb2ab07dd4f}{Row\+Major}})==0$>$ \mbox{\hyperlink{class_eigen_1_1_transform_a58fadcc854f6150e3e38d088c4dcc265}{Eigen\+::\+Transform\+::\+Linear\+Part}}}
+
+type of read/write reference to the linear part of the transformation \mbox{\Hypertarget{class_eigen_1_1_transform_ade0fbd1fcacd613083e63671bc7ea1fa}\label{class_eigen_1_1_transform_ade0fbd1fcacd613083e63671bc7ea1fa}} 
+\index{Eigen::Transform@{Eigen::Transform}!MatrixType@{MatrixType}}
+\index{MatrixType@{MatrixType}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{MatrixType}{MatrixType}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{class_eigen_1_1internal_1_1make__proper__matrix__type}{internal\+::make\+\_\+proper\+\_\+matrix\+\_\+type}}$<$\mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}},Rows,H\+Dim,Options$>$\+::type \mbox{\hyperlink{class_eigen_1_1_transform_ade0fbd1fcacd613083e63671bc7ea1fa}{Eigen\+::\+Transform\+::\+Matrix\+Type}}}
+
+type of the matrix used to represent the transformation \mbox{\Hypertarget{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}\label{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}} 
+\index{Eigen::Transform@{Eigen::Transform}!Scalar@{Scalar}}
+\index{Scalar@{Scalar}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{Scalar}{Scalar}}
+{\footnotesize\ttfamily typedef \+\_\+\+Scalar \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Eigen\+::\+Transform\+::\+Scalar}}}
+
+the scalar type of the coefficients \mbox{\Hypertarget{class_eigen_1_1_transform_a95931b09214436fbaa3630d5ef3b1bd0}\label{class_eigen_1_1_transform_a95931b09214436fbaa3630d5ef3b1bd0}} 
+\index{Eigen::Transform@{Eigen::Transform}!TransformTimeDiagonalReturnType@{TransformTimeDiagonalReturnType}}
+\index{TransformTimeDiagonalReturnType@{TransformTimeDiagonalReturnType}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{TransformTimeDiagonalReturnType}{TransformTimeDiagonalReturnType}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$\mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}},Dim,Transform\+Time\+Diagonal\+Mode$>$ \mbox{\hyperlink{class_eigen_1_1_transform_a95931b09214436fbaa3630d5ef3b1bd0}{Eigen\+::\+Transform\+::\+Transform\+Time\+Diagonal\+Return\+Type}}}
+
+The return type of the product between a diagonal matrix and a transform \mbox{\Hypertarget{class_eigen_1_1_transform_ac666bc39a7db53d1f3537b44a67ada4b}\label{class_eigen_1_1_transform_ac666bc39a7db53d1f3537b44a67ada4b}} 
+\index{Eigen::Transform@{Eigen::Transform}!TranslationPart@{TranslationPart}}
+\index{TranslationPart@{TranslationPart}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{TranslationPart}{TranslationPart}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{class_eigen_1_1_block}{Block}}$<$\mbox{\hyperlink{class_eigen_1_1_transform_ade0fbd1fcacd613083e63671bc7ea1fa}{Matrix\+Type}},Dim,1,!(\mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$\mbox{\hyperlink{class_eigen_1_1_transform_ade0fbd1fcacd613083e63671bc7ea1fa}{Matrix\+Type}}$>$\+::Flags \& \mbox{\hyperlink{group__flags_gae4f56c2a60bbe4bd2e44c5b19cbe8762}{Row\+Major\+Bit}})$>$ \mbox{\hyperlink{class_eigen_1_1_transform_ac666bc39a7db53d1f3537b44a67ada4b}{Eigen\+::\+Transform\+::\+Translation\+Part}}}
+
+type of a read/write reference to the translation part of the rotation \mbox{\Hypertarget{class_eigen_1_1_transform_a9cfef2ae86496b3d5b8a96921587b6ad}\label{class_eigen_1_1_transform_a9cfef2ae86496b3d5b8a96921587b6ad}} 
+\index{Eigen::Transform@{Eigen::Transform}!TranslationType@{TranslationType}}
+\index{TranslationType@{TranslationType}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{TranslationType}{TranslationType}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{class_eigen_1_1_translation}{Translation}}$<$\mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}},Dim$>$ \mbox{\hyperlink{class_eigen_1_1_transform_a9cfef2ae86496b3d5b8a96921587b6ad}{Eigen\+::\+Transform\+::\+Translation\+Type}}}
+
+corresponding translation type \mbox{\Hypertarget{class_eigen_1_1_transform_a5e247ecac67af07898d17c205907f090}\label{class_eigen_1_1_transform_a5e247ecac67af07898d17c205907f090}} 
+\index{Eigen::Transform@{Eigen::Transform}!VectorType@{VectorType}}
+\index{VectorType@{VectorType}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{VectorType}{VectorType}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$\mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}},Dim,1$>$ \mbox{\hyperlink{class_eigen_1_1_transform_a5e247ecac67af07898d17c205907f090}{Eigen\+::\+Transform\+::\+Vector\+Type}}}
+
+type of a vector 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_transform_aafb7652e1b94acc0e8914f6e4b4dc9c5}\label{class_eigen_1_1_transform_aafb7652e1b94acc0e8914f6e4b4dc9c5}} 
+\index{Eigen::Transform@{Eigen::Transform}!Transform@{Transform}}
+\index{Transform@{Transform}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{Transform()}{Transform()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Eigen\+::\+Transform\+::\+Transform (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default constructor without initialization of the meaningful coefficients. If Mode==Affine, then the last row is set to \mbox{[}0 ... 0 1\mbox{]} \mbox{\Hypertarget{class_eigen_1_1_transform_aeb4dd065353cee8561a1444e61c33d30}\label{class_eigen_1_1_transform_aeb4dd065353cee8561a1444e61c33d30}} 
+\index{Eigen::Transform@{Eigen::Transform}!Transform@{Transform}}
+\index{Transform@{Transform}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{Transform()}{Transform()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename Other\+Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Eigen\+::\+Transform\+::\+Transform (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Other\+Derived $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+Constructs and initializes a transformation from a Dim$^\wedge$2 or a (Dim+1)$^\wedge$2 matrix. \mbox{\Hypertarget{class_eigen_1_1_transform_a6ec505eabef54aab3347add911f195f2}\label{class_eigen_1_1_transform_a6ec505eabef54aab3347add911f195f2}} 
+\index{Eigen::Transform@{Eigen::Transform}!Transform@{Transform}}
+\index{Transform@{Transform}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{Transform()}{Transform()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename Other\+Scalar\+Type $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Eigen\+::\+Transform\+::\+Transform (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$ Other\+Scalar\+Type, Dim, Mode, Options $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+Copy constructor with scalar type conversion 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_transform_ac410cb6256c9342332ded7b8e1854523}\label{class_eigen_1_1_transform_ac410cb6256c9342332ded7b8e1854523}} 
+\index{Eigen::Transform@{Eigen::Transform}!affine@{affine}}
+\index{affine@{affine}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{affine()}{affine()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform_ae7d9f424ba9b30a5a44ddbaa79c8917e}{Affine\+Part}} Eigen\+::\+Transform\+::affine (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a writable expression of the Dim x H\+Dim affine part of the transformation 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_transform_a3f7b266387deae80c2b4f41122e66c24}\label{class_eigen_1_1_transform_a3f7b266387deae80c2b4f41122e66c24}} 
+\index{Eigen::Transform@{Eigen::Transform}!affine@{affine}}
+\index{affine@{affine}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{affine()}{affine()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform_ac909bfb8aa6ad7651acfd7e3b3333999}{Const\+Affine\+Part}} Eigen\+::\+Transform\+::affine (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a read-\/only expression of the Dim x H\+Dim affine part of the transformation 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_transform_afc5db7459a2cbe44fff759ec3947db98}\label{class_eigen_1_1_transform_afc5db7459a2cbe44fff759ec3947db98}} 
+\index{Eigen::Transform@{Eigen::Transform}!cast@{cast}}
+\index{cast@{cast}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{cast()}{cast()}}
+{\footnotesize\ttfamily template$<$typename New\+Scalar\+Type $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1internal_1_1cast__return__type}{internal\+::cast\+\_\+return\+\_\+type}}$<$\mbox{\hyperlink{class_eigen_1_1_transform}{Transform}},\mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$New\+Scalar\+Type,Dim,Mode,Options$>$ $>$\+::type Eigen\+::\+Transform\+::cast (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily $\ast$this} with scalar type casted to {\itshape New\+Scalar\+Type} 
+\end{DoxyReturn}
+Note that if {\itshape New\+Scalar\+Type} is equal to the current scalar type of {\ttfamily $\ast$this} then this function smartly returns a const reference to {\ttfamily $\ast$this}. \mbox{\Hypertarget{class_eigen_1_1_transform_a92513752f71cf33c32b7c9cf9eaa3a8f}\label{class_eigen_1_1_transform_a92513752f71cf33c32b7c9cf9eaa3a8f}} 
+\index{Eigen::Transform@{Eigen::Transform}!computeRotationScaling@{computeRotationScaling}}
+\index{computeRotationScaling@{computeRotationScaling}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{computeRotationScaling()}{computeRotationScaling()}}
+{\footnotesize\ttfamily template$<$typename Rotation\+Matrix\+Type , typename Scaling\+Matrix\+Type $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC void Eigen\+::\+Transform\+::compute\+Rotation\+Scaling (\begin{DoxyParamCaption}\item[{Rotation\+Matrix\+Type $\ast$}]{rotation,  }\item[{Scaling\+Matrix\+Type $\ast$}]{scaling }\end{DoxyParamCaption}) const}
+
+decomposes the linear part of the transformation as a product rotation x scaling, the scaling being not necessarily positive.
+
+If either pointer is zero, the corresponding computation is skipped.
+
+\textbackslash{}svd\+\_\+module
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_transform_aa39b7f8fee5e2893e1dcf7e3b6722e08}{compute\+Scaling\+Rotation()}}, \mbox{\hyperlink{class_eigen_1_1_transform_af9ca550648df4170bb8bbc2382dce4e6}{rotation()}}, class S\+VD 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_transform_aa39b7f8fee5e2893e1dcf7e3b6722e08}\label{class_eigen_1_1_transform_aa39b7f8fee5e2893e1dcf7e3b6722e08}} 
+\index{Eigen::Transform@{Eigen::Transform}!computeScalingRotation@{computeScalingRotation}}
+\index{computeScalingRotation@{computeScalingRotation}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{computeScalingRotation()}{computeScalingRotation()}}
+{\footnotesize\ttfamily template$<$typename Scaling\+Matrix\+Type , typename Rotation\+Matrix\+Type $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC void Eigen\+::\+Transform\+::compute\+Scaling\+Rotation (\begin{DoxyParamCaption}\item[{Scaling\+Matrix\+Type $\ast$}]{scaling,  }\item[{Rotation\+Matrix\+Type $\ast$}]{rotation }\end{DoxyParamCaption}) const}
+
+decomposes the linear part of the transformation as a product scaling x rotation, the scaling being not necessarily positive.
+
+If either pointer is zero, the corresponding computation is skipped.
+
+\textbackslash{}svd\+\_\+module
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_transform_a92513752f71cf33c32b7c9cf9eaa3a8f}{compute\+Rotation\+Scaling()}}, \mbox{\hyperlink{class_eigen_1_1_transform_af9ca550648df4170bb8bbc2382dce4e6}{rotation()}}, class S\+VD 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_transform_af22a8b76ec4290110650490e21769025}\label{class_eigen_1_1_transform_af22a8b76ec4290110650490e21769025}} 
+\index{Eigen::Transform@{Eigen::Transform}!data@{data}}
+\index{data@{data}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{data()}{data()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}}$\ast$ Eigen\+::\+Transform\+::data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a non-\/const pointer to the column major internal matrix 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_transform_a4fa2a9fd29068dcb39fa587f31d6b8e5}\label{class_eigen_1_1_transform_a4fa2a9fd29068dcb39fa587f31d6b8e5}} 
+\index{Eigen::Transform@{Eigen::Transform}!data@{data}}
+\index{data@{data}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{data()}{data()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}}$\ast$ Eigen\+::\+Transform\+::data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a const pointer to the column major internal matrix 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_transform_a6b2bd9a93737948a9725c9bf31330b89}\label{class_eigen_1_1_transform_a6b2bd9a93737948a9725c9bf31330b89}} 
+\index{Eigen::Transform@{Eigen::Transform}!EIGEN\_MAKE\_ALIGNED\_OPERATOR\_NEW\_IF\_VECTORIZABLE\_FIXED\_SIZE@{EIGEN\_MAKE\_ALIGNED\_OPERATOR\_NEW\_IF\_VECTORIZABLE\_FIXED\_SIZE}}
+\index{EIGEN\_MAKE\_ALIGNED\_OPERATOR\_NEW\_IF\_VECTORIZABLE\_FIXED\_SIZE@{EIGEN\_MAKE\_ALIGNED\_OPERATOR\_NEW\_IF\_VECTORIZABLE\_FIXED\_SIZE}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{EIGEN\_MAKE\_ALIGNED\_OPERATOR\_NEW\_IF\_VECTORIZABLE\_FIXED\_SIZE()}{EIGEN\_MAKE\_ALIGNED\_OPERATOR\_NEW\_IF\_VECTORIZABLE\_FIXED\_SIZE()}}
+{\footnotesize\ttfamily Eigen\+::\+Transform\+::\+E\+I\+G\+E\+N\+\_\+\+M\+A\+K\+E\+\_\+\+A\+L\+I\+G\+N\+E\+D\+\_\+\+O\+P\+E\+R\+A\+T\+O\+R\+\_\+\+N\+E\+W\+\_\+\+I\+F\+\_\+\+V\+E\+C\+T\+O\+R\+I\+Z\+A\+B\+L\+E\+\_\+\+F\+I\+X\+E\+D\+\_\+\+S\+I\+ZE (\begin{DoxyParamCaption}\item[{\+\_\+\+Scalar}]{,  }\item[{\+\_\+\+Dim}]{ = {\ttfamily =\mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}~?~\mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}~\+:~(\+\_\+Dim+1)$\ast$(\+\_\+Dim+1)} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+$<$ space dimension in which the transformation holds
+
+$<$ size of a respective homogeneous vector\mbox{\Hypertarget{class_eigen_1_1_transform_a310dfb4dbfe7c1ce6104e6ebba7aa4f9}\label{class_eigen_1_1_transform_a310dfb4dbfe7c1ce6104e6ebba7aa4f9}} 
+\index{Eigen::Transform@{Eigen::Transform}!fromPositionOrientationScale@{fromPositionOrientationScale}}
+\index{fromPositionOrientationScale@{fromPositionOrientationScale}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{fromPositionOrientationScale()}{fromPositionOrientationScale()}}
+{\footnotesize\ttfamily template$<$typename Position\+Derived , typename Orientation\+Type , typename Scale\+Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$\mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}},Dim,Mode,Options$>$\& Eigen\+::\+Transform\+::from\+Position\+Orientation\+Scale (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Position\+Derived $>$ \&}]{position,  }\item[{const Orientation\+Type \&}]{orientation,  }\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Scale\+Derived $>$ \&}]{scale }\end{DoxyParamCaption})}
+
+Convenient method to set {\ttfamily $\ast$this} from a position, orientation and scale of a 3D object. \mbox{\Hypertarget{class_eigen_1_1_transform_a62fc34fbc47a39c0d77598fff602e762}\label{class_eigen_1_1_transform_a62fc34fbc47a39c0d77598fff602e762}} 
+\index{Eigen::Transform@{Eigen::Transform}!Identity@{Identity}}
+\index{Identity@{Identity}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{Identity()}{Identity()}}
+{\footnotesize\ttfamily static const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}} Eigen\+::\+Transform\+::\+Identity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Returns an identity transformation. 
+
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000002}{Todo}}]In the future this function should be returning a \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}} expression. \end{DoxyRefDesc}
+\mbox{\Hypertarget{class_eigen_1_1_transform_a4b5f305ec6387ddbc058dbd5f07e8247}\label{class_eigen_1_1_transform_a4b5f305ec6387ddbc058dbd5f07e8247}} 
+\index{Eigen::Transform@{Eigen::Transform}!inverse@{inverse}}
+\index{inverse@{inverse}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{inverse()}{inverse()}}
+{\footnotesize\ttfamily E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$ \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}}, Dim, Mode, Options $>$ Eigen\+::\+Transform\+::inverse (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__enums_gaee59a86102f150923b0cac6d4ff05107}{Transform\+Traits}}}]{hint = {\ttfamily (\mbox{\hyperlink{group__enums_gaee59a86102f150923b0cac6d4ff05107}{Transform\+Traits}})Mode} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the inverse transformation according to some given knowledge on {\ttfamily $\ast$this}.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em hint} & allows to optimize the inversion process when the transformation is known to be not a general transformation (optional). The possible values are\+:
+\begin{DoxyItemize}
+\item \mbox{\hyperlink{group__enums_ggaee59a86102f150923b0cac6d4ff05107a0f7338b8672884554e8642bce9e44183}{Projective}} if the transformation is not necessarily affine, i.\+e., if the last row is not guaranteed to be \mbox{[}0 ... 0 1\mbox{]}
+\item \mbox{\hyperlink{group__enums_ggaee59a86102f150923b0cac6d4ff05107a0872f0a82453aaae40339c33acbb31fb}{Affine}} if the last row can be assumed to be \mbox{[}0 ... 0 1\mbox{]}
+\item \mbox{\hyperlink{group__enums_ggaee59a86102f150923b0cac6d4ff05107a84413028615d2d718bafd2dfb93dafef}{Isometry}} if the transformation is only a concatenations of translations and rotations. The default is the template class parameter {\ttfamily Mode}.
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Warning}
+unless {\itshape traits} is always set to No\+Shear or No\+Scaling, this function requires the generic inverse method of \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}} defined in the LU module. If you forget to include this module, then you will get hard to debug linking errors.
+\end{DoxyWarning}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_matrix_base_a7712eb69e8ea3c8f7b8da1c44dbdeebf}{Matrix\+Base\+::inverse()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_transform_a0aa85aa67a8979516f9b50dda15db321}\label{class_eigen_1_1_transform_a0aa85aa67a8979516f9b50dda15db321}} 
+\index{Eigen::Transform@{Eigen::Transform}!isApprox@{isApprox}}
+\index{isApprox@{isApprox}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{isApprox()}{isApprox()}}
+{\footnotesize\ttfamily E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC bool Eigen\+::\+Transform\+::is\+Approx (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}} \&}]{other,  }\item[{const typename \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}} $>$\+::Real \&}]{prec = {\ttfamily \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$\mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}}$>$\+:\+:dummy\+\_\+precision()} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if {\ttfamily $\ast$this} is approximately equal to {\itshape other}, within the precision determined by {\itshape prec}.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+Matrix\+Base\+::is\+Approx() 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_transform_ae939c0c9740e4e2b34567f355a5ca0f4}\label{class_eigen_1_1_transform_ae939c0c9740e4e2b34567f355a5ca0f4}} 
+\index{Eigen::Transform@{Eigen::Transform}!linear@{linear}}
+\index{linear@{linear}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{linear()}{linear()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform_a58fadcc854f6150e3e38d088c4dcc265}{Linear\+Part}} Eigen\+::\+Transform\+::linear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a writable expression of the linear part of the transformation 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_transform_a53fd3fbe10032ac51cadfb87467c8dca}\label{class_eigen_1_1_transform_a53fd3fbe10032ac51cadfb87467c8dca}} 
+\index{Eigen::Transform@{Eigen::Transform}!linear@{linear}}
+\index{linear@{linear}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{linear()}{linear()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform_a18e0244314705da1942ed6784b1b93d8}{Const\+Linear\+Part}} Eigen\+::\+Transform\+::linear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a read-\/only expression of the linear part of the transformation 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_transform_ad98894b1084d4c78799125c73c347f1c}\label{class_eigen_1_1_transform_ad98894b1084d4c78799125c73c347f1c}} 
+\index{Eigen::Transform@{Eigen::Transform}!makeAffine@{makeAffine}}
+\index{makeAffine@{makeAffine}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{makeAffine()}{makeAffine()}}
+{\footnotesize\ttfamily E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC void Eigen\+::\+Transform\+::make\+Affine (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the last row to \mbox{[}0 ... 0 1\mbox{]} \mbox{\Hypertarget{class_eigen_1_1_transform_ae6f1560f239d3f658045cb88927c0c64}\label{class_eigen_1_1_transform_ae6f1560f239d3f658045cb88927c0c64}} 
+\index{Eigen::Transform@{Eigen::Transform}!matrix@{matrix}}
+\index{matrix@{matrix}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{matrix()}{matrix()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform_ade0fbd1fcacd613083e63671bc7ea1fa}{Matrix\+Type}}\& Eigen\+::\+Transform\+::matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a writable expression of the transformation matrix 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_transform_adbcd83c08de1aac4a7358430048dbdfa}\label{class_eigen_1_1_transform_adbcd83c08de1aac4a7358430048dbdfa}} 
+\index{Eigen::Transform@{Eigen::Transform}!matrix@{matrix}}
+\index{matrix@{matrix}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{matrix()}{matrix()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform_ade0fbd1fcacd613083e63671bc7ea1fa}{Matrix\+Type}}\& Eigen\+::\+Transform\+::matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a read-\/only expression of the transformation matrix 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_transform_ac40a7c201d4e0f3983fe6a1e2d340a5b}\label{class_eigen_1_1_transform_ac40a7c201d4e0f3983fe6a1e2d340a5b}} 
+\index{Eigen::Transform@{Eigen::Transform}!operator()@{operator()}}
+\index{operator()@{operator()}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}}\& Eigen\+::\+Transform\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eigen_1_1_transform_af586d6317531d250d23ebe1f41502595}{Index}}}]{row,  }\item[{\mbox{\hyperlink{class_eigen_1_1_transform_af586d6317531d250d23ebe1f41502595}{Index}}}]{col }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+shortcut for m\+\_\+matrix(row,col); \begin{DoxySeeAlso}{See also}
+Matrix\+Base\+::operator(\+Index,\+Index) 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_transform_ac72817b241d363aef1f2ffa4228242e9}\label{class_eigen_1_1_transform_ac72817b241d363aef1f2ffa4228242e9}} 
+\index{Eigen::Transform@{Eigen::Transform}!operator()@{operator()}}
+\index{operator()@{operator()}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}} Eigen\+::\+Transform\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eigen_1_1_transform_af586d6317531d250d23ebe1f41502595}{Index}}}]{row,  }\item[{\mbox{\hyperlink{class_eigen_1_1_transform_af586d6317531d250d23ebe1f41502595}{Index}}}]{col }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+shortcut for m\+\_\+matrix(row,col); \begin{DoxySeeAlso}{See also}
+Matrix\+Base\+::operator(\+Index,\+Index) const  
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_transform_a540c312b82144e408b9936ef6cfc3a17}\label{class_eigen_1_1_transform_a540c312b82144e408b9936ef6cfc3a17}} 
+\index{Eigen::Transform@{Eigen::Transform}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$typename Diagonal\+Derived $>$ \\
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform_a95931b09214436fbaa3630d5ef3b1bd0}{Transform\+Time\+Diagonal\+Return\+Type}} Eigen\+::\+Transform\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_diagonal_base}{Diagonal\+Base}}$<$ Diagonal\+Derived $>$ \&}]{b }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The product expression of a transform {\itshape a} times a diagonal matrix {\itshape b} 
+\end{DoxyReturn}
+The rhs diagonal matrix is interpreted as an affine scaling transformation. The product results in a \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}} of the same type (mode) as the lhs only if the lhs mode is no isometry. In that case, the returned transform is an affinity. \mbox{\Hypertarget{class_eigen_1_1_transform_a498740a41c6f07091a8e6acf5439d42c}\label{class_eigen_1_1_transform_a498740a41c6f07091a8e6acf5439d42c}} 
+\index{Eigen::Transform@{Eigen::Transform}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$typename Other\+Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{struct_eigen_1_1internal_1_1transform__right__product__impl}{internal\+::transform\+\_\+right\+\_\+product\+\_\+impl}}$<$\mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}, Other\+Derived$>$\+::Result\+Type Eigen\+::\+Transform\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Other\+Derived $>$ \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+an expression of the product between the transform {\ttfamily $\ast$this} and a matrix expression {\itshape other}.
+\end{DoxyReturn}
+The right-\/hand-\/side {\itshape other} can be either\+: \begin{DoxyItemize}
+\item an homogeneous vector of size Dim+1, \item a set of homogeneous vectors of size Dim+1 x N, \item a transformation matrix of size Dim+1 x Dim+1.\end{DoxyItemize}
+Moreover, if {\ttfamily $\ast$this} represents an affine transformation (i.\+e., Mode!=Projective), then {\itshape other} can also be\+: \begin{DoxyItemize}
+\item a point of size Dim (computes\+:
+\begin{DoxyCode}{0}
+\DoxyCodeLine{this-\/>\mbox{\hyperlink{class_eigen_1_1_transform_a53fd3fbe10032ac51cadfb87467c8dca}{linear}}() * other + this-\/>\mbox{\hyperlink{class_eigen_1_1_transform_a544609d7a64b17d35e26d7ec2e4b74c6}{translation}}()}
+\end{DoxyCode}
+), \item a set of N points as a Dim x N matrix (computes\+:
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(this-\/>\mbox{\hyperlink{class_eigen_1_1_transform_a53fd3fbe10032ac51cadfb87467c8dca}{linear}}() * other).colwise() + this-\/>\mbox{\hyperlink{class_eigen_1_1_transform_a544609d7a64b17d35e26d7ec2e4b74c6}{translation}}()}
+\end{DoxyCode}
+),\end{DoxyItemize}
+In all cases, the return type is a matrix or vector of same sizes as the right-\/hand-\/side {\itshape other}.
+
+If you want to interpret {\itshape other} as a linear or affine transformation, then first convert it to a Transform$<$$>$ type, or do your own cooking.
+
+Finally, if you want to apply Affine transformations to vectors, then explicitly apply the linear part only\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Affine3f A;}
+\DoxyCodeLine{Vector3f v1, v2;}
+\DoxyCodeLine{v2 = A.linear() * v1;}
+\end{DoxyCode}
+ \mbox{\Hypertarget{class_eigen_1_1_transform_ad6652ef519c023614b62aeffe6f99401}\label{class_eigen_1_1_transform_ad6652ef519c023614b62aeffe6f99401}} 
+\index{Eigen::Transform@{Eigen::Transform}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}} Eigen\+::\+Transform\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}} \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Concatenates two transformations \mbox{\Hypertarget{class_eigen_1_1_transform_afcfbd2a0de2bbede01e8d2a1684094f8}\label{class_eigen_1_1_transform_afcfbd2a0de2bbede01e8d2a1684094f8}} 
+\index{Eigen::Transform@{Eigen::Transform}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$int Other\+Mode, int Other\+Options$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1internal_1_1transform__transform__product__impl}{internal\+::transform\+\_\+transform\+\_\+product\+\_\+impl}}$<$\mbox{\hyperlink{class_eigen_1_1_transform}{Transform}},\mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$\mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}},Dim,Other\+Mode,Other\+Options$>$ $>$\+::Result\+Type Eigen\+::\+Transform\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$ \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}}, Dim, Other\+Mode, Other\+Options $>$ \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Concatenates two different transformations \mbox{\Hypertarget{class_eigen_1_1_transform_a9b4831037efcb1954d6fe78eac02518d}\label{class_eigen_1_1_transform_a9b4831037efcb1954d6fe78eac02518d}} 
+\index{Eigen::Transform@{Eigen::Transform}!operator=@{operator=}}
+\index{operator=@{operator=}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily template$<$typename Other\+Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}\& Eigen\+::\+Transform\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Other\+Derived $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Set {\ttfamily $\ast$this} from a Dim$^\wedge$2 or (Dim+1)$^\wedge$2 matrix. \mbox{\Hypertarget{class_eigen_1_1_transform_af12f104aea6bcf67083dc465c05c293b}\label{class_eigen_1_1_transform_af12f104aea6bcf67083dc465c05c293b}} 
+\index{Eigen::Transform@{Eigen::Transform}!prerotate@{prerotate}}
+\index{prerotate@{prerotate}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{prerotate()}{prerotate()}}
+{\footnotesize\ttfamily template$<$typename Rotation\+Type $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$\mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}},Dim,Mode,Options$>$\& Eigen\+::\+Transform\+::prerotate (\begin{DoxyParamCaption}\item[{const Rotation\+Type \&}]{rotation }\end{DoxyParamCaption})}
+
+Applies on the left the rotation represented by the rotation {\itshape rotation} to {\ttfamily $\ast$this} and returns a reference to {\ttfamily $\ast$this}.
+
+See rotate() for further details.
+
+\begin{DoxySeeAlso}{See also}
+rotate() 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_transform_a3568a9ce30d43c19cacee51020a9f08d}\label{class_eigen_1_1_transform_a3568a9ce30d43c19cacee51020a9f08d}} 
+\index{Eigen::Transform@{Eigen::Transform}!prescale@{prescale}}
+\index{prescale@{prescale}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{prescale()}{prescale()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Other\+Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$\mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}},Dim,Mode,Options$>$\& Eigen\+::\+Transform\+::prescale (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Other\+Derived $>$ \&}]{other }\end{DoxyParamCaption})}
+
+Applies on the left the non uniform scale transformation represented by the vector {\itshape other} to {\ttfamily $\ast$this} and returns a reference to {\ttfamily $\ast$this}. \begin{DoxySeeAlso}{See also}
+scale() 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_transform_ae7f49b674771f028f2824072c5d704c0}\label{class_eigen_1_1_transform_ae7f49b674771f028f2824072c5d704c0}} 
+\index{Eigen::Transform@{Eigen::Transform}!prescale@{prescale}}
+\index{prescale@{prescale}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{prescale()}{prescale()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$ \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}}, Dim, Mode, Options $>$ \& Eigen\+::\+Transform\+::prescale (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}} \&}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Applies on the left a uniform scale of a factor {\itshape c} to {\ttfamily $\ast$this} and returns a reference to {\ttfamily $\ast$this}. \begin{DoxySeeAlso}{See also}
+scale(\+Scalar) 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_transform_af10be0893b653947606f496a450bbd28}\label{class_eigen_1_1_transform_af10be0893b653947606f496a450bbd28}} 
+\index{Eigen::Transform@{Eigen::Transform}!preshear@{preshear}}
+\index{preshear@{preshear}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{preshear()}{preshear()}}
+{\footnotesize\ttfamily E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$ \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}}, Dim, Mode, Options $>$ \& Eigen\+::\+Transform\+::preshear (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}} \&}]{sx,  }\item[{const \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}} \&}]{sy }\end{DoxyParamCaption})}
+
+Applies on the left the shear transformation represented by the vector {\itshape other} to {\ttfamily $\ast$this} and returns a reference to {\ttfamily $\ast$this}. \begin{DoxyWarning}{Warning}
+2D only. 
+\end{DoxyWarning}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_transform_adf1850a41e891083fe534331e86c8064}{shear()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_transform_abce0b2e4389f07309eca5bbad428a1c6}\label{class_eigen_1_1_transform_abce0b2e4389f07309eca5bbad428a1c6}} 
+\index{Eigen::Transform@{Eigen::Transform}!pretranslate@{pretranslate}}
+\index{pretranslate@{pretranslate}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{pretranslate()}{pretranslate()}}
+{\footnotesize\ttfamily template$<$typename Other\+Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$\mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}},Dim,Mode,Options$>$\& Eigen\+::\+Transform\+::pretranslate (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Other\+Derived $>$ \&}]{other }\end{DoxyParamCaption})}
+
+Applies on the left the translation matrix represented by the vector {\itshape other} to {\ttfamily $\ast$this} and returns a reference to {\ttfamily $\ast$this}. \begin{DoxySeeAlso}{See also}
+translate() 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_transform_a14a83bb3a05a9c02425eafcf1a77232e}\label{class_eigen_1_1_transform_a14a83bb3a05a9c02425eafcf1a77232e}} 
+\index{Eigen::Transform@{Eigen::Transform}!rotate@{rotate}}
+\index{rotate@{rotate}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{rotate()}{rotate()}}
+{\footnotesize\ttfamily template$<$typename Rotation\+Type $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$\mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}},Dim,Mode,Options$>$\& Eigen\+::\+Transform\+::rotate (\begin{DoxyParamCaption}\item[{const Rotation\+Type \&}]{rotation }\end{DoxyParamCaption})}
+
+Applies on the right the rotation represented by the rotation {\itshape rotation} to {\ttfamily $\ast$this} and returns a reference to {\ttfamily $\ast$this}.
+
+The template parameter {\itshape Rotation\+Type} is the type of the rotation which must be known by internal\+::to\+Rotation\+Matrix$<$$>$.
+
+Natively supported types includes\+:
+\begin{DoxyItemize}
+\item any scalar (2D),
+\item a Dim x Dim matrix expression,
+\item a \mbox{\hyperlink{class_eigen_1_1_quaternion}{Quaternion}} (3D),
+\item a \mbox{\hyperlink{class_eigen_1_1_angle_axis}{Angle\+Axis}} (3D)
+\end{DoxyItemize}
+
+This mechanism is easily extendable to support user types such as Euler angles, or a pair of \mbox{\hyperlink{class_eigen_1_1_quaternion}{Quaternion}} for 4D rotations.
+
+\begin{DoxySeeAlso}{See also}
+rotate(\+Scalar), class \mbox{\hyperlink{class_eigen_1_1_quaternion}{Quaternion}}, class \mbox{\hyperlink{class_eigen_1_1_angle_axis}{Angle\+Axis}}, prerotate(\+Rotation\+Type) 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_transform_af9ca550648df4170bb8bbc2382dce4e6}\label{class_eigen_1_1_transform_af9ca550648df4170bb8bbc2382dce4e6}} 
+\index{Eigen::Transform@{Eigen::Transform}!rotation@{rotation}}
+\index{rotation@{rotation}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{rotation()}{rotation()}}
+{\footnotesize\ttfamily const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$ \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}}, Dim, Mode, Options $>$\+::\mbox{\hyperlink{class_eigen_1_1_transform_a607434a96cb732a951af896fa5c27634}{Linear\+Matrix\+Type}} Eigen\+::\+Transform\+::rotation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+the rotation part of the transformation
+\end{DoxyReturn}
+\textbackslash{}svd\+\_\+module
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_transform_a92513752f71cf33c32b7c9cf9eaa3a8f}{compute\+Rotation\+Scaling()}}, \mbox{\hyperlink{class_eigen_1_1_transform_aa39b7f8fee5e2893e1dcf7e3b6722e08}{compute\+Scaling\+Rotation()}}, class S\+VD 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_transform_a09f7567c497ceb5c756c612dcf10534f}\label{class_eigen_1_1_transform_a09f7567c497ceb5c756c612dcf10534f}} 
+\index{Eigen::Transform@{Eigen::Transform}!scale@{scale}}
+\index{scale@{scale}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{scale()}{scale()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Other\+Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$\mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}},Dim,Mode,Options$>$\& Eigen\+::\+Transform\+::scale (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Other\+Derived $>$ \&}]{other }\end{DoxyParamCaption})}
+
+Applies on the right the non uniform scale transformation represented by the vector {\itshape other} to {\ttfamily $\ast$this} and returns a reference to {\ttfamily $\ast$this}. \begin{DoxySeeAlso}{See also}
+prescale() 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_transform_a8f721efe989f8525d3b4a6db6cfed8a0}\label{class_eigen_1_1_transform_a8f721efe989f8525d3b4a6db6cfed8a0}} 
+\index{Eigen::Transform@{Eigen::Transform}!scale@{scale}}
+\index{scale@{scale}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{scale()}{scale()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$ \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}}, Dim, Mode, Options $>$ \& Eigen\+::\+Transform\+::scale (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}} \&}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Applies on the right a uniform scale of a factor {\itshape c} to {\ttfamily $\ast$this} and returns a reference to {\ttfamily $\ast$this}. \begin{DoxySeeAlso}{See also}
+prescale(\+Scalar) 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_transform_a095cb776ce13324b59c4d4e718083e1c}\label{class_eigen_1_1_transform_a095cb776ce13324b59c4d4e718083e1c}} 
+\index{Eigen::Transform@{Eigen::Transform}!setIdentity@{setIdentity}}
+\index{setIdentity@{setIdentity}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{setIdentity()}{setIdentity()}}
+{\footnotesize\ttfamily E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC void Eigen\+::\+Transform\+::set\+Identity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_matrix_base_ae05be7fcc1ade707f0b73eb5f9d8cf33}{Matrix\+Base\+::set\+Identity()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_transform_adf1850a41e891083fe534331e86c8064}\label{class_eigen_1_1_transform_adf1850a41e891083fe534331e86c8064}} 
+\index{Eigen::Transform@{Eigen::Transform}!shear@{shear}}
+\index{shear@{shear}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{shear()}{shear()}}
+{\footnotesize\ttfamily E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$ \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}}, Dim, Mode, Options $>$ \& Eigen\+::\+Transform\+::shear (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}} \&}]{sx,  }\item[{const \mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}} \&}]{sy }\end{DoxyParamCaption})}
+
+Applies on the right the shear transformation represented by the vector {\itshape other} to {\ttfamily $\ast$this} and returns a reference to {\ttfamily $\ast$this}. \begin{DoxyWarning}{Warning}
+2D only. 
+\end{DoxyWarning}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_transform_af10be0893b653947606f496a450bbd28}{preshear()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_transform_a4ccdae983a8f750bdadfc1b100f5bdfa}\label{class_eigen_1_1_transform_a4ccdae983a8f750bdadfc1b100f5bdfa}} 
+\index{Eigen::Transform@{Eigen::Transform}!translate@{translate}}
+\index{translate@{translate}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{translate()}{translate()}}
+{\footnotesize\ttfamily template$<$typename Other\+Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$\mbox{\hyperlink{class_eigen_1_1_transform_aa068ea7b07c68c8ae5efb540416ffbbd}{Scalar}},Dim,Mode,Options$>$\& Eigen\+::\+Transform\+::translate (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Other\+Derived $>$ \&}]{other }\end{DoxyParamCaption})}
+
+Applies on the right the translation matrix represented by the vector {\itshape other} to {\ttfamily $\ast$this} and returns a reference to {\ttfamily $\ast$this}. \begin{DoxySeeAlso}{See also}
+pretranslate() 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_transform_ab60263dcc11f87cf613e920a0508c2d7}\label{class_eigen_1_1_transform_ab60263dcc11f87cf613e920a0508c2d7}} 
+\index{Eigen::Transform@{Eigen::Transform}!translation@{translation}}
+\index{translation@{translation}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{translation()}{translation()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform_ac666bc39a7db53d1f3537b44a67ada4b}{Translation\+Part}} Eigen\+::\+Transform\+::translation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a writable expression of the translation vector of the transformation 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_transform_a544609d7a64b17d35e26d7ec2e4b74c6}\label{class_eigen_1_1_transform_a544609d7a64b17d35e26d7ec2e4b74c6}} 
+\index{Eigen::Transform@{Eigen::Transform}!translation@{translation}}
+\index{translation@{translation}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{translation()}{translation()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform_a620e6387a3ce1dea8f37c3d7abb230b1}{Const\+Translation\+Part}} Eigen\+::\+Transform\+::translation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a read-\/only expression of the translation vector of the transformation 
+\end{DoxyReturn}
+
+
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_transform_a1ee8a506136a4ac8084b2913cc249ec8}\label{class_eigen_1_1_transform_a1ee8a506136a4ac8084b2913cc249ec8}} 
+\index{Eigen::Transform@{Eigen::Transform}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$}{operator*}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Diagonal\+Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC friend \mbox{\hyperlink{class_eigen_1_1_transform_a95931b09214436fbaa3630d5ef3b1bd0}{Transform\+Time\+Diagonal\+Return\+Type}} operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_diagonal_base}{Diagonal\+Base}}$<$ Diagonal\+Derived $>$ \&}]{a,  }\item[{const \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}} \&}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+\begin{DoxyReturn}{Returns}
+The product expression of a diagonal matrix {\itshape a} times a transform {\itshape b} 
+\end{DoxyReturn}
+The lhs diagonal matrix is interpreted as an affine scaling transformation. The product results in a \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}} of the same type (mode) as the lhs only if the lhs mode is no isometry. In that case, the returned transform is an affinity. \mbox{\Hypertarget{class_eigen_1_1_transform_a2708be617bae62104e2adfb03542f5ba}\label{class_eigen_1_1_transform_a2708be617bae62104e2adfb03542f5ba}} 
+\index{Eigen::Transform@{Eigen::Transform}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$}{operator*}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Other\+Derived $>$ \\
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1internal_1_1transform__left__product__impl}{internal\+::transform\+\_\+left\+\_\+product\+\_\+impl}}$<$Other\+Derived,Mode,Options,\+\_\+\+Dim,\+\_\+\+Dim+1$>$\+::Result\+Type operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Other\+Derived $>$ \&}]{a,  }\item[{const \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}} \&}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+\begin{DoxyReturn}{Returns}
+the product expression of a transformation matrix {\itshape a} times a transform {\itshape b} 
+\end{DoxyReturn}
+The left hand side {\itshape other} can be either\+: \begin{DoxyItemize}
+\item a linear transformation matrix of size Dim x Dim, \item an affine transformation matrix of size Dim x Dim+1, \item a general transformation matrix of size Dim+1 x Dim+1. \end{DoxyItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_transform_a18e0244314705da1942ed6784b1b93d8}\label{class_eigen_1_1_transform_a18e0244314705da1942ed6784b1b93d8}} 
+\index{Eigen::Transform@{Eigen::Transform}!ConstLinearPart@{ConstLinearPart}}
+\index{ConstLinearPart@{ConstLinearPart}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{ConstLinearPart}{ConstLinearPart}}
+{\footnotesize\ttfamily const typedef \mbox{\hyperlink{class_eigen_1_1_block}{Block}}$<$\mbox{\hyperlink{class_eigen_1_1_map}{Const\+Matrix\+Type}},Dim,Dim,int(Mode)==(\mbox{\hyperlink{group__enums_ggaee59a86102f150923b0cac6d4ff05107a8192e8fdb2ec3ec46d92956cc83ef490}{Affine\+Compact}}) \&\& (Options\&\mbox{\hyperlink{group__enums_ggaacded1a18ae58b0f554751f6cdf9eb13a77c993a8d9f6efe5c1159fb2ab07dd4f}{Row\+Major}})==0$>$ Eigen\+::\+Transform\+::\+Const\+Linear\+Part}
+
+type of read reference to the linear part of the transformation \mbox{\Hypertarget{class_eigen_1_1_transform_af0ec1d676ce6f36161a3eb1490c056af}\label{class_eigen_1_1_transform_af0ec1d676ce6f36161a3eb1490c056af}} 
+\index{Eigen::Transform@{Eigen::Transform}!ConstMatrixType@{ConstMatrixType}}
+\index{ConstMatrixType@{ConstMatrixType}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{ConstMatrixType}{ConstMatrixType}}
+{\footnotesize\ttfamily const typedef \mbox{\hyperlink{class_eigen_1_1_transform_ade0fbd1fcacd613083e63671bc7ea1fa}{Matrix\+Type}} Eigen\+::\+Transform\+::\+Const\+Matrix\+Type}
+
+constified Matrix\+Type \mbox{\Hypertarget{class_eigen_1_1_transform_a620e6387a3ce1dea8f37c3d7abb230b1}\label{class_eigen_1_1_transform_a620e6387a3ce1dea8f37c3d7abb230b1}} 
+\index{Eigen::Transform@{Eigen::Transform}!ConstTranslationPart@{ConstTranslationPart}}
+\index{ConstTranslationPart@{ConstTranslationPart}!Eigen::Transform@{Eigen::Transform}}
+\doxysubsubsection{\texorpdfstring{ConstTranslationPart}{ConstTranslationPart}}
+{\footnotesize\ttfamily const typedef \mbox{\hyperlink{class_eigen_1_1_block}{Block}}$<$\mbox{\hyperlink{class_eigen_1_1_map}{Const\+Matrix\+Type}},Dim,1,!(\mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$\mbox{\hyperlink{class_eigen_1_1_transform_ade0fbd1fcacd613083e63671bc7ea1fa}{Matrix\+Type}}$>$\+::Flags \& \mbox{\hyperlink{group__flags_gae4f56c2a60bbe4bd2e44c5b19cbe8762}{Row\+Major\+Bit}})$>$ Eigen\+::\+Transform\+::\+Const\+Translation\+Part}
+
+type of a read reference to the translation part of the rotation 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/util/Forward\+Declarations.\+h\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Geometry/Transform.\+h\end{DoxyCompactItemize}

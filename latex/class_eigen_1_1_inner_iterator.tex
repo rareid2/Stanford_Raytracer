@@ -1,0 +1,135 @@
+\hypertarget{class_eigen_1_1_inner_iterator}{}\doxysection{Eigen\+::Inner\+Iterator$<$ Xpr\+Type $>$ Class Template Reference}
+\label{class_eigen_1_1_inner_iterator}\index{Eigen::InnerIterator$<$ XprType $>$@{Eigen::InnerIterator$<$ XprType $>$}}
+
+
+An \mbox{\hyperlink{class_eigen_1_1_inner_iterator}{Inner\+Iterator}} allows to loop over the element of any matrix expression.  
+
+
+
+
+{\ttfamily \#include $<$Core\+Iterators.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_inner_iterator_abbcdcf4d5ecb4445654b7940204cb750}{Inner\+Iterator}} (const Xpr\+Type \&xpr, const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \&outer\+Id)
+\item 
+E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Scalar \mbox{\hyperlink{class_eigen_1_1_inner_iterator_ab04bccb41eb22ffcb92dc61125aab119}{value}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_inner_iterator}{Inner\+Iterator}} \& \mbox{\hyperlink{class_eigen_1_1_inner_iterator_ae4ed2eece5291e23d870b7238878e2f1}{operator++}} ()
+\item 
+E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_inner_iterator_ac9e0e40b8aceb192a0e1c7d656148760}{index}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_inner_iterator_a3ab6f3afdf62740623cdc9ecb14dc132}{row}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_inner_iterator_a1d2ccb720e90bc6928064cc30c41fb93}{col}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_inner_iterator_a0f11df2dfcd1c48c54aa29e605c09310}{operator bool}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_inner_iterator_ab25148ad4830f58644c537eb122fd966}\label{class_eigen_1_1_inner_iterator_ab25148ad4830f58644c537eb122fd966}} 
+typedef \mbox{\hyperlink{class_eigen_1_1internal_1_1inner__iterator__selector}{internal\+::inner\+\_\+iterator\+\_\+selector}}$<$ Xpr\+Type, typename \mbox{\hyperlink{struct_eigen_1_1internal_1_1evaluator__traits}{internal\+::evaluator\+\_\+traits}}$<$ Xpr\+Type $>$\+::Kind $>$ {\bfseries Iterator\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_inner_iterator_a1eeeda4c6c2ff90408f7b92890b29820}\label{class_eigen_1_1_inner_iterator_a1eeeda4c6c2ff90408f7b92890b29820}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1evaluator}{internal\+::evaluator}}$<$ Xpr\+Type $>$ {\bfseries Evaluator\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_inner_iterator_ae1bfa486ca2ead3a5a78118b5d990d91}\label{class_eigen_1_1_inner_iterator_ae1bfa486ca2ead3a5a78118b5d990d91}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ Xpr\+Type $>$\+::Scalar {\bfseries Scalar}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_inner_iterator_a4c7ff45e97e696ee53a6c05dcae2fc57}\label{class_eigen_1_1_inner_iterator_a4c7ff45e97e696ee53a6c05dcae2fc57}} 
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1evaluator}{Evaluator\+Type}} {\bfseries m\+\_\+eval}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_inner_iterator_aa7ebd0701b3c10e76a5fc476e7b9f7ae}\label{class_eigen_1_1_inner_iterator_aa7ebd0701b3c10e76a5fc476e7b9f7ae}} 
+\mbox{\hyperlink{class_eigen_1_1internal_1_1inner__iterator__selector}{Iterator\+Type}} {\bfseries m\+\_\+iter}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Xpr\+Type$>$\newline
+class Eigen\+::\+Inner\+Iterator$<$ Xpr\+Type $>$}
+
+An \mbox{\hyperlink{class_eigen_1_1_inner_iterator}{Inner\+Iterator}} allows to loop over the element of any matrix expression. 
+
+\begin{DoxyWarning}{Warning}
+To be used with care because an evaluator is constructed every time an \mbox{\hyperlink{class_eigen_1_1_inner_iterator}{Inner\+Iterator}} iterator is constructed.
+\end{DoxyWarning}
+T\+O\+DO\+: add a usage example 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_inner_iterator_abbcdcf4d5ecb4445654b7940204cb750}\label{class_eigen_1_1_inner_iterator_abbcdcf4d5ecb4445654b7940204cb750}} 
+\index{Eigen::InnerIterator$<$ XprType $>$@{Eigen::InnerIterator$<$ XprType $>$}!InnerIterator@{InnerIterator}}
+\index{InnerIterator@{InnerIterator}!Eigen::InnerIterator$<$ XprType $>$@{Eigen::InnerIterator$<$ XprType $>$}}
+\doxysubsubsection{\texorpdfstring{InnerIterator()}{InnerIterator()}}
+{\footnotesize\ttfamily template$<$typename Xpr\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_inner_iterator}{Eigen\+::\+Inner\+Iterator}}$<$ Xpr\+Type $>$\+::\mbox{\hyperlink{class_eigen_1_1_inner_iterator}{Inner\+Iterator}} (\begin{DoxyParamCaption}\item[{const Xpr\+Type \&}]{xpr,  }\item[{const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \&}]{outer\+Id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Construct an iterator over the {\itshape outer\+Id} -\/th row or column of {\itshape xpr} 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_inner_iterator_a1d2ccb720e90bc6928064cc30c41fb93}\label{class_eigen_1_1_inner_iterator_a1d2ccb720e90bc6928064cc30c41fb93}} 
+\index{Eigen::InnerIterator$<$ XprType $>$@{Eigen::InnerIterator$<$ XprType $>$}!col@{col}}
+\index{col@{col}!Eigen::InnerIterator$<$ XprType $>$@{Eigen::InnerIterator$<$ XprType $>$}}
+\doxysubsubsection{\texorpdfstring{col()}{col()}}
+{\footnotesize\ttfamily template$<$typename Xpr\+Type $>$ \\
+E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_inner_iterator}{Eigen\+::\+Inner\+Iterator}}$<$ Xpr\+Type $>$\+::col (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the column index of the current coefficient. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_inner_iterator_ac9e0e40b8aceb192a0e1c7d656148760}\label{class_eigen_1_1_inner_iterator_ac9e0e40b8aceb192a0e1c7d656148760}} 
+\index{Eigen::InnerIterator$<$ XprType $>$@{Eigen::InnerIterator$<$ XprType $>$}!index@{index}}
+\index{index@{index}!Eigen::InnerIterator$<$ XprType $>$@{Eigen::InnerIterator$<$ XprType $>$}}
+\doxysubsubsection{\texorpdfstring{index()}{index()}}
+{\footnotesize\ttfamily template$<$typename Xpr\+Type $>$ \\
+E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_inner_iterator}{Eigen\+::\+Inner\+Iterator}}$<$ Xpr\+Type $>$\+::index (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the column or row index of the current coefficient. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_inner_iterator_a0f11df2dfcd1c48c54aa29e605c09310}\label{class_eigen_1_1_inner_iterator_a0f11df2dfcd1c48c54aa29e605c09310}} 
+\index{Eigen::InnerIterator$<$ XprType $>$@{Eigen::InnerIterator$<$ XprType $>$}!operator bool@{operator bool}}
+\index{operator bool@{operator bool}!Eigen::InnerIterator$<$ XprType $>$@{Eigen::InnerIterator$<$ XprType $>$}}
+\doxysubsubsection{\texorpdfstring{operator bool()}{operator bool()}}
+{\footnotesize\ttfamily template$<$typename Xpr\+Type $>$ \\
+E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_inner_iterator}{Eigen\+::\+Inner\+Iterator}}$<$ Xpr\+Type $>$\+::operator bool (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the iterator {\ttfamily $\ast$this} still references a valid coefficient. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_inner_iterator_ae4ed2eece5291e23d870b7238878e2f1}\label{class_eigen_1_1_inner_iterator_ae4ed2eece5291e23d870b7238878e2f1}} 
+\index{Eigen::InnerIterator$<$ XprType $>$@{Eigen::InnerIterator$<$ XprType $>$}!operator++@{operator++}}
+\index{operator++@{operator++}!Eigen::InnerIterator$<$ XprType $>$@{Eigen::InnerIterator$<$ XprType $>$}}
+\doxysubsubsection{\texorpdfstring{operator++()}{operator++()}}
+{\footnotesize\ttfamily template$<$typename Xpr\+Type $>$ \\
+E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_inner_iterator}{Inner\+Iterator}}\& \mbox{\hyperlink{class_eigen_1_1_inner_iterator}{Eigen\+::\+Inner\+Iterator}}$<$ Xpr\+Type $>$\+::operator++ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Increment the iterator {\ttfamily $\ast$this} to the next non-\/zero coefficient. Explicit zeros are not skipped over. To skip explicit zeros, see class \mbox{\hyperlink{class_eigen_1_1_sparse_view}{Sparse\+View}} \mbox{\Hypertarget{class_eigen_1_1_inner_iterator_a3ab6f3afdf62740623cdc9ecb14dc132}\label{class_eigen_1_1_inner_iterator_a3ab6f3afdf62740623cdc9ecb14dc132}} 
+\index{Eigen::InnerIterator$<$ XprType $>$@{Eigen::InnerIterator$<$ XprType $>$}!row@{row}}
+\index{row@{row}!Eigen::InnerIterator$<$ XprType $>$@{Eigen::InnerIterator$<$ XprType $>$}}
+\doxysubsubsection{\texorpdfstring{row()}{row()}}
+{\footnotesize\ttfamily template$<$typename Xpr\+Type $>$ \\
+E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_inner_iterator}{Eigen\+::\+Inner\+Iterator}}$<$ Xpr\+Type $>$\+::row (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the row index of the current coefficient. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_inner_iterator_ab04bccb41eb22ffcb92dc61125aab119}\label{class_eigen_1_1_inner_iterator_ab04bccb41eb22ffcb92dc61125aab119}} 
+\index{Eigen::InnerIterator$<$ XprType $>$@{Eigen::InnerIterator$<$ XprType $>$}!value@{value}}
+\index{value@{value}!Eigen::InnerIterator$<$ XprType $>$@{Eigen::InnerIterator$<$ XprType $>$}}
+\doxysubsubsection{\texorpdfstring{value()}{value()}}
+{\footnotesize\ttfamily template$<$typename Xpr\+Type $>$ \\
+E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Scalar \mbox{\hyperlink{class_eigen_1_1_inner_iterator}{Eigen\+::\+Inner\+Iterator}}$<$ Xpr\+Type $>$\+::value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the value of the current coefficient. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/Core\+Iterators.\+h\end{DoxyCompactItemize}

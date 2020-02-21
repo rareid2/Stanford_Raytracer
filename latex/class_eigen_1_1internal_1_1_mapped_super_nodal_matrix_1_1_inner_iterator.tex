@@ -1,0 +1,81 @@
+\hypertarget{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_1_1_inner_iterator}{}\doxysection{Eigen\+::internal\+::Mapped\+Super\+Nodal\+Matrix$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$\+::Inner\+Iterator Class Reference}
+\label{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_1_1_inner_iterator}\index{Eigen::internal::MappedSuperNodalMatrix$<$ \_Scalar, \_StorageIndex $>$::InnerIterator@{Eigen::internal::MappedSuperNodalMatrix$<$ \_Scalar, \_StorageIndex $>$::InnerIterator}}
+
+
+\mbox{\hyperlink{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_1_1_inner_iterator}{Inner\+Iterator}} class to iterate over nonzero values of the current column in the supernodal matrix L.  
+
+
+
+
+{\ttfamily \#include $<$Sparse\+L\+U\+\_\+\+Supernodal\+Matrix.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_1_1_inner_iterator_a57470edfb9248d2862a7b06b3419075c}\label{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_1_1_inner_iterator_a57470edfb9248d2862a7b06b3419075c}} 
+{\bfseries Inner\+Iterator} (const \mbox{\hyperlink{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix}{Mapped\+Super\+Nodal\+Matrix}} \&mat, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} outer)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_1_1_inner_iterator_a71f2b13929718d8bc0c9497894f23813}\label{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_1_1_inner_iterator_a71f2b13929718d8bc0c9497894f23813}} 
+\mbox{\hyperlink{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_1_1_inner_iterator}{Inner\+Iterator}} \& {\bfseries operator++} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_1_1_inner_iterator_a3c58c80edbceb102ab050c0620be85c5}\label{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_1_1_inner_iterator_a3c58c80edbceb102ab050c0620be85c5}} 
+Scalar {\bfseries value} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_1_1_inner_iterator_af6152299490a4056346c01c2faea0827}\label{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_1_1_inner_iterator_af6152299490a4056346c01c2faea0827}} 
+Scalar \& {\bfseries value\+Ref} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_1_1_inner_iterator_ab4bac0b3cd9a75e6eb839e6d0e127cdc}\label{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_1_1_inner_iterator_ab4bac0b3cd9a75e6eb839e6d0e127cdc}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries index} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_1_1_inner_iterator_aeccfcf6a203d1f935a9e064b94ef3396}\label{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_1_1_inner_iterator_aeccfcf6a203d1f935a9e064b94ef3396}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries row} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_1_1_inner_iterator_aa83de2a130158de542c82a154fd9c732}\label{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_1_1_inner_iterator_aa83de2a130158de542c82a154fd9c732}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries col} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_1_1_inner_iterator_a7bfb531fe20340f7c44caab705701c22}\label{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_1_1_inner_iterator_a7bfb531fe20340f7c44caab705701c22}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries sup\+Index} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_1_1_inner_iterator_aa82ceae26b3f2079bbfcaf6464cea433}\label{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_1_1_inner_iterator_aa82ceae26b3f2079bbfcaf6464cea433}} 
+{\bfseries operator bool} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_1_1_inner_iterator_aaa7604d6295af04c822ada856d6c01ce}\label{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_1_1_inner_iterator_aaa7604d6295af04c822ada856d6c01ce}} 
+const \mbox{\hyperlink{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix}{Mapped\+Super\+Nodal\+Matrix}} \& {\bfseries m\+\_\+matrix}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_1_1_inner_iterator_ad61ff30f3c98b31aa247e98feb8e5bf4}\label{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_1_1_inner_iterator_ad61ff30f3c98b31aa247e98feb8e5bf4}} 
+const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries m\+\_\+outer}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_1_1_inner_iterator_ada7d5bf99cda6f5015604eaf1f046824}\label{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_1_1_inner_iterator_ada7d5bf99cda6f5015604eaf1f046824}} 
+const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries m\+\_\+supno}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_1_1_inner_iterator_a03054aeb32d96c3e43b8bcf3112b20f7}\label{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_1_1_inner_iterator_a03054aeb32d96c3e43b8bcf3112b20f7}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries m\+\_\+idval}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_1_1_inner_iterator_a30d2ed8c300a543660aefccaa09ce840}\label{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_1_1_inner_iterator_a30d2ed8c300a543660aefccaa09ce840}} 
+const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries m\+\_\+startidval}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_1_1_inner_iterator_a5969f7a2c30e6483b8741933a5bb3532}\label{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_1_1_inner_iterator_a5969f7a2c30e6483b8741933a5bb3532}} 
+const \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries m\+\_\+endidval}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_1_1_inner_iterator_a9018de9372547fadad6f12edaf4d7aee}\label{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_1_1_inner_iterator_a9018de9372547fadad6f12edaf4d7aee}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries m\+\_\+idrow}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_1_1_inner_iterator_a38a6e67433d8b4e23e7dc38b4d66cc24}\label{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_1_1_inner_iterator_a38a6e67433d8b4e23e7dc38b4d66cc24}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries m\+\_\+endidrow}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Scalar, typename \+\_\+\+Storage\+Index$>$\newline
+class Eigen\+::internal\+::\+Mapped\+Super\+Nodal\+Matrix$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$\+::\+Inner\+Iterator}
+
+\mbox{\hyperlink{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_1_1_inner_iterator}{Inner\+Iterator}} class to iterate over nonzero values of the current column in the supernodal matrix L. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Sparse\+L\+U/Sparse\+L\+U\+\_\+\+Supernodal\+Matrix.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,59 @@
+\hypertarget{class_eigen_1_1_tensor_reduction_op}{}\doxysection{Eigen\+::Tensor\+Reduction\+Op$<$ Op, Dims, Xpr\+Type, Make\+Pointer\+\_\+ $>$ Class Template Reference}
+\label{class_eigen_1_1_tensor_reduction_op}\index{Eigen::TensorReductionOp$<$ Op, Dims, XprType, MakePointer\_ $>$@{Eigen::TensorReductionOp$<$ Op, Dims, XprType, MakePointer\_ $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_reduction_op_a270a050b616d21c50f3e3579c80f29c6}\label{class_eigen_1_1_tensor_reduction_op_a270a050b616d21c50f3e3579c80f29c6}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{Eigen\+::internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_tensor_reduction_op}{Tensor\+Reduction\+Op}} $>$\+::Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_reduction_op_ab8c0e1c64b0c349b5df071d3efc2e801}\label{class_eigen_1_1_tensor_reduction_op_ab8c0e1c64b0c349b5df071d3efc2e801}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Eigen\+::\+Num\+Traits}}$<$ Scalar $>$\+::Real {\bfseries Real\+Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_reduction_op_a3c887ebb74b9232e849c3d49d994dcf3}\label{class_eigen_1_1_tensor_reduction_op_a3c887ebb74b9232e849c3d49d994dcf3}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__const}{internal\+::remove\+\_\+const}}$<$ typename Xpr\+Type\+::\+Coeff\+Return\+Type $>$\+::type {\bfseries Coeff\+Return\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_reduction_op_a3a1c56fb5f45577d7ad7820553db1054}\label{class_eigen_1_1_tensor_reduction_op_a3a1c56fb5f45577d7ad7820553db1054}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1nested}{Eigen\+::internal\+::nested}}$<$ \mbox{\hyperlink{class_eigen_1_1_tensor_reduction_op}{Tensor\+Reduction\+Op}} $>$\+::type {\bfseries Nested}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_reduction_op_a3a5b36e80467952c79c19e1979ed0952}\label{class_eigen_1_1_tensor_reduction_op_a3a5b36e80467952c79c19e1979ed0952}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{Eigen\+::internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_tensor_reduction_op}{Tensor\+Reduction\+Op}} $>$\+::Storage\+Kind {\bfseries Storage\+Kind}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_reduction_op_a6a5cf586d26b3a89a4d660ab51fb61a9}\label{class_eigen_1_1_tensor_reduction_op_a6a5cf586d26b3a89a4d660ab51fb61a9}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{Eigen\+::internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_tensor_reduction_op}{Tensor\+Reduction\+Op}} $>$\+::Index {\bfseries Index}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_reduction_op_a5ef65e855f79840ce37ec745fb04d3fd}\label{class_eigen_1_1_tensor_reduction_op_a5ef65e855f79840ce37ec745fb04d3fd}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE {\bfseries Tensor\+Reduction\+Op} (const Xpr\+Type \&expr, const Dims \&dims)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_reduction_op_a214ada0344528eada5fb7523d67381da}\label{class_eigen_1_1_tensor_reduction_op_a214ada0344528eada5fb7523d67381da}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE {\bfseries Tensor\+Reduction\+Op} (const Xpr\+Type \&expr, const Dims \&dims, const Op \&reducer)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_reduction_op_abd1f5fe1cdab137301837fb234b53c72}\label{class_eigen_1_1_tensor_reduction_op_abd1f5fe1cdab137301837fb234b53c72}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Xpr\+Type \& {\bfseries expression} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_reduction_op_ab1df742647a5bdcc45ae66ef89a3a7a4}\label{class_eigen_1_1_tensor_reduction_op_ab1df742647a5bdcc45ae66ef89a3a7a4}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Dims \& {\bfseries dims} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_reduction_op_aa1151473645eedbbf1aec1434664dffe}\label{class_eigen_1_1_tensor_reduction_op_aa1151473645eedbbf1aec1434664dffe}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Op \& {\bfseries reducer} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_reduction_op_a8f45f01c272e545d449044413d1f7785}\label{class_eigen_1_1_tensor_reduction_op_a8f45f01c272e545d449044413d1f7785}} 
+Xpr\+Type\+::\+Nested {\bfseries m\+\_\+expr}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_reduction_op_a5cfa60114fbf6edde5ffcbf90c0576e1}\label{class_eigen_1_1_tensor_reduction_op_a5cfa60114fbf6edde5ffcbf90c0576e1}} 
+const Dims {\bfseries m\+\_\+dims}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_reduction_op_ab72aca11cbcd5009971528bfbc20749d}\label{class_eigen_1_1_tensor_reduction_op_ab72aca11cbcd5009971528bfbc20749d}} 
+const Op {\bfseries m\+\_\+reducer}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/\+C\+X\+X11/src/\+Tensor/Tensor\+Forward\+Declarations.\+h\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/\+C\+X\+X11/src/\+Tensor/Tensor\+Reduction.\+h\end{DoxyCompactItemize}

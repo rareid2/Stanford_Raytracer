@@ -1,0 +1,140 @@
+\hypertarget{group__flags}{}\doxysection{Flags}
+\label{group__flags}\index{Flags@{Flags}}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const unsigned int \mbox{\hyperlink{group__flags_gae4f56c2a60bbe4bd2e44c5b19cbe8762}{Eigen\+::\+Row\+Major\+Bit}} = 0x1
+\item 
+const unsigned int \mbox{\hyperlink{group__flags_gaa34e83bae46a8eeae4e69ebe3aaecbed}{Eigen\+::\+Eval\+Before\+Nesting\+Bit}} = 0x2
+\item 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+ED unsigned int \mbox{\hyperlink{group__flags_gae4b8ae7db0d83f9bbed26b261e60e139}{Eigen\+::\+Eval\+Before\+Assigning\+Bit}} = 0x4
+\item 
+const unsigned int \mbox{\hyperlink{group__flags_ga1a306a438e1ab074e8be59512e887b9f}{Eigen\+::\+Packet\+Access\+Bit}} = 0x8
+\item 
+const unsigned int \mbox{\hyperlink{group__flags_ga4b983a15d57cd55806df618ac544d09e}{Eigen\+::\+Linear\+Access\+Bit}} = 0x10
+\item 
+const unsigned int \mbox{\hyperlink{group__flags_gae2c323957f20dfdc6cb8f44428eaec1a}{Eigen\+::\+Lvalue\+Bit}} = 0x20
+\item 
+const unsigned int \mbox{\hyperlink{group__flags_gabf1e9d0516a933445a4c307ad8f14915}{Eigen\+::\+Direct\+Access\+Bit}} = 0x40
+\item 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+ED unsigned int \mbox{\hyperlink{group__flags_gab1088154b1bb147229211e4f3b56d401}{Eigen\+::\+Aligned\+Bit}} = 0x80
+\item 
+const unsigned int \mbox{\hyperlink{group__flags_ga3c186ad80ddcf5e2ed3d7ee31cca1860}{Eigen\+::\+No\+Preferred\+Storage\+Order\+Bit}} = 0x200
+\item 
+const unsigned int \mbox{\hyperlink{group__flags_gaed0244284da47a2b8661261431173caf}{Eigen\+::\+Compressed\+Access\+Bit}} = 0x400
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+These are the possible bits which can be OR\textquotesingle{}ed to constitute the flags of a matrix or expression.
+
+It is important to note that these flags are a purely compile-\/time notion. They are a compile-\/time property of an expression type, implemented as enum\textquotesingle{}s. They are not stored in memory at runtime, and they do not incur any runtime overhead.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_dense_base_a0e056e96933ca7129a03776f7254a265a7392c9b2ad41ba3c16fdc5306c04d581}{Matrix\+Base\+::\+Flags}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{group__flags_gab1088154b1bb147229211e4f3b56d401}\label{group__flags_gab1088154b1bb147229211e4f3b56d401}} 
+\index{Flags@{Flags}!AlignedBit@{AlignedBit}}
+\index{AlignedBit@{AlignedBit}!Flags@{Flags}}
+\doxysubsubsection{\texorpdfstring{AlignedBit}{AlignedBit}}
+{\footnotesize\ttfamily const E\+I\+G\+E\+N\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+ED unsigned int Eigen\+::\+Aligned\+Bit = 0x80}
+
+\begin{DoxyRefDesc}{Deprecated}
+\item[\mbox{\hyperlink{deprecated__deprecated000013}{Deprecated}}]\end{DoxyRefDesc}
+
+
+means the first coefficient packet is guaranteed to be aligned. An expression cannot has the Aligned\+Bit without the Packet\+Access\+Bit flag. In other words, this means we are allow to perform an aligned packet access to the first element regardless of the expression kind\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{expression.packet<\mbox{\hyperlink{group__enums_gga45fe06e29902b7a2773de05ba27b47a1ae12d0f8f869c40c76128260af2242bc8}{Aligned}}>(0);}
+\end{DoxyCode}
+ \mbox{\Hypertarget{group__flags_gaed0244284da47a2b8661261431173caf}\label{group__flags_gaed0244284da47a2b8661261431173caf}} 
+\index{Flags@{Flags}!CompressedAccessBit@{CompressedAccessBit}}
+\index{CompressedAccessBit@{CompressedAccessBit}!Flags@{Flags}}
+\doxysubsubsection{\texorpdfstring{CompressedAccessBit}{CompressedAccessBit}}
+{\footnotesize\ttfamily const unsigned int Eigen\+::\+Compressed\+Access\+Bit = 0x400}
+
+Means that the underlying coefficients can be accessed through pointers to the sparse (un)compressed storage format, that is, the expression provides\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{inline} \textcolor{keyword}{const} Scalar* valuePtr() \textcolor{keyword}{const};}
+\DoxyCodeLine{\textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}* innerIndexPtr() \textcolor{keyword}{const};}
+\DoxyCodeLine{\textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}* outerIndexPtr() \textcolor{keyword}{const};}
+\DoxyCodeLine{\textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}* innerNonZeroPtr() \textcolor{keyword}{const};}
+\end{DoxyCode}
+ \mbox{\Hypertarget{group__flags_gabf1e9d0516a933445a4c307ad8f14915}\label{group__flags_gabf1e9d0516a933445a4c307ad8f14915}} 
+\index{Flags@{Flags}!DirectAccessBit@{DirectAccessBit}}
+\index{DirectAccessBit@{DirectAccessBit}!Flags@{Flags}}
+\doxysubsubsection{\texorpdfstring{DirectAccessBit}{DirectAccessBit}}
+{\footnotesize\ttfamily const unsigned int Eigen\+::\+Direct\+Access\+Bit = 0x40}
+
+Means that the underlying array of coefficients can be directly accessed as a plain strided array. The memory layout of the array of coefficients must be exactly the natural one suggested by rows(), cols(), outer\+Stride(), inner\+Stride(), and the Row\+Major\+Bit. This rules out expressions such as \mbox{\hyperlink{class_eigen_1_1_diagonal}{Diagonal}}, whose coefficients, though referencable, do not have such a regular memory layout.
+
+See the comment on Lvalue\+Bit for an explanation of how Lvalue\+Bit and Direct\+Access\+Bit are mutually orthogonal. \mbox{\Hypertarget{group__flags_gae4b8ae7db0d83f9bbed26b261e60e139}\label{group__flags_gae4b8ae7db0d83f9bbed26b261e60e139}} 
+\index{Flags@{Flags}!EvalBeforeAssigningBit@{EvalBeforeAssigningBit}}
+\index{EvalBeforeAssigningBit@{EvalBeforeAssigningBit}!Flags@{Flags}}
+\doxysubsubsection{\texorpdfstring{EvalBeforeAssigningBit}{EvalBeforeAssigningBit}}
+{\footnotesize\ttfamily const E\+I\+G\+E\+N\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+ED unsigned int Eigen\+::\+Eval\+Before\+Assigning\+Bit = 0x4}
+
+\begin{DoxyRefDesc}{Deprecated}
+\item[\mbox{\hyperlink{deprecated__deprecated000012}{Deprecated}}]means the expression should be evaluated before any assignment \end{DoxyRefDesc}
+\mbox{\Hypertarget{group__flags_gaa34e83bae46a8eeae4e69ebe3aaecbed}\label{group__flags_gaa34e83bae46a8eeae4e69ebe3aaecbed}} 
+\index{Flags@{Flags}!EvalBeforeNestingBit@{EvalBeforeNestingBit}}
+\index{EvalBeforeNestingBit@{EvalBeforeNestingBit}!Flags@{Flags}}
+\doxysubsubsection{\texorpdfstring{EvalBeforeNestingBit}{EvalBeforeNestingBit}}
+{\footnotesize\ttfamily const unsigned int Eigen\+::\+Eval\+Before\+Nesting\+Bit = 0x2}
+
+means the expression should be evaluated by the calling expression \mbox{\Hypertarget{group__flags_ga4b983a15d57cd55806df618ac544d09e}\label{group__flags_ga4b983a15d57cd55806df618ac544d09e}} 
+\index{Flags@{Flags}!LinearAccessBit@{LinearAccessBit}}
+\index{LinearAccessBit@{LinearAccessBit}!Flags@{Flags}}
+\doxysubsubsection{\texorpdfstring{LinearAccessBit}{LinearAccessBit}}
+{\footnotesize\ttfamily const unsigned int Eigen\+::\+Linear\+Access\+Bit = 0x10}
+
+Short version\+: means the expression can be seen as 1D vector.
+
+Long version\+: means that one can access the coefficients of this expression by coeff(int), and coeff\+Ref(int) in the case of a lvalue expression. These index-\/based access methods are guaranteed to not have to do any runtime computation of a (row, col)-\/pair from the index, so that it is guaranteed that whenever it is available, index-\/based access is at least as fast as (row,col)-\/based access. Expressions for which that isn\textquotesingle{}t possible don\textquotesingle{}t have the Linear\+Access\+Bit.
+
+If both Packet\+Access\+Bit and Linear\+Access\+Bit are set, then the packets of this expression can be accessed by packet(int), and write\+Packet(int) in the case of a lvalue expression.
+
+Typically, all vector expressions have the Linear\+Access\+Bit, but there is one exception\+: \mbox{\hyperlink{class_eigen_1_1_product}{Product}} expressions don\textquotesingle{}t have it, because it would be troublesome for vectorization, even when the \mbox{\hyperlink{class_eigen_1_1_product}{Product}} is a vector expression. Thus, vector \mbox{\hyperlink{class_eigen_1_1_product}{Product}} expressions allow index-\/based coefficient access but not index-\/based packet access, so they don\textquotesingle{}t have the Linear\+Access\+Bit. \mbox{\Hypertarget{group__flags_gae2c323957f20dfdc6cb8f44428eaec1a}\label{group__flags_gae2c323957f20dfdc6cb8f44428eaec1a}} 
+\index{Flags@{Flags}!LvalueBit@{LvalueBit}}
+\index{LvalueBit@{LvalueBit}!Flags@{Flags}}
+\doxysubsubsection{\texorpdfstring{LvalueBit}{LvalueBit}}
+{\footnotesize\ttfamily const unsigned int Eigen\+::\+Lvalue\+Bit = 0x20}
+
+Means the expression has a coeff\+Ref() method, i.\+e. is writable as its individual coefficients are directly addressable. This rules out read-\/only expressions.
+
+Note that Direct\+Access\+Bit and Lvalue\+Bit are mutually orthogonal, as there are examples of expression having one but note the other\+: \begin{DoxyItemize}
+\item writable expressions that don\textquotesingle{}t have a very simple memory layout as a strided array, have Lvalue\+Bit but not Direct\+Access\+Bit \item Map-\/to-\/const expressions, for example Map$<$const Matrix$>$, have Direct\+Access\+Bit but not Lvalue\+Bit\end{DoxyItemize}
+Expressions having Lvalue\+Bit also have their coeff() method returning a const reference instead of returning a new value. \mbox{\Hypertarget{group__flags_ga3c186ad80ddcf5e2ed3d7ee31cca1860}\label{group__flags_ga3c186ad80ddcf5e2ed3d7ee31cca1860}} 
+\index{Flags@{Flags}!NoPreferredStorageOrderBit@{NoPreferredStorageOrderBit}}
+\index{NoPreferredStorageOrderBit@{NoPreferredStorageOrderBit}!Flags@{Flags}}
+\doxysubsubsection{\texorpdfstring{NoPreferredStorageOrderBit}{NoPreferredStorageOrderBit}}
+{\footnotesize\ttfamily const unsigned int Eigen\+::\+No\+Preferred\+Storage\+Order\+Bit = 0x200}
+
+for an expression, this means that the storage order can be either row-\/major or column-\/major. The precise choice will be decided at evaluation time or when combined with other expressions. \begin{DoxySeeAlso}{See also}
+\textbackslash{}blank \mbox{\hyperlink{group__flags_gae4f56c2a60bbe4bd2e44c5b19cbe8762}{Row\+Major\+Bit}}, \mbox{\hyperlink{group___topic_storage_orders}{Topic\+Storage\+Orders}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__flags_ga1a306a438e1ab074e8be59512e887b9f}\label{group__flags_ga1a306a438e1ab074e8be59512e887b9f}} 
+\index{Flags@{Flags}!PacketAccessBit@{PacketAccessBit}}
+\index{PacketAccessBit@{PacketAccessBit}!Flags@{Flags}}
+\doxysubsubsection{\texorpdfstring{PacketAccessBit}{PacketAccessBit}}
+{\footnotesize\ttfamily const unsigned int Eigen\+::\+Packet\+Access\+Bit = 0x8}
+
+Short version\+: means the expression might be vectorized
+
+Long version\+: means that the coefficients can be handled by packets and start at a memory location whose alignment meets the requirements of the present C\+PU architecture for optimized packet access. In the fixed-\/size case, there is the additional condition that it be possible to access all the coefficients by packets (this implies the requirement that the size be a multiple of 16 bytes, and that any nontrivial strides don\textquotesingle{}t break the alignment). In the dynamic-\/size case, there is no such condition on the total size and strides, so it might not be possible to access all coeffs by packets.
+
+\begin{DoxyNote}{Note}
+This bit can be set regardless of whether vectorization is actually enabled. To check for actual vectorizability, see {\itshape Actual\+Packet\+Access\+Bit}. 
+\end{DoxyNote}
+\mbox{\Hypertarget{group__flags_gae4f56c2a60bbe4bd2e44c5b19cbe8762}\label{group__flags_gae4f56c2a60bbe4bd2e44c5b19cbe8762}} 
+\index{Flags@{Flags}!RowMajorBit@{RowMajorBit}}
+\index{RowMajorBit@{RowMajorBit}!Flags@{Flags}}
+\doxysubsubsection{\texorpdfstring{RowMajorBit}{RowMajorBit}}
+{\footnotesize\ttfamily const unsigned int Eigen\+::\+Row\+Major\+Bit = 0x1}
+
+for a matrix, this means that the storage order is row-\/major. If this bit is not set, the storage order is column-\/major. For an expression, this determines the storage order of the matrix created by evaluation of that expression. \begin{DoxySeeAlso}{See also}
+\textbackslash{}blank \mbox{\hyperlink{group___topic_storage_orders}{Topic\+Storage\+Orders}} 
+\end{DoxySeeAlso}

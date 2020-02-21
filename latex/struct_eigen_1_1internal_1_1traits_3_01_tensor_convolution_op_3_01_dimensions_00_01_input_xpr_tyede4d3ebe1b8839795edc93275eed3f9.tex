@@ -1,0 +1,44 @@
+\hypertarget{struct_eigen_1_1internal_1_1traits_3_01_tensor_convolution_op_3_01_dimensions_00_01_input_xpr_tyede4d3ebe1b8839795edc93275eed3f9}{}\doxysection{Eigen\+::internal\+::traits$<$ Tensor\+Convolution\+Op$<$ Dimensions, Input\+Xpr\+Type, Kernel\+Xpr\+Type $>$ $>$ Struct Template Reference}
+\label{struct_eigen_1_1internal_1_1traits_3_01_tensor_convolution_op_3_01_dimensions_00_01_input_xpr_tyede4d3ebe1b8839795edc93275eed3f9}\index{Eigen::internal::traits$<$ TensorConvolutionOp$<$ Dimensions, InputXprType, KernelXprType $>$ $>$@{Eigen::internal::traits$<$ TensorConvolutionOp$<$ Dimensions, InputXprType, KernelXprType $>$ $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_tensor_convolution_op_3_01_dimensions_00_01_input_xpr_tyede4d3ebe1b8839795edc93275eed3f9_a2366ec0f28e0ee6a19403134af5e2cce}\label{struct_eigen_1_1internal_1_1traits_3_01_tensor_convolution_op_3_01_dimensions_00_01_input_xpr_tyede4d3ebe1b8839795edc93275eed3f9_a2366ec0f28e0ee6a19403134af5e2cce}} 
+enum \{ {\bfseries Flags} = 0
+ \}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_tensor_convolution_op_3_01_dimensions_00_01_input_xpr_tyede4d3ebe1b8839795edc93275eed3f9_a8dd5806a2f94253b8fe198ab3e9e09d4}\label{struct_eigen_1_1internal_1_1traits_3_01_tensor_convolution_op_3_01_dimensions_00_01_input_xpr_tyede4d3ebe1b8839795edc93275eed3f9_a8dd5806a2f94253b8fe198ab3e9e09d4}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1promote__storage__type}{promote\+\_\+storage\+\_\+type}}$<$ typename Input\+Xpr\+Type\+::\+Scalar, typename Kernel\+Xpr\+Type\+::\+Scalar $>$\+::ret {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_tensor_convolution_op_3_01_dimensions_00_01_input_xpr_tyede4d3ebe1b8839795edc93275eed3f9_a046e6f7b9895480c0eff5251351e7590}\label{struct_eigen_1_1internal_1_1traits_3_01_tensor_convolution_op_3_01_dimensions_00_01_input_xpr_tyede4d3ebe1b8839795edc93275eed3f9_a046e6f7b9895480c0eff5251351e7590}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1promote__storage__type}{promote\+\_\+storage\+\_\+type}}$<$ typename \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{traits}}$<$ Input\+Xpr\+Type $>$\+::Storage\+Kind, typename \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{traits}}$<$ Kernel\+Xpr\+Type $>$\+::Storage\+Kind $>$\+::ret {\bfseries Storage\+Kind}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_tensor_convolution_op_3_01_dimensions_00_01_input_xpr_tyede4d3ebe1b8839795edc93275eed3f9_a2664d3967321ba0903ff4d7a43d49c53}\label{struct_eigen_1_1internal_1_1traits_3_01_tensor_convolution_op_3_01_dimensions_00_01_input_xpr_tyede4d3ebe1b8839795edc93275eed3f9_a2664d3967321ba0903ff4d7a43d49c53}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1promote__index__type}{promote\+\_\+index\+\_\+type}}$<$ typename \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{traits}}$<$ Input\+Xpr\+Type $>$\+::\mbox{\hyperlink{struct_eigen_1_1internal_1_1conditional}{Index}}, typename \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{traits}}$<$ Kernel\+Xpr\+Type $>$\+::\mbox{\hyperlink{struct_eigen_1_1internal_1_1conditional}{Index}} $>$\+::type {\bfseries Index}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_tensor_convolution_op_3_01_dimensions_00_01_input_xpr_tyede4d3ebe1b8839795edc93275eed3f9_a07ff406dd25ad5b0dcd2db3187e7027d}\label{struct_eigen_1_1internal_1_1traits_3_01_tensor_convolution_op_3_01_dimensions_00_01_input_xpr_tyede4d3ebe1b8839795edc93275eed3f9_a07ff406dd25ad5b0dcd2db3187e7027d}} 
+typedef Input\+Xpr\+Type\+::\+Nested {\bfseries Lhs\+Nested}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_tensor_convolution_op_3_01_dimensions_00_01_input_xpr_tyede4d3ebe1b8839795edc93275eed3f9_a20ee129069cd121659ca8667e2802c10}\label{struct_eigen_1_1internal_1_1traits_3_01_tensor_convolution_op_3_01_dimensions_00_01_input_xpr_tyede4d3ebe1b8839795edc93275eed3f9_a20ee129069cd121659ca8667e2802c10}} 
+typedef Kernel\+Xpr\+Type\+::\+Nested {\bfseries Rhs\+Nested}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_tensor_convolution_op_3_01_dimensions_00_01_input_xpr_tyede4d3ebe1b8839795edc93275eed3f9_a09b443f14f500af5320f70ce07b64687}\label{struct_eigen_1_1internal_1_1traits_3_01_tensor_convolution_op_3_01_dimensions_00_01_input_xpr_tyede4d3ebe1b8839795edc93275eed3f9_a09b443f14f500af5320f70ce07b64687}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__reference}{remove\+\_\+reference}}$<$ Lhs\+Nested $>$\+::type {\bfseries \+\_\+\+Lhs\+Nested}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_tensor_convolution_op_3_01_dimensions_00_01_input_xpr_tyede4d3ebe1b8839795edc93275eed3f9_a6968b982801682da49cb1435451027d4}\label{struct_eigen_1_1internal_1_1traits_3_01_tensor_convolution_op_3_01_dimensions_00_01_input_xpr_tyede4d3ebe1b8839795edc93275eed3f9_a6968b982801682da49cb1435451027d4}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__reference}{remove\+\_\+reference}}$<$ Rhs\+Nested $>$\+::type {\bfseries \+\_\+\+Rhs\+Nested}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_tensor_convolution_op_3_01_dimensions_00_01_input_xpr_tyede4d3ebe1b8839795edc93275eed3f9_a3c479f8b058dd829bde1249dd19336c1}\label{struct_eigen_1_1internal_1_1traits_3_01_tensor_convolution_op_3_01_dimensions_00_01_input_xpr_tyede4d3ebe1b8839795edc93275eed3f9_a3c479f8b058dd829bde1249dd19336c1}} 
+static const int {\bfseries Num\+Dimensions} = \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{traits}}$<$Input\+Xpr\+Type$>$\+::Num\+Dimensions
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_tensor_convolution_op_3_01_dimensions_00_01_input_xpr_tyede4d3ebe1b8839795edc93275eed3f9_afc0478ad2dc252390379f1c9015fc1e8}\label{struct_eigen_1_1internal_1_1traits_3_01_tensor_convolution_op_3_01_dimensions_00_01_input_xpr_tyede4d3ebe1b8839795edc93275eed3f9_afc0478ad2dc252390379f1c9015fc1e8}} 
+static const int {\bfseries Layout} = \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{traits}}$<$Input\+Xpr\+Type$>$\+::Layout
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/\+C\+X\+X11/src/\+Tensor/Tensor\+Convolution.\+h\end{DoxyCompactItemize}

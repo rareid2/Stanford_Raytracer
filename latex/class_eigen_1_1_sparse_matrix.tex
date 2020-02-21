@@ -1,0 +1,713 @@
+\hypertarget{class_eigen_1_1_sparse_matrix}{}\doxysection{Eigen\+::Sparse\+Matrix$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$ Class Template Reference}
+\label{class_eigen_1_1_sparse_matrix}\index{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}}
+
+
+A versatible sparse matrix representation.  
+
+
+
+
+{\ttfamily \#include $<$Sparse\+Matrix.\+h$>$}
+
+Inheritance diagram for Eigen\+::Sparse\+Matrix$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_eigen_1_1_sparse_matrix}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_1_1_singleton_vector}{Singleton\+Vector}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_aa660a41bedf259801ff89407faaba4dd}\label{class_eigen_1_1_sparse_matrix_aa660a41bedf259801ff89407faaba4dd}} 
+enum \{ {\bfseries Options} = \+\_\+\+Options
+ \}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_ad1d1eeed5acdc7f12fe05955acf09116}\label{class_eigen_1_1_sparse_matrix_ad1d1eeed5acdc7f12fe05955acf09116}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_mapped_sparse_matrix}{Mapped\+Sparse\+Matrix}}$<$ Scalar, Flags $>$ {\bfseries Map}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_ae9d3d7cbdcc710477cf47b9d1c18c265}\label{class_eigen_1_1_sparse_matrix_ae9d3d7cbdcc710477cf47b9d1c18c265}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_diagonal}{Diagonal}}$<$ \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}} $>$ {\bfseries Diagonal\+Return\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_afd0ef4c05eb9b12ef26db8ba01fb400d}\label{class_eigen_1_1_sparse_matrix_afd0ef4c05eb9b12ef26db8ba01fb400d}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_diagonal}{Diagonal}}$<$ const \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}} $>$ {\bfseries Const\+Diagonal\+Return\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_a1168c7b63fd56e170ad40ddec972cb42}\label{class_eigen_1_1_sparse_matrix_a1168c7b63fd56e170ad40ddec972cb42}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_sparse_compressed_base_1_1_inner_iterator}{Base\+::\+Inner\+Iterator}} {\bfseries Inner\+Iterator}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_a7609b87f733ed52e2d5d89566270cdfb}\label{class_eigen_1_1_sparse_matrix_a7609b87f733ed52e2d5d89566270cdfb}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_sparse_compressed_base_1_1_reverse_inner_iterator}{Base\+::\+Reverse\+Inner\+Iterator}} {\bfseries Reverse\+Inner\+Iterator}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_a56a1b7cb3f994944bdeed6f284294884}\label{class_eigen_1_1_sparse_matrix_a56a1b7cb3f994944bdeed6f284294884}} 
+typedef \mbox{\hyperlink{class_eigen_1_1internal_1_1_compressed_storage}{internal\+::\+Compressed\+Storage}}$<$ Scalar, Storage\+Index $>$ {\bfseries Storage}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_aa1bfa214893284cb97aac510ddd830f8}\label{class_eigen_1_1_sparse_matrix_aa1bfa214893284cb97aac510ddd830f8}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Base\+::\+Index\+Vector}} {\bfseries Index\+Vector}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_acc8bbeac5e5ce882791972f8dce1afd8}\label{class_eigen_1_1_sparse_matrix_acc8bbeac5e5ce882791972f8dce1afd8}} 
+typedef Base\+::\+Scalar\+Vector {\bfseries Scalar\+Vector}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_a62e61bb861eee306d5b069ce652b5aa5}{rows}} () const
+\item 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_aa391750e3c530227e4a5c3c52e959975}{cols}} () const
+\item 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_a0f42824d4a06ee1d1f6afbc4551c5896}{inner\+Size}} () const
+\item 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_a4e5f706cfae14d2eaec1ea1e234905f1}{outer\+Size}} () const
+\item 
+const Scalar $\ast$ \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_a9d4354d3f4d121d764bbed33cac05329}{value\+Ptr}} () const
+\item 
+Scalar $\ast$ \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_ac2684952b14b5c9b0f68ae3bb8c517a6}{value\+Ptr}} ()
+\item 
+const Storage\+Index $\ast$ \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_ae7b804bd39745156d20ca1611a296b67}{inner\+Index\+Ptr}} () const
+\item 
+Storage\+Index $\ast$ \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_a8e9ef5d399d36fdd860ad05cb7a31455}{inner\+Index\+Ptr}} ()
+\item 
+const Storage\+Index $\ast$ \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_a75506964d86d6badb32d0b4917acf2e2}{outer\+Index\+Ptr}} () const
+\item 
+Storage\+Index $\ast$ \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_a9451af2795c1a5b97678272475e41422}{outer\+Index\+Ptr}} ()
+\item 
+const Storage\+Index $\ast$ \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_a218204b051a24f579c394454786eeda0}{inner\+Non\+Zero\+Ptr}} () const
+\item 
+Storage\+Index $\ast$ \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_a00efb5c30c29bbc826d156d97e60d870}{inner\+Non\+Zero\+Ptr}} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_a74e699680ff4619d520e6c9cc02f6bd0}\label{class_eigen_1_1_sparse_matrix_a74e699680ff4619d520e6c9cc02f6bd0}} 
+\mbox{\hyperlink{class_eigen_1_1internal_1_1_compressed_storage}{Storage}} \& {\bfseries data} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_abf8556d862b1cee4cbcd452f2dc401ab}\label{class_eigen_1_1_sparse_matrix_abf8556d862b1cee4cbcd452f2dc401ab}} 
+const \mbox{\hyperlink{class_eigen_1_1internal_1_1_compressed_storage}{Storage}} \& {\bfseries data} () const
+\item 
+Scalar \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_a54adf6aa526045f37e67e352da8fd105}{coeff}} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col) const
+\item 
+Scalar \& \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_a013197b3f598968ff37ed8c97087f1ef}{coeff\+Ref}} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col)
+\item 
+Scalar \& \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_aae45e3b5fec7f6a0cdd10eec7c6d3666}{insert}} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col)
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_ad3c7416090f913e8685523cb3ab7c2f7}{set\+Zero}} ()
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_a1518e58ac49bed0e2385b722a034f7d3}{reserve}} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} reserve\+Size)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_a275bd616a8f4cbfd8e89f64ed941c775}\label{class_eigen_1_1_sparse_matrix_a275bd616a8f4cbfd8e89f64ed941c775}} 
+{\footnotesize template$<$class Sizes\+Type $>$ }\\void {\bfseries reserve} (const Sizes\+Type \&reserve\+Sizes, const typename Sizes\+Type\+::value\+\_\+type \&enableif=typename Sizes\+Type\+::value\+\_\+type())
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_ad1478330c8accf34998e92af78f59814}\label{class_eigen_1_1_sparse_matrix_ad1478330c8accf34998e92af78f59814}} 
+Scalar \& {\bfseries insert\+Back} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_a0ed7b169210d6a1189f6066f0c69fba4}\label{class_eigen_1_1_sparse_matrix_a0ed7b169210d6a1189f6066f0c69fba4}} 
+Scalar \& {\bfseries insert\+Back\+By\+Outer\+Inner} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} outer, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} inner)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_a813f143769608dbe9b0973e6134261b9}\label{class_eigen_1_1_sparse_matrix_a813f143769608dbe9b0973e6134261b9}} 
+Scalar \& {\bfseries insert\+Back\+By\+Outer\+Inner\+Unordered} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} outer, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} inner)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_a28a9962fcba2190022c4ccdf91d90ddb}\label{class_eigen_1_1_sparse_matrix_a28a9962fcba2190022c4ccdf91d90ddb}} 
+void {\bfseries start\+Vec} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} outer)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_a505802f4dd45f7c036ad28261f065610}\label{class_eigen_1_1_sparse_matrix_a505802f4dd45f7c036ad28261f065610}} 
+void {\bfseries finalize} ()
+\item 
+{\footnotesize template$<$typename Input\+Iterators $>$ }\\void \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_acc35051d698e3973f1de5b9b78dbe345}{set\+From\+Triplets}} (const Input\+Iterators \&begin, const Input\+Iterators \&end)
+\item 
+{\footnotesize template$<$typename Input\+Iterators , typename Dup\+Functor $>$ }\\void \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_ad3eee2d3d2a9843cd095c0207f781e7e}{set\+From\+Triplets}} (const Input\+Iterators \&begin, const Input\+Iterators \&end, Dup\+Functor dup\+\_\+func)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_a591c7b14101a2a2141c10b75b58ab36f}\label{class_eigen_1_1_sparse_matrix_a591c7b14101a2a2141c10b75b58ab36f}} 
+void {\bfseries sumup\+Duplicates} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_a87ff49d0917b31f98862b661a5d72eec}\label{class_eigen_1_1_sparse_matrix_a87ff49d0917b31f98862b661a5d72eec}} 
+{\footnotesize template$<$typename Dup\+Functor $>$ }\\void {\bfseries collapse\+Duplicates} (Dup\+Functor dup\+\_\+func=Dup\+Functor())
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_adcdc8e0393507f9de5559c8c28589c9b}\label{class_eigen_1_1_sparse_matrix_adcdc8e0393507f9de5559c8c28589c9b}} 
+Scalar \& {\bfseries insert\+By\+Outer\+Inner} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} j, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} i)
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_a5ff54ffc10296f9466dc81fa888733fd}{make\+Compressed}} ()
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_a7e560ebda035e992d2c99875cc7c3af3}{uncompress}} ()
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_a08af03b2fc6c371c8be4fcd62509288c}{prune}} (const Scalar \&reference, const Real\+Scalar \&epsilon=\mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$ Real\+Scalar $>$\+::dummy\+\_\+precision())
+\item 
+{\footnotesize template$<$typename Keep\+Func $>$ }\\void \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_a0e5f8cc59ee57207f0cff6b142bcdd0d}{prune}} (const Keep\+Func \&keep=Keep\+Func())
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_a9dc538b2c1fe9027ba58f31ee83b2ff1}{conservative\+Resize}} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_a62e61bb861eee306d5b069ce652b5aa5}{rows}}, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_aa391750e3c530227e4a5c3c52e959975}{cols}})
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_af88551f30202341b7cc24cfadabdec5c}{resize}} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_a62e61bb861eee306d5b069ce652b5aa5}{rows}}, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_aa391750e3c530227e4a5c3c52e959975}{cols}})
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_a3a60ad3fcc5941f5a1272e0d13d89fbf}\label{class_eigen_1_1_sparse_matrix_a3a60ad3fcc5941f5a1272e0d13d89fbf}} 
+void {\bfseries resize\+Non\+Zeros} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} size)
+\item 
+const \mbox{\hyperlink{class_eigen_1_1_diagonal}{Const\+Diagonal\+Return\+Type}} \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_a4423486f9fd64cbac7be06c748b37e0a}{diagonal}} () const
+\item 
+\mbox{\hyperlink{class_eigen_1_1_diagonal}{Diagonal\+Return\+Type}} \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_af83005640c2771ebd69f98848720ee52}{diagonal}} ()
+\item 
+\mbox{\hyperlink{class_eigen_1_1_sparse_matrix_a68087ee333c9614ea28850ec52069079}{Sparse\+Matrix}} ()
+\item 
+\mbox{\hyperlink{class_eigen_1_1_sparse_matrix_a6abf1015a0243be97648e106a17b01ea}{Sparse\+Matrix}} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_a62e61bb861eee306d5b069ce652b5aa5}{rows}}, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_aa391750e3c530227e4a5c3c52e959975}{cols}})
+\item 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\\mbox{\hyperlink{class_eigen_1_1_sparse_matrix_a501a50f0d7d58dc4c1d990cd912f581f}{Sparse\+Matrix}} (const \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base}{Sparse\+Matrix\+Base}}$<$ Other\+Derived $>$ \&other)
+\item 
+{\footnotesize template$<$typename Other\+Derived , unsigned int Up\+Lo$>$ }\\\mbox{\hyperlink{class_eigen_1_1_sparse_matrix_aa755e8ba4ec4a2e39ebdb658228364e5}{Sparse\+Matrix}} (const \mbox{\hyperlink{class_eigen_1_1_sparse_self_adjoint_view}{Sparse\+Self\+Adjoint\+View}}$<$ Other\+Derived, Up\+Lo $>$ \&other)
+\item 
+\mbox{\hyperlink{class_eigen_1_1_sparse_matrix_af0fa64cdba1f30353aac937a31db33f3}{Sparse\+Matrix}} (const \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}} \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_a4e328e4686980219c2b4d2a932670ab0}\label{class_eigen_1_1_sparse_matrix_a4e328e4686980219c2b4d2a932670ab0}} 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\\mbox{\hyperlink{class_eigen_1_1_sparse_matrix_a4e328e4686980219c2b4d2a932670ab0}{Sparse\+Matrix}} (const \mbox{\hyperlink{class_eigen_1_1_return_by_value}{Return\+By\+Value}}$<$ Other\+Derived $>$ \&other)
+\begin{DoxyCompactList}\small\item\em Copy constructor with in-\/place evaluation. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_a1c6fde42fd40e6f753b60f71e8fd88aa}\label{class_eigen_1_1_sparse_matrix_a1c6fde42fd40e6f753b60f71e8fd88aa}} 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\\mbox{\hyperlink{class_eigen_1_1_sparse_matrix_a1c6fde42fd40e6f753b60f71e8fd88aa}{Sparse\+Matrix}} (const \mbox{\hyperlink{class_eigen_1_1_diagonal_base}{Diagonal\+Base}}$<$ Other\+Derived $>$ \&other)
+\begin{DoxyCompactList}\small\item\em Copy constructor with in-\/place evaluation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_ae9b9ad3524f87276511397d988b7a607}{swap}} (\mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}} \&other)
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_a89013d2aa58413672c90932607a0d6f0}{set\+Identity}} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_a241af782636f279406f4860fe49252b0}\label{class_eigen_1_1_sparse_matrix_a241af782636f279406f4860fe49252b0}} 
+\mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}} \& {\bfseries operator=} (const \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}} \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_a3e4ba9ae100c0aa200312d57921ebe3d}\label{class_eigen_1_1_sparse_matrix_a3e4ba9ae100c0aa200312d57921ebe3d}} 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\\mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}} \& {\bfseries operator=} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Other\+Derived $>$ \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_a16f034fe9fdb1fc8caae7c6bba846388}\label{class_eigen_1_1_sparse_matrix_a16f034fe9fdb1fc8caae7c6bba846388}} 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+O\+N\+T\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}} \& {\bfseries operator=} (const \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base}{Sparse\+Matrix\+Base}}$<$ Other\+Derived $>$ \&other)
+\item 
+\mbox{\hyperlink{class_eigen_1_1_sparse_matrix_a36835ee4f8e5f273087910ec8063a4f6}{$\sim$\+Sparse\+Matrix}} ()
+\item 
+Scalar \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_a0700cd0b8658962d742fa51a5e594a2f}{sum}} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_a3ce16a1f1473b099d840c6e6c4a1a9e3}\label{class_eigen_1_1_sparse_matrix_a3ce16a1f1473b099d840c6e6c4a1a9e3}} 
+E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Scalar \& {\bfseries insert\+Back\+Uncompressed} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_af3644eddc55de4d85b79b79be0cfafa6}\label{class_eigen_1_1_sparse_matrix_af3644eddc55de4d85b79b79be0cfafa6}} 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+O\+N\+T\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}}$<$ Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$ \& {\bfseries operator=} (const \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base}{Sparse\+Matrix\+Base}}$<$ Other\+Derived $>$ \&other)
+\item 
+bool \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_ae257333ca0e0b16cf5d3080bbefeaf47}{is\+Compressed}} () const
+\item 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_ae53743108cd668b8da927ff149631fe0}{non\+Zeros}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_a7400e37d81945f5a3a8941fba9ecf193}\label{class_eigen_1_1_sparse_matrix_a7400e37d81945f5a3a8941fba9ecf193}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}}$<$ Scalar,(Flags \&$\sim$\mbox{\hyperlink{group__flags_gae4f56c2a60bbe4bd2e44c5b19cbe8762}{Row\+Major\+Bit}})$\vert$(Is\+Row\+Major?Row\+Major\+Bit\+:0)$>$ {\bfseries Transposed\+Sparse\+Matrix}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_ad17cf1b581f5ce7a32043fbc2a3716f6}\label{class_eigen_1_1_sparse_matrix_ad17cf1b581f5ce7a32043fbc2a3716f6}} 
+{\footnotesize template$<$class Sizes\+Type $>$ }\\void {\bfseries reserve\+Inner\+Vectors} (const Sizes\+Type \&reserve\+Sizes)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_aefa867746934b4e933a3774a65574a74}\label{class_eigen_1_1_sparse_matrix_aefa867746934b4e933a3774a65574a74}} 
+{\footnotesize template$<$typename Other $>$ }\\void {\bfseries init\+Assignment} (const Other \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_aa42b94d156a18cf4ec9b48e363f9d25a}\label{class_eigen_1_1_sparse_matrix_aa42b94d156a18cf4ec9b48e363f9d25a}} 
+E\+I\+G\+E\+N\+\_\+\+D\+O\+N\+T\+\_\+\+I\+N\+L\+I\+NE Scalar \& {\bfseries insert\+Compressed} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_af7c472a42b3a7ca63ddcd8d23c06e10b}\label{class_eigen_1_1_sparse_matrix_af7c472a42b3a7ca63ddcd8d23c06e10b}} 
+E\+I\+G\+E\+N\+\_\+\+D\+O\+N\+T\+\_\+\+I\+N\+L\+I\+NE Scalar \& {\bfseries insert\+Uncompressed} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_a0863037124fae230905554497c39b03d}\label{class_eigen_1_1_sparse_matrix_a0863037124fae230905554497c39b03d}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries m\+\_\+outer\+Size}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_ac4c5c183471051e78473ca19558286e4}\label{class_eigen_1_1_sparse_matrix_ac4c5c183471051e78473ca19558286e4}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries m\+\_\+inner\+Size}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_a33d0828b875d1d7abec88788d449f7a9}\label{class_eigen_1_1_sparse_matrix_a33d0828b875d1d7abec88788d449f7a9}} 
+Storage\+Index $\ast$ {\bfseries m\+\_\+outer\+Index}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_a342c970e29c69072e71167fad8c1c352}\label{class_eigen_1_1_sparse_matrix_a342c970e29c69072e71167fad8c1c352}} 
+Storage\+Index $\ast$ {\bfseries m\+\_\+inner\+Non\+Zeros}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_a55f0527dabecf758e72abdb57db7aad3}\label{class_eigen_1_1_sparse_matrix_a55f0527dabecf758e72abdb57db7aad3}} 
+\mbox{\hyperlink{class_eigen_1_1internal_1_1_compressed_storage}{Storage}} {\bfseries m\+\_\+data}
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_aa9c5c76b222bc68de7cb0865290e73aa}\label{class_eigen_1_1_sparse_matrix_aa9c5c76b222bc68de7cb0865290e73aa}} 
+class {\bfseries Sparse\+Vector$<$ \+\_\+\+Scalar, 0, \+\_\+\+Storage\+Index $>$}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_ae7cb03fccbdb1456601051ffa6522c46}\label{class_eigen_1_1_sparse_matrix_ae7cb03fccbdb1456601051ffa6522c46}} 
+std\+::ostream \& {\bfseries operator$<$$<$} (std\+::ostream \&s, const \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}} \&m)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Scalar, int \+\_\+\+Options, typename \+\_\+\+Storage\+Index$>$\newline
+class Eigen\+::\+Sparse\+Matrix$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$}
+
+A versatible sparse matrix representation. 
+
+This class implements a more versatile variants of the common {\itshape compressed} row/column storage format. Each colmun\textquotesingle{}s (resp. row) non zeros are stored as a pair of value with associated row (resp. colmiun) index. All the non zeros are stored in a single large buffer. Unlike the {\itshape compressed} format, there might be extra space inbetween the nonzeros of two successive colmuns (resp. rows) such that insertion of new non-\/zero can be done with limited memory reallocation and copies.
+
+A call to the function \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_a5ff54ffc10296f9466dc81fa888733fd}{make\+Compressed()}} turns the matrix into the standard {\itshape compressed} format compatible with many library.
+
+More details on this storage sceheme are given in the \mbox{\hyperlink{group___tutorial_sparse}{manual pages}}.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Scalar} & the scalar type, i.\+e. the type of the coefficients \\
+\hline
+{\em \+\_\+\+Options} & Union of bit flags controlling the storage scheme. Currently the only possibility is Col\+Major or Row\+Major. The default is 0 which means column-\/major. \\
+\hline
+{\em \+\_\+\+Storage\+Index} & the type of the indices. It has to be a {\bfseries{signed}} type (e.\+g., short, int, std\+::ptrdiff\+\_\+t). Default is {\ttfamily int}.\\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyWarning}{Warning}
+In Eigen 3.\+2, the undocumented type {\ttfamily Sparse\+Matrix\+::\+Index} was improperly defined as the storage index type (e.\+g., int), whereas it is now (starting from Eigen 3.\+3) deprecated and always defined as \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Eigen\+::\+Index}}. Codes making use of {\ttfamily Sparse\+Matrix\+::\+Index}, might thus likely have to be changed to use {\ttfamily Sparse\+Matrix\+::\+Storage\+Index} instead.
+\end{DoxyWarning}
+This class can be extended with the help of the plugin mechanism described on the page \mbox{\hyperlink{TopicCustomizing_Plugins}{Extending Matrix\+Base (and other classes)}} by defining the preprocessor symbol {\ttfamily E\+I\+G\+E\+N\+\_\+\+S\+P\+A\+R\+S\+E\+M\+A\+T\+R\+I\+X\+\_\+\+P\+L\+U\+G\+IN}. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_a68087ee333c9614ea28850ec52069079}\label{class_eigen_1_1_sparse_matrix_a68087ee333c9614ea28850ec52069079}} 
+\index{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}!SparseMatrix@{SparseMatrix}}
+\index{SparseMatrix@{SparseMatrix}!Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{SparseMatrix()}{SparseMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Options, typename \+\_\+\+Storage\+Index $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Eigen\+::\+Sparse\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$\+::\mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default constructor yielding an empty {\ttfamily 0} {\ttfamily x} {\ttfamily 0} matrix \mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_a6abf1015a0243be97648e106a17b01ea}\label{class_eigen_1_1_sparse_matrix_a6abf1015a0243be97648e106a17b01ea}} 
+\index{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}!SparseMatrix@{SparseMatrix}}
+\index{SparseMatrix@{SparseMatrix}!Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{SparseMatrix()}{SparseMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Options, typename \+\_\+\+Storage\+Index $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Eigen\+::\+Sparse\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$\+::\mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{rows,  }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{cols }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructs a {\itshape rows} {\ttfamily x} {\itshape cols} empty matrix \mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_a501a50f0d7d58dc4c1d990cd912f581f}\label{class_eigen_1_1_sparse_matrix_a501a50f0d7d58dc4c1d990cd912f581f}} 
+\index{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}!SparseMatrix@{SparseMatrix}}
+\index{SparseMatrix@{SparseMatrix}!Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{SparseMatrix()}{SparseMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Options, typename \+\_\+\+Storage\+Index $>$ \\
+template$<$typename Other\+Derived $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Eigen\+::\+Sparse\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$\+::\mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base}{Sparse\+Matrix\+Base}}$<$ Other\+Derived $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructs a sparse matrix from the sparse expression {\itshape other} \mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_aa755e8ba4ec4a2e39ebdb658228364e5}\label{class_eigen_1_1_sparse_matrix_aa755e8ba4ec4a2e39ebdb658228364e5}} 
+\index{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}!SparseMatrix@{SparseMatrix}}
+\index{SparseMatrix@{SparseMatrix}!Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{SparseMatrix()}{SparseMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Options, typename \+\_\+\+Storage\+Index $>$ \\
+template$<$typename Other\+Derived , unsigned int Up\+Lo$>$ \\
+\mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Eigen\+::\+Sparse\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$\+::\mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_sparse_self_adjoint_view}{Sparse\+Self\+Adjoint\+View}}$<$ Other\+Derived, Up\+Lo $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructs a sparse matrix from the sparse selfadjoint view {\itshape other} \mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_af0fa64cdba1f30353aac937a31db33f3}\label{class_eigen_1_1_sparse_matrix_af0fa64cdba1f30353aac937a31db33f3}} 
+\index{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}!SparseMatrix@{SparseMatrix}}
+\index{SparseMatrix@{SparseMatrix}!Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{SparseMatrix()}{SparseMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Options, typename \+\_\+\+Storage\+Index $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Eigen\+::\+Sparse\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$\+::\mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Copy constructor (it performs a deep copy) \mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_a36835ee4f8e5f273087910ec8063a4f6}\label{class_eigen_1_1_sparse_matrix_a36835ee4f8e5f273087910ec8063a4f6}} 
+\index{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}!````~SparseMatrix@{$\sim$SparseMatrix}}
+\index{````~SparseMatrix@{$\sim$SparseMatrix}!Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$SparseMatrix()}{~SparseMatrix()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Options, typename \+\_\+\+Storage\+Index $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Eigen\+::\+Sparse\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$\+::$\sim$\mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Destructor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_a54adf6aa526045f37e67e352da8fd105}\label{class_eigen_1_1_sparse_matrix_a54adf6aa526045f37e67e352da8fd105}} 
+\index{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}!coeff@{coeff}}
+\index{coeff@{coeff}!Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{coeff()}{coeff()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Options, typename \+\_\+\+Storage\+Index $>$ \\
+Scalar \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Eigen\+::\+Sparse\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$\+::coeff (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{row,  }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{col }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the value of the matrix at position {\itshape i}, {\itshape j} This function returns Scalar(0) if the element is an explicit {\itshape zero} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_a013197b3f598968ff37ed8c97087f1ef}\label{class_eigen_1_1_sparse_matrix_a013197b3f598968ff37ed8c97087f1ef}} 
+\index{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}!coeffRef@{coeffRef}}
+\index{coeffRef@{coeffRef}!Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{coeffRef()}{coeffRef()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Options, typename \+\_\+\+Storage\+Index $>$ \\
+Scalar\& \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Eigen\+::\+Sparse\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$\+::coeff\+Ref (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{row,  }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{col }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a non-\/const reference to the value of the matrix at position {\itshape i}, {\itshape j} 
+\end{DoxyReturn}
+If the element does not exist then it is inserted via the \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_aae45e3b5fec7f6a0cdd10eec7c6d3666}{insert(\+Index,\+Index)}} function which itself turns the matrix into a non compressed form if that was not the case.
+
+This is a O(log(nnz\+\_\+j)) operation (binary search) plus the cost of \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_aae45e3b5fec7f6a0cdd10eec7c6d3666}{insert(\+Index,\+Index)}} function if the element does not already exist. \mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_aa391750e3c530227e4a5c3c52e959975}\label{class_eigen_1_1_sparse_matrix_aa391750e3c530227e4a5c3c52e959975}} 
+\index{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}!cols@{cols}}
+\index{cols@{cols}!Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{cols()}{cols()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Options, typename \+\_\+\+Storage\+Index $>$ \\
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Eigen\+::\+Sparse\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$\+::cols (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the number of columns of the matrix 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_a9dc538b2c1fe9027ba58f31ee83b2ff1}\label{class_eigen_1_1_sparse_matrix_a9dc538b2c1fe9027ba58f31ee83b2ff1}} 
+\index{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}!conservativeResize@{conservativeResize}}
+\index{conservativeResize@{conservativeResize}!Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{conservativeResize()}{conservativeResize()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Options, typename \+\_\+\+Storage\+Index $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Eigen\+::\+Sparse\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$\+::conservative\+Resize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{rows,  }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{cols }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Resizes the matrix to a {\itshape rows} x {\itshape cols} matrix leaving old values untouched.
+
+If the sizes of the matrix are decreased, then the matrix is turned to {\bfseries{uncompressed-\/mode}} and the storage of the out of bounds coefficients is kept and reserved. Call \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_a5ff54ffc10296f9466dc81fa888733fd}{make\+Compressed()}} to pack the entries and squeeze extra memory.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_sparse_matrix_a1518e58ac49bed0e2385b722a034f7d3}{reserve()}}, \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_ad3c7416090f913e8685523cb3ab7c2f7}{set\+Zero()}}, \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_a5ff54ffc10296f9466dc81fa888733fd}{make\+Compressed()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_af83005640c2771ebd69f98848720ee52}\label{class_eigen_1_1_sparse_matrix_af83005640c2771ebd69f98848720ee52}} 
+\index{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}!diagonal@{diagonal}}
+\index{diagonal@{diagonal}!Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{diagonal()}{diagonal()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Options, typename \+\_\+\+Storage\+Index $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_diagonal}{Diagonal\+Return\+Type}} \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Eigen\+::\+Sparse\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$\+::diagonal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a read-\/write expression of the diagonal coefficients. 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+If the diagonal entries are written, then all diagonal entries {\bfseries{must}} already exist, otherwise an assertion will be raised. 
+\end{DoxyWarning}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_a4423486f9fd64cbac7be06c748b37e0a}\label{class_eigen_1_1_sparse_matrix_a4423486f9fd64cbac7be06c748b37e0a}} 
+\index{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}!diagonal@{diagonal}}
+\index{diagonal@{diagonal}!Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{diagonal()}{diagonal()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Options, typename \+\_\+\+Storage\+Index $>$ \\
+const \mbox{\hyperlink{class_eigen_1_1_diagonal}{Const\+Diagonal\+Return\+Type}} \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Eigen\+::\+Sparse\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$\+::diagonal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a const expression of the diagonal coefficients. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_a8e9ef5d399d36fdd860ad05cb7a31455}\label{class_eigen_1_1_sparse_matrix_a8e9ef5d399d36fdd860ad05cb7a31455}} 
+\index{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}!innerIndexPtr@{innerIndexPtr}}
+\index{innerIndexPtr@{innerIndexPtr}!Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{innerIndexPtr()}{innerIndexPtr()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Options, typename \+\_\+\+Storage\+Index $>$ \\
+Storage\+Index$\ast$ \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Eigen\+::\+Sparse\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$\+::inner\+Index\+Ptr (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a non-\/const pointer to the array of inner indices. This function is aimed at interoperability with other libraries. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_sparse_matrix_ac2684952b14b5c9b0f68ae3bb8c517a6}{value\+Ptr()}}, \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_a9451af2795c1a5b97678272475e41422}{outer\+Index\+Ptr()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_ae7b804bd39745156d20ca1611a296b67}\label{class_eigen_1_1_sparse_matrix_ae7b804bd39745156d20ca1611a296b67}} 
+\index{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}!innerIndexPtr@{innerIndexPtr}}
+\index{innerIndexPtr@{innerIndexPtr}!Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{innerIndexPtr()}{innerIndexPtr()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Options, typename \+\_\+\+Storage\+Index $>$ \\
+const Storage\+Index$\ast$ \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Eigen\+::\+Sparse\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$\+::inner\+Index\+Ptr (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a const pointer to the array of inner indices. This function is aimed at interoperability with other libraries. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_sparse_matrix_ac2684952b14b5c9b0f68ae3bb8c517a6}{value\+Ptr()}}, \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_a9451af2795c1a5b97678272475e41422}{outer\+Index\+Ptr()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_a00efb5c30c29bbc826d156d97e60d870}\label{class_eigen_1_1_sparse_matrix_a00efb5c30c29bbc826d156d97e60d870}} 
+\index{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}!innerNonZeroPtr@{innerNonZeroPtr}}
+\index{innerNonZeroPtr@{innerNonZeroPtr}!Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{innerNonZeroPtr()}{innerNonZeroPtr()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Options, typename \+\_\+\+Storage\+Index $>$ \\
+Storage\+Index$\ast$ \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Eigen\+::\+Sparse\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$\+::inner\+Non\+Zero\+Ptr (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a non-\/const pointer to the array of the number of non zeros of the inner vectors. This function is aimed at interoperability with other libraries. 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+it returns the null pointer 0 in compressed mode 
+\end{DoxyWarning}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_a218204b051a24f579c394454786eeda0}\label{class_eigen_1_1_sparse_matrix_a218204b051a24f579c394454786eeda0}} 
+\index{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}!innerNonZeroPtr@{innerNonZeroPtr}}
+\index{innerNonZeroPtr@{innerNonZeroPtr}!Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{innerNonZeroPtr()}{innerNonZeroPtr()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Options, typename \+\_\+\+Storage\+Index $>$ \\
+const Storage\+Index$\ast$ \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Eigen\+::\+Sparse\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$\+::inner\+Non\+Zero\+Ptr (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a const pointer to the array of the number of non zeros of the inner vectors. This function is aimed at interoperability with other libraries. 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+it returns the null pointer 0 in compressed mode 
+\end{DoxyWarning}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_a0f42824d4a06ee1d1f6afbc4551c5896}\label{class_eigen_1_1_sparse_matrix_a0f42824d4a06ee1d1f6afbc4551c5896}} 
+\index{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}!innerSize@{innerSize}}
+\index{innerSize@{innerSize}!Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{innerSize()}{innerSize()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Options, typename \+\_\+\+Storage\+Index $>$ \\
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Eigen\+::\+Sparse\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$\+::inner\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the number of rows (resp. columns) of the matrix if the storage order column major (resp. row major) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_aae45e3b5fec7f6a0cdd10eec7c6d3666}\label{class_eigen_1_1_sparse_matrix_aae45e3b5fec7f6a0cdd10eec7c6d3666}} 
+\index{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}!insert@{insert}}
+\index{insert@{insert}!Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{insert()}{insert()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Options, typename \+\_\+\+Storage\+Index $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$\+::Scalar \& \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Eigen\+::\+Sparse\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$\+::insert (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{row,  }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{col }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+a reference to a novel non zero coefficient with coordinates {\itshape row} x {\itshape col}. The non zero coefficient must {\bfseries{not}} already exist.
+\end{DoxyReturn}
+If the matrix {\ttfamily $\ast$this} is in compressed mode, then {\ttfamily $\ast$this} is turned into uncompressed mode while reserving room for 2 x this-\/$>$\mbox{\hyperlink{class_eigen_1_1_sparse_matrix_a0f42824d4a06ee1d1f6afbc4551c5896}{inner\+Size()}} non zeros if \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_a1518e58ac49bed0e2385b722a034f7d3}{reserve(\+Index)}} has not been called earlier. In this case, the insertion procedure is optimized for a {\itshape sequential} insertion mode where elements are assumed to be inserted by increasing outer-\/indices.
+
+If that\textquotesingle{}s not the case, then it is strongly recommended to either use a triplet-\/list to assemble the matrix, or to first call reserve(const Sizes\+Type \&) to reserve the appropriate number of non-\/zero elements per inner vector.
+
+Assuming memory has been appropriately reserved, this function performs a sorted insertion in O(1) if the elements of each inner vector are inserted in increasing inner index order, and in O(nnz\+\_\+j) for a random insertion. \mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_ae257333ca0e0b16cf5d3080bbefeaf47}\label{class_eigen_1_1_sparse_matrix_ae257333ca0e0b16cf5d3080bbefeaf47}} 
+\index{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}!isCompressed@{isCompressed}}
+\index{isCompressed@{isCompressed}!Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{isCompressed()}{isCompressed()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Options, typename \+\_\+\+Storage\+Index $>$ \\
+bool Eigen\+::\+Sparse\+Compressed\+Base\+::is\+Compressed\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+whether {\ttfamily $\ast$this} is in compressed form. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_a5ff54ffc10296f9466dc81fa888733fd}\label{class_eigen_1_1_sparse_matrix_a5ff54ffc10296f9466dc81fa888733fd}} 
+\index{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}!makeCompressed@{makeCompressed}}
+\index{makeCompressed@{makeCompressed}!Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{makeCompressed()}{makeCompressed()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Options, typename \+\_\+\+Storage\+Index $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Eigen\+::\+Sparse\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$\+::make\+Compressed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Turns the matrix into the {\itshape compressed} format. \mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_ae53743108cd668b8da927ff149631fe0}\label{class_eigen_1_1_sparse_matrix_ae53743108cd668b8da927ff149631fe0}} 
+\index{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}!nonZeros@{nonZeros}}
+\index{nonZeros@{nonZeros}!Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{nonZeros()}{nonZeros()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Options, typename \+\_\+\+Storage\+Index $>$ \\
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} Eigen\+::\+Sparse\+Compressed\+Base\+::non\+Zeros\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the number of non zero coefficients 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_a9451af2795c1a5b97678272475e41422}\label{class_eigen_1_1_sparse_matrix_a9451af2795c1a5b97678272475e41422}} 
+\index{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}!outerIndexPtr@{outerIndexPtr}}
+\index{outerIndexPtr@{outerIndexPtr}!Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{outerIndexPtr()}{outerIndexPtr()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Options, typename \+\_\+\+Storage\+Index $>$ \\
+Storage\+Index$\ast$ \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Eigen\+::\+Sparse\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$\+::outer\+Index\+Ptr (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a non-\/const pointer to the array of the starting positions of the inner vectors. This function is aimed at interoperability with other libraries. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_sparse_matrix_ac2684952b14b5c9b0f68ae3bb8c517a6}{value\+Ptr()}}, \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_a8e9ef5d399d36fdd860ad05cb7a31455}{inner\+Index\+Ptr()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_a75506964d86d6badb32d0b4917acf2e2}\label{class_eigen_1_1_sparse_matrix_a75506964d86d6badb32d0b4917acf2e2}} 
+\index{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}!outerIndexPtr@{outerIndexPtr}}
+\index{outerIndexPtr@{outerIndexPtr}!Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{outerIndexPtr()}{outerIndexPtr()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Options, typename \+\_\+\+Storage\+Index $>$ \\
+const Storage\+Index$\ast$ \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Eigen\+::\+Sparse\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$\+::outer\+Index\+Ptr (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a const pointer to the array of the starting positions of the inner vectors. This function is aimed at interoperability with other libraries. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_sparse_matrix_ac2684952b14b5c9b0f68ae3bb8c517a6}{value\+Ptr()}}, \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_a8e9ef5d399d36fdd860ad05cb7a31455}{inner\+Index\+Ptr()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_a4e5f706cfae14d2eaec1ea1e234905f1}\label{class_eigen_1_1_sparse_matrix_a4e5f706cfae14d2eaec1ea1e234905f1}} 
+\index{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}!outerSize@{outerSize}}
+\index{outerSize@{outerSize}!Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{outerSize()}{outerSize()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Options, typename \+\_\+\+Storage\+Index $>$ \\
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Eigen\+::\+Sparse\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$\+::outer\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the number of columns (resp. rows) of the matrix if the storage order column major (resp. row major) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_a0e5f8cc59ee57207f0cff6b142bcdd0d}\label{class_eigen_1_1_sparse_matrix_a0e5f8cc59ee57207f0cff6b142bcdd0d}} 
+\index{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}!prune@{prune}}
+\index{prune@{prune}!Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{prune()}{prune()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Options, typename \+\_\+\+Storage\+Index $>$ \\
+template$<$typename Keep\+Func $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Eigen\+::\+Sparse\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$\+::prune (\begin{DoxyParamCaption}\item[{const Keep\+Func \&}]{keep = {\ttfamily KeepFunc()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Turns the matrix into compressed format, and suppresses all nonzeros which do not satisfy the predicate {\itshape keep}. The functor type {\itshape Keep\+Func} must implement the following function\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{bool} operator() (\textcolor{keyword}{const} \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}\& row, \textcolor{keyword}{const} \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}\& col, \textcolor{keyword}{const} Scalar\& value) \textcolor{keyword}{const};}
+\end{DoxyCode}
+ \begin{DoxySeeAlso}{See also}
+prune(\+Scalar,\+Real\+Scalar) 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_a08af03b2fc6c371c8be4fcd62509288c}\label{class_eigen_1_1_sparse_matrix_a08af03b2fc6c371c8be4fcd62509288c}} 
+\index{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}!prune@{prune}}
+\index{prune@{prune}!Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{prune()}{prune()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Options, typename \+\_\+\+Storage\+Index $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Eigen\+::\+Sparse\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$\+::prune (\begin{DoxyParamCaption}\item[{const Scalar \&}]{reference,  }\item[{const Real\+Scalar \&}]{epsilon = {\ttfamily \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$RealScalar$>$\+:\+:dummy\+\_\+precision()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Suppresses all nonzeros which are {\bfseries{much}} {\bfseries{smaller}} {\bfseries{than}} {\itshape reference} under the tolerence {\itshape epsilon} \mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_a1518e58ac49bed0e2385b722a034f7d3}\label{class_eigen_1_1_sparse_matrix_a1518e58ac49bed0e2385b722a034f7d3}} 
+\index{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}!reserve@{reserve}}
+\index{reserve@{reserve}!Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{reserve()}{reserve()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Options, typename \+\_\+\+Storage\+Index $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Eigen\+::\+Sparse\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$\+::reserve (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{reserve\+Size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Preallocates {\itshape reserve\+Size} non zeros.
+
+Precondition\+: the matrix must be in compressed mode. \mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_af88551f30202341b7cc24cfadabdec5c}\label{class_eigen_1_1_sparse_matrix_af88551f30202341b7cc24cfadabdec5c}} 
+\index{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}!resize@{resize}}
+\index{resize@{resize}!Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{resize()}{resize()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Options, typename \+\_\+\+Storage\+Index $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Eigen\+::\+Sparse\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$\+::resize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{rows,  }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{cols }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Resizes the matrix to a {\itshape rows} x {\itshape cols} matrix and initializes it to zero.
+
+This function does not free the currently allocated memory. To release as much as memory as possible, call
+\begin{DoxyCode}{0}
+\DoxyCodeLine{mat.data().squeeze(); }
+\end{DoxyCode}
+ after resizing it.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_sparse_matrix_a1518e58ac49bed0e2385b722a034f7d3}{reserve()}}, \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_ad3c7416090f913e8685523cb3ab7c2f7}{set\+Zero()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_a62e61bb861eee306d5b069ce652b5aa5}\label{class_eigen_1_1_sparse_matrix_a62e61bb861eee306d5b069ce652b5aa5}} 
+\index{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}!rows@{rows}}
+\index{rows@{rows}!Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{rows()}{rows()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Options, typename \+\_\+\+Storage\+Index $>$ \\
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Eigen\+::\+Sparse\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$\+::rows (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the number of rows of the matrix 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_acc35051d698e3973f1de5b9b78dbe345}\label{class_eigen_1_1_sparse_matrix_acc35051d698e3973f1de5b9b78dbe345}} 
+\index{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}!setFromTriplets@{setFromTriplets}}
+\index{setFromTriplets@{setFromTriplets}!Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{setFromTriplets()}{setFromTriplets()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Scalar , int \+\_\+\+Options, typename \+\_\+\+Storage\+Index $>$ \\
+template$<$typename Input\+Iterators $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Eigen\+::\+Sparse\+Matrix}}$<$ Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$\+::set\+From\+Triplets (\begin{DoxyParamCaption}\item[{const Input\+Iterators \&}]{begin,  }\item[{const Input\+Iterators \&}]{end }\end{DoxyParamCaption})}
+
+Fill the matrix {\ttfamily $\ast$this} with the list of {\itshape triplets} defined by the iterator range {\itshape begin} -\/ {\itshape end}.
+
+A {\itshape triplet} is a tuple (i,j,value) defining a non-\/zero element. The input list of triplets does not have to be sorted, and can contains duplicated elements. In any case, the result is a {\bfseries{sorted}} and {\bfseries{compressed}} sparse matrix where the duplicates have been summed up. This is a {\itshape O(n)} operation, with {\itshape n} the number of triplet elements. The initial contents of {\ttfamily $\ast$this} is destroyed. The matrix {\ttfamily $\ast$this} must be properly resized beforehand using the \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_a6abf1015a0243be97648e106a17b01ea}{Sparse\+Matrix(\+Index,\+Index)}} constructor, or the \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_af88551f30202341b7cc24cfadabdec5c}{resize(\+Index,\+Index)}} method. The sizes are not extracted from the triplet list.
+
+The {\itshape Input\+Iterators} value\+\_\+type must provide the following interface\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Scalar value() \textcolor{keyword}{const}; \textcolor{comment}{// the value}}
+\DoxyCodeLine{Scalar row() \textcolor{keyword}{const};   \textcolor{comment}{// the row index i}}
+\DoxyCodeLine{Scalar col() \textcolor{keyword}{const};   \textcolor{comment}{// the column index j}}
+\end{DoxyCode}
+ See for instance the \mbox{\hyperlink{class_eigen_1_1_triplet}{Eigen\+::\+Triplet}} template class.
+
+Here is a typical usage example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{typedef} Triplet<double> \mbox{\hyperlink{class_eigen_1_1_triplet}{T}};}
+\DoxyCodeLine{std::vector<T> tripletList;}
+\DoxyCodeLine{triplets.reserve(estimation\_of\_entries);}
+\DoxyCodeLine{\textcolor{keywordflow}{for}(...)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  \textcolor{comment}{// ...}}
+\DoxyCodeLine{  tripletList.push\_back(\mbox{\hyperlink{class_eigen_1_1_triplet}{T}}(i,j,v\_ij));}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{SparseMatrixType m(\mbox{\hyperlink{class_eigen_1_1_sparse_matrix_a62e61bb861eee306d5b069ce652b5aa5}{rows}},\mbox{\hyperlink{class_eigen_1_1_sparse_matrix_aa391750e3c530227e4a5c3c52e959975}{cols}});}
+\DoxyCodeLine{m.setFromTriplets(tripletList.begin(), tripletList.end());}
+\DoxyCodeLine{\textcolor{comment}{// m is ready to go!}}
+\end{DoxyCode}
+
+
+\begin{DoxyWarning}{Warning}
+The list of triplets is read multiple times (at least twice). Therefore, it is not recommended to define an abstract iterator over a complex data-\/structure that would be expensive to evaluate. The triplets should rather be explicitely stored into a std\+::vector for instance. 
+\end{DoxyWarning}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_ad3eee2d3d2a9843cd095c0207f781e7e}\label{class_eigen_1_1_sparse_matrix_ad3eee2d3d2a9843cd095c0207f781e7e}} 
+\index{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}!setFromTriplets@{setFromTriplets}}
+\index{setFromTriplets@{setFromTriplets}!Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{setFromTriplets()}{setFromTriplets()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Scalar , int \+\_\+\+Options, typename \+\_\+\+Storage\+Index $>$ \\
+template$<$typename Input\+Iterators , typename Dup\+Functor $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Eigen\+::\+Sparse\+Matrix}}$<$ Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$\+::set\+From\+Triplets (\begin{DoxyParamCaption}\item[{const Input\+Iterators \&}]{begin,  }\item[{const Input\+Iterators \&}]{end,  }\item[{Dup\+Functor}]{dup\+\_\+func }\end{DoxyParamCaption})}
+
+The same as set\+From\+Triplets but when duplicates are met the functor {\itshape dup\+\_\+func} is applied\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{value = dup\_func(OldValue, NewValue)}
+\end{DoxyCode}
+ Here is a C++11 example keeping the latest entry only\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{mat.setFromTriplets(triplets.begin(), triplets.end(), [] (\textcolor{keyword}{const} Scalar\&,\textcolor{keyword}{const} Scalar \&b) \{ return b; \});}
+\end{DoxyCode}
+ \mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_a89013d2aa58413672c90932607a0d6f0}\label{class_eigen_1_1_sparse_matrix_a89013d2aa58413672c90932607a0d6f0}} 
+\index{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}!setIdentity@{setIdentity}}
+\index{setIdentity@{setIdentity}!Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{setIdentity()}{setIdentity()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Options, typename \+\_\+\+Storage\+Index $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Eigen\+::\+Sparse\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$\+::set\+Identity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets $\ast$this to the identity matrix. This function also turns the matrix into compressed mode, and drop any reserved memory. \mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_ad3c7416090f913e8685523cb3ab7c2f7}\label{class_eigen_1_1_sparse_matrix_ad3c7416090f913e8685523cb3ab7c2f7}} 
+\index{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}!setZero@{setZero}}
+\index{setZero@{setZero}!Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{setZero()}{setZero()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Options, typename \+\_\+\+Storage\+Index $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Eigen\+::\+Sparse\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$\+::set\+Zero (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Removes all non zeros but keep allocated memory
+
+This function does not free the currently allocated memory. To release as much as memory as possible, call
+\begin{DoxyCode}{0}
+\DoxyCodeLine{mat.data().squeeze(); }
+\end{DoxyCode}
+ after resizing it.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_sparse_matrix_af88551f30202341b7cc24cfadabdec5c}{resize(\+Index,\+Index)}}, data() 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_a0700cd0b8658962d742fa51a5e594a2f}\label{class_eigen_1_1_sparse_matrix_a0700cd0b8658962d742fa51a5e594a2f}} 
+\index{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}!sum@{sum}}
+\index{sum@{sum}!Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{sum()}{sum()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Options, typename \+\_\+\+Index $>$ \\
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Index $>$ $>$\+::Scalar \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Eigen\+::\+Sparse\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Index $>$\+::sum}
+
+Overloaded for performance \mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_ae9b9ad3524f87276511397d988b7a607}\label{class_eigen_1_1_sparse_matrix_ae9b9ad3524f87276511397d988b7a607}} 
+\index{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}!swap@{swap}}
+\index{swap@{swap}!Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{swap()}{swap()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Options, typename \+\_\+\+Storage\+Index $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Eigen\+::\+Sparse\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$\+::swap (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Swaps the content of two sparse matrices of the same type. This is a fast operation that simply swaps the underlying pointers and parameters. \mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_a7e560ebda035e992d2c99875cc7c3af3}\label{class_eigen_1_1_sparse_matrix_a7e560ebda035e992d2c99875cc7c3af3}} 
+\index{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}!uncompress@{uncompress}}
+\index{uncompress@{uncompress}!Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{uncompress()}{uncompress()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Options, typename \+\_\+\+Storage\+Index $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Eigen\+::\+Sparse\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$\+::uncompress (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Turns the matrix into the uncompressed mode \mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_ac2684952b14b5c9b0f68ae3bb8c517a6}\label{class_eigen_1_1_sparse_matrix_ac2684952b14b5c9b0f68ae3bb8c517a6}} 
+\index{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}!valuePtr@{valuePtr}}
+\index{valuePtr@{valuePtr}!Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{valuePtr()}{valuePtr()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Options, typename \+\_\+\+Storage\+Index $>$ \\
+Scalar$\ast$ \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Eigen\+::\+Sparse\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$\+::value\+Ptr (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a non-\/const pointer to the array of values. This function is aimed at interoperability with other libraries. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_sparse_matrix_a8e9ef5d399d36fdd860ad05cb7a31455}{inner\+Index\+Ptr()}}, \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_a9451af2795c1a5b97678272475e41422}{outer\+Index\+Ptr()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_matrix_a9d4354d3f4d121d764bbed33cac05329}\label{class_eigen_1_1_sparse_matrix_a9d4354d3f4d121d764bbed33cac05329}} 
+\index{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}!valuePtr@{valuePtr}}
+\index{valuePtr@{valuePtr}!Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseMatrix$<$ \_Scalar, \_Options, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{valuePtr()}{valuePtr()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Options, typename \+\_\+\+Storage\+Index $>$ \\
+const Scalar$\ast$ \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Eigen\+::\+Sparse\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$\+::value\+Ptr (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a const pointer to the array of values. This function is aimed at interoperability with other libraries. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_sparse_matrix_a8e9ef5d399d36fdd860ad05cb7a31455}{inner\+Index\+Ptr()}}, \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_a9451af2795c1a5b97678272475e41422}{outer\+Index\+Ptr()}} 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Sparse\+Core/Sparse\+Matrix.\+h\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Sparse\+Core/Sparse\+Redux.\+h\end{DoxyCompactItemize}

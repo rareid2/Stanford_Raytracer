@@ -1,0 +1,127 @@
+\hypertarget{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4}{}\doxysection{Eigen\+::Block\+Impl$<$ Xpr\+Type, Block\+Rows, Block\+Cols, Inner\+Panel, Sparse $>$ Class Template Reference}
+\label{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4}\index{Eigen::BlockImpl$<$ XprType, BlockRows, BlockCols, InnerPanel, Sparse $>$@{Eigen::BlockImpl$<$ XprType, BlockRows, BlockCols, InnerPanel, Sparse $>$}}
+
+
+{\ttfamily \#include $<$Sparse\+Block.\+h$>$}
+
+Inheritance diagram for Eigen\+::Block\+Impl$<$ Xpr\+Type, Block\+Rows, Block\+Cols, Inner\+Panel, Sparse $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.133603cm]{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4_aa53a144951bf6d8f6c4c899d84d2493b}\label{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4_aa53a144951bf6d8f6c4c899d84d2493b}} 
+enum \{ {\bfseries Is\+Row\+Major} = internal\+::traits$<$Block\+Type$>$\+::Is\+Row\+Major
+ \}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4_acc94ba0d1f7f531a08624d7725bb6aca}\label{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4_acc94ba0d1f7f531a08624d7725bb6aca}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{internal\+::remove\+\_\+all}}$<$ typename Xpr\+Type\+::\+Nested $>$\+::type {\bfseries \+\_\+\+Matrix\+Type\+Nested}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4_aa724feeda73e4d5d2330c6dced2d18f9}{Block\+Impl}} (Xpr\+Type \&xpr, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} i)
+\item 
+\mbox{\hyperlink{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4_a2fe461bd49f27e586b7d0e652e370644}{Block\+Impl}} (Xpr\+Type \&xpr, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} start\+Row, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} start\+Col, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} block\+Rows, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} block\+Cols)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4_af82dc473bacd9c54dbded4352b5cb267}\label{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4_af82dc473bacd9c54dbded4352b5cb267}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries rows} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4_a41c66766b88e5a799dc43e632893d19e}\label{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4_a41c66766b88e5a799dc43e632893d19e}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries cols} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4_a93d43b319f38c691f85d9e0cc67dffc7}\label{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4_a93d43b319f38c691f85d9e0cc67dffc7}} 
+Scalar \& {\bfseries coeff\+Ref} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4_a6b9defaebcc780006f27e76f08499fba}\label{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4_a6b9defaebcc780006f27e76f08499fba}} 
+const Scalar {\bfseries coeff} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4_a12ecce656754031902a63616743296a9}\label{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4_a12ecce656754031902a63616743296a9}} 
+Scalar \& {\bfseries coeff\+Ref} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} index)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4_a1e194ee085e268d9c658abe12c8c0f1b}\label{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4_a1e194ee085e268d9c658abe12c8c0f1b}} 
+const Scalar {\bfseries coeff} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} index) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4_ae8e74c1163b1076878c8337c991e1734}\label{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4_ae8e74c1163b1076878c8337c991e1734}} 
+const Xpr\+Type \& {\bfseries nested\+Expression} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4_a0bd888c97bfaabd4554d9ba71525dc2f}\label{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4_a0bd888c97bfaabd4554d9ba71525dc2f}} 
+Xpr\+Type \& {\bfseries nested\+Expression} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4_a24e7db3dab2ee329f6a6a71bbcb4eacc}\label{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4_a24e7db3dab2ee329f6a6a71bbcb4eacc}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries start\+Row} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4_a40091f5bb91ea58dbd81be3610f09c09}\label{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4_a40091f5bb91ea58dbd81be3610f09c09}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries start\+Col} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4_a8593b07879eea5ec6dfa45edc3d25caf}\label{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4_a8593b07879eea5ec6dfa45edc3d25caf}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries block\+Rows} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4_a257fe3d3e8f009ba75d011630343dcb8}\label{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4_a257fe3d3e8f009ba75d011630343dcb8}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries block\+Cols} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4_a54ef75cc168c62d5118002aaf947c03e}\label{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4_a54ef75cc168c62d5118002aaf947c03e}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries non\+Zeros} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4_a2fc5447541b6e903d1efd6412ea39b9a}\label{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4_a2fc5447541b6e903d1efd6412ea39b9a}} 
+{\footnotesize template$<$typename T $>$ }\\\mbox{\hyperlink{class_eigen_1_1_block_impl}{Block\+Impl}} \& {\bfseries operator=} (const \mbox{\hyperlink{class_eigen_1_1_triplet}{T}} \&)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4_a1e4f46c00e8bc0be2ec7dd83614de5d2}\label{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4_a1e4f46c00e8bc0be2ec7dd83614de5d2}} 
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1ref__selector}{internal\+::ref\+\_\+selector}}$<$ Xpr\+Type $>$\+::non\+\_\+const\+\_\+type {\bfseries m\+\_\+matrix}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4_af1ec44ed1855328a5c24e8b27bbfe05a}\label{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4_af1ec44ed1855328a5c24e8b27bbfe05a}} 
+const \mbox{\hyperlink{class_eigen_1_1internal_1_1variable__if__dynamic}{internal\+::variable\+\_\+if\+\_\+dynamic}}$<$ \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}, Xpr\+Type\+::\+Rows\+At\+Compile\+Time==1 ? 0 \+:\mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}} $>$ {\bfseries m\+\_\+start\+Row}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4_a28237b3b6320adfa5fdf343b11e26afb}\label{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4_a28237b3b6320adfa5fdf343b11e26afb}} 
+const \mbox{\hyperlink{class_eigen_1_1internal_1_1variable__if__dynamic}{internal\+::variable\+\_\+if\+\_\+dynamic}}$<$ \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}, Xpr\+Type\+::\+Cols\+At\+Compile\+Time==1 ? 0 \+:\mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}} $>$ {\bfseries m\+\_\+start\+Col}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4_a56f40ad14a87e57ce025c9069dd22a4a}\label{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4_a56f40ad14a87e57ce025c9069dd22a4a}} 
+const \mbox{\hyperlink{class_eigen_1_1internal_1_1variable__if__dynamic}{internal\+::variable\+\_\+if\+\_\+dynamic}}$<$ \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}, \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base_acef5505c49d2d5205cce99b8a4ab842ea2351fc1d1a86ff3479eaa07d3065baec}{Rows\+At\+Compile\+Time}} $>$ {\bfseries m\+\_\+block\+Rows}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4_a660cab28430727dc43dd7715ef67fb06}\label{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4_a660cab28430727dc43dd7715ef67fb06}} 
+const \mbox{\hyperlink{class_eigen_1_1internal_1_1variable__if__dynamic}{internal\+::variable\+\_\+if\+\_\+dynamic}}$<$ \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}, \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base_acef5505c49d2d5205cce99b8a4ab842eaf609dda5d4abc02a20e4eab811482ac2}{Cols\+At\+Compile\+Time}} $>$ {\bfseries m\+\_\+block\+Cols}
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4_abbd5998ae9e753ee48f1d0540f134ba7}\label{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4_abbd5998ae9e753ee48f1d0540f134ba7}} 
+struct {\bfseries internal\+::unary\+\_\+evaluator$<$ Block$<$ Xpr\+Type, Block\+Rows, Block\+Cols, Inner\+Panel $>$, internal\+::\+Iterator\+Based, Scalar $>$}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Xpr\+Type, int Block\+Rows, int Block\+Cols, bool Inner\+Panel$>$\newline
+class Eigen\+::\+Block\+Impl$<$ Xpr\+Type, Block\+Rows, Block\+Cols, Inner\+Panel, Sparse $>$}
+
+Generic implementation of sparse \mbox{\hyperlink{class_eigen_1_1_block}{Block}} expression. Real-\/only. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4_aa724feeda73e4d5d2330c6dced2d18f9}\label{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4_aa724feeda73e4d5d2330c6dced2d18f9}} 
+\index{Eigen::BlockImpl$<$ XprType, BlockRows, BlockCols, InnerPanel, Sparse $>$@{Eigen::BlockImpl$<$ XprType, BlockRows, BlockCols, InnerPanel, Sparse $>$}!BlockImpl@{BlockImpl}}
+\index{BlockImpl@{BlockImpl}!Eigen::BlockImpl$<$ XprType, BlockRows, BlockCols, InnerPanel, Sparse $>$@{Eigen::BlockImpl$<$ XprType, BlockRows, BlockCols, InnerPanel, Sparse $>$}}
+\doxysubsubsection{\texorpdfstring{BlockImpl()}{BlockImpl()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Xpr\+Type , int Block\+Rows, int Block\+Cols, bool Inner\+Panel$>$ \\
+\mbox{\hyperlink{class_eigen_1_1_block_impl}{Eigen\+::\+Block\+Impl}}$<$ Xpr\+Type, Block\+Rows, Block\+Cols, Inner\+Panel, \mbox{\hyperlink{struct_eigen_1_1_sparse}{Sparse}} $>$\+::\mbox{\hyperlink{class_eigen_1_1_block_impl}{Block\+Impl}} (\begin{DoxyParamCaption}\item[{Xpr\+Type \&}]{xpr,  }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Column or Row constructor \mbox{\Hypertarget{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4_a2fe461bd49f27e586b7d0e652e370644}\label{class_eigen_1_1_block_impl_3_01_xpr_type_00_01_block_rows_00_01_block_cols_00_01_inner_panel_00_01_sparse_01_4_a2fe461bd49f27e586b7d0e652e370644}} 
+\index{Eigen::BlockImpl$<$ XprType, BlockRows, BlockCols, InnerPanel, Sparse $>$@{Eigen::BlockImpl$<$ XprType, BlockRows, BlockCols, InnerPanel, Sparse $>$}!BlockImpl@{BlockImpl}}
+\index{BlockImpl@{BlockImpl}!Eigen::BlockImpl$<$ XprType, BlockRows, BlockCols, InnerPanel, Sparse $>$@{Eigen::BlockImpl$<$ XprType, BlockRows, BlockCols, InnerPanel, Sparse $>$}}
+\doxysubsubsection{\texorpdfstring{BlockImpl()}{BlockImpl()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Xpr\+Type , int Block\+Rows, int Block\+Cols, bool Inner\+Panel$>$ \\
+\mbox{\hyperlink{class_eigen_1_1_block_impl}{Eigen\+::\+Block\+Impl}}$<$ Xpr\+Type, Block\+Rows, Block\+Cols, Inner\+Panel, \mbox{\hyperlink{struct_eigen_1_1_sparse}{Sparse}} $>$\+::\mbox{\hyperlink{class_eigen_1_1_block_impl}{Block\+Impl}} (\begin{DoxyParamCaption}\item[{Xpr\+Type \&}]{xpr,  }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{start\+Row,  }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{start\+Col,  }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{block\+Rows,  }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{block\+Cols }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Dynamic-\/size constructor 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Sparse\+Core/Sparse\+Block.\+h\end{DoxyCompactItemize}

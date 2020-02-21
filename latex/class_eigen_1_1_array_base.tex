@@ -1,0 +1,361 @@
+\hypertarget{class_eigen_1_1_array_base}{}\doxysection{Eigen\+::Array\+Base$<$ Derived $>$ Class Template Reference}
+\label{class_eigen_1_1_array_base}\index{Eigen::ArrayBase$<$ Derived $>$@{Eigen::ArrayBase$<$ Derived $>$}}
+
+
+Base class for all 1D and 2D array, and related expressions.  
+
+
+
+
+{\ttfamily \#include $<$Array\+Base.\+h$>$}
+
+Inheritance diagram for Eigen\+::Array\+Base$<$ Derived $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_eigen_1_1_array_base}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_array_base}{Array\+Base}} \mbox{\hyperlink{class_eigen_1_1_array_base_a7c296f02281624d9c76eb864ab7209ce}{Storage\+Base\+Type}}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_array_base_a31e98eccecba8ce3d219fd64d16132d8}\label{class_eigen_1_1_array_base_a31e98eccecba8ce3d219fd64d16132d8}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_array_base}{Array\+Base}} {\bfseries Eigen\+\_\+\+Base\+Class\+For\+Specialization\+Of\+Global\+Math\+Func\+Impl}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_array_base_a6d90135958acf6f7e1c40277ea7da2b7}\label{class_eigen_1_1_array_base_a6d90135958acf6f7e1c40277ea7da2b7}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ Derived $>$\+::Storage\+Kind {\bfseries Storage\+Kind}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_array_base_a9d10903d33b230df8226b2adc0179c41}\label{class_eigen_1_1_array_base_a9d10903d33b230df8226b2adc0179c41}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ Derived $>$\+::Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_array_base_a975bd48834ec3cb1c8436d3475b71939}\label{class_eigen_1_1_array_base_a975bd48834ec3cb1c8436d3475b71939}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1packet__traits}{internal\+::packet\+\_\+traits}}$<$ Scalar $>$\+::type {\bfseries Packet\+Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_array_base_a33fdf1119ee1107d1e1905e624ca6e24}\label{class_eigen_1_1_array_base_a33fdf1119ee1107d1e1905e624ca6e24}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$ Scalar $>$\+::Real {\bfseries Real\+Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_array_base_a1591f6f51796e6451a919c36431219a9}\label{class_eigen_1_1_array_base_a1591f6f51796e6451a919c36431219a9}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_dense_base}{Dense\+Base}}$<$ Derived $>$ {\bfseries Base}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_array_base_aa9ee5eebe5ab23a22c8a8baeab8885e1}\label{class_eigen_1_1_array_base_aa9ee5eebe5ab23a22c8a8baeab8885e1}} 
+typedef Base\+::\+Coeff\+Return\+Type {\bfseries Coeff\+Return\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_array_base_a4283fed1d2cc1085789f53f1895a7550}\label{class_eigen_1_1_array_base_a4283fed1d2cc1085789f53f1895a7550}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_dense_base_aae45af9b5aca5a9caae98fd201f47cc4}{Base\+::\+Plain\+Object}} {\bfseries Plain\+Object}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_array_base_a0ad30bd42492f9ef49084afdd0d5fe6e}\label{class_eigen_1_1_array_base_a0ad30bd42492f9ef49084afdd0d5fe6e}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_cwise_nullary_op}{Cwise\+Nullary\+Op}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__constant__op}{internal\+::scalar\+\_\+constant\+\_\+op}}$<$ Scalar $>$, \mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Plain\+Object}} $>$ {\bfseries Constant\+Return\+Type}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Derived \& \mbox{\hyperlink{class_eigen_1_1_array_base_a72f5fe3d0805810e65eb897ccd3b6760}{operator=}} (const \mbox{\hyperlink{class_eigen_1_1_array_base}{Array\+Base}} \&other)
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Derived \& \mbox{\hyperlink{class_eigen_1_1_array_base_aff99276e139d767dbe3bcb360d5710a3}{operator=}} (const Scalar \&\mbox{\hyperlink{class_eigen_1_1_dense_base_a8da735a6bfc7012606acf787156d10a0}{value}})
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_array_base_a2f2c3809c1c6463cb25939264c68a769}\label{class_eigen_1_1_array_base_a2f2c3809c1c6463cb25939264c68a769}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Derived \& {\bfseries operator+=} (const Scalar \&scalar)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_array_base_a4cac3e74ea7d5b36e256582fd207df1e}\label{class_eigen_1_1_array_base_a4cac3e74ea7d5b36e256582fd207df1e}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Derived \& {\bfseries operator-\/=} (const Scalar \&scalar)
+\item 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Derived \& \mbox{\hyperlink{class_eigen_1_1_array_base_ab4bac4291bfd0da16f768d32398e7752}{operator+=}} (const \mbox{\hyperlink{class_eigen_1_1_array_base}{Array\+Base}}$<$ Other\+Derived $>$ \&other)
+\item 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Derived \& \mbox{\hyperlink{class_eigen_1_1_array_base_a6648eeebc4a9d407605410a7149f1a93}{operator-\/=}} (const \mbox{\hyperlink{class_eigen_1_1_array_base}{Array\+Base}}$<$ Other\+Derived $>$ \&other)
+\item 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Derived \& \mbox{\hyperlink{class_eigen_1_1_array_base_a3fc54e548f88415c3582add526b62525}{operator$\ast$=}} (const \mbox{\hyperlink{class_eigen_1_1_array_base}{Array\+Base}}$<$ Other\+Derived $>$ \&other)
+\item 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Derived \& \mbox{\hyperlink{class_eigen_1_1_array_base_a91860c840ac453449c1ac65fc61065f8}{operator/=}} (const \mbox{\hyperlink{class_eigen_1_1_array_base}{Array\+Base}}$<$ Other\+Derived $>$ \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_array_base_af65212900e3c7d36abd2c2b04e550a3c}\label{class_eigen_1_1_array_base_af65212900e3c7d36abd2c2b04e550a3c}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_array_base}{Array\+Base}}$<$ Derived $>$ \& {\bfseries array} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_array_base_a1ea7962c1aef1e41574e8aefbd78602d}\label{class_eigen_1_1_array_base_a1ea7962c1aef1e41574e8aefbd78602d}} 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_array_base}{Array\+Base}}$<$ Derived $>$ \& {\bfseries array} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_matrix_wrapper}{Matrix\+Wrapper}}$<$ Derived $>$ \mbox{\hyperlink{class_eigen_1_1_array_base_ac513167ec762bbf639dc375d314d91d3}{matrix}} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_array_base_a878d875ec3473cb9ab064a28db8c0af1}\label{class_eigen_1_1_array_base_a878d875ec3473cb9ab064a28db8c0af1}} 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_matrix_wrapper}{Matrix\+Wrapper}}$<$ const Derived $>$ {\bfseries matrix} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_array_base_ac91360b0526a36067915f63bf45b8b0e}\label{class_eigen_1_1_array_base_ac91360b0526a36067915f63bf45b8b0e}} 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Derived \& {\bfseries lazy\+Assign} (const \mbox{\hyperlink{class_eigen_1_1_dense_base}{Dense\+Base}}$<$ Other\+Derived $>$ \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_array_base_a6a415a4d406deecbc35066f17d9eac8c}\label{class_eigen_1_1_array_base_a6a415a4d406deecbc35066f17d9eac8c}} 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Derived \& {\bfseries lazy\+Assign} (const \mbox{\hyperlink{class_eigen_1_1_dense_base}{Dense\+Base}}$<$ Other\+Derived $>$ \&other)
+\item 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Derived \& \mbox{\hyperlink{class_eigen_1_1_array_base_a581a7a353bd007b5352f11688e3bc5fa}{operator=}} (const \mbox{\hyperlink{class_eigen_1_1_dense_base}{Dense\+Base}}$<$ Other\+Derived $>$ \&other)
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Derived \& \mbox{\hyperlink{class_eigen_1_1_array_base_aae79d5d0d95e60bf2e64d0dc3dfd66a4}{operator=}} (const \mbox{\hyperlink{class_eigen_1_1_dense_base}{Dense\+Base}} \&other)
+\item 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Derived \& \mbox{\hyperlink{class_eigen_1_1_array_base_a6462697d5a6fa3104f5f1213fdf9ff12}{operator=}} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Other\+Derived $>$ \&other)
+\begin{DoxyCompactList}\small\item\em Copies the generic expression {\itshape other} into $\ast$this. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_eigen_1_1_array_base_a5ab39bb4593a4321c3dc1d1cf7133c27}\label{class_eigen_1_1_array_base_a5ab39bb4593a4321c3dc1d1cf7133c27}} 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Derived \& {\bfseries operator=} (const \mbox{\hyperlink{class_eigen_1_1_return_by_value}{Return\+By\+Value}}$<$ Other\+Derived $>$ \&\mbox{\hyperlink{structfunc}{func}})
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_array_base_aa2875fc2c5e22a032cca855402b47f82}\label{class_eigen_1_1_array_base_aa2875fc2c5e22a032cca855402b47f82}} 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\Derived \& {\bfseries operator=} (const \mbox{\hyperlink{class_eigen_1_1_return_by_value}{Return\+By\+Value}}$<$ Other\+Derived $>$ \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_array_base_a8fdd498a76ab5e136e3c55b1412cd8c4}\label{class_eigen_1_1_array_base_a8fdd498a76ab5e136e3c55b1412cd8c4}} 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Derived \& {\bfseries operator+=} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Other\+Derived $>$ \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_array_base_a5ce384b60166efd51356eb738f534144}\label{class_eigen_1_1_array_base_a5ce384b60166efd51356eb738f534144}} 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Derived \& {\bfseries operator-\/=} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Other\+Derived $>$ \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_array_base_a76686ac27572dc5f07b068a9c43aa1b9}\label{class_eigen_1_1_array_base_a76686ac27572dc5f07b068a9c43aa1b9}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Derived \& {\bfseries operator$\ast$=} (const Scalar \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_array_base_a7d10c42cfb8809d06310970ae7ae4331}\label{class_eigen_1_1_array_base_a7d10c42cfb8809d06310970ae7ae4331}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Derived \& {\bfseries operator/=} (const Scalar \&other)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_array_base_a1bed9255f01f8a51dd6cb7e4ab2925c9}\label{class_eigen_1_1_array_base_a1bed9255f01f8a51dd6cb7e4ab2925c9}} 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\Derived \& {\bfseries operator+=} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Other\+Derived $>$ \&)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_array_base_ade439053f0c517a6b94285223b1d1f5b}\label{class_eigen_1_1_array_base_ade439053f0c517a6b94285223b1d1f5b}} 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\Derived \& {\bfseries operator-\/=} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Other\+Derived $>$ \&)
+\end{DoxyCompactItemize}
+\doxysubsection*{Related Functions}
+(Note that these are not member functions.) \begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Derived , typename Scalar\+Exponent $>$ }\\\mbox{\hyperlink{struct_eigen_1_1internal_1_1enable__if}{internal\+::enable\+\_\+if}}$<$ !(\mbox{\hyperlink{struct_eigen_1_1internal_1_1is__same}{internal\+::is\+\_\+same}}$<$ typename Derived\+::\+Scalar, Scalar\+Exponent $>$\+::\mbox{\hyperlink{class_eigen_1_1_dense_base_a8da735a6bfc7012606acf787156d10a0}{value}}) \&\&E\+I\+G\+E\+N\+\_\+\+S\+C\+A\+L\+A\+R\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+S\+U\+P\+P\+O\+R\+T\+ED(pow, typename Derived\+::\+Scalar, Scalar\+Exponent), const E\+I\+G\+E\+N\+\_\+\+E\+X\+P\+R\+\_\+\+B\+I\+N\+A\+R\+Y\+O\+P\+\_\+\+S\+C\+A\+L\+A\+R\+\_\+\+R\+E\+T\+U\+R\+N\+\_\+\+T\+Y\+PE(Derived, Scalar\+Exponent, pow) $>$\+::type \mbox{\hyperlink{class_eigen_1_1_array_base_ab6dc101d82e8228a19a8840e3a29c1c9}{pow}} (const \mbox{\hyperlink{class_eigen_1_1_array_base}{Eigen\+::\+Array\+Base}}$<$ Derived $>$ \&x, const Scalar\+Exponent \&exponent)
+\item 
+{\footnotesize template$<$typename Derived , typename Exponent\+Derived $>$ }\\const \mbox{\hyperlink{class_eigen_1_1_cwise_binary_op}{Eigen\+::\+Cwise\+Binary\+Op}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__pow__op}{Eigen\+::internal\+::scalar\+\_\+pow\+\_\+op}}$<$ typename Derived\+::\+Scalar, typename Exponent\+Derived\+::\+Scalar $>$, const Derived, const Exponent\+Derived $>$ \mbox{\hyperlink{class_eigen_1_1_array_base_acb769e1ab1d809abb77c7ab98021ad81}{pow}} (const \mbox{\hyperlink{class_eigen_1_1_array_base}{Eigen\+::\+Array\+Base}}$<$ Derived $>$ \&x, const \mbox{\hyperlink{class_eigen_1_1_array_base}{Eigen\+::\+Array\+Base}}$<$ Exponent\+Derived $>$ \&exponents)
+\item 
+{\footnotesize template$<$typename Scalar , typename Derived $>$ }\\\mbox{\hyperlink{struct_eigen_1_1internal_1_1enable__if}{internal\+::enable\+\_\+if}}$<$ !(\mbox{\hyperlink{struct_eigen_1_1internal_1_1is__same}{internal\+::is\+\_\+same}}$<$ typename Derived\+::\+Scalar, Scalar $>$\+::\mbox{\hyperlink{class_eigen_1_1_dense_base_a8da735a6bfc7012606acf787156d10a0}{value}}) \&\&E\+I\+G\+E\+N\+\_\+\+S\+C\+A\+L\+A\+R\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+S\+U\+P\+P\+O\+R\+T\+ED(pow, Scalar, typename Derived\+::\+Scalar), const E\+I\+G\+E\+N\+\_\+\+S\+C\+A\+L\+A\+R\+\_\+\+B\+I\+N\+A\+R\+Y\+O\+P\+\_\+\+E\+X\+P\+R\+\_\+\+R\+E\+T\+U\+R\+N\+\_\+\+T\+Y\+PE(Scalar, Derived, pow) $>$\+::type \mbox{\hyperlink{class_eigen_1_1_array_base_a7db6f1ad242a31a2fa421f500d1258c5}{pow}} (const Scalar \&x, const \mbox{\hyperlink{class_eigen_1_1_array_base}{Eigen\+::\+Array\+Base}}$<$ Derived $>$ \&exponents)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Derived$>$\newline
+class Eigen\+::\+Array\+Base$<$ Derived $>$}
+
+Base class for all 1D and 2D array, and related expressions. 
+
+An array is similar to a dense vector or matrix. While matrices are mathematical objects with well defined linear algebra operators, an array is just a collection of scalar values arranged in a one or two dimensionnal fashion. As the main consequence, all operations applied to an array are performed coefficient wise. Furthermore, arrays support scalar math functions of the c++ standard library (e.\+g., std\+::sin(x)), and convenient constructors allowing to easily write generic code working for both scalar values and arrays.
+
+This class is the base that is inherited by all array expression types.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Derived} & is the derived type, e.\+g., an array or an expression type.\\
+\hline
+\end{DoxyTemplParams}
+This class can be extended with the help of the plugin mechanism described on the page \mbox{\hyperlink{TopicCustomizing_Plugins}{Extending Matrix\+Base (and other classes)}} by defining the preprocessor symbol {\ttfamily E\+I\+G\+E\+N\+\_\+\+A\+R\+R\+A\+Y\+B\+A\+S\+E\+\_\+\+P\+L\+U\+G\+IN}.
+
+\begin{DoxySeeAlso}{See also}
+class \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}, \mbox{\hyperlink{TopicClassHierarchy}{The class hierarchy}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_array_base_a7c296f02281624d9c76eb864ab7209ce}\label{class_eigen_1_1_array_base_a7c296f02281624d9c76eb864ab7209ce}} 
+\index{Eigen::ArrayBase$<$ Derived $>$@{Eigen::ArrayBase$<$ Derived $>$}!StorageBaseType@{StorageBaseType}}
+\index{StorageBaseType@{StorageBaseType}!Eigen::ArrayBase$<$ Derived $>$@{Eigen::ArrayBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{StorageBaseType}{StorageBaseType}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+typedef \mbox{\hyperlink{class_eigen_1_1_array_base}{Array\+Base}} \mbox{\hyperlink{class_eigen_1_1_array_base}{Eigen\+::\+Array\+Base}}$<$ Derived $>$\+::\mbox{\hyperlink{class_eigen_1_1_array_base_a7c296f02281624d9c76eb864ab7209ce}{Storage\+Base\+Type}}}
+
+The base class for a given storage type. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_array_base_ac513167ec762bbf639dc375d314d91d3}\label{class_eigen_1_1_array_base_ac513167ec762bbf639dc375d314d91d3}} 
+\index{Eigen::ArrayBase$<$ Derived $>$@{Eigen::ArrayBase$<$ Derived $>$}!matrix@{matrix}}
+\index{matrix@{matrix}!Eigen::ArrayBase$<$ Derived $>$@{Eigen::ArrayBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{matrix()}{matrix()}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_matrix_wrapper}{Matrix\+Wrapper}}$<$Derived$>$ \mbox{\hyperlink{class_eigen_1_1_array_base}{Eigen\+::\+Array\+Base}}$<$ Derived $>$\+::matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+an \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix }} expression of this array 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_matrix_base_a76a9dcb91ec82fbd6e74ca2ac2ae0e07}{Matrix\+Base\+::array()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_array_base_a3fc54e548f88415c3582add526b62525}\label{class_eigen_1_1_array_base_a3fc54e548f88415c3582add526b62525}} 
+\index{Eigen::ArrayBase$<$ Derived $>$@{Eigen::ArrayBase$<$ Derived $>$}!operator$\ast$=@{operator$\ast$=}}
+\index{operator$\ast$=@{operator$\ast$=}!Eigen::ArrayBase$<$ Derived $>$@{Eigen::ArrayBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$=()}{operator*=()}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+template$<$typename Other\+Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Derived \& \mbox{\hyperlink{class_eigen_1_1_array_base}{Eigen\+::\+Array\+Base}}$<$ Derived $>$\+::operator$\ast$= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_array_base}{Array\+Base}}$<$ Other\+Derived $>$ \&}]{other }\end{DoxyParamCaption})}
+
+replaces {\ttfamily $\ast$this} by {\ttfamily $\ast$this} $\ast$ {\itshape other} coefficient wise.
+
+\begin{DoxyReturn}{Returns}
+a reference to {\ttfamily $\ast$this} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_array_base_ab4bac4291bfd0da16f768d32398e7752}\label{class_eigen_1_1_array_base_ab4bac4291bfd0da16f768d32398e7752}} 
+\index{Eigen::ArrayBase$<$ Derived $>$@{Eigen::ArrayBase$<$ Derived $>$}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!Eigen::ArrayBase$<$ Derived $>$@{Eigen::ArrayBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{operator+=()}{operator+=()}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+template$<$typename Other\+Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Derived \& \mbox{\hyperlink{class_eigen_1_1_array_base}{Eigen\+::\+Array\+Base}}$<$ Derived $>$\+::operator+= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_array_base}{Array\+Base}}$<$ Other\+Derived $>$ \&}]{other }\end{DoxyParamCaption})}
+
+replaces {\ttfamily $\ast$this} by {\ttfamily $\ast$this} + {\itshape other}.
+
+\begin{DoxyReturn}{Returns}
+a reference to {\ttfamily $\ast$this} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_array_base_a6648eeebc4a9d407605410a7149f1a93}\label{class_eigen_1_1_array_base_a6648eeebc4a9d407605410a7149f1a93}} 
+\index{Eigen::ArrayBase$<$ Derived $>$@{Eigen::ArrayBase$<$ Derived $>$}!operator-\/=@{operator-\/=}}
+\index{operator-\/=@{operator-\/=}!Eigen::ArrayBase$<$ Derived $>$@{Eigen::ArrayBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{operator-\/=()}{operator-=()}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+template$<$typename Other\+Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Derived \& \mbox{\hyperlink{class_eigen_1_1_array_base}{Eigen\+::\+Array\+Base}}$<$ Derived $>$\+::operator-\/= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_array_base}{Array\+Base}}$<$ Other\+Derived $>$ \&}]{other }\end{DoxyParamCaption})}
+
+replaces {\ttfamily $\ast$this} by {\ttfamily $\ast$this} -\/ {\itshape other}.
+
+\begin{DoxyReturn}{Returns}
+a reference to {\ttfamily $\ast$this} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_array_base_a91860c840ac453449c1ac65fc61065f8}\label{class_eigen_1_1_array_base_a91860c840ac453449c1ac65fc61065f8}} 
+\index{Eigen::ArrayBase$<$ Derived $>$@{Eigen::ArrayBase$<$ Derived $>$}!operator/=@{operator/=}}
+\index{operator/=@{operator/=}!Eigen::ArrayBase$<$ Derived $>$@{Eigen::ArrayBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{operator/=()}{operator/=()}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+template$<$typename Other\+Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Derived \& \mbox{\hyperlink{class_eigen_1_1_array_base}{Eigen\+::\+Array\+Base}}$<$ Derived $>$\+::operator/= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_array_base}{Array\+Base}}$<$ Other\+Derived $>$ \&}]{other }\end{DoxyParamCaption})}
+
+replaces {\ttfamily $\ast$this} by {\ttfamily $\ast$this} / {\itshape other} coefficient wise.
+
+\begin{DoxyReturn}{Returns}
+a reference to {\ttfamily $\ast$this} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_array_base_a72f5fe3d0805810e65eb897ccd3b6760}\label{class_eigen_1_1_array_base_a72f5fe3d0805810e65eb897ccd3b6760}} 
+\index{Eigen::ArrayBase$<$ Derived $>$@{Eigen::ArrayBase$<$ Derived $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!Eigen::ArrayBase$<$ Derived $>$@{Eigen::ArrayBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Derived\& \mbox{\hyperlink{class_eigen_1_1_array_base}{Eigen\+::\+Array\+Base}}$<$ Derived $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_array_base}{Array\+Base}}$<$ Derived $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Special case of the template operator=, in order to prevent the compiler from generating a default operator= (issue hit with g++ 4.\+1) \mbox{\Hypertarget{class_eigen_1_1_array_base_aae79d5d0d95e60bf2e64d0dc3dfd66a4}\label{class_eigen_1_1_array_base_aae79d5d0d95e60bf2e64d0dc3dfd66a4}} 
+\index{Eigen::ArrayBase$<$ Derived $>$@{Eigen::ArrayBase$<$ Derived $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!Eigen::ArrayBase$<$ Derived $>$@{Eigen::ArrayBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Derived \& \mbox{\hyperlink{class_eigen_1_1_dense_base}{Eigen\+::\+Dense\+Base}}$<$ Derived $>$\+::operator=}
+
+Special case of the template operator=, in order to prevent the compiler from generating a default operator= (issue hit with g++ 4.\+1) \mbox{\Hypertarget{class_eigen_1_1_array_base_a581a7a353bd007b5352f11688e3bc5fa}\label{class_eigen_1_1_array_base_a581a7a353bd007b5352f11688e3bc5fa}} 
+\index{Eigen::ArrayBase$<$ Derived $>$@{Eigen::ArrayBase$<$ Derived $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!Eigen::ArrayBase$<$ Derived $>$@{Eigen::ArrayBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+template$<$typename Other\+Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Derived \& \mbox{\hyperlink{class_eigen_1_1_dense_base}{Eigen\+::\+Dense\+Base}}$<$ Derived $>$\+::operator= (\begin{DoxyParamCaption}\item[{typename Other\+Derived}]{ }\end{DoxyParamCaption})}
+
+Copies {\itshape other} into $\ast$this. \begin{DoxyReturn}{Returns}
+a reference to $\ast$this. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_array_base_a6462697d5a6fa3104f5f1213fdf9ff12}\label{class_eigen_1_1_array_base_a6462697d5a6fa3104f5f1213fdf9ff12}} 
+\index{Eigen::ArrayBase$<$ Derived $>$@{Eigen::ArrayBase$<$ Derived $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!Eigen::ArrayBase$<$ Derived $>$@{Eigen::ArrayBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+template$<$typename Other\+Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Derived \& \mbox{\hyperlink{class_eigen_1_1_dense_base}{Eigen\+::\+Dense\+Base}}$<$ Derived $>$\+::operator= (\begin{DoxyParamCaption}\item[{typename Other\+Derived}]{ }\end{DoxyParamCaption})}
+
+
+
+Copies the generic expression {\itshape other} into $\ast$this. 
+
+The expression must provide a (templated) eval\+To(\+Derived\& dst) const function which does the actual job. In practice, this allows any user to write its own special matrix without having to modify \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}
+
+\begin{DoxyReturn}{Returns}
+a reference to $\ast$this. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_array_base_aff99276e139d767dbe3bcb360d5710a3}\label{class_eigen_1_1_array_base_aff99276e139d767dbe3bcb360d5710a3}} 
+\index{Eigen::ArrayBase$<$ Derived $>$@{Eigen::ArrayBase$<$ Derived $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!Eigen::ArrayBase$<$ Derived $>$@{Eigen::ArrayBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Derived\& \mbox{\hyperlink{class_eigen_1_1_array_base}{Eigen\+::\+Array\+Base}}$<$ Derived $>$\+::operator= (\begin{DoxyParamCaption}\item[{const Scalar \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Set all the entries to {\itshape value}. \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_dense_base_a19b2bc788277e9ab3f967a8857e290ae}{Dense\+Base\+::set\+Constant()}}, \mbox{\hyperlink{class_eigen_1_1_dense_base_a4f5eb49e80db57f79a8353ecdf811418}{Dense\+Base\+::fill()}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_array_base_acb769e1ab1d809abb77c7ab98021ad81}\label{class_eigen_1_1_array_base_acb769e1ab1d809abb77c7ab98021ad81}} 
+\index{Eigen::ArrayBase$<$ Derived $>$@{Eigen::ArrayBase$<$ Derived $>$}!pow@{pow}}
+\index{pow@{pow}!Eigen::ArrayBase$<$ Derived $>$@{Eigen::ArrayBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{pow()}{pow()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename Derived , typename Exponent\+Derived $>$ \\
+const \mbox{\hyperlink{class_eigen_1_1_cwise_binary_op}{Eigen\+::\+Cwise\+Binary\+Op}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__pow__op}{Eigen\+::internal\+::scalar\+\_\+pow\+\_\+op}}$<$ typename Derived\+::\+Scalar, typename Exponent\+Derived\+::\+Scalar $>$, const Derived, const Exponent\+Derived $>$ pow (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_array_base}{Eigen\+::\+Array\+Base}}$<$ Derived $>$ \&}]{x,  }\item[{const \mbox{\hyperlink{class_eigen_1_1_array_base}{Eigen\+::\+Array\+Base}}$<$ Exponent\+Derived $>$ \&}]{exponents }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [related]}}
+
+\begin{DoxyReturn}{Returns}
+an expression of the coefficient-\/wise power of {\itshape x} to the given array of {\itshape exponents}.
+\end{DoxyReturn}
+This function computes the coefficient-\/wise power.
+
+Example\+: 
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_array_base_ab6dc101d82e8228a19a8840e3a29c1c9}{Array\+Base\+::pow()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_array_base_ab6dc101d82e8228a19a8840e3a29c1c9}\label{class_eigen_1_1_array_base_ab6dc101d82e8228a19a8840e3a29c1c9}} 
+\index{Eigen::ArrayBase$<$ Derived $>$@{Eigen::ArrayBase$<$ Derived $>$}!pow@{pow}}
+\index{pow@{pow}!Eigen::ArrayBase$<$ Derived $>$@{Eigen::ArrayBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{pow()}{pow()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename Derived , typename Scalar\+Exponent $>$ \\
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1enable__if}{internal\+::enable\+\_\+if}}$<$ !(\mbox{\hyperlink{struct_eigen_1_1internal_1_1is__same}{internal\+::is\+\_\+same}}$<$ typename Derived\+::\+Scalar, Scalar\+Exponent $>$\+::\mbox{\hyperlink{class_eigen_1_1_dense_base_a8da735a6bfc7012606acf787156d10a0}{value}}) \&\&E\+I\+G\+E\+N\+\_\+\+S\+C\+A\+L\+A\+R\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+S\+U\+P\+P\+O\+R\+T\+ED(pow, typename Derived\+::\+Scalar, Scalar\+Exponent), const E\+I\+G\+E\+N\+\_\+\+E\+X\+P\+R\+\_\+\+B\+I\+N\+A\+R\+Y\+O\+P\+\_\+\+S\+C\+A\+L\+A\+R\+\_\+\+R\+E\+T\+U\+R\+N\+\_\+\+T\+Y\+PE(Derived, Scalar\+Exponent, pow) $>$\+::type pow (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_array_base}{Eigen\+::\+Array\+Base}}$<$ Derived $>$ \&}]{x,  }\item[{const Scalar\+Exponent \&}]{exponent }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [related]}}
+
+\begin{DoxyReturn}{Returns}
+an expression of the coefficient-\/wise power of {\itshape x} to the given constant {\itshape exponent}.
+\end{DoxyReturn}
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Scalar\+Exponent} & is the scalar type of {\itshape exponent}. It must be compatible with the scalar type of the given expression ({\ttfamily Derived\+::\+Scalar}).\\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_array_base_ab6dc101d82e8228a19a8840e3a29c1c9}{Array\+Base\+::pow()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_array_base_a7db6f1ad242a31a2fa421f500d1258c5}\label{class_eigen_1_1_array_base_a7db6f1ad242a31a2fa421f500d1258c5}} 
+\index{Eigen::ArrayBase$<$ Derived $>$@{Eigen::ArrayBase$<$ Derived $>$}!pow@{pow}}
+\index{pow@{pow}!Eigen::ArrayBase$<$ Derived $>$@{Eigen::ArrayBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{pow()}{pow()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename Scalar , typename Derived $>$ \\
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1enable__if}{internal\+::enable\+\_\+if}}$<$ !(\mbox{\hyperlink{struct_eigen_1_1internal_1_1is__same}{internal\+::is\+\_\+same}}$<$ typename Derived\+::\+Scalar, Scalar $>$\+::\mbox{\hyperlink{class_eigen_1_1_dense_base_a8da735a6bfc7012606acf787156d10a0}{value}}) \&\&E\+I\+G\+E\+N\+\_\+\+S\+C\+A\+L\+A\+R\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+S\+U\+P\+P\+O\+R\+T\+ED(pow, Scalar, typename Derived\+::\+Scalar), const E\+I\+G\+E\+N\+\_\+\+S\+C\+A\+L\+A\+R\+\_\+\+B\+I\+N\+A\+R\+Y\+O\+P\+\_\+\+E\+X\+P\+R\+\_\+\+R\+E\+T\+U\+R\+N\+\_\+\+T\+Y\+PE(Scalar, Derived, pow) $>$\+::type pow (\begin{DoxyParamCaption}\item[{const Scalar \&}]{x,  }\item[{const \mbox{\hyperlink{class_eigen_1_1_array_base}{Eigen\+::\+Array\+Base}}$<$ Derived $>$ \&}]{exponents }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [related]}}
+
+\begin{DoxyReturn}{Returns}
+an expression of the coefficient-\/wise power of the scalar {\itshape x} to the given array of {\itshape exponents}.
+\end{DoxyReturn}
+This function computes the coefficient-\/wise power between a scalar and an array of exponents.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Scalar} & is the scalar type of {\itshape x}. It must be compatible with the scalar type of the given array expression ({\ttfamily Derived\+::\+Scalar}).\\
+\hline
+\end{DoxyTemplParams}
+Example\+: 
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_array_base_ab6dc101d82e8228a19a8840e3a29c1c9}{Array\+Base\+::pow()}} 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/Array\+Base.\+h\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/Global\+Functions.\+h\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/Self\+Cwise\+Binary\+Op.\+h\end{DoxyCompactItemize}

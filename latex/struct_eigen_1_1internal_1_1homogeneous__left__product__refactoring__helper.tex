@@ -1,0 +1,33 @@
+\hypertarget{struct_eigen_1_1internal_1_1homogeneous__left__product__refactoring__helper}{}\doxysection{Eigen\+::internal\+::homogeneous\+\_\+left\+\_\+product\+\_\+refactoring\+\_\+helper$<$ Lhs, Rhs $>$ Struct Template Reference}
+\label{struct_eigen_1_1internal_1_1homogeneous__left__product__refactoring__helper}\index{Eigen::internal::homogeneous\_left\_product\_refactoring\_helper$<$ Lhs, Rhs $>$@{Eigen::internal::homogeneous\_left\_product\_refactoring\_helper$<$ Lhs, Rhs $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1homogeneous__left__product__refactoring__helper_ab53a42358b1dbb5d99c439d66f3caa3e}\label{struct_eigen_1_1internal_1_1homogeneous__left__product__refactoring__helper_ab53a42358b1dbb5d99c439d66f3caa3e}} 
+enum \{ {\bfseries Dim} = Rhs\+::Rows\+At\+Compile\+Time, 
+{\bfseries Cols} = Rhs\+::Cols\+At\+Compile\+Time
+ \}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1homogeneous__left__product__refactoring__helper_aeb99389a9a8f596582e850af9e89317e}\label{struct_eigen_1_1internal_1_1homogeneous__left__product__refactoring__helper_aeb99389a9a8f596582e850af9e89317e}} 
+typedef Lhs\+::template \mbox{\hyperlink{struct_const_n_cols_block_xpr}{Const\+N\+Cols\+Block\+Xpr}}$<$ Dim $>$\+::Type {\bfseries Linear\+Block\+Const}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1homogeneous__left__product__refactoring__helper_a2f2a81d423781aa7487596fa72037117}\label{struct_eigen_1_1internal_1_1homogeneous__left__product__refactoring__helper_a2f2a81d423781aa7487596fa72037117}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__const}{remove\+\_\+const}}$<$ Linear\+Block\+Const $>$\+::type {\bfseries Linear\+Block}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1homogeneous__left__product__refactoring__helper_a8d92c5f8ff8b662f545631185ef9ca35}\label{struct_eigen_1_1internal_1_1homogeneous__left__product__refactoring__helper_a8d92c5f8ff8b662f545631185ef9ca35}} 
+typedef Lhs\+::\+Const\+Col\+Xpr {\bfseries Constant\+Column}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1homogeneous__left__product__refactoring__helper_acc234155d82f5ea0758b836ae197266e}\label{struct_eigen_1_1internal_1_1homogeneous__left__product__refactoring__helper_acc234155d82f5ea0758b836ae197266e}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_replicate}{Replicate}}$<$ const Constant\+Column, 1, Cols $>$ {\bfseries Constant\+Block}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1homogeneous__left__product__refactoring__helper_a97831c144fe512df2f7b5ec49b84252a}\label{struct_eigen_1_1internal_1_1homogeneous__left__product__refactoring__helper_a97831c144fe512df2f7b5ec49b84252a}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_product}{Product}}$<$ \mbox{\hyperlink{class_eigen_1_1_triplet}{Linear\+Block}}, Rhs, Lazy\+Product $>$ {\bfseries Linear\+Product}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1homogeneous__left__product__refactoring__helper_a68553e6f8fe9b5704607444a3fc1f96e}\label{struct_eigen_1_1internal_1_1homogeneous__left__product__refactoring__helper_a68553e6f8fe9b5704607444a3fc1f96e}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_cwise_binary_op}{Cwise\+Binary\+Op}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__sum__op}{internal\+::scalar\+\_\+sum\+\_\+op}}$<$ typename Lhs\+::\+Scalar, typename Rhs\+::\+Scalar $>$, const \mbox{\hyperlink{class_eigen_1_1_product}{Linear\+Product}}, const \mbox{\hyperlink{class_eigen_1_1_replicate}{Constant\+Block}} $>$ {\bfseries Xpr}
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Geometry/Homogeneous.\+h\end{DoxyCompactItemize}

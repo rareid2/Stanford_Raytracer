@@ -1,0 +1,89 @@
+\hypertarget{class_eigen_1_1_select}{}\doxysection{Eigen\+::Select$<$ Condition\+Matrix\+Type, Then\+Matrix\+Type, Else\+Matrix\+Type $>$ Class Template Reference}
+\label{class_eigen_1_1_select}\index{Eigen::Select$<$ ConditionMatrixType, ThenMatrixType, ElseMatrixType $>$@{Eigen::Select$<$ ConditionMatrixType, ThenMatrixType, ElseMatrixType $>$}}
+
+
+Expression of a coefficient wise version of the C++ ternary operator ?\+:  
+
+
+
+
+{\ttfamily \#include $<$Select.\+h$>$}
+
+Inheritance diagram for Eigen\+::Select$<$ Condition\+Matrix\+Type, Then\+Matrix\+Type, Else\+Matrix\+Type $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=0.955631cm]{class_eigen_1_1_select}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_select_a8626a59e2f93e1751db5d1382199bfad}\label{class_eigen_1_1_select_a8626a59e2f93e1751db5d1382199bfad}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1dense__xpr__base}{internal\+::dense\+\_\+xpr\+\_\+base}}$<$ \mbox{\hyperlink{class_eigen_1_1_select}{Select}} $>$\+::type {\bfseries Base}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_select_ad328fe4025aa96f75274f6b4fab30c11}\label{class_eigen_1_1_select_ad328fe4025aa96f75274f6b4fab30c11}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC {\bfseries Select} (const Condition\+Matrix\+Type \&a\+\_\+condition\+Matrix, const Then\+Matrix\+Type \&a\+\_\+then\+Matrix, const Else\+Matrix\+Type \&a\+\_\+else\+Matrix)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_select_a8a1769dfa37f2fd7e8fe595017aa4812}\label{class_eigen_1_1_select_a8a1769dfa37f2fd7e8fe595017aa4812}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries rows} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_select_ae359e219e28bfe6fd86ecd41f3e4be23}\label{class_eigen_1_1_select_ae359e219e28bfe6fd86ecd41f3e4be23}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries cols} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_select_aa14bf665b3b186f03cc249f0e29382df}\label{class_eigen_1_1_select_aa14bf665b3b186f03cc249f0e29382df}} 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Scalar {\bfseries coeff} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} i, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} j) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_select_a75e7f84a9bfbaa17ecf79fa22009e1e2}\label{class_eigen_1_1_select_a75e7f84a9bfbaa17ecf79fa22009e1e2}} 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Scalar {\bfseries coeff} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} i) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_select_a4db06ba06b8bffedb6131829921d57fd}\label{class_eigen_1_1_select_a4db06ba06b8bffedb6131829921d57fd}} 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Condition\+Matrix\+Type \& {\bfseries condition\+Matrix} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_select_aef4491645cd9801c5c79e7e89c29a09b}\label{class_eigen_1_1_select_aef4491645cd9801c5c79e7e89c29a09b}} 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Then\+Matrix\+Type \& {\bfseries then\+Matrix} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_select_a2224dc787b2a3c1277bfd3e7d73fdb2c}\label{class_eigen_1_1_select_a2224dc787b2a3c1277bfd3e7d73fdb2c}} 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Else\+Matrix\+Type \& {\bfseries else\+Matrix} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_select_a969e6a49eb45b9bd87ad7096374f7708}\label{class_eigen_1_1_select_a969e6a49eb45b9bd87ad7096374f7708}} 
+Condition\+Matrix\+Type\+::\+Nested {\bfseries m\+\_\+condition}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_select_aa728d54f8ae00c00daa282c7132bad1c}\label{class_eigen_1_1_select_aa728d54f8ae00c00daa282c7132bad1c}} 
+Then\+Matrix\+Type\+::\+Nested {\bfseries m\+\_\+then}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_select_a318df0767b557cab035ffc820f5908cd}\label{class_eigen_1_1_select_a318df0767b557cab035ffc820f5908cd}} 
+Else\+Matrix\+Type\+::\+Nested {\bfseries m\+\_\+else}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Condition\+Matrix\+Type, typename Then\+Matrix\+Type, typename Else\+Matrix\+Type$>$\newline
+class Eigen\+::\+Select$<$ Condition\+Matrix\+Type, Then\+Matrix\+Type, Else\+Matrix\+Type $>$}
+
+Expression of a coefficient wise version of the C++ ternary operator ?\+: 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Condition\+Matrix\+Type} & the type of the {\itshape condition} expression which must be a boolean matrix \\
+\hline
+{\em Then\+Matrix\+Type} & the type of the {\itshape then} expression \\
+\hline
+{\em Else\+Matrix\+Type} & the type of the {\itshape else} expression\\
+\hline
+\end{DoxyParams}
+This class represents an expression of a coefficient wise version of the C++ ternary operator ?\+:. It is the return type of \mbox{\hyperlink{class_eigen_1_1_dense_base_a65e78cfcbc9852e6923bebff4323ddca}{Dense\+Base\+::select()}} and most of the time this is the only way it is used.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_dense_base_a65e78cfcbc9852e6923bebff4323ddca}{Dense\+Base\+::select(const Dense\+Base$<$\+Then\+Derived$>$\&, const Dense\+Base$<$\+Else\+Derived$>$\&) const}} 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/Select.\+h\end{DoxyCompactItemize}

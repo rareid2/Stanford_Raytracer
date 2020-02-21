@@ -1,0 +1,24 @@
+\hypertarget{struct_eigen_1_1internal_1_1plain__diag__type}{}\doxysection{Eigen\+::internal\+::plain\+\_\+diag\+\_\+type$<$ Expression\+Type, Scalar $>$ Struct Template Reference}
+\label{struct_eigen_1_1internal_1_1plain__diag__type}\index{Eigen::internal::plain\_diag\_type$<$ ExpressionType, Scalar $>$@{Eigen::internal::plain\_diag\_type$<$ ExpressionType, Scalar $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1plain__diag__type_aea0e1c6530aefb306aaedec4429b1b13}\label{struct_eigen_1_1internal_1_1plain__diag__type_aea0e1c6530aefb306aaedec4429b1b13}} 
+enum \{ {\bfseries diag\+\_\+size} = E\+I\+G\+E\+N\+\_\+\+S\+I\+Z\+E\+\_\+\+M\+I\+N\+\_\+\+P\+R\+E\+F\+E\+R\+\_\+\+D\+Y\+N\+A\+M\+IC(Expression\+Type\+::Rows\+At\+Compile\+Time, Expression\+Type\+::Cols\+At\+Compile\+Time), 
+{\bfseries max\+\_\+diag\+\_\+size} = E\+I\+G\+E\+N\+\_\+\+S\+I\+Z\+E\+\_\+\+M\+I\+N\+\_\+\+P\+R\+E\+F\+E\+R\+\_\+\+F\+I\+X\+ED(Expression\+Type\+::Max\+Rows\+At\+Compile\+Time, Expression\+Type\+::Max\+Cols\+At\+Compile\+Time)
+ \}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1plain__diag__type_a69632fbb83643a8b45c7d08d4b2d7c77}\label{struct_eigen_1_1internal_1_1plain__diag__type_a69632fbb83643a8b45c7d08d4b2d7c77}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ Scalar, diag\+\_\+size, 1, Expression\+Type\+::\+Plain\+Object\+::\+Options \&$\sim$\mbox{\hyperlink{group__enums_ggaacded1a18ae58b0f554751f6cdf9eb13a77c993a8d9f6efe5c1159fb2ab07dd4f}{Row\+Major}}, max\+\_\+diag\+\_\+size, 1 $>$ {\bfseries Matrix\+Diag\+Type}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1plain__diag__type_a7e0e180b02fc82020caeccc5ed0987bd}\label{struct_eigen_1_1internal_1_1plain__diag__type_a7e0e180b02fc82020caeccc5ed0987bd}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_array}{Array}}$<$ Scalar, diag\+\_\+size, 1, Expression\+Type\+::\+Plain\+Object\+::\+Options \&$\sim$\mbox{\hyperlink{group__enums_ggaacded1a18ae58b0f554751f6cdf9eb13a77c993a8d9f6efe5c1159fb2ab07dd4f}{Row\+Major}}, max\+\_\+diag\+\_\+size, 1 $>$ {\bfseries Array\+Diag\+Type}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1plain__diag__type_af32705fa775bbb35d9647a6d1419144e}\label{struct_eigen_1_1internal_1_1plain__diag__type_af32705fa775bbb35d9647a6d1419144e}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1conditional}{conditional}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1is__same}{is\+\_\+same}}$<$ typename \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{traits}}$<$ Expression\+Type $>$\+::Xpr\+Kind, \mbox{\hyperlink{struct_eigen_1_1_matrix_xpr}{Matrix\+Xpr}} $>$\+::value, \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix\+Diag\+Type}}, \mbox{\hyperlink{class_eigen_1_1_array}{Array\+Diag\+Type}} $>$\+::\mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{type}} {\bfseries type}
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/util/Xpr\+Helper.\+h\end{DoxyCompactItemize}

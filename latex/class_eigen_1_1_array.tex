@@ -1,0 +1,263 @@
+\hypertarget{class_eigen_1_1_array}{}\doxysection{Eigen\+::Array$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols, \+\_\+\+Options, \+\_\+\+Max\+Rows, \+\_\+\+Max\+Cols $>$ Class Template Reference}
+\label{class_eigen_1_1_array}\index{Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}}
+
+
+General-\/purpose arrays with easy A\+PI for coefficient-\/wise operations.  
+
+
+
+
+{\ttfamily \#include $<$Array.\+h$>$}
+
+Inheritance diagram for Eigen\+::Array$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols, \+\_\+\+Options, \+\_\+\+Max\+Rows, \+\_\+\+Max\+Cols $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.814070cm]{class_eigen_1_1_array}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_array_a218b72bfa8cc6a6f36b0eabe0dcdd158}\label{class_eigen_1_1_array_a218b72bfa8cc6a6f36b0eabe0dcdd158}} 
+enum \{ {\bfseries Options} = \+\_\+\+Options
+ \}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_array_a2482d54f7eb9b935156dadc665fe8b65}\label{class_eigen_1_1_array_a2482d54f7eb9b935156dadc665fe8b65}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_plain_object_base}{Plain\+Object\+Base}}$<$ \mbox{\hyperlink{class_eigen_1_1_array}{Array}} $>$ {\bfseries Base}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_array_a8d4364c2b1f0a8268868e979c6116b7e}\label{class_eigen_1_1_array_a8d4364c2b1f0a8268868e979c6116b7e}} 
+typedef Base\+::\+Plain\+Object {\bfseries Plain\+Object}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_array}{Array}} \& \mbox{\hyperlink{class_eigen_1_1_array_aed9cf975768953131c28096c84952a08}{operator=}} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Other\+Derived $>$ \&other)
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_array}{Array}} \& \mbox{\hyperlink{class_eigen_1_1_array_ab77cffb759a431d4a55ed150e850805a}{operator=}} (const Scalar \&value)
+\item 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_array}{Array}} \& \mbox{\hyperlink{class_eigen_1_1_array_a8415de9a2e74e018c98d6e6271b307a5}{operator=}} (const \mbox{\hyperlink{class_eigen_1_1_dense_base}{Dense\+Base}}$<$ Other\+Derived $>$ \&other)
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_array}{Array}} \& \mbox{\hyperlink{class_eigen_1_1_array_a56cb38f362f88a6239f802ea226fee6a}{operator=}} (const \mbox{\hyperlink{class_eigen_1_1_array}{Array}} \&other)
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_array_a715524a79accfdc70dbc8cab1d7086ae}{Array}} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_array_abcac99438e63d02a939727997e32b4ec}\label{class_eigen_1_1_array_abcac99438e63d02a939727997e32b4ec}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC {\bfseries Array} (\mbox{\hyperlink{struct_eigen_1_1internal_1_1constructor__without__unaligned__array__assert}{internal\+::constructor\+\_\+without\+\_\+unaligned\+\_\+array\+\_\+assert}})
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_array_a3dd2f09f5133f31d434a98d60a48ede3}\label{class_eigen_1_1_array_a3dd2f09f5133f31d434a98d60a48ede3}} 
+{\footnotesize template$<$typename T $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE {\bfseries Array} (const \mbox{\hyperlink{class_eigen_1_1_triplet}{T}} \&x)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_array_ae2c43c4d02176b5dcd1037fde7eaa97e}\label{class_eigen_1_1_array_ae2c43c4d02176b5dcd1037fde7eaa97e}} 
+{\footnotesize template$<$typename T0 , typename T1 $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE {\bfseries Array} (const T0 \&val0, const T1 \&val1)
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_array_adefff5a86babb44c362bd799c1cda965}{Array}} (const Scalar \&val0, const Scalar \&val1, const Scalar \&val2)
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_array_ad4d80ab64904b4b4e8e59d8a96f659b4}{Array}} (const Scalar \&val0, const Scalar \&val1, const Scalar \&val2, const Scalar \&val3)
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_array_a085268ca25404d706e7b8f4d33f15513}{Array}} (const \mbox{\hyperlink{class_eigen_1_1_array}{Array}} \&other)
+\item 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_array_a7a08ebcc8bef6c9df21becd525792240}{Array}} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Other\+Derived $>$ \&other, typename \mbox{\hyperlink{struct_eigen_1_1internal_1_1enable__if}{internal\+::enable\+\_\+if}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1is__convertible}{internal\+::is\+\_\+convertible}}$<$ typename Other\+Derived\+::\+Scalar, Scalar $>$\+::value, Private\+Type $>$\+::type=Private\+Type())
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_array_a68f7f43d240ea5d7d50d74c5cc11d8c4}\label{class_eigen_1_1_array_a68f7f43d240ea5d7d50d74c5cc11d8c4}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries inner\+Stride} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_array_a5423645ae6ff529326dff1ab23cb9e70}\label{class_eigen_1_1_array_a5423645ae6ff529326dff1ab23cb9e70}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries outer\+Stride} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_array_a322485a0bc534ee24b8ce5c0df68ab50}\label{class_eigen_1_1_array_a322485a0bc534ee24b8ce5c0df68ab50}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_plain_object_base}{Base}} \& {\bfseries base} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_array_adf35c24a23f5ea16fcce8ec2f78d1ad5}\label{class_eigen_1_1_array_adf35c24a23f5ea16fcce8ec2f78d1ad5}} 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_plain_object_base}{Base}} \& {\bfseries base} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Scalar \& \mbox{\hyperlink{class_eigen_1_1_array_ae66c3485404b168b01af06f2947fd630}{coeff}} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row\+Id, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col\+Id) const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Scalar \& \mbox{\hyperlink{class_eigen_1_1_array_ad482457f26d2a2376fa3f36ed25ab151}{coeff}} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} index) const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Scalar \& \mbox{\hyperlink{class_eigen_1_1_array_a25626a55b26a4323565f79d1b7c48ea8}{coeff\+Ref}} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row\+Id, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col\+Id)
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Scalar \& \mbox{\hyperlink{class_eigen_1_1_array_a571632ed666076d7403c8bd3eece44f0}{coeff\+Ref}} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} index)
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Scalar \& \mbox{\hyperlink{class_eigen_1_1_array_a313e36cf1be79c1e5b8dbbc158fcb0d9}{coeff\+Ref}} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row\+Id, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col\+Id) const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Scalar \& \mbox{\hyperlink{class_eigen_1_1_array_abc1104afcdeeea0a03e3cacafc81aac3}{coeff\+Ref}} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} index) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_array_a1f9b65493a9a3eb3375c3177a080a5e1}\label{class_eigen_1_1_array_a1f9b65493a9a3eb3375c3177a080a5e1}} 
+\mbox{\hyperlink{class_eigen_1_1_dense_storage}{Dense\+Storage}}$<$ Scalar, Base\+::\+Max\+Size\+At\+Compile\+Time, Base\+::\+Rows\+At\+Compile\+Time, Base\+::\+Cols\+At\+Compile\+Time, Options $>$ {\bfseries m\+\_\+storage}
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_array_a398280cc73160285ad14db73a8e85c94}\label{class_eigen_1_1_array_a398280cc73160285ad14db73a8e85c94}} 
+{\footnotesize template$<$typename Derived , typename Other\+Derived , bool Is\+Vector$>$ }\\struct {\bfseries internal\+::conservative\+\_\+resize\+\_\+like\+\_\+impl}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_array_aab39995bda190be6874c21bc93040422}\label{class_eigen_1_1_array_aab39995bda190be6874c21bc93040422}} 
+{\footnotesize template$<$typename Matrix\+Type , typename Other\+Derived , bool Swap\+Pointers$>$ }\\struct {\bfseries internal\+::matrix\+\_\+swap\+\_\+impl}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Scalar, int \+\_\+\+Rows, int \+\_\+\+Cols, int \+\_\+\+Options, int \+\_\+\+Max\+Rows, int \+\_\+\+Max\+Cols$>$\newline
+class Eigen\+::\+Array$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols, \+\_\+\+Options, \+\_\+\+Max\+Rows, \+\_\+\+Max\+Cols $>$}
+
+General-\/purpose arrays with easy A\+PI for coefficient-\/wise operations. 
+
+The Array class is very similar to the \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}} class. It provides general-\/purpose one-\/ and two-\/dimensional arrays. The difference between the Array and the Matrix class is primarily in the A\+PI\+: the A\+PI for the Array class provides easy access to coefficient-\/wise operations, while the A\+PI for the Matrix class provides easy access to linear-\/algebra operations.
+
+See documentation of class \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}} for detailed information on the template parameters storage layout.
+
+This class can be extended with the help of the plugin mechanism described on the page \mbox{\hyperlink{TopicCustomizing_Plugins}{Extending Matrix\+Base (and other classes)}} by defining the preprocessor symbol {\ttfamily E\+I\+G\+E\+N\+\_\+\+A\+R\+R\+A\+Y\+\_\+\+P\+L\+U\+G\+IN}.
+
+\begin{DoxySeeAlso}{See also}
+\textbackslash{}blank \mbox{\hyperlink{group___tutorial_array_class}{Tutorial\+Array\+Class}}, \mbox{\hyperlink{TopicClassHierarchy}{The class hierarchy}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_array_a715524a79accfdc70dbc8cab1d7086ae}\label{class_eigen_1_1_array_a715524a79accfdc70dbc8cab1d7086ae}} 
+\index{Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}!Array@{Array}}
+\index{Array@{Array}!Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}}
+\doxysubsubsection{\texorpdfstring{Array()}{Array()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Rows, int \+\_\+\+Cols, int \+\_\+\+Options, int \+\_\+\+Max\+Rows, int \+\_\+\+Max\+Cols$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_array}{Eigen\+::\+Array}}$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols, \+\_\+\+Options, \+\_\+\+Max\+Rows, \+\_\+\+Max\+Cols $>$\+::\mbox{\hyperlink{class_eigen_1_1_array}{Array}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default constructor.
+
+For fixed-\/size matrices, does nothing.
+
+For dynamic-\/size matrices, creates an empty matrix of size 0. Does not allocate any array. Such a matrix is called a null matrix. This constructor is the unique way to create null matrices\+: resizing a matrix to 0 is not supported.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_plain_object_base_a99d9054ee2d5a40c6e00ded0265e9cea}{resize(\+Index,\+Index)}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_array_adefff5a86babb44c362bd799c1cda965}\label{class_eigen_1_1_array_adefff5a86babb44c362bd799c1cda965}} 
+\index{Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}!Array@{Array}}
+\index{Array@{Array}!Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}}
+\doxysubsubsection{\texorpdfstring{Array()}{Array()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Rows, int \+\_\+\+Cols, int \+\_\+\+Options, int \+\_\+\+Max\+Rows, int \+\_\+\+Max\+Cols$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_array}{Eigen\+::\+Array}}$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols, \+\_\+\+Options, \+\_\+\+Max\+Rows, \+\_\+\+Max\+Cols $>$\+::\mbox{\hyperlink{class_eigen_1_1_array}{Array}} (\begin{DoxyParamCaption}\item[{const Scalar \&}]{val0,  }\item[{const Scalar \&}]{val1,  }\item[{const Scalar \&}]{val2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+constructs an initialized 3D vector with given coefficients \mbox{\Hypertarget{class_eigen_1_1_array_ad4d80ab64904b4b4e8e59d8a96f659b4}\label{class_eigen_1_1_array_ad4d80ab64904b4b4e8e59d8a96f659b4}} 
+\index{Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}!Array@{Array}}
+\index{Array@{Array}!Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}}
+\doxysubsubsection{\texorpdfstring{Array()}{Array()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Rows, int \+\_\+\+Cols, int \+\_\+\+Options, int \+\_\+\+Max\+Rows, int \+\_\+\+Max\+Cols$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_array}{Eigen\+::\+Array}}$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols, \+\_\+\+Options, \+\_\+\+Max\+Rows, \+\_\+\+Max\+Cols $>$\+::\mbox{\hyperlink{class_eigen_1_1_array}{Array}} (\begin{DoxyParamCaption}\item[{const Scalar \&}]{val0,  }\item[{const Scalar \&}]{val1,  }\item[{const Scalar \&}]{val2,  }\item[{const Scalar \&}]{val3 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+constructs an initialized 4D vector with given coefficients \mbox{\Hypertarget{class_eigen_1_1_array_a085268ca25404d706e7b8f4d33f15513}\label{class_eigen_1_1_array_a085268ca25404d706e7b8f4d33f15513}} 
+\index{Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}!Array@{Array}}
+\index{Array@{Array}!Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}}
+\doxysubsubsection{\texorpdfstring{Array()}{Array()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Rows, int \+\_\+\+Cols, int \+\_\+\+Options, int \+\_\+\+Max\+Rows, int \+\_\+\+Max\+Cols$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_array}{Eigen\+::\+Array}}$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols, \+\_\+\+Options, \+\_\+\+Max\+Rows, \+\_\+\+Max\+Cols $>$\+::\mbox{\hyperlink{class_eigen_1_1_array}{Array}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_array}{Array}}$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols, \+\_\+\+Options, \+\_\+\+Max\+Rows, \+\_\+\+Max\+Cols $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Copy constructor \mbox{\Hypertarget{class_eigen_1_1_array_a7a08ebcc8bef6c9df21becd525792240}\label{class_eigen_1_1_array_a7a08ebcc8bef6c9df21becd525792240}} 
+\index{Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}!Array@{Array}}
+\index{Array@{Array}!Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}}
+\doxysubsubsection{\texorpdfstring{Array()}{Array()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Rows, int \+\_\+\+Cols, int \+\_\+\+Options, int \+\_\+\+Max\+Rows, int \+\_\+\+Max\+Cols$>$ \\
+template$<$typename Other\+Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_array}{Eigen\+::\+Array}}$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols, \+\_\+\+Options, \+\_\+\+Max\+Rows, \+\_\+\+Max\+Cols $>$\+::\mbox{\hyperlink{class_eigen_1_1_array}{Array}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Other\+Derived $>$ \&}]{other,  }\item[{typename \mbox{\hyperlink{struct_eigen_1_1internal_1_1enable__if}{internal\+::enable\+\_\+if}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1is__convertible}{internal\+::is\+\_\+convertible}}$<$ typename Other\+Derived\+::\+Scalar, Scalar $>$\+::value, Private\+Type $>$\+::type}]{ = {\ttfamily PrivateType()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxySeeAlso}{See also}
+Matrix\+Base\+::operator=(const Eigen\+Base$<$\+Other\+Derived$>$\&) 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_array_ad482457f26d2a2376fa3f36ed25ab151}\label{class_eigen_1_1_array_ad482457f26d2a2376fa3f36ed25ab151}} 
+\index{Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}!coeff@{coeff}}
+\index{coeff@{coeff}!Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}}
+\doxysubsubsection{\texorpdfstring{coeff()}{coeff()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Rows, int \+\_\+\+Cols, int \+\_\+\+Options, int \+\_\+\+Max\+Rows, int \+\_\+\+Max\+Cols$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Scalar\& \mbox{\hyperlink{class_eigen_1_1_plain_object_base}{Eigen\+::\+Plain\+Object\+Base}}$<$ Derived $>$\+::coeff\hspace{0.3cm}{\ttfamily [inline]}}
+
+This is an overloaded version of \mbox{\hyperlink{class_eigen_1_1_dense_coeffs_base_3_01_derived_00_01_read_only_accessors_01_4_ad52344ad1f42852db71996590d2de0de}{Dense\+Coeffs\+Base$<$\+Derived,\+Read\+Only\+Accessors$>$\+::coeff(\+Index) const}} provided to by-\/pass the creation of an evaluator of the expression, thus saving compilation efforts.
+
+See \mbox{\hyperlink{class_eigen_1_1_dense_coeffs_base_3_01_derived_00_01_read_only_accessors_01_4_ad52344ad1f42852db71996590d2de0de}{Dense\+Coeffs\+Base$<$\+Derived,\+Read\+Only\+Accessors$>$\+::coeff(\+Index) const }}for details. \mbox{\Hypertarget{class_eigen_1_1_array_ae66c3485404b168b01af06f2947fd630}\label{class_eigen_1_1_array_ae66c3485404b168b01af06f2947fd630}} 
+\index{Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}!coeff@{coeff}}
+\index{coeff@{coeff}!Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}}
+\doxysubsubsection{\texorpdfstring{coeff()}{coeff()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Rows, int \+\_\+\+Cols, int \+\_\+\+Options, int \+\_\+\+Max\+Rows, int \+\_\+\+Max\+Cols$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Scalar\& \mbox{\hyperlink{class_eigen_1_1_plain_object_base}{Eigen\+::\+Plain\+Object\+Base}}$<$ Derived $>$\+::coeff\hspace{0.3cm}{\ttfamily [inline]}}
+
+This is an overloaded version of \mbox{\hyperlink{class_eigen_1_1_dense_coeffs_base_3_01_derived_00_01_read_only_accessors_01_4_ad41647ef695f9a5a58a9a0f50e2ae064}{Dense\+Coeffs\+Base$<$\+Derived,\+Read\+Only\+Accessors$>$\+::coeff(\+Index,\+Index) const}} provided to by-\/pass the creation of an evaluator of the expression, thus saving compilation efforts.
+
+See \mbox{\hyperlink{class_eigen_1_1_dense_coeffs_base_3_01_derived_00_01_read_only_accessors_01_4_ad52344ad1f42852db71996590d2de0de}{Dense\+Coeffs\+Base$<$\+Derived,\+Read\+Only\+Accessors$>$\+::coeff(\+Index) const }}for details. \mbox{\Hypertarget{class_eigen_1_1_array_a571632ed666076d7403c8bd3eece44f0}\label{class_eigen_1_1_array_a571632ed666076d7403c8bd3eece44f0}} 
+\index{Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}!coeffRef@{coeffRef}}
+\index{coeffRef@{coeffRef}!Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}}
+\doxysubsubsection{\texorpdfstring{coeffRef()}{coeffRef()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Rows, int \+\_\+\+Cols, int \+\_\+\+Options, int \+\_\+\+Max\+Rows, int \+\_\+\+Max\+Cols$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Scalar\& \mbox{\hyperlink{class_eigen_1_1_plain_object_base}{Eigen\+::\+Plain\+Object\+Base}}$<$ Derived $>$\+::coeff\+Ref\hspace{0.3cm}{\ttfamily [inline]}}
+
+This is an overloaded version of Dense\+Coeffs\+Base$<$\+Derived,\+Write\+Accessors$>$\+::coeff\+Ref(\+Index) const provided to by-\/pass the creation of an evaluator of the expression, thus saving compilation efforts.
+
+See Dense\+Coeffs\+Base$<$\+Derived,\+Write\+Accessors$>$\+::coeff\+Ref(\+Index) const for details. \mbox{\Hypertarget{class_eigen_1_1_array_abc1104afcdeeea0a03e3cacafc81aac3}\label{class_eigen_1_1_array_abc1104afcdeeea0a03e3cacafc81aac3}} 
+\index{Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}!coeffRef@{coeffRef}}
+\index{coeffRef@{coeffRef}!Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}}
+\doxysubsubsection{\texorpdfstring{coeffRef()}{coeffRef()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Rows, int \+\_\+\+Cols, int \+\_\+\+Options, int \+\_\+\+Max\+Rows, int \+\_\+\+Max\+Cols$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Scalar\& \mbox{\hyperlink{class_eigen_1_1_plain_object_base}{Eigen\+::\+Plain\+Object\+Base}}$<$ Derived $>$\+::coeff\+Ref\hspace{0.3cm}{\ttfamily [inline]}}
+
+This is the const version of \mbox{\hyperlink{class_eigen_1_1_plain_object_base_a571632ed666076d7403c8bd3eece44f0}{coeff\+Ref(\+Index)}} which is thus synonym of coeff(\+Index). It is provided for convenience. \mbox{\Hypertarget{class_eigen_1_1_array_a25626a55b26a4323565f79d1b7c48ea8}\label{class_eigen_1_1_array_a25626a55b26a4323565f79d1b7c48ea8}} 
+\index{Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}!coeffRef@{coeffRef}}
+\index{coeffRef@{coeffRef}!Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}}
+\doxysubsubsection{\texorpdfstring{coeffRef()}{coeffRef()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Rows, int \+\_\+\+Cols, int \+\_\+\+Options, int \+\_\+\+Max\+Rows, int \+\_\+\+Max\+Cols$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Scalar\& \mbox{\hyperlink{class_eigen_1_1_plain_object_base}{Eigen\+::\+Plain\+Object\+Base}}$<$ Derived $>$\+::coeff\+Ref\hspace{0.3cm}{\ttfamily [inline]}}
+
+This is an overloaded version of Dense\+Coeffs\+Base$<$\+Derived,\+Write\+Accessors$>$\+::coeff\+Ref(\+Index,\+Index) const provided to by-\/pass the creation of an evaluator of the expression, thus saving compilation efforts.
+
+See Dense\+Coeffs\+Base$<$\+Derived,\+Write\+Accessors$>$\+::coeff\+Ref(\+Index,\+Index) const for details. \mbox{\Hypertarget{class_eigen_1_1_array_a313e36cf1be79c1e5b8dbbc158fcb0d9}\label{class_eigen_1_1_array_a313e36cf1be79c1e5b8dbbc158fcb0d9}} 
+\index{Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}!coeffRef@{coeffRef}}
+\index{coeffRef@{coeffRef}!Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}}
+\doxysubsubsection{\texorpdfstring{coeffRef()}{coeffRef()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Rows, int \+\_\+\+Cols, int \+\_\+\+Options, int \+\_\+\+Max\+Rows, int \+\_\+\+Max\+Cols$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Scalar\& \mbox{\hyperlink{class_eigen_1_1_plain_object_base}{Eigen\+::\+Plain\+Object\+Base}}$<$ Derived $>$\+::coeff\+Ref\hspace{0.3cm}{\ttfamily [inline]}}
+
+This is the const version of \mbox{\hyperlink{class_eigen_1_1_plain_object_base_a25626a55b26a4323565f79d1b7c48ea8}{coeff\+Ref(\+Index,\+Index)}} which is thus synonym of coeff(\+Index,\+Index). It is provided for convenience. \mbox{\Hypertarget{class_eigen_1_1_array_a56cb38f362f88a6239f802ea226fee6a}\label{class_eigen_1_1_array_a56cb38f362f88a6239f802ea226fee6a}} 
+\index{Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Rows, int \+\_\+\+Cols, int \+\_\+\+Options, int \+\_\+\+Max\+Rows, int \+\_\+\+Max\+Cols$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_array}{Array}}\& \mbox{\hyperlink{class_eigen_1_1_array}{Eigen\+::\+Array}}$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols, \+\_\+\+Options, \+\_\+\+Max\+Rows, \+\_\+\+Max\+Cols $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_array}{Array}}$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols, \+\_\+\+Options, \+\_\+\+Max\+Rows, \+\_\+\+Max\+Cols $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+This is a special case of the templated operator=. Its purpose is to prevent a default operator= from hiding the templated operator=. \mbox{\Hypertarget{class_eigen_1_1_array_a8415de9a2e74e018c98d6e6271b307a5}\label{class_eigen_1_1_array_a8415de9a2e74e018c98d6e6271b307a5}} 
+\index{Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Rows, int \+\_\+\+Cols, int \+\_\+\+Options, int \+\_\+\+Max\+Rows, int \+\_\+\+Max\+Cols$>$ \\
+template$<$typename Other\+Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_array}{Array}}\& \mbox{\hyperlink{class_eigen_1_1_array}{Eigen\+::\+Array}}$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols, \+\_\+\+Options, \+\_\+\+Max\+Rows, \+\_\+\+Max\+Cols $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_dense_base}{Dense\+Base}}$<$ Other\+Derived $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Copies the value of the expression {\itshape other} into {\ttfamily $\ast$this} with automatic resizing.
+
+$\ast$this might be resized to match the dimensions of {\itshape other}. If $\ast$this was a null matrix (not already initialized), it will be initialized.
+
+Note that copying a row-\/vector into a vector (and conversely) is allowed. The resizing, if any, is then done in the appropriate way so that row-\/vectors remain row-\/vectors and vectors remain vectors. \mbox{\Hypertarget{class_eigen_1_1_array_aed9cf975768953131c28096c84952a08}\label{class_eigen_1_1_array_aed9cf975768953131c28096c84952a08}} 
+\index{Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Rows, int \+\_\+\+Cols, int \+\_\+\+Options, int \+\_\+\+Max\+Rows, int \+\_\+\+Max\+Cols$>$ \\
+template$<$typename Other\+Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_array}{Array}}\& \mbox{\hyperlink{class_eigen_1_1_array}{Eigen\+::\+Array}}$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols, \+\_\+\+Options, \+\_\+\+Max\+Rows, \+\_\+\+Max\+Cols $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Other\+Derived $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+The usage of using \mbox{\hyperlink{class_eigen_1_1_plain_object_base_a75308f8a23a03f045a1260611e2054a0}{Base\+::operator=}}; fails on M\+S\+VC. Since the code below is working with G\+CC and M\+S\+VC, we skipped the usage of \textquotesingle{}using\textquotesingle{}. This should be done only for operator=. \mbox{\Hypertarget{class_eigen_1_1_array_ab77cffb759a431d4a55ed150e850805a}\label{class_eigen_1_1_array_ab77cffb759a431d4a55ed150e850805a}} 
+\index{Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Array$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Rows, int \+\_\+\+Cols, int \+\_\+\+Options, int \+\_\+\+Max\+Rows, int \+\_\+\+Max\+Cols$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_array}{Array}}\& \mbox{\hyperlink{class_eigen_1_1_array}{Eigen\+::\+Array}}$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols, \+\_\+\+Options, \+\_\+\+Max\+Rows, \+\_\+\+Max\+Cols $>$\+::operator= (\begin{DoxyParamCaption}\item[{const Scalar \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Set all the entries to {\itshape value}. \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_dense_base_a19b2bc788277e9ab3f967a8857e290ae}{Dense\+Base\+::set\+Constant()}}, \mbox{\hyperlink{class_eigen_1_1_dense_base_a4f5eb49e80db57f79a8353ecdf811418}{Dense\+Base\+::fill()}} 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/Array.\+h\end{DoxyCompactItemize}

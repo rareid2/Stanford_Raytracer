@@ -1,0 +1,541 @@
+\hypertarget{class_eigen_1_1_complete_orthogonal_decomposition}{}\doxysection{Eigen\+::Complete\+Orthogonal\+Decomposition Class Reference}
+\label{class_eigen_1_1_complete_orthogonal_decomposition}\index{Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}}
+
+
+Complete orthogonal decomposition (C\+OD) of a matrix.  
+
+
+
+
+{\ttfamily \#include $<$Complete\+Orthogonal\+Decomposition.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_complete_orthogonal_decomposition_aa786eab158b3b436d7a654a9ff24fb6c}\label{class_eigen_1_1_complete_orthogonal_decomposition_aa786eab158b3b436d7a654a9ff24fb6c}} 
+enum \{ {\bfseries Rows\+At\+Compile\+Time} = Matrix\+Type\+::Rows\+At\+Compile\+Time, 
+{\bfseries Cols\+At\+Compile\+Time} = Matrix\+Type\+::Cols\+At\+Compile\+Time, 
+{\bfseries Max\+Rows\+At\+Compile\+Time} = Matrix\+Type\+::Max\+Rows\+At\+Compile\+Time, 
+{\bfseries Max\+Cols\+At\+Compile\+Time} = Matrix\+Type\+::Max\+Cols\+At\+Compile\+Time
+ \}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_complete_orthogonal_decomposition_a61f591c06903e19055b6da4c629d20dd}\label{class_eigen_1_1_complete_orthogonal_decomposition_a61f591c06903e19055b6da4c629d20dd}} 
+typedef \+\_\+\+Matrix\+Type {\bfseries Matrix\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_complete_orthogonal_decomposition_a1148ebaedba675149b69f54eb2b9eebd}\label{class_eigen_1_1_complete_orthogonal_decomposition_a1148ebaedba675149b69f54eb2b9eebd}} 
+typedef Matrix\+Type\+::\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_complete_orthogonal_decomposition_afdcc7896968eaa479404e82bdca57377}\label{class_eigen_1_1_complete_orthogonal_decomposition_afdcc7896968eaa479404e82bdca57377}} 
+typedef Matrix\+Type\+::\+Real\+Scalar {\bfseries Real\+Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_complete_orthogonal_decomposition_aebc58d9cb56354e6bb72b17da20d8811}\label{class_eigen_1_1_complete_orthogonal_decomposition_aebc58d9cb56354e6bb72b17da20d8811}} 
+typedef Matrix\+Type\+::\+Storage\+Index {\bfseries Storage\+Index}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_complete_orthogonal_decomposition_a277567980252a87be66031c6a6212b40}\label{class_eigen_1_1_complete_orthogonal_decomposition_a277567980252a87be66031c6a6212b40}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1plain__diag__type}{internal\+::plain\+\_\+diag\+\_\+type}}$<$ Matrix\+Type $>$\+::type {\bfseries H\+Coeffs\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_complete_orthogonal_decomposition_a74114ea99e839858ae9636e0ba2026c5}\label{class_eigen_1_1_complete_orthogonal_decomposition_a74114ea99e839858ae9636e0ba2026c5}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Matrix}}$<$ Cols\+At\+Compile\+Time, Max\+Cols\+At\+Compile\+Time $>$ {\bfseries Permutation\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_complete_orthogonal_decomposition_aa4693e23198f518d4c985155868381c4}\label{class_eigen_1_1_complete_orthogonal_decomposition_aa4693e23198f518d4c985155868381c4}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1plain__row__type}{internal\+::plain\+\_\+row\+\_\+type}}$<$ Matrix\+Type, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} $>$\+::type {\bfseries Int\+Row\+Vector\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_complete_orthogonal_decomposition_a9556bec8fabbf19cced0d453700b1b15}\label{class_eigen_1_1_complete_orthogonal_decomposition_a9556bec8fabbf19cced0d453700b1b15}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1plain__row__type}{internal\+::plain\+\_\+row\+\_\+type}}$<$ Matrix\+Type $>$\+::type {\bfseries Row\+Vector\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_complete_orthogonal_decomposition_a4748fae2910b6ceb508167182b838e0b}\label{class_eigen_1_1_complete_orthogonal_decomposition_a4748fae2910b6ceb508167182b838e0b}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1plain__row__type}{internal\+::plain\+\_\+row\+\_\+type}}$<$ Matrix\+Type, Real\+Scalar $>$\+::type {\bfseries Real\+Row\+Vector\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_complete_orthogonal_decomposition_a2d0567e6acc1f97856f19c3ce40bd9ba}\label{class_eigen_1_1_complete_orthogonal_decomposition_a2d0567e6acc1f97856f19c3ce40bd9ba}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_householder_sequence}{Householder\+Sequence}}$<$ Matrix\+Type, typename \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{internal\+::remove\+\_\+all}}$<$ typename H\+Coeffs\+Type\+::\+Conjugate\+Return\+Type $>$\+::type $>$ {\bfseries Householder\+Sequence\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_complete_orthogonal_decomposition_a7ea79ea03e1708484f9187bf975a3978}\label{class_eigen_1_1_complete_orthogonal_decomposition_a7ea79ea03e1708484f9187bf975a3978}} 
+typedef Matrix\+Type\+::\+Plain\+Object {\bfseries Plain\+Object}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition_a8f516572dcc8af3166201f7618a8932e}{Complete\+Orthogonal\+Decomposition}} ()
+\begin{DoxyCompactList}\small\item\em Default Constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition_a1b4ecb1175fc4b481b4532c2e2dcf8ff}{Complete\+Orthogonal\+Decomposition}} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} rows, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} cols)
+\begin{DoxyCompactList}\small\item\em Default Constructor with memory preallocation. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Input\+Type $>$ }\\\mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition_a3c42e35180b60bcd2e5cbcf665c40809}{Complete\+Orthogonal\+Decomposition}} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&matrix)
+\begin{DoxyCompactList}\small\item\em Constructs a complete orthogonal decomposition from a given matrix. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Input\+Type $>$ }\\\mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition_a0ba578c8585460b95282925f2983b857}{Complete\+Orthogonal\+Decomposition}} (\mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&matrix)
+\begin{DoxyCompactList}\small\item\em Constructs a complete orthogonal decomposition from a given matrix. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Rhs $>$ }\\const \mbox{\hyperlink{class_eigen_1_1_solve}{Solve}}$<$ \mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition}{Complete\+Orthogonal\+Decomposition}}, Rhs $>$ \mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition_ae54fd4aa5283e01f7fdde5b19710534f}{solve}} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Rhs $>$ \&b) const
+\item 
+\mbox{\hyperlink{class_eigen_1_1_householder_sequence}{Householder\+Sequence\+Type}} \mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition_a018310c319a0b882803df8584050a7c4}{householderQ}} (void) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_complete_orthogonal_decomposition_a3d7e2e2e30f4cc5211eaf1cd40f96145}\label{class_eigen_1_1_complete_orthogonal_decomposition_a3d7e2e2e30f4cc5211eaf1cd40f96145}} 
+\mbox{\hyperlink{class_eigen_1_1_householder_sequence}{Householder\+Sequence\+Type}} {\bfseries matrixQ} (void) const
+\item 
+Matrix\+Type \mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition_a7eec20981d040a5485646890493d018b}{matrixZ}} () const
+\item 
+const Matrix\+Type \& \mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition_a72dbb7f5dd360e5bd032328bad2ff233}{matrix\+Q\+TZ}} () const
+\item 
+const Matrix\+Type \& \mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition_a0cda23204fe13dbb987466570168f19c}{matrixT}} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_complete_orthogonal_decomposition_a38dc5a23367a49d70e792159d32c407c}\label{class_eigen_1_1_complete_orthogonal_decomposition_a38dc5a23367a49d70e792159d32c407c}} 
+{\footnotesize template$<$typename Input\+Type $>$ }\\\mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition}{Complete\+Orthogonal\+Decomposition}} \& {\bfseries compute} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&matrix)
+\item 
+const \mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Type}} \& \mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition_a840ce568e139003e3d5380e39e91b976}{cols\+Permutation}} () const
+\item 
+Matrix\+Type\+::\+Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition_a696617fec84f31e7c67104eb7730c04a}{abs\+Determinant}} () const
+\item 
+Matrix\+Type\+::\+Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition_a2612ff6b2ed536afd722b6de6594ac47}{log\+Abs\+Determinant}} () const
+\item 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition_afdb6466aa4144f5c7caf79c6b934fd28}{rank}} () const
+\item 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition_a82d984ea71e3fd71deee3714f4cba27d}{dimension\+Of\+Kernel}} () const
+\item 
+bool \mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition_a9003ee5cf474fc844d4cd70ae4cfd53f}{is\+Injective}} () const
+\item 
+bool \mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition_a145d259549986474ceec375a368cd6ac}{is\+Surjective}} () const
+\item 
+bool \mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition_aab866dfe1dafa0d538ad4269ebd7703e}{is\+Invertible}} () const
+\item 
+const \mbox{\hyperlink{class_eigen_1_1_inverse}{Inverse}}$<$ \mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition}{Complete\+Orthogonal\+Decomposition}} $>$ \mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition_a4c8315ef65938596f597b3722f72adfe}{pseudo\+Inverse}} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_complete_orthogonal_decomposition_a5a781f4c4d9d861b0f4dcc3be2d443ab}\label{class_eigen_1_1_complete_orthogonal_decomposition_a5a781f4c4d9d861b0f4dcc3be2d443ab}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries rows} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_complete_orthogonal_decomposition_a30101a19a2baf04450587c1717002768}\label{class_eigen_1_1_complete_orthogonal_decomposition_a30101a19a2baf04450587c1717002768}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries cols} () const
+\item 
+const \mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{H\+Coeffs\+Type}} \& \mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition_a972796fef246b735aed219003882fb48}{h\+Coeffs}} () const
+\item 
+const \mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{H\+Coeffs\+Type}} \& \mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition_a2a348fd0a1b33b1124a02f826fa046c7}{z\+Coeffs}} () const
+\item 
+\mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition}{Complete\+Orthogonal\+Decomposition}} \& \mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition_afb81e14cf4b774207037dc779fc40e38}{set\+Threshold}} (const Real\+Scalar \&\mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition_aa78851c5409f8198ef055ecb9919c996}{threshold}})
+\item 
+\mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition}{Complete\+Orthogonal\+Decomposition}} \& \mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition_ae491ac7e0f4b875c855870eb848830a5}{set\+Threshold}} (Default\+\_\+t)
+\item 
+Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition_aa78851c5409f8198ef055ecb9919c996}{threshold}} () const
+\item 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition_a391bf43a76cae861863d60761eebae6b}{nonzero\+Pivots}} () const
+\item 
+Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition_abed03abdb0a56649ef767764a4412043}{max\+Pivot}} () const
+\item 
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} \mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition_af6078dfaf66eb146b074cf07ba17e8f4}{info}} () const
+\begin{DoxyCompactList}\small\item\em Reports whether the complete orthogonal decomposition was succesful. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_eigen_1_1_complete_orthogonal_decomposition_ae4e7c112802a31a00087c41bc9fe9626}\label{class_eigen_1_1_complete_orthogonal_decomposition_ae4e7c112802a31a00087c41bc9fe9626}} 
+{\footnotesize template$<$typename Rhs\+Type , typename Dst\+Type $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC void {\bfseries \+\_\+solve\+\_\+impl} (const Rhs\+Type \&rhs, Dst\+Type \&dst) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_complete_orthogonal_decomposition_a7296ea8355986362dd672d36db5e6bed}\label{class_eigen_1_1_complete_orthogonal_decomposition_a7296ea8355986362dd672d36db5e6bed}} 
+{\footnotesize template$<$typename Rhs\+Type , typename Dst\+Type $>$ }\\void {\bfseries \+\_\+solve\+\_\+impl} (const Rhs\+Type \&rhs, Dst\+Type \&dst) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition_a77de2b27521a5ed02ec99e800f0866c7}{compute\+In\+Place}} ()
+\item 
+{\footnotesize template$<$typename Rhs $>$ }\\void \mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition_a21595a777293e5418cd916274188759b}{apply\+Z\+Adjoint\+On\+The\+Left\+In\+Place}} (Rhs \&rhs) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_complete_orthogonal_decomposition_a39c173766afe88630bf920c29f1910e0}\label{class_eigen_1_1_complete_orthogonal_decomposition_a39c173766afe88630bf920c29f1910e0}} 
+static void {\bfseries check\+\_\+template\+\_\+parameters} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_complete_orthogonal_decomposition_a47296c966c97c7c0c0e4826785205acd}\label{class_eigen_1_1_complete_orthogonal_decomposition_a47296c966c97c7c0c0e4826785205acd}} 
+\mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r}{Col\+Piv\+Householder\+QR}}$<$ Matrix\+Type $>$ {\bfseries m\+\_\+cpqr}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_complete_orthogonal_decomposition_afee28b00cc58394c726cbb1e9d8286a9}\label{class_eigen_1_1_complete_orthogonal_decomposition_afee28b00cc58394c726cbb1e9d8286a9}} 
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{H\+Coeffs\+Type}} {\bfseries m\+\_\+z\+Coeffs}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_complete_orthogonal_decomposition_a43245e45146f49e2019ff5ff2847f433}\label{class_eigen_1_1_complete_orthogonal_decomposition_a43245e45146f49e2019ff5ff2847f433}} 
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Row\+Vector\+Type}} {\bfseries m\+\_\+temp}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Complete orthogonal decomposition (C\+OD) of a matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Matrix\+Type} & the type of the matrix of which we are computing the C\+OD.\\
+\hline
+\end{DoxyParams}
+This class performs a rank-\/revealing complete orthogonal decomposition of a matrix {\bfseries{A}} into matrices {\bfseries{P}}, {\bfseries{Q}}, {\bfseries{T}}, and {\bfseries{Z}} such that \[ \mathbf{A} \, \mathbf{P} = \mathbf{Q} \, \begin{bmatrix} \mathbf{T} & \mathbf{0} \\ \mathbf{0} & \mathbf{0} \end{bmatrix} \, \mathbf{Z} \] by using Householder transformations. Here, {\bfseries{P}} is a permutation matrix, {\bfseries{Q}} and {\bfseries{Z}} are unitary matrices and {\bfseries{T}} an upper triangular matrix of size rank-\/by-\/rank. {\bfseries{A}} may be rank deficient.
+
+This class supports the \mbox{\hyperlink{group___inplace_decomposition}{inplace decomposition }} mechanism.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_matrix_base_ae90b6846f05bd30b8d52b66e427e3e09}{Matrix\+Base\+::complete\+Orthogonal\+Decomposition()}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_complete_orthogonal_decomposition_a8f516572dcc8af3166201f7618a8932e}\label{class_eigen_1_1_complete_orthogonal_decomposition_a8f516572dcc8af3166201f7618a8932e}} 
+\index{Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}!CompleteOrthogonalDecomposition@{CompleteOrthogonalDecomposition}}
+\index{CompleteOrthogonalDecomposition@{CompleteOrthogonalDecomposition}!Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}}
+\doxysubsubsection{\texorpdfstring{CompleteOrthogonalDecomposition()}{CompleteOrthogonalDecomposition()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily Eigen\+::\+Complete\+Orthogonal\+Decomposition\+::\+Complete\+Orthogonal\+Decomposition (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default Constructor. 
+
+The default constructor is useful in cases in which the user intends to perform decompositions via {\ttfamily Complete\+Orthogonal\+Decomposition\+::compute(const$\ast$ Matrix\+Type\&)}. \mbox{\Hypertarget{class_eigen_1_1_complete_orthogonal_decomposition_a1b4ecb1175fc4b481b4532c2e2dcf8ff}\label{class_eigen_1_1_complete_orthogonal_decomposition_a1b4ecb1175fc4b481b4532c2e2dcf8ff}} 
+\index{Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}!CompleteOrthogonalDecomposition@{CompleteOrthogonalDecomposition}}
+\index{CompleteOrthogonalDecomposition@{CompleteOrthogonalDecomposition}!Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}}
+\doxysubsubsection{\texorpdfstring{CompleteOrthogonalDecomposition()}{CompleteOrthogonalDecomposition()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily Eigen\+::\+Complete\+Orthogonal\+Decomposition\+::\+Complete\+Orthogonal\+Decomposition (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{rows,  }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{cols }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default Constructor with memory preallocation. 
+
+Like the default constructor but with preallocation of the internal data according to the specified problem {\itshape size}. \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition_a8f516572dcc8af3166201f7618a8932e}{Complete\+Orthogonal\+Decomposition()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_complete_orthogonal_decomposition_a3c42e35180b60bcd2e5cbcf665c40809}\label{class_eigen_1_1_complete_orthogonal_decomposition_a3c42e35180b60bcd2e5cbcf665c40809}} 
+\index{Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}!CompleteOrthogonalDecomposition@{CompleteOrthogonalDecomposition}}
+\index{CompleteOrthogonalDecomposition@{CompleteOrthogonalDecomposition}!Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}}
+\doxysubsubsection{\texorpdfstring{CompleteOrthogonalDecomposition()}{CompleteOrthogonalDecomposition()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$typename Input\+Type $>$ \\
+Eigen\+::\+Complete\+Orthogonal\+Decomposition\+::\+Complete\+Orthogonal\+Decomposition (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&}]{matrix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Constructs a complete orthogonal decomposition from a given matrix. 
+
+This constructor computes the complete orthogonal decomposition of the matrix {\itshape matrix} by calling the method compute(). The default threshold for rank determination will be used. It is a short cut for\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{CompleteOrthogonalDecomposition<MatrixType> cod(matrix.rows(),}
+\DoxyCodeLine{                                                matrix.cols());}
+\DoxyCodeLine{cod.setThreshold(Default);}
+\DoxyCodeLine{cod.compute(matrix);}
+\end{DoxyCode}
+
+
+\begin{DoxySeeAlso}{See also}
+compute() 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_complete_orthogonal_decomposition_a0ba578c8585460b95282925f2983b857}\label{class_eigen_1_1_complete_orthogonal_decomposition_a0ba578c8585460b95282925f2983b857}} 
+\index{Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}!CompleteOrthogonalDecomposition@{CompleteOrthogonalDecomposition}}
+\index{CompleteOrthogonalDecomposition@{CompleteOrthogonalDecomposition}!Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}}
+\doxysubsubsection{\texorpdfstring{CompleteOrthogonalDecomposition()}{CompleteOrthogonalDecomposition()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$typename Input\+Type $>$ \\
+Eigen\+::\+Complete\+Orthogonal\+Decomposition\+::\+Complete\+Orthogonal\+Decomposition (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&}]{matrix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Constructs a complete orthogonal decomposition from a given matrix. 
+
+This overloaded constructor is provided for \mbox{\hyperlink{group___inplace_decomposition}{inplace decomposition }} when {\ttfamily Matrix\+Type} is a \mbox{\hyperlink{class_eigen_1_1_ref}{Eigen\+::\+Ref}}.
+
+\begin{DoxySeeAlso}{See also}
+Complete\+Orthogonal\+Decomposition(const Eigen\+Base\&) 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_complete_orthogonal_decomposition_a696617fec84f31e7c67104eb7730c04a}\label{class_eigen_1_1_complete_orthogonal_decomposition_a696617fec84f31e7c67104eb7730c04a}} 
+\index{Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}!absDeterminant@{absDeterminant}}
+\index{absDeterminant@{absDeterminant}!Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}}
+\doxysubsubsection{\texorpdfstring{absDeterminant()}{absDeterminant()}}
+{\footnotesize\ttfamily Matrix\+Type\+::\+Real\+Scalar Eigen\+::\+Complete\+Orthogonal\+Decomposition\+::abs\+Determinant (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+the absolute value of the determinant of the matrix of which $\ast$this is the complete orthogonal decomposition. It has only linear complexity (that is, O(n) where n is the dimension of the square matrix) as the complete orthogonal decomposition has already been computed.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This is only for square matrices.
+\end{DoxyNote}
+\begin{DoxyWarning}{Warning}
+a determinant can be very big or small, so for matrices of large enough dimension, there is a risk of overflow/underflow. One way to work around that is to use \mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition_a2612ff6b2ed536afd722b6de6594ac47}{log\+Abs\+Determinant()}} instead.
+\end{DoxyWarning}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition_a2612ff6b2ed536afd722b6de6594ac47}{log\+Abs\+Determinant()}}, \mbox{\hyperlink{class_eigen_1_1_matrix_base_a7ad8f77004bb956b603bb43fd2e3c061}{Matrix\+Base\+::determinant()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_complete_orthogonal_decomposition_a21595a777293e5418cd916274188759b}\label{class_eigen_1_1_complete_orthogonal_decomposition_a21595a777293e5418cd916274188759b}} 
+\index{Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}!applyZAdjointOnTheLeftInPlace@{applyZAdjointOnTheLeftInPlace}}
+\index{applyZAdjointOnTheLeftInPlace@{applyZAdjointOnTheLeftInPlace}!Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}}
+\doxysubsubsection{\texorpdfstring{applyZAdjointOnTheLeftInPlace()}{applyZAdjointOnTheLeftInPlace()}}
+{\footnotesize\ttfamily template$<$typename Rhs $>$ \\
+void Eigen\+::\+Complete\+Orthogonal\+Decomposition\+::apply\+Z\+Adjoint\+On\+The\+Left\+In\+Place (\begin{DoxyParamCaption}\item[{Rhs \&}]{rhs }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}}
+
+Overwrites {\bfseries{rhs}} with $ \mathbf{Z}^* * \mathbf{rhs} $. \mbox{\Hypertarget{class_eigen_1_1_complete_orthogonal_decomposition_a840ce568e139003e3d5380e39e91b976}\label{class_eigen_1_1_complete_orthogonal_decomposition_a840ce568e139003e3d5380e39e91b976}} 
+\index{Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}!colsPermutation@{colsPermutation}}
+\index{colsPermutation@{colsPermutation}!Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}}
+\doxysubsubsection{\texorpdfstring{colsPermutation()}{colsPermutation()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Type}}\& Eigen\+::\+Complete\+Orthogonal\+Decomposition\+::cols\+Permutation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a const reference to the column permutation matrix 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_complete_orthogonal_decomposition_a77de2b27521a5ed02ec99e800f0866c7}\label{class_eigen_1_1_complete_orthogonal_decomposition_a77de2b27521a5ed02ec99e800f0866c7}} 
+\index{Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}!computeInPlace@{computeInPlace}}
+\index{computeInPlace@{computeInPlace}!Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}}
+\doxysubsubsection{\texorpdfstring{computeInPlace()}{computeInPlace()}}
+{\footnotesize\ttfamily void Eigen\+::\+Complete\+Orthogonal\+Decomposition\+::compute\+In\+Place (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Performs the complete orthogonal decomposition of the given matrix {\itshape matrix}. The result of the factorization is stored into {\ttfamily $\ast$this}, and a reference to {\ttfamily $\ast$this} is returned.
+
+\begin{DoxySeeAlso}{See also}
+class \mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition}{Complete\+Orthogonal\+Decomposition}}, Complete\+Orthogonal\+Decomposition(const Matrix\+Type\&) 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_complete_orthogonal_decomposition_a82d984ea71e3fd71deee3714f4cba27d}\label{class_eigen_1_1_complete_orthogonal_decomposition_a82d984ea71e3fd71deee3714f4cba27d}} 
+\index{Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}!dimensionOfKernel@{dimensionOfKernel}}
+\index{dimensionOfKernel@{dimensionOfKernel}!Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}}
+\doxysubsubsection{\texorpdfstring{dimensionOfKernel()}{dimensionOfKernel()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} Eigen\+::\+Complete\+Orthogonal\+Decomposition\+::dimension\+Of\+Kernel (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the dimension of the kernel of the matrix of which $\ast$this is the complete orthogonal decomposition.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This method has to determine which pivots should be considered nonzero. For that, it uses the threshold value that you can control by calling \mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition_afb81e14cf4b774207037dc779fc40e38}{set\+Threshold(const Real\+Scalar\&)}}. 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_eigen_1_1_complete_orthogonal_decomposition_a972796fef246b735aed219003882fb48}\label{class_eigen_1_1_complete_orthogonal_decomposition_a972796fef246b735aed219003882fb48}} 
+\index{Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}!hCoeffs@{hCoeffs}}
+\index{hCoeffs@{hCoeffs}!Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}}
+\doxysubsubsection{\texorpdfstring{hCoeffs()}{hCoeffs()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{H\+Coeffs\+Type}}\& Eigen\+::\+Complete\+Orthogonal\+Decomposition\+::h\+Coeffs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a const reference to the vector of Householder coefficients used to represent the factor {\ttfamily Q}.
+\end{DoxyReturn}
+For advanced uses only. \mbox{\Hypertarget{class_eigen_1_1_complete_orthogonal_decomposition_a018310c319a0b882803df8584050a7c4}\label{class_eigen_1_1_complete_orthogonal_decomposition_a018310c319a0b882803df8584050a7c4}} 
+\index{Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}!householderQ@{householderQ}}
+\index{householderQ@{householderQ}!Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}}
+\doxysubsubsection{\texorpdfstring{householderQ()}{householderQ()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition}{Complete\+Orthogonal\+Decomposition}}$<$ Matrix\+Type $>$\+::\mbox{\hyperlink{class_eigen_1_1_householder_sequence}{Householder\+Sequence\+Type}} Eigen\+::\+Complete\+Orthogonal\+Decomposition\+::householderQ (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+the matrix Q as a sequence of householder transformations 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_complete_orthogonal_decomposition_af6078dfaf66eb146b074cf07ba17e8f4}\label{class_eigen_1_1_complete_orthogonal_decomposition_af6078dfaf66eb146b074cf07ba17e8f4}} 
+\index{Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}!info@{info}}
+\index{info@{info}!Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}}
+\doxysubsubsection{\texorpdfstring{info()}{info()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} Eigen\+::\+Complete\+Orthogonal\+Decomposition\+::info (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Reports whether the complete orthogonal decomposition was succesful. 
+
+\begin{DoxyNote}{Note}
+This function always returns {\ttfamily Success}. It is provided for compatibility with other factorization routines. 
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+{\ttfamily Success} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_complete_orthogonal_decomposition_a9003ee5cf474fc844d4cd70ae4cfd53f}\label{class_eigen_1_1_complete_orthogonal_decomposition_a9003ee5cf474fc844d4cd70ae4cfd53f}} 
+\index{Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}!isInjective@{isInjective}}
+\index{isInjective@{isInjective}!Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}}
+\doxysubsubsection{\texorpdfstring{isInjective()}{isInjective()}}
+{\footnotesize\ttfamily bool Eigen\+::\+Complete\+Orthogonal\+Decomposition\+::is\+Injective (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+true if the matrix of which $\ast$this is the decomposition represents an injective linear map, i.\+e. has trivial kernel; false otherwise.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This method has to determine which pivots should be considered nonzero. For that, it uses the threshold value that you can control by calling \mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition_afb81e14cf4b774207037dc779fc40e38}{set\+Threshold(const Real\+Scalar\&)}}. 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_eigen_1_1_complete_orthogonal_decomposition_aab866dfe1dafa0d538ad4269ebd7703e}\label{class_eigen_1_1_complete_orthogonal_decomposition_aab866dfe1dafa0d538ad4269ebd7703e}} 
+\index{Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}!isInvertible@{isInvertible}}
+\index{isInvertible@{isInvertible}!Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}}
+\doxysubsubsection{\texorpdfstring{isInvertible()}{isInvertible()}}
+{\footnotesize\ttfamily bool Eigen\+::\+Complete\+Orthogonal\+Decomposition\+::is\+Invertible (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+true if the matrix of which $\ast$this is the complete orthogonal decomposition is invertible.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This method has to determine which pivots should be considered nonzero. For that, it uses the threshold value that you can control by calling \mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition_afb81e14cf4b774207037dc779fc40e38}{set\+Threshold(const Real\+Scalar\&)}}. 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_eigen_1_1_complete_orthogonal_decomposition_a145d259549986474ceec375a368cd6ac}\label{class_eigen_1_1_complete_orthogonal_decomposition_a145d259549986474ceec375a368cd6ac}} 
+\index{Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}!isSurjective@{isSurjective}}
+\index{isSurjective@{isSurjective}!Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}}
+\doxysubsubsection{\texorpdfstring{isSurjective()}{isSurjective()}}
+{\footnotesize\ttfamily bool Eigen\+::\+Complete\+Orthogonal\+Decomposition\+::is\+Surjective (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+true if the matrix of which $\ast$this is the decomposition represents a surjective linear map; false otherwise.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This method has to determine which pivots should be considered nonzero. For that, it uses the threshold value that you can control by calling \mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition_afb81e14cf4b774207037dc779fc40e38}{set\+Threshold(const Real\+Scalar\&)}}. 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_eigen_1_1_complete_orthogonal_decomposition_a2612ff6b2ed536afd722b6de6594ac47}\label{class_eigen_1_1_complete_orthogonal_decomposition_a2612ff6b2ed536afd722b6de6594ac47}} 
+\index{Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}!logAbsDeterminant@{logAbsDeterminant}}
+\index{logAbsDeterminant@{logAbsDeterminant}!Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}}
+\doxysubsubsection{\texorpdfstring{logAbsDeterminant()}{logAbsDeterminant()}}
+{\footnotesize\ttfamily Matrix\+Type\+::\+Real\+Scalar Eigen\+::\+Complete\+Orthogonal\+Decomposition\+::log\+Abs\+Determinant (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+the natural log of the absolute value of the determinant of the matrix of which $\ast$this is the complete orthogonal decomposition. It has only linear complexity (that is, O(n) where n is the dimension of the square matrix) as the complete orthogonal decomposition has already been computed.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This is only for square matrices.
+
+This method is useful to work around the risk of overflow/underflow that\textquotesingle{}s inherent to determinant computation.
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition_a696617fec84f31e7c67104eb7730c04a}{abs\+Determinant()}}, \mbox{\hyperlink{class_eigen_1_1_matrix_base_a7ad8f77004bb956b603bb43fd2e3c061}{Matrix\+Base\+::determinant()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_complete_orthogonal_decomposition_a72dbb7f5dd360e5bd032328bad2ff233}\label{class_eigen_1_1_complete_orthogonal_decomposition_a72dbb7f5dd360e5bd032328bad2ff233}} 
+\index{Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}!matrixQTZ@{matrixQTZ}}
+\index{matrixQTZ@{matrixQTZ}!Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}}
+\doxysubsubsection{\texorpdfstring{matrixQTZ()}{matrixQTZ()}}
+{\footnotesize\ttfamily const Matrix\+Type\& Eigen\+::\+Complete\+Orthogonal\+Decomposition\+::matrix\+Q\+TZ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a reference to the matrix where the complete orthogonal decomposition is stored 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_complete_orthogonal_decomposition_a0cda23204fe13dbb987466570168f19c}\label{class_eigen_1_1_complete_orthogonal_decomposition_a0cda23204fe13dbb987466570168f19c}} 
+\index{Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}!matrixT@{matrixT}}
+\index{matrixT@{matrixT}!Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}}
+\doxysubsubsection{\texorpdfstring{matrixT()}{matrixT()}}
+{\footnotesize\ttfamily const Matrix\+Type\& Eigen\+::\+Complete\+Orthogonal\+Decomposition\+::matrixT (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a reference to the matrix where the complete orthogonal decomposition is stored. 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+The strict lower part and
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cols() -\/ \mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition_afdb6466aa4144f5c7caf79c6b934fd28}{rank}}() }
+\end{DoxyCode}
+ right columns of this matrix contains internal values. Only the upper triangular part should be referenced. To get it, use 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition_a0cda23204fe13dbb987466570168f19c}{matrixT}}().template triangularView<Upper>() }
+\end{DoxyCode}
+ For rank-\/deficient matrices, use 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{matrixR().topLeftCorner(\mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition_afdb6466aa4144f5c7caf79c6b934fd28}{rank}}(), \mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition_afdb6466aa4144f5c7caf79c6b934fd28}{rank}}()).template triangularView<Upper>()}
+\end{DoxyCode}
+ 
+\end{DoxyWarning}
+\mbox{\Hypertarget{class_eigen_1_1_complete_orthogonal_decomposition_a7eec20981d040a5485646890493d018b}\label{class_eigen_1_1_complete_orthogonal_decomposition_a7eec20981d040a5485646890493d018b}} 
+\index{Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}!matrixZ@{matrixZ}}
+\index{matrixZ@{matrixZ}!Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}}
+\doxysubsubsection{\texorpdfstring{matrixZ()}{matrixZ()}}
+{\footnotesize\ttfamily Matrix\+Type Eigen\+::\+Complete\+Orthogonal\+Decomposition\+::matrixZ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the matrix {\bfseries{Z}}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_complete_orthogonal_decomposition_abed03abdb0a56649ef767764a4412043}\label{class_eigen_1_1_complete_orthogonal_decomposition_abed03abdb0a56649ef767764a4412043}} 
+\index{Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}!maxPivot@{maxPivot}}
+\index{maxPivot@{maxPivot}!Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}}
+\doxysubsubsection{\texorpdfstring{maxPivot()}{maxPivot()}}
+{\footnotesize\ttfamily Real\+Scalar Eigen\+::\+Complete\+Orthogonal\+Decomposition\+::max\+Pivot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the absolute value of the biggest pivot, i.\+e. the biggest diagonal coefficient of R. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_complete_orthogonal_decomposition_a391bf43a76cae861863d60761eebae6b}\label{class_eigen_1_1_complete_orthogonal_decomposition_a391bf43a76cae861863d60761eebae6b}} 
+\index{Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}!nonzeroPivots@{nonzeroPivots}}
+\index{nonzeroPivots@{nonzeroPivots}!Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}}
+\doxysubsubsection{\texorpdfstring{nonzeroPivots()}{nonzeroPivots()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} Eigen\+::\+Complete\+Orthogonal\+Decomposition\+::nonzero\+Pivots (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the number of nonzero pivots in the complete orthogonal decomposition. Here nonzero is meant in the exact sense, not in a fuzzy sense. So that notion isn\textquotesingle{}t really intrinsically interesting, but it is still useful when implementing algorithms.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition_afdb6466aa4144f5c7caf79c6b934fd28}{rank()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_complete_orthogonal_decomposition_a4c8315ef65938596f597b3722f72adfe}\label{class_eigen_1_1_complete_orthogonal_decomposition_a4c8315ef65938596f597b3722f72adfe}} 
+\index{Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}!pseudoInverse@{pseudoInverse}}
+\index{pseudoInverse@{pseudoInverse}!Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}}
+\doxysubsubsection{\texorpdfstring{pseudoInverse()}{pseudoInverse()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{class_eigen_1_1_inverse}{Inverse}}$<$\mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition}{Complete\+Orthogonal\+Decomposition}}$>$ Eigen\+::\+Complete\+Orthogonal\+Decomposition\+::pseudo\+Inverse (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the pseudo-\/inverse of the matrix of which $\ast$this is the complete orthogonal decomposition. 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+\+: Do not compute {\ttfamily this-\/$>$\mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition_a4c8315ef65938596f597b3722f72adfe}{pseudo\+Inverse()}}$\ast$rhs} to solve a linear systems. It is more efficient and numerically stable to call {\ttfamily this-\/$>$solve(rhs)}. 
+\end{DoxyWarning}
+\mbox{\Hypertarget{class_eigen_1_1_complete_orthogonal_decomposition_afdb6466aa4144f5c7caf79c6b934fd28}\label{class_eigen_1_1_complete_orthogonal_decomposition_afdb6466aa4144f5c7caf79c6b934fd28}} 
+\index{Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}!rank@{rank}}
+\index{rank@{rank}!Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}}
+\doxysubsubsection{\texorpdfstring{rank()}{rank()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} Eigen\+::\+Complete\+Orthogonal\+Decomposition\+::rank (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the rank of the matrix of which $\ast$this is the complete orthogonal decomposition.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This method has to determine which pivots should be considered nonzero. For that, it uses the threshold value that you can control by calling \mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition_afb81e14cf4b774207037dc779fc40e38}{set\+Threshold(const Real\+Scalar\&)}}. 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_eigen_1_1_complete_orthogonal_decomposition_afb81e14cf4b774207037dc779fc40e38}\label{class_eigen_1_1_complete_orthogonal_decomposition_afb81e14cf4b774207037dc779fc40e38}} 
+\index{Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}!setThreshold@{setThreshold}}
+\index{setThreshold@{setThreshold}!Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}}
+\doxysubsubsection{\texorpdfstring{setThreshold()}{setThreshold()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition}{Complete\+Orthogonal\+Decomposition}}\& Eigen\+::\+Complete\+Orthogonal\+Decomposition\+::set\+Threshold (\begin{DoxyParamCaption}\item[{const Real\+Scalar \&}]{threshold }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Allows to prescribe a threshold to be used by certain methods, such as \mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition_afdb6466aa4144f5c7caf79c6b934fd28}{rank()}}, who need to determine when pivots are to be considered nonzero. Most be called before calling compute().
+
+When it needs to get the threshold value, \mbox{\hyperlink{namespace_eigen}{Eigen}} calls \mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition_aa78851c5409f8198ef055ecb9919c996}{threshold()}}. By default, this uses a formula to automatically determine a reasonable threshold. Once you have called the present method \mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition_afb81e14cf4b774207037dc779fc40e38}{set\+Threshold(const Real\+Scalar\&)}}, your value is used instead.
+
+
+\begin{DoxyParams}{Parameters}
+{\em threshold} & The new value to use as the threshold.\\
+\hline
+\end{DoxyParams}
+A pivot will be considered nonzero if its absolute value is strictly greater than $ \vert pivot \vert \leqslant threshold \times \vert maxpivot \vert $ where maxpivot is the biggest pivot.
+
+If you want to come back to the default behavior, call \mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition_ae491ac7e0f4b875c855870eb848830a5}{set\+Threshold(\+Default\+\_\+t)}} \mbox{\Hypertarget{class_eigen_1_1_complete_orthogonal_decomposition_ae491ac7e0f4b875c855870eb848830a5}\label{class_eigen_1_1_complete_orthogonal_decomposition_ae491ac7e0f4b875c855870eb848830a5}} 
+\index{Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}!setThreshold@{setThreshold}}
+\index{setThreshold@{setThreshold}!Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}}
+\doxysubsubsection{\texorpdfstring{setThreshold()}{setThreshold()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition}{Complete\+Orthogonal\+Decomposition}}\& Eigen\+::\+Complete\+Orthogonal\+Decomposition\+::set\+Threshold (\begin{DoxyParamCaption}\item[{Default\+\_\+t}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Allows to come back to the default behavior, letting \mbox{\hyperlink{namespace_eigen}{Eigen}} use its default formula for determining the threshold.
+
+You should pass the special object Eigen\+::\+Default as parameter here. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{qr.setThreshold(Eigen::Default); }
+\end{DoxyCode}
+
+
+See the documentation of \mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition_afb81e14cf4b774207037dc779fc40e38}{set\+Threshold(const Real\+Scalar\&)}}. \mbox{\Hypertarget{class_eigen_1_1_complete_orthogonal_decomposition_ae54fd4aa5283e01f7fdde5b19710534f}\label{class_eigen_1_1_complete_orthogonal_decomposition_ae54fd4aa5283e01f7fdde5b19710534f}} 
+\index{Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}!solve@{solve}}
+\index{solve@{solve}!Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}}
+\doxysubsubsection{\texorpdfstring{solve()}{solve()}}
+{\footnotesize\ttfamily template$<$typename Rhs $>$ \\
+const \mbox{\hyperlink{class_eigen_1_1_solve}{Solve}}$<$\mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition}{Complete\+Orthogonal\+Decomposition}}, Rhs$>$ Eigen\+::\+Complete\+Orthogonal\+Decomposition\+::solve (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Rhs $>$ \&}]{b }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+This method computes the minimum-\/norm solution X to a least squares problem \[\mathrm{minimize} \|A X - B\|, \] where {\bfseries{A}} is the matrix of which {\ttfamily $\ast$this} is the complete orthogonal decomposition.
+
+
+\begin{DoxyParams}{Parameters}
+{\em b} & the right-\/hand sides of the problem to solve.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a solution. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_complete_orthogonal_decomposition_aa78851c5409f8198ef055ecb9919c996}\label{class_eigen_1_1_complete_orthogonal_decomposition_aa78851c5409f8198ef055ecb9919c996}} 
+\index{Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}!threshold@{threshold}}
+\index{threshold@{threshold}!Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}}
+\doxysubsubsection{\texorpdfstring{threshold()}{threshold()}}
+{\footnotesize\ttfamily Real\+Scalar Eigen\+::\+Complete\+Orthogonal\+Decomposition\+::threshold (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns the threshold that will be used by certain methods such as \mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition_afdb6466aa4144f5c7caf79c6b934fd28}{rank()}}.
+
+See the documentation of \mbox{\hyperlink{class_eigen_1_1_complete_orthogonal_decomposition_afb81e14cf4b774207037dc779fc40e38}{set\+Threshold(const Real\+Scalar\&)}}. \mbox{\Hypertarget{class_eigen_1_1_complete_orthogonal_decomposition_a2a348fd0a1b33b1124a02f826fa046c7}\label{class_eigen_1_1_complete_orthogonal_decomposition_a2a348fd0a1b33b1124a02f826fa046c7}} 
+\index{Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}!zCoeffs@{zCoeffs}}
+\index{zCoeffs@{zCoeffs}!Eigen::CompleteOrthogonalDecomposition@{Eigen::CompleteOrthogonalDecomposition}}
+\doxysubsubsection{\texorpdfstring{zCoeffs()}{zCoeffs()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{H\+Coeffs\+Type}}\& Eigen\+::\+Complete\+Orthogonal\+Decomposition\+::z\+Coeffs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a const reference to the vector of Householder coefficients used to represent the factor {\ttfamily Z}.
+\end{DoxyReturn}
+For advanced uses only. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/util/Forward\+Declarations.\+h\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Q\+R/Complete\+Orthogonal\+Decomposition.\+h\end{DoxyCompactItemize}

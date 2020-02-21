@@ -1,0 +1,71 @@
+\hypertarget{class_eigen_1_1_tensor_custom_unary_op}{}\doxysection{Eigen\+::Tensor\+Custom\+Unary\+Op$<$ Custom\+Unary\+Func, Xpr\+Type $>$ Class Template Reference}
+\label{class_eigen_1_1_tensor_custom_unary_op}\index{Eigen::TensorCustomUnaryOp$<$ CustomUnaryFunc, XprType $>$@{Eigen::TensorCustomUnaryOp$<$ CustomUnaryFunc, XprType $>$}}
+
+
+\mbox{\hyperlink{class_eigen_1_1_tensor}{Tensor}} custom class.  
+
+
+
+
+{\ttfamily \#include $<$Tensor\+Custom\+Op.\+h$>$}
+
+Inheritance diagram for Eigen\+::Tensor\+Custom\+Unary\+Op$<$ Custom\+Unary\+Func, Xpr\+Type $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.895093cm]{class_eigen_1_1_tensor_custom_unary_op}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_custom_unary_op_ae8eb2ed273d2652d170f154c70dccd3f}\label{class_eigen_1_1_tensor_custom_unary_op_ae8eb2ed273d2652d170f154c70dccd3f}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_tensor_custom_unary_op}{Tensor\+Custom\+Unary\+Op}} $>$\+::Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_custom_unary_op_a73633ef2e6139bbb43c6a9865ed03964}\label{class_eigen_1_1_tensor_custom_unary_op_a73633ef2e6139bbb43c6a9865ed03964}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Eigen\+::\+Num\+Traits}}$<$ Scalar $>$\+::Real {\bfseries Real\+Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_custom_unary_op_ad6acefeac5ceff680af970a5948caeb0}\label{class_eigen_1_1_tensor_custom_unary_op_ad6acefeac5ceff680af970a5948caeb0}} 
+typedef Xpr\+Type\+::\+Coeff\+Return\+Type {\bfseries Coeff\+Return\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_custom_unary_op_afcfa72a53aef34e34516703ed30f0831}\label{class_eigen_1_1_tensor_custom_unary_op_afcfa72a53aef34e34516703ed30f0831}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1nested}{internal\+::nested}}$<$ \mbox{\hyperlink{class_eigen_1_1_tensor_custom_unary_op}{Tensor\+Custom\+Unary\+Op}} $>$\+::type {\bfseries Nested}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_custom_unary_op_ae798fe3d7849f5547ca193304f88432e}\label{class_eigen_1_1_tensor_custom_unary_op_ae798fe3d7849f5547ca193304f88432e}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_tensor_custom_unary_op}{Tensor\+Custom\+Unary\+Op}} $>$\+::Storage\+Kind {\bfseries Storage\+Kind}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_custom_unary_op_a49d050ac9e7fb37dc18bb03730a89aeb}\label{class_eigen_1_1_tensor_custom_unary_op_a49d050ac9e7fb37dc18bb03730a89aeb}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_tensor_custom_unary_op}{Tensor\+Custom\+Unary\+Op}} $>$\+::Index {\bfseries Index}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_custom_unary_op_a1251cfb58bbce5908504ff1ceda87f66}\label{class_eigen_1_1_tensor_custom_unary_op_a1251cfb58bbce5908504ff1ceda87f66}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE {\bfseries Tensor\+Custom\+Unary\+Op} (const Xpr\+Type \&expr, const Custom\+Unary\+Func \&\mbox{\hyperlink{structfunc}{func}})
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_custom_unary_op_a1789458b0638e7de8e5298b9267190de}\label{class_eigen_1_1_tensor_custom_unary_op_a1789458b0638e7de8e5298b9267190de}} 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Custom\+Unary\+Func \& {\bfseries func} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_custom_unary_op_a1a09f17f4fd1786f109df1b7441caee3}\label{class_eigen_1_1_tensor_custom_unary_op_a1a09f17f4fd1786f109df1b7441caee3}} 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{internal\+::remove\+\_\+all}}$<$ typename Xpr\+Type\+::\+Nested $>$\+::type \& {\bfseries expression} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_custom_unary_op_ac1cc3df13ec5d7701268e406f04d5308}\label{class_eigen_1_1_tensor_custom_unary_op_ac1cc3df13ec5d7701268e406f04d5308}} 
+Xpr\+Type\+::\+Nested {\bfseries m\+\_\+expr}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_custom_unary_op_a886505d3cd4378fec18a446e35b85d9b}\label{class_eigen_1_1_tensor_custom_unary_op_a886505d3cd4378fec18a446e35b85d9b}} 
+const Custom\+Unary\+Func {\bfseries m\+\_\+func}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Custom\+Unary\+Func, typename Xpr\+Type$>$\newline
+class Eigen\+::\+Tensor\+Custom\+Unary\+Op$<$ Custom\+Unary\+Func, Xpr\+Type $>$}
+
+\mbox{\hyperlink{class_eigen_1_1_tensor}{Tensor}} custom class. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/\+C\+X\+X11/src/\+Tensor/Tensor\+Custom\+Op.\+h\end{DoxyCompactItemize}

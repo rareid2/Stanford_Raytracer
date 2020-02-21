@@ -1,0 +1,157 @@
+\hypertarget{class_eigen_1_1_transpositions}{}\doxysection{Eigen\+::Transpositions$<$ Size\+At\+Compile\+Time, Max\+Size\+At\+Compile\+Time, \+\_\+\+Storage\+Index $>$ Class Template Reference}
+\label{class_eigen_1_1_transpositions}\index{Eigen::Transpositions$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$@{Eigen::Transpositions$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$}}
+
+
+Represents a sequence of transpositions (row/column interchange)  
+
+
+
+
+{\ttfamily \#include $<$Transpositions.\+h$>$}
+
+Inheritance diagram for Eigen\+::Transpositions$<$ Size\+At\+Compile\+Time, Max\+Size\+At\+Compile\+Time, \+\_\+\+Storage\+Index $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.769352cm]{class_eigen_1_1_transpositions}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transpositions_a0447f497ff56da1c7d491264bc2cef83}\label{class_eigen_1_1_transpositions_a0447f497ff56da1c7d491264bc2cef83}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_transpositions_base}{Transpositions\+Base}}$<$ \mbox{\hyperlink{class_eigen_1_1_transpositions}{Transpositions}} $>$ {\bfseries Base}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transpositions_aa62d34272509bd85ca30568b045376a5}\label{class_eigen_1_1_transpositions_aa62d34272509bd85ca30568b045376a5}} 
+typedef Traits\+::\+Indices\+Type {\bfseries Indices\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transpositions_addc91a8189d9d78598a0c13e43f3c5db}\label{class_eigen_1_1_transpositions_addc91a8189d9d78598a0c13e43f3c5db}} 
+typedef Indices\+Type\+::\+Scalar {\bfseries Storage\+Index}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\\mbox{\hyperlink{class_eigen_1_1_transpositions_aae3eb58072f5b26f3851925eec5a006f}{Transpositions}} (const \mbox{\hyperlink{class_eigen_1_1_transpositions_base}{Transpositions\+Base}}$<$ Other\+Derived $>$ \&other)
+\item 
+\mbox{\hyperlink{class_eigen_1_1_transpositions_ace0b2d83863d5d433846c33292bb868c}{Transpositions}} (const \mbox{\hyperlink{class_eigen_1_1_transpositions}{Transpositions}} \&other)
+\item 
+{\footnotesize template$<$typename Other $>$ }\\\mbox{\hyperlink{class_eigen_1_1_transpositions_a415e07d885093f3f256394f59d4986f4}{Transpositions}} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Other $>$ \&\mbox{\hyperlink{class_eigen_1_1_transpositions_a786fd676c156124025aaf446d811d14f}{indices}})
+\item 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\\mbox{\hyperlink{class_eigen_1_1_transpositions}{Transpositions}} \& \mbox{\hyperlink{class_eigen_1_1_transpositions_a991cbd0dcd647b414bbfdbacb642dbbd}{operator=}} (const \mbox{\hyperlink{class_eigen_1_1_transpositions_base}{Transpositions\+Base}}$<$ Other\+Derived $>$ \&other)
+\item 
+\mbox{\hyperlink{class_eigen_1_1_transpositions}{Transpositions}} \& \mbox{\hyperlink{class_eigen_1_1_transpositions_a9039acfbbd3e41402692142a96957bbe}{operator=}} (const \mbox{\hyperlink{class_eigen_1_1_transpositions}{Transpositions}} \&other)
+\item 
+\mbox{\hyperlink{class_eigen_1_1_transpositions_a6a02dae883f9bc072de3268e1696d0ba}{Transpositions}} (\mbox{\hyperlink{class_eigen_1_1_transpositions_base_a3f5f06118b419e8e6ccbe49ed5b4c91f}{Index}} \mbox{\hyperlink{class_eigen_1_1_transpositions_base_a6888d6261a9cc24ee8607496e610a5a3}{size}})
+\item 
+const Indices\+Type \& \mbox{\hyperlink{class_eigen_1_1_transpositions_a786fd676c156124025aaf446d811d14f}{indices}} () const
+\item 
+Indices\+Type \& \mbox{\hyperlink{class_eigen_1_1_transpositions_a678dfbd513871473bcd36bbc453eed8c}{indices}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transpositions_a2a8d24e0368be00384c885e53d4ad3cf}\label{class_eigen_1_1_transpositions_a2a8d24e0368be00384c885e53d4ad3cf}} 
+Indices\+Type {\bfseries m\+\_\+indices}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$int Size\+At\+Compile\+Time, int Max\+Size\+At\+Compile\+Time, typename \+\_\+\+Storage\+Index$>$\newline
+class Eigen\+::\+Transpositions$<$ Size\+At\+Compile\+Time, Max\+Size\+At\+Compile\+Time, \+\_\+\+Storage\+Index $>$}
+
+Represents a sequence of transpositions (row/column interchange) 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Size\+At\+Compile\+Time} & the number of transpositions, or Dynamic \\
+\hline
+{\em Max\+Size\+At\+Compile\+Time} & the maximum number of transpositions, or Dynamic. This optional parameter defaults to Size\+At\+Compile\+Time. Most of the time, you should not have to specify it.\\
+\hline
+\end{DoxyTemplParams}
+This class represents a permutation transformation as a sequence of {\itshape n} transpositions $[T_{n-1} \ldots T_{i} \ldots T_{0}]$. It is internally stored as a vector of integers {\ttfamily indices}. Each transposition $ T_{i} $ applied on the left of a matrix ( $ T_{i} M$) interchanges the rows {\ttfamily i} and {\ttfamily indices}\mbox{[}i\mbox{]} of the matrix {\ttfamily M}. A transposition applied on the right (e.\+g., $ M T_{i}$) yields a column interchange.
+
+Compared to the class \mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Matrix}}, such a sequence of transpositions is what is computed during a decomposition with pivoting, and it is faster when applying the permutation in-\/place.
+
+To apply a sequence of transpositions to a matrix, simply use the operator $\ast$ as in the following example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Transpositions tr;}
+\DoxyCodeLine{MatrixXf mat;}
+\DoxyCodeLine{mat = tr * mat;}
+\end{DoxyCode}
+ In this example, we detect that the matrix appears on both side, and so the transpositions are applied in-\/place without any temporary or extra copy.
+
+\begin{DoxySeeAlso}{See also}
+class \mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Matrix}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_transpositions_aae3eb58072f5b26f3851925eec5a006f}\label{class_eigen_1_1_transpositions_aae3eb58072f5b26f3851925eec5a006f}} 
+\index{Eigen::Transpositions$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$@{Eigen::Transpositions$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$}!Transpositions@{Transpositions}}
+\index{Transpositions@{Transpositions}!Eigen::Transpositions$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$@{Eigen::Transpositions$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{Transpositions()}{Transpositions()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$int Size\+At\+Compile\+Time, int Max\+Size\+At\+Compile\+Time, typename \+\_\+\+Storage\+Index $>$ \\
+template$<$typename Other\+Derived $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_transpositions}{Eigen\+::\+Transpositions}}$<$ Size\+At\+Compile\+Time, Max\+Size\+At\+Compile\+Time, \+\_\+\+Storage\+Index $>$\+::\mbox{\hyperlink{class_eigen_1_1_transpositions}{Transpositions}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_transpositions_base}{Transpositions\+Base}}$<$ Other\+Derived $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Copy constructor. \mbox{\Hypertarget{class_eigen_1_1_transpositions_ace0b2d83863d5d433846c33292bb868c}\label{class_eigen_1_1_transpositions_ace0b2d83863d5d433846c33292bb868c}} 
+\index{Eigen::Transpositions$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$@{Eigen::Transpositions$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$}!Transpositions@{Transpositions}}
+\index{Transpositions@{Transpositions}!Eigen::Transpositions$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$@{Eigen::Transpositions$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{Transpositions()}{Transpositions()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$int Size\+At\+Compile\+Time, int Max\+Size\+At\+Compile\+Time, typename \+\_\+\+Storage\+Index $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_transpositions}{Eigen\+::\+Transpositions}}$<$ Size\+At\+Compile\+Time, Max\+Size\+At\+Compile\+Time, \+\_\+\+Storage\+Index $>$\+::\mbox{\hyperlink{class_eigen_1_1_transpositions}{Transpositions}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_transpositions}{Transpositions}}$<$ Size\+At\+Compile\+Time, Max\+Size\+At\+Compile\+Time, \+\_\+\+Storage\+Index $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Standard copy constructor. Defined only to prevent a default copy constructor from hiding the other templated constructor \mbox{\Hypertarget{class_eigen_1_1_transpositions_a415e07d885093f3f256394f59d4986f4}\label{class_eigen_1_1_transpositions_a415e07d885093f3f256394f59d4986f4}} 
+\index{Eigen::Transpositions$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$@{Eigen::Transpositions$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$}!Transpositions@{Transpositions}}
+\index{Transpositions@{Transpositions}!Eigen::Transpositions$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$@{Eigen::Transpositions$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{Transpositions()}{Transpositions()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$int Size\+At\+Compile\+Time, int Max\+Size\+At\+Compile\+Time, typename \+\_\+\+Storage\+Index $>$ \\
+template$<$typename Other $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_transpositions}{Eigen\+::\+Transpositions}}$<$ Size\+At\+Compile\+Time, Max\+Size\+At\+Compile\+Time, \+\_\+\+Storage\+Index $>$\+::\mbox{\hyperlink{class_eigen_1_1_transpositions}{Transpositions}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Other $>$ \&}]{indices }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+Generic constructor from expression of the transposition indices. \mbox{\Hypertarget{class_eigen_1_1_transpositions_a6a02dae883f9bc072de3268e1696d0ba}\label{class_eigen_1_1_transpositions_a6a02dae883f9bc072de3268e1696d0ba}} 
+\index{Eigen::Transpositions$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$@{Eigen::Transpositions$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$}!Transpositions@{Transpositions}}
+\index{Transpositions@{Transpositions}!Eigen::Transpositions$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$@{Eigen::Transpositions$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{Transpositions()}{Transpositions()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$int Size\+At\+Compile\+Time, int Max\+Size\+At\+Compile\+Time, typename \+\_\+\+Storage\+Index $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_transpositions}{Eigen\+::\+Transpositions}}$<$ Size\+At\+Compile\+Time, Max\+Size\+At\+Compile\+Time, \+\_\+\+Storage\+Index $>$\+::\mbox{\hyperlink{class_eigen_1_1_transpositions}{Transpositions}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eigen_1_1_transpositions_base_a3f5f06118b419e8e6ccbe49ed5b4c91f}{Index}}}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructs an uninitialized permutation matrix of given size. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_transpositions_a678dfbd513871473bcd36bbc453eed8c}\label{class_eigen_1_1_transpositions_a678dfbd513871473bcd36bbc453eed8c}} 
+\index{Eigen::Transpositions$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$@{Eigen::Transpositions$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$}!indices@{indices}}
+\index{indices@{indices}!Eigen::Transpositions$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$@{Eigen::Transpositions$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{indices()}{indices()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$int Size\+At\+Compile\+Time, int Max\+Size\+At\+Compile\+Time, typename \+\_\+\+Storage\+Index $>$ \\
+Indices\+Type\& \mbox{\hyperlink{class_eigen_1_1_transpositions}{Eigen\+::\+Transpositions}}$<$ Size\+At\+Compile\+Time, Max\+Size\+At\+Compile\+Time, \+\_\+\+Storage\+Index $>$\+::indices (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a reference to the stored array representing the transpositions. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_transpositions_a786fd676c156124025aaf446d811d14f}\label{class_eigen_1_1_transpositions_a786fd676c156124025aaf446d811d14f}} 
+\index{Eigen::Transpositions$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$@{Eigen::Transpositions$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$}!indices@{indices}}
+\index{indices@{indices}!Eigen::Transpositions$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$@{Eigen::Transpositions$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{indices()}{indices()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$int Size\+At\+Compile\+Time, int Max\+Size\+At\+Compile\+Time, typename \+\_\+\+Storage\+Index $>$ \\
+const Indices\+Type\& \mbox{\hyperlink{class_eigen_1_1_transpositions}{Eigen\+::\+Transpositions}}$<$ Size\+At\+Compile\+Time, Max\+Size\+At\+Compile\+Time, \+\_\+\+Storage\+Index $>$\+::indices (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+const version of \mbox{\hyperlink{class_eigen_1_1_transpositions_a678dfbd513871473bcd36bbc453eed8c}{indices()}}. \mbox{\Hypertarget{class_eigen_1_1_transpositions_a9039acfbbd3e41402692142a96957bbe}\label{class_eigen_1_1_transpositions_a9039acfbbd3e41402692142a96957bbe}} 
+\index{Eigen::Transpositions$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$@{Eigen::Transpositions$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!Eigen::Transpositions$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$@{Eigen::Transpositions$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$int Size\+At\+Compile\+Time, int Max\+Size\+At\+Compile\+Time, typename \+\_\+\+Storage\+Index $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_transpositions}{Transpositions}}\& \mbox{\hyperlink{class_eigen_1_1_transpositions}{Eigen\+::\+Transpositions}}$<$ Size\+At\+Compile\+Time, Max\+Size\+At\+Compile\+Time, \+\_\+\+Storage\+Index $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_transpositions}{Transpositions}}$<$ Size\+At\+Compile\+Time, Max\+Size\+At\+Compile\+Time, \+\_\+\+Storage\+Index $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+This is a special case of the templated operator=. Its purpose is to prevent a default operator= from hiding the templated operator=. \mbox{\Hypertarget{class_eigen_1_1_transpositions_a991cbd0dcd647b414bbfdbacb642dbbd}\label{class_eigen_1_1_transpositions_a991cbd0dcd647b414bbfdbacb642dbbd}} 
+\index{Eigen::Transpositions$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$@{Eigen::Transpositions$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!Eigen::Transpositions$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$@{Eigen::Transpositions$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$int Size\+At\+Compile\+Time, int Max\+Size\+At\+Compile\+Time, typename \+\_\+\+Storage\+Index $>$ \\
+template$<$typename Other\+Derived $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_transpositions}{Transpositions}}\& \mbox{\hyperlink{class_eigen_1_1_transpositions}{Eigen\+::\+Transpositions}}$<$ Size\+At\+Compile\+Time, Max\+Size\+At\+Compile\+Time, \+\_\+\+Storage\+Index $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_transpositions_base}{Transpositions\+Base}}$<$ Other\+Derived $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Copies the {\itshape other} transpositions into {\ttfamily $\ast$this} 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/Transpositions.\+h\end{DoxyCompactItemize}

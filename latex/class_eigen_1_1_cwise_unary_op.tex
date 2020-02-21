@@ -1,0 +1,116 @@
+\hypertarget{class_eigen_1_1_cwise_unary_op}{}\doxysection{Eigen\+::Cwise\+Unary\+Op$<$ Unary\+Op, Xpr\+Type $>$ Class Template Reference}
+\label{class_eigen_1_1_cwise_unary_op}\index{Eigen::CwiseUnaryOp$<$ UnaryOp, XprType $>$@{Eigen::CwiseUnaryOp$<$ UnaryOp, XprType $>$}}
+
+
+Generic expression where a coefficient-\/wise unary operator is applied to an expression.  
+
+
+
+
+{\ttfamily \#include $<$Cwise\+Unary\+Op.\+h$>$}
+
+Inheritance diagram for Eigen\+::Cwise\+Unary\+Op$<$ Unary\+Op, Xpr\+Type $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.056604cm]{class_eigen_1_1_cwise_unary_op}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_cwise_unary_op_a09a0bbb6e2c369dbf58a4444fbfa65c6}\label{class_eigen_1_1_cwise_unary_op_a09a0bbb6e2c369dbf58a4444fbfa65c6}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_cwise_unary_op_impl}{Cwise\+Unary\+Op\+Impl}}$<$ Unary\+Op, Xpr\+Type, typename \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ Xpr\+Type $>$\+::Storage\+Kind $>$\+::Base {\bfseries Base}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_cwise_unary_op_a70bda63af92ef43a5afafd9a84a8c916}\label{class_eigen_1_1_cwise_unary_op_a70bda63af92ef43a5afafd9a84a8c916}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1ref__selector}{internal\+::ref\+\_\+selector}}$<$ Xpr\+Type $>$\+::type {\bfseries Xpr\+Type\+Nested}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_cwise_unary_op_afa95449af34676062a7ea386dd039692}\label{class_eigen_1_1_cwise_unary_op_afa95449af34676062a7ea386dd039692}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{internal\+::remove\+\_\+all}}$<$ Xpr\+Type $>$\+::type {\bfseries Nested\+Expression}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_cwise_unary_op_aa8cd371792c4707e30a39e20f7adde0d}\label{class_eigen_1_1_cwise_unary_op_aa8cd371792c4707e30a39e20f7adde0d}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE {\bfseries Cwise\+Unary\+Op} (const Xpr\+Type \&xpr, const Unary\+Op \&\mbox{\hyperlink{structfunc}{func}}=Unary\+Op())
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_cwise_unary_op_a0aef7d6eb6d0214df219b7980ecf41de}\label{class_eigen_1_1_cwise_unary_op_a0aef7d6eb6d0214df219b7980ecf41de}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries rows} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_cwise_unary_op_a61d9838a84e9276328f59f0f4449b99a}\label{class_eigen_1_1_cwise_unary_op_a61d9838a84e9276328f59f0f4449b99a}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries cols} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Unary\+Op \& \mbox{\hyperlink{class_eigen_1_1_cwise_unary_op_a440ba1ac042cd41807223117fca8fc00}{functor}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{internal\+::remove\+\_\+all}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Xpr\+Type\+Nested}} $>$\+::type \& \mbox{\hyperlink{class_eigen_1_1_cwise_unary_op_a2f7c7837be7341ad2180c9bb0d5008f2}{nested\+Expression}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{internal\+::remove\+\_\+all}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Xpr\+Type\+Nested}} $>$\+::type \& \mbox{\hyperlink{class_eigen_1_1_cwise_unary_op_a2efe6055ea94b65c29dcf1cdcbd7e17e}{nested\+Expression}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_cwise_unary_op_a9dd0fd407963d42271dd2d2da9708a15}\label{class_eigen_1_1_cwise_unary_op_a9dd0fd407963d42271dd2d2da9708a15}} 
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Xpr\+Type\+Nested}} {\bfseries m\+\_\+xpr}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_cwise_unary_op_a92344c00a6ef342fd3e53713a0d5391f}\label{class_eigen_1_1_cwise_unary_op_a92344c00a6ef342fd3e53713a0d5391f}} 
+const Unary\+Op {\bfseries m\+\_\+functor}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Unary\+Op, typename Xpr\+Type$>$\newline
+class Eigen\+::\+Cwise\+Unary\+Op$<$ Unary\+Op, Xpr\+Type $>$}
+
+Generic expression where a coefficient-\/wise unary operator is applied to an expression. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Unary\+Op} & template functor implementing the operator \\
+\hline
+{\em Xpr\+Type} & the type of the expression to which we are applying the unary operator\\
+\hline
+\end{DoxyTemplParams}
+This class represents an expression where a unary operator is applied to an expression. It is the return type of all operations taking exactly 1 input expression, regardless of the presence of other inputs such as scalars. For example, the operator$\ast$ in the expression 3$\ast$matrix is considered unary, because only the right-\/hand side is an expression, and its return type is a specialization of \mbox{\hyperlink{class_eigen_1_1_cwise_unary_op}{Cwise\+Unary\+Op}}.
+
+Most of the time, this is the only way that it is used, so you typically don\textquotesingle{}t have to name \mbox{\hyperlink{class_eigen_1_1_cwise_unary_op}{Cwise\+Unary\+Op}} types explicitly.
+
+\begin{DoxySeeAlso}{See also}
+Matrix\+Base\+::unary\+Expr(const Custom\+Unary\+Op \&) const, class \mbox{\hyperlink{class_eigen_1_1_cwise_binary_op}{Cwise\+Binary\+Op}}, class \mbox{\hyperlink{class_eigen_1_1_cwise_nullary_op}{Cwise\+Nullary\+Op}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_cwise_unary_op_a440ba1ac042cd41807223117fca8fc00}\label{class_eigen_1_1_cwise_unary_op_a440ba1ac042cd41807223117fca8fc00}} 
+\index{Eigen::CwiseUnaryOp$<$ UnaryOp, XprType $>$@{Eigen::CwiseUnaryOp$<$ UnaryOp, XprType $>$}!functor@{functor}}
+\index{functor@{functor}!Eigen::CwiseUnaryOp$<$ UnaryOp, XprType $>$@{Eigen::CwiseUnaryOp$<$ UnaryOp, XprType $>$}}
+\doxysubsubsection{\texorpdfstring{functor()}{functor()}}
+{\footnotesize\ttfamily template$<$typename Unary\+Op , typename Xpr\+Type $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Unary\+Op\& \mbox{\hyperlink{class_eigen_1_1_cwise_unary_op}{Eigen\+::\+Cwise\+Unary\+Op}}$<$ Unary\+Op, Xpr\+Type $>$\+::functor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the functor representing the unary operation 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_cwise_unary_op_a2efe6055ea94b65c29dcf1cdcbd7e17e}\label{class_eigen_1_1_cwise_unary_op_a2efe6055ea94b65c29dcf1cdcbd7e17e}} 
+\index{Eigen::CwiseUnaryOp$<$ UnaryOp, XprType $>$@{Eigen::CwiseUnaryOp$<$ UnaryOp, XprType $>$}!nestedExpression@{nestedExpression}}
+\index{nestedExpression@{nestedExpression}!Eigen::CwiseUnaryOp$<$ UnaryOp, XprType $>$@{Eigen::CwiseUnaryOp$<$ UnaryOp, XprType $>$}}
+\doxysubsubsection{\texorpdfstring{nestedExpression()}{nestedExpression()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Unary\+Op , typename Xpr\+Type $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{internal\+::remove\+\_\+all}}$<$\mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Xpr\+Type\+Nested}}$>$\+::type\& \mbox{\hyperlink{class_eigen_1_1_cwise_unary_op}{Eigen\+::\+Cwise\+Unary\+Op}}$<$ Unary\+Op, Xpr\+Type $>$\+::nested\+Expression (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the nested expression 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_cwise_unary_op_a2f7c7837be7341ad2180c9bb0d5008f2}\label{class_eigen_1_1_cwise_unary_op_a2f7c7837be7341ad2180c9bb0d5008f2}} 
+\index{Eigen::CwiseUnaryOp$<$ UnaryOp, XprType $>$@{Eigen::CwiseUnaryOp$<$ UnaryOp, XprType $>$}!nestedExpression@{nestedExpression}}
+\index{nestedExpression@{nestedExpression}!Eigen::CwiseUnaryOp$<$ UnaryOp, XprType $>$@{Eigen::CwiseUnaryOp$<$ UnaryOp, XprType $>$}}
+\doxysubsubsection{\texorpdfstring{nestedExpression()}{nestedExpression()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Unary\+Op , typename Xpr\+Type $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{internal\+::remove\+\_\+all}}$<$\mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Xpr\+Type\+Nested}}$>$\+::type\& \mbox{\hyperlink{class_eigen_1_1_cwise_unary_op}{Eigen\+::\+Cwise\+Unary\+Op}}$<$ Unary\+Op, Xpr\+Type $>$\+::nested\+Expression (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the nested expression 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/Cwise\+Unary\+Op.\+h\end{DoxyCompactItemize}

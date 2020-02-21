@@ -1,0 +1,206 @@
+\hypertarget{class_eigen_1_1_pastix_base}{}\doxysection{Eigen\+::Pastix\+Base$<$ Derived $>$ Class Template Reference}
+\label{class_eigen_1_1_pastix_base}\index{Eigen::PastixBase$<$ Derived $>$@{Eigen::PastixBase$<$ Derived $>$}}
+Inheritance diagram for Eigen\+::Pastix\+Base$<$ Derived $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_eigen_1_1_pastix_base}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pastix_base_a07113905e57a23d12b497717fb40b3a7}\label{class_eigen_1_1_pastix_base_a07113905e57a23d12b497717fb40b3a7}} 
+enum \{ {\bfseries Cols\+At\+Compile\+Time} = Matrix\+Type\+::Cols\+At\+Compile\+Time, 
+{\bfseries Max\+Cols\+At\+Compile\+Time} = Matrix\+Type\+::Max\+Cols\+At\+Compile\+Time
+ \}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pastix_base_a3590da53cc9d964ebc0e7c1ef62860d5}\label{class_eigen_1_1_pastix_base_a3590da53cc9d964ebc0e7c1ef62860d5}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1pastix__traits}{internal\+::pastix\+\_\+traits}}$<$ Derived $>$\+::Matrix\+Type {\bfseries \+\_\+\+Matrix\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pastix_base_a6cd35cdf1999768f6d99465b466f6afd}\label{class_eigen_1_1_pastix_base_a6cd35cdf1999768f6d99465b466f6afd}} 
+typedef \+\_\+\+Matrix\+Type {\bfseries Matrix\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pastix_base_a9f25544947ef1a53a24b60103e3971e0}\label{class_eigen_1_1_pastix_base_a9f25544947ef1a53a24b60103e3971e0}} 
+typedef Matrix\+Type\+::\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pastix_base_a3a5f114fdba041a4c588e0034eb989a5}\label{class_eigen_1_1_pastix_base_a3a5f114fdba041a4c588e0034eb989a5}} 
+typedef Matrix\+Type\+::\+Real\+Scalar {\bfseries Real\+Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pastix_base_a2e10075626ec849c47c2360653e1a89d}\label{class_eigen_1_1_pastix_base_a2e10075626ec849c47c2360653e1a89d}} 
+typedef Matrix\+Type\+::\+Storage\+Index {\bfseries Storage\+Index}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pastix_base_aabb830048edd554f4fbcadd85408d9ab}\label{class_eigen_1_1_pastix_base_aabb830048edd554f4fbcadd85408d9ab}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ Scalar, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}, 1 $>$ {\bfseries Vector}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pastix_base_ae6d77f933f8777a77197ead483dbb4cf}\label{class_eigen_1_1_pastix_base_ae6d77f933f8777a77197ead483dbb4cf}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}}$<$ Scalar, \mbox{\hyperlink{group__enums_ggaacded1a18ae58b0f554751f6cdf9eb13a0103672ae41005ab03b4176c765afd62}{Col\+Major}} $>$ {\bfseries Col\+Sp\+Matrix}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pastix_base_a63c39ad03354e57b4ea67683dead4674}\label{class_eigen_1_1_pastix_base_a63c39ad03354e57b4ea67683dead4674}} 
+{\footnotesize template$<$typename Rhs , typename Dest $>$ }\\bool {\bfseries \+\_\+solve\+\_\+impl} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Rhs $>$ \&b, \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Dest $>$ \&x) const
+\item 
+\mbox{\hyperlink{class_eigen_1_1_array}{Array}}$<$ Storage\+Index, I\+P\+A\+R\+M\+\_\+\+S\+I\+ZE, 1 $>$ \& \mbox{\hyperlink{class_eigen_1_1_pastix_base_a38378e7b2b5c750a8a23e2c21a69146c}{iparm}} ()
+\item 
+int \& \mbox{\hyperlink{class_eigen_1_1_pastix_base_a5509ca8d6a9217fb95ab020363b9e0fb}{iparm}} (int idxparam)
+\item 
+\mbox{\hyperlink{class_eigen_1_1_array}{Array}}$<$ double, D\+P\+A\+R\+M\+\_\+\+S\+I\+ZE, 1 $>$ \& \mbox{\hyperlink{class_eigen_1_1_pastix_base_af4a29373aa3e6a980738efde33f92a76}{dparm}} ()
+\item 
+double \& \mbox{\hyperlink{class_eigen_1_1_pastix_base_a6e7baecd4990d6df9b5713cb6499e940}{dparm}} (int idxparam)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pastix_base_a6ba5c02c8b13ad144a96f9fb6a5885e5}\label{class_eigen_1_1_pastix_base_a6ba5c02c8b13ad144a96f9fb6a5885e5}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries cols} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pastix_base_a01b3786f9c460d32284fe63655f29109}\label{class_eigen_1_1_pastix_base_a01b3786f9c460d32284fe63655f29109}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries rows} () const
+\item 
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} \mbox{\hyperlink{class_eigen_1_1_pastix_base_a436e99a385c9c019be9627cc1fa884cf}{info}} () const
+\begin{DoxyCompactList}\small\item\em Reports whether previous computation was successful. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_eigen_1_1_pastix_base_a886c757fea6fe1d992a66524213f14fb}\label{class_eigen_1_1_pastix_base_a886c757fea6fe1d992a66524213f14fb}} 
+{\footnotesize template$<$typename Rhs , typename Dest $>$ }\\void {\bfseries \+\_\+solve\+\_\+impl} (const \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base}{Sparse\+Matrix\+Base}}$<$ Rhs $>$ \&b, \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base}{Sparse\+Matrix\+Base}}$<$ Dest $>$ \&dest) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pastix_base_af66956d5d8ee804ee0d4d66f56f6baec}\label{class_eigen_1_1_pastix_base_af66956d5d8ee804ee0d4d66f56f6baec}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_sparse_solver_base}{Sparse\+Solver\+Base}}$<$ Derived $>$ {\bfseries Base}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_pastix_base_ac6202714edd1943646e34f16ad384336}{init}} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pastix_base_a1c3499de4bd707504925b8d54e57253a}\label{class_eigen_1_1_pastix_base_a1c3499de4bd707504925b8d54e57253a}} 
+void {\bfseries analyze\+Pattern} (\mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Col\+Sp\+Matrix}} \&mat)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pastix_base_acbaa789672638fd5f621f52c3e951f7c}\label{class_eigen_1_1_pastix_base_acbaa789672638fd5f621f52c3e951f7c}} 
+void {\bfseries factorize} (\mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Col\+Sp\+Matrix}} \&mat)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pastix_base_aaee9ad715b2743747e0e88f53c1d8c47}\label{class_eigen_1_1_pastix_base_aaee9ad715b2743747e0e88f53c1d8c47}} 
+void {\bfseries clean} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pastix_base_a4173afa8a88aec8f1346372b2de71af9}\label{class_eigen_1_1_pastix_base_a4173afa8a88aec8f1346372b2de71af9}} 
+void {\bfseries compute} (\mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Col\+Sp\+Matrix}} \&mat)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pastix_base_ad213fb2c2199ca597b96f1f79653637f}\label{class_eigen_1_1_pastix_base_ad213fb2c2199ca597b96f1f79653637f}} 
+Derived \& {\bfseries derived} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pastix_base_af5f23a7e048060c3082c5a1ddfa91932}\label{class_eigen_1_1_pastix_base_af5f23a7e048060c3082c5a1ddfa91932}} 
+const Derived \& {\bfseries derived} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pastix_base_aaec1e805c8ea06e946a04e3bd4cd13fe}\label{class_eigen_1_1_pastix_base_aaec1e805c8ea06e946a04e3bd4cd13fe}} 
+int {\bfseries m\+\_\+initis\+Ok}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pastix_base_a9bf581a78008c1b10784ce12ef9f4d24}\label{class_eigen_1_1_pastix_base_a9bf581a78008c1b10784ce12ef9f4d24}} 
+int {\bfseries m\+\_\+analysis\+Is\+Ok}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pastix_base_a238a5fcf1f5ddde5e8996b8d971e3882}\label{class_eigen_1_1_pastix_base_a238a5fcf1f5ddde5e8996b8d971e3882}} 
+int {\bfseries m\+\_\+factorization\+Is\+Ok}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pastix_base_ae37b176f45ed1f4145c19a6bd1742863}\label{class_eigen_1_1_pastix_base_ae37b176f45ed1f4145c19a6bd1742863}} 
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} {\bfseries m\+\_\+info}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pastix_base_adcd075ee3317f41566c60dfcc402e2fb}\label{class_eigen_1_1_pastix_base_adcd075ee3317f41566c60dfcc402e2fb}} 
+pastix\+\_\+data\+\_\+t $\ast$ {\bfseries m\+\_\+pastixdata}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pastix_base_af081942a2221ed4a4996b702613a4c4f}\label{class_eigen_1_1_pastix_base_af081942a2221ed4a4996b702613a4c4f}} 
+int {\bfseries m\+\_\+comm}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pastix_base_a5cdb7299e33d7f089d9e38f191aed9b9}\label{class_eigen_1_1_pastix_base_a5cdb7299e33d7f089d9e38f191aed9b9}} 
+\mbox{\hyperlink{class_eigen_1_1_array}{Array}}$<$ int, I\+P\+A\+R\+M\+\_\+\+S\+I\+ZE, 1 $>$ {\bfseries m\+\_\+iparm}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pastix_base_a139ba50ba94931769c328fa7c373a180}\label{class_eigen_1_1_pastix_base_a139ba50ba94931769c328fa7c373a180}} 
+\mbox{\hyperlink{class_eigen_1_1_array}{Array}}$<$ double, D\+P\+A\+R\+M\+\_\+\+S\+I\+ZE, 1 $>$ {\bfseries m\+\_\+dparm}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pastix_base_a38aac82eb011ec6a7cfe01ce64287a82}\label{class_eigen_1_1_pastix_base_a38aac82eb011ec6a7cfe01ce64287a82}} 
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ Storage\+Index, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}, 1 $>$ {\bfseries m\+\_\+perm}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pastix_base_a2a78525b0cfe2bbf28e03e2e90077748}\label{class_eigen_1_1_pastix_base_a2a78525b0cfe2bbf28e03e2e90077748}} 
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ Storage\+Index, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}, 1 $>$ {\bfseries m\+\_\+invp}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pastix_base_ab687f32875f2ff3e723d5b19584d533e}\label{class_eigen_1_1_pastix_base_ab687f32875f2ff3e723d5b19584d533e}} 
+int {\bfseries m\+\_\+size}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pastix_base_ac52101f69d048d5c4b036eadf1f13673}\label{class_eigen_1_1_pastix_base_ac52101f69d048d5c4b036eadf1f13673}} 
+bool {\bfseries m\+\_\+is\+Initialized}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_pastix_base_af4a29373aa3e6a980738efde33f92a76}\label{class_eigen_1_1_pastix_base_af4a29373aa3e6a980738efde33f92a76}} 
+\index{Eigen::PastixBase$<$ Derived $>$@{Eigen::PastixBase$<$ Derived $>$}!dparm@{dparm}}
+\index{dparm@{dparm}!Eigen::PastixBase$<$ Derived $>$@{Eigen::PastixBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{dparm()}{dparm()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Derived $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_array}{Array}}$<$double,D\+P\+A\+R\+M\+\_\+\+S\+I\+ZE,1$>$\& \mbox{\hyperlink{class_eigen_1_1_pastix_base}{Eigen\+::\+Pastix\+Base}}$<$ Derived $>$\+::dparm (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns a reference to the double vector D\+P\+A\+RM of Pa\+StiX parameters The statistics related to the different phases of factorization and solve are saved here as well \begin{DoxySeeAlso}{See also}
+analyze\+Pattern() factorize() 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_pastix_base_a6e7baecd4990d6df9b5713cb6499e940}\label{class_eigen_1_1_pastix_base_a6e7baecd4990d6df9b5713cb6499e940}} 
+\index{Eigen::PastixBase$<$ Derived $>$@{Eigen::PastixBase$<$ Derived $>$}!dparm@{dparm}}
+\index{dparm@{dparm}!Eigen::PastixBase$<$ Derived $>$@{Eigen::PastixBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{dparm()}{dparm()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Derived $>$ \\
+double\& \mbox{\hyperlink{class_eigen_1_1_pastix_base}{Eigen\+::\+Pastix\+Base}}$<$ Derived $>$\+::dparm (\begin{DoxyParamCaption}\item[{int}]{idxparam }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Return a reference to a particular index parameter of the D\+P\+A\+RM vector \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_pastix_base_af4a29373aa3e6a980738efde33f92a76}{dparm()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_pastix_base_a436e99a385c9c019be9627cc1fa884cf}\label{class_eigen_1_1_pastix_base_a436e99a385c9c019be9627cc1fa884cf}} 
+\index{Eigen::PastixBase$<$ Derived $>$@{Eigen::PastixBase$<$ Derived $>$}!info@{info}}
+\index{info@{info}!Eigen::PastixBase$<$ Derived $>$@{Eigen::PastixBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{info()}{info()}}
+{\footnotesize\ttfamily template$<$class Derived $>$ \\
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} \mbox{\hyperlink{class_eigen_1_1_pastix_base}{Eigen\+::\+Pastix\+Base}}$<$ Derived $>$\+::info (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Reports whether previous computation was successful. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily Success} if computation was succesful, {\ttfamily Numerical\+Issue} if the Pa\+StiX reports a problem {\ttfamily Invalid\+Input} if the input matrix is invalid
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_pastix_base_a38378e7b2b5c750a8a23e2c21a69146c}{iparm()}} ~\newline
+ 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_pastix_base_ac6202714edd1943646e34f16ad384336}\label{class_eigen_1_1_pastix_base_ac6202714edd1943646e34f16ad384336}} 
+\index{Eigen::PastixBase$<$ Derived $>$@{Eigen::PastixBase$<$ Derived $>$}!init@{init}}
+\index{init@{init}!Eigen::PastixBase$<$ Derived $>$@{Eigen::PastixBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily template$<$class Derived $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_pastix_base}{Eigen\+::\+Pastix\+Base}}$<$ Derived $>$\+::\mbox{\hyperlink{structinit}{init}}\hspace{0.3cm}{\ttfamily [protected]}}
+
+Initialize the Pa\+StiX data structure. A first call to this function fills iparm and dparm with the default Pa\+StiX parameters \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_pastix_base_a38378e7b2b5c750a8a23e2c21a69146c}{iparm()}} \mbox{\hyperlink{class_eigen_1_1_pastix_base_af4a29373aa3e6a980738efde33f92a76}{dparm()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_pastix_base_a38378e7b2b5c750a8a23e2c21a69146c}\label{class_eigen_1_1_pastix_base_a38378e7b2b5c750a8a23e2c21a69146c}} 
+\index{Eigen::PastixBase$<$ Derived $>$@{Eigen::PastixBase$<$ Derived $>$}!iparm@{iparm}}
+\index{iparm@{iparm}!Eigen::PastixBase$<$ Derived $>$@{Eigen::PastixBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{iparm()}{iparm()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Derived $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_array}{Array}}$<$Storage\+Index,I\+P\+A\+R\+M\+\_\+\+S\+I\+ZE,1$>$\& \mbox{\hyperlink{class_eigen_1_1_pastix_base}{Eigen\+::\+Pastix\+Base}}$<$ Derived $>$\+::iparm (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns a reference to the integer vector I\+P\+A\+RM of Pa\+StiX parameters to modify the default parameters. The statistics related to the different phases of factorization and solve are saved here as well \begin{DoxySeeAlso}{See also}
+analyze\+Pattern() factorize() 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_pastix_base_a5509ca8d6a9217fb95ab020363b9e0fb}\label{class_eigen_1_1_pastix_base_a5509ca8d6a9217fb95ab020363b9e0fb}} 
+\index{Eigen::PastixBase$<$ Derived $>$@{Eigen::PastixBase$<$ Derived $>$}!iparm@{iparm}}
+\index{iparm@{iparm}!Eigen::PastixBase$<$ Derived $>$@{Eigen::PastixBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{iparm()}{iparm()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Derived $>$ \\
+int\& \mbox{\hyperlink{class_eigen_1_1_pastix_base}{Eigen\+::\+Pastix\+Base}}$<$ Derived $>$\+::iparm (\begin{DoxyParamCaption}\item[{int}]{idxparam }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Return a reference to a particular index parameter of the I\+P\+A\+RM vector \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_pastix_base_a38378e7b2b5c750a8a23e2c21a69146c}{iparm()}} 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Pa\+Sti\+X\+Support/Pa\+Sti\+X\+Support.\+h\end{DoxyCompactItemize}

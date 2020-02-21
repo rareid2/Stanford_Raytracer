@@ -1,0 +1,37 @@
+\hypertarget{class_eigen_1_1_non_blocking_thread_pool_templ}{}\doxysection{Eigen\+::Non\+Blocking\+Thread\+Pool\+Templ$<$ Environment $>$ Class Template Reference}
+\label{class_eigen_1_1_non_blocking_thread_pool_templ}\index{Eigen::NonBlockingThreadPoolTempl$<$ Environment $>$@{Eigen::NonBlockingThreadPoolTempl$<$ Environment $>$}}
+Inheritance diagram for Eigen\+::Non\+Blocking\+Thread\+Pool\+Templ$<$ Environment $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_eigen_1_1_non_blocking_thread_pool_templ}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_non_blocking_thread_pool_templ_acaaa2b0a3fb4bfb40668c251fac5b670}\label{class_eigen_1_1_non_blocking_thread_pool_templ_acaaa2b0a3fb4bfb40668c251fac5b670}} 
+typedef Environment\+::\+Task {\bfseries Task}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_non_blocking_thread_pool_templ_a79a61760383e9778aebf71e50167c78c}\label{class_eigen_1_1_non_blocking_thread_pool_templ_a79a61760383e9778aebf71e50167c78c}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_run_queue}{Run\+Queue}}$<$ Task, 1024 $>$ {\bfseries Queue}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_non_blocking_thread_pool_templ_a00df8e60e6adedb916d8b8cc398ffc14}\label{class_eigen_1_1_non_blocking_thread_pool_templ_a00df8e60e6adedb916d8b8cc398ffc14}} 
+{\bfseries Non\+Blocking\+Thread\+Pool\+Templ} (int num\+\_\+threads, Environment env=Environment())
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_non_blocking_thread_pool_templ_afd256875cc920b676870eabef26973d6}\label{class_eigen_1_1_non_blocking_thread_pool_templ_afd256875cc920b676870eabef26973d6}} 
+void {\bfseries Schedule} (std\+::function$<$ void()$>$ fn)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_non_blocking_thread_pool_templ_ae13c67e050790cea1fd53b7e35def01b}\label{class_eigen_1_1_non_blocking_thread_pool_templ_ae13c67e050790cea1fd53b7e35def01b}} 
+int {\bfseries Num\+Threads} () const final
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_non_blocking_thread_pool_templ_ae9b856a402c214b099c86cbab5d620ca}\label{class_eigen_1_1_non_blocking_thread_pool_templ_ae9b856a402c214b099c86cbab5d620ca}} 
+int {\bfseries Current\+Thread\+Id} () const final
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/\+C\+X\+X11/src/\+Thread\+Pool/Non\+Blocking\+Thread\+Pool.\+h\end{DoxyCompactItemize}

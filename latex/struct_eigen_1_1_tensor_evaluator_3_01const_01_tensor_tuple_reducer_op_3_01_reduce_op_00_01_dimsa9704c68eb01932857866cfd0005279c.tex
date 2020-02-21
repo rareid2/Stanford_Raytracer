@@ -1,0 +1,96 @@
+\hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_tuple_reducer_op_3_01_reduce_op_00_01_dimsa9704c68eb01932857866cfd0005279c}{}\doxysection{Eigen\+::Tensor\+Evaluator$<$ const Tensor\+Tuple\+Reducer\+Op$<$ Reduce\+Op, Dims, Arg\+Type $>$, Device $>$ Struct Template Reference}
+\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_tuple_reducer_op_3_01_reduce_op_00_01_dimsa9704c68eb01932857866cfd0005279c}\index{Eigen::TensorEvaluator$<$ const TensorTupleReducerOp$<$ ReduceOp, Dims, ArgType $>$, Device $>$@{Eigen::TensorEvaluator$<$ const TensorTupleReducerOp$<$ ReduceOp, Dims, ArgType $>$, Device $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_tuple_reducer_op_3_01_reduce_op_00_01_dimsa9704c68eb01932857866cfd0005279c_ac19c502dd61c39587ae61bf6e9298a95}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_tuple_reducer_op_3_01_reduce_op_00_01_dimsa9704c68eb01932857866cfd0005279c_ac19c502dd61c39587ae61bf6e9298a95}} 
+enum \{ \newline
+{\bfseries Is\+Aligned} = false, 
+{\bfseries Packet\+Access} = false, 
+{\bfseries Block\+Access} = false, 
+{\bfseries Layout} = Tensor\+Evaluator$<$const Tensor\+Reduction\+Op$<$Reduce\+Op, Dims, const Tensor\+Index\+Tuple\+Op$<$Arg\+Type$>$ $>$, Device$>$\+::Layout, 
+\newline
+{\bfseries Coord\+Access} = false, 
+{\bfseries Raw\+Access} = false
+ \}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_tuple_reducer_op_3_01_reduce_op_00_01_dimsa9704c68eb01932857866cfd0005279c_a600e1e26626ecc7a392d8ff97fdc797b}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_tuple_reducer_op_3_01_reduce_op_00_01_dimsa9704c68eb01932857866cfd0005279c_a600e1e26626ecc7a392d8ff97fdc797b}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_tensor_tuple_reducer_op}{Tensor\+Tuple\+Reducer\+Op}}$<$ Reduce\+Op, Dims, Arg\+Type $>$ {\bfseries Xpr\+Type}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_tuple_reducer_op_3_01_reduce_op_00_01_dimsa9704c68eb01932857866cfd0005279c_a934b6f108f023e3b804ceff99a381429}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_tuple_reducer_op_3_01_reduce_op_00_01_dimsa9704c68eb01932857866cfd0005279c_a934b6f108f023e3b804ceff99a381429}} 
+typedef Xpr\+Type\+::\+Index {\bfseries Index}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_tuple_reducer_op_3_01_reduce_op_00_01_dimsa9704c68eb01932857866cfd0005279c_a10b5003c34194792adbf647cb72b9b0a}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_tuple_reducer_op_3_01_reduce_op_00_01_dimsa9704c68eb01932857866cfd0005279c_a10b5003c34194792adbf647cb72b9b0a}} 
+typedef Xpr\+Type\+::\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_tuple_reducer_op_3_01_reduce_op_00_01_dimsa9704c68eb01932857866cfd0005279c_a0c2eaec9173a2840074d7254e17581e9}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_tuple_reducer_op_3_01_reduce_op_00_01_dimsa9704c68eb01932857866cfd0005279c_a0c2eaec9173a2840074d7254e17581e9}} 
+typedef Xpr\+Type\+::\+Coeff\+Return\+Type {\bfseries Coeff\+Return\+Type}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_tuple_reducer_op_3_01_reduce_op_00_01_dimsa9704c68eb01932857866cfd0005279c_a49546f54776761d6e5a5663ae439eb33}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_tuple_reducer_op_3_01_reduce_op_00_01_dimsa9704c68eb01932857866cfd0005279c_a49546f54776761d6e5a5663ae439eb33}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_tensor_index_tuple_op}{Tensor\+Index\+Tuple\+Op}}$<$ Arg\+Type $>$\+::Coeff\+Return\+Type {\bfseries Tuple\+Type}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_tuple_reducer_op_3_01_reduce_op_00_01_dimsa9704c68eb01932857866cfd0005279c_a38230a724b58bef169815c55f877a7fa}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_tuple_reducer_op_3_01_reduce_op_00_01_dimsa9704c68eb01932857866cfd0005279c_a38230a724b58bef169815c55f877a7fa}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{Tensor\+Evaluator}}$<$ const \mbox{\hyperlink{class_eigen_1_1_tensor_reduction_op}{Tensor\+Reduction\+Op}}$<$ Reduce\+Op, Dims, const \mbox{\hyperlink{class_eigen_1_1_tensor_index_tuple_op}{Tensor\+Index\+Tuple\+Op}}$<$ Arg\+Type $>$ $>$, Device $>$\+::Dimensions {\bfseries Dimensions}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_tuple_reducer_op_3_01_reduce_op_00_01_dimsa9704c68eb01932857866cfd0005279c_a5d33bb92ec2a53c807a33b4c1d932d54}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_tuple_reducer_op_3_01_reduce_op_00_01_dimsa9704c68eb01932857866cfd0005279c_a5d33bb92ec2a53c807a33b4c1d932d54}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{Tensor\+Evaluator}}$<$ const \mbox{\hyperlink{class_eigen_1_1_tensor_index_tuple_op}{Tensor\+Index\+Tuple\+Op}}$<$ Arg\+Type $>$, Device $>$\+::Dimensions {\bfseries Input\+Dimensions}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_tuple_reducer_op_3_01_reduce_op_00_01_dimsa9704c68eb01932857866cfd0005279c_a627b065067dd0b74adfb2f639aa2a4a8}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_tuple_reducer_op_3_01_reduce_op_00_01_dimsa9704c68eb01932857866cfd0005279c_a627b065067dd0b74adfb2f639aa2a4a8}} 
+typedef \mbox{\hyperlink{class_eigen_1_1array}{array}}$<$ Index, Num\+Dims $>$ {\bfseries Stride\+Dims}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_tuple_reducer_op_3_01_reduce_op_00_01_dimsa9704c68eb01932857866cfd0005279c_a69428ce8bae73b5b1bc120c9f8ea0588}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_tuple_reducer_op_3_01_reduce_op_00_01_dimsa9704c68eb01932857866cfd0005279c_a69428ce8bae73b5b1bc120c9f8ea0588}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE {\bfseries Tensor\+Evaluator} (const \mbox{\hyperlink{class_eigen_1_1_tensor_tuple_reducer_op}{Xpr\+Type}} \&op, const Device \&device)
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_tuple_reducer_op_3_01_reduce_op_00_01_dimsa9704c68eb01932857866cfd0005279c_adcd830aa608af9db23b3209f70dfbbb0}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_tuple_reducer_op_3_01_reduce_op_00_01_dimsa9704c68eb01932857866cfd0005279c_adcd830aa608af9db23b3209f70dfbbb0}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Dimensions \& {\bfseries dimensions} () const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_tuple_reducer_op_3_01_reduce_op_00_01_dimsa9704c68eb01932857866cfd0005279c_aa4ca264ed7dc2d73207c3cb9eb78e922}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_tuple_reducer_op_3_01_reduce_op_00_01_dimsa9704c68eb01932857866cfd0005279c_aa4ca264ed7dc2d73207c3cb9eb78e922}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE bool {\bfseries eval\+Sub\+Exprs\+If\+Needed} (Scalar $\ast$)
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_tuple_reducer_op_3_01_reduce_op_00_01_dimsa9704c68eb01932857866cfd0005279c_a2299c744ffadc0e784b5e6d437123345}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_tuple_reducer_op_3_01_reduce_op_00_01_dimsa9704c68eb01932857866cfd0005279c_a2299c744ffadc0e784b5e6d437123345}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE void {\bfseries cleanup} ()
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_tuple_reducer_op_3_01_reduce_op_00_01_dimsa9704c68eb01932857866cfd0005279c_a80d13a2cea4c0dfbb8320e7f2571753e}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_tuple_reducer_op_3_01_reduce_op_00_01_dimsa9704c68eb01932857866cfd0005279c_a80d13a2cea4c0dfbb8320e7f2571753e}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Coeff\+Return\+Type {\bfseries coeff} (Index index) const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_tuple_reducer_op_3_01_reduce_op_00_01_dimsa9704c68eb01932857866cfd0005279c_a21ea6b5c1a8783815f53e2527b065cad}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_tuple_reducer_op_3_01_reduce_op_00_01_dimsa9704c68eb01932857866cfd0005279c_a21ea6b5c1a8783815f53e2527b065cad}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Scalar $\ast$ {\bfseries data} () const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_tuple_reducer_op_3_01_reduce_op_00_01_dimsa9704c68eb01932857866cfd0005279c_ac4e514ea6bbadd5eea2bb1fc8cfed73c}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_tuple_reducer_op_3_01_reduce_op_00_01_dimsa9704c68eb01932857866cfd0005279c_ac4e514ea6bbadd5eea2bb1fc8cfed73c}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_tensor_op_cost}{Tensor\+Op\+Cost}} {\bfseries cost\+Per\+Coeff} (bool vectorized) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_tuple_reducer_op_3_01_reduce_op_00_01_dimsa9704c68eb01932857866cfd0005279c_ae43efd1cfc4db9ae0d0a066534a9cdf9}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_tuple_reducer_op_3_01_reduce_op_00_01_dimsa9704c68eb01932857866cfd0005279c_ae43efd1cfc4db9ae0d0a066534a9cdf9}} 
+static const int {\bfseries Num\+Dims} = \mbox{\hyperlink{struct_eigen_1_1internal_1_1array__size}{internal\+::array\+\_\+size}}$<$Input\+Dimensions$>$\+::value
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_tuple_reducer_op_3_01_reduce_op_00_01_dimsa9704c68eb01932857866cfd0005279c_af74845b9c49f3fd077076d7dd9bf5a66}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_tuple_reducer_op_3_01_reduce_op_00_01_dimsa9704c68eb01932857866cfd0005279c_af74845b9c49f3fd077076d7dd9bf5a66}} 
+\mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{Tensor\+Evaluator}}$<$ const \mbox{\hyperlink{class_eigen_1_1_tensor_index_tuple_op}{Tensor\+Index\+Tuple\+Op}}$<$ Arg\+Type $>$, Device $>$ {\bfseries m\+\_\+orig\+\_\+impl}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_tuple_reducer_op_3_01_reduce_op_00_01_dimsa9704c68eb01932857866cfd0005279c_ab2f62d982c3671b6c2d9a8727bef29fe}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_tuple_reducer_op_3_01_reduce_op_00_01_dimsa9704c68eb01932857866cfd0005279c_ab2f62d982c3671b6c2d9a8727bef29fe}} 
+\mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{Tensor\+Evaluator}}$<$ const \mbox{\hyperlink{class_eigen_1_1_tensor_reduction_op}{Tensor\+Reduction\+Op}}$<$ Reduce\+Op, Dims, const \mbox{\hyperlink{class_eigen_1_1_tensor_index_tuple_op}{Tensor\+Index\+Tuple\+Op}}$<$ Arg\+Type $>$ $>$, Device $>$ {\bfseries m\+\_\+impl}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_tuple_reducer_op_3_01_reduce_op_00_01_dimsa9704c68eb01932857866cfd0005279c_aa2a90b1060da4141885527d0d3faace9}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_tuple_reducer_op_3_01_reduce_op_00_01_dimsa9704c68eb01932857866cfd0005279c_aa2a90b1060da4141885527d0d3faace9}} 
+const int {\bfseries m\+\_\+return\+\_\+dim}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_tuple_reducer_op_3_01_reduce_op_00_01_dimsa9704c68eb01932857866cfd0005279c_aff464e94b664763886646d0b0d365353}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_tuple_reducer_op_3_01_reduce_op_00_01_dimsa9704c68eb01932857866cfd0005279c_aff464e94b664763886646d0b0d365353}} 
+\mbox{\hyperlink{class_eigen_1_1array}{Stride\+Dims}} {\bfseries m\+\_\+strides}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_tuple_reducer_op_3_01_reduce_op_00_01_dimsa9704c68eb01932857866cfd0005279c_a357c7fe4575763b466c9cc7e300eb89f}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_tuple_reducer_op_3_01_reduce_op_00_01_dimsa9704c68eb01932857866cfd0005279c_a357c7fe4575763b466c9cc7e300eb89f}} 
+Index {\bfseries m\+\_\+stride\+\_\+mod}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_tuple_reducer_op_3_01_reduce_op_00_01_dimsa9704c68eb01932857866cfd0005279c_aa3170e4b091644f32337a4c42b7a2d79}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_tuple_reducer_op_3_01_reduce_op_00_01_dimsa9704c68eb01932857866cfd0005279c_aa3170e4b091644f32337a4c42b7a2d79}} 
+Index {\bfseries m\+\_\+stride\+\_\+div}
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/\+C\+X\+X11/src/\+Tensor/Tensor\+Arg\+Max.\+h\end{DoxyCompactItemize}

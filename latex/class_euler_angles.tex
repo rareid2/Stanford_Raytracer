@@ -1,0 +1,59 @@
+\hypertarget{class_euler_angles}{}\doxysection{Euler\+Angles$<$ \+\_\+\+Scalar $>$ Class Template Reference}
+\label{class_euler_angles}\index{EulerAngles$<$ \_Scalar $>$@{EulerAngles$<$ \_Scalar $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_euler_angles_a399e54228ef972a0f629907de2af2cdd}\label{class_euler_angles_a399e54228ef972a0f629907de2af2cdd}} 
+enum \{ {\bfseries Dim} = 3
+ \}
+\item 
+\mbox{\Hypertarget{class_euler_angles_a5ffd53b93bfcb4963e95424228879216}\label{class_euler_angles_a5ffd53b93bfcb4963e95424228879216}} 
+typedef \+\_\+\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_euler_angles_a6d123fcba956986fd611a39a8588e7b9}\label{class_euler_angles_a6d123fcba956986fd611a39a8588e7b9}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ Scalar, 3, 3 $>$ {\bfseries Matrix3}
+\item 
+\mbox{\Hypertarget{class_euler_angles_ac3064c82bddff4dd7667c15b75e969b6}\label{class_euler_angles_ac3064c82bddff4dd7667c15b75e969b6}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ Scalar, 3, 1 $>$ {\bfseries Vector3}
+\item 
+\mbox{\Hypertarget{class_euler_angles_a450bc52c31edd4dab731e580f5197f48}\label{class_euler_angles_a450bc52c31edd4dab731e580f5197f48}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_quaternion}{Quaternion}}$<$ Scalar $>$ {\bfseries Quaternion\+Type}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_euler_angles_a9989e37ec12c0ac9b71d8427a2d8d0ef}\label{class_euler_angles_a9989e37ec12c0ac9b71d8427a2d8d0ef}} 
+{\bfseries Euler\+Angles} (Scalar a0, Scalar a1, Scalar a2)
+\item 
+\mbox{\Hypertarget{class_euler_angles_acd4096f3d77cb63a57ffaaf494606f94}\label{class_euler_angles_acd4096f3d77cb63a57ffaaf494606f94}} 
+{\bfseries Euler\+Angles} (const \mbox{\hyperlink{class_eigen_1_1_quaternion}{Quaternion\+Type}} \&q)
+\item 
+\mbox{\Hypertarget{class_euler_angles_a393c0dfb2c025f3c8e62e517803e3b8c}\label{class_euler_angles_a393c0dfb2c025f3c8e62e517803e3b8c}} 
+const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector3}} \& {\bfseries coeffs} () const
+\item 
+\mbox{\Hypertarget{class_euler_angles_a7000f149f7e8b0c1c18a559021771bb9}\label{class_euler_angles_a7000f149f7e8b0c1c18a559021771bb9}} 
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Vector3}} \& {\bfseries coeffs} ()
+\item 
+\mbox{\Hypertarget{class_euler_angles_a1eee54f4ee3b2fddc8e463a95a654575}\label{class_euler_angles_a1eee54f4ee3b2fddc8e463a95a654575}} 
+\mbox{\hyperlink{class_eigen_1_1_euler_angles}{Euler\+Angles}} \& {\bfseries operator=} (const \mbox{\hyperlink{class_eigen_1_1_quaternion}{Quaternion\+Type}} \&q)
+\item 
+\mbox{\Hypertarget{class_euler_angles_a205606bcdcfc9ae5cd0d82d54f8639ed}\label{class_euler_angles_a205606bcdcfc9ae5cd0d82d54f8639ed}} 
+\mbox{\hyperlink{class_eigen_1_1_euler_angles}{Euler\+Angles}} \& {\bfseries operator=} (const \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix3}} \&m)
+\item 
+\mbox{\Hypertarget{class_euler_angles_a4757b31c441ff9e5b75d2e24f9bea545}\label{class_euler_angles_a4757b31c441ff9e5b75d2e24f9bea545}} 
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix3}} {\bfseries to\+Rotation\+Matrix} (void) const
+\item 
+\mbox{\Hypertarget{class_euler_angles_a485da08548c361bbe1a9d62715c8e0eb}\label{class_euler_angles_a485da08548c361bbe1a9d62715c8e0eb}} 
+{\bfseries operator Quaternion\+Type} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_euler_angles_ae880c0a0016e316139a3b0da63f7cc8c}\label{class_euler_angles_ae880c0a0016e316139a3b0da63f7cc8c}} 
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Vector3}} {\bfseries m\+\_\+angles}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/demos/opengl/quaternion\+\_\+demo.\+cpp\end{DoxyCompactItemize}

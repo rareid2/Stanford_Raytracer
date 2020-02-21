@@ -1,0 +1,77 @@
+\hypertarget{class_eigen_1_1_vector_block}{}\doxysection{Eigen\+::Vector\+Block Class Reference}
+\label{class_eigen_1_1_vector_block}\index{Eigen::VectorBlock@{Eigen::VectorBlock}}
+
+
+Expression of a fixed-\/size or dynamic-\/size sub-\/vector.  
+
+
+
+
+{\ttfamily \#include $<$Vector\+Block.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_vector_block_a4428c80d409839db7221649f21dfb241}{Vector\+Block}} (\mbox{\hyperlink{struct_vector_type}{Vector\+Type}} \&vector, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} start, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} size)
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_vector_block_aaa89fb1b40081550750ab6b47aa77bde}{Vector\+Block}} (\mbox{\hyperlink{struct_vector_type}{Vector\+Type}} \&vector, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} start)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Expression of a fixed-\/size or dynamic-\/size sub-\/vector. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \mbox{\hyperlink{struct_vector_type}{Vector\+Type}}} & the type of the object in which we are taking a sub-\/vector \\
+\hline
+{\em Size} & size of the sub-\/vector we are taking at compile time (optional)\\
+\hline
+\end{DoxyTemplParams}
+This class represents an expression of either a fixed-\/size or dynamic-\/size sub-\/vector. It is the return type of Dense\+Base\+::segment(\+Index,\+Index) and Dense\+Base\+::segment$<$int$>$(\+Index) and most of the time this is the only way it is used.
+
+However, if you want to directly maniputate sub-\/vector expressions, for instance if you want to write a function returning such an expression, you will need to use this class.
+
+Here is an example illustrating the dynamic case\+: 
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+
+
+\begin{DoxyNote}{Note}
+Even though this expression has dynamic size, in the case where {\itshape \mbox{\hyperlink{struct_vector_type}{Vector\+Type}}} has fixed size, this expression inherits a fixed maximal size which means that evaluating it does not cause a dynamic memory allocation.
+\end{DoxyNote}
+Here is an example illustrating the fixed-\/size case\+: 
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+
+
+\begin{DoxySeeAlso}{See also}
+class \mbox{\hyperlink{class_eigen_1_1_block}{Block}}, Dense\+Base\+::segment(\+Index,\+Index,\+Index,\+Index), Dense\+Base\+::segment(\+Index,\+Index) 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_vector_block_a4428c80d409839db7221649f21dfb241}\label{class_eigen_1_1_vector_block_a4428c80d409839db7221649f21dfb241}} 
+\index{Eigen::VectorBlock@{Eigen::VectorBlock}!VectorBlock@{VectorBlock}}
+\index{VectorBlock@{VectorBlock}!Eigen::VectorBlock@{Eigen::VectorBlock}}
+\doxysubsubsection{\texorpdfstring{VectorBlock()}{VectorBlock()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Eigen\+::\+Vector\+Block\+::\+Vector\+Block (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_vector_type}{Vector\+Type}} \&}]{vector,  }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{start,  }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Dynamic-\/size constructor \mbox{\Hypertarget{class_eigen_1_1_vector_block_aaa89fb1b40081550750ab6b47aa77bde}\label{class_eigen_1_1_vector_block_aaa89fb1b40081550750ab6b47aa77bde}} 
+\index{Eigen::VectorBlock@{Eigen::VectorBlock}!VectorBlock@{VectorBlock}}
+\index{VectorBlock@{VectorBlock}!Eigen::VectorBlock@{Eigen::VectorBlock}}
+\doxysubsubsection{\texorpdfstring{VectorBlock()}{VectorBlock()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Eigen\+::\+Vector\+Block\+::\+Vector\+Block (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_vector_type}{Vector\+Type}} \&}]{vector,  }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{start }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Fixed-\/size constructor 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/util/Forward\+Declarations.\+h\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/Vector\+Block.\+h\end{DoxyCompactItemize}

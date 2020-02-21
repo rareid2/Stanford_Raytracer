@@ -1,0 +1,38 @@
+\hypertarget{struct_eigen_1_1internal_1_1traits_3_01_tensor_fixed_size_3_01_scalar___00_01_dimensions_00_01_ocde4e51f48a16cc8d4f5161774f58603}{}\doxysection{Eigen\+::internal\+::traits$<$ Tensor\+Fixed\+Size$<$ Scalar\+\_\+, Dimensions, Options\+\_\+, Index\+Type\+\_\+ $>$ $>$ Struct Template Reference}
+\label{struct_eigen_1_1internal_1_1traits_3_01_tensor_fixed_size_3_01_scalar___00_01_dimensions_00_01_ocde4e51f48a16cc8d4f5161774f58603}\index{Eigen::internal::traits$<$ TensorFixedSize$<$ Scalar\_, Dimensions, Options\_, IndexType\_ $>$ $>$@{Eigen::internal::traits$<$ TensorFixedSize$<$ Scalar\_, Dimensions, Options\_, IndexType\_ $>$ $>$}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits_3_01_tensor_fixed_size_3_01_scalar___00_01_dimensions_00_01_oec1d8e96ca2c261993f05f9c1095a180}{Make\+Pointer}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_tensor_fixed_size_3_01_scalar___00_01_dimensions_00_01_ocde4e51f48a16cc8d4f5161774f58603_aca248eeec19f7f5dd2c72fb2a0058d3a}\label{struct_eigen_1_1internal_1_1traits_3_01_tensor_fixed_size_3_01_scalar___00_01_dimensions_00_01_ocde4e51f48a16cc8d4f5161774f58603_aca248eeec19f7f5dd2c72fb2a0058d3a}} 
+enum \{ {\bfseries Options} = Options\+\_\+, 
+{\bfseries Flags} = compute\+\_\+tensor\+\_\+flags$<$Scalar\+\_\+, Options\+\_\+$>$\+::ret $\vert$ (is\+\_\+const$<$Scalar\+\_\+$>$\+::value ? 0\+: Lvalue\+Bit)
+ \}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_tensor_fixed_size_3_01_scalar___00_01_dimensions_00_01_ocde4e51f48a16cc8d4f5161774f58603_a569ac2851885b24f84484916eb0de807}\label{struct_eigen_1_1internal_1_1traits_3_01_tensor_fixed_size_3_01_scalar___00_01_dimensions_00_01_ocde4e51f48a16cc8d4f5161774f58603_a569ac2851885b24f84484916eb0de807}} 
+typedef Scalar\+\_\+ {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_tensor_fixed_size_3_01_scalar___00_01_dimensions_00_01_ocde4e51f48a16cc8d4f5161774f58603_a7502c4604baa7106fc27d4b6bab55899}\label{struct_eigen_1_1internal_1_1traits_3_01_tensor_fixed_size_3_01_scalar___00_01_dimensions_00_01_ocde4e51f48a16cc8d4f5161774f58603_a7502c4604baa7106fc27d4b6bab55899}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_dense}{Dense}} {\bfseries Storage\+Kind}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_tensor_fixed_size_3_01_scalar___00_01_dimensions_00_01_ocde4e51f48a16cc8d4f5161774f58603_ace8c91d4b0cad05e2a7735b135a03f76}\label{struct_eigen_1_1internal_1_1traits_3_01_tensor_fixed_size_3_01_scalar___00_01_dimensions_00_01_ocde4e51f48a16cc8d4f5161774f58603_ace8c91d4b0cad05e2a7735b135a03f76}} 
+typedef Index\+Type\+\_\+ {\bfseries Index}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_tensor_fixed_size_3_01_scalar___00_01_dimensions_00_01_ocde4e51f48a16cc8d4f5161774f58603_a1f0415fcc8c2ab45d03e7b32ff70aaaf}\label{struct_eigen_1_1internal_1_1traits_3_01_tensor_fixed_size_3_01_scalar___00_01_dimensions_00_01_ocde4e51f48a16cc8d4f5161774f58603_a1f0415fcc8c2ab45d03e7b32ff70aaaf}} 
+static const int {\bfseries Num\+Dimensions} = \mbox{\hyperlink{struct_eigen_1_1internal_1_1array__size}{array\+\_\+size}}$<$Dimensions$>$\+::value
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_tensor_fixed_size_3_01_scalar___00_01_dimensions_00_01_ocde4e51f48a16cc8d4f5161774f58603_ac8a9943d6774e680342bf4c47f345d86}\label{struct_eigen_1_1internal_1_1traits_3_01_tensor_fixed_size_3_01_scalar___00_01_dimensions_00_01_ocde4e51f48a16cc8d4f5161774f58603_ac8a9943d6774e680342bf4c47f345d86}} 
+static const int {\bfseries Layout} = Options\+\_\+ \& \mbox{\hyperlink{group__enums_ggaacded1a18ae58b0f554751f6cdf9eb13a77c993a8d9f6efe5c1159fb2ab07dd4f}{Row\+Major}} ? \mbox{\hyperlink{group__enums_ggaacded1a18ae58b0f554751f6cdf9eb13a77c993a8d9f6efe5c1159fb2ab07dd4f}{Row\+Major}} \+: \mbox{\hyperlink{group__enums_ggaacded1a18ae58b0f554751f6cdf9eb13a0103672ae41005ab03b4176c765afd62}{Col\+Major}}
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/\+C\+X\+X11/src/\+Tensor/Tensor\+Traits.\+h\end{DoxyCompactItemize}

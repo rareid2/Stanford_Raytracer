@@ -1,0 +1,38 @@
+\hypertarget{struct_eigen_1_1internal_1_1selfadjoint__product__impl_3_01_lhs_00_01_lhs_mode_00_01false_00_01_0e7941e7b3bc2131c413f23ec856f76c}{}\doxysection{Eigen\+::internal\+::selfadjoint\+\_\+product\+\_\+impl$<$ Lhs, Lhs\+Mode, false, Rhs, Rhs\+Mode, false $>$ Struct Template Reference}
+\label{struct_eigen_1_1internal_1_1selfadjoint__product__impl_3_01_lhs_00_01_lhs_mode_00_01false_00_01_0e7941e7b3bc2131c413f23ec856f76c}\index{Eigen::internal::selfadjoint\_product\_impl$<$ Lhs, LhsMode, false, Rhs, RhsMode, false $>$@{Eigen::internal::selfadjoint\_product\_impl$<$ Lhs, LhsMode, false, Rhs, RhsMode, false $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1selfadjoint__product__impl_3_01_lhs_00_01_lhs_mode_00_01false_00_01_0e7941e7b3bc2131c413f23ec856f76c_a37dbd2731a10730c10ca1bc2a518be51}\label{struct_eigen_1_1internal_1_1selfadjoint__product__impl_3_01_lhs_00_01_lhs_mode_00_01false_00_01_0e7941e7b3bc2131c413f23ec856f76c_a37dbd2731a10730c10ca1bc2a518be51}} 
+enum \{ {\bfseries Lhs\+Is\+Upper} = (Lhs\+Mode\&(Upper$\vert$\+Lower))==Upper, 
+{\bfseries Lhs\+Is\+Self\+Adjoint} = (Lhs\+Mode\&Self\+Adjoint)==Self\+Adjoint, 
+{\bfseries Rhs\+Is\+Upper} = (Rhs\+Mode\&(Upper$\vert$\+Lower))==Upper, 
+{\bfseries Rhs\+Is\+Self\+Adjoint} = (Rhs\+Mode\&Self\+Adjoint)==Self\+Adjoint
+ \}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1selfadjoint__product__impl_3_01_lhs_00_01_lhs_mode_00_01false_00_01_0e7941e7b3bc2131c413f23ec856f76c_a3d659c239e416d2e9430eb37b9927838}\label{struct_eigen_1_1internal_1_1selfadjoint__product__impl_3_01_lhs_00_01_lhs_mode_00_01false_00_01_0e7941e7b3bc2131c413f23ec856f76c_a3d659c239e416d2e9430eb37b9927838}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_product}{Product}}$<$ Lhs, Rhs $>$\+::Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1selfadjoint__product__impl_3_01_lhs_00_01_lhs_mode_00_01false_00_01_0e7941e7b3bc2131c413f23ec856f76c_a1a2efad3f69a316f6eebf803d8ebe75b}\label{struct_eigen_1_1internal_1_1selfadjoint__product__impl_3_01_lhs_00_01_lhs_mode_00_01false_00_01_0e7941e7b3bc2131c413f23ec856f76c_a1a2efad3f69a316f6eebf803d8ebe75b}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1blas__traits}{internal\+::blas\+\_\+traits}}$<$ Lhs $>$ {\bfseries Lhs\+Blas\+Traits}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1selfadjoint__product__impl_3_01_lhs_00_01_lhs_mode_00_01false_00_01_0e7941e7b3bc2131c413f23ec856f76c_a9835d848b228177d3f1203c57f169176}\label{struct_eigen_1_1internal_1_1selfadjoint__product__impl_3_01_lhs_00_01_lhs_mode_00_01false_00_01_0e7941e7b3bc2131c413f23ec856f76c_a9835d848b228177d3f1203c57f169176}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Lhs\+Blas\+Traits\+::\+Direct\+Linear\+Access\+Type}} {\bfseries Actual\+Lhs\+Type}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1selfadjoint__product__impl_3_01_lhs_00_01_lhs_mode_00_01false_00_01_0e7941e7b3bc2131c413f23ec856f76c_af0af8f7c324b22f7d223d07ce9006807}\label{struct_eigen_1_1internal_1_1selfadjoint__product__impl_3_01_lhs_00_01_lhs_mode_00_01false_00_01_0e7941e7b3bc2131c413f23ec856f76c_af0af8f7c324b22f7d223d07ce9006807}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1blas__traits}{internal\+::blas\+\_\+traits}}$<$ Rhs $>$ {\bfseries Rhs\+Blas\+Traits}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1selfadjoint__product__impl_3_01_lhs_00_01_lhs_mode_00_01false_00_01_0e7941e7b3bc2131c413f23ec856f76c_a91361b7706e773ff2e1f10721ec87637}\label{struct_eigen_1_1internal_1_1selfadjoint__product__impl_3_01_lhs_00_01_lhs_mode_00_01false_00_01_0e7941e7b3bc2131c413f23ec856f76c_a91361b7706e773ff2e1f10721ec87637}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Rhs\+Blas\+Traits\+::\+Direct\+Linear\+Access\+Type}} {\bfseries Actual\+Rhs\+Type}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1selfadjoint__product__impl_3_01_lhs_00_01_lhs_mode_00_01false_00_01_0e7941e7b3bc2131c413f23ec856f76c_aac01d65082977579764e985402319c55}\label{struct_eigen_1_1internal_1_1selfadjoint__product__impl_3_01_lhs_00_01_lhs_mode_00_01false_00_01_0e7941e7b3bc2131c413f23ec856f76c_aac01d65082977579764e985402319c55}} 
+{\footnotesize template$<$typename Dest $>$ }\\static void {\bfseries run} (Dest \&dst, const Lhs \&a\+\_\+lhs, const Rhs \&a\+\_\+rhs, const Scalar \&alpha)
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/products/Selfadjoint\+Matrix\+Matrix.\+h\end{DoxyCompactItemize}

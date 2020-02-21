@@ -1,0 +1,209 @@
+\hypertarget{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix}{}\doxysection{Eigen\+::internal\+::Mapped\+Super\+Nodal\+Matrix$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$ Class Template Reference}
+\label{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix}\index{Eigen::internal::MappedSuperNodalMatrix$<$ \_Scalar, \_StorageIndex $>$@{Eigen::internal::MappedSuperNodalMatrix$<$ \_Scalar, \_StorageIndex $>$}}
+
+
+a class to manipulate the L supernodal factor from the \mbox{\hyperlink{class_eigen_1_1_sparse_l_u}{Sparse\+LU}} factorization  
+
+
+
+
+{\ttfamily \#include $<$Sparse\+L\+U\+\_\+\+Supernodal\+Matrix.\+h$>$}
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_1_1_inner_iterator}{Inner\+Iterator}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_1_1_inner_iterator}{Inner\+Iterator}} class to iterate over nonzero values of the current column in the supernodal matrix L. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a1c96dd142cf9bceec28f7ffedec30fe6}\label{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a1c96dd142cf9bceec28f7ffedec30fe6}} 
+typedef \+\_\+\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a76fd329b23f390646608265a60907913}\label{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a76fd329b23f390646608265a60907913}} 
+typedef \+\_\+\+Storage\+Index {\bfseries Storage\+Index}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a7607361d9fa602aefee60d2c8582f986}\label{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a7607361d9fa602aefee60d2c8582f986}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ Storage\+Index, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}, 1 $>$ {\bfseries Index\+Vector}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_ab2e273231613bd2ef35cac3e11a1234f}\label{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_ab2e273231613bd2ef35cac3e11a1234f}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ Scalar, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}, 1 $>$ {\bfseries Scalar\+Vector}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a3bd8587a1c75dc90e5403322ee85bd7f}\label{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a3bd8587a1c75dc90e5403322ee85bd7f}} 
+{\bfseries Mapped\+Super\+Nodal\+Matrix} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} m, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} n, \mbox{\hyperlink{class_eigen_1_1_matrix}{Scalar\+Vector}} \&nzval, \mbox{\hyperlink{class_eigen_1_1_matrix}{Index\+Vector}} \&nzval\+\_\+colptr, \mbox{\hyperlink{class_eigen_1_1_matrix}{Index\+Vector}} \&rowind, \mbox{\hyperlink{class_eigen_1_1_matrix}{Index\+Vector}} \&rowind\+\_\+colptr, \mbox{\hyperlink{class_eigen_1_1_matrix}{Index\+Vector}} \&col\+\_\+to\+\_\+sup, \mbox{\hyperlink{class_eigen_1_1_matrix}{Index\+Vector}} \&sup\+\_\+to\+\_\+col)
+\item 
+void \mbox{\hyperlink{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_af1427486564e2c75b9da68f98bd04e63}{set\+Infos}} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} m, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} n, \mbox{\hyperlink{class_eigen_1_1_matrix}{Scalar\+Vector}} \&nzval, \mbox{\hyperlink{class_eigen_1_1_matrix}{Index\+Vector}} \&nzval\+\_\+colptr, \mbox{\hyperlink{class_eigen_1_1_matrix}{Index\+Vector}} \&rowind, \mbox{\hyperlink{class_eigen_1_1_matrix}{Index\+Vector}} \&rowind\+\_\+colptr, \mbox{\hyperlink{class_eigen_1_1_matrix}{Index\+Vector}} \&col\+\_\+to\+\_\+sup, \mbox{\hyperlink{class_eigen_1_1_matrix}{Index\+Vector}} \&sup\+\_\+to\+\_\+col)
+\item 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a5cc8f3887a09bd7d078a6744c158b5a0}{rows}} ()
+\item 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a57b3811f03be2d94c0cdd105aba1b932}{cols}} ()
+\item 
+Scalar $\ast$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a6e9ce7d448b76811802d11baf3da97d3}{value\+Ptr}} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a3edbda057db71bc0ad442029cf2d0f2d}\label{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a3edbda057db71bc0ad442029cf2d0f2d}} 
+const Scalar $\ast$ {\bfseries value\+Ptr} () const
+\item 
+Storage\+Index $\ast$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a87c0272aedd8ee01d4245bd719738b5d}{col\+Index\+Ptr}} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a764f612ebc0bf7ec9118b2cabc280861}\label{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a764f612ebc0bf7ec9118b2cabc280861}} 
+const Storage\+Index $\ast$ {\bfseries col\+Index\+Ptr} () const
+\item 
+Storage\+Index $\ast$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a8e6b4f399aa468a10e58db627d43a12a}{row\+Index}} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a3194b3b2c7874afdbd0d1a19c53fd140}\label{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a3194b3b2c7874afdbd0d1a19c53fd140}} 
+const Storage\+Index $\ast$ {\bfseries row\+Index} () const
+\item 
+Storage\+Index $\ast$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a826186a823bf49f81b20673cce741250}{row\+Index\+Ptr}} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a45c1a5bec04eaf3da78ad2f207c30a74}\label{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a45c1a5bec04eaf3da78ad2f207c30a74}} 
+const Storage\+Index $\ast$ {\bfseries row\+Index\+Ptr} () const
+\item 
+Storage\+Index $\ast$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a1e2c012b63809715188aa7f0c722868d}{col\+To\+Sup}} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a1da320fc4656efe1013215ef001b7195}\label{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a1da320fc4656efe1013215ef001b7195}} 
+const Storage\+Index $\ast$ {\bfseries col\+To\+Sup} () const
+\item 
+Storage\+Index $\ast$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_ab2b1bdd663288f1f2af09ec42a0a62a5}{sup\+To\+Col}} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a0a613183f2c014fda26c7a539d555576}\label{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a0a613183f2c014fda26c7a539d555576}} 
+const Storage\+Index $\ast$ {\bfseries sup\+To\+Col} () const
+\item 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a9c0b29102914a6ef9cfd6280fa016fa8}{nsuper}} () const
+\item 
+{\footnotesize template$<$typename Dest $>$ }\\void \mbox{\hyperlink{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_ab93581127fd87b6bc467b6f67fcf4eeb}{solve\+In\+Place}} (\mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Dest $>$ \&X) const
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_eigen_1_1_solve}{Solve}} with the supernode triangular matrix. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_ad31d85777ce2a4b0357c89365a132b3e}\label{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_ad31d85777ce2a4b0357c89365a132b3e}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries m\+\_\+row}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_abfb56f20d03f137f7b93cbb7cb0a1c61}\label{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_abfb56f20d03f137f7b93cbb7cb0a1c61}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries m\+\_\+col}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a20bb14293e72852b49b33dc3ee7b1ebd}\label{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a20bb14293e72852b49b33dc3ee7b1ebd}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries m\+\_\+nsuper}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a4fa03bacd2bd0dfae4fa17151624074a}\label{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a4fa03bacd2bd0dfae4fa17151624074a}} 
+Scalar $\ast$ {\bfseries m\+\_\+nzval}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_aad14e5da505f3b55e52d3b8817c33d77}\label{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_aad14e5da505f3b55e52d3b8817c33d77}} 
+Storage\+Index $\ast$ {\bfseries m\+\_\+nzval\+\_\+colptr}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a7a66ee1ec79e99d4b32685f857967960}\label{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a7a66ee1ec79e99d4b32685f857967960}} 
+Storage\+Index $\ast$ {\bfseries m\+\_\+rowind}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_adc2c903ec207f65afc4220d4a91370cb}\label{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_adc2c903ec207f65afc4220d4a91370cb}} 
+Storage\+Index $\ast$ {\bfseries m\+\_\+rowind\+\_\+colptr}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a6f74d2eaccd7847651311f188f73d257}\label{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a6f74d2eaccd7847651311f188f73d257}} 
+Storage\+Index $\ast$ {\bfseries m\+\_\+col\+\_\+to\+\_\+sup}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a5e6ee53bf690b246105d7b41c88a7a2b}\label{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a5e6ee53bf690b246105d7b41c88a7a2b}} 
+Storage\+Index $\ast$ {\bfseries m\+\_\+sup\+\_\+to\+\_\+col}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Scalar, typename \+\_\+\+Storage\+Index$>$\newline
+class Eigen\+::internal\+::\+Mapped\+Super\+Nodal\+Matrix$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$}
+
+a class to manipulate the L supernodal factor from the \mbox{\hyperlink{class_eigen_1_1_sparse_l_u}{Sparse\+LU}} factorization 
+
+This class contain the data to easily store and manipulate the supernodes during the factorization and solution phase of \mbox{\hyperlink{struct_eigen_1_1_sparse}{Sparse}} LU. Only the lower triangular matrix has supernodes.
+
+N\+O\+TE \+: This class corresponds to the S\+Cformat structure in \mbox{\hyperlink{class_eigen_1_1_super_l_u}{Super\+LU}} 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a87c0272aedd8ee01d4245bd719738b5d}\label{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a87c0272aedd8ee01d4245bd719738b5d}} 
+\index{Eigen::internal::MappedSuperNodalMatrix$<$ \_Scalar, \_StorageIndex $>$@{Eigen::internal::MappedSuperNodalMatrix$<$ \_Scalar, \_StorageIndex $>$}!colIndexPtr@{colIndexPtr}}
+\index{colIndexPtr@{colIndexPtr}!Eigen::internal::MappedSuperNodalMatrix$<$ \_Scalar, \_StorageIndex $>$@{Eigen::internal::MappedSuperNodalMatrix$<$ \_Scalar, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{colIndexPtr()}{colIndexPtr()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Storage\+Index $>$ \\
+Storage\+Index$\ast$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix}{Eigen\+::internal\+::\+Mapped\+Super\+Nodal\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$\+::col\+Index\+Ptr (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Return the pointers to the beginning of each column in \mbox{\hyperlink{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a6e9ce7d448b76811802d11baf3da97d3}{value\+Ptr()}} \mbox{\Hypertarget{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a57b3811f03be2d94c0cdd105aba1b932}\label{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a57b3811f03be2d94c0cdd105aba1b932}} 
+\index{Eigen::internal::MappedSuperNodalMatrix$<$ \_Scalar, \_StorageIndex $>$@{Eigen::internal::MappedSuperNodalMatrix$<$ \_Scalar, \_StorageIndex $>$}!cols@{cols}}
+\index{cols@{cols}!Eigen::internal::MappedSuperNodalMatrix$<$ \_Scalar, \_StorageIndex $>$@{Eigen::internal::MappedSuperNodalMatrix$<$ \_Scalar, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{cols()}{cols()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Storage\+Index $>$ \\
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix}{Eigen\+::internal\+::\+Mapped\+Super\+Nodal\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$\+::cols (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Number of columns \mbox{\Hypertarget{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a1e2c012b63809715188aa7f0c722868d}\label{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a1e2c012b63809715188aa7f0c722868d}} 
+\index{Eigen::internal::MappedSuperNodalMatrix$<$ \_Scalar, \_StorageIndex $>$@{Eigen::internal::MappedSuperNodalMatrix$<$ \_Scalar, \_StorageIndex $>$}!colToSup@{colToSup}}
+\index{colToSup@{colToSup}!Eigen::internal::MappedSuperNodalMatrix$<$ \_Scalar, \_StorageIndex $>$@{Eigen::internal::MappedSuperNodalMatrix$<$ \_Scalar, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{colToSup()}{colToSup()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Storage\+Index $>$ \\
+Storage\+Index$\ast$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix}{Eigen\+::internal\+::\+Mapped\+Super\+Nodal\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$\+::col\+To\+Sup (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Return the array of column-\/to-\/supernode mapping \mbox{\Hypertarget{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a9c0b29102914a6ef9cfd6280fa016fa8}\label{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a9c0b29102914a6ef9cfd6280fa016fa8}} 
+\index{Eigen::internal::MappedSuperNodalMatrix$<$ \_Scalar, \_StorageIndex $>$@{Eigen::internal::MappedSuperNodalMatrix$<$ \_Scalar, \_StorageIndex $>$}!nsuper@{nsuper}}
+\index{nsuper@{nsuper}!Eigen::internal::MappedSuperNodalMatrix$<$ \_Scalar, \_StorageIndex $>$@{Eigen::internal::MappedSuperNodalMatrix$<$ \_Scalar, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{nsuper()}{nsuper()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Storage\+Index $>$ \\
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix}{Eigen\+::internal\+::\+Mapped\+Super\+Nodal\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$\+::nsuper (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Return the number of supernodes \mbox{\Hypertarget{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a8e6b4f399aa468a10e58db627d43a12a}\label{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a8e6b4f399aa468a10e58db627d43a12a}} 
+\index{Eigen::internal::MappedSuperNodalMatrix$<$ \_Scalar, \_StorageIndex $>$@{Eigen::internal::MappedSuperNodalMatrix$<$ \_Scalar, \_StorageIndex $>$}!rowIndex@{rowIndex}}
+\index{rowIndex@{rowIndex}!Eigen::internal::MappedSuperNodalMatrix$<$ \_Scalar, \_StorageIndex $>$@{Eigen::internal::MappedSuperNodalMatrix$<$ \_Scalar, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{rowIndex()}{rowIndex()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Storage\+Index $>$ \\
+Storage\+Index$\ast$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix}{Eigen\+::internal\+::\+Mapped\+Super\+Nodal\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$\+::row\+Index (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Return the array of compressed row indices of all supernodes \mbox{\Hypertarget{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a826186a823bf49f81b20673cce741250}\label{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a826186a823bf49f81b20673cce741250}} 
+\index{Eigen::internal::MappedSuperNodalMatrix$<$ \_Scalar, \_StorageIndex $>$@{Eigen::internal::MappedSuperNodalMatrix$<$ \_Scalar, \_StorageIndex $>$}!rowIndexPtr@{rowIndexPtr}}
+\index{rowIndexPtr@{rowIndexPtr}!Eigen::internal::MappedSuperNodalMatrix$<$ \_Scalar, \_StorageIndex $>$@{Eigen::internal::MappedSuperNodalMatrix$<$ \_Scalar, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{rowIndexPtr()}{rowIndexPtr()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Storage\+Index $>$ \\
+Storage\+Index$\ast$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix}{Eigen\+::internal\+::\+Mapped\+Super\+Nodal\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$\+::row\+Index\+Ptr (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Return the location in {\itshape rowvalue\+Ptr()} which starts each column \mbox{\Hypertarget{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a5cc8f3887a09bd7d078a6744c158b5a0}\label{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a5cc8f3887a09bd7d078a6744c158b5a0}} 
+\index{Eigen::internal::MappedSuperNodalMatrix$<$ \_Scalar, \_StorageIndex $>$@{Eigen::internal::MappedSuperNodalMatrix$<$ \_Scalar, \_StorageIndex $>$}!rows@{rows}}
+\index{rows@{rows}!Eigen::internal::MappedSuperNodalMatrix$<$ \_Scalar, \_StorageIndex $>$@{Eigen::internal::MappedSuperNodalMatrix$<$ \_Scalar, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{rows()}{rows()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Storage\+Index $>$ \\
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix}{Eigen\+::internal\+::\+Mapped\+Super\+Nodal\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$\+::rows (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Number of rows \mbox{\Hypertarget{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_af1427486564e2c75b9da68f98bd04e63}\label{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_af1427486564e2c75b9da68f98bd04e63}} 
+\index{Eigen::internal::MappedSuperNodalMatrix$<$ \_Scalar, \_StorageIndex $>$@{Eigen::internal::MappedSuperNodalMatrix$<$ \_Scalar, \_StorageIndex $>$}!setInfos@{setInfos}}
+\index{setInfos@{setInfos}!Eigen::internal::MappedSuperNodalMatrix$<$ \_Scalar, \_StorageIndex $>$@{Eigen::internal::MappedSuperNodalMatrix$<$ \_Scalar, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{setInfos()}{setInfos()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Storage\+Index $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix}{Eigen\+::internal\+::\+Mapped\+Super\+Nodal\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$\+::set\+Infos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{m,  }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{n,  }\item[{\mbox{\hyperlink{class_eigen_1_1_matrix}{Scalar\+Vector}} \&}]{nzval,  }\item[{\mbox{\hyperlink{class_eigen_1_1_matrix}{Index\+Vector}} \&}]{nzval\+\_\+colptr,  }\item[{\mbox{\hyperlink{class_eigen_1_1_matrix}{Index\+Vector}} \&}]{rowind,  }\item[{\mbox{\hyperlink{class_eigen_1_1_matrix}{Index\+Vector}} \&}]{rowind\+\_\+colptr,  }\item[{\mbox{\hyperlink{class_eigen_1_1_matrix}{Index\+Vector}} \&}]{col\+\_\+to\+\_\+sup,  }\item[{\mbox{\hyperlink{class_eigen_1_1_matrix}{Index\+Vector}} \&}]{sup\+\_\+to\+\_\+col }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Set appropriate pointers for the lower triangular supernodal matrix These infos are available at the end of the numerical factorization F\+I\+X\+ME This class will be modified such that it can be use in the course of the factorization. \mbox{\Hypertarget{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_ab93581127fd87b6bc467b6f67fcf4eeb}\label{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_ab93581127fd87b6bc467b6f67fcf4eeb}} 
+\index{Eigen::internal::MappedSuperNodalMatrix$<$ \_Scalar, \_StorageIndex $>$@{Eigen::internal::MappedSuperNodalMatrix$<$ \_Scalar, \_StorageIndex $>$}!solveInPlace@{solveInPlace}}
+\index{solveInPlace@{solveInPlace}!Eigen::internal::MappedSuperNodalMatrix$<$ \_Scalar, \_StorageIndex $>$@{Eigen::internal::MappedSuperNodalMatrix$<$ \_Scalar, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{solveInPlace()}{solveInPlace()}}
+{\footnotesize\ttfamily template$<$typename Scalar , typename Index\+\_\+ $>$ \\
+template$<$typename Dest $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix}{Eigen\+::internal\+::\+Mapped\+Super\+Nodal\+Matrix}}$<$ Scalar, Index\+\_\+ $>$\+::solve\+In\+Place (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Dest $>$ \&}]{X }\end{DoxyParamCaption}) const}
+
+
+
+\mbox{\hyperlink{class_eigen_1_1_solve}{Solve}} with the supernode triangular matrix. 
+
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_ab2b1bdd663288f1f2af09ec42a0a62a5}\label{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_ab2b1bdd663288f1f2af09ec42a0a62a5}} 
+\index{Eigen::internal::MappedSuperNodalMatrix$<$ \_Scalar, \_StorageIndex $>$@{Eigen::internal::MappedSuperNodalMatrix$<$ \_Scalar, \_StorageIndex $>$}!supToCol@{supToCol}}
+\index{supToCol@{supToCol}!Eigen::internal::MappedSuperNodalMatrix$<$ \_Scalar, \_StorageIndex $>$@{Eigen::internal::MappedSuperNodalMatrix$<$ \_Scalar, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{supToCol()}{supToCol()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Storage\+Index $>$ \\
+Storage\+Index$\ast$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix}{Eigen\+::internal\+::\+Mapped\+Super\+Nodal\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$\+::sup\+To\+Col (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Return the array of supernode-\/to-\/column mapping \mbox{\Hypertarget{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a6e9ce7d448b76811802d11baf3da97d3}\label{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix_a6e9ce7d448b76811802d11baf3da97d3}} 
+\index{Eigen::internal::MappedSuperNodalMatrix$<$ \_Scalar, \_StorageIndex $>$@{Eigen::internal::MappedSuperNodalMatrix$<$ \_Scalar, \_StorageIndex $>$}!valuePtr@{valuePtr}}
+\index{valuePtr@{valuePtr}!Eigen::internal::MappedSuperNodalMatrix$<$ \_Scalar, \_StorageIndex $>$@{Eigen::internal::MappedSuperNodalMatrix$<$ \_Scalar, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{valuePtr()}{valuePtr()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Storage\+Index $>$ \\
+Scalar$\ast$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix}{Eigen\+::internal\+::\+Mapped\+Super\+Nodal\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$\+::value\+Ptr (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Return the array of nonzero values packed by column
+
+The size is nnz 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Sparse\+L\+U/Sparse\+L\+U\+\_\+\+Supernodal\+Matrix.\+h\end{DoxyCompactItemize}

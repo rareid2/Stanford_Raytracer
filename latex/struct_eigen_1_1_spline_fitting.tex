@@ -1,0 +1,151 @@
+\hypertarget{struct_eigen_1_1_spline_fitting}{}\doxysection{Eigen\+::Spline\+Fitting$<$ Spline\+Type $>$ Struct Template Reference}
+\label{struct_eigen_1_1_spline_fitting}\index{Eigen::SplineFitting$<$ SplineType $>$@{Eigen::SplineFitting$<$ SplineType $>$}}
+
+
+\mbox{\hyperlink{class_eigen_1_1_spline}{Spline}} fitting methods.  
+
+
+
+
+{\ttfamily \#include $<$Spline\+Fitting.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_spline_fitting_a4d10d41fbec87890b1695244b1d074be}\label{struct_eigen_1_1_spline_fitting_a4d10d41fbec87890b1695244b1d074be}} 
+typedef Spline\+Type\+::\+Knot\+Vector\+Type {\bfseries Knot\+Vector\+Type}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_spline_fitting_af7757885fc599a6e0d298d40ca634953}\label{struct_eigen_1_1_spline_fitting_af7757885fc599a6e0d298d40ca634953}} 
+typedef Spline\+Type\+::\+Parameter\+Vector\+Type {\bfseries Parameter\+Vector\+Type}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Point\+Array\+Type $>$ }\\static Spline\+Type \mbox{\hyperlink{struct_eigen_1_1_spline_fitting_adc80b6f0dd0dbbea28130fb254626874}{Interpolate}} (const Point\+Array\+Type \&pts, Dense\+Index degree)
+\begin{DoxyCompactList}\small\item\em Fits an interpolating \mbox{\hyperlink{class_eigen_1_1_spline}{Spline}} to the given data points. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Point\+Array\+Type $>$ }\\static Spline\+Type \mbox{\hyperlink{struct_eigen_1_1_spline_fitting_af08185c8b635283f7c76efe91576cc83}{Interpolate}} (const Point\+Array\+Type \&pts, Dense\+Index degree, const Knot\+Vector\+Type \&knot\+\_\+parameters)
+\begin{DoxyCompactList}\small\item\em Fits an interpolating \mbox{\hyperlink{class_eigen_1_1_spline}{Spline}} to the given data points. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Point\+Array\+Type , typename Index\+Array $>$ }\\static Spline\+Type \mbox{\hyperlink{struct_eigen_1_1_spline_fitting_a7bd937fdcfa168dbdc27932886a4da9f}{Interpolate\+With\+Derivatives}} (const Point\+Array\+Type \&points, const Point\+Array\+Type \&derivatives, const Index\+Array \&derivative\+Indices, const unsigned int degree)
+\begin{DoxyCompactList}\small\item\em Fits an interpolating spline to the given data points and derivatives. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Point\+Array\+Type , typename Index\+Array $>$ }\\static Spline\+Type \mbox{\hyperlink{struct_eigen_1_1_spline_fitting_a0317c97f2b57ccf5dcf077409d51e54d}{Interpolate\+With\+Derivatives}} (const Point\+Array\+Type \&points, const Point\+Array\+Type \&derivatives, const Index\+Array \&derivative\+Indices, const unsigned int degree, const Parameter\+Vector\+Type \&parameters)
+\begin{DoxyCompactList}\small\item\em Fits an interpolating spline to the given data points and derivatives. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Spline\+Type$>$\newline
+struct Eigen\+::\+Spline\+Fitting$<$ Spline\+Type $>$}
+
+\mbox{\hyperlink{class_eigen_1_1_spline}{Spline}} fitting methods. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{struct_eigen_1_1_spline_fitting_adc80b6f0dd0dbbea28130fb254626874}\label{struct_eigen_1_1_spline_fitting_adc80b6f0dd0dbbea28130fb254626874}} 
+\index{Eigen::SplineFitting$<$ SplineType $>$@{Eigen::SplineFitting$<$ SplineType $>$}!Interpolate@{Interpolate}}
+\index{Interpolate@{Interpolate}!Eigen::SplineFitting$<$ SplineType $>$@{Eigen::SplineFitting$<$ SplineType $>$}}
+\doxysubsubsection{\texorpdfstring{Interpolate()}{Interpolate()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Spline\+Type $>$ \\
+template$<$typename Point\+Array\+Type $>$ \\
+Spline\+Type \mbox{\hyperlink{struct_eigen_1_1_spline_fitting}{Eigen\+::\+Spline\+Fitting}}$<$ Spline\+Type $>$\+::Interpolate (\begin{DoxyParamCaption}\item[{const Point\+Array\+Type \&}]{pts,  }\item[{Dense\+Index}]{degree }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Fits an interpolating \mbox{\hyperlink{class_eigen_1_1_spline}{Spline}} to the given data points. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pts} & The points for which an interpolating spline will be computed. \\
+\hline
+{\em degree} & The degree of the interpolating spline.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A spline interpolating the initially provided points. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{struct_eigen_1_1_spline_fitting_af08185c8b635283f7c76efe91576cc83}\label{struct_eigen_1_1_spline_fitting_af08185c8b635283f7c76efe91576cc83}} 
+\index{Eigen::SplineFitting$<$ SplineType $>$@{Eigen::SplineFitting$<$ SplineType $>$}!Interpolate@{Interpolate}}
+\index{Interpolate@{Interpolate}!Eigen::SplineFitting$<$ SplineType $>$@{Eigen::SplineFitting$<$ SplineType $>$}}
+\doxysubsubsection{\texorpdfstring{Interpolate()}{Interpolate()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Spline\+Type $>$ \\
+template$<$typename Point\+Array\+Type $>$ \\
+Spline\+Type \mbox{\hyperlink{struct_eigen_1_1_spline_fitting}{Eigen\+::\+Spline\+Fitting}}$<$ Spline\+Type $>$\+::Interpolate (\begin{DoxyParamCaption}\item[{const Point\+Array\+Type \&}]{pts,  }\item[{Dense\+Index}]{degree,  }\item[{const Knot\+Vector\+Type \&}]{knot\+\_\+parameters }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Fits an interpolating \mbox{\hyperlink{class_eigen_1_1_spline}{Spline}} to the given data points. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pts} & The points for which an interpolating spline will be computed. \\
+\hline
+{\em degree} & The degree of the interpolating spline. \\
+\hline
+{\em knot\+\_\+parameters} & The knot parameters for the interpolation.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A spline interpolating the initially provided points. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{struct_eigen_1_1_spline_fitting_a7bd937fdcfa168dbdc27932886a4da9f}\label{struct_eigen_1_1_spline_fitting_a7bd937fdcfa168dbdc27932886a4da9f}} 
+\index{Eigen::SplineFitting$<$ SplineType $>$@{Eigen::SplineFitting$<$ SplineType $>$}!InterpolateWithDerivatives@{InterpolateWithDerivatives}}
+\index{InterpolateWithDerivatives@{InterpolateWithDerivatives}!Eigen::SplineFitting$<$ SplineType $>$@{Eigen::SplineFitting$<$ SplineType $>$}}
+\doxysubsubsection{\texorpdfstring{InterpolateWithDerivatives()}{InterpolateWithDerivatives()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Spline\+Type $>$ \\
+template$<$typename Point\+Array\+Type , typename Index\+Array $>$ \\
+Spline\+Type \mbox{\hyperlink{struct_eigen_1_1_spline_fitting}{Eigen\+::\+Spline\+Fitting}}$<$ Spline\+Type $>$\+::Interpolate\+With\+Derivatives (\begin{DoxyParamCaption}\item[{const Point\+Array\+Type \&}]{points,  }\item[{const Point\+Array\+Type \&}]{derivatives,  }\item[{const Index\+Array \&}]{derivative\+Indices,  }\item[{const unsigned int}]{degree }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Fits an interpolating spline to the given data points and derivatives. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em points} & The points for which an interpolating spline will be computed. \\
+\hline
+{\em derivatives} & The desired derivatives of the interpolating spline at interpolation points. \\
+\hline
+{\em derivative\+Indices} & An array indicating which point each derivative belongs to. This must be the same size as {\itshape derivatives}. \\
+\hline
+{\em degree} & The degree of the interpolating spline.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A spline interpolating {\itshape points} with {\itshape derivatives} at those points.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+Les A. Piegl, Khairan Rajab, Volha Smarodzinana. 2008. Curve interpolation with directional constraints for engineering design. Engineering with Computers 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{struct_eigen_1_1_spline_fitting_a0317c97f2b57ccf5dcf077409d51e54d}\label{struct_eigen_1_1_spline_fitting_a0317c97f2b57ccf5dcf077409d51e54d}} 
+\index{Eigen::SplineFitting$<$ SplineType $>$@{Eigen::SplineFitting$<$ SplineType $>$}!InterpolateWithDerivatives@{InterpolateWithDerivatives}}
+\index{InterpolateWithDerivatives@{InterpolateWithDerivatives}!Eigen::SplineFitting$<$ SplineType $>$@{Eigen::SplineFitting$<$ SplineType $>$}}
+\doxysubsubsection{\texorpdfstring{InterpolateWithDerivatives()}{InterpolateWithDerivatives()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Spline\+Type $>$ \\
+template$<$typename Point\+Array\+Type , typename Index\+Array $>$ \\
+Spline\+Type \mbox{\hyperlink{struct_eigen_1_1_spline_fitting}{Eigen\+::\+Spline\+Fitting}}$<$ Spline\+Type $>$\+::Interpolate\+With\+Derivatives (\begin{DoxyParamCaption}\item[{const Point\+Array\+Type \&}]{points,  }\item[{const Point\+Array\+Type \&}]{derivatives,  }\item[{const Index\+Array \&}]{derivative\+Indices,  }\item[{const unsigned int}]{degree,  }\item[{const Parameter\+Vector\+Type \&}]{parameters }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Fits an interpolating spline to the given data points and derivatives. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em points} & The points for which an interpolating spline will be computed. \\
+\hline
+{\em derivatives} & The desired derivatives of the interpolating spline at interpolation points. \\
+\hline
+{\em derivative\+Indices} & An array indicating which point each derivative belongs to. This must be the same size as {\itshape derivatives}. \\
+\hline
+{\em degree} & The degree of the interpolating spline. \\
+\hline
+{\em parameters} & The parameters corresponding to the interpolation points.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A spline interpolating {\itshape points} with {\itshape derivatives} at those points.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+Les A. Piegl, Khairan Rajab, Volha Smarodzinana. 2008. Curve interpolation with directional constraints for engineering design. Engineering with Computers 
+\end{DoxySeeAlso}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/src/\+Splines/Spline\+Fitting.\+h\end{DoxyCompactItemize}

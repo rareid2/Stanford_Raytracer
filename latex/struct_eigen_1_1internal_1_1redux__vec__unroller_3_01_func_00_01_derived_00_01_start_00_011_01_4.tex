@@ -1,0 +1,29 @@
+\hypertarget{struct_eigen_1_1internal_1_1redux__vec__unroller_3_01_func_00_01_derived_00_01_start_00_011_01_4}{}\doxysection{Eigen\+::internal\+::redux\+\_\+vec\+\_\+unroller$<$ Func, Derived, Start, 1 $>$ Struct Template Reference}
+\label{struct_eigen_1_1internal_1_1redux__vec__unroller_3_01_func_00_01_derived_00_01_start_00_011_01_4}\index{Eigen::internal::redux\_vec\_unroller$<$ Func, Derived, Start, 1 $>$@{Eigen::internal::redux\_vec\_unroller$<$ Func, Derived, Start, 1 $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1redux__vec__unroller_3_01_func_00_01_derived_00_01_start_00_011_01_4_a397dad960a06b04cdfe2ed28222b4856}\label{struct_eigen_1_1internal_1_1redux__vec__unroller_3_01_func_00_01_derived_00_01_start_00_011_01_4_a397dad960a06b04cdfe2ed28222b4856}} 
+enum \{ {\bfseries index} = Start $\ast$ redux\+\_\+traits$<$Func, Derived$>$\+::Packet\+Size, 
+{\bfseries outer} = index / int(Derived\+::Inner\+Size\+At\+Compile\+Time), 
+{\bfseries inner} = index \% int(Derived\+::Inner\+Size\+At\+Compile\+Time), 
+{\bfseries alignment} = Derived\+::Alignment
+ \}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1redux__vec__unroller_3_01_func_00_01_derived_00_01_start_00_011_01_4_a15445c6523f3bd3d1e58de8d39f2561e}\label{struct_eigen_1_1internal_1_1redux__vec__unroller_3_01_func_00_01_derived_00_01_start_00_011_01_4_a15445c6523f3bd3d1e58de8d39f2561e}} 
+typedef Derived\+::\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1redux__vec__unroller_3_01_func_00_01_derived_00_01_start_00_011_01_4_a91cc369ce48eb032480ff90f6f6ac4fb}\label{struct_eigen_1_1internal_1_1redux__vec__unroller_3_01_func_00_01_derived_00_01_start_00_011_01_4_a91cc369ce48eb032480ff90f6f6ac4fb}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1redux__traits}{redux\+\_\+traits}}$<$ Func, Derived $>$\+::\mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}} {\bfseries Packet\+Scalar}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1redux__vec__unroller_3_01_func_00_01_derived_00_01_start_00_011_01_4_a6f0e35f6097c11798930ccb12c109a98}\label{struct_eigen_1_1internal_1_1redux__vec__unroller_3_01_func_00_01_derived_00_01_start_00_011_01_4_a6f0e35f6097c11798930ccb12c109a98}} 
+static E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Packet\+Scalar {\bfseries run} (const Derived \&mat, const Func \&)
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/Redux.\+h\end{DoxyCompactItemize}

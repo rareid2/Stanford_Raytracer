@@ -1,0 +1,58 @@
+\hypertarget{struct_eigen_1_1internal_1_1evaluator_3_01_cwise_nullary_op_3_01_nullary_op_00_01_plain_object_type_01_4_01_4}{}\doxysection{Eigen\+::internal\+::evaluator$<$ Cwise\+Nullary\+Op$<$ Nullary\+Op, Plain\+Object\+Type $>$ $>$ Struct Template Reference}
+\label{struct_eigen_1_1internal_1_1evaluator_3_01_cwise_nullary_op_3_01_nullary_op_00_01_plain_object_type_01_4_01_4}\index{Eigen::internal::evaluator$<$ CwiseNullaryOp$<$ NullaryOp, PlainObjectType $>$ $>$@{Eigen::internal::evaluator$<$ CwiseNullaryOp$<$ NullaryOp, PlainObjectType $>$ $>$}}
+Inheritance diagram for Eigen\+::internal\+::evaluator$<$ Cwise\+Nullary\+Op$<$ Nullary\+Op, Plain\+Object\+Type $>$ $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{struct_eigen_1_1internal_1_1evaluator_3_01_cwise_nullary_op_3_01_nullary_op_00_01_plain_object_type_01_4_01_4}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1evaluator_3_01_cwise_nullary_op_3_01_nullary_op_00_01_plain_object_type_01_4_01_4_a2e556fd301e403d957089e4467e83142}\label{struct_eigen_1_1internal_1_1evaluator_3_01_cwise_nullary_op_3_01_nullary_op_00_01_plain_object_type_01_4_01_4_a2e556fd301e403d957089e4467e83142}} 
+enum \{ {\bfseries Coeff\+Read\+Cost} = internal\+::functor\+\_\+traits$<$Nullary\+Op$>$\+::Cost, 
+{\bfseries Flags}, 
+{\bfseries Alignment} = Aligned\+Max
+ \}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1evaluator_3_01_cwise_nullary_op_3_01_nullary_op_00_01_plain_object_type_01_4_01_4_ab6f62cdcb15237aab3e944ef9d23f17b}\label{struct_eigen_1_1internal_1_1evaluator_3_01_cwise_nullary_op_3_01_nullary_op_00_01_plain_object_type_01_4_01_4_ab6f62cdcb15237aab3e944ef9d23f17b}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_cwise_nullary_op}{Cwise\+Nullary\+Op}}$<$ Nullary\+Op, Plain\+Object\+Type $>$ {\bfseries Xpr\+Type}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1evaluator_3_01_cwise_nullary_op_3_01_nullary_op_00_01_plain_object_type_01_4_01_4_a07e7e4d776dbdfd49790528ca9e3f16d}\label{struct_eigen_1_1internal_1_1evaluator_3_01_cwise_nullary_op_3_01_nullary_op_00_01_plain_object_type_01_4_01_4_a07e7e4d776dbdfd49790528ca9e3f16d}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{internal\+::remove\+\_\+all}}$<$ Plain\+Object\+Type $>$\+::type {\bfseries Plain\+Object\+Type\+Cleaned}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1evaluator_3_01_cwise_nullary_op_3_01_nullary_op_00_01_plain_object_type_01_4_01_4_a7b3bd6527e119b6b58192153c8213c34}\label{struct_eigen_1_1internal_1_1evaluator_3_01_cwise_nullary_op_3_01_nullary_op_00_01_plain_object_type_01_4_01_4_a7b3bd6527e119b6b58192153c8213c34}} 
+typedef Xpr\+Type\+::\+Coeff\+Return\+Type {\bfseries Coeff\+Return\+Type}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1evaluator_3_01_cwise_nullary_op_3_01_nullary_op_00_01_plain_object_type_01_4_01_4_aaf586010a219c03f50009e770d6af28e}\label{struct_eigen_1_1internal_1_1evaluator_3_01_cwise_nullary_op_3_01_nullary_op_00_01_plain_object_type_01_4_01_4_aaf586010a219c03f50009e770d6af28e}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC {\bfseries evaluator} (const \mbox{\hyperlink{class_eigen_1_1_cwise_nullary_op}{Xpr\+Type}} \&n)
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1evaluator_3_01_cwise_nullary_op_3_01_nullary_op_00_01_plain_object_type_01_4_01_4_aa8a593e05cf477e1c3e92f4e2975c46b}\label{struct_eigen_1_1internal_1_1evaluator_3_01_cwise_nullary_op_3_01_nullary_op_00_01_plain_object_type_01_4_01_4_aa8a593e05cf477e1c3e92f4e2975c46b}} 
+{\footnotesize template$<$typename Index\+Type $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Coeff\+Return\+Type {\bfseries coeff} (Index\+Type row, Index\+Type col) const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1evaluator_3_01_cwise_nullary_op_3_01_nullary_op_00_01_plain_object_type_01_4_01_4_a7ec7e36414abf82667fe8c16f97ca204}\label{struct_eigen_1_1internal_1_1evaluator_3_01_cwise_nullary_op_3_01_nullary_op_00_01_plain_object_type_01_4_01_4_a7ec7e36414abf82667fe8c16f97ca204}} 
+{\footnotesize template$<$typename Index\+Type $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Coeff\+Return\+Type {\bfseries coeff} (Index\+Type index) const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1evaluator_3_01_cwise_nullary_op_3_01_nullary_op_00_01_plain_object_type_01_4_01_4_af5154bf27bd13badf0674f8356068f9e}\label{struct_eigen_1_1internal_1_1evaluator_3_01_cwise_nullary_op_3_01_nullary_op_00_01_plain_object_type_01_4_01_4_af5154bf27bd13badf0674f8356068f9e}} 
+{\footnotesize template$<$int Load\+Mode, typename Packet\+Type , typename Index\+Type $>$ }\\E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}} {\bfseries packet} (Index\+Type row, Index\+Type col) const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1evaluator_3_01_cwise_nullary_op_3_01_nullary_op_00_01_plain_object_type_01_4_01_4_a8d21e39c3aee922604f373684dc8efde}\label{struct_eigen_1_1internal_1_1evaluator_3_01_cwise_nullary_op_3_01_nullary_op_00_01_plain_object_type_01_4_01_4_a8d21e39c3aee922604f373684dc8efde}} 
+{\footnotesize template$<$int Load\+Mode, typename Packet\+Type , typename Index\+Type $>$ }\\E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}} {\bfseries packet} (Index\+Type index) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1evaluator_3_01_cwise_nullary_op_3_01_nullary_op_00_01_plain_object_type_01_4_01_4_aa9f23a85180c147ab81089f0ed5d5c66}\label{struct_eigen_1_1internal_1_1evaluator_3_01_cwise_nullary_op_3_01_nullary_op_00_01_plain_object_type_01_4_01_4_aa9f23a85180c147ab81089f0ed5d5c66}} 
+const Nullary\+Op {\bfseries m\+\_\+functor}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1evaluator_3_01_cwise_nullary_op_3_01_nullary_op_00_01_plain_object_type_01_4_01_4_af96c162c50512634ec276928f016824d}\label{struct_eigen_1_1internal_1_1evaluator_3_01_cwise_nullary_op_3_01_nullary_op_00_01_plain_object_type_01_4_01_4_af96c162c50512634ec276928f016824d}} 
+const \mbox{\hyperlink{struct_eigen_1_1internal_1_1nullary__wrapper}{internal\+::nullary\+\_\+wrapper}}$<$ Coeff\+Return\+Type, Nullary\+Op $>$ {\bfseries m\+\_\+wrapper}
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/Core\+Evaluators.\+h\end{DoxyCompactItemize}

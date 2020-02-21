@@ -1,0 +1,48 @@
+\hypertarget{class_eigen_1_1internal_1_1visitor__evaluator}{}\doxysection{Eigen\+::internal\+::visitor\+\_\+evaluator$<$ Xpr\+Type $>$ Class Template Reference}
+\label{class_eigen_1_1internal_1_1visitor__evaluator}\index{Eigen::internal::visitor\_evaluator$<$ XprType $>$@{Eigen::internal::visitor\_evaluator$<$ XprType $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1visitor__evaluator_ae365b3994b55de5ccee60b0d78a85de3}\label{class_eigen_1_1internal_1_1visitor__evaluator_ae365b3994b55de5ccee60b0d78a85de3}} 
+enum \{ {\bfseries Rows\+At\+Compile\+Time} = Xpr\+Type\+::Rows\+At\+Compile\+Time, 
+{\bfseries Coeff\+Read\+Cost} = internal\+::evaluator$<$Xpr\+Type$>$\+::Coeff\+Read\+Cost
+ \}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1visitor__evaluator_a338f2c6066ef18790ed4c56e9c34fada}\label{class_eigen_1_1internal_1_1visitor__evaluator_a338f2c6066ef18790ed4c56e9c34fada}} 
+typedef Xpr\+Type\+::\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1visitor__evaluator_aefc76b27156b43a28b3075d81a33d4fb}\label{class_eigen_1_1internal_1_1visitor__evaluator_aefc76b27156b43a28b3075d81a33d4fb}} 
+typedef Xpr\+Type\+::\+Coeff\+Return\+Type {\bfseries Coeff\+Return\+Type}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1visitor__evaluator_a7cdf20b122dd158ae4a9c74d42b95a82}\label{class_eigen_1_1internal_1_1visitor__evaluator_a7cdf20b122dd158ae4a9c74d42b95a82}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC {\bfseries visitor\+\_\+evaluator} (const Xpr\+Type \&xpr)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1visitor__evaluator_ac7c271a469132b85dfb9028d021ca892}\label{class_eigen_1_1internal_1_1visitor__evaluator_ac7c271a469132b85dfb9028d021ca892}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries rows} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1visitor__evaluator_a0fd477b31b38a52ce7fa858e6f744c5d}\label{class_eigen_1_1internal_1_1visitor__evaluator_a0fd477b31b38a52ce7fa858e6f744c5d}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries cols} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1visitor__evaluator_a6dd9ece79764a4efc19b33cbf22f6528}\label{class_eigen_1_1internal_1_1visitor__evaluator_a6dd9ece79764a4efc19b33cbf22f6528}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries size} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1visitor__evaluator_ac46afdb69f8a6b864b619cd2028ba7e5}\label{class_eigen_1_1internal_1_1visitor__evaluator_ac46afdb69f8a6b864b619cd2028ba7e5}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Coeff\+Return\+Type {\bfseries coeff} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1visitor__evaluator_ab8821a2d759ffc290c07006db4ce9f3e}\label{class_eigen_1_1internal_1_1visitor__evaluator_ab8821a2d759ffc290c07006db4ce9f3e}} 
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1evaluator}{internal\+::evaluator}}$<$ Xpr\+Type $>$ {\bfseries m\+\_\+evaluator}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1visitor__evaluator_acfafdb14c8d0fdb14fbf2f78c4aacf07}\label{class_eigen_1_1internal_1_1visitor__evaluator_acfafdb14c8d0fdb14fbf2f78c4aacf07}} 
+const Xpr\+Type \& {\bfseries m\+\_\+xpr}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/Visitor.\+h\end{DoxyCompactItemize}

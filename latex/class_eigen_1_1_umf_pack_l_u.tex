@@ -1,0 +1,342 @@
+\hypertarget{class_eigen_1_1_umf_pack_l_u}{}\doxysection{Eigen\+::Umf\+Pack\+LU$<$ \+\_\+\+Matrix\+Type $>$ Class Template Reference}
+\label{class_eigen_1_1_umf_pack_l_u}\index{Eigen::UmfPackLU$<$ \_MatrixType $>$@{Eigen::UmfPackLU$<$ \_MatrixType $>$}}
+
+
+A sparse LU factorization and solver based on Umf\+Pack.  
+
+
+
+
+{\ttfamily \#include $<$Umf\+Pack\+Support.\+h$>$}
+
+Inheritance diagram for Eigen\+::Umf\+Pack\+LU$<$ \+\_\+\+Matrix\+Type $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_eigen_1_1_umf_pack_l_u}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_a67126ff20d2b4963ae7297bec02098c1}\label{class_eigen_1_1_umf_pack_l_u_a67126ff20d2b4963ae7297bec02098c1}} 
+enum \{ {\bfseries Cols\+At\+Compile\+Time} = Matrix\+Type\+::Cols\+At\+Compile\+Time, 
+{\bfseries Max\+Cols\+At\+Compile\+Time} = Matrix\+Type\+::Max\+Cols\+At\+Compile\+Time
+ \}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_aa85376b53299c17d415b99a48ad64f76}\label{class_eigen_1_1_umf_pack_l_u_aa85376b53299c17d415b99a48ad64f76}} 
+typedef \+\_\+\+Matrix\+Type {\bfseries Matrix\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_a625a5b4478cb698e878db8ca83785371}\label{class_eigen_1_1_umf_pack_l_u_a625a5b4478cb698e878db8ca83785371}} 
+typedef Matrix\+Type\+::\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_a578eb1ae6d86e048cf4ca1d3ef5b2267}\label{class_eigen_1_1_umf_pack_l_u_a578eb1ae6d86e048cf4ca1d3ef5b2267}} 
+typedef Matrix\+Type\+::\+Real\+Scalar {\bfseries Real\+Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_a8514e6012b9f99251e088cb4a5188408}\label{class_eigen_1_1_umf_pack_l_u_a8514e6012b9f99251e088cb4a5188408}} 
+typedef Matrix\+Type\+::\+Storage\+Index {\bfseries Storage\+Index}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_a8be64e184384e92d68b90ed69ae8e20c}\label{class_eigen_1_1_umf_pack_l_u_a8be64e184384e92d68b90ed69ae8e20c}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ Scalar, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}, 1 $>$ {\bfseries Vector}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_a90d91ae46799346e6352a78e3500adcf}\label{class_eigen_1_1_umf_pack_l_u_a90d91ae46799346e6352a78e3500adcf}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ int, 1, Matrix\+Type\+::\+Cols\+At\+Compile\+Time $>$ {\bfseries Int\+Row\+Vector\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_ac0bc3049980785317785bbe428a4e2e9}\label{class_eigen_1_1_umf_pack_l_u_ac0bc3049980785317785bbe428a4e2e9}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ int, Matrix\+Type\+::\+Rows\+At\+Compile\+Time, 1 $>$ {\bfseries Int\+Col\+Vector\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_acc3edb274787854495c951c4e05a9265}\label{class_eigen_1_1_umf_pack_l_u_acc3edb274787854495c951c4e05a9265}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}}$<$ Scalar $>$ {\bfseries L\+U\+Matrix\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_ad00daeabee40de549ce6a03de88ddb33}\label{class_eigen_1_1_umf_pack_l_u_ad00daeabee40de549ce6a03de88ddb33}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}}$<$ Scalar, \mbox{\hyperlink{group__enums_ggaacded1a18ae58b0f554751f6cdf9eb13a0103672ae41005ab03b4176c765afd62}{Col\+Major}}, int $>$ {\bfseries Umfpack\+Matrix\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_adf053e553c6f76bb02f4402b5f94140a}\label{class_eigen_1_1_umf_pack_l_u_adf053e553c6f76bb02f4402b5f94140a}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_ref}{Ref}}$<$ const \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Umfpack\+Matrix\+Type}}, \mbox{\hyperlink{namespace_eigen_ad151184d0309a42dfed81c3891507d1cabd3632507a3697fb48c77eff79851a74}{Standard\+Compressed\+Format}} $>$ {\bfseries Umfpack\+Matrix\+Ref}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_a69a586a34ae369164d464c5551bcce73}\label{class_eigen_1_1_umf_pack_l_u_a69a586a34ae369164d464c5551bcce73}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_array}{Array}}$<$ double, U\+M\+F\+P\+A\+C\+K\+\_\+\+C\+O\+N\+T\+R\+OL, 1 $>$ {\bfseries Umfpack\+Control}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_a4d5a177b46684f13e132768f27723382}\label{class_eigen_1_1_umf_pack_l_u_a4d5a177b46684f13e132768f27723382}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_array}{Array}}$<$ double, U\+M\+F\+P\+A\+C\+K\+\_\+\+I\+N\+FO, 1 $>$ {\bfseries Umfpack\+Info}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_a3b0b5f84a7d80617dfb30346557314ee}\label{class_eigen_1_1_umf_pack_l_u_a3b0b5f84a7d80617dfb30346557314ee}} 
+{\footnotesize template$<$typename Input\+Matrix\+Type $>$ }\\{\bfseries Umf\+Pack\+LU} (const Input\+Matrix\+Type \&matrix)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_a549f558df5de7839dfba74ca9b9a2572}\label{class_eigen_1_1_umf_pack_l_u_a549f558df5de7839dfba74ca9b9a2572}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries rows} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_aad5e5a2b1d2e450d9749ae784c3dfa16}\label{class_eigen_1_1_umf_pack_l_u_aad5e5a2b1d2e450d9749ae784c3dfa16}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries cols} () const
+\item 
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} \mbox{\hyperlink{class_eigen_1_1_umf_pack_l_u_a68738a0d99c67316877706f98b033402}{info}} () const
+\begin{DoxyCompactList}\small\item\em Reports whether previous computation was successful. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_a35ae31390d7c11e9a51b573616fc65ba}\label{class_eigen_1_1_umf_pack_l_u_a35ae31390d7c11e9a51b573616fc65ba}} 
+const \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{L\+U\+Matrix\+Type}} \& {\bfseries matrixL} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_afcbe772b2cbf458791111ae5b648c21a}\label{class_eigen_1_1_umf_pack_l_u_afcbe772b2cbf458791111ae5b648c21a}} 
+const \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{L\+U\+Matrix\+Type}} \& {\bfseries matrixU} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_aa567568176f719c536ae84bb82128aae}\label{class_eigen_1_1_umf_pack_l_u_aa567568176f719c536ae84bb82128aae}} 
+const \mbox{\hyperlink{class_eigen_1_1_matrix}{Int\+Col\+Vector\+Type}} \& {\bfseries permutationP} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_ac28a1e26d4dab8d1ee7c5d10e9770668}\label{class_eigen_1_1_umf_pack_l_u_ac28a1e26d4dab8d1ee7c5d10e9770668}} 
+const \mbox{\hyperlink{class_eigen_1_1_matrix}{Int\+Row\+Vector\+Type}} \& {\bfseries permutationQ} () const
+\item 
+{\footnotesize template$<$typename Input\+Matrix\+Type $>$ }\\void \mbox{\hyperlink{class_eigen_1_1_umf_pack_l_u_a05fb2b5717ebd67e46b83439721ceee7}{compute}} (const Input\+Matrix\+Type \&matrix)
+\item 
+{\footnotesize template$<$typename Input\+Matrix\+Type $>$ }\\void \mbox{\hyperlink{class_eigen_1_1_umf_pack_l_u_ac7ea28b2017d6b26b7b08497f294e5e6}{analyze\+Pattern}} (const Input\+Matrix\+Type \&matrix)
+\item 
+int \mbox{\hyperlink{class_eigen_1_1_umf_pack_l_u_a822fa9d82754269c379dc4ce17920b0a}{umfpack\+Factorize\+Returncode}} () const
+\item 
+const \mbox{\hyperlink{class_eigen_1_1_array}{Umfpack\+Control}} \& \mbox{\hyperlink{class_eigen_1_1_umf_pack_l_u_ae83d178202f3d44c1789c1c93842bf2e}{umfpack\+Control}} () const
+\item 
+\mbox{\hyperlink{class_eigen_1_1_array}{Umfpack\+Control}} \& \mbox{\hyperlink{class_eigen_1_1_umf_pack_l_u_a679bd267a0407d4ca985d97f0b864101}{umfpack\+Control}} ()
+\item 
+{\footnotesize template$<$typename Input\+Matrix\+Type $>$ }\\void \mbox{\hyperlink{class_eigen_1_1_umf_pack_l_u_a1471bf890503e743c45d75cc02a5345d}{factorize}} (const Input\+Matrix\+Type \&matrix)
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_umf_pack_l_u_ac6ff58ef8eb8221e6af87de750d6619b}{umfpack\+Report\+Control}} ()
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_umf_pack_l_u_afad062dfc49ca6d2d19d534b3f8f8d28}{umfpack\+Report\+Info}} ()
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_umf_pack_l_u_a82497bbf75d995a6d4ae7e9191f79525}{umfpack\+Report\+Status}} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_a83a5aa7038e4920b79fefff82f49f610}\label{class_eigen_1_1_umf_pack_l_u_a83a5aa7038e4920b79fefff82f49f610}} 
+{\footnotesize template$<$typename B\+Derived , typename X\+Derived $>$ }\\bool {\bfseries \+\_\+solve\+\_\+impl} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ B\+Derived $>$ \&b, \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ X\+Derived $>$ \&x) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_a4a1635ee0ee23302df3c9ba24bc92f00}\label{class_eigen_1_1_umf_pack_l_u_a4a1635ee0ee23302df3c9ba24bc92f00}} 
+Scalar {\bfseries determinant} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_a782dbc0e1ee6cef571e11d6b70c822c1}\label{class_eigen_1_1_umf_pack_l_u_a782dbc0e1ee6cef571e11d6b70c822c1}} 
+void {\bfseries extract\+Data} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_af627be039e9d4054480287e2a79dd860}\label{class_eigen_1_1_umf_pack_l_u_af627be039e9d4054480287e2a79dd860}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_sparse_solver_base}{Sparse\+Solver\+Base}}$<$ \mbox{\hyperlink{class_eigen_1_1_umf_pack_l_u}{Umf\+Pack\+LU}}$<$ \+\_\+\+Matrix\+Type $>$ $>$ {\bfseries Base}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_a5a5adf4464c78eb83aafa7cbf9ad39cf}\label{class_eigen_1_1_umf_pack_l_u_a5a5adf4464c78eb83aafa7cbf9ad39cf}} 
+void {\bfseries init} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_a9d319cce61d8797d1f0ba6b6ae3087c9}\label{class_eigen_1_1_umf_pack_l_u_a9d319cce61d8797d1f0ba6b6ae3087c9}} 
+void {\bfseries analyze\+Pattern\+\_\+impl} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_a23ec2a84911a59ee4295d309d975a3d5}\label{class_eigen_1_1_umf_pack_l_u_a23ec2a84911a59ee4295d309d975a3d5}} 
+void {\bfseries factorize\+\_\+impl} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_a1b47abf8be308bbd60c37f3a0940fc43}\label{class_eigen_1_1_umf_pack_l_u_a1b47abf8be308bbd60c37f3a0940fc43}} 
+{\footnotesize template$<$typename Matrix\+Derived $>$ }\\void {\bfseries grab} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Matrix\+Derived $>$ \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}})
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_ac17fdc73306848870023e90bd3da8b70}\label{class_eigen_1_1_umf_pack_l_u_ac17fdc73306848870023e90bd3da8b70}} 
+void {\bfseries grab} (const \mbox{\hyperlink{class_eigen_1_1_ref}{Umfpack\+Matrix\+Ref}} \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_a656dbcdd9dc76f342c2346dc2be0ccb8}\label{class_eigen_1_1_umf_pack_l_u_a656dbcdd9dc76f342c2346dc2be0ccb8}} 
+\mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{L\+U\+Matrix\+Type}} {\bfseries m\+\_\+l}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_a3fa4c29d50b75443f0e54dd1a4dcf928}\label{class_eigen_1_1_umf_pack_l_u_a3fa4c29d50b75443f0e54dd1a4dcf928}} 
+int {\bfseries m\+\_\+fact\+\_\+error\+Code}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_a98b2ae40d5060d3532eae0fdda13356a}\label{class_eigen_1_1_umf_pack_l_u_a98b2ae40d5060d3532eae0fdda13356a}} 
+\mbox{\hyperlink{class_eigen_1_1_array}{Umfpack\+Control}} {\bfseries m\+\_\+control}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_a077a3d2783e0e1f7af5ce61ec093a4b2}\label{class_eigen_1_1_umf_pack_l_u_a077a3d2783e0e1f7af5ce61ec093a4b2}} 
+\mbox{\hyperlink{class_eigen_1_1_array}{Umfpack\+Info}} {\bfseries m\+\_\+umfpack\+Info}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_ac9e74011e8387152ad42ffa407a9515d}\label{class_eigen_1_1_umf_pack_l_u_ac9e74011e8387152ad42ffa407a9515d}} 
+\mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{L\+U\+Matrix\+Type}} {\bfseries m\+\_\+u}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_a9fe0f241e55ee6aaae0e74b5cb8663ea}\label{class_eigen_1_1_umf_pack_l_u_a9fe0f241e55ee6aaae0e74b5cb8663ea}} 
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Int\+Col\+Vector\+Type}} {\bfseries m\+\_\+p}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_aa3828c68e5e51f780b38457a8399e53c}\label{class_eigen_1_1_umf_pack_l_u_aa3828c68e5e51f780b38457a8399e53c}} 
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Int\+Row\+Vector\+Type}} {\bfseries m\+\_\+q}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_ac2d23d2d42221b6668716a9501d8cc58}\label{class_eigen_1_1_umf_pack_l_u_ac2d23d2d42221b6668716a9501d8cc58}} 
+\mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Umfpack\+Matrix\+Type}} {\bfseries m\+\_\+dummy}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_a33d701bff4990f1d7ed8d901515f0d27}\label{class_eigen_1_1_umf_pack_l_u_a33d701bff4990f1d7ed8d901515f0d27}} 
+\mbox{\hyperlink{class_eigen_1_1_ref}{Umfpack\+Matrix\+Ref}} {\bfseries mp\+\_\+matrix}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_a1e9ee531f2c0fc41781ca1cfb9de7c45}\label{class_eigen_1_1_umf_pack_l_u_a1e9ee531f2c0fc41781ca1cfb9de7c45}} 
+void $\ast$ {\bfseries m\+\_\+numeric}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_a2d8f1ae8b324facd05f2c4a67fb36bd9}\label{class_eigen_1_1_umf_pack_l_u_a2d8f1ae8b324facd05f2c4a67fb36bd9}} 
+void $\ast$ {\bfseries m\+\_\+symbolic}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_abe14c88bdd4a2a8eb3acac209d57f78e}\label{class_eigen_1_1_umf_pack_l_u_abe14c88bdd4a2a8eb3acac209d57f78e}} 
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} {\bfseries m\+\_\+info}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_a2035de2dc3b834ffc761c8e689b2d6fb}\label{class_eigen_1_1_umf_pack_l_u_a2035de2dc3b834ffc761c8e689b2d6fb}} 
+int {\bfseries m\+\_\+factorization\+Is\+Ok}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_a709615cdd6a89ceb8bf072922adbc621}\label{class_eigen_1_1_umf_pack_l_u_a709615cdd6a89ceb8bf072922adbc621}} 
+int {\bfseries m\+\_\+analysis\+Is\+Ok}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_a9611324e2e3f3ab0e643c91651661750}\label{class_eigen_1_1_umf_pack_l_u_a9611324e2e3f3ab0e643c91651661750}} 
+bool {\bfseries m\+\_\+extracted\+Data\+Are\+Dirty}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Matrix\+Type$>$\newline
+class Eigen\+::\+Umf\+Pack\+L\+U$<$ \+\_\+\+Matrix\+Type $>$}
+
+A sparse LU factorization and solver based on Umf\+Pack. 
+
+This class allows to solve for A.\+X = B sparse linear problems via a LU factorization using the Umf\+Pack library. The sparse matrix A must be squared and full rank. The vectors or matrices X and B can be either dense or sparse.
+
+\begin{DoxyWarning}{Warning}
+The input matrix A should be in a {\bfseries{compressed}} and {\bfseries{column-\/major}} form. Otherwise an expensive copy will be made. You can call the inexpensive make\+Compressed() to get a compressed matrix. 
+\end{DoxyWarning}
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Matrix\+Type} & the type of the sparse matrix A, it must be a Sparse\+Matrix$<$$>$\\
+\hline
+\end{DoxyTemplParams}
+\textbackslash{}implsparsesolverconcept
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{SparseLinearSystems.dox_TutorialSparseSolverConcept}{Sparse solver concept}}, class \mbox{\hyperlink{class_eigen_1_1_sparse_l_u}{Sparse\+LU}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_ac7ea28b2017d6b26b7b08497f294e5e6}\label{class_eigen_1_1_umf_pack_l_u_ac7ea28b2017d6b26b7b08497f294e5e6}} 
+\index{Eigen::UmfPackLU$<$ \_MatrixType $>$@{Eigen::UmfPackLU$<$ \_MatrixType $>$}!analyzePattern@{analyzePattern}}
+\index{analyzePattern@{analyzePattern}!Eigen::UmfPackLU$<$ \_MatrixType $>$@{Eigen::UmfPackLU$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{analyzePattern()}{analyzePattern()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+template$<$typename Input\+Matrix\+Type $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_umf_pack_l_u}{Eigen\+::\+Umf\+Pack\+LU}}$<$ \+\_\+\+Matrix\+Type $>$\+::analyze\+Pattern (\begin{DoxyParamCaption}\item[{const Input\+Matrix\+Type \&}]{matrix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Performs a symbolic decomposition on the sparcity of {\itshape matrix}.
+
+This function is particularly useful when solving for several problems having the same structure.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_umf_pack_l_u_a1471bf890503e743c45d75cc02a5345d}{factorize()}}, \mbox{\hyperlink{class_eigen_1_1_umf_pack_l_u_a05fb2b5717ebd67e46b83439721ceee7}{compute()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_a05fb2b5717ebd67e46b83439721ceee7}\label{class_eigen_1_1_umf_pack_l_u_a05fb2b5717ebd67e46b83439721ceee7}} 
+\index{Eigen::UmfPackLU$<$ \_MatrixType $>$@{Eigen::UmfPackLU$<$ \_MatrixType $>$}!compute@{compute}}
+\index{compute@{compute}!Eigen::UmfPackLU$<$ \_MatrixType $>$@{Eigen::UmfPackLU$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{compute()}{compute()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+template$<$typename Input\+Matrix\+Type $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_umf_pack_l_u}{Eigen\+::\+Umf\+Pack\+LU}}$<$ \+\_\+\+Matrix\+Type $>$\+::compute (\begin{DoxyParamCaption}\item[{const Input\+Matrix\+Type \&}]{matrix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Computes the sparse Cholesky decomposition of {\itshape matrix} Note that the matrix should be column-\/major, and in compressed format for best performance. \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_sparse_matrix_a5ff54ffc10296f9466dc81fa888733fd}{Sparse\+Matrix\+::make\+Compressed()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_a1471bf890503e743c45d75cc02a5345d}\label{class_eigen_1_1_umf_pack_l_u_a1471bf890503e743c45d75cc02a5345d}} 
+\index{Eigen::UmfPackLU$<$ \_MatrixType $>$@{Eigen::UmfPackLU$<$ \_MatrixType $>$}!factorize@{factorize}}
+\index{factorize@{factorize}!Eigen::UmfPackLU$<$ \_MatrixType $>$@{Eigen::UmfPackLU$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{factorize()}{factorize()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+template$<$typename Input\+Matrix\+Type $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_umf_pack_l_u}{Eigen\+::\+Umf\+Pack\+LU}}$<$ \+\_\+\+Matrix\+Type $>$\+::factorize (\begin{DoxyParamCaption}\item[{const Input\+Matrix\+Type \&}]{matrix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Performs a numeric decomposition of {\itshape matrix} 
+
+The given matrix must has the same sparcity than the matrix on which the pattern anylysis has been performed.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_umf_pack_l_u_ac7ea28b2017d6b26b7b08497f294e5e6}{analyze\+Pattern()}}, \mbox{\hyperlink{class_eigen_1_1_umf_pack_l_u_a05fb2b5717ebd67e46b83439721ceee7}{compute()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_a68738a0d99c67316877706f98b033402}\label{class_eigen_1_1_umf_pack_l_u_a68738a0d99c67316877706f98b033402}} 
+\index{Eigen::UmfPackLU$<$ \_MatrixType $>$@{Eigen::UmfPackLU$<$ \_MatrixType $>$}!info@{info}}
+\index{info@{info}!Eigen::UmfPackLU$<$ \_MatrixType $>$@{Eigen::UmfPackLU$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{info()}{info()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} \mbox{\hyperlink{class_eigen_1_1_umf_pack_l_u}{Eigen\+::\+Umf\+Pack\+LU}}$<$ \+\_\+\+Matrix\+Type $>$\+::info (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Reports whether previous computation was successful. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily Success} if computation was succesful, {\ttfamily Numerical\+Issue} if the matrix.\+appears to be negative. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_a679bd267a0407d4ca985d97f0b864101}\label{class_eigen_1_1_umf_pack_l_u_a679bd267a0407d4ca985d97f0b864101}} 
+\index{Eigen::UmfPackLU$<$ \_MatrixType $>$@{Eigen::UmfPackLU$<$ \_MatrixType $>$}!umfpackControl@{umfpackControl}}
+\index{umfpackControl@{umfpackControl}!Eigen::UmfPackLU$<$ \_MatrixType $>$@{Eigen::UmfPackLU$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{umfpackControl()}{umfpackControl()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_array}{Umfpack\+Control}}\& \mbox{\hyperlink{class_eigen_1_1_umf_pack_l_u}{Eigen\+::\+Umf\+Pack\+LU}}$<$ \+\_\+\+Matrix\+Type $>$\+::umfpack\+Control (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Provides access to the control settings array used by Umf\+Pack.
+
+If this array contains NaN\textquotesingle{}s, the default values are used.
+
+See U\+M\+F\+P\+A\+CK documentation for details. \mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_ae83d178202f3d44c1789c1c93842bf2e}\label{class_eigen_1_1_umf_pack_l_u_ae83d178202f3d44c1789c1c93842bf2e}} 
+\index{Eigen::UmfPackLU$<$ \_MatrixType $>$@{Eigen::UmfPackLU$<$ \_MatrixType $>$}!umfpackControl@{umfpackControl}}
+\index{umfpackControl@{umfpackControl}!Eigen::UmfPackLU$<$ \_MatrixType $>$@{Eigen::UmfPackLU$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{umfpackControl()}{umfpackControl()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+const \mbox{\hyperlink{class_eigen_1_1_array}{Umfpack\+Control}}\& \mbox{\hyperlink{class_eigen_1_1_umf_pack_l_u}{Eigen\+::\+Umf\+Pack\+LU}}$<$ \+\_\+\+Matrix\+Type $>$\+::umfpack\+Control (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Provides access to the control settings array used by Umf\+Pack.
+
+If this array contains NaN\textquotesingle{}s, the default values are used.
+
+See U\+M\+F\+P\+A\+CK documentation for details. \mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_a822fa9d82754269c379dc4ce17920b0a}\label{class_eigen_1_1_umf_pack_l_u_a822fa9d82754269c379dc4ce17920b0a}} 
+\index{Eigen::UmfPackLU$<$ \_MatrixType $>$@{Eigen::UmfPackLU$<$ \_MatrixType $>$}!umfpackFactorizeReturncode@{umfpackFactorizeReturncode}}
+\index{umfpackFactorizeReturncode@{umfpackFactorizeReturncode}!Eigen::UmfPackLU$<$ \_MatrixType $>$@{Eigen::UmfPackLU$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{umfpackFactorizeReturncode()}{umfpackFactorizeReturncode()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+int \mbox{\hyperlink{class_eigen_1_1_umf_pack_l_u}{Eigen\+::\+Umf\+Pack\+LU}}$<$ \+\_\+\+Matrix\+Type $>$\+::umfpack\+Factorize\+Returncode (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Provides the return status code returned by Umf\+Pack during the numeric factorization.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_umf_pack_l_u_a1471bf890503e743c45d75cc02a5345d}{factorize()}}, \mbox{\hyperlink{class_eigen_1_1_umf_pack_l_u_a05fb2b5717ebd67e46b83439721ceee7}{compute()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_ac6ff58ef8eb8221e6af87de750d6619b}\label{class_eigen_1_1_umf_pack_l_u_ac6ff58ef8eb8221e6af87de750d6619b}} 
+\index{Eigen::UmfPackLU$<$ \_MatrixType $>$@{Eigen::UmfPackLU$<$ \_MatrixType $>$}!umfpackReportControl@{umfpackReportControl}}
+\index{umfpackReportControl@{umfpackReportControl}!Eigen::UmfPackLU$<$ \_MatrixType $>$@{Eigen::UmfPackLU$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{umfpackReportControl()}{umfpackReportControl()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_umf_pack_l_u}{Eigen\+::\+Umf\+Pack\+LU}}$<$ \+\_\+\+Matrix\+Type $>$\+::umfpack\+Report\+Control (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Prints the current Umf\+Pack control settings.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_umf_pack_l_u_a679bd267a0407d4ca985d97f0b864101}{umfpack\+Control()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_afad062dfc49ca6d2d19d534b3f8f8d28}\label{class_eigen_1_1_umf_pack_l_u_afad062dfc49ca6d2d19d534b3f8f8d28}} 
+\index{Eigen::UmfPackLU$<$ \_MatrixType $>$@{Eigen::UmfPackLU$<$ \_MatrixType $>$}!umfpackReportInfo@{umfpackReportInfo}}
+\index{umfpackReportInfo@{umfpackReportInfo}!Eigen::UmfPackLU$<$ \_MatrixType $>$@{Eigen::UmfPackLU$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{umfpackReportInfo()}{umfpackReportInfo()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_umf_pack_l_u}{Eigen\+::\+Umf\+Pack\+LU}}$<$ \+\_\+\+Matrix\+Type $>$\+::umfpack\+Report\+Info (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Prints statistics collected by Umf\+Pack.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_umf_pack_l_u_ac7ea28b2017d6b26b7b08497f294e5e6}{analyze\+Pattern()}}, \mbox{\hyperlink{class_eigen_1_1_umf_pack_l_u_a05fb2b5717ebd67e46b83439721ceee7}{compute()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_umf_pack_l_u_a82497bbf75d995a6d4ae7e9191f79525}\label{class_eigen_1_1_umf_pack_l_u_a82497bbf75d995a6d4ae7e9191f79525}} 
+\index{Eigen::UmfPackLU$<$ \_MatrixType $>$@{Eigen::UmfPackLU$<$ \_MatrixType $>$}!umfpackReportStatus@{umfpackReportStatus}}
+\index{umfpackReportStatus@{umfpackReportStatus}!Eigen::UmfPackLU$<$ \_MatrixType $>$@{Eigen::UmfPackLU$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{umfpackReportStatus()}{umfpackReportStatus()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_umf_pack_l_u}{Eigen\+::\+Umf\+Pack\+LU}}$<$ \+\_\+\+Matrix\+Type $>$\+::umfpack\+Report\+Status (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Prints the status of the previous factorization operation performed by Umf\+Pack (symbolic or numerical factorization).
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_umf_pack_l_u_ac7ea28b2017d6b26b7b08497f294e5e6}{analyze\+Pattern()}}, \mbox{\hyperlink{class_eigen_1_1_umf_pack_l_u_a05fb2b5717ebd67e46b83439721ceee7}{compute()}} 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Umf\+Pack\+Support/Umf\+Pack\+Support.\+h\end{DoxyCompactItemize}

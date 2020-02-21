@@ -1,0 +1,36 @@
+\hypertarget{struct_eigen_1_1internal_1_1permutation__matrix__product_3_01_expression_type_00_01_side_00_01_t20ccd76e9ac5a7579d51cf9e9a5cbb67}{}\doxysection{Eigen\+::internal\+::permutation\+\_\+matrix\+\_\+product$<$ Expression\+Type, Side, Transposed, Sparse\+Shape $>$ Struct Template Reference}
+\label{struct_eigen_1_1internal_1_1permutation__matrix__product_3_01_expression_type_00_01_side_00_01_t20ccd76e9ac5a7579d51cf9e9a5cbb67}\index{Eigen::internal::permutation\_matrix\_product$<$ ExpressionType, Side, Transposed, SparseShape $>$@{Eigen::internal::permutation\_matrix\_product$<$ ExpressionType, Side, Transposed, SparseShape $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1permutation__matrix__product_3_01_expression_type_00_01_side_00_01_t20ccd76e9ac5a7579d51cf9e9a5cbb67_ae7f094cb63e419be53326e3c93536a5a}\label{struct_eigen_1_1internal_1_1permutation__matrix__product_3_01_expression_type_00_01_side_00_01_t20ccd76e9ac5a7579d51cf9e9a5cbb67_ae7f094cb63e419be53326e3c93536a5a}} 
+enum \{ {\bfseries Src\+Storage\+Order} = Matrix\+Type\+Cleaned\+::Flags\&Row\+Major\+Bit ? Row\+Major \+: Col\+Major, 
+{\bfseries Move\+Outer} = Src\+Storage\+Order==Row\+Major ? Side==On\+The\+Left \+: Side==On\+The\+Right
+ \}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1permutation__matrix__product_3_01_expression_type_00_01_side_00_01_t20ccd76e9ac5a7579d51cf9e9a5cbb67_a3a0435ae8ee0594fa7863ccb3e5d5d9e}\label{struct_eigen_1_1internal_1_1permutation__matrix__product_3_01_expression_type_00_01_side_00_01_t20ccd76e9ac5a7579d51cf9e9a5cbb67_a3a0435ae8ee0594fa7863ccb3e5d5d9e}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1nested__eval}{nested\+\_\+eval}}$<$ Expression\+Type, 1 $>$\+::type {\bfseries Matrix\+Type}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1permutation__matrix__product_3_01_expression_type_00_01_side_00_01_t20ccd76e9ac5a7579d51cf9e9a5cbb67_aec01f5b6941c4fc1848725a833d82de0}\label{struct_eigen_1_1internal_1_1permutation__matrix__product_3_01_expression_type_00_01_side_00_01_t20ccd76e9ac5a7579d51cf9e9a5cbb67_aec01f5b6941c4fc1848725a833d82de0}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{remove\+\_\+all}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Matrix\+Type}} $>$\+::type {\bfseries Matrix\+Type\+Cleaned}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1permutation__matrix__product_3_01_expression_type_00_01_side_00_01_t20ccd76e9ac5a7579d51cf9e9a5cbb67_adb258afbf25d91875e92fafd93f6a250}\label{struct_eigen_1_1internal_1_1permutation__matrix__product_3_01_expression_type_00_01_side_00_01_t20ccd76e9ac5a7579d51cf9e9a5cbb67_adb258afbf25d91875e92fafd93f6a250}} 
+typedef Matrix\+Type\+Cleaned\+::\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1permutation__matrix__product_3_01_expression_type_00_01_side_00_01_t20ccd76e9ac5a7579d51cf9e9a5cbb67_aff8eb11a2a810de9e603e9fe5c099443}\label{struct_eigen_1_1internal_1_1permutation__matrix__product_3_01_expression_type_00_01_side_00_01_t20ccd76e9ac5a7579d51cf9e9a5cbb67_aff8eb11a2a810de9e603e9fe5c099443}} 
+typedef Matrix\+Type\+Cleaned\+::\+Storage\+Index {\bfseries Storage\+Index}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1permutation__matrix__product_3_01_expression_type_00_01_side_00_01_t20ccd76e9ac5a7579d51cf9e9a5cbb67_a818a2f8e4abf15cc3e3d4bab12c79717}\label{struct_eigen_1_1internal_1_1permutation__matrix__product_3_01_expression_type_00_01_side_00_01_t20ccd76e9ac5a7579d51cf9e9a5cbb67_a818a2f8e4abf15cc3e3d4bab12c79717}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1conditional}{internal\+::conditional}}$<$ Move\+Outer, \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}}$<$ Scalar, Src\+Storage\+Order, Storage\+Index $>$, \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}}$<$ Scalar, int(Src\+Storage\+Order)==\mbox{\hyperlink{group__enums_ggaacded1a18ae58b0f554751f6cdf9eb13a77c993a8d9f6efe5c1159fb2ab07dd4f}{Row\+Major}}?Col\+Major\+:\+Row\+Major, Storage\+Index $>$ $>$\+::type {\bfseries Return\+Type}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1permutation__matrix__product_3_01_expression_type_00_01_side_00_01_t20ccd76e9ac5a7579d51cf9e9a5cbb67_a8e9f0f979bf25617f84deb0624a3179c}\label{struct_eigen_1_1internal_1_1permutation__matrix__product_3_01_expression_type_00_01_side_00_01_t20ccd76e9ac5a7579d51cf9e9a5cbb67_a8e9f0f979bf25617f84deb0624a3179c}} 
+{\footnotesize template$<$typename Dest , typename Permutation\+Type $>$ }\\static void {\bfseries run} (Dest \&dst, const Permutation\+Type \&perm, const Expression\+Type \&xpr)
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Sparse\+Core/Sparse\+Permutation.\+h\end{DoxyCompactItemize}

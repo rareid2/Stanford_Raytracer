@@ -1,0 +1,17 @@
+\hypertarget{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_expr_constructor}{}\doxysection{Eigen\+::Tensor\+Sycl\+::internal\+::Expr\+Constructor$<$ Orig\+Expr, Index\+Expr, Params $>$ Struct Template Reference}
+\label{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_expr_constructor}\index{Eigen::TensorSycl::internal::ExprConstructor$<$ OrigExpr, IndexExpr, Params $>$@{Eigen::TensorSycl::internal::ExprConstructor$<$ OrigExpr, IndexExpr, Params $>$}}
+
+
+{\ttfamily \#include $<$Tensor\+Sycl\+Expr\+Constructor.\+h$>$}
+
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Orig\+Expr, typename Index\+Expr, typename... Params$>$\newline
+struct Eigen\+::\+Tensor\+Sycl\+::internal\+::\+Expr\+Constructor$<$ Orig\+Expr, Index\+Expr, Params $>$}
+
+struct \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_expr_constructor}{Expr\+Constructor}} is used to reconstruct the expression on the device and recreate the expression with Make\+Global\+Pointer containing the device address space for the \mbox{\hyperlink{class_eigen_1_1_tensor_map}{Tensor\+Map}} pointers used in eval function. It receives the original expression type, the functor of the node, the tuple of accessors, and the device expression type to re-\/instantiate the expression tree for the device 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/\+C\+X\+X11/src/\+Tensor/Tensor\+Sycl\+Expr\+Constructor.\+h\end{DoxyCompactItemize}

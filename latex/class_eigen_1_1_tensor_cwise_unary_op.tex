@@ -1,0 +1,68 @@
+\hypertarget{class_eigen_1_1_tensor_cwise_unary_op}{}\doxysection{Eigen\+::Tensor\+Cwise\+Unary\+Op$<$ Unary\+Op, Xpr\+Type $>$ Class Template Reference}
+\label{class_eigen_1_1_tensor_cwise_unary_op}\index{Eigen::TensorCwiseUnaryOp$<$ UnaryOp, XprType $>$@{Eigen::TensorCwiseUnaryOp$<$ UnaryOp, XprType $>$}}
+Inheritance diagram for Eigen\+::Tensor\+Cwise\+Unary\+Op$<$ Unary\+Op, Xpr\+Type $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_eigen_1_1_tensor_cwise_unary_op}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_cwise_unary_op_a5ab327094bed5a2afba69bb9386ff44d}\label{class_eigen_1_1_tensor_cwise_unary_op_a5ab327094bed5a2afba69bb9386ff44d}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{Eigen\+::internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_tensor_cwise_unary_op}{Tensor\+Cwise\+Unary\+Op}} $>$\+::Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_cwise_unary_op_ae7784743a8b3eecb64567d93731c487e}\label{class_eigen_1_1_tensor_cwise_unary_op_ae7784743a8b3eecb64567d93731c487e}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Eigen\+::\+Num\+Traits}}$<$ Scalar $>$\+::Real {\bfseries Real\+Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_cwise_unary_op_a5eeb6543700ffe32c1d996e1b0d79e50}\label{class_eigen_1_1_tensor_cwise_unary_op_a5eeb6543700ffe32c1d996e1b0d79e50}} 
+typedef Scalar {\bfseries Coeff\+Return\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_cwise_unary_op_acc4894a5f4d28b24d67aaa35ed135192}\label{class_eigen_1_1_tensor_cwise_unary_op_acc4894a5f4d28b24d67aaa35ed135192}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1nested}{Eigen\+::internal\+::nested}}$<$ \mbox{\hyperlink{class_eigen_1_1_tensor_cwise_unary_op}{Tensor\+Cwise\+Unary\+Op}} $>$\+::type {\bfseries Nested}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_cwise_unary_op_a0162f82932dc0cf82d3a9d538bd7805f}\label{class_eigen_1_1_tensor_cwise_unary_op_a0162f82932dc0cf82d3a9d538bd7805f}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{Eigen\+::internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_tensor_cwise_unary_op}{Tensor\+Cwise\+Unary\+Op}} $>$\+::Storage\+Kind {\bfseries Storage\+Kind}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_cwise_unary_op_aae1bc0933bbef825c05ed8d40d8b3b1a}\label{class_eigen_1_1_tensor_cwise_unary_op_aae1bc0933bbef825c05ed8d40d8b3b1a}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{Eigen\+::internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_tensor_cwise_unary_op}{Tensor\+Cwise\+Unary\+Op}} $>$\+::Index {\bfseries Index}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_cwise_unary_op_a9c18f146f1bc3820525cb9befba64b6d}\label{class_eigen_1_1_tensor_cwise_unary_op_a9c18f146f1bc3820525cb9befba64b6d}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE {\bfseries Tensor\+Cwise\+Unary\+Op} (const Xpr\+Type \&xpr, const Unary\+Op \&\mbox{\hyperlink{structfunc}{func}}=Unary\+Op())
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_cwise_unary_op_a0b1facb8b6ced38b7b671230954ae54b}\label{class_eigen_1_1_tensor_cwise_unary_op_a0b1facb8b6ced38b7b671230954ae54b}} 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Unary\+Op \& {\bfseries functor} () const
+\item 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{internal\+::remove\+\_\+all}}$<$ typename Xpr\+Type\+::\+Nested $>$\+::type \& \mbox{\hyperlink{class_eigen_1_1_tensor_cwise_unary_op_a1f3d50dfe978b8c21c55a37ca82a822d}{nested\+Expression}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_cwise_unary_op_a0821e6d8d38c7187aed4de20b00ccb81}\label{class_eigen_1_1_tensor_cwise_unary_op_a0821e6d8d38c7187aed4de20b00ccb81}} 
+Xpr\+Type\+::\+Nested {\bfseries m\+\_\+xpr}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_cwise_unary_op_a0abaf304aac7003e1560778e6639b56c}\label{class_eigen_1_1_tensor_cwise_unary_op_a0abaf304aac7003e1560778e6639b56c}} 
+const Unary\+Op {\bfseries m\+\_\+functor}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_tensor_cwise_unary_op_a1f3d50dfe978b8c21c55a37ca82a822d}\label{class_eigen_1_1_tensor_cwise_unary_op_a1f3d50dfe978b8c21c55a37ca82a822d}} 
+\index{Eigen::TensorCwiseUnaryOp$<$ UnaryOp, XprType $>$@{Eigen::TensorCwiseUnaryOp$<$ UnaryOp, XprType $>$}!nestedExpression@{nestedExpression}}
+\index{nestedExpression@{nestedExpression}!Eigen::TensorCwiseUnaryOp$<$ UnaryOp, XprType $>$@{Eigen::TensorCwiseUnaryOp$<$ UnaryOp, XprType $>$}}
+\doxysubsubsection{\texorpdfstring{nestedExpression()}{nestedExpression()}}
+{\footnotesize\ttfamily template$<$typename Unary\+Op , typename Xpr\+Type $>$ \\
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{internal\+::remove\+\_\+all}}$<$typename Xpr\+Type\+::\+Nested$>$\+::type\& \mbox{\hyperlink{class_eigen_1_1_tensor_cwise_unary_op}{Eigen\+::\+Tensor\+Cwise\+Unary\+Op}}$<$ Unary\+Op, Xpr\+Type $>$\+::nested\+Expression (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the nested expression 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/\+C\+X\+X11/src/\+Tensor/Tensor\+Expr.\+h\end{DoxyCompactItemize}

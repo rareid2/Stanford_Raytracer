@@ -1,0 +1,64 @@
+\hypertarget{class_eigen_1_1_no_alias}{}\doxysection{Eigen\+::No\+Alias$<$ Expression\+Type, Storage\+Base $>$ Class Template Reference}
+\label{class_eigen_1_1_no_alias}\index{Eigen::NoAlias$<$ ExpressionType, StorageBase $>$@{Eigen::NoAlias$<$ ExpressionType, StorageBase $>$}}
+
+
+Pseudo expression providing an operator = assuming no aliasing.  
+
+
+
+
+{\ttfamily \#include $<$No\+Alias.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_no_alias_a21bcfc565d15f2c6010fe7916d0ea7a6}\label{class_eigen_1_1_no_alias_a21bcfc565d15f2c6010fe7916d0ea7a6}} 
+typedef Expression\+Type\+::\+Scalar {\bfseries Scalar}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_no_alias_a5f394631fdd75723476bc8aa39f9c65f}\label{class_eigen_1_1_no_alias_a5f394631fdd75723476bc8aa39f9c65f}} 
+{\bfseries No\+Alias} (Expression\+Type \&expression)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_no_alias_a226e32f7cda9c7bb708256b4e66ae609}\label{class_eigen_1_1_no_alias_a226e32f7cda9c7bb708256b4e66ae609}} 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Expression\+Type \& {\bfseries operator=} (const Storage\+Base$<$ Other\+Derived $>$ \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_no_alias_a2436b0de67b4aeecb4376977161cc238}\label{class_eigen_1_1_no_alias_a2436b0de67b4aeecb4376977161cc238}} 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Expression\+Type \& {\bfseries operator+=} (const Storage\+Base$<$ Other\+Derived $>$ \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_no_alias_a3b2c32fd05aea8b1e1b61754711ed0e8}\label{class_eigen_1_1_no_alias_a3b2c32fd05aea8b1e1b61754711ed0e8}} 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Expression\+Type \& {\bfseries operator-\/=} (const Storage\+Base$<$ Other\+Derived $>$ \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_no_alias_a7b487c830713e3e38c839cdb3e2be6f9}\label{class_eigen_1_1_no_alias_a7b487c830713e3e38c839cdb3e2be6f9}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Expression\+Type \& {\bfseries expression} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_no_alias_ab61d2c9d39ef278fcc8182b7322752ca}\label{class_eigen_1_1_no_alias_ab61d2c9d39ef278fcc8182b7322752ca}} 
+Expression\+Type \& {\bfseries m\+\_\+expression}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Expression\+Type, template$<$ typename $>$ class Storage\+Base$>$\newline
+class Eigen\+::\+No\+Alias$<$ Expression\+Type, Storage\+Base $>$}
+
+Pseudo expression providing an operator = assuming no aliasing. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Expression\+Type} & the type of the object on which to do the lazy assignment\\
+\hline
+\end{DoxyTemplParams}
+This class represents an expression with special assignment operators assuming no aliasing between the target expression and the source expression. More precisely it alloas to bypass the Eval\+Before\+Assign\+Bit flag of the source expression. It is the return type of \mbox{\hyperlink{class_eigen_1_1_matrix_base_a2c1085de7645f23f240876388457da0b}{Matrix\+Base\+::noalias()}} and most of the time this is the only way it is used.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_matrix_base_a2c1085de7645f23f240876388457da0b}{Matrix\+Base\+::noalias()}} 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/No\+Alias.\+h\end{DoxyCompactItemize}

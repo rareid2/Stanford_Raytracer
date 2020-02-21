@@ -1,0 +1,184 @@
+\hypertarget{class_eigen_1_1_permutation_matrix}{}\doxysection{Eigen\+::Permutation\+Matrix$<$ Size\+At\+Compile\+Time, Max\+Size\+At\+Compile\+Time, \+\_\+\+Storage\+Index $>$ Class Template Reference}
+\label{class_eigen_1_1_permutation_matrix}\index{Eigen::PermutationMatrix$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$@{Eigen::PermutationMatrix$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$}}
+
+
+Permutation matrix.  
+
+
+
+
+{\ttfamily \#include $<$Permutation\+Matrix.\+h$>$}
+
+Inheritance diagram for Eigen\+::Permutation\+Matrix$<$ Size\+At\+Compile\+Time, Max\+Size\+At\+Compile\+Time, \+\_\+\+Storage\+Index $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.633229cm]{class_eigen_1_1_permutation_matrix}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_permutation_matrix_a8fd794192071c85223d197feb2dcecb3}\label{class_eigen_1_1_permutation_matrix_a8fd794192071c85223d197feb2dcecb3}} 
+typedef Traits\+::\+Indices\+Type {\bfseries Indices\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_permutation_matrix_aff6efa7c9f220a25d9ba9e09b354b2d8}\label{class_eigen_1_1_permutation_matrix_aff6efa7c9f220a25d9ba9e09b354b2d8}} 
+typedef Traits\+::\+Storage\+Index {\bfseries Storage\+Index}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_permutation_matrix_aea29eab1fd6a6562971db7b9c04c11aa}{Permutation\+Matrix}} (\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} \mbox{\hyperlink{class_eigen_1_1_permutation_base_a2216f9ce7b453ac39c46ff0323daeac9}{size}})
+\item 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\\mbox{\hyperlink{class_eigen_1_1_permutation_matrix_a7ae7016a606b08573013115dcf2e56f2}{Permutation\+Matrix}} (const \mbox{\hyperlink{class_eigen_1_1_permutation_base}{Permutation\+Base}}$<$ Other\+Derived $>$ \&other)
+\item 
+\mbox{\hyperlink{class_eigen_1_1_permutation_matrix_a75a003685dfbf43b2809df33012f1edd}{Permutation\+Matrix}} (const \mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Matrix}} \&other)
+\item 
+{\footnotesize template$<$typename Other $>$ }\\\mbox{\hyperlink{class_eigen_1_1_permutation_matrix_a204b8bbba3c4d33c1a24bb60ad72b202}{Permutation\+Matrix}} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Other $>$ \&\mbox{\hyperlink{class_eigen_1_1_permutation_matrix_a2f1ab379207fcd1ceb33941e25cf50c2}{indices}})
+\item 
+{\footnotesize template$<$typename Other $>$ }\\\mbox{\hyperlink{class_eigen_1_1_permutation_matrix_a0b9a4e51bea9c778a38f6e89db484af4}{Permutation\+Matrix}} (const \mbox{\hyperlink{class_eigen_1_1_transpositions_base}{Transpositions\+Base}}$<$ Other $>$ \&tr)
+\item 
+{\footnotesize template$<$typename Other $>$ }\\\mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Matrix}} \& \mbox{\hyperlink{class_eigen_1_1_permutation_matrix_aeced50f1c3a43b3e4b3de76d57e9c46a}{operator=}} (const \mbox{\hyperlink{class_eigen_1_1_permutation_base}{Permutation\+Base}}$<$ Other $>$ \&other)
+\item 
+{\footnotesize template$<$typename Other $>$ }\\\mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Matrix}} \& \mbox{\hyperlink{class_eigen_1_1_permutation_matrix_a75cdc77886972636637f22c41216feb9}{operator=}} (const \mbox{\hyperlink{class_eigen_1_1_transpositions_base}{Transpositions\+Base}}$<$ Other $>$ \&tr)
+\item 
+\mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Matrix}} \& \mbox{\hyperlink{class_eigen_1_1_permutation_matrix_a09357ca4fddb406c55c2431f36552ada}{operator=}} (const \mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Matrix}} \&other)
+\item 
+const Indices\+Type \& \mbox{\hyperlink{class_eigen_1_1_permutation_matrix_a2f1ab379207fcd1ceb33941e25cf50c2}{indices}} () const
+\item 
+Indices\+Type \& \mbox{\hyperlink{class_eigen_1_1_permutation_matrix_ac089ead468a58d75f276ad2b253578c0}{indices}} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_permutation_matrix_a831ebf7e2fde55e8bcca4b5f52808068}\label{class_eigen_1_1_permutation_matrix_a831ebf7e2fde55e8bcca4b5f52808068}} 
+{\footnotesize template$<$typename Other $>$ }\\{\bfseries Permutation\+Matrix} (const \mbox{\hyperlink{class_eigen_1_1_inverse_impl}{Inverse\+Impl}}$<$ Other, \mbox{\hyperlink{struct_eigen_1_1_permutation_storage}{Permutation\+Storage}} $>$ \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_permutation_matrix_affd4f6870df35b84c3994438516fcf6e}\label{class_eigen_1_1_permutation_matrix_affd4f6870df35b84c3994438516fcf6e}} 
+{\footnotesize template$<$typename Lhs , typename Rhs $>$ }\\{\bfseries Permutation\+Matrix} (internal\+::\+Perm\+Perm\+Product\+\_\+t, const Lhs \&lhs, const Rhs \&rhs)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_permutation_matrix_a69d36850093e1bcbe6055fd0c5d17c21}\label{class_eigen_1_1_permutation_matrix_a69d36850093e1bcbe6055fd0c5d17c21}} 
+const typedef \mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Matrix}} \& {\bfseries Nested}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_permutation_matrix_a9af01effdced7681e76c005327e6209a}\label{class_eigen_1_1_permutation_matrix_a9af01effdced7681e76c005327e6209a}} 
+Indices\+Type {\bfseries m\+\_\+indices}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$int Size\+At\+Compile\+Time, int Max\+Size\+At\+Compile\+Time, typename \+\_\+\+Storage\+Index$>$\newline
+class Eigen\+::\+Permutation\+Matrix$<$ Size\+At\+Compile\+Time, Max\+Size\+At\+Compile\+Time, \+\_\+\+Storage\+Index $>$}
+
+Permutation matrix. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Size\+At\+Compile\+Time} & the number of rows/cols, or Dynamic \\
+\hline
+{\em Max\+Size\+At\+Compile\+Time} & the maximum number of rows/cols, or Dynamic. This optional parameter defaults to Size\+At\+Compile\+Time. Most of the time, you should not have to specify it. \\
+\hline
+{\em \+\_\+\+Storage\+Index} & the integer type of the indices\\
+\hline
+\end{DoxyTemplParams}
+This class represents a permutation matrix, internally stored as a vector of integers.
+
+\begin{DoxySeeAlso}{See also}
+class \mbox{\hyperlink{class_eigen_1_1_permutation_base}{Permutation\+Base}}, class \mbox{\hyperlink{class_eigen_1_1_permutation_wrapper}{Permutation\+Wrapper}}, class \mbox{\hyperlink{class_eigen_1_1_diagonal_matrix}{Diagonal\+Matrix}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_permutation_matrix_aea29eab1fd6a6562971db7b9c04c11aa}\label{class_eigen_1_1_permutation_matrix_aea29eab1fd6a6562971db7b9c04c11aa}} 
+\index{Eigen::PermutationMatrix$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$@{Eigen::PermutationMatrix$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$}!PermutationMatrix@{PermutationMatrix}}
+\index{PermutationMatrix@{PermutationMatrix}!Eigen::PermutationMatrix$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$@{Eigen::PermutationMatrix$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{PermutationMatrix()}{PermutationMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily template$<$int Size\+At\+Compile\+Time, int Max\+Size\+At\+Compile\+Time, typename \+\_\+\+Storage\+Index $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Eigen\+::\+Permutation\+Matrix}}$<$ Size\+At\+Compile\+Time, Max\+Size\+At\+Compile\+Time, \+\_\+\+Storage\+Index $>$\+::\mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Matrix}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}}}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+Constructs an uninitialized permutation matrix of given size. \mbox{\Hypertarget{class_eigen_1_1_permutation_matrix_a7ae7016a606b08573013115dcf2e56f2}\label{class_eigen_1_1_permutation_matrix_a7ae7016a606b08573013115dcf2e56f2}} 
+\index{Eigen::PermutationMatrix$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$@{Eigen::PermutationMatrix$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$}!PermutationMatrix@{PermutationMatrix}}
+\index{PermutationMatrix@{PermutationMatrix}!Eigen::PermutationMatrix$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$@{Eigen::PermutationMatrix$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{PermutationMatrix()}{PermutationMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily template$<$int Size\+At\+Compile\+Time, int Max\+Size\+At\+Compile\+Time, typename \+\_\+\+Storage\+Index $>$ \\
+template$<$typename Other\+Derived $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Eigen\+::\+Permutation\+Matrix}}$<$ Size\+At\+Compile\+Time, Max\+Size\+At\+Compile\+Time, \+\_\+\+Storage\+Index $>$\+::\mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Matrix}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_permutation_base}{Permutation\+Base}}$<$ Other\+Derived $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Copy constructor. \mbox{\Hypertarget{class_eigen_1_1_permutation_matrix_a75a003685dfbf43b2809df33012f1edd}\label{class_eigen_1_1_permutation_matrix_a75a003685dfbf43b2809df33012f1edd}} 
+\index{Eigen::PermutationMatrix$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$@{Eigen::PermutationMatrix$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$}!PermutationMatrix@{PermutationMatrix}}
+\index{PermutationMatrix@{PermutationMatrix}!Eigen::PermutationMatrix$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$@{Eigen::PermutationMatrix$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{PermutationMatrix()}{PermutationMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily template$<$int Size\+At\+Compile\+Time, int Max\+Size\+At\+Compile\+Time, typename \+\_\+\+Storage\+Index $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Eigen\+::\+Permutation\+Matrix}}$<$ Size\+At\+Compile\+Time, Max\+Size\+At\+Compile\+Time, \+\_\+\+Storage\+Index $>$\+::\mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Matrix}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Matrix}}$<$ Size\+At\+Compile\+Time, Max\+Size\+At\+Compile\+Time, \+\_\+\+Storage\+Index $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Standard copy constructor. Defined only to prevent a default copy constructor from hiding the other templated constructor \mbox{\Hypertarget{class_eigen_1_1_permutation_matrix_a204b8bbba3c4d33c1a24bb60ad72b202}\label{class_eigen_1_1_permutation_matrix_a204b8bbba3c4d33c1a24bb60ad72b202}} 
+\index{Eigen::PermutationMatrix$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$@{Eigen::PermutationMatrix$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$}!PermutationMatrix@{PermutationMatrix}}
+\index{PermutationMatrix@{PermutationMatrix}!Eigen::PermutationMatrix$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$@{Eigen::PermutationMatrix$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{PermutationMatrix()}{PermutationMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily template$<$int Size\+At\+Compile\+Time, int Max\+Size\+At\+Compile\+Time, typename \+\_\+\+Storage\+Index $>$ \\
+template$<$typename Other $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Eigen\+::\+Permutation\+Matrix}}$<$ Size\+At\+Compile\+Time, Max\+Size\+At\+Compile\+Time, \+\_\+\+Storage\+Index $>$\+::\mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Matrix}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Other $>$ \&}]{indices }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+Generic constructor from expression of the indices. The indices array has the meaning that the permutations sends each integer i to indices\mbox{[}i\mbox{]}.
+
+\begin{DoxyWarning}{Warning}
+It is your responsibility to check that the indices array that you passes actually describes a permutation, i.\+e., each value between 0 and n-\/1 occurs exactly once, where n is the array\textquotesingle{}s size. 
+\end{DoxyWarning}
+\mbox{\Hypertarget{class_eigen_1_1_permutation_matrix_a0b9a4e51bea9c778a38f6e89db484af4}\label{class_eigen_1_1_permutation_matrix_a0b9a4e51bea9c778a38f6e89db484af4}} 
+\index{Eigen::PermutationMatrix$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$@{Eigen::PermutationMatrix$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$}!PermutationMatrix@{PermutationMatrix}}
+\index{PermutationMatrix@{PermutationMatrix}!Eigen::PermutationMatrix$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$@{Eigen::PermutationMatrix$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{PermutationMatrix()}{PermutationMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily template$<$int Size\+At\+Compile\+Time, int Max\+Size\+At\+Compile\+Time, typename \+\_\+\+Storage\+Index $>$ \\
+template$<$typename Other $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Eigen\+::\+Permutation\+Matrix}}$<$ Size\+At\+Compile\+Time, Max\+Size\+At\+Compile\+Time, \+\_\+\+Storage\+Index $>$\+::\mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Matrix}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_transpositions_base}{Transpositions\+Base}}$<$ Other $>$ \&}]{tr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+Convert the \mbox{\hyperlink{class_eigen_1_1_transpositions}{Transpositions}} {\itshape tr} to a permutation matrix 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_permutation_matrix_ac089ead468a58d75f276ad2b253578c0}\label{class_eigen_1_1_permutation_matrix_ac089ead468a58d75f276ad2b253578c0}} 
+\index{Eigen::PermutationMatrix$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$@{Eigen::PermutationMatrix$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$}!indices@{indices}}
+\index{indices@{indices}!Eigen::PermutationMatrix$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$@{Eigen::PermutationMatrix$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{indices()}{indices()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$int Size\+At\+Compile\+Time, int Max\+Size\+At\+Compile\+Time, typename \+\_\+\+Storage\+Index $>$ \\
+Indices\+Type\& \mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Eigen\+::\+Permutation\+Matrix}}$<$ Size\+At\+Compile\+Time, Max\+Size\+At\+Compile\+Time, \+\_\+\+Storage\+Index $>$\+::indices (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a reference to the stored array representing the permutation. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_permutation_matrix_a2f1ab379207fcd1ceb33941e25cf50c2}\label{class_eigen_1_1_permutation_matrix_a2f1ab379207fcd1ceb33941e25cf50c2}} 
+\index{Eigen::PermutationMatrix$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$@{Eigen::PermutationMatrix$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$}!indices@{indices}}
+\index{indices@{indices}!Eigen::PermutationMatrix$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$@{Eigen::PermutationMatrix$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{indices()}{indices()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$int Size\+At\+Compile\+Time, int Max\+Size\+At\+Compile\+Time, typename \+\_\+\+Storage\+Index $>$ \\
+const Indices\+Type\& \mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Eigen\+::\+Permutation\+Matrix}}$<$ Size\+At\+Compile\+Time, Max\+Size\+At\+Compile\+Time, \+\_\+\+Storage\+Index $>$\+::indices (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+const version of \mbox{\hyperlink{class_eigen_1_1_permutation_matrix_ac089ead468a58d75f276ad2b253578c0}{indices()}}. \mbox{\Hypertarget{class_eigen_1_1_permutation_matrix_aeced50f1c3a43b3e4b3de76d57e9c46a}\label{class_eigen_1_1_permutation_matrix_aeced50f1c3a43b3e4b3de76d57e9c46a}} 
+\index{Eigen::PermutationMatrix$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$@{Eigen::PermutationMatrix$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!Eigen::PermutationMatrix$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$@{Eigen::PermutationMatrix$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$int Size\+At\+Compile\+Time, int Max\+Size\+At\+Compile\+Time, typename \+\_\+\+Storage\+Index $>$ \\
+template$<$typename Other $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Matrix}}\& \mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Eigen\+::\+Permutation\+Matrix}}$<$ Size\+At\+Compile\+Time, Max\+Size\+At\+Compile\+Time, \+\_\+\+Storage\+Index $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_permutation_base}{Permutation\+Base}}$<$ Other $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Copies the other permutation into $\ast$this \mbox{\Hypertarget{class_eigen_1_1_permutation_matrix_a09357ca4fddb406c55c2431f36552ada}\label{class_eigen_1_1_permutation_matrix_a09357ca4fddb406c55c2431f36552ada}} 
+\index{Eigen::PermutationMatrix$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$@{Eigen::PermutationMatrix$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!Eigen::PermutationMatrix$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$@{Eigen::PermutationMatrix$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$int Size\+At\+Compile\+Time, int Max\+Size\+At\+Compile\+Time, typename \+\_\+\+Storage\+Index $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Matrix}}\& \mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Eigen\+::\+Permutation\+Matrix}}$<$ Size\+At\+Compile\+Time, Max\+Size\+At\+Compile\+Time, \+\_\+\+Storage\+Index $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Matrix}}$<$ Size\+At\+Compile\+Time, Max\+Size\+At\+Compile\+Time, \+\_\+\+Storage\+Index $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+This is a special case of the templated operator=. Its purpose is to prevent a default operator= from hiding the templated operator=. \mbox{\Hypertarget{class_eigen_1_1_permutation_matrix_a75cdc77886972636637f22c41216feb9}\label{class_eigen_1_1_permutation_matrix_a75cdc77886972636637f22c41216feb9}} 
+\index{Eigen::PermutationMatrix$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$@{Eigen::PermutationMatrix$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!Eigen::PermutationMatrix$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$@{Eigen::PermutationMatrix$<$ SizeAtCompileTime, MaxSizeAtCompileTime, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$int Size\+At\+Compile\+Time, int Max\+Size\+At\+Compile\+Time, typename \+\_\+\+Storage\+Index $>$ \\
+template$<$typename Other $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Matrix}}\& \mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Eigen\+::\+Permutation\+Matrix}}$<$ Size\+At\+Compile\+Time, Max\+Size\+At\+Compile\+Time, \+\_\+\+Storage\+Index $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_transpositions_base}{Transpositions\+Base}}$<$ Other $>$ \&}]{tr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Assignment from the \mbox{\hyperlink{class_eigen_1_1_transpositions}{Transpositions}} {\itshape tr} 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/Permutation\+Matrix.\+h\end{DoxyCompactItemize}

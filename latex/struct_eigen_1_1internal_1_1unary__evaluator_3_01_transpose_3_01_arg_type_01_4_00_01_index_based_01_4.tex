@@ -1,0 +1,67 @@
+\hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_transpose_3_01_arg_type_01_4_00_01_index_based_01_4}{}\doxysection{Eigen\+::internal\+::unary\+\_\+evaluator$<$ Transpose$<$ Arg\+Type $>$, Index\+Based $>$ Struct Template Reference}
+\label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_transpose_3_01_arg_type_01_4_00_01_index_based_01_4}\index{Eigen::internal::unary\_evaluator$<$ Transpose$<$ ArgType $>$, IndexBased $>$@{Eigen::internal::unary\_evaluator$<$ Transpose$<$ ArgType $>$, IndexBased $>$}}
+Inheritance diagram for Eigen\+::internal\+::unary\+\_\+evaluator$<$ Transpose$<$ Arg\+Type $>$, Index\+Based $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{struct_eigen_1_1internal_1_1unary__evaluator_3_01_transpose_3_01_arg_type_01_4_00_01_index_based_01_4}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_transpose_3_01_arg_type_01_4_00_01_index_based_01_4_afe7943bf4f8c44ab7746702becaccfe4}\label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_transpose_3_01_arg_type_01_4_00_01_index_based_01_4_afe7943bf4f8c44ab7746702becaccfe4}} 
+enum \{ {\bfseries Coeff\+Read\+Cost} = evaluator$<$Arg\+Type$>$\+::Coeff\+Read\+Cost, 
+{\bfseries Flags} = evaluator$<$Arg\+Type$>$\+::Flags $^\wedge$ Row\+Major\+Bit, 
+{\bfseries Alignment} = evaluator$<$Arg\+Type$>$\+::Alignment
+ \}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_transpose_3_01_arg_type_01_4_00_01_index_based_01_4_aaad78806253598991f290281fc80154e}\label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_transpose_3_01_arg_type_01_4_00_01_index_based_01_4_aaad78806253598991f290281fc80154e}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_transpose}{Transpose}}$<$ Arg\+Type $>$ {\bfseries Xpr\+Type}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_transpose_3_01_arg_type_01_4_00_01_index_based_01_4_a64946df51088cc9e1ed89e47fc61d33c}\label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_transpose_3_01_arg_type_01_4_00_01_index_based_01_4_a64946df51088cc9e1ed89e47fc61d33c}} 
+typedef Xpr\+Type\+::\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_transpose_3_01_arg_type_01_4_00_01_index_based_01_4_a29ac036c7acef87f765dd49e70d190ee}\label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_transpose_3_01_arg_type_01_4_00_01_index_based_01_4_a29ac036c7acef87f765dd49e70d190ee}} 
+typedef Xpr\+Type\+::\+Coeff\+Return\+Type {\bfseries Coeff\+Return\+Type}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_transpose_3_01_arg_type_01_4_00_01_index_based_01_4_aec69cebae400376763e83decca015af7}\label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_transpose_3_01_arg_type_01_4_00_01_index_based_01_4_aec69cebae400376763e83decca015af7}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC {\bfseries unary\+\_\+evaluator} (const \mbox{\hyperlink{class_eigen_1_1_transpose}{Xpr\+Type}} \&t)
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_transpose_3_01_arg_type_01_4_00_01_index_based_01_4_a123bd0c154402081cd60e6af83590024}\label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_transpose_3_01_arg_type_01_4_00_01_index_based_01_4_a123bd0c154402081cd60e6af83590024}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Coeff\+Return\+Type {\bfseries coeff} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col) const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_transpose_3_01_arg_type_01_4_00_01_index_based_01_4_aef9506dd163d2f0c59da29512949a9d8}\label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_transpose_3_01_arg_type_01_4_00_01_index_based_01_4_aef9506dd163d2f0c59da29512949a9d8}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Coeff\+Return\+Type {\bfseries coeff} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} index) const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_transpose_3_01_arg_type_01_4_00_01_index_based_01_4_a36722e85b94a79ba766ddc2920b48712}\label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_transpose_3_01_arg_type_01_4_00_01_index_based_01_4_a36722e85b94a79ba766ddc2920b48712}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Scalar \& {\bfseries coeff\+Ref} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col)
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_transpose_3_01_arg_type_01_4_00_01_index_based_01_4_ac0c19168aa19c9ac1c1cee6892f8e288}\label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_transpose_3_01_arg_type_01_4_00_01_index_based_01_4_ac0c19168aa19c9ac1c1cee6892f8e288}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Xpr\+Type\+::\+Scalar \& {\bfseries coeff\+Ref} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} index)
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_transpose_3_01_arg_type_01_4_00_01_index_based_01_4_a5e6ff1e2d0a66740648a14daa91633b0}\label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_transpose_3_01_arg_type_01_4_00_01_index_based_01_4_a5e6ff1e2d0a66740648a14daa91633b0}} 
+{\footnotesize template$<$int Load\+Mode, typename Packet\+Type $>$ }\\E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}} {\bfseries packet} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col) const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_transpose_3_01_arg_type_01_4_00_01_index_based_01_4_ab37d65daf774d2a04f2931f493e1c95a}\label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_transpose_3_01_arg_type_01_4_00_01_index_based_01_4_ab37d65daf774d2a04f2931f493e1c95a}} 
+{\footnotesize template$<$int Load\+Mode, typename Packet\+Type $>$ }\\E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}} {\bfseries packet} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} index) const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_transpose_3_01_arg_type_01_4_00_01_index_based_01_4_a5f656ac6134b2a6d3d617ee4545b3bbb}\label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_transpose_3_01_arg_type_01_4_00_01_index_based_01_4_a5f656ac6134b2a6d3d617ee4545b3bbb}} 
+{\footnotesize template$<$int Store\+Mode, typename Packet\+Type $>$ }\\E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE void {\bfseries write\+Packet} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col, const \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}} \&x)
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_transpose_3_01_arg_type_01_4_00_01_index_based_01_4_a5850cde3386d111a5d4dd20a8b5cf27c}\label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_transpose_3_01_arg_type_01_4_00_01_index_based_01_4_a5850cde3386d111a5d4dd20a8b5cf27c}} 
+{\footnotesize template$<$int Store\+Mode, typename Packet\+Type $>$ }\\E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE void {\bfseries write\+Packet} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} index, const \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}} \&x)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_transpose_3_01_arg_type_01_4_00_01_index_based_01_4_a55c2bd8d5d6c3a5739fc4e233e805b81}\label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_transpose_3_01_arg_type_01_4_00_01_index_based_01_4_a55c2bd8d5d6c3a5739fc4e233e805b81}} 
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1evaluator}{evaluator}}$<$ Arg\+Type $>$ {\bfseries m\+\_\+arg\+Impl}
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/Core\+Evaluators.\+h\end{DoxyCompactItemize}

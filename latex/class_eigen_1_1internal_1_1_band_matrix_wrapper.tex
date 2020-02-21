@@ -1,0 +1,94 @@
+\hypertarget{class_eigen_1_1internal_1_1_band_matrix_wrapper}{}\doxysection{Eigen\+::internal\+::Band\+Matrix\+Wrapper$<$ \+\_\+\+Coefficients\+Type, \+\_\+\+Rows, \+\_\+\+Cols, \+\_\+\+Supers, \+\_\+\+Subs, \+\_\+\+Options $>$ Class Template Reference}
+\label{class_eigen_1_1internal_1_1_band_matrix_wrapper}\index{Eigen::internal::BandMatrixWrapper$<$ \_CoefficientsType, \_Rows, \_Cols, \_Supers, \_Subs, \_Options $>$@{Eigen::internal::BandMatrixWrapper$<$ \_CoefficientsType, \_Rows, \_Cols, \_Supers, \_Subs, \_Options $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_band_matrix_wrapper_a4d9b3b75046e2d298f72cae7c9929a3f}\label{class_eigen_1_1internal_1_1_band_matrix_wrapper_a4d9b3b75046e2d298f72cae7c9929a3f}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_band_matrix_wrapper}{Band\+Matrix\+Wrapper}} $>$\+::Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_band_matrix_wrapper_af2619600a9ac7189c920700acec2ed18}\label{class_eigen_1_1internal_1_1_band_matrix_wrapper_af2619600a9ac7189c920700acec2ed18}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_band_matrix_wrapper}{Band\+Matrix\+Wrapper}} $>$\+::Coefficients\+Type {\bfseries Coefficients\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_band_matrix_wrapper_a34e63430ed81b44a49dd339987e8ced6}\label{class_eigen_1_1internal_1_1_band_matrix_wrapper_a34e63430ed81b44a49dd339987e8ced6}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_band_matrix_wrapper}{Band\+Matrix\+Wrapper}} $>$\+::Storage\+Index {\bfseries Storage\+Index}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_band_matrix_wrapper_a1da1c6d582ee0fd5effd8290d114af62}\label{class_eigen_1_1internal_1_1_band_matrix_wrapper_a1da1c6d582ee0fd5effd8290d114af62}} 
+{\bfseries Band\+Matrix\+Wrapper} (const Coefficients\+Type \&coeffs, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_band_matrix_wrapper_a8d23b9d25729ac15c06591c810d13160}{rows}}=\+\_\+\+Rows, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_band_matrix_wrapper_a5c81a2138f0adfb23216de383aaeeeab}{cols}}=\+\_\+\+Cols, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_band_matrix_wrapper_a5e874cc43bb0b406241e3cc6042335e5}{supers}}=\+\_\+\+Supers, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_band_matrix_wrapper_a146d5ceb44c93c8e0a48c207ad252a8f}{subs}}=\+\_\+\+Subs)
+\item 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_band_matrix_wrapper_a8d23b9d25729ac15c06591c810d13160}{rows}} () const
+\item 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_band_matrix_wrapper_a5c81a2138f0adfb23216de383aaeeeab}{cols}} () const
+\item 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_band_matrix_wrapper_a5e874cc43bb0b406241e3cc6042335e5}{supers}} () const
+\item 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_band_matrix_wrapper_a146d5ceb44c93c8e0a48c207ad252a8f}{subs}} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_band_matrix_wrapper_a86c85e74d144b8db575f3814e3069651}\label{class_eigen_1_1internal_1_1_band_matrix_wrapper_a86c85e74d144b8db575f3814e3069651}} 
+const Coefficients\+Type \& {\bfseries coeffs} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_band_matrix_wrapper_ad481463a6d56da0723164849763a26bc}\label{class_eigen_1_1internal_1_1_band_matrix_wrapper_ad481463a6d56da0723164849763a26bc}} 
+const Coefficients\+Type \& {\bfseries m\+\_\+coeffs}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_band_matrix_wrapper_a93d973aec90dcf3f836f3660749aafcc}\label{class_eigen_1_1internal_1_1_band_matrix_wrapper_a93d973aec90dcf3f836f3660749aafcc}} 
+\mbox{\hyperlink{class_eigen_1_1internal_1_1variable__if__dynamic}{internal\+::variable\+\_\+if\+\_\+dynamic}}$<$ \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}, \+\_\+\+Rows $>$ {\bfseries m\+\_\+rows}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_band_matrix_wrapper_a5432c89ed42f81404cf32126adb911d3}\label{class_eigen_1_1internal_1_1_band_matrix_wrapper_a5432c89ed42f81404cf32126adb911d3}} 
+\mbox{\hyperlink{class_eigen_1_1internal_1_1variable__if__dynamic}{internal\+::variable\+\_\+if\+\_\+dynamic}}$<$ \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}, \+\_\+\+Supers $>$ {\bfseries m\+\_\+supers}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_band_matrix_wrapper_ab3e85f1556236cfe51fd8f026c22bce5}\label{class_eigen_1_1internal_1_1_band_matrix_wrapper_ab3e85f1556236cfe51fd8f026c22bce5}} 
+\mbox{\hyperlink{class_eigen_1_1internal_1_1variable__if__dynamic}{internal\+::variable\+\_\+if\+\_\+dynamic}}$<$ \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}, \+\_\+\+Subs $>$ {\bfseries m\+\_\+subs}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_band_matrix_wrapper_a5c81a2138f0adfb23216de383aaeeeab}\label{class_eigen_1_1internal_1_1_band_matrix_wrapper_a5c81a2138f0adfb23216de383aaeeeab}} 
+\index{Eigen::internal::BandMatrixWrapper$<$ \_CoefficientsType, \_Rows, \_Cols, \_Supers, \_Subs, \_Options $>$@{Eigen::internal::BandMatrixWrapper$<$ \_CoefficientsType, \_Rows, \_Cols, \_Supers, \_Subs, \_Options $>$}!cols@{cols}}
+\index{cols@{cols}!Eigen::internal::BandMatrixWrapper$<$ \_CoefficientsType, \_Rows, \_Cols, \_Supers, \_Subs, \_Options $>$@{Eigen::internal::BandMatrixWrapper$<$ \_CoefficientsType, \_Rows, \_Cols, \_Supers, \_Subs, \_Options $>$}}
+\doxysubsubsection{\texorpdfstring{cols()}{cols()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Coefficients\+Type , int \+\_\+\+Rows, int \+\_\+\+Cols, int \+\_\+\+Supers, int \+\_\+\+Subs, int \+\_\+\+Options$>$ \\
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_band_matrix_wrapper}{Eigen\+::internal\+::\+Band\+Matrix\+Wrapper}}$<$ \+\_\+\+Coefficients\+Type, \+\_\+\+Rows, \+\_\+\+Cols, \+\_\+\+Supers, \+\_\+\+Subs, \+\_\+\+Options $>$\+::cols (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the number of rows 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_band_matrix_wrapper_a8d23b9d25729ac15c06591c810d13160}\label{class_eigen_1_1internal_1_1_band_matrix_wrapper_a8d23b9d25729ac15c06591c810d13160}} 
+\index{Eigen::internal::BandMatrixWrapper$<$ \_CoefficientsType, \_Rows, \_Cols, \_Supers, \_Subs, \_Options $>$@{Eigen::internal::BandMatrixWrapper$<$ \_CoefficientsType, \_Rows, \_Cols, \_Supers, \_Subs, \_Options $>$}!rows@{rows}}
+\index{rows@{rows}!Eigen::internal::BandMatrixWrapper$<$ \_CoefficientsType, \_Rows, \_Cols, \_Supers, \_Subs, \_Options $>$@{Eigen::internal::BandMatrixWrapper$<$ \_CoefficientsType, \_Rows, \_Cols, \_Supers, \_Subs, \_Options $>$}}
+\doxysubsubsection{\texorpdfstring{rows()}{rows()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Coefficients\+Type , int \+\_\+\+Rows, int \+\_\+\+Cols, int \+\_\+\+Supers, int \+\_\+\+Subs, int \+\_\+\+Options$>$ \\
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_band_matrix_wrapper}{Eigen\+::internal\+::\+Band\+Matrix\+Wrapper}}$<$ \+\_\+\+Coefficients\+Type, \+\_\+\+Rows, \+\_\+\+Cols, \+\_\+\+Supers, \+\_\+\+Subs, \+\_\+\+Options $>$\+::rows (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the number of columns 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_band_matrix_wrapper_a146d5ceb44c93c8e0a48c207ad252a8f}\label{class_eigen_1_1internal_1_1_band_matrix_wrapper_a146d5ceb44c93c8e0a48c207ad252a8f}} 
+\index{Eigen::internal::BandMatrixWrapper$<$ \_CoefficientsType, \_Rows, \_Cols, \_Supers, \_Subs, \_Options $>$@{Eigen::internal::BandMatrixWrapper$<$ \_CoefficientsType, \_Rows, \_Cols, \_Supers, \_Subs, \_Options $>$}!subs@{subs}}
+\index{subs@{subs}!Eigen::internal::BandMatrixWrapper$<$ \_CoefficientsType, \_Rows, \_Cols, \_Supers, \_Subs, \_Options $>$@{Eigen::internal::BandMatrixWrapper$<$ \_CoefficientsType, \_Rows, \_Cols, \_Supers, \_Subs, \_Options $>$}}
+\doxysubsubsection{\texorpdfstring{subs()}{subs()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Coefficients\+Type , int \+\_\+\+Rows, int \+\_\+\+Cols, int \+\_\+\+Supers, int \+\_\+\+Subs, int \+\_\+\+Options$>$ \\
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_band_matrix_wrapper}{Eigen\+::internal\+::\+Band\+Matrix\+Wrapper}}$<$ \+\_\+\+Coefficients\+Type, \+\_\+\+Rows, \+\_\+\+Cols, \+\_\+\+Supers, \+\_\+\+Subs, \+\_\+\+Options $>$\+::subs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the number of sub diagonals 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_band_matrix_wrapper_a5e874cc43bb0b406241e3cc6042335e5}\label{class_eigen_1_1internal_1_1_band_matrix_wrapper_a5e874cc43bb0b406241e3cc6042335e5}} 
+\index{Eigen::internal::BandMatrixWrapper$<$ \_CoefficientsType, \_Rows, \_Cols, \_Supers, \_Subs, \_Options $>$@{Eigen::internal::BandMatrixWrapper$<$ \_CoefficientsType, \_Rows, \_Cols, \_Supers, \_Subs, \_Options $>$}!supers@{supers}}
+\index{supers@{supers}!Eigen::internal::BandMatrixWrapper$<$ \_CoefficientsType, \_Rows, \_Cols, \_Supers, \_Subs, \_Options $>$@{Eigen::internal::BandMatrixWrapper$<$ \_CoefficientsType, \_Rows, \_Cols, \_Supers, \_Subs, \_Options $>$}}
+\doxysubsubsection{\texorpdfstring{supers()}{supers()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Coefficients\+Type , int \+\_\+\+Rows, int \+\_\+\+Cols, int \+\_\+\+Supers, int \+\_\+\+Subs, int \+\_\+\+Options$>$ \\
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_band_matrix_wrapper}{Eigen\+::internal\+::\+Band\+Matrix\+Wrapper}}$<$ \+\_\+\+Coefficients\+Type, \+\_\+\+Rows, \+\_\+\+Cols, \+\_\+\+Supers, \+\_\+\+Subs, \+\_\+\+Options $>$\+::supers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the number of super diagonals 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/Band\+Matrix.\+h\end{DoxyCompactItemize}

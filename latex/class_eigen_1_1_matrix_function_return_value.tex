@@ -1,0 +1,102 @@
+\hypertarget{class_eigen_1_1_matrix_function_return_value}{}\doxysection{Eigen\+::Matrix\+Function\+Return\+Value$<$ Derived $>$ Class Template Reference}
+\label{class_eigen_1_1_matrix_function_return_value}\index{Eigen::MatrixFunctionReturnValue$<$ Derived $>$@{Eigen::MatrixFunctionReturnValue$<$ Derived $>$}}
+
+
+Proxy for the matrix function of some matrix (expression).  
+
+
+
+
+{\ttfamily \#include $<$Matrix\+Function.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_matrix_function_return_value_acc3bd501f55ba5865fcbebd8077f5444}\label{class_eigen_1_1_matrix_function_return_value_acc3bd501f55ba5865fcbebd8077f5444}} 
+typedef Derived\+::\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_matrix_function_return_value_a699ba3f4e1f573aec4212d1375df4abc}\label{class_eigen_1_1_matrix_function_return_value_a699ba3f4e1f573aec4212d1375df4abc}} 
+typedef Derived\+::\+Index {\bfseries Index}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_matrix_function_return_value_a1c4568cb2dc9683383dbf1729f3fe51e}\label{class_eigen_1_1_matrix_function_return_value_a1c4568cb2dc9683383dbf1729f3fe51e}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1stem__function}{internal\+::stem\+\_\+function}}$<$ Scalar $>$\+::type {\bfseries Stem\+Function}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_matrix_function_return_value_af193d7a3e1b4e65dc70e64eb4bc8e17f}{Matrix\+Function\+Return\+Value}} (const Derived \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, Stem\+Function f)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Result\+Type $>$ }\\void \mbox{\hyperlink{class_eigen_1_1_matrix_function_return_value_a202d594ae254e3ea5420ff95d9f03a67}{eval\+To}} (Result\+Type \&result) const
+\begin{DoxyCompactList}\small\item\em Compute the matrix function. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_eigen_1_1_matrix_function_return_value_a0cdf35cbef496858b738e85055199f51}\label{class_eigen_1_1_matrix_function_return_value_a0cdf35cbef496858b738e85055199f51}} 
+Index {\bfseries rows} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_matrix_function_return_value_a9ed627acab1f8b40cc55e7ce47a88db4}\label{class_eigen_1_1_matrix_function_return_value_a9ed627acab1f8b40cc55e7ce47a88db4}} 
+Index {\bfseries cols} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_matrix_function_return_value_a0bac4087b2a06c0bab8e8f025b3d4097}\label{class_eigen_1_1_matrix_function_return_value_a0bac4087b2a06c0bab8e8f025b3d4097}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1ref__selector}{internal\+::ref\+\_\+selector}}$<$ Derived $>$\+::type {\bfseries Derived\+Nested}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Derived$>$\newline
+class Eigen\+::\+Matrix\+Function\+Return\+Value$<$ Derived $>$}
+
+Proxy for the matrix function of some matrix (expression). 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Derived} & Type of the argument to the matrix function.\\
+\hline
+\end{DoxyTemplParams}
+This class holds the argument to the matrix function until it is assigned or evaluated for some other reason (so the argument should not be changed in the meantime). It is the return type of matrix\+Base\+::matrix\+Function() and related functions and most of the time this is the only way it is used. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_matrix_function_return_value_af193d7a3e1b4e65dc70e64eb4bc8e17f}\label{class_eigen_1_1_matrix_function_return_value_af193d7a3e1b4e65dc70e64eb4bc8e17f}} 
+\index{Eigen::MatrixFunctionReturnValue$<$ Derived $>$@{Eigen::MatrixFunctionReturnValue$<$ Derived $>$}!MatrixFunctionReturnValue@{MatrixFunctionReturnValue}}
+\index{MatrixFunctionReturnValue@{MatrixFunctionReturnValue}!Eigen::MatrixFunctionReturnValue$<$ Derived $>$@{Eigen::MatrixFunctionReturnValue$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{MatrixFunctionReturnValue()}{MatrixFunctionReturnValue()}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_matrix_function_return_value}{Eigen\+::\+Matrix\+Function\+Return\+Value}}$<$ Derived $>$\+::\mbox{\hyperlink{class_eigen_1_1_matrix_function_return_value}{Matrix\+Function\+Return\+Value}} (\begin{DoxyParamCaption}\item[{const Derived \&}]{A,  }\item[{Stem\+Function}]{f }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em A} & Matrix (expression) forming the argument of the matrix function. \\
+\hline
+\mbox{\texttt{ in}}  & {\em f} & Stem function for matrix function under consideration. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_matrix_function_return_value_a202d594ae254e3ea5420ff95d9f03a67}\label{class_eigen_1_1_matrix_function_return_value_a202d594ae254e3ea5420ff95d9f03a67}} 
+\index{Eigen::MatrixFunctionReturnValue$<$ Derived $>$@{Eigen::MatrixFunctionReturnValue$<$ Derived $>$}!evalTo@{evalTo}}
+\index{evalTo@{evalTo}!Eigen::MatrixFunctionReturnValue$<$ Derived $>$@{Eigen::MatrixFunctionReturnValue$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{evalTo()}{evalTo()}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+template$<$typename Result\+Type $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_matrix_function_return_value}{Eigen\+::\+Matrix\+Function\+Return\+Value}}$<$ Derived $>$\+::eval\+To (\begin{DoxyParamCaption}\item[{Result\+Type \&}]{result }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Compute the matrix function. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em result} & {\ttfamily f} applied to {\ttfamily A}, where {\ttfamily f} and {\ttfamily A} are as in the constructor. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/util/Forward\+Declarations.\+h\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/src/\+Matrix\+Functions/Matrix\+Function.\+h\end{DoxyCompactItemize}

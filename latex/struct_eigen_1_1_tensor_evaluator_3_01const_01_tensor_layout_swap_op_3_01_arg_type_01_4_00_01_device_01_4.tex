@@ -1,0 +1,89 @@
+\hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4}{}\doxysection{Eigen\+::Tensor\+Evaluator$<$ const Tensor\+Layout\+Swap\+Op$<$ Arg\+Type $>$, Device $>$ Struct Template Reference}
+\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4}\index{Eigen::TensorEvaluator$<$ const TensorLayoutSwapOp$<$ ArgType $>$, Device $>$@{Eigen::TensorEvaluator$<$ const TensorLayoutSwapOp$<$ ArgType $>$, Device $>$}}
+Inheritance diagram for Eigen\+::Tensor\+Evaluator$<$ const Tensor\+Layout\+Swap\+Op$<$ Arg\+Type $>$, Device $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_a99e06f89851fbcb804ccde206413972d}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_a99e06f89851fbcb804ccde206413972d}} 
+enum \{ \newline
+{\bfseries Is\+Aligned} = Tensor\+Evaluator$<$Arg\+Type, Device$>$\+::Is\+Aligned, 
+{\bfseries Packet\+Access} = Tensor\+Evaluator$<$Arg\+Type, Device$>$\+::Packet\+Access, 
+{\bfseries Layout} = (static\+\_\+cast$<$int$>$(Tensor\+Evaluator$<$Arg\+Type, Device$>$\+::Layout) == static\+\_\+cast$<$int$>$(Col\+Major)) ? Row\+Major \+: Col\+Major, 
+{\bfseries Coord\+Access} = false, 
+\newline
+{\bfseries Raw\+Access} = Tensor\+Evaluator$<$Arg\+Type, Device$>$\+::Raw\+Access
+ \}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_a859a95e77332770ae8cf43f151afe748}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_a859a95e77332770ae8cf43f151afe748}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_tensor_layout_swap_op}{Tensor\+Layout\+Swap\+Op}}$<$ Arg\+Type $>$ {\bfseries Xpr\+Type}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_a49d96fb175e762e5940d9cb49ef71902}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_a49d96fb175e762e5940d9cb49ef71902}} 
+typedef Xpr\+Type\+::\+Index {\bfseries Index}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_a21ace80c46771a6bf1f96f34b1b61507}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_a21ace80c46771a6bf1f96f34b1b61507}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_d_sizes}{D\+Sizes}}$<$ Index, Num\+Dims $>$ {\bfseries Dimensions}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_a8bfebd5e12f3299f79e1f6c6449b8d81}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_a8bfebd5e12f3299f79e1f6c6449b8d81}} 
+typedef Xpr\+Type\+::\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_a80f831b5e55a06f6b2af3c321447eba7}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_a80f831b5e55a06f6b2af3c321447eba7}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_triplet}{Xpr\+Type\+::\+Coeff\+Return\+Type}} {\bfseries Coeff\+Return\+Type}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_a8665a1841c90a4cd1130dd6a8b31278e}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_a8665a1841c90a4cd1130dd6a8b31278e}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}}$<$ \mbox{\hyperlink{class_eigen_1_1_triplet}{Coeff\+Return\+Type}}, Device $>$\+::type {\bfseries Packet\+Return\+Type}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_a1631e9fa03a6697d3c1a00eeed654fa0}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_a1631e9fa03a6697d3c1a00eeed654fa0}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE {\bfseries Tensor\+Evaluator} (const \mbox{\hyperlink{class_eigen_1_1_tensor_layout_swap_op}{Xpr\+Type}} \&op, const Device \&device)
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_a8fdc1d16a8c4551a981da6bf3424f77c}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_a8fdc1d16a8c4551a981da6bf3424f77c}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{struct_eigen_1_1_d_sizes}{Dimensions}} \& {\bfseries dimensions} () const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_a686b6743014b1ba49b2cb64b6cc67e39}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_a686b6743014b1ba49b2cb64b6cc67e39}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE bool {\bfseries eval\+Sub\+Exprs\+If\+Needed} (\mbox{\hyperlink{class_eigen_1_1_triplet}{Coeff\+Return\+Type}} $\ast$data)
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_a4448a128101d3456dbc0a7efd625c588}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_a4448a128101d3456dbc0a7efd625c588}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE void {\bfseries cleanup} ()
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_abf19a77b739c3b1a5e919745a79e10c8}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_abf19a77b739c3b1a5e919745a79e10c8}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_triplet}{Coeff\+Return\+Type}} {\bfseries coeff} (Index index) const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_a4ddc0df3edf1505efd91f3118b2449c9}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_a4ddc0df3edf1505efd91f3118b2449c9}} 
+{\footnotesize template$<$int Load\+Mode$>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_triplet}{Packet\+Return\+Type}} {\bfseries packet} (Index index) const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_a6c02ab457bd164d7e03536af52919a2d}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_a6c02ab457bd164d7e03536af52919a2d}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_tensor_op_cost}{Tensor\+Op\+Cost}} {\bfseries cost\+Per\+Coeff} (bool vectorized) const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_a96410830886fe5f423e6543a2724387f}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_a96410830886fe5f423e6543a2724387f}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Scalar $\ast$ {\bfseries data} () const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_abce09b02620cba0bca96f72d35189f5c}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_abce09b02620cba0bca96f72d35189f5c}} 
+const \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{Tensor\+Evaluator}}$<$ Arg\+Type, Device $>$ \& {\bfseries impl} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_a0ef70e1a7603a69da91131ea0982cb4e}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_a0ef70e1a7603a69da91131ea0982cb4e}} 
+static const int {\bfseries Num\+Dims} = \mbox{\hyperlink{struct_eigen_1_1internal_1_1array__size}{internal\+::array\+\_\+size}}$<$typename \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{Tensor\+Evaluator}}$<$Arg\+Type, Device$>$\+::\mbox{\hyperlink{struct_eigen_1_1_d_sizes}{Dimensions}}$>$\+::value
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_a46aab28b883d1ec717e8cf36f86b6339}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_a46aab28b883d1ec717e8cf36f86b6339}} 
+\mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{Tensor\+Evaluator}}$<$ Arg\+Type, Device $>$ {\bfseries m\+\_\+impl}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_a03528398ac82fde301669ef96449b5db}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_layout_swap_op_3_01_arg_type_01_4_00_01_device_01_4_a03528398ac82fde301669ef96449b5db}} 
+\mbox{\hyperlink{struct_eigen_1_1_d_sizes}{Dimensions}} {\bfseries m\+\_\+dimensions}
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/\+C\+X\+X11/src/\+Tensor/Tensor\+Layout\+Swap.\+h\end{DoxyCompactItemize}

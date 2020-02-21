@@ -1,0 +1,100 @@
+\hypertarget{class_eigen_1_1_sparse_solver_base}{}\doxysection{Eigen\+::Sparse\+Solver\+Base$<$ Derived $>$ Class Template Reference}
+\label{class_eigen_1_1_sparse_solver_base}\index{Eigen::SparseSolverBase$<$ Derived $>$@{Eigen::SparseSolverBase$<$ Derived $>$}}
+
+
+A base class for sparse solvers.  
+
+
+
+
+{\ttfamily \#include $<$Sparse\+Solver\+Base.\+h$>$}
+
+Inheritance diagram for Eigen\+::Sparse\+Solver\+Base$<$ Derived $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=0.853659cm]{class_eigen_1_1_sparse_solver_base}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_sparse_solver_base_aacd99fa17db475e74d3834767f392f33}{Sparse\+Solver\+Base}} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_solver_base_ad213fb2c2199ca597b96f1f79653637f}\label{class_eigen_1_1_sparse_solver_base_ad213fb2c2199ca597b96f1f79653637f}} 
+Derived \& {\bfseries derived} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_solver_base_af5f23a7e048060c3082c5a1ddfa91932}\label{class_eigen_1_1_sparse_solver_base_af5f23a7e048060c3082c5a1ddfa91932}} 
+const Derived \& {\bfseries derived} () const
+\item 
+{\footnotesize template$<$typename Rhs $>$ }\\const \mbox{\hyperlink{class_eigen_1_1_solve}{Solve}}$<$ Derived, Rhs $>$ \mbox{\hyperlink{class_eigen_1_1_sparse_solver_base_a4a66e9498b06e3ec4ec36f06b26d4e8f}{solve}} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Rhs $>$ \&b) const
+\item 
+{\footnotesize template$<$typename Rhs $>$ }\\const \mbox{\hyperlink{class_eigen_1_1_solve}{Solve}}$<$ Derived, Rhs $>$ \mbox{\hyperlink{class_eigen_1_1_sparse_solver_base_a3a8d97173b6e2630f484589b3471cfc7}{solve}} (const \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base}{Sparse\+Matrix\+Base}}$<$ Rhs $>$ \&b) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_solver_base_a886c757fea6fe1d992a66524213f14fb}\label{class_eigen_1_1_sparse_solver_base_a886c757fea6fe1d992a66524213f14fb}} 
+{\footnotesize template$<$typename Rhs , typename Dest $>$ }\\void {\bfseries \+\_\+solve\+\_\+impl} (const \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base}{Sparse\+Matrix\+Base}}$<$ Rhs $>$ \&b, \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base}{Sparse\+Matrix\+Base}}$<$ Dest $>$ \&dest) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_solver_base_ac52101f69d048d5c4b036eadf1f13673}\label{class_eigen_1_1_sparse_solver_base_ac52101f69d048d5c4b036eadf1f13673}} 
+bool {\bfseries m\+\_\+is\+Initialized}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Derived$>$\newline
+class Eigen\+::\+Sparse\+Solver\+Base$<$ Derived $>$}
+
+A base class for sparse solvers. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Derived} & the actual type of the solver. \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_solver_base_aacd99fa17db475e74d3834767f392f33}\label{class_eigen_1_1_sparse_solver_base_aacd99fa17db475e74d3834767f392f33}} 
+\index{Eigen::SparseSolverBase$<$ Derived $>$@{Eigen::SparseSolverBase$<$ Derived $>$}!SparseSolverBase@{SparseSolverBase}}
+\index{SparseSolverBase@{SparseSolverBase}!Eigen::SparseSolverBase$<$ Derived $>$@{Eigen::SparseSolverBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{SparseSolverBase()}{SparseSolverBase()}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_sparse_solver_base}{Eigen\+::\+Sparse\+Solver\+Base}}$<$ Derived $>$\+::\mbox{\hyperlink{class_eigen_1_1_sparse_solver_base}{Sparse\+Solver\+Base}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default constructor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_solver_base_a4a66e9498b06e3ec4ec36f06b26d4e8f}\label{class_eigen_1_1_sparse_solver_base_a4a66e9498b06e3ec4ec36f06b26d4e8f}} 
+\index{Eigen::SparseSolverBase$<$ Derived $>$@{Eigen::SparseSolverBase$<$ Derived $>$}!solve@{solve}}
+\index{solve@{solve}!Eigen::SparseSolverBase$<$ Derived $>$@{Eigen::SparseSolverBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{solve()}{solve()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+template$<$typename Rhs $>$ \\
+const \mbox{\hyperlink{class_eigen_1_1_solve}{Solve}}$<$Derived, Rhs$>$ \mbox{\hyperlink{class_eigen_1_1_sparse_solver_base}{Eigen\+::\+Sparse\+Solver\+Base}}$<$ Derived $>$\+::solve (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Rhs $>$ \&}]{b }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+an expression of the solution x of $ A x = b $ using the current decomposition of A.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+compute() 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_solver_base_a3a8d97173b6e2630f484589b3471cfc7}\label{class_eigen_1_1_sparse_solver_base_a3a8d97173b6e2630f484589b3471cfc7}} 
+\index{Eigen::SparseSolverBase$<$ Derived $>$@{Eigen::SparseSolverBase$<$ Derived $>$}!solve@{solve}}
+\index{solve@{solve}!Eigen::SparseSolverBase$<$ Derived $>$@{Eigen::SparseSolverBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{solve()}{solve()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+template$<$typename Rhs $>$ \\
+const \mbox{\hyperlink{class_eigen_1_1_solve}{Solve}}$<$Derived, Rhs$>$ \mbox{\hyperlink{class_eigen_1_1_sparse_solver_base}{Eigen\+::\+Sparse\+Solver\+Base}}$<$ Derived $>$\+::solve (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base}{Sparse\+Matrix\+Base}}$<$ Rhs $>$ \&}]{b }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+an expression of the solution x of $ A x = b $ using the current decomposition of A.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+compute() 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Sparse\+Core/Sparse\+Solver\+Base.\+h\end{DoxyCompactItemize}
