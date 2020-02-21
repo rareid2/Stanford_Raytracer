@@ -1,0 +1,101 @@
+\hypertarget{class_eigen_1_1_diagonal_preconditioner}{}\doxysection{Eigen\+::Diagonal\+Preconditioner$<$ \+\_\+\+Scalar $>$ Class Template Reference}
+\label{class_eigen_1_1_diagonal_preconditioner}\index{Eigen::DiagonalPreconditioner$<$ \_Scalar $>$@{Eigen::DiagonalPreconditioner$<$ \_Scalar $>$}}
+
+
+A preconditioner based on the digonal entries.  
+
+
+
+
+{\ttfamily \#include $<$Basic\+Preconditioners.\+h$>$}
+
+Inheritance diagram for Eigen\+::Diagonal\+Preconditioner$<$ \+\_\+\+Scalar $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_eigen_1_1_diagonal_preconditioner}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_diagonal_preconditioner_ad1a773f0581973c1624ae9ea2e3078f4}\label{class_eigen_1_1_diagonal_preconditioner_ad1a773f0581973c1624ae9ea2e3078f4}} 
+enum \{ {\bfseries Cols\+At\+Compile\+Time} = Dynamic, 
+{\bfseries Max\+Cols\+At\+Compile\+Time} = Dynamic
+ \}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_diagonal_preconditioner_a21a4ddda2e64177b5afc4c7c45a6ced9}\label{class_eigen_1_1_diagonal_preconditioner_a21a4ddda2e64177b5afc4c7c45a6ced9}} 
+typedef Vector\+::\+Storage\+Index {\bfseries Storage\+Index}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_diagonal_preconditioner_ad7d67c2d25072f73543031e4853d443b}\label{class_eigen_1_1_diagonal_preconditioner_ad7d67c2d25072f73543031e4853d443b}} 
+{\footnotesize template$<$typename Mat\+Type $>$ }\\{\bfseries Diagonal\+Preconditioner} (const Mat\+Type \&mat)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_diagonal_preconditioner_abfa8fc0d88fd77c131cf0bf8a88d8c4d}\label{class_eigen_1_1_diagonal_preconditioner_abfa8fc0d88fd77c131cf0bf8a88d8c4d}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries rows} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_diagonal_preconditioner_ab6e72d6ba6e848c2669e7453ccbf1e2b}\label{class_eigen_1_1_diagonal_preconditioner_ab6e72d6ba6e848c2669e7453ccbf1e2b}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries cols} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_diagonal_preconditioner_af9a7205f04b0ef833b3fae8b2c3f6cc9}\label{class_eigen_1_1_diagonal_preconditioner_af9a7205f04b0ef833b3fae8b2c3f6cc9}} 
+{\footnotesize template$<$typename Mat\+Type $>$ }\\\mbox{\hyperlink{class_eigen_1_1_diagonal_preconditioner}{Diagonal\+Preconditioner}} \& {\bfseries analyze\+Pattern} (const Mat\+Type \&)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_diagonal_preconditioner_a3bb1bae9f49ff115fb21f951101fb88a}\label{class_eigen_1_1_diagonal_preconditioner_a3bb1bae9f49ff115fb21f951101fb88a}} 
+{\footnotesize template$<$typename Mat\+Type $>$ }\\\mbox{\hyperlink{class_eigen_1_1_diagonal_preconditioner}{Diagonal\+Preconditioner}} \& {\bfseries factorize} (const Mat\+Type \&mat)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_diagonal_preconditioner_a4b938c483a6d17bfc079f2fde8671a08}\label{class_eigen_1_1_diagonal_preconditioner_a4b938c483a6d17bfc079f2fde8671a08}} 
+{\footnotesize template$<$typename Mat\+Type $>$ }\\\mbox{\hyperlink{class_eigen_1_1_diagonal_preconditioner}{Diagonal\+Preconditioner}} \& {\bfseries compute} (const Mat\+Type \&mat)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_diagonal_preconditioner_a3bbc5d91d64e3968c3b0b629e15e9fb7}\label{class_eigen_1_1_diagonal_preconditioner_a3bbc5d91d64e3968c3b0b629e15e9fb7}} 
+{\footnotesize template$<$typename Rhs , typename Dest $>$ }\\void {\bfseries \+\_\+solve\+\_\+impl} (const Rhs \&b, Dest \&x) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_diagonal_preconditioner_a0b42a9d87d619347f92f703f162f375f}\label{class_eigen_1_1_diagonal_preconditioner_a0b42a9d87d619347f92f703f162f375f}} 
+{\footnotesize template$<$typename Rhs $>$ }\\const \mbox{\hyperlink{class_eigen_1_1_solve}{Solve}}$<$ \mbox{\hyperlink{class_eigen_1_1_diagonal_preconditioner}{Diagonal\+Preconditioner}}, Rhs $>$ {\bfseries solve} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Rhs $>$ \&b) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_diagonal_preconditioner_a83769941faa301e9f414ecdf6a715140}\label{class_eigen_1_1_diagonal_preconditioner_a83769941faa301e9f414ecdf6a715140}} 
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} {\bfseries info} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_diagonal_preconditioner_abce7e6e756519949b58f201ef486d162}\label{class_eigen_1_1_diagonal_preconditioner_abce7e6e756519949b58f201ef486d162}} 
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Vector}} {\bfseries m\+\_\+invdiag}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_diagonal_preconditioner_a180911e1c0f848621dab8e29b5da88dc}\label{class_eigen_1_1_diagonal_preconditioner_a180911e1c0f848621dab8e29b5da88dc}} 
+bool {\bfseries m\+\_\+is\+Initialized}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Scalar$>$\newline
+class Eigen\+::\+Diagonal\+Preconditioner$<$ \+\_\+\+Scalar $>$}
+
+A preconditioner based on the digonal entries. 
+
+This class allows to approximately solve for A.\+x = b problems assuming A is a diagonal matrix. In other words, this preconditioner neglects all off diagonal entries and, in \mbox{\hyperlink{namespace_eigen}{Eigen}}\textquotesingle{}s language, solves for\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{A.diagonal().asDiagonal() . x = b}
+\end{DoxyCode}
+
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Scalar} & the type of the scalar.\\
+\hline
+\end{DoxyTemplParams}
+\textbackslash{}implsparsesolverconcept
+
+This preconditioner is suitable for both selfadjoint and general problems. The diagonal entries are pre-\/inverted and stored into a dense vector.
+
+\begin{DoxyNote}{Note}
+A variant that has yet to be implemented would attempt to preserve the norm of each column.
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+class \mbox{\hyperlink{class_eigen_1_1_least_square_diagonal_preconditioner}{Least\+Square\+Diagonal\+Preconditioner}}, class \mbox{\hyperlink{class_eigen_1_1_conjugate_gradient}{Conjugate\+Gradient}} 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Iterative\+Linear\+Solvers/Basic\+Preconditioners.\+h\end{DoxyCompactItemize}

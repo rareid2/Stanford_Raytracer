@@ -1,0 +1,88 @@
+\hypertarget{classublas__interface}{}\doxysection{ublas\+\_\+interface$<$ real $>$ Class Template Reference}
+\label{classublas__interface}\index{ublas\_interface$<$ real $>$@{ublas\_interface$<$ real $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classublas__interface_a24b220d867ddf8582c3b70786fb31ca7}\label{classublas__interface_a24b220d867ddf8582c3b70786fb31ca7}} 
+typedef real {\bfseries real\+\_\+type}
+\item 
+\mbox{\Hypertarget{classublas__interface_ab781eafe583c10540b425c7c1251f366}\label{classublas__interface_ab781eafe583c10540b425c7c1251f366}} 
+typedef std\+::vector$<$ real $>$ {\bfseries stl\+\_\+vector}
+\item 
+\mbox{\Hypertarget{classublas__interface_ac38f512a6667170c77d1ec3ad30f5267}\label{classublas__interface_ac38f512a6667170c77d1ec3ad30f5267}} 
+typedef std\+::vector$<$ stl\+\_\+vector $>$ {\bfseries stl\+\_\+matrix}
+\item 
+\mbox{\Hypertarget{classublas__interface_a0346fc1535af625113592c350892e703}\label{classublas__interface_a0346fc1535af625113592c350892e703}} 
+typedef boost\+::numeric\+::ublas\+::matrix$<$ real, boost\+::numeric\+::ublas\+::column\+\_\+major $>$ {\bfseries gene\+\_\+matrix}
+\item 
+\mbox{\Hypertarget{classublas__interface_a84641db47b08b3e988cea0bc196185cc}\label{classublas__interface_a84641db47b08b3e988cea0bc196185cc}} 
+typedef boost\+::numeric\+::ublas\+::vector$<$ real $>$ {\bfseries gene\+\_\+vector}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classublas__interface_a32117e7ead7a2a8f4e3d061c62effb40}\label{classublas__interface_a32117e7ead7a2a8f4e3d061c62effb40}} 
+static std\+::string {\bfseries name} (void)
+\item 
+\mbox{\Hypertarget{classublas__interface_a21c3496aaa06183e49f5cb6e07b50860}\label{classublas__interface_a21c3496aaa06183e49f5cb6e07b50860}} 
+static void {\bfseries free\+\_\+matrix} (gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, int N)
+\item 
+\mbox{\Hypertarget{classublas__interface_a82dfbf57b22b1604aa1027949fa89f06}\label{classublas__interface_a82dfbf57b22b1604aa1027949fa89f06}} 
+static void {\bfseries free\+\_\+vector} (gene\+\_\+vector \&\mbox{\hyperlink{class_eigen_1_1_matrix}{B}})
+\item 
+\mbox{\Hypertarget{classublas__interface_a86c456f8a172a6d7bae92181bd57962b}\label{classublas__interface_a86c456f8a172a6d7bae92181bd57962b}} 
+static void {\bfseries matrix\+\_\+from\+\_\+stl} (gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, stl\+\_\+matrix \&A\+\_\+stl)
+\item 
+\mbox{\Hypertarget{classublas__interface_a0a5a4f40ad048be8c066438f1f77ea5f}\label{classublas__interface_a0a5a4f40ad048be8c066438f1f77ea5f}} 
+static void {\bfseries vector\+\_\+from\+\_\+stl} (gene\+\_\+vector \&\mbox{\hyperlink{class_eigen_1_1_matrix}{B}}, stl\+\_\+vector \&B\+\_\+stl)
+\item 
+\mbox{\Hypertarget{classublas__interface_a8b52f77a0ed244e5b7a7604120e84fc1}\label{classublas__interface_a8b52f77a0ed244e5b7a7604120e84fc1}} 
+static void {\bfseries vector\+\_\+to\+\_\+stl} (gene\+\_\+vector \&\mbox{\hyperlink{class_eigen_1_1_matrix}{B}}, stl\+\_\+vector \&B\+\_\+stl)
+\item 
+\mbox{\Hypertarget{classublas__interface_af36a6f033d5fa349ccb3a116f161d524}\label{classublas__interface_af36a6f033d5fa349ccb3a116f161d524}} 
+static void {\bfseries matrix\+\_\+to\+\_\+stl} (gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, stl\+\_\+matrix \&A\+\_\+stl)
+\item 
+\mbox{\Hypertarget{classublas__interface_a03447fe23509848cc3d84d6bb5dcad86}\label{classublas__interface_a03447fe23509848cc3d84d6bb5dcad86}} 
+static void {\bfseries copy\+\_\+vector} (const gene\+\_\+vector \&source, gene\+\_\+vector \&cible, int N)
+\item 
+\mbox{\Hypertarget{classublas__interface_ab6feace7a007b3344072623229d3f738}\label{classublas__interface_ab6feace7a007b3344072623229d3f738}} 
+static void {\bfseries copy\+\_\+matrix} (const gene\+\_\+matrix \&source, gene\+\_\+matrix \&cible, int N)
+\item 
+\mbox{\Hypertarget{classublas__interface_a858ac339249e698a4a6d9fb8b63765d3}\label{classublas__interface_a858ac339249e698a4a6d9fb8b63765d3}} 
+static void {\bfseries matrix\+\_\+vector\+\_\+product\+\_\+slow} (gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, gene\+\_\+vector \&\mbox{\hyperlink{class_eigen_1_1_matrix}{B}}, gene\+\_\+vector \&X, int N)
+\item 
+\mbox{\Hypertarget{classublas__interface_a0d59e21440e6b229c42871dcb6ab60ba}\label{classublas__interface_a0d59e21440e6b229c42871dcb6ab60ba}} 
+static void {\bfseries matrix\+\_\+matrix\+\_\+product\+\_\+slow} (gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{B}}, gene\+\_\+matrix \&X, int N)
+\item 
+\mbox{\Hypertarget{classublas__interface_a2d6f83cc3d827e6e0d261b0f6f0fc225}\label{classublas__interface_a2d6f83cc3d827e6e0d261b0f6f0fc225}} 
+static void {\bfseries axpy\+\_\+slow} (const real coef, const gene\+\_\+vector \&X, gene\+\_\+vector \&Y, int N)
+\item 
+\mbox{\Hypertarget{classublas__interface_a26e6c848c18676daf943250597f766c8}\label{classublas__interface_a26e6c848c18676daf943250597f766c8}} 
+static void {\bfseries matrix\+\_\+vector\+\_\+product} (gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, gene\+\_\+vector \&\mbox{\hyperlink{class_eigen_1_1_matrix}{B}}, gene\+\_\+vector \&X, int N)
+\item 
+\mbox{\Hypertarget{classublas__interface_a4dbd7324c682015d070141403b0710b8}\label{classublas__interface_a4dbd7324c682015d070141403b0710b8}} 
+static void {\bfseries atv\+\_\+product} (gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, gene\+\_\+vector \&\mbox{\hyperlink{class_eigen_1_1_matrix}{B}}, gene\+\_\+vector \&X, int N)
+\item 
+\mbox{\Hypertarget{classublas__interface_ae931b23f3823fdd23dc3ef0feba08812}\label{classublas__interface_ae931b23f3823fdd23dc3ef0feba08812}} 
+static void {\bfseries matrix\+\_\+matrix\+\_\+product} (gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{B}}, gene\+\_\+matrix \&X, int N)
+\item 
+\mbox{\Hypertarget{classublas__interface_acc36f0db678070ed64c4565b6a7638b2}\label{classublas__interface_acc36f0db678070ed64c4565b6a7638b2}} 
+static void {\bfseries axpy} (const real coef, const gene\+\_\+vector \&X, gene\+\_\+vector \&Y, int N)
+\item 
+\mbox{\Hypertarget{classublas__interface_a6d2438d82e457ed5550bc3df57e660a4}\label{classublas__interface_a6d2438d82e457ed5550bc3df57e660a4}} 
+static void {\bfseries axpby} (real a, const gene\+\_\+vector \&X, real b, gene\+\_\+vector \&Y, int N)
+\item 
+\mbox{\Hypertarget{classublas__interface_a89da1b812a6df68e9833db1449670178}\label{classublas__interface_a89da1b812a6df68e9833db1449670178}} 
+static void {\bfseries ata\+\_\+product} (gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, gene\+\_\+matrix \&X, int N)
+\item 
+\mbox{\Hypertarget{classublas__interface_ac0b4af8032156a1d7e37e3d19220b5e8}\label{classublas__interface_ac0b4af8032156a1d7e37e3d19220b5e8}} 
+static void {\bfseries aat\+\_\+product} (gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, gene\+\_\+matrix \&X, int N)
+\item 
+\mbox{\Hypertarget{classublas__interface_aff37a09a043018d1eb13de586b070598}\label{classublas__interface_aff37a09a043018d1eb13de586b070598}} 
+static void {\bfseries trisolve\+\_\+lower} (const gene\+\_\+matrix \&L, const gene\+\_\+vector \&\mbox{\hyperlink{class_eigen_1_1_matrix}{B}}, gene\+\_\+vector \&X, int N)
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/bench/btl/libs/ublas/ublas\+\_\+interface.\+hh\end{DoxyCompactItemize}

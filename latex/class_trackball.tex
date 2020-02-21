@@ -1,0 +1,49 @@
+\hypertarget{class_trackball}{}\doxysection{Trackball Class Reference}
+\label{class_trackball}\index{Trackball@{Trackball}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_trackball_ab221a0af65769c8e5be823ea63a8b813}\label{class_trackball_ab221a0af65769c8e5be823ea63a8b813}} 
+enum {\bfseries Mode} \{ {\bfseries Around}, 
+{\bfseries Local}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_trackball_acd3abf8a7db62e0c83ba562682b37558}\label{class_trackball_acd3abf8a7db62e0c83ba562682b37558}} 
+void {\bfseries start} (Mode m=Around)
+\item 
+\mbox{\Hypertarget{class_trackball_a79b2ec60df4531f9efb9d931817fd864}\label{class_trackball_a79b2ec60df4531f9efb9d931817fd864}} 
+void {\bfseries set\+Camera} (\mbox{\hyperlink{class_camera}{Camera}} $\ast$p\+Cam)
+\item 
+\mbox{\Hypertarget{class_trackball_a25a5be033630b6ed3209ff6388887b1a}\label{class_trackball_a25a5be033630b6ed3209ff6388887b1a}} 
+void {\bfseries track} (const Eigen\+::\+Vector2i \&new\+Point2D)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_trackball_a03355a08684ac21f9cff48454b240cab}\label{class_trackball_a03355a08684ac21f9cff48454b240cab}} 
+bool {\bfseries map\+To\+Sphere} (const Eigen\+::\+Vector2i \&p2, Eigen\+::\+Vector3f \&v3)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_trackball_a510bbfc28f4b8cd470e447da38b6edb9}\label{class_trackball_a510bbfc28f4b8cd470e447da38b6edb9}} 
+\mbox{\hyperlink{class_camera}{Camera}} $\ast$ {\bfseries mp\+Camera}
+\item 
+\mbox{\Hypertarget{class_trackball_ae85b04c78444e5a480efd15559786ce3}\label{class_trackball_ae85b04c78444e5a480efd15559786ce3}} 
+Eigen\+::\+Vector3f {\bfseries m\+Last\+Point3D}
+\item 
+\mbox{\Hypertarget{class_trackball_a203e6a84014ae989e959e635ee03c4a7}\label{class_trackball_a203e6a84014ae989e959e635ee03c4a7}} 
+Mode {\bfseries m\+Mode}
+\item 
+\mbox{\Hypertarget{class_trackball_a75b82d9feb2e0b3efa2bf98c55c78122}\label{class_trackball_a75b82d9feb2e0b3efa2bf98c55c78122}} 
+bool {\bfseries m\+Last\+Point\+Ok}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/demos/opengl/trackball.\+h\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/demos/opengl/trackball.\+cpp\end{DoxyCompactItemize}

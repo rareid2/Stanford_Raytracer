@@ -1,0 +1,96 @@
+\hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_unary_op_3_01_custom_unary_func_00_c98bd2331846ae9855eae47ba436125b}{}\doxysection{Eigen\+::Tensor\+Evaluator$<$ const Tensor\+Custom\+Unary\+Op$<$ Custom\+Unary\+Func, Xpr\+Type $>$, Device $>$ Struct Template Reference}
+\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_unary_op_3_01_custom_unary_func_00_c98bd2331846ae9855eae47ba436125b}\index{Eigen::TensorEvaluator$<$ const TensorCustomUnaryOp$<$ CustomUnaryFunc, XprType $>$, Device $>$@{Eigen::TensorEvaluator$<$ const TensorCustomUnaryOp$<$ CustomUnaryFunc, XprType $>$, Device $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_unary_op_3_01_custom_unary_func_00_c98bd2331846ae9855eae47ba436125b_adcf8cbc4c6178ef36a7576aaaef7b299}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_unary_op_3_01_custom_unary_func_00_c98bd2331846ae9855eae47ba436125b_adcf8cbc4c6178ef36a7576aaaef7b299}} 
+enum \{ \newline
+{\bfseries Is\+Aligned} = false, 
+{\bfseries Packet\+Access} = (internal\+::packet\+\_\+traits$<$Scalar$>$\+::size $>$ 1), 
+{\bfseries Block\+Access} = false, 
+{\bfseries Layout} = Tensor\+Evaluator$<$Xpr\+Type, Device$>$\+::Layout, 
+\newline
+{\bfseries Coord\+Access} = false, 
+{\bfseries Raw\+Access} = false
+ \}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_unary_op_3_01_custom_unary_func_00_c98bd2331846ae9855eae47ba436125b_ab1199c4056a4422dd3125522054d506f}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_unary_op_3_01_custom_unary_func_00_c98bd2331846ae9855eae47ba436125b_ab1199c4056a4422dd3125522054d506f}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_tensor_custom_unary_op}{Tensor\+Custom\+Unary\+Op}}$<$ Custom\+Unary\+Func, Xpr\+Type $>$ {\bfseries Arg\+Type}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_unary_op_3_01_custom_unary_func_00_c98bd2331846ae9855eae47ba436125b_a7f937684628e2eb02a9f1aa24eb14667}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_unary_op_3_01_custom_unary_func_00_c98bd2331846ae9855eae47ba436125b_a7f937684628e2eb02a9f1aa24eb14667}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_tensor_custom_unary_op}{Arg\+Type}} $>$\+::Index {\bfseries Index}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_unary_op_3_01_custom_unary_func_00_c98bd2331846ae9855eae47ba436125b_a787c09b20ad520b09b279099535fa0a0}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_unary_op_3_01_custom_unary_func_00_c98bd2331846ae9855eae47ba436125b_a787c09b20ad520b09b279099535fa0a0}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_d_sizes}{D\+Sizes}}$<$ Index, Num\+Dims $>$ {\bfseries Dimensions}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_unary_op_3_01_custom_unary_func_00_c98bd2331846ae9855eae47ba436125b_ab494b56b100f11dcc5e300eb32de3edf}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_unary_op_3_01_custom_unary_func_00_c98bd2331846ae9855eae47ba436125b_ab494b56b100f11dcc5e300eb32de3edf}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__const}{internal\+::remove\+\_\+const}}$<$ typename Arg\+Type\+::\+Scalar $>$\+::type {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_unary_op_3_01_custom_unary_func_00_c98bd2331846ae9855eae47ba436125b_ad22967e2c4e5ebf6b108f0c7e7a050ef}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_unary_op_3_01_custom_unary_func_00_c98bd2331846ae9855eae47ba436125b_ad22967e2c4e5ebf6b108f0c7e7a050ef}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__const}{internal\+::remove\+\_\+const}}$<$ typename Xpr\+Type\+::\+Coeff\+Return\+Type $>$\+::type {\bfseries Coeff\+Return\+Type}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_unary_op_3_01_custom_unary_func_00_c98bd2331846ae9855eae47ba436125b_a859f2899100cfd4c4c7c0b107e5d092e}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_unary_op_3_01_custom_unary_func_00_c98bd2331846ae9855eae47ba436125b_a859f2899100cfd4c4c7c0b107e5d092e}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}}$<$ \mbox{\hyperlink{class_eigen_1_1_triplet}{Coeff\+Return\+Type}}, Device $>$\+::type {\bfseries Packet\+Return\+Type}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_unary_op_3_01_custom_unary_func_00_c98bd2331846ae9855eae47ba436125b_adc67761aa6a83812b678253b7d77591f}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_unary_op_3_01_custom_unary_func_00_c98bd2331846ae9855eae47ba436125b_adc67761aa6a83812b678253b7d77591f}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE {\bfseries Tensor\+Evaluator} (const \mbox{\hyperlink{class_eigen_1_1_tensor_custom_unary_op}{Arg\+Type}} \&op, const Device \&device)
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_unary_op_3_01_custom_unary_func_00_c98bd2331846ae9855eae47ba436125b_a452f2f68e55cf29c7b052774c4e6d813}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_unary_op_3_01_custom_unary_func_00_c98bd2331846ae9855eae47ba436125b_a452f2f68e55cf29c7b052774c4e6d813}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{struct_eigen_1_1_d_sizes}{Dimensions}} \& {\bfseries dimensions} () const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_unary_op_3_01_custom_unary_func_00_c98bd2331846ae9855eae47ba436125b_aca15bf95ae73752aa4720bd09b8696f0}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_unary_op_3_01_custom_unary_func_00_c98bd2331846ae9855eae47ba436125b_aca15bf95ae73752aa4720bd09b8696f0}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE bool {\bfseries eval\+Sub\+Exprs\+If\+Needed} (\mbox{\hyperlink{class_eigen_1_1_triplet}{Coeff\+Return\+Type}} $\ast$data)
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_unary_op_3_01_custom_unary_func_00_c98bd2331846ae9855eae47ba436125b_a4ce13abc6111e9a0ef48331005584b91}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_unary_op_3_01_custom_unary_func_00_c98bd2331846ae9855eae47ba436125b_a4ce13abc6111e9a0ef48331005584b91}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE void {\bfseries cleanup} ()
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_unary_op_3_01_custom_unary_func_00_c98bd2331846ae9855eae47ba436125b_a1d1220a7a32fafddf3842404fde69707}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_unary_op_3_01_custom_unary_func_00_c98bd2331846ae9855eae47ba436125b_a1d1220a7a32fafddf3842404fde69707}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_triplet}{Coeff\+Return\+Type}} {\bfseries coeff} (Index index) const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_unary_op_3_01_custom_unary_func_00_c98bd2331846ae9855eae47ba436125b_ad6b0aa01fca8a21f8a334ea46d8ff2af}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_unary_op_3_01_custom_unary_func_00_c98bd2331846ae9855eae47ba436125b_ad6b0aa01fca8a21f8a334ea46d8ff2af}} 
+{\footnotesize template$<$int Load\+Mode$>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_triplet}{Packet\+Return\+Type}} {\bfseries packet} (Index index) const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_unary_op_3_01_custom_unary_func_00_c98bd2331846ae9855eae47ba436125b_a8aeea77ba05f93a3a00747c325a0c09f}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_unary_op_3_01_custom_unary_func_00_c98bd2331846ae9855eae47ba436125b_a8aeea77ba05f93a3a00747c325a0c09f}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_tensor_op_cost}{Tensor\+Op\+Cost}} {\bfseries cost\+Per\+Coeff} (bool vectorized) const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_unary_op_3_01_custom_unary_func_00_c98bd2331846ae9855eae47ba436125b_a7088affff3df6667f4e026ee622a1ef9}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_unary_op_3_01_custom_unary_func_00_c98bd2331846ae9855eae47ba436125b_a7088affff3df6667f4e026ee622a1ef9}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_triplet}{Coeff\+Return\+Type}} $\ast$ {\bfseries data} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_unary_op_3_01_custom_unary_func_00_c98bd2331846ae9855eae47ba436125b_a78d9463d2e16181aec4e193de304f762}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_unary_op_3_01_custom_unary_func_00_c98bd2331846ae9855eae47ba436125b_a78d9463d2e16181aec4e193de304f762}} 
+static const int {\bfseries Num\+Dims} = \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$\mbox{\hyperlink{class_eigen_1_1_tensor_custom_unary_op}{Arg\+Type}}$>$\+::Num\+Dimensions
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_unary_op_3_01_custom_unary_func_00_c98bd2331846ae9855eae47ba436125b_a6eb02b8fc80279c01ccb3c54a86387db}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_unary_op_3_01_custom_unary_func_00_c98bd2331846ae9855eae47ba436125b_a6eb02b8fc80279c01ccb3c54a86387db}} 
+static const int {\bfseries Packet\+Size} = \mbox{\hyperlink{struct_eigen_1_1internal_1_1unpacket__traits}{internal\+::unpacket\+\_\+traits}}$<$\mbox{\hyperlink{class_eigen_1_1_triplet}{Packet\+Return\+Type}}$>$\+::size
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_unary_op_3_01_custom_unary_func_00_c98bd2331846ae9855eae47ba436125b_a70c08cd685798bd03cc8a1bf43e503b5}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_unary_op_3_01_custom_unary_func_00_c98bd2331846ae9855eae47ba436125b_a70c08cd685798bd03cc8a1bf43e503b5}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC void {\bfseries eval\+To} (\mbox{\hyperlink{class_eigen_1_1_triplet}{Scalar}} $\ast$data)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_unary_op_3_01_custom_unary_func_00_c98bd2331846ae9855eae47ba436125b_aa2e0d72cf5323347958ef16351dc0a05}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_unary_op_3_01_custom_unary_func_00_c98bd2331846ae9855eae47ba436125b_aa2e0d72cf5323347958ef16351dc0a05}} 
+\mbox{\hyperlink{struct_eigen_1_1_d_sizes}{Dimensions}} {\bfseries m\+\_\+dimensions}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_unary_op_3_01_custom_unary_func_00_c98bd2331846ae9855eae47ba436125b_a1591b6468e84ba03dd3b4671e26818f5}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_unary_op_3_01_custom_unary_func_00_c98bd2331846ae9855eae47ba436125b_a1591b6468e84ba03dd3b4671e26818f5}} 
+const \mbox{\hyperlink{class_eigen_1_1_tensor_custom_unary_op}{Arg\+Type}} {\bfseries m\+\_\+op}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_unary_op_3_01_custom_unary_func_00_c98bd2331846ae9855eae47ba436125b_ade1e9c95a2d2fe58b7f4544d97ed9f5c}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_unary_op_3_01_custom_unary_func_00_c98bd2331846ae9855eae47ba436125b_ade1e9c95a2d2fe58b7f4544d97ed9f5c}} 
+const Device \& {\bfseries m\+\_\+device}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_unary_op_3_01_custom_unary_func_00_c98bd2331846ae9855eae47ba436125b_a519312698c90399a128dfe95b4cdcd44}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_unary_op_3_01_custom_unary_func_00_c98bd2331846ae9855eae47ba436125b_a519312698c90399a128dfe95b4cdcd44}} 
+\mbox{\hyperlink{class_eigen_1_1_triplet}{Coeff\+Return\+Type}} $\ast$ {\bfseries m\+\_\+result}
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/\+C\+X\+X11/src/\+Tensor/Tensor\+Custom\+Op.\+h\end{DoxyCompactItemize}

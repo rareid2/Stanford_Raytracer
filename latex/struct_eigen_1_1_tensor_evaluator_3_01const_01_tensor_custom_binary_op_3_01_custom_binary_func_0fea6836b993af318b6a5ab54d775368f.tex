@@ -1,0 +1,96 @@
+\hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_binary_op_3_01_custom_binary_func_0fea6836b993af318b6a5ab54d775368f}{}\doxysection{Eigen\+::Tensor\+Evaluator$<$ const Tensor\+Custom\+Binary\+Op$<$ Custom\+Binary\+Func, Lhs\+Xpr\+Type, Rhs\+Xpr\+Type $>$, Device $>$ Struct Template Reference}
+\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_binary_op_3_01_custom_binary_func_0fea6836b993af318b6a5ab54d775368f}\index{Eigen::TensorEvaluator$<$ const TensorCustomBinaryOp$<$ CustomBinaryFunc, LhsXprType, RhsXprType $>$, Device $>$@{Eigen::TensorEvaluator$<$ const TensorCustomBinaryOp$<$ CustomBinaryFunc, LhsXprType, RhsXprType $>$, Device $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_binary_op_3_01_custom_binary_func_0fea6836b993af318b6a5ab54d775368f_a5877178c84ac02f37c45b5845a1e2bf5}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_binary_op_3_01_custom_binary_func_0fea6836b993af318b6a5ab54d775368f_a5877178c84ac02f37c45b5845a1e2bf5}} 
+enum \{ \newline
+{\bfseries Is\+Aligned} = false, 
+{\bfseries Packet\+Access} = (internal\+::packet\+\_\+traits$<$Scalar$>$\+::size $>$ 1), 
+{\bfseries Block\+Access} = false, 
+{\bfseries Layout} = Tensor\+Evaluator$<$Lhs\+Xpr\+Type, Device$>$\+::Layout, 
+\newline
+{\bfseries Coord\+Access} = false, 
+{\bfseries Raw\+Access} = false
+ \}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_binary_op_3_01_custom_binary_func_0fea6836b993af318b6a5ab54d775368f_afb6c6e153324258902e879e24384e211}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_binary_op_3_01_custom_binary_func_0fea6836b993af318b6a5ab54d775368f_afb6c6e153324258902e879e24384e211}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_tensor_custom_binary_op}{Tensor\+Custom\+Binary\+Op}}$<$ Custom\+Binary\+Func, Lhs\+Xpr\+Type, Rhs\+Xpr\+Type $>$ {\bfseries Xpr\+Type}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_binary_op_3_01_custom_binary_func_0fea6836b993af318b6a5ab54d775368f_a0f9d9cb6309e54bcd5145de6fa69dd5d}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_binary_op_3_01_custom_binary_func_0fea6836b993af318b6a5ab54d775368f_a0f9d9cb6309e54bcd5145de6fa69dd5d}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_tensor_custom_binary_op}{Xpr\+Type}} $>$\+::Index {\bfseries Index}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_binary_op_3_01_custom_binary_func_0fea6836b993af318b6a5ab54d775368f_aaab16408eb0c888bd321db40037515e7}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_binary_op_3_01_custom_binary_func_0fea6836b993af318b6a5ab54d775368f_aaab16408eb0c888bd321db40037515e7}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_d_sizes}{D\+Sizes}}$<$ Index, Num\+Dims $>$ {\bfseries Dimensions}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_binary_op_3_01_custom_binary_func_0fea6836b993af318b6a5ab54d775368f_a36bd2858b6f31cf5f0957c5273a7d58d}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_binary_op_3_01_custom_binary_func_0fea6836b993af318b6a5ab54d775368f_a36bd2858b6f31cf5f0957c5273a7d58d}} 
+typedef Xpr\+Type\+::\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_binary_op_3_01_custom_binary_func_0fea6836b993af318b6a5ab54d775368f_abdaca6941a4490b5054006f2ffc871a5}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_binary_op_3_01_custom_binary_func_0fea6836b993af318b6a5ab54d775368f_abdaca6941a4490b5054006f2ffc871a5}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__const}{internal\+::remove\+\_\+const}}$<$ typename Xpr\+Type\+::\+Coeff\+Return\+Type $>$\+::type {\bfseries Coeff\+Return\+Type}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_binary_op_3_01_custom_binary_func_0fea6836b993af318b6a5ab54d775368f_ab51dbb7c6e40ee1ebca0317fee01b225}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_binary_op_3_01_custom_binary_func_0fea6836b993af318b6a5ab54d775368f_ab51dbb7c6e40ee1ebca0317fee01b225}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}}$<$ \mbox{\hyperlink{class_eigen_1_1_triplet}{Coeff\+Return\+Type}}, Device $>$\+::type {\bfseries Packet\+Return\+Type}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_binary_op_3_01_custom_binary_func_0fea6836b993af318b6a5ab54d775368f_a2152ee57a41b473dee9a24cc050c50c9}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_binary_op_3_01_custom_binary_func_0fea6836b993af318b6a5ab54d775368f_a2152ee57a41b473dee9a24cc050c50c9}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE {\bfseries Tensor\+Evaluator} (const \mbox{\hyperlink{class_eigen_1_1_tensor_custom_binary_op}{Xpr\+Type}} \&op, const Device \&device)
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_binary_op_3_01_custom_binary_func_0fea6836b993af318b6a5ab54d775368f_a5217c297747f5c6b90f1340353a73127}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_binary_op_3_01_custom_binary_func_0fea6836b993af318b6a5ab54d775368f_a5217c297747f5c6b90f1340353a73127}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{struct_eigen_1_1_d_sizes}{Dimensions}} \& {\bfseries dimensions} () const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_binary_op_3_01_custom_binary_func_0fea6836b993af318b6a5ab54d775368f_ab293d456485c50d2a367b1a8c8b40bea}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_binary_op_3_01_custom_binary_func_0fea6836b993af318b6a5ab54d775368f_ab293d456485c50d2a367b1a8c8b40bea}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE bool {\bfseries eval\+Sub\+Exprs\+If\+Needed} (\mbox{\hyperlink{class_eigen_1_1_triplet}{Coeff\+Return\+Type}} $\ast$data)
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_binary_op_3_01_custom_binary_func_0fea6836b993af318b6a5ab54d775368f_a35e51816c2a65e9abf02607dba61afee}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_binary_op_3_01_custom_binary_func_0fea6836b993af318b6a5ab54d775368f_a35e51816c2a65e9abf02607dba61afee}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE void {\bfseries cleanup} ()
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_binary_op_3_01_custom_binary_func_0fea6836b993af318b6a5ab54d775368f_a9a39f8e02239dff5f84afce25b9e2723}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_binary_op_3_01_custom_binary_func_0fea6836b993af318b6a5ab54d775368f_a9a39f8e02239dff5f84afce25b9e2723}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_triplet}{Coeff\+Return\+Type}} {\bfseries coeff} (Index index) const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_binary_op_3_01_custom_binary_func_0fea6836b993af318b6a5ab54d775368f_afcc1799656cf19160301764d9431044b}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_binary_op_3_01_custom_binary_func_0fea6836b993af318b6a5ab54d775368f_afcc1799656cf19160301764d9431044b}} 
+{\footnotesize template$<$int Load\+Mode$>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_triplet}{Packet\+Return\+Type}} {\bfseries packet} (Index index) const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_binary_op_3_01_custom_binary_func_0fea6836b993af318b6a5ab54d775368f_a48bfe9af542f36950031a0543fa8fc02}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_binary_op_3_01_custom_binary_func_0fea6836b993af318b6a5ab54d775368f_a48bfe9af542f36950031a0543fa8fc02}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_tensor_op_cost}{Tensor\+Op\+Cost}} {\bfseries cost\+Per\+Coeff} (bool vectorized) const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_binary_op_3_01_custom_binary_func_0fea6836b993af318b6a5ab54d775368f_abd4b9c34334f1db0f21859dda522970e}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_binary_op_3_01_custom_binary_func_0fea6836b993af318b6a5ab54d775368f_abd4b9c34334f1db0f21859dda522970e}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_triplet}{Coeff\+Return\+Type}} $\ast$ {\bfseries data} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_binary_op_3_01_custom_binary_func_0fea6836b993af318b6a5ab54d775368f_a3e542efce7b62461d8ffb6bbb4622a2b}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_binary_op_3_01_custom_binary_func_0fea6836b993af318b6a5ab54d775368f_a3e542efce7b62461d8ffb6bbb4622a2b}} 
+static const int {\bfseries Num\+Dims} = \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$\mbox{\hyperlink{class_eigen_1_1_tensor_custom_binary_op}{Xpr\+Type}}$>$\+::Num\+Dimensions
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_binary_op_3_01_custom_binary_func_0fea6836b993af318b6a5ab54d775368f_a98e038485caed452c6ccba2e1c4501ad}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_binary_op_3_01_custom_binary_func_0fea6836b993af318b6a5ab54d775368f_a98e038485caed452c6ccba2e1c4501ad}} 
+static const int {\bfseries Packet\+Size} = \mbox{\hyperlink{struct_eigen_1_1internal_1_1unpacket__traits}{internal\+::unpacket\+\_\+traits}}$<$\mbox{\hyperlink{class_eigen_1_1_triplet}{Packet\+Return\+Type}}$>$\+::size
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_binary_op_3_01_custom_binary_func_0fea6836b993af318b6a5ab54d775368f_af5114ad6eeccfd4c54374b079a979a20}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_binary_op_3_01_custom_binary_func_0fea6836b993af318b6a5ab54d775368f_af5114ad6eeccfd4c54374b079a979a20}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC void {\bfseries eval\+To} (Scalar $\ast$data)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_binary_op_3_01_custom_binary_func_0fea6836b993af318b6a5ab54d775368f_a1f0470affc1da4acdabc7c2afc96b4b4}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_binary_op_3_01_custom_binary_func_0fea6836b993af318b6a5ab54d775368f_a1f0470affc1da4acdabc7c2afc96b4b4}} 
+\mbox{\hyperlink{struct_eigen_1_1_d_sizes}{Dimensions}} {\bfseries m\+\_\+dimensions}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_binary_op_3_01_custom_binary_func_0fea6836b993af318b6a5ab54d775368f_ac9fe6c8ed38b5786aa72784681000b42}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_binary_op_3_01_custom_binary_func_0fea6836b993af318b6a5ab54d775368f_ac9fe6c8ed38b5786aa72784681000b42}} 
+const \mbox{\hyperlink{class_eigen_1_1_tensor_custom_binary_op}{Xpr\+Type}} {\bfseries m\+\_\+op}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_binary_op_3_01_custom_binary_func_0fea6836b993af318b6a5ab54d775368f_a6819a37d07c70ef2ad33f61f986ad5d3}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_binary_op_3_01_custom_binary_func_0fea6836b993af318b6a5ab54d775368f_a6819a37d07c70ef2ad33f61f986ad5d3}} 
+const Device \& {\bfseries m\+\_\+device}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_binary_op_3_01_custom_binary_func_0fea6836b993af318b6a5ab54d775368f_a287b76f03a16f90ed9feb53cd19908e0}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_custom_binary_op_3_01_custom_binary_func_0fea6836b993af318b6a5ab54d775368f_a287b76f03a16f90ed9feb53cd19908e0}} 
+\mbox{\hyperlink{class_eigen_1_1_triplet}{Coeff\+Return\+Type}} $\ast$ {\bfseries m\+\_\+result}
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/\+C\+X\+X11/src/\+Tensor/Tensor\+Custom\+Op.\+h\end{DoxyCompactItemize}

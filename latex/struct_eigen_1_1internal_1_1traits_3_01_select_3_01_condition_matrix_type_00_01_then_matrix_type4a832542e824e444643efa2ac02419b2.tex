@@ -1,0 +1,44 @@
+\hypertarget{struct_eigen_1_1internal_1_1traits_3_01_select_3_01_condition_matrix_type_00_01_then_matrix_type4a832542e824e444643efa2ac02419b2}{}\doxysection{Eigen\+::internal\+::traits$<$ Select$<$ Condition\+Matrix\+Type, Then\+Matrix\+Type, Else\+Matrix\+Type $>$ $>$ Struct Template Reference}
+\label{struct_eigen_1_1internal_1_1traits_3_01_select_3_01_condition_matrix_type_00_01_then_matrix_type4a832542e824e444643efa2ac02419b2}\index{Eigen::internal::traits$<$ Select$<$ ConditionMatrixType, ThenMatrixType, ElseMatrixType $>$ $>$@{Eigen::internal::traits$<$ Select$<$ ConditionMatrixType, ThenMatrixType, ElseMatrixType $>$ $>$}}
+Inheritance diagram for Eigen\+::internal\+::traits$<$ Select$<$ Condition\+Matrix\+Type, Then\+Matrix\+Type, Else\+Matrix\+Type $>$ $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{struct_eigen_1_1internal_1_1traits_3_01_select_3_01_condition_matrix_type_00_01_then_matrix_type4a832542e824e444643efa2ac02419b2}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_select_3_01_condition_matrix_type_00_01_then_matrix_type4a832542e824e444643efa2ac02419b2_a861448985e0ccd265d22a9d8bc8d6d4a}\label{struct_eigen_1_1internal_1_1traits_3_01_select_3_01_condition_matrix_type_00_01_then_matrix_type4a832542e824e444643efa2ac02419b2_a861448985e0ccd265d22a9d8bc8d6d4a}} 
+enum \{ \newline
+{\bfseries Rows\+At\+Compile\+Time} = Condition\+Matrix\+Type\+::Rows\+At\+Compile\+Time, 
+{\bfseries Cols\+At\+Compile\+Time} = Condition\+Matrix\+Type\+::Cols\+At\+Compile\+Time, 
+{\bfseries Max\+Rows\+At\+Compile\+Time} = Condition\+Matrix\+Type\+::Max\+Rows\+At\+Compile\+Time, 
+{\bfseries Max\+Cols\+At\+Compile\+Time} = Condition\+Matrix\+Type\+::Max\+Cols\+At\+Compile\+Time, 
+\newline
+{\bfseries Flags} = (unsigned int)Then\+Matrix\+Type\+::Flags \& Else\+Matrix\+Type\+::Flags \& Row\+Major\+Bit
+ \}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_select_3_01_condition_matrix_type_00_01_then_matrix_type4a832542e824e444643efa2ac02419b2_af25bcfe2b10edd4c712db322a67cf38d}\label{struct_eigen_1_1internal_1_1traits_3_01_select_3_01_condition_matrix_type_00_01_then_matrix_type4a832542e824e444643efa2ac02419b2_af25bcfe2b10edd4c712db322a67cf38d}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{traits}}$<$ Then\+Matrix\+Type $>$\+::Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_select_3_01_condition_matrix_type_00_01_then_matrix_type4a832542e824e444643efa2ac02419b2_af5ff0d811757bd62f57f49f9da050632}\label{struct_eigen_1_1internal_1_1traits_3_01_select_3_01_condition_matrix_type_00_01_then_matrix_type4a832542e824e444643efa2ac02419b2_af5ff0d811757bd62f57f49f9da050632}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_dense}{Dense}} {\bfseries Storage\+Kind}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_select_3_01_condition_matrix_type_00_01_then_matrix_type4a832542e824e444643efa2ac02419b2_ad1324cdd8949a97a6842bfbf1f6b59be}\label{struct_eigen_1_1internal_1_1traits_3_01_select_3_01_condition_matrix_type_00_01_then_matrix_type4a832542e824e444643efa2ac02419b2_ad1324cdd8949a97a6842bfbf1f6b59be}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{traits}}$<$ Then\+Matrix\+Type $>$\+::Xpr\+Kind {\bfseries Xpr\+Kind}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_select_3_01_condition_matrix_type_00_01_then_matrix_type4a832542e824e444643efa2ac02419b2_ab2e9ab45462bbc1d5acf0efd4470df84}\label{struct_eigen_1_1internal_1_1traits_3_01_select_3_01_condition_matrix_type_00_01_then_matrix_type4a832542e824e444643efa2ac02419b2_ab2e9ab45462bbc1d5acf0efd4470df84}} 
+typedef Condition\+Matrix\+Type\+::\+Nested {\bfseries Condition\+Matrix\+Nested}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_select_3_01_condition_matrix_type_00_01_then_matrix_type4a832542e824e444643efa2ac02419b2_a5f974812f22d59116a88af721159cdda}\label{struct_eigen_1_1internal_1_1traits_3_01_select_3_01_condition_matrix_type_00_01_then_matrix_type4a832542e824e444643efa2ac02419b2_a5f974812f22d59116a88af721159cdda}} 
+typedef Then\+Matrix\+Type\+::\+Nested {\bfseries Then\+Matrix\+Nested}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_select_3_01_condition_matrix_type_00_01_then_matrix_type4a832542e824e444643efa2ac02419b2_a78d8b57ded5a7dd4adde5f46675dfd5a}\label{struct_eigen_1_1internal_1_1traits_3_01_select_3_01_condition_matrix_type_00_01_then_matrix_type4a832542e824e444643efa2ac02419b2_a78d8b57ded5a7dd4adde5f46675dfd5a}} 
+typedef Else\+Matrix\+Type\+::\+Nested {\bfseries Else\+Matrix\+Nested}
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/Select.\+h\end{DoxyCompactItemize}

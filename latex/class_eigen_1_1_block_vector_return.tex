@@ -1,0 +1,46 @@
+\hypertarget{class_eigen_1_1_block_vector_return}{}\doxysection{Eigen\+::Block\+Vector\+Return$<$ Block\+Sparse\+MatrixT, Vector\+Type $>$ Class Template Reference}
+\label{class_eigen_1_1_block_vector_return}\index{Eigen::BlockVectorReturn$<$ BlockSparseMatrixT, VectorType $>$@{Eigen::BlockVectorReturn$<$ BlockSparseMatrixT, VectorType $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_block_vector_return_a75b8bfbf7b3be77c3d020c946053ab10}\label{class_eigen_1_1_block_vector_return_a75b8bfbf7b3be77c3d020c946053ab10}} 
+enum \{ {\bfseries Cols\+At\+Compile\+Time} = Vector\+Type\+::Cols\+At\+Compile\+Time, 
+{\bfseries Rows\+At\+Compile\+Time} = Vector\+Type\+::Rows\+At\+Compile\+Time, 
+{\bfseries Flags} = Vector\+Type\+::Flags
+ \}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_block_vector_return_a4ae10516cca3a3ebb3dc05a5bb425f65}\label{class_eigen_1_1_block_vector_return_a4ae10516cca3a3ebb3dc05a5bb425f65}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_ref}{Ref}}$<$ \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ typename Vector\+Type\+::\+Scalar, Rows\+At\+Compile\+Time, Cols\+At\+Compile\+Time $>$ $>$ {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_block_vector_return_a4d6e7f86756b11e2d65f1cd83d786723}\label{class_eigen_1_1_block_vector_return_a4d6e7f86756b11e2d65f1cd83d786723}} 
+typedef Block\+Sparse\+Matrix\+T\+::\+Index {\bfseries Index}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_block_vector_return_a659b3ca2d668a47e38c28df08fed57ec}\label{class_eigen_1_1_block_vector_return_a659b3ca2d668a47e38c28df08fed57ec}} 
+{\bfseries Block\+Vector\+Return} (const Block\+Sparse\+MatrixT \&spblockmat, \mbox{\hyperlink{struct_vector_type}{Vector\+Type}} \&vec)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_block_vector_return_aeb50e8420baab72348e94318891746b1}\label{class_eigen_1_1_block_vector_return_aeb50e8420baab72348e94318891746b1}} 
+Index {\bfseries size} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_block_vector_return_a4be7014cf6f62103bd98f867ca23cad4}\label{class_eigen_1_1_block_vector_return_a4be7014cf6f62103bd98f867ca23cad4}} 
+\mbox{\hyperlink{class_eigen_1_1_ref}{Scalar}} {\bfseries coeff\+Ref} (Index bi)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_block_vector_return_aec21974621e4d468742175e3cd0467cd}\label{class_eigen_1_1_block_vector_return_aec21974621e4d468742175e3cd0467cd}} 
+\mbox{\hyperlink{class_eigen_1_1_ref}{Scalar}} {\bfseries coeff\+Ref} (Index bi, Index j)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_block_vector_return_a7bb39e7a88bcf9016e8fabd054646bd7}\label{class_eigen_1_1_block_vector_return_a7bb39e7a88bcf9016e8fabd054646bd7}} 
+const Block\+Sparse\+MatrixT \& {\bfseries m\+\_\+spblockmat}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_block_vector_return_acf7545c76543bb4f5793f392e380015f}\label{class_eigen_1_1_block_vector_return_acf7545c76543bb4f5793f392e380015f}} 
+\mbox{\hyperlink{struct_vector_type}{Vector\+Type}} \& {\bfseries m\+\_\+vec}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/src/\+Sparse\+Extra/Block\+Sparse\+Matrix.\+h\end{DoxyCompactItemize}

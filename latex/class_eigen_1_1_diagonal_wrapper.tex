@@ -1,0 +1,85 @@
+\hypertarget{class_eigen_1_1_diagonal_wrapper}{}\doxysection{Eigen\+::Diagonal\+Wrapper$<$ \+\_\+\+Diagonal\+Vector\+Type $>$ Class Template Reference}
+\label{class_eigen_1_1_diagonal_wrapper}\index{Eigen::DiagonalWrapper$<$ \_DiagonalVectorType $>$@{Eigen::DiagonalWrapper$<$ \_DiagonalVectorType $>$}}
+
+
+Expression of a diagonal matrix.  
+
+
+
+
+{\ttfamily \#include $<$Diagonal\+Matrix.\+h$>$}
+
+Inheritance diagram for Eigen\+::Diagonal\+Wrapper$<$ \+\_\+\+Diagonal\+Vector\+Type $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.068965cm]{class_eigen_1_1_diagonal_wrapper}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_diagonal_wrapper_ad145dc440c9a425857f8e1e5e0ae0294}\label{class_eigen_1_1_diagonal_wrapper_ad145dc440c9a425857f8e1e5e0ae0294}} 
+typedef \+\_\+\+Diagonal\+Vector\+Type {\bfseries Diagonal\+Vector\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_diagonal_wrapper_a2d709c0cbb450dd9a8463dffcab5fb3d}\label{class_eigen_1_1_diagonal_wrapper_a2d709c0cbb450dd9a8463dffcab5fb3d}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_diagonal_wrapper}{Diagonal\+Wrapper}} {\bfseries Nested}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_diagonal_wrapper_a81574f47272fd5e519a19135a306529d}{Diagonal\+Wrapper}} (Diagonal\+Vector\+Type \&a\+\_\+diagonal)
+\item 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Diagonal\+Vector\+Type \& \mbox{\hyperlink{class_eigen_1_1_diagonal_wrapper_a91a5af17a99669d015afd107f1f143cd}{diagonal}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_diagonal_wrapper_a42a4abc8dde10e478768b64a283bdb1f}\label{class_eigen_1_1_diagonal_wrapper_a42a4abc8dde10e478768b64a283bdb1f}} 
+Diagonal\+Vector\+Type\+::\+Nested {\bfseries m\+\_\+diagonal}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Diagonal\+Vector\+Type$>$\newline
+class Eigen\+::\+Diagonal\+Wrapper$<$ \+\_\+\+Diagonal\+Vector\+Type $>$}
+
+Expression of a diagonal matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+Diagonal\+Vector\+Type} & the type of the vector of diagonal coefficients\\
+\hline
+\end{DoxyParams}
+This class is an expression of a diagonal matrix, but not storing its own vector of diagonal coefficients, instead wrapping an existing vector expression. It is the return type of \mbox{\hyperlink{class_eigen_1_1_matrix_base_a14235b62c90f93fe910070b4743782d0}{Matrix\+Base\+::as\+Diagonal()}} and most of the time this is the only way that it is used.
+
+\begin{DoxySeeAlso}{See also}
+class \mbox{\hyperlink{class_eigen_1_1_diagonal_matrix}{Diagonal\+Matrix}}, class \mbox{\hyperlink{class_eigen_1_1_diagonal_base}{Diagonal\+Base}}, \mbox{\hyperlink{class_eigen_1_1_matrix_base_a14235b62c90f93fe910070b4743782d0}{Matrix\+Base\+::as\+Diagonal()}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_diagonal_wrapper_a81574f47272fd5e519a19135a306529d}\label{class_eigen_1_1_diagonal_wrapper_a81574f47272fd5e519a19135a306529d}} 
+\index{Eigen::DiagonalWrapper$<$ \_DiagonalVectorType $>$@{Eigen::DiagonalWrapper$<$ \_DiagonalVectorType $>$}!DiagonalWrapper@{DiagonalWrapper}}
+\index{DiagonalWrapper@{DiagonalWrapper}!Eigen::DiagonalWrapper$<$ \_DiagonalVectorType $>$@{Eigen::DiagonalWrapper$<$ \_DiagonalVectorType $>$}}
+\doxysubsubsection{\texorpdfstring{DiagonalWrapper()}{DiagonalWrapper()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Diagonal\+Vector\+Type $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_diagonal_wrapper}{Eigen\+::\+Diagonal\+Wrapper}}$<$ \+\_\+\+Diagonal\+Vector\+Type $>$\+::\mbox{\hyperlink{class_eigen_1_1_diagonal_wrapper}{Diagonal\+Wrapper}} (\begin{DoxyParamCaption}\item[{Diagonal\+Vector\+Type \&}]{a\+\_\+diagonal }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+Constructor from expression of diagonal coefficients to wrap. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_diagonal_wrapper_a91a5af17a99669d015afd107f1f143cd}\label{class_eigen_1_1_diagonal_wrapper_a91a5af17a99669d015afd107f1f143cd}} 
+\index{Eigen::DiagonalWrapper$<$ \_DiagonalVectorType $>$@{Eigen::DiagonalWrapper$<$ \_DiagonalVectorType $>$}!diagonal@{diagonal}}
+\index{diagonal@{diagonal}!Eigen::DiagonalWrapper$<$ \_DiagonalVectorType $>$@{Eigen::DiagonalWrapper$<$ \_DiagonalVectorType $>$}}
+\doxysubsubsection{\texorpdfstring{diagonal()}{diagonal()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Diagonal\+Vector\+Type $>$ \\
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Diagonal\+Vector\+Type\& \mbox{\hyperlink{class_eigen_1_1_diagonal_wrapper}{Eigen\+::\+Diagonal\+Wrapper}}$<$ \+\_\+\+Diagonal\+Vector\+Type $>$\+::diagonal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a const reference to the wrapped expression of diagonal coefficients. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/Diagonal\+Matrix.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,43 @@
+\hypertarget{struct_eigen_1_1internal_1_1traits_3_01_skyline_product_3_01_lhs_nested_00_01_rhs_nested_00_01_product_mode_01_4_01_4}{}\doxysection{Eigen\+::internal\+::traits$<$ Skyline\+Product$<$ Lhs\+Nested, Rhs\+Nested, Product\+Mode $>$ $>$ Struct Template Reference}
+\label{struct_eigen_1_1internal_1_1traits_3_01_skyline_product_3_01_lhs_nested_00_01_rhs_nested_00_01_product_mode_01_4_01_4}\index{Eigen::internal::traits$<$ SkylineProduct$<$ LhsNested, RhsNested, ProductMode $>$ $>$@{Eigen::internal::traits$<$ SkylineProduct$<$ LhsNested, RhsNested, ProductMode $>$ $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_skyline_product_3_01_lhs_nested_00_01_rhs_nested_00_01_product_mode_01_4_01_4_af5dbf074e874f9bec78988a8715515a7}\label{struct_eigen_1_1internal_1_1traits_3_01_skyline_product_3_01_lhs_nested_00_01_rhs_nested_00_01_product_mode_01_4_01_4_af5dbf074e874f9bec78988a8715515a7}} 
+enum \{ \newline
+{\bfseries Lhs\+Coeff\+Read\+Cost} = \+\_\+\+Lhs\+Nested\+::Coeff\+Read\+Cost, 
+{\bfseries Rhs\+Coeff\+Read\+Cost} = \+\_\+\+Rhs\+Nested\+::Coeff\+Read\+Cost, 
+{\bfseries Lhs\+Flags} = \+\_\+\+Lhs\+Nested\+::Flags, 
+{\bfseries Rhs\+Flags} = \+\_\+\+Rhs\+Nested\+::Flags, 
+\newline
+{\bfseries Rows\+At\+Compile\+Time} = \+\_\+\+Lhs\+Nested\+::Rows\+At\+Compile\+Time, 
+{\bfseries Cols\+At\+Compile\+Time} = \+\_\+\+Rhs\+Nested\+::Cols\+At\+Compile\+Time, 
+{\bfseries Inner\+Size} = E\+I\+G\+E\+N\+\_\+\+S\+I\+Z\+E\+\_\+\+M\+I\+N\+\_\+\+P\+R\+E\+F\+E\+R\+\_\+\+F\+I\+X\+ED(\+\_\+\+Lhs\+Nested\+::Cols\+At\+Compile\+Time, \+\_\+\+Rhs\+Nested\+::Rows\+At\+Compile\+Time), 
+{\bfseries Max\+Rows\+At\+Compile\+Time} = \+\_\+\+Lhs\+Nested\+::Max\+Rows\+At\+Compile\+Time, 
+\newline
+{\bfseries Max\+Cols\+At\+Compile\+Time} = \+\_\+\+Rhs\+Nested\+::Max\+Cols\+At\+Compile\+Time, 
+{\bfseries Eval\+To\+Row\+Major} = (Rhs\+Flags \& Lhs\+Flags \& Row\+Major\+Bit), 
+{\bfseries Result\+Is\+Skyline} = Product\+Mode == Skyline\+Time\+Skyline\+Product, 
+{\bfseries Removed\+Bits} = $\sim$((Eval\+To\+Row\+Major ? 0 \+: Row\+Major\+Bit) $\vert$ (Result\+Is\+Skyline ? 0 \+: Skyline\+Bit)), 
+\newline
+{\bfseries Flags}, 
+{\bfseries Coeff\+Read\+Cost} = Huge\+Cost
+ \}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_skyline_product_3_01_lhs_nested_00_01_rhs_nested_00_01_product_mode_01_4_01_4_a7cd820114752d828b23f071f6df06cd5}\label{struct_eigen_1_1internal_1_1traits_3_01_skyline_product_3_01_lhs_nested_00_01_rhs_nested_00_01_product_mode_01_4_01_4_a7cd820114752d828b23f071f6df06cd5}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{internal\+::remove\+\_\+all}}$<$ Lhs\+Nested $>$\+::type {\bfseries \+\_\+\+Lhs\+Nested}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_skyline_product_3_01_lhs_nested_00_01_rhs_nested_00_01_product_mode_01_4_01_4_a64525519846ec366ea32cc7e0fcf589e}\label{struct_eigen_1_1internal_1_1traits_3_01_skyline_product_3_01_lhs_nested_00_01_rhs_nested_00_01_product_mode_01_4_01_4_a64525519846ec366ea32cc7e0fcf589e}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{internal\+::remove\+\_\+all}}$<$ Rhs\+Nested $>$\+::type {\bfseries \+\_\+\+Rhs\+Nested}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_skyline_product_3_01_lhs_nested_00_01_rhs_nested_00_01_product_mode_01_4_01_4_abd68397c5d86944891e4b96e7da9361b}\label{struct_eigen_1_1internal_1_1traits_3_01_skyline_product_3_01_lhs_nested_00_01_rhs_nested_00_01_product_mode_01_4_01_4_abd68397c5d86944891e4b96e7da9361b}} 
+typedef \+\_\+\+Lhs\+Nested\+::\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_skyline_product_3_01_lhs_nested_00_01_rhs_nested_00_01_product_mode_01_4_01_4_aca02b1f81b841f6b0151533757224cd1}\label{struct_eigen_1_1internal_1_1traits_3_01_skyline_product_3_01_lhs_nested_00_01_rhs_nested_00_01_product_mode_01_4_01_4_aca02b1f81b841f6b0151533757224cd1}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1conditional}{internal\+::conditional}}$<$ Result\+Is\+Skyline, \mbox{\hyperlink{class_eigen_1_1_skyline_matrix_base}{Skyline\+Matrix\+Base}}$<$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_skyline_product}{Skyline\+Product}}$<$ Lhs\+Nested, Rhs\+Nested, Product\+Mode $>$ $>$, \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_skyline_product}{Skyline\+Product}}$<$ Lhs\+Nested, Rhs\+Nested, Product\+Mode $>$ $>$ $>$\+::type {\bfseries Base}
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/src/\+Skyline/Skyline\+Product.\+h\end{DoxyCompactItemize}

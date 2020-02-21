@@ -1,0 +1,268 @@
+\hypertarget{class_eigen_1_1internal_1_1_band_matrix_base}{}\doxysection{Eigen\+::internal\+::Band\+Matrix\+Base$<$ Derived $>$ Class Template Reference}
+\label{class_eigen_1_1internal_1_1_band_matrix_base}\index{Eigen::internal::BandMatrixBase$<$ Derived $>$@{Eigen::internal::BandMatrixBase$<$ Derived $>$}}
+Inheritance diagram for Eigen\+::internal\+::Band\+Matrix\+Base$<$ Derived $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_eigen_1_1internal_1_1_band_matrix_base}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_eigen_1_1internal_1_1_band_matrix_base_1_1_diagonal_int_return_type}{Diagonal\+Int\+Return\+Type}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_band_matrix_base_a318619fa21c0d1911988ecab57c02f5c}\label{class_eigen_1_1internal_1_1_band_matrix_base_a318619fa21c0d1911988ecab57c02f5c}} 
+enum \{ \newline
+{\bfseries Flags} = internal\+::traits$<$Derived$>$\+::Flags, 
+{\bfseries Coeff\+Read\+Cost} = internal\+::traits$<$Derived$>$\+::Coeff\+Read\+Cost, 
+{\bfseries Rows\+At\+Compile\+Time} = internal\+::traits$<$Derived$>$\+::Rows\+At\+Compile\+Time, 
+{\bfseries Cols\+At\+Compile\+Time} = internal\+::traits$<$Derived$>$\+::Cols\+At\+Compile\+Time, 
+\newline
+{\bfseries Max\+Rows\+At\+Compile\+Time} = internal\+::traits$<$Derived$>$\+::Max\+Rows\+At\+Compile\+Time, 
+{\bfseries Max\+Cols\+At\+Compile\+Time} = internal\+::traits$<$Derived$>$\+::Max\+Cols\+At\+Compile\+Time, 
+{\bfseries Supers} = internal\+::traits$<$Derived$>$\+::Supers, 
+{\bfseries Subs} = internal\+::traits$<$Derived$>$\+::Subs, 
+\newline
+{\bfseries Options} = internal\+::traits$<$Derived$>$\+::Options
+ \}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_band_matrix_base_afca234d64175589fd9f35bb54e99a0cb}\label{class_eigen_1_1internal_1_1_band_matrix_base_afca234d64175589fd9f35bb54e99a0cb}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ Derived $>$\+::Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_band_matrix_base_a4b465b7b73aa09b04a05f9d94f6a7f58}\label{class_eigen_1_1internal_1_1_band_matrix_base_a4b465b7b73aa09b04a05f9d94f6a7f58}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ Scalar, Rows\+At\+Compile\+Time, Cols\+At\+Compile\+Time $>$ {\bfseries Dense\+Matrix\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_band_matrix_base_a2f52fc1689db7ecbf7abe30d2b184f65}\label{class_eigen_1_1internal_1_1_band_matrix_base_a2f52fc1689db7ecbf7abe30d2b184f65}} 
+typedef Dense\+Matrix\+Type\+::\+Storage\+Index {\bfseries Storage\+Index}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_band_matrix_base_a17c354627a5d45343b09ed4254b2871c}\label{class_eigen_1_1internal_1_1_band_matrix_base_a17c354627a5d45343b09ed4254b2871c}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ Derived $>$\+::Coefficients\+Type {\bfseries Coefficients\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_band_matrix_base_af06810be4827bc9268e0d02fea6b4e62}\label{class_eigen_1_1internal_1_1_band_matrix_base_af06810be4827bc9268e0d02fea6b4e62}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Derived $>$ {\bfseries Base}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_band_matrix_base_a58617da0d75d22b1f8dfdfde702ebb4a}{supers}} () const
+\item 
+\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_band_matrix_base_a1115fe9b5a07d5218dacc15655a413cb}{subs}} () const
+\item 
+const Coefficients\+Type \& \mbox{\hyperlink{class_eigen_1_1internal_1_1_band_matrix_base_ab7c9e9a7ca5ad0f2f3a82ac582650499}{coeffs}} () const
+\item 
+Coefficients\+Type \& \mbox{\hyperlink{class_eigen_1_1internal_1_1_band_matrix_base_ab296a77fa3ac9c7618957b01c7de0a35}{coeffs}} ()
+\item 
+\mbox{\hyperlink{class_eigen_1_1_block}{Block}}$<$ Coefficients\+Type, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}, 1 $>$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_band_matrix_base_aca78a4990b6827b0b3086e28e6ae4257}{col}} (\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} i)
+\item 
+\mbox{\hyperlink{class_eigen_1_1_block}{Block}}$<$ Coefficients\+Type, 1, Size\+At\+Compile\+Time $>$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_band_matrix_base_abce1c4d69e72ec594f67a841d1040606}{diagonal}} ()
+\item 
+const \mbox{\hyperlink{class_eigen_1_1_block}{Block}}$<$ const Coefficients\+Type, 1, Size\+At\+Compile\+Time $>$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_band_matrix_base_a7c55438da88b00d29f8f514bddfa86ba}{diagonal}} () const
+\item 
+{\footnotesize template$<$int N$>$ }\\\mbox{\hyperlink{struct_eigen_1_1internal_1_1_band_matrix_base_1_1_diagonal_int_return_type}{Diagonal\+Int\+Return\+Type}}$<$ N $>$\+::Type \mbox{\hyperlink{class_eigen_1_1internal_1_1_band_matrix_base_a1d98143681d5c1e2709ce18332a939dc}{diagonal}} ()
+\item 
+{\footnotesize template$<$int N$>$ }\\const \mbox{\hyperlink{struct_eigen_1_1internal_1_1_band_matrix_base_1_1_diagonal_int_return_type}{Diagonal\+Int\+Return\+Type}}$<$ N $>$\+::Type \mbox{\hyperlink{class_eigen_1_1internal_1_1_band_matrix_base_aa8a5c997afb4ebd9b43b9ff2e1078cf9}{diagonal}} () const
+\item 
+\mbox{\hyperlink{class_eigen_1_1_block}{Block}}$<$ Coefficients\+Type, 1, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}} $>$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_band_matrix_base_a51ce12f0be57b0c2593c20c865de6af1}{diagonal}} (\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} i)
+\item 
+const \mbox{\hyperlink{class_eigen_1_1_block}{Block}}$<$ const Coefficients\+Type, 1, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}} $>$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_band_matrix_base_a8f7146e80405018d6d0827c4a7713ad3}{diagonal}} (\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} i) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_band_matrix_base_a48c573fc9b58a2d4dd0741b284124a64}\label{class_eigen_1_1internal_1_1_band_matrix_base_a48c573fc9b58a2d4dd0741b284124a64}} 
+{\footnotesize template$<$typename Dest $>$ }\\void {\bfseries eval\+To} (Dest \&dst) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_band_matrix_base_aacfa0b85201b8503376a9998987f81f7}\label{class_eigen_1_1internal_1_1_band_matrix_base_aacfa0b85201b8503376a9998987f81f7}} 
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Dense\+Matrix\+Type}} {\bfseries to\+Dense\+Matrix} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Derived \& \mbox{\hyperlink{class_eigen_1_1internal_1_1_band_matrix_base_a324b16961a11d2ecfd2d1b7dd7946545}{derived}} ()
+\item 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Derived \& \mbox{\hyperlink{class_eigen_1_1internal_1_1_band_matrix_base_affa3cf01b59af4c503f5f126b3601907}{derived}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_band_matrix_base_a8141320ba8df384426c298b32b000d8e}{rows}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_band_matrix_base_a7b0b45c7351847696c911ce8aa2abbdb}{cols}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_band_matrix_base_a1cf974424b34dbdceaab768606a156a5}\label{class_eigen_1_1internal_1_1_band_matrix_base_a1cf974424b34dbdceaab768606a156a5}} 
+enum \{ {\bfseries Data\+Rows\+At\+Compile\+Time}, 
+{\bfseries Size\+At\+Compile\+Time} = E\+I\+G\+E\+N\+\_\+\+S\+I\+Z\+E\+\_\+\+M\+I\+N\+\_\+\+P\+R\+E\+F\+E\+R\+\_\+\+D\+Y\+N\+A\+M\+IC(Rows\+At\+Compile\+Time,Cols\+At\+Compile\+Time)
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_band_matrix_base_a591e1a809bd6957740356a962f922626}\label{class_eigen_1_1internal_1_1_band_matrix_base_a591e1a809bd6957740356a962f922626}} 
+\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} {\bfseries diagonal\+Length} (\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} i) const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_band_matrix_base_ab296a77fa3ac9c7618957b01c7de0a35}\label{class_eigen_1_1internal_1_1_band_matrix_base_ab296a77fa3ac9c7618957b01c7de0a35}} 
+\index{Eigen::internal::BandMatrixBase$<$ Derived $>$@{Eigen::internal::BandMatrixBase$<$ Derived $>$}!coeffs@{coeffs}}
+\index{coeffs@{coeffs}!Eigen::internal::BandMatrixBase$<$ Derived $>$@{Eigen::internal::BandMatrixBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{coeffs()}{coeffs()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+Coefficients\+Type\& \mbox{\hyperlink{class_eigen_1_1internal_1_1_band_matrix_base}{Eigen\+::internal\+::\+Band\+Matrix\+Base}}$<$ Derived $>$\+::coeffs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+an expression of the underlying coefficient matrix 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_band_matrix_base_ab7c9e9a7ca5ad0f2f3a82ac582650499}\label{class_eigen_1_1internal_1_1_band_matrix_base_ab7c9e9a7ca5ad0f2f3a82ac582650499}} 
+\index{Eigen::internal::BandMatrixBase$<$ Derived $>$@{Eigen::internal::BandMatrixBase$<$ Derived $>$}!coeffs@{coeffs}}
+\index{coeffs@{coeffs}!Eigen::internal::BandMatrixBase$<$ Derived $>$@{Eigen::internal::BandMatrixBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{coeffs()}{coeffs()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+const Coefficients\+Type\& \mbox{\hyperlink{class_eigen_1_1internal_1_1_band_matrix_base}{Eigen\+::internal\+::\+Band\+Matrix\+Base}}$<$ Derived $>$\+::coeffs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+an expression of the underlying coefficient matrix 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_band_matrix_base_aca78a4990b6827b0b3086e28e6ae4257}\label{class_eigen_1_1internal_1_1_band_matrix_base_aca78a4990b6827b0b3086e28e6ae4257}} 
+\index{Eigen::internal::BandMatrixBase$<$ Derived $>$@{Eigen::internal::BandMatrixBase$<$ Derived $>$}!col@{col}}
+\index{col@{col}!Eigen::internal::BandMatrixBase$<$ Derived $>$@{Eigen::internal::BandMatrixBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{col()}{col()}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_block}{Block}}$<$Coefficients\+Type,\mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}},1$>$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_band_matrix_base}{Eigen\+::internal\+::\+Band\+Matrix\+Base}}$<$ Derived $>$\+::col (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}}}]{i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a vector expression of the {\itshape i} -\/th column, only the meaningful part is returned. 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+the internal storage must be column major. 
+\end{DoxyWarning}
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_band_matrix_base_a7b0b45c7351847696c911ce8aa2abbdb}\label{class_eigen_1_1internal_1_1_band_matrix_base_a7b0b45c7351847696c911ce8aa2abbdb}} 
+\index{Eigen::internal::BandMatrixBase$<$ Derived $>$@{Eigen::internal::BandMatrixBase$<$ Derived $>$}!cols@{cols}}
+\index{cols@{cols}!Eigen::internal::BandMatrixBase$<$ Derived $>$@{Eigen::internal::BandMatrixBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{cols()}{cols()}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+::\+Eigen\+Base}}$<$ Derived $>$\+::cols\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the number of columns. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a8141320ba8df384426c298b32b000d8e}{rows()}}, Cols\+At\+Compile\+Time 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_band_matrix_base_a324b16961a11d2ecfd2d1b7dd7946545}\label{class_eigen_1_1internal_1_1_band_matrix_base_a324b16961a11d2ecfd2d1b7dd7946545}} 
+\index{Eigen::internal::BandMatrixBase$<$ Derived $>$@{Eigen::internal::BandMatrixBase$<$ Derived $>$}!derived@{derived}}
+\index{derived@{derived}!Eigen::internal::BandMatrixBase$<$ Derived $>$@{Eigen::internal::BandMatrixBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{derived()}{derived()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Derived\& \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+::\+Eigen\+Base}}$<$ Derived $>$\+::derived\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a reference to the derived object 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_band_matrix_base_affa3cf01b59af4c503f5f126b3601907}\label{class_eigen_1_1internal_1_1_band_matrix_base_affa3cf01b59af4c503f5f126b3601907}} 
+\index{Eigen::internal::BandMatrixBase$<$ Derived $>$@{Eigen::internal::BandMatrixBase$<$ Derived $>$}!derived@{derived}}
+\index{derived@{derived}!Eigen::internal::BandMatrixBase$<$ Derived $>$@{Eigen::internal::BandMatrixBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{derived()}{derived()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Derived\& \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+::\+Eigen\+Base}}$<$ Derived $>$\+::derived\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a const reference to the derived object 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_band_matrix_base_abce1c4d69e72ec594f67a841d1040606}\label{class_eigen_1_1internal_1_1_band_matrix_base_abce1c4d69e72ec594f67a841d1040606}} 
+\index{Eigen::internal::BandMatrixBase$<$ Derived $>$@{Eigen::internal::BandMatrixBase$<$ Derived $>$}!diagonal@{diagonal}}
+\index{diagonal@{diagonal}!Eigen::internal::BandMatrixBase$<$ Derived $>$@{Eigen::internal::BandMatrixBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{diagonal()}{diagonal()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_block}{Block}}$<$Coefficients\+Type,1,Size\+At\+Compile\+Time$>$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_band_matrix_base}{Eigen\+::internal\+::\+Band\+Matrix\+Base}}$<$ Derived $>$\+::diagonal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a vector expression of the main diagonal 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_band_matrix_base_a1d98143681d5c1e2709ce18332a939dc}\label{class_eigen_1_1internal_1_1_band_matrix_base_a1d98143681d5c1e2709ce18332a939dc}} 
+\index{Eigen::internal::BandMatrixBase$<$ Derived $>$@{Eigen::internal::BandMatrixBase$<$ Derived $>$}!diagonal@{diagonal}}
+\index{diagonal@{diagonal}!Eigen::internal::BandMatrixBase$<$ Derived $>$@{Eigen::internal::BandMatrixBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{diagonal()}{diagonal()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+template$<$int N$>$ \\
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1_band_matrix_base_1_1_diagonal_int_return_type}{Diagonal\+Int\+Return\+Type}}$<$N$>$\+::Type \mbox{\hyperlink{class_eigen_1_1internal_1_1_band_matrix_base}{Eigen\+::internal\+::\+Band\+Matrix\+Base}}$<$ Derived $>$\+::diagonal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a vector expression of the {\itshape N} -\/th sub or super diagonal 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_band_matrix_base_a7c55438da88b00d29f8f514bddfa86ba}\label{class_eigen_1_1internal_1_1_band_matrix_base_a7c55438da88b00d29f8f514bddfa86ba}} 
+\index{Eigen::internal::BandMatrixBase$<$ Derived $>$@{Eigen::internal::BandMatrixBase$<$ Derived $>$}!diagonal@{diagonal}}
+\index{diagonal@{diagonal}!Eigen::internal::BandMatrixBase$<$ Derived $>$@{Eigen::internal::BandMatrixBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{diagonal()}{diagonal()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+const \mbox{\hyperlink{class_eigen_1_1_block}{Block}}$<$const Coefficients\+Type,1,Size\+At\+Compile\+Time$>$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_band_matrix_base}{Eigen\+::internal\+::\+Band\+Matrix\+Base}}$<$ Derived $>$\+::diagonal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a vector expression of the main diagonal (const version) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_band_matrix_base_aa8a5c997afb4ebd9b43b9ff2e1078cf9}\label{class_eigen_1_1internal_1_1_band_matrix_base_aa8a5c997afb4ebd9b43b9ff2e1078cf9}} 
+\index{Eigen::internal::BandMatrixBase$<$ Derived $>$@{Eigen::internal::BandMatrixBase$<$ Derived $>$}!diagonal@{diagonal}}
+\index{diagonal@{diagonal}!Eigen::internal::BandMatrixBase$<$ Derived $>$@{Eigen::internal::BandMatrixBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{diagonal()}{diagonal()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+template$<$int N$>$ \\
+const \mbox{\hyperlink{struct_eigen_1_1internal_1_1_band_matrix_base_1_1_diagonal_int_return_type}{Diagonal\+Int\+Return\+Type}}$<$N$>$\+::Type \mbox{\hyperlink{class_eigen_1_1internal_1_1_band_matrix_base}{Eigen\+::internal\+::\+Band\+Matrix\+Base}}$<$ Derived $>$\+::diagonal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a vector expression of the {\itshape N} -\/th sub or super diagonal 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_band_matrix_base_a51ce12f0be57b0c2593c20c865de6af1}\label{class_eigen_1_1internal_1_1_band_matrix_base_a51ce12f0be57b0c2593c20c865de6af1}} 
+\index{Eigen::internal::BandMatrixBase$<$ Derived $>$@{Eigen::internal::BandMatrixBase$<$ Derived $>$}!diagonal@{diagonal}}
+\index{diagonal@{diagonal}!Eigen::internal::BandMatrixBase$<$ Derived $>$@{Eigen::internal::BandMatrixBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{diagonal()}{diagonal()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_block}{Block}}$<$Coefficients\+Type,1,\mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}$>$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_band_matrix_base}{Eigen\+::internal\+::\+Band\+Matrix\+Base}}$<$ Derived $>$\+::diagonal (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}}}]{i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a vector expression of the {\itshape i} -\/th sub or super diagonal 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_band_matrix_base_a8f7146e80405018d6d0827c4a7713ad3}\label{class_eigen_1_1internal_1_1_band_matrix_base_a8f7146e80405018d6d0827c4a7713ad3}} 
+\index{Eigen::internal::BandMatrixBase$<$ Derived $>$@{Eigen::internal::BandMatrixBase$<$ Derived $>$}!diagonal@{diagonal}}
+\index{diagonal@{diagonal}!Eigen::internal::BandMatrixBase$<$ Derived $>$@{Eigen::internal::BandMatrixBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{diagonal()}{diagonal()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+const \mbox{\hyperlink{class_eigen_1_1_block}{Block}}$<$const Coefficients\+Type,1,\mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}$>$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_band_matrix_base}{Eigen\+::internal\+::\+Band\+Matrix\+Base}}$<$ Derived $>$\+::diagonal (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}}}]{i }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a vector expression of the {\itshape i} -\/th sub or super diagonal 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_band_matrix_base_a8141320ba8df384426c298b32b000d8e}\label{class_eigen_1_1internal_1_1_band_matrix_base_a8141320ba8df384426c298b32b000d8e}} 
+\index{Eigen::internal::BandMatrixBase$<$ Derived $>$@{Eigen::internal::BandMatrixBase$<$ Derived $>$}!rows@{rows}}
+\index{rows@{rows}!Eigen::internal::BandMatrixBase$<$ Derived $>$@{Eigen::internal::BandMatrixBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{rows()}{rows()}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+::\+Eigen\+Base}}$<$ Derived $>$\+::rows\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the number of rows. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a7b0b45c7351847696c911ce8aa2abbdb}{cols()}}, Rows\+At\+Compile\+Time 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_band_matrix_base_a1115fe9b5a07d5218dacc15655a413cb}\label{class_eigen_1_1internal_1_1_band_matrix_base_a1115fe9b5a07d5218dacc15655a413cb}} 
+\index{Eigen::internal::BandMatrixBase$<$ Derived $>$@{Eigen::internal::BandMatrixBase$<$ Derived $>$}!subs@{subs}}
+\index{subs@{subs}!Eigen::internal::BandMatrixBase$<$ Derived $>$@{Eigen::internal::BandMatrixBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{subs()}{subs()}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_band_matrix_base}{Eigen\+::internal\+::\+Band\+Matrix\+Base}}$<$ Derived $>$\+::subs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the number of sub diagonals 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_band_matrix_base_a58617da0d75d22b1f8dfdfde702ebb4a}\label{class_eigen_1_1internal_1_1_band_matrix_base_a58617da0d75d22b1f8dfdfde702ebb4a}} 
+\index{Eigen::internal::BandMatrixBase$<$ Derived $>$@{Eigen::internal::BandMatrixBase$<$ Derived $>$}!supers@{supers}}
+\index{supers@{supers}!Eigen::internal::BandMatrixBase$<$ Derived $>$@{Eigen::internal::BandMatrixBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{supers()}{supers()}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_band_matrix_base}{Eigen\+::internal\+::\+Band\+Matrix\+Base}}$<$ Derived $>$\+::supers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the number of super diagonals 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/Band\+Matrix.\+h\end{DoxyCompactItemize}

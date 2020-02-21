@@ -1,0 +1,129 @@
+\hypertarget{class_eigen_1_1_simplicial_cholesky}{}\doxysection{Eigen\+::Simplicial\+Cholesky Class Reference}
+\label{class_eigen_1_1_simplicial_cholesky}\index{Eigen::SimplicialCholesky@{Eigen::SimplicialCholesky}}
+
+
+{\ttfamily \#include $<$Simplicial\+Cholesky.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_cholesky_a64567a1f3391969d16477900e690e7e1}\label{class_eigen_1_1_simplicial_cholesky_a64567a1f3391969d16477900e690e7e1}} 
+enum \{ {\bfseries Up\+Lo} = \+\_\+\+Up\+Lo
+ \}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_cholesky_abfb7e3899b15c22e51232b0d10411aea}\label{class_eigen_1_1_simplicial_cholesky_abfb7e3899b15c22e51232b0d10411aea}} 
+typedef \+\_\+\+Matrix\+Type {\bfseries Matrix\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_cholesky_acb95874da43ae26dcd3228afeb6f396a}\label{class_eigen_1_1_simplicial_cholesky_acb95874da43ae26dcd3228afeb6f396a}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_simplicial_cholesky_base}{Simplicial\+Cholesky\+Base}}$<$ \mbox{\hyperlink{class_eigen_1_1_simplicial_cholesky}{Simplicial\+Cholesky}} $>$ {\bfseries Base}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_cholesky_a78b2172edaf3d432efd701b1adf5d332}\label{class_eigen_1_1_simplicial_cholesky_a78b2172edaf3d432efd701b1adf5d332}} 
+typedef Matrix\+Type\+::\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_cholesky_acfe4d45d6d948b2da71a2b4b2916e874}\label{class_eigen_1_1_simplicial_cholesky_acfe4d45d6d948b2da71a2b4b2916e874}} 
+typedef Matrix\+Type\+::\+Real\+Scalar {\bfseries Real\+Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_cholesky_ad2f63a880fa15b7d179b3ed589f9da41}\label{class_eigen_1_1_simplicial_cholesky_ad2f63a880fa15b7d179b3ed589f9da41}} 
+typedef Matrix\+Type\+::\+Storage\+Index {\bfseries Storage\+Index}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_cholesky_a176210eb1c2929da47b92932ab5175aa}\label{class_eigen_1_1_simplicial_cholesky_a176210eb1c2929da47b92932ab5175aa}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}}$<$ Scalar, \mbox{\hyperlink{group__enums_ggaacded1a18ae58b0f554751f6cdf9eb13a0103672ae41005ab03b4176c765afd62}{Col\+Major}}, Storage\+Index $>$ {\bfseries Chol\+Matrix\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_cholesky_a0bf716eece77e158eaeccdefb3b840f6}\label{class_eigen_1_1_simplicial_cholesky_a0bf716eece77e158eaeccdefb3b840f6}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ Scalar, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}, 1 $>$ {\bfseries Vector\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_cholesky_a3a1cd5316b5f277c4b9c76e039762d02}\label{class_eigen_1_1_simplicial_cholesky_a3a1cd5316b5f277c4b9c76e039762d02}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_simplicial_cholesky}{Simplicial\+Cholesky}} $>$ {\bfseries Traits}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_cholesky_a91a2eac19c5a7318d99318c5dc51d5de}\label{class_eigen_1_1_simplicial_cholesky_a91a2eac19c5a7318d99318c5dc51d5de}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_simplicial_l_d_l_t}{Simplicial\+L\+D\+LT}}$<$ Matrix\+Type, Up\+Lo $>$ $>$ {\bfseries L\+D\+L\+T\+Traits}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_cholesky_aab645cfef859eac35c36a90840d264f0}\label{class_eigen_1_1_simplicial_cholesky_aab645cfef859eac35c36a90840d264f0}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_simplicial_l_l_t}{Simplicial\+L\+LT}}$<$ Matrix\+Type, Up\+Lo $>$ $>$ {\bfseries L\+L\+T\+Traits}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_cholesky_aba6e0cfc5fdf1c1330153a2897be7b18}\label{class_eigen_1_1_simplicial_cholesky_aba6e0cfc5fdf1c1330153a2897be7b18}} 
+{\bfseries Simplicial\+Cholesky} (const Matrix\+Type \&matrix)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_cholesky_aaeebbb1f67c339c1468b5e51aa27e912}\label{class_eigen_1_1_simplicial_cholesky_aaeebbb1f67c339c1468b5e51aa27e912}} 
+\mbox{\hyperlink{class_eigen_1_1_simplicial_cholesky}{Simplicial\+Cholesky}} \& {\bfseries set\+Mode} (Simplicial\+Cholesky\+Mode mode)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_cholesky_a6a195e6cef7be7c7df2f9c3fa3e41412}\label{class_eigen_1_1_simplicial_cholesky_a6a195e6cef7be7c7df2f9c3fa3e41412}} 
+const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} {\bfseries vectorD} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_cholesky_af724f0b3188a9160369d592f65fa278d}\label{class_eigen_1_1_simplicial_cholesky_af724f0b3188a9160369d592f65fa278d}} 
+const \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Chol\+Matrix\+Type}} {\bfseries raw\+Matrix} () const
+\item 
+\mbox{\hyperlink{class_eigen_1_1_simplicial_cholesky}{Simplicial\+Cholesky}} \& \mbox{\hyperlink{class_eigen_1_1_simplicial_cholesky_a2228f0937ba77a513c907ab1c3504d42}{compute}} (const Matrix\+Type \&matrix)
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_simplicial_cholesky_abd631e700699e3abca942ae4a40b1e88}{analyze\+Pattern}} (const Matrix\+Type \&a)
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_simplicial_cholesky_ab83cd3d6d8ad6144ebc1efdca97f7c0f}{factorize}} (const Matrix\+Type \&a)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_cholesky_aa1501fd3d3f990a3f63167cb7974c773}\label{class_eigen_1_1_simplicial_cholesky_aa1501fd3d3f990a3f63167cb7974c773}} 
+{\footnotesize template$<$typename Rhs , typename Dest $>$ }\\void {\bfseries \+\_\+solve\+\_\+impl} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Rhs $>$ \&b, \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Dest $>$ \&dest) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_cholesky_aca5767caed9529859546345255834895}\label{class_eigen_1_1_simplicial_cholesky_aca5767caed9529859546345255834895}} 
+{\footnotesize template$<$typename Rhs , typename Dest $>$ }\\void {\bfseries \+\_\+solve\+\_\+impl} (const \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base}{Sparse\+Matrix\+Base}}$<$ Rhs $>$ \&b, \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base}{Sparse\+Matrix\+Base}}$<$ Dest $>$ \&dest) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_cholesky_a7e9ed3b9d7e69d035cb3100afec7578f}\label{class_eigen_1_1_simplicial_cholesky_a7e9ed3b9d7e69d035cb3100afec7578f}} 
+Scalar {\bfseries determinant} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_cholesky_a7bb0e20169f395ab691aab64fc7afc8c}\label{class_eigen_1_1_simplicial_cholesky_a7bb0e20169f395ab691aab64fc7afc8c}} 
+bool {\bfseries m\+\_\+\+L\+D\+LT}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyRefDesc}{Deprecated}
+\item[\mbox{\hyperlink{deprecated__deprecated000036}{Deprecated}}]use \mbox{\hyperlink{class_eigen_1_1_simplicial_l_d_l_t}{Simplicial\+L\+D\+LT}} or class \mbox{\hyperlink{class_eigen_1_1_simplicial_l_l_t}{Simplicial\+L\+LT}} \end{DoxyRefDesc}
+
+
+\begin{DoxySeeAlso}{See also}
+class \mbox{\hyperlink{class_eigen_1_1_simplicial_l_d_l_t}{Simplicial\+L\+D\+LT}}, class \mbox{\hyperlink{class_eigen_1_1_simplicial_l_l_t}{Simplicial\+L\+LT}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_cholesky_abd631e700699e3abca942ae4a40b1e88}\label{class_eigen_1_1_simplicial_cholesky_abd631e700699e3abca942ae4a40b1e88}} 
+\index{Eigen::SimplicialCholesky@{Eigen::SimplicialCholesky}!analyzePattern@{analyzePattern}}
+\index{analyzePattern@{analyzePattern}!Eigen::SimplicialCholesky@{Eigen::SimplicialCholesky}}
+\doxysubsubsection{\texorpdfstring{analyzePattern()}{analyzePattern()}}
+{\footnotesize\ttfamily void Eigen\+::\+Simplicial\+Cholesky\+::analyze\+Pattern (\begin{DoxyParamCaption}\item[{const Matrix\+Type \&}]{a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Performs a symbolic decomposition on the sparcity of {\itshape matrix}.
+
+This function is particularly useful when solving for several problems having the same structure.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_simplicial_cholesky_ab83cd3d6d8ad6144ebc1efdca97f7c0f}{factorize()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_cholesky_a2228f0937ba77a513c907ab1c3504d42}\label{class_eigen_1_1_simplicial_cholesky_a2228f0937ba77a513c907ab1c3504d42}} 
+\index{Eigen::SimplicialCholesky@{Eigen::SimplicialCholesky}!compute@{compute}}
+\index{compute@{compute}!Eigen::SimplicialCholesky@{Eigen::SimplicialCholesky}}
+\doxysubsubsection{\texorpdfstring{compute()}{compute()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_eigen_1_1_simplicial_cholesky}{Simplicial\+Cholesky}}\& Eigen\+::\+Simplicial\+Cholesky\+::compute (\begin{DoxyParamCaption}\item[{const Matrix\+Type \&}]{matrix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Computes the sparse Cholesky decomposition of {\itshape matrix} \mbox{\Hypertarget{class_eigen_1_1_simplicial_cholesky_ab83cd3d6d8ad6144ebc1efdca97f7c0f}\label{class_eigen_1_1_simplicial_cholesky_ab83cd3d6d8ad6144ebc1efdca97f7c0f}} 
+\index{Eigen::SimplicialCholesky@{Eigen::SimplicialCholesky}!factorize@{factorize}}
+\index{factorize@{factorize}!Eigen::SimplicialCholesky@{Eigen::SimplicialCholesky}}
+\doxysubsubsection{\texorpdfstring{factorize()}{factorize()}}
+{\footnotesize\ttfamily void Eigen\+::\+Simplicial\+Cholesky\+::factorize (\begin{DoxyParamCaption}\item[{const Matrix\+Type \&}]{a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Performs a numeric decomposition of {\itshape matrix} 
+
+The given matrix must has the same sparcity than the matrix on which the symbolic decomposition has been performed.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_simplicial_cholesky_abd631e700699e3abca942ae4a40b1e88}{analyze\+Pattern()}} 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Sparse\+Cholesky/Simplicial\+Cholesky.\+h\end{DoxyCompactItemize}

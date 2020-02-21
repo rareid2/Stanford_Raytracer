@@ -1,0 +1,67 @@
+\hypertarget{struct_eigen_1_1internal_1_1evaluator__wrapper__base}{}\doxysection{Eigen\+::internal\+::evaluator\+\_\+wrapper\+\_\+base$<$ Xpr\+Type $>$ Struct Template Reference}
+\label{struct_eigen_1_1internal_1_1evaluator__wrapper__base}\index{Eigen::internal::evaluator\_wrapper\_base$<$ XprType $>$@{Eigen::internal::evaluator\_wrapper\_base$<$ XprType $>$}}
+Inheritance diagram for Eigen\+::internal\+::evaluator\+\_\+wrapper\+\_\+base$<$ Xpr\+Type $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{struct_eigen_1_1internal_1_1evaluator__wrapper__base}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1evaluator__wrapper__base_a7de71ff9d941bd921fd3824943ed4a29}\label{struct_eigen_1_1internal_1_1evaluator__wrapper__base_a7de71ff9d941bd921fd3824943ed4a29}} 
+enum \{ {\bfseries Coeff\+Read\+Cost} = evaluator$<$Arg\+Type$>$\+::Coeff\+Read\+Cost, 
+{\bfseries Flags} = evaluator$<$Arg\+Type$>$\+::Flags, 
+{\bfseries Alignment} = evaluator$<$Arg\+Type$>$\+::Alignment
+ \}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1evaluator__wrapper__base_a5a503ef21501a96d1c29c142d0ef5464}\label{struct_eigen_1_1internal_1_1evaluator__wrapper__base_a5a503ef21501a96d1c29c142d0ef5464}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{remove\+\_\+all}}$<$ typename Xpr\+Type\+::\+Nested\+Expression\+Type $>$\+::type {\bfseries Arg\+Type}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1evaluator__wrapper__base_a4da29230682439ead46dabc2d12254b4}\label{struct_eigen_1_1internal_1_1evaluator__wrapper__base_a4da29230682439ead46dabc2d12254b4}} 
+typedef Arg\+Type\+::\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1evaluator__wrapper__base_a27a59fe6d1013f9ad31889a4fd84ceb0}\label{struct_eigen_1_1internal_1_1evaluator__wrapper__base_a27a59fe6d1013f9ad31889a4fd84ceb0}} 
+typedef Arg\+Type\+::\+Coeff\+Return\+Type {\bfseries Coeff\+Return\+Type}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1evaluator__wrapper__base_a529c1380dce98ac43ff335c41fe3b314}\label{struct_eigen_1_1internal_1_1evaluator__wrapper__base_a529c1380dce98ac43ff335c41fe3b314}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC {\bfseries evaluator\+\_\+wrapper\+\_\+base} (const \mbox{\hyperlink{class_eigen_1_1_triplet}{Arg\+Type}} \&arg)
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1evaluator__wrapper__base_ae4c999dc0fa9425f31a223fd9528626e}\label{struct_eigen_1_1internal_1_1evaluator__wrapper__base_ae4c999dc0fa9425f31a223fd9528626e}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Coeff\+Return\+Type {\bfseries coeff} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col) const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1evaluator__wrapper__base_addbd1d2f5c426bfc7b64ff449d6c23a4}\label{struct_eigen_1_1internal_1_1evaluator__wrapper__base_addbd1d2f5c426bfc7b64ff449d6c23a4}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Coeff\+Return\+Type {\bfseries coeff} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} index) const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1evaluator__wrapper__base_ae15e7475c7d4638e8f1229570d468421}\label{struct_eigen_1_1internal_1_1evaluator__wrapper__base_ae15e7475c7d4638e8f1229570d468421}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Scalar \& {\bfseries coeff\+Ref} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col)
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1evaluator__wrapper__base_ad5084d136cbf11ea3b7e085a3de3244e}\label{struct_eigen_1_1internal_1_1evaluator__wrapper__base_ad5084d136cbf11ea3b7e085a3de3244e}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Scalar \& {\bfseries coeff\+Ref} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} index)
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1evaluator__wrapper__base_aa507d02b7eed05b93a9ebfcde14028a7}\label{struct_eigen_1_1internal_1_1evaluator__wrapper__base_aa507d02b7eed05b93a9ebfcde14028a7}} 
+{\footnotesize template$<$int Load\+Mode, typename Packet\+Type $>$ }\\E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}} {\bfseries packet} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col) const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1evaluator__wrapper__base_a1d5c0ece1d9beb02a6e3cf3cbff39220}\label{struct_eigen_1_1internal_1_1evaluator__wrapper__base_a1d5c0ece1d9beb02a6e3cf3cbff39220}} 
+{\footnotesize template$<$int Load\+Mode, typename Packet\+Type $>$ }\\E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}} {\bfseries packet} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} index) const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1evaluator__wrapper__base_a05c007daf5b8cc64e2c962c6ddb1b9be}\label{struct_eigen_1_1internal_1_1evaluator__wrapper__base_a05c007daf5b8cc64e2c962c6ddb1b9be}} 
+{\footnotesize template$<$int Store\+Mode, typename Packet\+Type $>$ }\\E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE void {\bfseries write\+Packet} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col, const \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}} \&x)
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1evaluator__wrapper__base_a1adee3ca0efc3280603884dda77bd012}\label{struct_eigen_1_1internal_1_1evaluator__wrapper__base_a1adee3ca0efc3280603884dda77bd012}} 
+{\footnotesize template$<$int Store\+Mode, typename Packet\+Type $>$ }\\E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE void {\bfseries write\+Packet} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} index, const \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}} \&x)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1evaluator__wrapper__base_a99bf3690d536cd7da7bdf1cce4ec7baf}\label{struct_eigen_1_1internal_1_1evaluator__wrapper__base_a99bf3690d536cd7da7bdf1cce4ec7baf}} 
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1evaluator}{evaluator}}$<$ \mbox{\hyperlink{class_eigen_1_1_triplet}{Arg\+Type}} $>$ {\bfseries m\+\_\+arg\+Impl}
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/Core\+Evaluators.\+h\end{DoxyCompactItemize}

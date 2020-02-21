@@ -1,0 +1,78 @@
+\hypertarget{class_eigen_1_1_dynamic_s_group}{}\doxysection{Eigen\+::Dynamic\+S\+Group Class Reference}
+\label{class_eigen_1_1_dynamic_s_group}\index{Eigen::DynamicSGroup@{Eigen::DynamicSGroup}}
+
+
+Dynamic symmetry group.  
+
+
+
+
+{\ttfamily \#include $<$Symmetry.\+h$>$}
+
+Inheritance diagram for Eigen\+::Dynamic\+S\+Group\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_eigen_1_1_dynamic_s_group}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_dynamic_s_group_a5f1f473d1f482b43e3b25b560dfc75c7}\label{class_eigen_1_1_dynamic_s_group_a5f1f473d1f482b43e3b25b560dfc75c7}} 
+{\bfseries Dynamic\+S\+Group} (const \mbox{\hyperlink{class_eigen_1_1_dynamic_s_group}{Dynamic\+S\+Group}} \&o)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_dynamic_s_group_aa9bc1a645dabd45f2771bff3f53e438e}\label{class_eigen_1_1_dynamic_s_group_aa9bc1a645dabd45f2771bff3f53e438e}} 
+{\bfseries Dynamic\+S\+Group} (\mbox{\hyperlink{class_eigen_1_1_dynamic_s_group}{Dynamic\+S\+Group}} \&\&o)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_dynamic_s_group_a1e713d6200cfaa2bfa72d08c18cb0b3a}\label{class_eigen_1_1_dynamic_s_group_a1e713d6200cfaa2bfa72d08c18cb0b3a}} 
+\mbox{\hyperlink{class_eigen_1_1_dynamic_s_group}{Dynamic\+S\+Group}} \& {\bfseries operator=} (const \mbox{\hyperlink{class_eigen_1_1_dynamic_s_group}{Dynamic\+S\+Group}} \&o)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_dynamic_s_group_a8661b8489f8027f096700433b1890eac}\label{class_eigen_1_1_dynamic_s_group_a8661b8489f8027f096700433b1890eac}} 
+\mbox{\hyperlink{class_eigen_1_1_dynamic_s_group}{Dynamic\+S\+Group}} \& {\bfseries operator=} (\mbox{\hyperlink{class_eigen_1_1_dynamic_s_group}{Dynamic\+S\+Group}} \&\&o)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_dynamic_s_group_ab6d3580987345d4ef81c139e8399147b}\label{class_eigen_1_1_dynamic_s_group_ab6d3580987345d4ef81c139e8399147b}} 
+void {\bfseries add} (int one, int two, int flags=0)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_dynamic_s_group_a1bdc8d772a461f809baef36a0ad1e21a}\label{class_eigen_1_1_dynamic_s_group_a1bdc8d772a461f809baef36a0ad1e21a}} 
+{\footnotesize template$<$typename Gen\+\_\+ $>$ }\\void {\bfseries add} (Gen\+\_\+)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_dynamic_s_group_a2efbaedb2063d418df9e3056b7616b20}\label{class_eigen_1_1_dynamic_s_group_a2efbaedb2063d418df9e3056b7616b20}} 
+void {\bfseries add\+Symmetry} (int one, int two)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_dynamic_s_group_ac8415c3653c3c1e7053f8f930f2b9e24}\label{class_eigen_1_1_dynamic_s_group_ac8415c3653c3c1e7053f8f930f2b9e24}} 
+void {\bfseries add\+Anti\+Symmetry} (int one, int two)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_dynamic_s_group_a2faa098d02f0715fc82699ec1cf999c1}\label{class_eigen_1_1_dynamic_s_group_a2faa098d02f0715fc82699ec1cf999c1}} 
+void {\bfseries add\+Hermiticity} (int one, int two)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_dynamic_s_group_a4391a25c9d7edff1b2806f6f5be3c7b7}\label{class_eigen_1_1_dynamic_s_group_a4391a25c9d7edff1b2806f6f5be3c7b7}} 
+void {\bfseries add\+Anti\+Hermiticity} (int one, int two)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_dynamic_s_group_ad201a814e4a7147a044ff104f992d1e7}\label{class_eigen_1_1_dynamic_s_group_ad201a814e4a7147a044ff104f992d1e7}} 
+{\footnotesize template$<$typename Op , typename RV , typename Index , std\+::size\+\_\+t N, typename... Args$>$ }\\RV {\bfseries apply} (const std\+::array$<$ \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}, N $>$ \&idx, RV initial, Args \&\&... args) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_dynamic_s_group_ae77f8b44a874bcff6c52c1f82cd5a5c2}\label{class_eigen_1_1_dynamic_s_group_ae77f8b44a874bcff6c52c1f82cd5a5c2}} 
+{\footnotesize template$<$typename Op , typename RV , typename Index , typename... Args$>$ }\\RV {\bfseries apply} (const std\+::vector$<$ \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} $>$ \&idx, RV initial, Args \&\&... args) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_dynamic_s_group_a8272d8c971713b3e328a13c33ac38b20}\label{class_eigen_1_1_dynamic_s_group_a8272d8c971713b3e328a13c33ac38b20}} 
+int {\bfseries global\+Flags} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_dynamic_s_group_acb5356798035ce1ae0d00eec033ef32f}\label{class_eigen_1_1_dynamic_s_group_acb5356798035ce1ae0d00eec033ef32f}} 
+std\+::size\+\_\+t {\bfseries size} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_dynamic_s_group_a0d1f3c6ef73e3661a568ce888b6cca58}\label{class_eigen_1_1_dynamic_s_group_a0d1f3c6ef73e3661a568ce888b6cca58}} 
+{\footnotesize template$<$typename Tensor\+\_\+ , typename... Index\+Types$>$ }\\\mbox{\hyperlink{class_eigen_1_1internal_1_1tensor__symmetry__value__setter}{internal\+::tensor\+\_\+symmetry\+\_\+value\+\_\+setter}}$<$ Tensor\+\_\+, \mbox{\hyperlink{class_eigen_1_1_dynamic_s_group}{Dynamic\+S\+Group}} $>$ {\bfseries operator()} (Tensor\+\_\+ \&tensor, typename Tensor\+\_\+\+::\+Index first\+Index, Index\+Types... other\+Indices) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_dynamic_s_group_a22aed98eb89f2775943663efec999ae6}\label{class_eigen_1_1_dynamic_s_group_a22aed98eb89f2775943663efec999ae6}} 
+{\footnotesize template$<$typename Tensor\+\_\+ $>$ }\\\mbox{\hyperlink{class_eigen_1_1internal_1_1tensor__symmetry__value__setter}{internal\+::tensor\+\_\+symmetry\+\_\+value\+\_\+setter}}$<$ Tensor\+\_\+, \mbox{\hyperlink{class_eigen_1_1_dynamic_s_group}{Dynamic\+S\+Group}} $>$ {\bfseries operator()} (Tensor\+\_\+ \&tensor, std\+::array$<$ typename Tensor\+\_\+\+::\+Index, Tensor\+\_\+\+::\+Num\+Indices $>$ const \&indices) const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Dynamic symmetry group. 
+
+The Dynamic\+S\+Group class represents a symmetry group that need not be known at compile time. It is useful if one wants to support arbitrary run-\/time defineable symmetries for tensors, but it is also instantiated if a symmetry group is defined at compile time that would be either too large for the compiler to reasonably generate (using templates to calculate this at compile time is very inefficient) or that the compiler could generate the group but that it wouldn\textquotesingle{}t make sense to unroll the loop for setting coefficients anymore. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/\+C\+X\+X11/src/\+Tensor\+Symmetry/Dynamic\+Symmetry.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,42 @@
+\hypertarget{struct_eigen_1_1internal_1_1_inner_reducer_3_01_self_00_01_op_00_01const_01_eigen_1_1_sycl_device_01_4}{}\doxysection{Eigen\+::internal\+::Inner\+Reducer$<$ Self, Op, const Eigen\+::Sycl\+Device $>$ Struct Template Reference}
+\label{struct_eigen_1_1internal_1_1_inner_reducer_3_01_self_00_01_op_00_01const_01_eigen_1_1_sycl_device_01_4}\index{Eigen::internal::InnerReducer$<$ Self, Op, const Eigen::SyclDevice $>$@{Eigen::internal::InnerReducer$<$ Self, Op, const Eigen::SyclDevice $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1_inner_reducer_3_01_self_00_01_op_00_01const_01_eigen_1_1_sycl_device_01_4_acef5848945739203d911256e0b846ba5}\label{struct_eigen_1_1internal_1_1_inner_reducer_3_01_self_00_01_op_00_01const_01_eigen_1_1_sycl_device_01_4_acef5848945739203d911256e0b846ba5}} 
+typedef Self\+::\+Coeff\+Return\+Type {\bfseries Coeff\+Return\+Type}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \mbox{\hyperlink{struct_eigen_1_1internal_1_1_inner_reducer_3_01_self_00_01_op_00_01const_01_eigen_1_1_sycl_device_01_4_a471bb175078f166e0d5c4040fc4494d9}{run}} (const Self \&self, Op \&reducer, const Eigen\+::\+Sycl\+Device \&dev, Coeff\+Return\+Type $\ast$output, typename Self\+::\+Index, typename Self\+::\+Index num\+\_\+coeffs\+\_\+to\+\_\+preserve)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1_inner_reducer_3_01_self_00_01_op_00_01const_01_eigen_1_1_sycl_device_01_4_a9a67d8b5bbd79ec618e724ccf81fdce5}\label{struct_eigen_1_1internal_1_1_inner_reducer_3_01_self_00_01_op_00_01const_01_eigen_1_1_sycl_device_01_4_a9a67d8b5bbd79ec618e724ccf81fdce5}} 
+static const bool {\bfseries Has\+Optimized\+Implementation} = false
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1_inner_reducer_3_01_self_00_01_op_00_01const_01_eigen_1_1_sycl_device_01_4_a471bb175078f166e0d5c4040fc4494d9}\label{struct_eigen_1_1internal_1_1_inner_reducer_3_01_self_00_01_op_00_01const_01_eigen_1_1_sycl_device_01_4_a471bb175078f166e0d5c4040fc4494d9}} 
+\index{Eigen::internal::InnerReducer$<$ Self, Op, const Eigen::SyclDevice $>$@{Eigen::internal::InnerReducer$<$ Self, Op, const Eigen::SyclDevice $>$}!run@{run}}
+\index{run@{run}!Eigen::internal::InnerReducer$<$ Self, Op, const Eigen::SyclDevice $>$@{Eigen::internal::InnerReducer$<$ Self, Op, const Eigen::SyclDevice $>$}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily template$<$typename Self , typename Op $>$ \\
+static bool \mbox{\hyperlink{struct_eigen_1_1internal_1_1_inner_reducer}{Eigen\+::internal\+::\+Inner\+Reducer}}$<$ Self, Op, const Eigen\+::\+Sycl\+Device $>$\+::run (\begin{DoxyParamCaption}\item[{const Self \&}]{self,  }\item[{Op \&}]{reducer,  }\item[{const Eigen\+::\+Sycl\+Device \&}]{dev,  }\item[{Coeff\+Return\+Type $\ast$}]{output,  }\item[{typename Self\+::\+Index}]{,  }\item[{typename Self\+::\+Index}]{num\+\_\+coeffs\+\_\+to\+\_\+preserve }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+this is the child of reduction
+
+creating the shared memory for calculating reduction. This one is used to collect all the reduced value of shared memory as we dont have global barrier on G\+PU. Once it is saved we can recursively apply reduction on it in order to reduce the whole.
+
+reduction cannot be captured automatically through our device conversion recursion. The reason is that reduction has two behaviour the first behaviour is when it is used as a root to lauch the sub-\/kernel. The second one is when it is treated as a leafnode to pass the calculated result to its parent kernel. While the latter is automatically detected through our device expression generator. The former is created here.
+
+This is the evaluator for device\+\_\+self\+\_\+expr. This is exactly similar to the self which has been passed to run function. The difference is the device\+\_\+evaluator is detectable and recognisable on the device.
+
+const cast added as a naive solution to solve the qualifier drop error
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/\+C\+X\+X11/src/\+Tensor/Tensor\+Reduction\+Sycl.\+h\end{DoxyCompactItemize}

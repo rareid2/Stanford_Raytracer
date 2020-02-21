@@ -1,0 +1,44 @@
+\hypertarget{struct_eigen_1_1internal_1_1traits_3_01_matrix_3_01___scalar_00_01___rows_00_01___cols_00_01___o4c9772ffb3eee7280611af9a479b3583}{}\doxysection{Eigen\+::internal\+::traits$<$ Matrix$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols, \+\_\+\+Options, \+\_\+\+Max\+Rows, \+\_\+\+Max\+Cols $>$ $>$ Struct Template Reference}
+\label{struct_eigen_1_1internal_1_1traits_3_01_matrix_3_01___scalar_00_01___rows_00_01___cols_00_01___o4c9772ffb3eee7280611af9a479b3583}\index{Eigen::internal::traits$<$ Matrix$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$ $>$@{Eigen::internal::traits$<$ Matrix$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$ $>$}}
+Inheritance diagram for Eigen\+::internal\+::traits$<$ Matrix$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols, \+\_\+\+Options, \+\_\+\+Max\+Rows, \+\_\+\+Max\+Cols $>$ $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{struct_eigen_1_1internal_1_1traits_3_01_matrix_3_01___scalar_00_01___rows_00_01___cols_00_01___o4c9772ffb3eee7280611af9a479b3583}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_matrix_3_01___scalar_00_01___rows_00_01___cols_00_01___o4c9772ffb3eee7280611af9a479b3583_ad4864e6898ad117ba1b81da0e1901e2b}\label{struct_eigen_1_1internal_1_1traits_3_01_matrix_3_01___scalar_00_01___rows_00_01___cols_00_01___o4c9772ffb3eee7280611af9a479b3583_ad4864e6898ad117ba1b81da0e1901e2b}} 
+enum \{ \newline
+{\bfseries Rows\+At\+Compile\+Time} = \+\_\+\+Rows, 
+{\bfseries Cols\+At\+Compile\+Time} = \+\_\+\+Cols, 
+{\bfseries Max\+Rows\+At\+Compile\+Time} = \+\_\+\+Max\+Rows, 
+{\bfseries Max\+Cols\+At\+Compile\+Time} = \+\_\+\+Max\+Cols, 
+\newline
+{\bfseries Flags} = compute\+\_\+matrix\+\_\+flags$<$\+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols, \+\_\+\+Options, \+\_\+\+Max\+Rows, \+\_\+\+Max\+Cols$>$\+::ret, 
+{\bfseries Options} = \+\_\+\+Options, 
+{\bfseries Inner\+Stride\+At\+Compile\+Time} = 1, 
+{\bfseries Outer\+Stride\+At\+Compile\+Time} = (Options\&Row\+Major) ? Cols\+At\+Compile\+Time \+: Rows\+At\+Compile\+Time, 
+\newline
+{\bfseries Evaluator\+Flags} = Linear\+Access\+Bit $\vert$ Direct\+Access\+Bit $\vert$ packet\+\_\+access\+\_\+bit $\vert$ row\+\_\+major\+\_\+bit, 
+{\bfseries Alignment} = actual\+\_\+alignment
+ \}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_matrix_3_01___scalar_00_01___rows_00_01___cols_00_01___o4c9772ffb3eee7280611af9a479b3583_a5b97404d14838cb19985a20e492419fb}\label{struct_eigen_1_1internal_1_1traits_3_01_matrix_3_01___scalar_00_01___rows_00_01___cols_00_01___o4c9772ffb3eee7280611af9a479b3583_a5b97404d14838cb19985a20e492419fb}} 
+typedef \+\_\+\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_matrix_3_01___scalar_00_01___rows_00_01___cols_00_01___o4c9772ffb3eee7280611af9a479b3583_a0ff46e6d20432a77d9091f1db6a23e3b}\label{struct_eigen_1_1internal_1_1traits_3_01_matrix_3_01___scalar_00_01___rows_00_01___cols_00_01___o4c9772ffb3eee7280611af9a479b3583_a0ff46e6d20432a77d9091f1db6a23e3b}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_dense}{Dense}} {\bfseries Storage\+Kind}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_matrix_3_01___scalar_00_01___rows_00_01___cols_00_01___o4c9772ffb3eee7280611af9a479b3583_a178d8fc56574c39a1657677cd3e28914}\label{struct_eigen_1_1internal_1_1traits_3_01_matrix_3_01___scalar_00_01___rows_00_01___cols_00_01___o4c9772ffb3eee7280611af9a479b3583_a178d8fc56574c39a1657677cd3e28914}} 
+typedef \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Eigen\+::\+Index}} {\bfseries Storage\+Index}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_matrix_3_01___scalar_00_01___rows_00_01___cols_00_01___o4c9772ffb3eee7280611af9a479b3583_a95750044bb96facbad2e7b54f6a5916a}\label{struct_eigen_1_1internal_1_1traits_3_01_matrix_3_01___scalar_00_01___rows_00_01___cols_00_01___o4c9772ffb3eee7280611af9a479b3583_a95750044bb96facbad2e7b54f6a5916a}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_matrix_xpr}{Matrix\+Xpr}} {\bfseries Xpr\+Kind}
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/Matrix.\+h\end{DoxyCompactItemize}

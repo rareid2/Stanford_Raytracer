@@ -1,0 +1,25 @@
+\hypertarget{structinternal_1_1packed__triangular__matrix__vector__product_3_01_index_00_01_mode_00_01_lhs_sc27c8536a613da6e5ab28fe48015c06ef}{}\doxysection{internal\+::packed\+\_\+triangular\+\_\+matrix\+\_\+vector\+\_\+product$<$ Index, Mode, Lhs\+Scalar, Conj\+Lhs, Rhs\+Scalar, Conj\+Rhs, Row\+Major $>$ Struct Template Reference}
+\label{structinternal_1_1packed__triangular__matrix__vector__product_3_01_index_00_01_mode_00_01_lhs_sc27c8536a613da6e5ab28fe48015c06ef}\index{internal::packed\_triangular\_matrix\_vector\_product$<$ Index, Mode, LhsScalar, ConjLhs, RhsScalar, ConjRhs, RowMajor $>$@{internal::packed\_triangular\_matrix\_vector\_product$<$ Index, Mode, LhsScalar, ConjLhs, RhsScalar, ConjRhs, RowMajor $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structinternal_1_1packed__triangular__matrix__vector__product_3_01_index_00_01_mode_00_01_lhs_sc27c8536a613da6e5ab28fe48015c06ef_a1b42535c460dcf7a8d3e1deb2b6bb17f}\label{structinternal_1_1packed__triangular__matrix__vector__product_3_01_index_00_01_mode_00_01_lhs_sc27c8536a613da6e5ab28fe48015c06ef_a1b42535c460dcf7a8d3e1deb2b6bb17f}} 
+enum \{ {\bfseries Is\+Lower} = (Mode \& Lower) ==Lower, 
+{\bfseries Has\+Unit\+Diag} = (Mode \& Unit\+Diag)==Unit\+Diag, 
+{\bfseries Has\+Zero\+Diag} = (Mode \& Zero\+Diag)==Zero\+Diag
+ \}
+\item 
+\mbox{\Hypertarget{structinternal_1_1packed__triangular__matrix__vector__product_3_01_index_00_01_mode_00_01_lhs_sc27c8536a613da6e5ab28fe48015c06ef_a3449e8d82450f53ad5fe35eb8ae73d1a}\label{structinternal_1_1packed__triangular__matrix__vector__product_3_01_index_00_01_mode_00_01_lhs_sc27c8536a613da6e5ab28fe48015c06ef_a3449e8d82450f53ad5fe35eb8ae73d1a}} 
+typedef Scalar\+Binary\+Op\+Traits$<$ Lhs\+Scalar, Rhs\+Scalar $>$\+::Return\+Type {\bfseries Res\+Scalar}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structinternal_1_1packed__triangular__matrix__vector__product_3_01_index_00_01_mode_00_01_lhs_sc27c8536a613da6e5ab28fe48015c06ef_a157346f99961d3aa8bc220fcfbbc748d}\label{structinternal_1_1packed__triangular__matrix__vector__product_3_01_index_00_01_mode_00_01_lhs_sc27c8536a613da6e5ab28fe48015c06ef_a157346f99961d3aa8bc220fcfbbc748d}} 
+static void {\bfseries run} (Index size, const Lhs\+Scalar $\ast$lhs, const Rhs\+Scalar $\ast$rhs, Res\+Scalar $\ast$res, Res\+Scalar alpha)
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/blas/Packed\+Triangular\+Matrix\+Vector.\+h\end{DoxyCompactItemize}

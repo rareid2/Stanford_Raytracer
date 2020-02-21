@@ -1,0 +1,94 @@
+\hypertarget{class_s_t_l__interface}{}\doxysection{S\+T\+L\+\_\+interface$<$ real $>$ Class Template Reference}
+\label{class_s_t_l__interface}\index{STL\_interface$<$ real $>$@{STL\_interface$<$ real $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_s_t_l__interface_a255060b4db912d711b5f6674fde32ad4}\label{class_s_t_l__interface_a255060b4db912d711b5f6674fde32ad4}} 
+typedef real {\bfseries real\+\_\+type}
+\item 
+\mbox{\Hypertarget{class_s_t_l__interface_a90e76ad25a66ae9a35f35ecc2141c1ad}\label{class_s_t_l__interface_a90e76ad25a66ae9a35f35ecc2141c1ad}} 
+typedef std\+::vector$<$ real $>$ {\bfseries stl\+\_\+vector}
+\item 
+\mbox{\Hypertarget{class_s_t_l__interface_a26223b87779685909b8506b5479eb0d8}\label{class_s_t_l__interface_a26223b87779685909b8506b5479eb0d8}} 
+typedef std\+::vector$<$ stl\+\_\+vector $>$ {\bfseries stl\+\_\+matrix}
+\item 
+\mbox{\Hypertarget{class_s_t_l__interface_a85fcdaa2e51b232a9f93f3bf9a8d0ee4}\label{class_s_t_l__interface_a85fcdaa2e51b232a9f93f3bf9a8d0ee4}} 
+typedef stl\+\_\+matrix {\bfseries gene\+\_\+matrix}
+\item 
+\mbox{\Hypertarget{class_s_t_l__interface_ac2dc28dfa4cc8c04a58a00e8bb1ce51f}\label{class_s_t_l__interface_ac2dc28dfa4cc8c04a58a00e8bb1ce51f}} 
+typedef stl\+\_\+vector {\bfseries gene\+\_\+vector}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_s_t_l__interface_a88e34ca25fa633cfc364fe841e737ed9}\label{class_s_t_l__interface_a88e34ca25fa633cfc364fe841e737ed9}} 
+static std\+::string {\bfseries name} (void)
+\item 
+\mbox{\Hypertarget{class_s_t_l__interface_af794a00f163660a6bdd08417970daf00}\label{class_s_t_l__interface_af794a00f163660a6bdd08417970daf00}} 
+static void {\bfseries free\+\_\+matrix} (gene\+\_\+matrix \&, int)
+\item 
+\mbox{\Hypertarget{class_s_t_l__interface_a797d9b4b7da63b67618793d1c7978d87}\label{class_s_t_l__interface_a797d9b4b7da63b67618793d1c7978d87}} 
+static void {\bfseries free\+\_\+vector} (gene\+\_\+vector \&)
+\item 
+\mbox{\Hypertarget{class_s_t_l__interface_adc82befb0d9bd90f584fc12b67d95ed5}\label{class_s_t_l__interface_adc82befb0d9bd90f584fc12b67d95ed5}} 
+static void {\bfseries matrix\+\_\+from\+\_\+stl} (gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, stl\+\_\+matrix \&A\+\_\+stl)
+\item 
+\mbox{\Hypertarget{class_s_t_l__interface_aa168e5b02c97c44299f2abdf835fa89c}\label{class_s_t_l__interface_aa168e5b02c97c44299f2abdf835fa89c}} 
+static void {\bfseries vector\+\_\+from\+\_\+stl} (gene\+\_\+vector \&\mbox{\hyperlink{class_eigen_1_1_matrix}{B}}, stl\+\_\+vector \&B\+\_\+stl)
+\item 
+\mbox{\Hypertarget{class_s_t_l__interface_a0ec555feb122458696a019bc0df2b764}\label{class_s_t_l__interface_a0ec555feb122458696a019bc0df2b764}} 
+static void {\bfseries vector\+\_\+to\+\_\+stl} (gene\+\_\+vector \&\mbox{\hyperlink{class_eigen_1_1_matrix}{B}}, stl\+\_\+vector \&B\+\_\+stl)
+\item 
+\mbox{\Hypertarget{class_s_t_l__interface_adb3c526d2e2da24fdcc8fa9f1566fccb}\label{class_s_t_l__interface_adb3c526d2e2da24fdcc8fa9f1566fccb}} 
+static void {\bfseries matrix\+\_\+to\+\_\+stl} (gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, stl\+\_\+matrix \&A\+\_\+stl)
+\item 
+\mbox{\Hypertarget{class_s_t_l__interface_a5ffdb0a323ab2c3a27ffb80a8c3eaa05}\label{class_s_t_l__interface_a5ffdb0a323ab2c3a27ffb80a8c3eaa05}} 
+static void {\bfseries copy\+\_\+vector} (const gene\+\_\+vector \&source, gene\+\_\+vector \&cible, int N)
+\item 
+\mbox{\Hypertarget{class_s_t_l__interface_a39046fc2eadea7d186c78c75243802e0}\label{class_s_t_l__interface_a39046fc2eadea7d186c78c75243802e0}} 
+static void {\bfseries copy\+\_\+matrix} (const gene\+\_\+matrix \&source, gene\+\_\+matrix \&cible, int N)
+\item 
+\mbox{\Hypertarget{class_s_t_l__interface_a148dbc43db30109f1133a692909c1ed6}\label{class_s_t_l__interface_a148dbc43db30109f1133a692909c1ed6}} 
+static void {\bfseries aat\+\_\+product} (const gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, gene\+\_\+matrix \&X, int N)
+\item 
+\mbox{\Hypertarget{class_s_t_l__interface_a062057e758b4cc7e84a2e5d900f0527d}\label{class_s_t_l__interface_a062057e758b4cc7e84a2e5d900f0527d}} 
+static void {\bfseries matrix\+\_\+matrix\+\_\+product} (const gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, const gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{B}}, gene\+\_\+matrix \&X, int N)
+\item 
+\mbox{\Hypertarget{class_s_t_l__interface_ad7400c19bfc252675ddb79f2e990b4a6}\label{class_s_t_l__interface_ad7400c19bfc252675ddb79f2e990b4a6}} 
+static void {\bfseries matrix\+\_\+vector\+\_\+product} (gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, gene\+\_\+vector \&\mbox{\hyperlink{class_eigen_1_1_matrix}{B}}, gene\+\_\+vector \&X, int N)
+\item 
+\mbox{\Hypertarget{class_s_t_l__interface_a0abb3e5c9d352a4c0e913185b1cce4ab}\label{class_s_t_l__interface_a0abb3e5c9d352a4c0e913185b1cce4ab}} 
+static void {\bfseries symv} (gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, gene\+\_\+vector \&\mbox{\hyperlink{class_eigen_1_1_matrix}{B}}, gene\+\_\+vector \&X, int N)
+\item 
+\mbox{\Hypertarget{class_s_t_l__interface_a01bcc8a5c5b1543abb284156dab0b64c}\label{class_s_t_l__interface_a01bcc8a5c5b1543abb284156dab0b64c}} 
+static void {\bfseries syr2} (gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, gene\+\_\+vector \&\mbox{\hyperlink{class_eigen_1_1_matrix}{B}}, gene\+\_\+vector \&X, int N)
+\item 
+\mbox{\Hypertarget{class_s_t_l__interface_aa8f762ed88dace8bce9b69fc931df160}\label{class_s_t_l__interface_aa8f762ed88dace8bce9b69fc931df160}} 
+static void {\bfseries ger} (gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, gene\+\_\+vector \&X, gene\+\_\+vector \&Y, int N)
+\item 
+\mbox{\Hypertarget{class_s_t_l__interface_a2c4ecb839106736405210ddd48b87f11}\label{class_s_t_l__interface_a2c4ecb839106736405210ddd48b87f11}} 
+static void {\bfseries atv\+\_\+product} (gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, gene\+\_\+vector \&\mbox{\hyperlink{class_eigen_1_1_matrix}{B}}, gene\+\_\+vector \&X, int N)
+\item 
+\mbox{\Hypertarget{class_s_t_l__interface_a030f479aada0f19121fbb78bbd8e5ece}\label{class_s_t_l__interface_a030f479aada0f19121fbb78bbd8e5ece}} 
+static void {\bfseries axpy} (real coef, const gene\+\_\+vector \&X, gene\+\_\+vector \&Y, int N)
+\item 
+\mbox{\Hypertarget{class_s_t_l__interface_a952aa772e33d8d3f0517b57bd59bb6ab}\label{class_s_t_l__interface_a952aa772e33d8d3f0517b57bd59bb6ab}} 
+static void {\bfseries axpby} (real a, const gene\+\_\+vector \&X, real b, gene\+\_\+vector \&Y, int N)
+\item 
+\mbox{\Hypertarget{class_s_t_l__interface_a37c93e4cdf74080795a47180894f53bb}\label{class_s_t_l__interface_a37c93e4cdf74080795a47180894f53bb}} 
+static void {\bfseries trisolve\+\_\+lower} (const gene\+\_\+matrix \&L, const gene\+\_\+vector \&\mbox{\hyperlink{class_eigen_1_1_matrix}{B}}, gene\+\_\+vector \&X, int N)
+\item 
+\mbox{\Hypertarget{class_s_t_l__interface_ae22df884fd2657f82119665d11ba07e4}\label{class_s_t_l__interface_ae22df884fd2657f82119665d11ba07e4}} 
+static real {\bfseries norm\+\_\+diff} (const stl\+\_\+vector \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, const stl\+\_\+vector \&\mbox{\hyperlink{class_eigen_1_1_matrix}{B}})
+\item 
+\mbox{\Hypertarget{class_s_t_l__interface_a50dcee48c1ae9dbfe67fc7bfb816a394}\label{class_s_t_l__interface_a50dcee48c1ae9dbfe67fc7bfb816a394}} 
+static real {\bfseries norm\+\_\+diff} (const stl\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, const stl\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{B}})
+\item 
+\mbox{\Hypertarget{class_s_t_l__interface_a60aad273027a15a9df65a512cc9b0527}\label{class_s_t_l__interface_a60aad273027a15a9df65a512cc9b0527}} 
+static void {\bfseries display\+\_\+vector} (const stl\+\_\+vector \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}})
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/bench/btl/libs/\+S\+T\+L/S\+T\+L\+\_\+interface.\+hh\end{DoxyCompactItemize}

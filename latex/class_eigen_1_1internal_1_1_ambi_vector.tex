@@ -1,0 +1,142 @@
+\hypertarget{class_eigen_1_1internal_1_1_ambi_vector}{}\doxysection{Eigen\+::internal\+::Ambi\+Vector$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$ Class Template Reference}
+\label{class_eigen_1_1internal_1_1_ambi_vector}\index{Eigen::internal::AmbiVector$<$ \_Scalar, \_StorageIndex $>$@{Eigen::internal::AmbiVector$<$ \_Scalar, \_StorageIndex $>$}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_eigen_1_1internal_1_1_ambi_vector_1_1_iterator}{Iterator}}
+\item 
+struct \mbox{\hyperlink{struct_eigen_1_1internal_1_1_ambi_vector_1_1_list_el}{List\+El}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_ambi_vector_a6111a2001a21ebc2f5b241d8ea68c25e}\label{class_eigen_1_1internal_1_1_ambi_vector_a6111a2001a21ebc2f5b241d8ea68c25e}} 
+typedef \+\_\+\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_ambi_vector_a7cfebaeb966f905edf535b546694c70f}\label{class_eigen_1_1internal_1_1_ambi_vector_a7cfebaeb966f905edf535b546694c70f}} 
+typedef \+\_\+\+Storage\+Index {\bfseries Storage\+Index}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_ambi_vector_a72bf2db15936c5be139b9ffc90dc6bff}\label{class_eigen_1_1internal_1_1_ambi_vector_a72bf2db15936c5be139b9ffc90dc6bff}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$ Scalar $>$\+::Real {\bfseries Real\+Scalar}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_ambi_vector_afb66420a0d27371392ee1761fd0eb9de}\label{class_eigen_1_1internal_1_1_ambi_vector_afb66420a0d27371392ee1761fd0eb9de}} 
+{\bfseries Ambi\+Vector} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} size)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_ambi_vector_a8824e2cbbfa61753c6e064b92a731eeb}\label{class_eigen_1_1internal_1_1_ambi_vector_a8824e2cbbfa61753c6e064b92a731eeb}} 
+void {\bfseries init} (double estimated\+Density)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_ambi_vector_a40729cc09277bda3d5098d5fdc9e1b9d}\label{class_eigen_1_1internal_1_1_ambi_vector_a40729cc09277bda3d5098d5fdc9e1b9d}} 
+void {\bfseries init} (int mode)
+\item 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_ambi_vector_ae0b137e95f52dea2320c16c379d27e74}{non\+Zeros}} () const
+\item 
+void \mbox{\hyperlink{class_eigen_1_1internal_1_1_ambi_vector_a8a37e06682a29a63239d914de342096c}{set\+Bounds}} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} start, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} end)
+\item 
+void \mbox{\hyperlink{class_eigen_1_1internal_1_1_ambi_vector_af472b476758307bcc1621d9eb4018f6a}{set\+Zero}} ()
+\item 
+void \mbox{\hyperlink{class_eigen_1_1internal_1_1_ambi_vector_a518fc22cdfa37e5340350e2a69fa8f1a}{restart}} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_ambi_vector_abf2564636a686b847f75ecefd1a510b1}\label{class_eigen_1_1internal_1_1_ambi_vector_abf2564636a686b847f75ecefd1a510b1}} 
+Scalar \& {\bfseries coeff\+Ref} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} i)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_ambi_vector_a1b093606074026acb73415c6c81a7437}\label{class_eigen_1_1internal_1_1_ambi_vector_a1b093606074026acb73415c6c81a7437}} 
+Scalar \& {\bfseries coeff} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} i)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_ambi_vector_a1cf1919df3994163c459503c2b3d6ff9}\label{class_eigen_1_1internal_1_1_ambi_vector_a1cf1919df3994163c459503c2b3d6ff9}} 
+void {\bfseries resize} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} size)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_ambi_vector_a40b55429f5cba5a5673369ee552897fd}\label{class_eigen_1_1internal_1_1_ambi_vector_a40b55429f5cba5a5673369ee552897fd}} 
+Storage\+Index {\bfseries size} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_ambi_vector_a67176aa3101e7ec02ea335bda34d96ea}\label{class_eigen_1_1internal_1_1_ambi_vector_a67176aa3101e7ec02ea335bda34d96ea}} 
+Storage\+Index {\bfseries convert\+\_\+index} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} idx)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_ambi_vector_af1131fb62ecadc60ced9720d23981c80}\label{class_eigen_1_1internal_1_1_ambi_vector_af1131fb62ecadc60ced9720d23981c80}} 
+void {\bfseries reallocate} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} size)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_ambi_vector_a521d148b17759b10a6ff9c66cf9308e4}\label{class_eigen_1_1internal_1_1_ambi_vector_a521d148b17759b10a6ff9c66cf9308e4}} 
+void {\bfseries reallocate\+Sparse} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_ambi_vector_a92928b48241403ba24b000f8b441c4e7}\label{class_eigen_1_1internal_1_1_ambi_vector_a92928b48241403ba24b000f8b441c4e7}} 
+Scalar $\ast$ {\bfseries m\+\_\+buffer}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_ambi_vector_a0ef7f60b37bb928dc5142e4a0a3ad848}\label{class_eigen_1_1internal_1_1_ambi_vector_a0ef7f60b37bb928dc5142e4a0a3ad848}} 
+Scalar {\bfseries m\+\_\+zero}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_ambi_vector_a4f3e9523e4d5eca7b0116ff3205f589e}\label{class_eigen_1_1internal_1_1_ambi_vector_a4f3e9523e4d5eca7b0116ff3205f589e}} 
+Storage\+Index {\bfseries m\+\_\+size}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_ambi_vector_af0937c4e9b120c2d9f8dfef0f5ff4149}\label{class_eigen_1_1internal_1_1_ambi_vector_af0937c4e9b120c2d9f8dfef0f5ff4149}} 
+Storage\+Index {\bfseries m\+\_\+start}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_ambi_vector_a7c06260072e0c9e0a1b67fa3c37ada4a}\label{class_eigen_1_1internal_1_1_ambi_vector_a7c06260072e0c9e0a1b67fa3c37ada4a}} 
+Storage\+Index {\bfseries m\+\_\+end}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_ambi_vector_a6b9324bef01703d1c6c858ef1ab59bb9}\label{class_eigen_1_1internal_1_1_ambi_vector_a6b9324bef01703d1c6c858ef1ab59bb9}} 
+Storage\+Index {\bfseries m\+\_\+allocated\+Size}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_ambi_vector_a938ba89d738e7e43374b41d1a439cedc}\label{class_eigen_1_1internal_1_1_ambi_vector_a938ba89d738e7e43374b41d1a439cedc}} 
+Storage\+Index {\bfseries m\+\_\+allocated\+Elements}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_ambi_vector_a5f0ae904da7771450e302b480a402ede}\label{class_eigen_1_1internal_1_1_ambi_vector_a5f0ae904da7771450e302b480a402ede}} 
+Storage\+Index {\bfseries m\+\_\+mode}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_ambi_vector_aafccb82229d4da720c4e87184da3bb53}\label{class_eigen_1_1internal_1_1_ambi_vector_aafccb82229d4da720c4e87184da3bb53}} 
+Storage\+Index {\bfseries m\+\_\+ll\+Start}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_ambi_vector_a67b452aafa5fd2613a5e6b14b8a5d29f}\label{class_eigen_1_1internal_1_1_ambi_vector_a67b452aafa5fd2613a5e6b14b8a5d29f}} 
+Storage\+Index {\bfseries m\+\_\+ll\+Current}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_ambi_vector_add24e71975590c7e22c4e815fb5cf9cb}\label{class_eigen_1_1internal_1_1_ambi_vector_add24e71975590c7e22c4e815fb5cf9cb}} 
+Storage\+Index {\bfseries m\+\_\+ll\+Size}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_ambi_vector_ae0b137e95f52dea2320c16c379d27e74}\label{class_eigen_1_1internal_1_1_ambi_vector_ae0b137e95f52dea2320c16c379d27e74}} 
+\index{Eigen::internal::AmbiVector$<$ \_Scalar, \_StorageIndex $>$@{Eigen::internal::AmbiVector$<$ \_Scalar, \_StorageIndex $>$}!nonZeros@{nonZeros}}
+\index{nonZeros@{nonZeros}!Eigen::internal::AmbiVector$<$ \_Scalar, \_StorageIndex $>$@{Eigen::internal::AmbiVector$<$ \_Scalar, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{nonZeros()}{nonZeros()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Storage\+Index $>$ \\
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1internal_1_1_ambi_vector}{Eigen\+::internal\+::\+Ambi\+Vector}}$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$\+::non\+Zeros}
+
+\begin{DoxyReturn}{Returns}
+the number of non zeros in the current sub vector 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_ambi_vector_a518fc22cdfa37e5340350e2a69fa8f1a}\label{class_eigen_1_1internal_1_1_ambi_vector_a518fc22cdfa37e5340350e2a69fa8f1a}} 
+\index{Eigen::internal::AmbiVector$<$ \_Scalar, \_StorageIndex $>$@{Eigen::internal::AmbiVector$<$ \_Scalar, \_StorageIndex $>$}!restart@{restart}}
+\index{restart@{restart}!Eigen::internal::AmbiVector$<$ \_Scalar, \_StorageIndex $>$@{Eigen::internal::AmbiVector$<$ \_Scalar, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{restart()}{restart()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Storage\+Index $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1internal_1_1_ambi_vector}{Eigen\+::internal\+::\+Ambi\+Vector}}$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$\+::restart}
+
+Must be called whenever we might perform a write access with an index smaller than the previous one.
+
+Don\textquotesingle{}t worry, this function is extremely cheap. \mbox{\Hypertarget{class_eigen_1_1internal_1_1_ambi_vector_a8a37e06682a29a63239d914de342096c}\label{class_eigen_1_1internal_1_1_ambi_vector_a8a37e06682a29a63239d914de342096c}} 
+\index{Eigen::internal::AmbiVector$<$ \_Scalar, \_StorageIndex $>$@{Eigen::internal::AmbiVector$<$ \_Scalar, \_StorageIndex $>$}!setBounds@{setBounds}}
+\index{setBounds@{setBounds}!Eigen::internal::AmbiVector$<$ \_Scalar, \_StorageIndex $>$@{Eigen::internal::AmbiVector$<$ \_Scalar, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{setBounds()}{setBounds()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Storage\+Index $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1internal_1_1_ambi_vector}{Eigen\+::internal\+::\+Ambi\+Vector}}$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$\+::set\+Bounds (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{start,  }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{end }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Specifies a sub-\/vector to work on \mbox{\Hypertarget{class_eigen_1_1internal_1_1_ambi_vector_af472b476758307bcc1621d9eb4018f6a}\label{class_eigen_1_1internal_1_1_ambi_vector_af472b476758307bcc1621d9eb4018f6a}} 
+\index{Eigen::internal::AmbiVector$<$ \_Scalar, \_StorageIndex $>$@{Eigen::internal::AmbiVector$<$ \_Scalar, \_StorageIndex $>$}!setZero@{setZero}}
+\index{setZero@{setZero}!Eigen::internal::AmbiVector$<$ \_Scalar, \_StorageIndex $>$@{Eigen::internal::AmbiVector$<$ \_Scalar, \_StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{setZero()}{setZero()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Storage\+Index $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1internal_1_1_ambi_vector}{Eigen\+::internal\+::\+Ambi\+Vector}}$<$ \+\_\+\+Scalar, \+\_\+\+Storage\+Index $>$\+::set\+Zero}
+
+Set all coefficients of current subvector to zero 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Sparse\+Core/Ambi\+Vector.\+h\end{DoxyCompactItemize}

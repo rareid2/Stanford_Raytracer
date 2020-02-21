@@ -1,0 +1,25 @@
+\hypertarget{struct_eigen_1_1internal_1_1compute__inverse__size4_3_01_architecture_1_1_s_s_e_00_01double_00_0ae07abd87bb6c7ddc3170cf276579ed0}{}\doxysection{Eigen\+::internal\+::compute\+\_\+inverse\+\_\+size4$<$ Architecture\+::S\+SE, double, Matrix\+Type, Result\+Type $>$ Struct Template Reference}
+\label{struct_eigen_1_1internal_1_1compute__inverse__size4_3_01_architecture_1_1_s_s_e_00_01double_00_0ae07abd87bb6c7ddc3170cf276579ed0}\index{Eigen::internal::compute\_inverse\_size4$<$ Architecture::SSE, double, MatrixType, ResultType $>$@{Eigen::internal::compute\_inverse\_size4$<$ Architecture::SSE, double, MatrixType, ResultType $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1compute__inverse__size4_3_01_architecture_1_1_s_s_e_00_01double_00_0ae07abd87bb6c7ddc3170cf276579ed0_a2d25286b8ab8fc89b9db8160017d250c}\label{struct_eigen_1_1internal_1_1compute__inverse__size4_3_01_architecture_1_1_s_s_e_00_01double_00_0ae07abd87bb6c7ddc3170cf276579ed0_a2d25286b8ab8fc89b9db8160017d250c}} 
+enum \{ {\bfseries Matrix\+Alignment} = traits$<$Matrix\+Type$>$\+::Alignment, 
+{\bfseries Result\+Alignment} = traits$<$Result\+Type$>$\+::Alignment, 
+{\bfseries Storage\+Orders\+Match} = (Matrix\+Type\+::Flags\&Row\+Major\+Bit) == (Result\+Type\+::Flags\&Row\+Major\+Bit)
+ \}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1compute__inverse__size4_3_01_architecture_1_1_s_s_e_00_01double_00_0ae07abd87bb6c7ddc3170cf276579ed0_a8c192b289cb1e6467ea937d742232706}\label{struct_eigen_1_1internal_1_1compute__inverse__size4_3_01_architecture_1_1_s_s_e_00_01double_00_0ae07abd87bb6c7ddc3170cf276579ed0_a8c192b289cb1e6467ea937d742232706}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1conditional}{conditional}}$<$(Matrix\+Type\+::\+Flags \&\mbox{\hyperlink{group__flags_ga4b983a15d57cd55806df618ac544d09e}{Linear\+Access\+Bit}}), Matrix\+Type const \&, typename Matrix\+Type\+::\+Plain\+Object $>$\+::type {\bfseries Actual\+Matrix\+Type}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1compute__inverse__size4_3_01_architecture_1_1_s_s_e_00_01double_00_0ae07abd87bb6c7ddc3170cf276579ed0_a641fad02088ab0ae87dd67428a561e8b}\label{struct_eigen_1_1internal_1_1compute__inverse__size4_3_01_architecture_1_1_s_s_e_00_01double_00_0ae07abd87bb6c7ddc3170cf276579ed0_a641fad02088ab0ae87dd67428a561e8b}} 
+static void {\bfseries run} (const Matrix\+Type \&mat, Result\+Type \&result)
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+L\+U/arch/Inverse\+\_\+\+S\+S\+E.\+h\end{DoxyCompactItemize}

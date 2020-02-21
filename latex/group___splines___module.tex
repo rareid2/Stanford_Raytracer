@@ -1,0 +1,99 @@
+\hypertarget{group___splines___module}{}\doxysection{Splines\+\_\+\+Module}
+\label{group___splines___module}\index{Splines\_Module@{Splines\_Module}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_eigen_1_1_spline_fitting}{Eigen\+::\+Spline\+Fitting$<$ Spline\+Type $>$}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_eigen_1_1_spline}{Spline}} fitting methods. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_eigen_1_1_spline_traits_3_01_spline_3_01___scalar_00_01___dim_00_01___degree_01_4_00_01_dynamic_01_4}{Eigen\+::\+Spline\+Traits$<$ Spline$<$ \+\_\+\+Scalar, \+\_\+\+Dim, \+\_\+\+Degree $>$, Dynamic $>$}}
+\begin{DoxyCompactList}\small\item\em Compile-\/time attributes of the \mbox{\hyperlink{class_eigen_1_1_spline}{Spline}} class for Dynamic degree. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_eigen_1_1_spline_traits_3_01_spline_3_01___scalar_00_01___dim_00_01___degree_01_4_00_01___derivative_order_01_4}{Eigen\+::\+Spline\+Traits$<$ Spline$<$ \+\_\+\+Scalar, \+\_\+\+Dim, \+\_\+\+Degree $>$, \+\_\+\+Derivative\+Order $>$}}
+\begin{DoxyCompactList}\small\item\em Compile-\/time attributes of the \mbox{\hyperlink{class_eigen_1_1_spline}{Spline}} class for fixed degree. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_eigen_1_1_spline}{Eigen\+::\+Spline$<$ \+\_\+\+Scalar, \+\_\+\+Dim, \+\_\+\+Degree $>$}}
+\begin{DoxyCompactList}\small\item\em A class representing multi-\/dimensional spline curves. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Knot\+Vector\+Type $>$ }\\void \mbox{\hyperlink{group___splines___module_ga9474da5ed68bbd9a6788a999330416d6}{Eigen\+::\+Knot\+Averaging}} (const Knot\+Vector\+Type \&parameters, Dense\+Index degree, Knot\+Vector\+Type \&knots)
+\begin{DoxyCompactList}\small\item\em Computes knot averages. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Knot\+Vector\+Type , typename Parameter\+Vector\+Type , typename Index\+Array $>$ }\\void \mbox{\hyperlink{group___splines___module_gae10a6f9b6ab7fb400a2526b6382c533b}{Eigen\+::\+Knot\+Averaging\+With\+Derivatives}} (const Parameter\+Vector\+Type \&parameters, const unsigned int degree, const Index\+Array \&derivative\+Indices, Knot\+Vector\+Type \&knots)
+\begin{DoxyCompactList}\small\item\em Computes knot averages when derivative constraints are present. Note that this is a technical interpretation of the referenced article since the algorithm contained therein is incorrect as written. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Point\+Array\+Type , typename Knot\+Vector\+Type $>$ }\\void \mbox{\hyperlink{group___splines___module_ga1b4cbde5d98411405871accf877552d2}{Eigen\+::\+Chord\+Lengths}} (const Point\+Array\+Type \&pts, Knot\+Vector\+Type \&chord\+\_\+lengths)
+\begin{DoxyCompactList}\small\item\em Computes chord length parameters which are required for spline interpolation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{group___splines___module_ga1b4cbde5d98411405871accf877552d2}\label{group___splines___module_ga1b4cbde5d98411405871accf877552d2}} 
+\index{Splines\_Module@{Splines\_Module}!ChordLengths@{ChordLengths}}
+\index{ChordLengths@{ChordLengths}!Splines\_Module@{Splines\_Module}}
+\doxysubsubsection{\texorpdfstring{ChordLengths()}{ChordLengths()}}
+{\footnotesize\ttfamily template$<$typename Point\+Array\+Type , typename Knot\+Vector\+Type $>$ \\
+void Eigen\+::\+Chord\+Lengths (\begin{DoxyParamCaption}\item[{const Point\+Array\+Type \&}]{pts,  }\item[{Knot\+Vector\+Type \&}]{chord\+\_\+lengths }\end{DoxyParamCaption})}
+
+
+
+Computes chord length parameters which are required for spline interpolation. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em pts} & The data points to which a spline should be fit. \\
+\hline
+\mbox{\texttt{ out}}  & {\em chord\+\_\+lengths} & The resulting chord lenggth vector.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+Les Piegl and Wayne Tiller, The N\+U\+R\+BS book (2nd ed.), 1997, 9.\+2.\+1 Global Curve Interpolation to Point Data 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group___splines___module_ga9474da5ed68bbd9a6788a999330416d6}\label{group___splines___module_ga9474da5ed68bbd9a6788a999330416d6}} 
+\index{Splines\_Module@{Splines\_Module}!KnotAveraging@{KnotAveraging}}
+\index{KnotAveraging@{KnotAveraging}!Splines\_Module@{Splines\_Module}}
+\doxysubsubsection{\texorpdfstring{KnotAveraging()}{KnotAveraging()}}
+{\footnotesize\ttfamily template$<$typename Knot\+Vector\+Type $>$ \\
+void Eigen\+::\+Knot\+Averaging (\begin{DoxyParamCaption}\item[{const Knot\+Vector\+Type \&}]{parameters,  }\item[{Dense\+Index}]{degree,  }\item[{Knot\+Vector\+Type \&}]{knots }\end{DoxyParamCaption})}
+
+
+
+Computes knot averages. 
+
+The knots are computed as \begin{align*} u_0 & = \hdots = u_p = 0 \\ u_{m-p} & = \hdots = u_{m} = 1 \\ u_{j+p} & = \frac{1}{p}\sum_{i=j}^{j+p-1}\bar{u}_i \quad\quad j=1,\hdots,n-p \end{align*} where $p$ is the degree and $m+1$ the number knots of the desired interpolating spline.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em parameters} & The input parameters. During interpolation one for each data point. \\
+\hline
+\mbox{\texttt{ in}}  & {\em degree} & The spline degree which is used during the interpolation. \\
+\hline
+\mbox{\texttt{ out}}  & {\em knots} & The output knot vector.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+Les Piegl and Wayne Tiller, The N\+U\+R\+BS book (2nd ed.), 1997, 9.\+2.\+1 Global Curve Interpolation to Point Data 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group___splines___module_gae10a6f9b6ab7fb400a2526b6382c533b}\label{group___splines___module_gae10a6f9b6ab7fb400a2526b6382c533b}} 
+\index{Splines\_Module@{Splines\_Module}!KnotAveragingWithDerivatives@{KnotAveragingWithDerivatives}}
+\index{KnotAveragingWithDerivatives@{KnotAveragingWithDerivatives}!Splines\_Module@{Splines\_Module}}
+\doxysubsubsection{\texorpdfstring{KnotAveragingWithDerivatives()}{KnotAveragingWithDerivatives()}}
+{\footnotesize\ttfamily template$<$typename Knot\+Vector\+Type , typename Parameter\+Vector\+Type , typename Index\+Array $>$ \\
+void Eigen\+::\+Knot\+Averaging\+With\+Derivatives (\begin{DoxyParamCaption}\item[{const Parameter\+Vector\+Type \&}]{parameters,  }\item[{const unsigned int}]{degree,  }\item[{const Index\+Array \&}]{derivative\+Indices,  }\item[{Knot\+Vector\+Type \&}]{knots }\end{DoxyParamCaption})}
+
+
+
+Computes knot averages when derivative constraints are present. Note that this is a technical interpretation of the referenced article since the algorithm contained therein is incorrect as written. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em parameters} & The parameters at which the interpolation B-\/\+Spline will intersect the given interpolation points. The parameters are assumed to be a non-\/decreasing sequence. \\
+\hline
+\mbox{\texttt{ in}}  & {\em degree} & The degree of the interpolating B-\/\+Spline. This must be greater than zero. \\
+\hline
+\mbox{\texttt{ in}}  & {\em derivative\+Indices} & The indices corresponding to parameters at which there are derivative constraints. The indices are assumed to be a non-\/decreasing sequence. \\
+\hline
+\mbox{\texttt{ out}}  & {\em knots} & The calculated knot vector. These will be returned as a non-\/decreasing sequence\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+Les A. Piegl, Khairan Rajab, Volha Smarodzinana. 2008. Curve interpolation with directional constraints for engineering design. Engineering with Computers 
+\end{DoxySeeAlso}

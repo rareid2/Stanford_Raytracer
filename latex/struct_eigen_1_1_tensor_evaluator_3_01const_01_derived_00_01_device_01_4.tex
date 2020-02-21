@@ -1,0 +1,103 @@
+\hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_derived_00_01_device_01_4}{}\doxysection{Eigen\+::Tensor\+Evaluator$<$ const Derived, Device $>$ Struct Template Reference}
+\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_derived_00_01_device_01_4}\index{Eigen::TensorEvaluator$<$ const Derived, Device $>$@{Eigen::TensorEvaluator$<$ const Derived, Device $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_derived_00_01_device_01_4_a3be4a1825acfdf9c0d6da9b195e833bf}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_derived_00_01_device_01_4_a3be4a1825acfdf9c0d6da9b195e833bf}} 
+enum \{ {\bfseries Is\+Aligned} = Derived\+::Is\+Aligned, 
+{\bfseries Packet\+Access} = (internal\+::unpacket\+\_\+traits$<$Packet\+Return\+Type$>$\+::size $>$ 1), 
+{\bfseries Layout} = Derived\+::Layout
+ \}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_derived_00_01_device_01_4_a9ef465fa713bc2ca62aa3f8cf5628b4c}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_derived_00_01_device_01_4_a9ef465fa713bc2ca62aa3f8cf5628b4c}} 
+typedef Derived\+::\+Index {\bfseries Index}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_derived_00_01_device_01_4_a6066c628b5390c555921e11c7054224a}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_derived_00_01_device_01_4_a6066c628b5390c555921e11c7054224a}} 
+typedef Derived\+::\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_derived_00_01_device_01_4_ac770be11dea33164f023b4d93ad48f1b}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_derived_00_01_device_01_4_ac770be11dea33164f023b4d93ad48f1b}} 
+typedef Derived\+::\+Scalar {\bfseries Coeff\+Return\+Type}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_derived_00_01_device_01_4_a8f92e1ac41461cf3da346f6925c803d1}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_derived_00_01_device_01_4_a8f92e1ac41461cf3da346f6925c803d1}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}}$<$ Coeff\+Return\+Type, Device $>$\+::type {\bfseries Packet\+Return\+Type}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_derived_00_01_device_01_4_a8d061bfadff643a1a5fb7b2f27f429e9}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_derived_00_01_device_01_4_a8d061bfadff643a1a5fb7b2f27f429e9}} 
+typedef Derived\+::\+Dimensions {\bfseries Dimensions}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_derived_00_01_device_01_4_ae6b711ee9568ec097de99fd2903b33f1}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_derived_00_01_device_01_4_ae6b711ee9568ec097de99fd2903b33f1}} 
+const Derived \& {\bfseries derived} () const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_derived_00_01_device_01_4_ac45b17691ceec9190e1ab8b38677eec0}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_derived_00_01_device_01_4_ac45b17691ceec9190e1ab8b38677eec0}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE {\bfseries Tensor\+Evaluator} (const Derived \&m, const Device \&\mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_3_01const_01_derived_00_01_device_01_4_ac5b59eb35ea904aca2c6e6fa6e719ff4}{device}})
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_derived_00_01_device_01_4_ac484794f242b4c0742a59eecc1f98b40}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_derived_00_01_device_01_4_ac484794f242b4c0742a59eecc1f98b40}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Dimensions \& {\bfseries dimensions} () const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_derived_00_01_device_01_4_a430b1109265b3ef672bd7e583bc74062}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_derived_00_01_device_01_4_a430b1109265b3ef672bd7e583bc74062}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE bool {\bfseries eval\+Sub\+Exprs\+If\+Needed} (Coeff\+Return\+Type $\ast$data)
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_derived_00_01_device_01_4_a5fd6c294c436073f5090b7646c7c19cf}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_derived_00_01_device_01_4_a5fd6c294c436073f5090b7646c7c19cf}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE void {\bfseries cleanup} ()
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_derived_00_01_device_01_4_ad111d3510f1085df9cbfc8c0d914421b}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_derived_00_01_device_01_4_ad111d3510f1085df9cbfc8c0d914421b}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Coeff\+Return\+Type {\bfseries coeff} (Index index) const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_derived_00_01_device_01_4_a893c096407edf69c98665f81e814b1fa}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_derived_00_01_device_01_4_a893c096407edf69c98665f81e814b1fa}} 
+{\footnotesize template$<$int Load\+Mode$>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_triplet}{Packet\+Return\+Type}} {\bfseries packet} (Index index) const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_derived_00_01_device_01_4_a3bd2544ac94201d32e291c734208870d}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_derived_00_01_device_01_4_a3bd2544ac94201d32e291c734208870d}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Coeff\+Return\+Type {\bfseries coeff} (const \mbox{\hyperlink{class_eigen_1_1array}{array}}$<$ Dense\+Index, Num\+Coords $>$ \&coords) const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_derived_00_01_device_01_4_a44668d5954b4c921409b6e5e7fdf8cb5}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_derived_00_01_device_01_4_a44668d5954b4c921409b6e5e7fdf8cb5}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_tensor_op_cost}{Tensor\+Op\+Cost}} {\bfseries cost\+Per\+Coeff} (bool vectorized) const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_derived_00_01_device_01_4_a7116f5a2d0edcc46589cbe53910bff7c}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_derived_00_01_device_01_4_a7116f5a2d0edcc46589cbe53910bff7c}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ Derived $>$\+::template \mbox{\hyperlink{struct_eigen_1_1_make_pointer}{Make\+Pointer}}$<$ const Scalar $>$\+::Type {\bfseries data} () const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_derived_00_01_device_01_4_ac5b59eb35ea904aca2c6e6fa6e719ff4}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_derived_00_01_device_01_4_ac5b59eb35ea904aca2c6e6fa6e719ff4}} 
+const Device \& \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_3_01const_01_derived_00_01_device_01_4_ac5b59eb35ea904aca2c6e6fa6e719ff4}{device}} () const
+\begin{DoxyCompactList}\small\item\em added for sycl in order to construct the buffer from the sycl device \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static const int {\bfseries Num\+Coords}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_derived_00_01_device_01_4_a9db554b5078db35ce5f592b09582bfac}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_derived_00_01_device_01_4_a9db554b5078db35ce5f592b09582bfac}} 
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ Derived $>$\+::template \mbox{\hyperlink{struct_eigen_1_1_make_pointer}{Make\+Pointer}}$<$ const Scalar $>$\+::Type {\bfseries m\+\_\+data}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_derived_00_01_device_01_4_ade9797f3ef6792e8f544dfceda9c8d00}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_derived_00_01_device_01_4_ade9797f3ef6792e8f544dfceda9c8d00}} 
+Dimensions {\bfseries m\+\_\+dims}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_derived_00_01_device_01_4_afd95c48d72ba509662f665c2fbe4a7c5}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_derived_00_01_device_01_4_afd95c48d72ba509662f665c2fbe4a7c5}} 
+const Device \& {\bfseries m\+\_\+device}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_derived_00_01_device_01_4_a3ea9d33c9fad33907e62f7b8a587f74a}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_derived_00_01_device_01_4_a3ea9d33c9fad33907e62f7b8a587f74a}} 
+const Derived \& {\bfseries m\+\_\+impl}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_derived_00_01_device_01_4_ad764b76c1be19edccb581cad3542cf1f}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_derived_00_01_device_01_4_ad764b76c1be19edccb581cad3542cf1f}} 
+\index{Eigen::TensorEvaluator$<$ const Derived, Device $>$@{Eigen::TensorEvaluator$<$ const Derived, Device $>$}!NumCoords@{NumCoords}}
+\index{NumCoords@{NumCoords}!Eigen::TensorEvaluator$<$ const Derived, Device $>$@{Eigen::TensorEvaluator$<$ const Derived, Device $>$}}
+\doxysubsubsection{\texorpdfstring{NumCoords}{NumCoords}}
+{\footnotesize\ttfamily template$<$typename Derived , typename Device $>$ \\
+const int \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{Eigen\+::\+Tensor\+Evaluator}}$<$ const Derived, Device $>$\+::Num\+Coords\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= internal::traits<Derived>::NumDimensions > 0 ?}
+\DoxyCodeLine{                               internal::traits<Derived>::NumDimensions : 0}
+
+\end{DoxyCode}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/\+C\+X\+X11/src/\+Tensor/Tensor\+Evaluator.\+h\end{DoxyCompactItemize}

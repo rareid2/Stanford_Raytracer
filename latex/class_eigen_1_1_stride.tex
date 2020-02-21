@@ -1,0 +1,143 @@
+\hypertarget{class_eigen_1_1_stride}{}\doxysection{Eigen\+::Stride$<$ \+\_\+\+Outer\+Stride\+At\+Compile\+Time, \+\_\+\+Inner\+Stride\+At\+Compile\+Time $>$ Class Template Reference}
+\label{class_eigen_1_1_stride}\index{Eigen::Stride$<$ \_OuterStrideAtCompileTime, \_InnerStrideAtCompileTime $>$@{Eigen::Stride$<$ \_OuterStrideAtCompileTime, \_InnerStrideAtCompileTime $>$}}
+
+
+Holds strides information for \mbox{\hyperlink{class_eigen_1_1_map}{Map}}.  
+
+
+
+
+{\ttfamily \#include $<$Stride.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_stride_adde3759f3ad4a4e41293788e38d5a504}\label{class_eigen_1_1_stride_adde3759f3ad4a4e41293788e38d5a504}} 
+enum \{ {\bfseries Inner\+Stride\+At\+Compile\+Time} = \+\_\+\+Inner\+Stride\+At\+Compile\+Time, 
+{\bfseries Outer\+Stride\+At\+Compile\+Time} = \+\_\+\+Outer\+Stride\+At\+Compile\+Time
+ \}
+\item 
+typedef \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Eigen\+::\+Index}} \mbox{\hyperlink{class_eigen_1_1_stride_a96c2dfb0ce43fd8e19adcdf6094f5f63}{Index}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_stride_a8c5d1654633a1ce2c655a0e94ee975f0}{Stride}} ()
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_stride_ab769b5a97db488b06bf305f4ab970189}{Stride}} (\mbox{\hyperlink{class_eigen_1_1_stride_a96c2dfb0ce43fd8e19adcdf6094f5f63}{Index}} outer\+Stride, \mbox{\hyperlink{class_eigen_1_1_stride_a96c2dfb0ce43fd8e19adcdf6094f5f63}{Index}} inner\+Stride)
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_stride_a052fed680cf28ea284714be591bfbf86}{Stride}} (const \mbox{\hyperlink{class_eigen_1_1_stride}{Stride}} \&other)
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_stride_a96c2dfb0ce43fd8e19adcdf6094f5f63}{Index}} \mbox{\hyperlink{class_eigen_1_1_stride_a261eede5809599db183b49bc274f8a07}{outer}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_stride_a96c2dfb0ce43fd8e19adcdf6094f5f63}{Index}} \mbox{\hyperlink{class_eigen_1_1_stride_a24579b0e941cebef474c666e6d936b3b}{inner}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_stride_a51b8ad2f1cd7da4c8db87c34240e9d71}\label{class_eigen_1_1_stride_a51b8ad2f1cd7da4c8db87c34240e9d71}} 
+\mbox{\hyperlink{class_eigen_1_1internal_1_1variable__if__dynamic}{internal\+::variable\+\_\+if\+\_\+dynamic}}$<$ \mbox{\hyperlink{class_eigen_1_1_stride_a96c2dfb0ce43fd8e19adcdf6094f5f63}{Index}}, Outer\+Stride\+At\+Compile\+Time $>$ {\bfseries m\+\_\+outer}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_stride_a814628314f01f4d2f9dad719c3d3b6b4}\label{class_eigen_1_1_stride_a814628314f01f4d2f9dad719c3d3b6b4}} 
+\mbox{\hyperlink{class_eigen_1_1internal_1_1variable__if__dynamic}{internal\+::variable\+\_\+if\+\_\+dynamic}}$<$ \mbox{\hyperlink{class_eigen_1_1_stride_a96c2dfb0ce43fd8e19adcdf6094f5f63}{Index}}, Inner\+Stride\+At\+Compile\+Time $>$ {\bfseries m\+\_\+inner}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$int \+\_\+\+Outer\+Stride\+At\+Compile\+Time, int \+\_\+\+Inner\+Stride\+At\+Compile\+Time$>$\newline
+class Eigen\+::\+Stride$<$ \+\_\+\+Outer\+Stride\+At\+Compile\+Time, \+\_\+\+Inner\+Stride\+At\+Compile\+Time $>$}
+
+Holds strides information for \mbox{\hyperlink{class_eigen_1_1_map}{Map}}. 
+
+This class holds the strides information for mapping arrays with strides with class \mbox{\hyperlink{class_eigen_1_1_map}{Map}}.
+
+It holds two values\+: the inner stride and the outer stride.
+
+The inner stride is the pointer increment between two consecutive entries within a given row of a row-\/major matrix or within a given column of a column-\/major matrix.
+
+The outer stride is the pointer increment between two consecutive rows of a row-\/major matrix or between two consecutive columns of a column-\/major matrix.
+
+These two values can be passed either at compile-\/time as template parameters, or at runtime as arguments to the constructor.
+
+Indeed, this class takes two template parameters\+: 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Outer\+Stride\+At\+Compile\+Time} & the outer stride, or Dynamic if you want to specify it at runtime. \\
+\hline
+{\em \+\_\+\+Inner\+Stride\+At\+Compile\+Time} & the inner stride, or Dynamic if you want to specify it at runtime.\\
+\hline
+\end{DoxyTemplParams}
+Here is an example\+: 
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+
+
+\begin{DoxySeeAlso}{See also}
+class \mbox{\hyperlink{class_eigen_1_1_inner_stride}{Inner\+Stride}}, class \mbox{\hyperlink{class_eigen_1_1_outer_stride}{Outer\+Stride}}, \mbox{\hyperlink{group___topic_storage_orders}{Topic\+Storage\+Orders}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_stride_a96c2dfb0ce43fd8e19adcdf6094f5f63}\label{class_eigen_1_1_stride_a96c2dfb0ce43fd8e19adcdf6094f5f63}} 
+\index{Eigen::Stride$<$ \_OuterStrideAtCompileTime, \_InnerStrideAtCompileTime $>$@{Eigen::Stride$<$ \_OuterStrideAtCompileTime, \_InnerStrideAtCompileTime $>$}!Index@{Index}}
+\index{Index@{Index}!Eigen::Stride$<$ \_OuterStrideAtCompileTime, \_InnerStrideAtCompileTime $>$@{Eigen::Stride$<$ \_OuterStrideAtCompileTime, \_InnerStrideAtCompileTime $>$}}
+\doxysubsubsection{\texorpdfstring{Index}{Index}}
+{\footnotesize\ttfamily template$<$int \+\_\+\+Outer\+Stride\+At\+Compile\+Time, int \+\_\+\+Inner\+Stride\+At\+Compile\+Time$>$ \\
+typedef \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Eigen\+::\+Index}} \mbox{\hyperlink{class_eigen_1_1_stride}{Eigen\+::\+Stride}}$<$ \+\_\+\+Outer\+Stride\+At\+Compile\+Time, \+\_\+\+Inner\+Stride\+At\+Compile\+Time $>$\+::\mbox{\hyperlink{class_eigen_1_1_stride_a96c2dfb0ce43fd8e19adcdf6094f5f63}{Index}}}
+
+\begin{DoxyRefDesc}{Deprecated}
+\item[\mbox{\hyperlink{deprecated__deprecated000007}{Deprecated}}]since \mbox{\hyperlink{namespace_eigen}{Eigen}} 3.\+3 \end{DoxyRefDesc}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_stride_a8c5d1654633a1ce2c655a0e94ee975f0}\label{class_eigen_1_1_stride_a8c5d1654633a1ce2c655a0e94ee975f0}} 
+\index{Eigen::Stride$<$ \_OuterStrideAtCompileTime, \_InnerStrideAtCompileTime $>$@{Eigen::Stride$<$ \_OuterStrideAtCompileTime, \_InnerStrideAtCompileTime $>$}!Stride@{Stride}}
+\index{Stride@{Stride}!Eigen::Stride$<$ \_OuterStrideAtCompileTime, \_InnerStrideAtCompileTime $>$@{Eigen::Stride$<$ \_OuterStrideAtCompileTime, \_InnerStrideAtCompileTime $>$}}
+\doxysubsubsection{\texorpdfstring{Stride()}{Stride()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$int \+\_\+\+Outer\+Stride\+At\+Compile\+Time, int \+\_\+\+Inner\+Stride\+At\+Compile\+Time$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_stride}{Eigen\+::\+Stride}}$<$ \+\_\+\+Outer\+Stride\+At\+Compile\+Time, \+\_\+\+Inner\+Stride\+At\+Compile\+Time $>$\+::\mbox{\hyperlink{class_eigen_1_1_stride}{Stride}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default constructor, for use when strides are fixed at compile time \mbox{\Hypertarget{class_eigen_1_1_stride_ab769b5a97db488b06bf305f4ab970189}\label{class_eigen_1_1_stride_ab769b5a97db488b06bf305f4ab970189}} 
+\index{Eigen::Stride$<$ \_OuterStrideAtCompileTime, \_InnerStrideAtCompileTime $>$@{Eigen::Stride$<$ \_OuterStrideAtCompileTime, \_InnerStrideAtCompileTime $>$}!Stride@{Stride}}
+\index{Stride@{Stride}!Eigen::Stride$<$ \_OuterStrideAtCompileTime, \_InnerStrideAtCompileTime $>$@{Eigen::Stride$<$ \_OuterStrideAtCompileTime, \_InnerStrideAtCompileTime $>$}}
+\doxysubsubsection{\texorpdfstring{Stride()}{Stride()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$int \+\_\+\+Outer\+Stride\+At\+Compile\+Time, int \+\_\+\+Inner\+Stride\+At\+Compile\+Time$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_stride}{Eigen\+::\+Stride}}$<$ \+\_\+\+Outer\+Stride\+At\+Compile\+Time, \+\_\+\+Inner\+Stride\+At\+Compile\+Time $>$\+::\mbox{\hyperlink{class_eigen_1_1_stride}{Stride}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eigen_1_1_stride_a96c2dfb0ce43fd8e19adcdf6094f5f63}{Index}}}]{outer\+Stride,  }\item[{\mbox{\hyperlink{class_eigen_1_1_stride_a96c2dfb0ce43fd8e19adcdf6094f5f63}{Index}}}]{inner\+Stride }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor allowing to pass the strides at runtime \mbox{\Hypertarget{class_eigen_1_1_stride_a052fed680cf28ea284714be591bfbf86}\label{class_eigen_1_1_stride_a052fed680cf28ea284714be591bfbf86}} 
+\index{Eigen::Stride$<$ \_OuterStrideAtCompileTime, \_InnerStrideAtCompileTime $>$@{Eigen::Stride$<$ \_OuterStrideAtCompileTime, \_InnerStrideAtCompileTime $>$}!Stride@{Stride}}
+\index{Stride@{Stride}!Eigen::Stride$<$ \_OuterStrideAtCompileTime, \_InnerStrideAtCompileTime $>$@{Eigen::Stride$<$ \_OuterStrideAtCompileTime, \_InnerStrideAtCompileTime $>$}}
+\doxysubsubsection{\texorpdfstring{Stride()}{Stride()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$int \+\_\+\+Outer\+Stride\+At\+Compile\+Time, int \+\_\+\+Inner\+Stride\+At\+Compile\+Time$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_stride}{Eigen\+::\+Stride}}$<$ \+\_\+\+Outer\+Stride\+At\+Compile\+Time, \+\_\+\+Inner\+Stride\+At\+Compile\+Time $>$\+::\mbox{\hyperlink{class_eigen_1_1_stride}{Stride}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_stride}{Stride}}$<$ \+\_\+\+Outer\+Stride\+At\+Compile\+Time, \+\_\+\+Inner\+Stride\+At\+Compile\+Time $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Copy constructor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_stride_a24579b0e941cebef474c666e6d936b3b}\label{class_eigen_1_1_stride_a24579b0e941cebef474c666e6d936b3b}} 
+\index{Eigen::Stride$<$ \_OuterStrideAtCompileTime, \_InnerStrideAtCompileTime $>$@{Eigen::Stride$<$ \_OuterStrideAtCompileTime, \_InnerStrideAtCompileTime $>$}!inner@{inner}}
+\index{inner@{inner}!Eigen::Stride$<$ \_OuterStrideAtCompileTime, \_InnerStrideAtCompileTime $>$@{Eigen::Stride$<$ \_OuterStrideAtCompileTime, \_InnerStrideAtCompileTime $>$}}
+\doxysubsubsection{\texorpdfstring{inner()}{inner()}}
+{\footnotesize\ttfamily template$<$int \+\_\+\+Outer\+Stride\+At\+Compile\+Time, int \+\_\+\+Inner\+Stride\+At\+Compile\+Time$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_stride_a96c2dfb0ce43fd8e19adcdf6094f5f63}{Index}} \mbox{\hyperlink{class_eigen_1_1_stride}{Eigen\+::\+Stride}}$<$ \+\_\+\+Outer\+Stride\+At\+Compile\+Time, \+\_\+\+Inner\+Stride\+At\+Compile\+Time $>$\+::inner (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the inner stride 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_stride_a261eede5809599db183b49bc274f8a07}\label{class_eigen_1_1_stride_a261eede5809599db183b49bc274f8a07}} 
+\index{Eigen::Stride$<$ \_OuterStrideAtCompileTime, \_InnerStrideAtCompileTime $>$@{Eigen::Stride$<$ \_OuterStrideAtCompileTime, \_InnerStrideAtCompileTime $>$}!outer@{outer}}
+\index{outer@{outer}!Eigen::Stride$<$ \_OuterStrideAtCompileTime, \_InnerStrideAtCompileTime $>$@{Eigen::Stride$<$ \_OuterStrideAtCompileTime, \_InnerStrideAtCompileTime $>$}}
+\doxysubsubsection{\texorpdfstring{outer()}{outer()}}
+{\footnotesize\ttfamily template$<$int \+\_\+\+Outer\+Stride\+At\+Compile\+Time, int \+\_\+\+Inner\+Stride\+At\+Compile\+Time$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_stride_a96c2dfb0ce43fd8e19adcdf6094f5f63}{Index}} \mbox{\hyperlink{class_eigen_1_1_stride}{Eigen\+::\+Stride}}$<$ \+\_\+\+Outer\+Stride\+At\+Compile\+Time, \+\_\+\+Inner\+Stride\+At\+Compile\+Time $>$\+::outer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the outer stride 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/Stride.\+h\end{DoxyCompactItemize}

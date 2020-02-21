@@ -1,0 +1,403 @@
+\hypertarget{class_eigen_1_1_matrix}{}\doxysection{Eigen\+::Matrix$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols, \+\_\+\+Options, \+\_\+\+Max\+Rows, \+\_\+\+Max\+Cols $>$ Class Template Reference}
+\label{class_eigen_1_1_matrix}\index{Eigen::Matrix$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Matrix$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}}
+
+
+The matrix class, also used for vectors and row-\/vectors.  
+
+
+
+
+{\ttfamily \#include $<$Matrix.\+h$>$}
+
+Inheritance diagram for Eigen\+::Matrix$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols, \+\_\+\+Options, \+\_\+\+Max\+Rows, \+\_\+\+Max\+Cols $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.804674cm]{class_eigen_1_1_matrix}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_matrix_ad29ad0c588b67f5515a4e634f6b617b1}\label{class_eigen_1_1_matrix_ad29ad0c588b67f5515a4e634f6b617b1}} 
+enum \{ {\bfseries Options} = \+\_\+\+Options
+ \}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_plain_object_base}{Plain\+Object\+Base}}$<$ \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}} $>$ \mbox{\hyperlink{class_eigen_1_1_matrix_a9f405923954599ec7a71ee6bad2c53f1}{Base}}
+\begin{DoxyCompactList}\small\item\em Base class typedef. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_eigen_1_1_matrix_a0b2581c382c89ef56286cb81a219f03b}\label{class_eigen_1_1_matrix_a0b2581c382c89ef56286cb81a219f03b}} 
+typedef Base\+::\+Plain\+Object {\bfseries Plain\+Object}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}} \& \mbox{\hyperlink{class_eigen_1_1_matrix_aa123b56b10819a0cbf5164abb242102f}{operator=}} (const \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}} \&other)
+\begin{DoxyCompactList}\small\item\em Assigns matrices to each other. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_eigen_1_1_matrix_ab8954f0abbd0d60292ee7a3af2866f96}\label{class_eigen_1_1_matrix_ab8954f0abbd0d60292ee7a3af2866f96}} 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}} \& {\bfseries operator=} (const \mbox{\hyperlink{class_eigen_1_1_dense_base}{Dense\+Base}}$<$ Other\+Derived $>$ \&other)
+\item 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}} \& \mbox{\hyperlink{class_eigen_1_1_matrix_ae1be4ae99dbfc91c6a3a0d0af7165047}{operator=}} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Other\+Derived $>$ \&other)
+\begin{DoxyCompactList}\small\item\em Copies the generic expression {\itshape other} into $\ast$this. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_eigen_1_1_matrix_a90469114e7a3c899f2217cf35e4778f3}\label{class_eigen_1_1_matrix_a90469114e7a3c899f2217cf35e4778f3}} 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}} \& {\bfseries operator=} (const \mbox{\hyperlink{class_eigen_1_1_return_by_value}{Return\+By\+Value}}$<$ Other\+Derived $>$ \&\mbox{\hyperlink{structfunc}{func}})
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_matrix_a11f852d66fa55b2aed12aa22da807a6b}{Matrix}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_eigen_1_1_matrix_a5bbd7c7b21472f8e9aa466a5080f97b9}\label{class_eigen_1_1_matrix_a5bbd7c7b21472f8e9aa466a5080f97b9}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC {\bfseries Matrix} (\mbox{\hyperlink{struct_eigen_1_1internal_1_1constructor__without__unaligned__array__assert}{internal\+::constructor\+\_\+without\+\_\+unaligned\+\_\+array\+\_\+assert}})
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_matrix_a077d67b4a547352955d4173d223c192d}\label{class_eigen_1_1_matrix_a077d67b4a547352955d4173d223c192d}} 
+{\footnotesize template$<$typename T $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE {\bfseries Matrix} (const \mbox{\hyperlink{class_eigen_1_1_triplet}{T}} \&x)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_matrix_a729679e1e703fe898561ba64c07293d1}\label{class_eigen_1_1_matrix_a729679e1e703fe898561ba64c07293d1}} 
+{\footnotesize template$<$typename T0 , typename T1 $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE {\bfseries Matrix} (const T0 \&x, const T1 \&y)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_matrix_a0a422e4c801e859d47226c348c482cb5}\label{class_eigen_1_1_matrix_a0a422e4c801e859d47226c348c482cb5}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_matrix_a0a422e4c801e859d47226c348c482cb5}{Matrix}} (const Scalar \&x, const Scalar \&y, const Scalar \&z)
+\begin{DoxyCompactList}\small\item\em Constructs an initialized 3D vector with given coefficients. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_eigen_1_1_matrix_afe8c7913883c78db58f15e22103f93a2}\label{class_eigen_1_1_matrix_afe8c7913883c78db58f15e22103f93a2}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_matrix_afe8c7913883c78db58f15e22103f93a2}{Matrix}} (const Scalar \&x, const Scalar \&y, const Scalar \&z, const Scalar \&w)
+\begin{DoxyCompactList}\small\item\em Constructs an initialized 4D vector with given coefficients. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_eigen_1_1_matrix_aea16cba266274974c729c98e8567f41d}\label{class_eigen_1_1_matrix_aea16cba266274974c729c98e8567f41d}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_matrix_aea16cba266274974c729c98e8567f41d}{Matrix}} (const \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}} \&other)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_matrix_ae4bcda7578de9624709cbfa8d3ddd9d9}{Matrix}} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Other\+Derived $>$ \&other)
+\begin{DoxyCompactList}\small\item\em Copy constructor for generic expressions. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_eigen_1_1_matrix_a8a9f5452b2060aa8eee77ccd2116d602}\label{class_eigen_1_1_matrix_a8a9f5452b2060aa8eee77ccd2116d602}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries inner\+Stride} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_matrix_a4ef63bbf7e04163bee2556944cee7472}\label{class_eigen_1_1_matrix_a4ef63bbf7e04163bee2556944cee7472}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries outer\+Stride} () const
+\item 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_matrix_ae714ec2f92b13d808c336faf185e5893}{Matrix}} (const \mbox{\hyperlink{class_eigen_1_1_rotation_base}{Rotation\+Base}}$<$ Other\+Derived, Cols\+At\+Compile\+Time $>$ \&r)
+\begin{DoxyCompactList}\small\item\em Constructs a Dim x Dim rotation matrix from the rotation {\itshape r}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_eigen_1_1_matrix_a23748b53021a4ea13b54e5be9f43fb6e}\label{class_eigen_1_1_matrix_a23748b53021a4ea13b54e5be9f43fb6e}} 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}} \& {\bfseries operator=} (const \mbox{\hyperlink{class_eigen_1_1_rotation_base}{Rotation\+Base}}$<$ Other\+Derived, Cols\+At\+Compile\+Time $>$ \&r)
+\item 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols, \+\_\+\+Storage, \+\_\+\+Max\+Rows, \+\_\+\+Max\+Cols $>$ \& \mbox{\hyperlink{class_eigen_1_1_matrix_a5893df80f2b3a446ce701616f8713229}{operator=}} (const \mbox{\hyperlink{class_eigen_1_1_rotation_base}{Rotation\+Base}}$<$ Other\+Derived, Cols\+At\+Compile\+Time $>$ \&r)
+\begin{DoxyCompactList}\small\item\em Set a Dim x Dim rotation matrix from the rotation {\itshape r}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_eigen_1_1_matrix_a322485a0bc534ee24b8ce5c0df68ab50}\label{class_eigen_1_1_matrix_a322485a0bc534ee24b8ce5c0df68ab50}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_matrix_a9f405923954599ec7a71ee6bad2c53f1}{Base}} \& {\bfseries base} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_matrix_adf35c24a23f5ea16fcce8ec2f78d1ad5}\label{class_eigen_1_1_matrix_adf35c24a23f5ea16fcce8ec2f78d1ad5}} 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_matrix_a9f405923954599ec7a71ee6bad2c53f1}{Base}} \& {\bfseries base} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Scalar \& \mbox{\hyperlink{class_eigen_1_1_matrix_a25626a55b26a4323565f79d1b7c48ea8}{coeff\+Ref}} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row\+Id, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col\+Id)
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Scalar \& \mbox{\hyperlink{class_eigen_1_1_matrix_a571632ed666076d7403c8bd3eece44f0}{coeff\+Ref}} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} index)
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Scalar \& \mbox{\hyperlink{class_eigen_1_1_matrix_a313e36cf1be79c1e5b8dbbc158fcb0d9}{coeff\+Ref}} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row\+Id, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col\+Id) const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Scalar \& \mbox{\hyperlink{class_eigen_1_1_matrix_abc1104afcdeeea0a03e3cacafc81aac3}{coeff\+Ref}} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} index) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_matrix_a1f9b65493a9a3eb3375c3177a080a5e1}\label{class_eigen_1_1_matrix_a1f9b65493a9a3eb3375c3177a080a5e1}} 
+\mbox{\hyperlink{class_eigen_1_1_dense_storage}{Dense\+Storage}}$<$ Scalar, Base\+::\+Max\+Size\+At\+Compile\+Time, Base\+::\+Rows\+At\+Compile\+Time, Base\+::\+Cols\+At\+Compile\+Time, Options $>$ {\bfseries m\+\_\+storage}
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_matrix_a398280cc73160285ad14db73a8e85c94}\label{class_eigen_1_1_matrix_a398280cc73160285ad14db73a8e85c94}} 
+{\footnotesize template$<$typename Derived , typename Other\+Derived , bool Is\+Vector$>$ }\\struct {\bfseries internal\+::conservative\+\_\+resize\+\_\+like\+\_\+impl}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Scalar, int \+\_\+\+Rows, int \+\_\+\+Cols, int \+\_\+\+Options, int \+\_\+\+Max\+Rows, int \+\_\+\+Max\+Cols$>$\newline
+class Eigen\+::\+Matrix$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols, \+\_\+\+Options, \+\_\+\+Max\+Rows, \+\_\+\+Max\+Cols $>$}
+
+The matrix class, also used for vectors and row-\/vectors. 
+
+The Matrix class is the work-\/horse for all {\itshape dense} (\mbox{\hyperlink{class_eigen_1_1_matrix_dense}{note}}) matrices and vectors within \mbox{\hyperlink{namespace_eigen}{Eigen}}. Vectors are matrices with one column, and row-\/vectors are matrices with one row.
+
+The Matrix class encompasses {\itshape both} fixed-\/size and dynamic-\/size objects (\mbox{\hyperlink{class_eigen_1_1_matrix_fixedsize}{note}}).
+
+The first three template parameters are required\+: 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Scalar} & Numeric type, e.\+g. float, double, int or std\+::complex$<$float$>$. User defined scalar types are supported as well (see \mbox{\hyperlink{_topic_customizing__custom_scalar_user_defined_scalars}{here}}). \\
+\hline
+{\em \+\_\+\+Rows} & Number of rows, or {\bfseries{Dynamic}} \\
+\hline
+{\em \+\_\+\+Cols} & Number of columns, or {\bfseries{Dynamic}} \\
+\hline
+\end{DoxyTemplParams}
+The remaining template parameters are optional -- in most cases you don\textquotesingle{}t have to worry about them. 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Options} & A combination of either {\bfseries{\mbox{\hyperlink{group__enums_ggaacded1a18ae58b0f554751f6cdf9eb13a77c993a8d9f6efe5c1159fb2ab07dd4f}{Row\+Major}}}} or {\bfseries{\mbox{\hyperlink{group__enums_ggaacded1a18ae58b0f554751f6cdf9eb13a0103672ae41005ab03b4176c765afd62}{Col\+Major}}}}, and of either {\bfseries{\mbox{\hyperlink{group__enums_ggaacded1a18ae58b0f554751f6cdf9eb13ad0e7f67d40bcde3d41c12849b16ce6ea}{Auto\+Align}}}} or {\bfseries{\mbox{\hyperlink{group__enums_ggaacded1a18ae58b0f554751f6cdf9eb13a56908522e51443a0aa0567f879c2e78a}{Dont\+Align}}}}. The former controls \mbox{\hyperlink{group___topic_storage_orders}{storage order}}, and defaults to column-\/major. The latter controls alignment, which is required for vectorization. It defaults to aligning matrices except for fixed sizes that aren\textquotesingle{}t a multiple of the packet size. \\
+\hline
+{\em \+\_\+\+Max\+Rows} & Maximum number of rows. Defaults to {\itshape \+\_\+\+Rows} (\mbox{\hyperlink{class_eigen_1_1_matrix_maxrows}{note}}). \\
+\hline
+{\em \+\_\+\+Max\+Cols} & Maximum number of columns. Defaults to {\itshape \+\_\+\+Cols} (\mbox{\hyperlink{class_eigen_1_1_matrix_maxrows}{note}}).\\
+\hline
+\end{DoxyTemplParams}
+\mbox{\hyperlink{namespace_eigen}{Eigen}} provides a number of typedefs covering the usual cases. Here are some examples\+:
+
+\begin{DoxyItemize}
+\item {\ttfamily Matrix2d} is a 2x2 square matrix of doubles ({\ttfamily Matrix$<$double, 2, 2$>$}) \item {\ttfamily Vector4f} is a vector of 4 floats ({\ttfamily Matrix$<$float, 4, 1$>$}) \item {\ttfamily Row\+Vector3i} is a row-\/vector of 3 ints ({\ttfamily Matrix$<$int, 1, 3$>$})\end{DoxyItemize}
+\begin{DoxyItemize}
+\item {\ttfamily Matrix\+Xf} is a dynamic-\/size matrix of floats ({\ttfamily Matrix$<$float, Dynamic, Dynamic$>$}) \item {\ttfamily Vector\+Xf} is a dynamic-\/size vector of floats ({\ttfamily Matrix$<$float, Dynamic, 1$>$})\end{DoxyItemize}
+\begin{DoxyItemize}
+\item {\ttfamily Matrix2\+Xf} is a partially fixed-\/size (dynamic-\/size) matrix of floats ({\ttfamily Matrix$<$float, 2, Dynamic$>$}) \item {\ttfamily Matrix\+X3d} is a partially dynamic-\/size (fixed-\/size) matrix of double ({\ttfamily Matrix$<$double, Dynamic, 3$>$})\end{DoxyItemize}
+See \mbox{\hyperlink{group__matrixtypedefs}{this page }} for a complete list of predefined {\itshape Matrix} and {\itshape Vector} typedefs.
+
+You can access elements of vectors and matrices using normal subscripting\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Eigen::VectorXd v(10);}
+\DoxyCodeLine{v[0] = 0.1;}
+\DoxyCodeLine{v[1] = 0.2;}
+\DoxyCodeLine{v(0) = 0.3;}
+\DoxyCodeLine{v(1) = 0.4;}
+\DoxyCodeLine{}
+\DoxyCodeLine{Eigen::MatrixXi m(10, 10);}
+\DoxyCodeLine{m(0, 1) = 1;}
+\DoxyCodeLine{m(0, 2) = 2;}
+\DoxyCodeLine{m(0, 3) = 3;}
+\end{DoxyCode}
+
+
+This class can be extended with the help of the plugin mechanism described on the page \mbox{\hyperlink{TopicCustomizing_Plugins}{Extending Matrix\+Base (and other classes)}} by defining the preprocessor symbol {\ttfamily E\+I\+G\+E\+N\+\_\+\+M\+A\+T\+R\+I\+X\+\_\+\+P\+L\+U\+G\+IN}.
+
+{\itshape {\bfseries{Some notes\+:}}}
+
+
+\begin{DoxyDescription}
+\item[{\bfseries{\label{class_eigen_1_1_matrix_dense}%
+\Hypertarget{class_eigen_1_1_matrix_dense}%
+\mbox{\hyperlink{struct_eigen_1_1_dense}{Dense}} versus sparse\+:}} ]This Matrix class handles dense, not sparse matrices and vectors. For sparse matrices and vectors, see the \mbox{\hyperlink{struct_eigen_1_1_sparse}{Sparse}} module.
+
+\mbox{\hyperlink{struct_eigen_1_1_dense}{Dense}} matrices and vectors are plain usual arrays of coefficients. All the coefficients are stored, in an ordinary contiguous array. This is unlike \mbox{\hyperlink{struct_eigen_1_1_sparse}{Sparse}} matrices and vectors where the coefficients are stored as a list of nonzero coefficients.
+
+
+\item[{\bfseries{\label{class_eigen_1_1_matrix_fixedsize}%
+\Hypertarget{class_eigen_1_1_matrix_fixedsize}%
+Fixed-\/size versus dynamic-\/size\+:}} ]Fixed-\/size means that the numbers of rows and columns are known are compile-\/time. In this case, \mbox{\hyperlink{namespace_eigen}{Eigen}} allocates the array of coefficients as a fixed-\/size array, as a class member. This makes sense for very small matrices, typically up to 4x4, sometimes up to 16x16. Larger matrices should be declared as dynamic-\/size even if one happens to know their size at compile-\/time.
+
+Dynamic-\/size means that the numbers of rows or columns are not necessarily known at compile-\/time. In this case they are runtime variables, and the array of coefficients is allocated dynamically on the heap.
+
+Note that {\itshape dense} matrices, be they Fixed-\/size or Dynamic-\/size, {\itshape do not} expand dynamically in the sense of a std\+::map. If you want this behavior, see the \mbox{\hyperlink{struct_eigen_1_1_sparse}{Sparse}} module.
+
+
+\item[{\bfseries{\label{class_eigen_1_1_matrix_maxrows}%
+\Hypertarget{class_eigen_1_1_matrix_maxrows}%
+\+\_\+\+Max\+Rows and \+\_\+\+Max\+Cols\+:}} ]In most cases, one just leaves these parameters to the default values. These parameters mean the maximum size of rows and columns that the matrix may have. They are useful in cases when the exact numbers of rows and columns are not known are compile-\/time, but it is known at compile-\/time that they cannot exceed a certain value. This happens when taking dynamic-\/size blocks inside fixed-\/size matrices\+: in this case \+\_\+\+Max\+Rows and \+\_\+\+Max\+Cols are the dimensions of the original matrix, while \+\_\+\+Rows and \+\_\+\+Cols are Dynamic. 
+\end{DoxyDescription}
+
+{\itshape {\bfseries{A\+BI and storage layout}}}
+
+The table below summarizes the A\+BI of some possible \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}} instances which is fixed thorough the lifetime of \mbox{\hyperlink{namespace_eigen}{Eigen}} 3. \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}} type}&\cellcolor{\tableheadbgcolor}\textbf{ Equivalent C structure }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}} type}&\cellcolor{\tableheadbgcolor}\textbf{ Equivalent C structure }\\\cline{1-2}
+\endhead
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Matrix<T,Dynamic,Dynamic> }
+\end{DoxyCode}
+&
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{struct }\{}
+\DoxyCodeLine{  \mbox{\hyperlink{class_eigen_1_1_triplet}{T}} *\mbox{\hyperlink{class_eigen_1_1_plain_object_base_a50a17d1e741563acddae445e2773eb96}{data}};                  \textcolor{comment}{// with (size\_t(data)\%EIGEN\_MAX\_ALIGN\_BYTES)==0}}
+\DoxyCodeLine{  \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Eigen::Index}} rows, cols;}
+\DoxyCodeLine{ \};}
+\end{DoxyCode}
+ \\\cline{1-2}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Matrix<T,Dynamic,1>}
+\DoxyCodeLine{Matrix<T,1,Dynamic> }
+\end{DoxyCode}
+&
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{struct }\{}
+\DoxyCodeLine{  \mbox{\hyperlink{class_eigen_1_1_triplet}{T}} *\mbox{\hyperlink{class_eigen_1_1_plain_object_base_a50a17d1e741563acddae445e2773eb96}{data}};                  \textcolor{comment}{// with (size\_t(data)\%EIGEN\_MAX\_ALIGN\_BYTES)==0}}
+\DoxyCodeLine{  \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Eigen::Index}} size;}
+\DoxyCodeLine{ \};}
+\end{DoxyCode}
+ \\\cline{1-2}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Matrix<T,Rows,Cols> }
+\end{DoxyCode}
+&
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{struct }\{}
+\DoxyCodeLine{  \mbox{\hyperlink{class_eigen_1_1_triplet}{T}} \mbox{\hyperlink{class_eigen_1_1_plain_object_base_a50a17d1e741563acddae445e2773eb96}{data}}[Rows*Cols];        \textcolor{comment}{// with (size\_t(data)\%A(Rows*Cols*sizeof(T)))==0}}
+\DoxyCodeLine{ \};}
+\end{DoxyCode}
+ \\\cline{1-2}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Matrix<T,Dynamic,Dynamic,0,MaxRows,MaxCols> }
+\end{DoxyCode}
+&
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{struct }\{}
+\DoxyCodeLine{  \mbox{\hyperlink{class_eigen_1_1_triplet}{T}} \mbox{\hyperlink{class_eigen_1_1_plain_object_base_a50a17d1e741563acddae445e2773eb96}{data}}[MaxRows*MaxCols];  \textcolor{comment}{// with (size\_t(data)\%A(MaxRows*MaxCols*sizeof(T)))==0}}
+\DoxyCodeLine{  \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Eigen::Index}} rows, cols;}
+\DoxyCodeLine{ \};}
+\end{DoxyCode}
+ \\\cline{1-2}
+\end{longtabu}
+Note that in this table Rows, Cols, Max\+Rows and Max\+Cols are all positive integers. A(\+S) is defined to the largest possible power-\/of-\/two smaller to E\+I\+G\+E\+N\+\_\+\+M\+A\+X\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+A\+L\+I\+G\+N\+\_\+\+B\+Y\+T\+ES.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}} for the majority of the A\+PI methods for matrices, \mbox{\hyperlink{TopicClassHierarchy}{The class hierarchy}}, \mbox{\hyperlink{group___topic_storage_orders}{Topic\+Storage\+Orders}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_matrix_a9f405923954599ec7a71ee6bad2c53f1}\label{class_eigen_1_1_matrix_a9f405923954599ec7a71ee6bad2c53f1}} 
+\index{Eigen::Matrix$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Matrix$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}!Base@{Base}}
+\index{Base@{Base}!Eigen::Matrix$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Matrix$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}}
+\doxysubsubsection{\texorpdfstring{Base}{Base}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Rows, int \+\_\+\+Cols, int \+\_\+\+Options, int \+\_\+\+Max\+Rows, int \+\_\+\+Max\+Cols$>$ \\
+typedef \mbox{\hyperlink{class_eigen_1_1_plain_object_base}{Plain\+Object\+Base}}$<$\mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$>$ \mbox{\hyperlink{class_eigen_1_1_matrix}{Eigen\+::\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols, \+\_\+\+Options, \+\_\+\+Max\+Rows, \+\_\+\+Max\+Cols $>$\+::\mbox{\hyperlink{class_eigen_1_1_matrix_a9f405923954599ec7a71ee6bad2c53f1}{Base}}}
+
+
+
+Base class typedef. 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_plain_object_base}{Plain\+Object\+Base}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_matrix_a11f852d66fa55b2aed12aa22da807a6b}\label{class_eigen_1_1_matrix_a11f852d66fa55b2aed12aa22da807a6b}} 
+\index{Eigen::Matrix$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Matrix$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}!Matrix@{Matrix}}
+\index{Matrix@{Matrix}!Eigen::Matrix$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Matrix$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}}
+\doxysubsubsection{\texorpdfstring{Matrix()}{Matrix()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Rows, int \+\_\+\+Cols, int \+\_\+\+Options, int \+\_\+\+Max\+Rows, int \+\_\+\+Max\+Cols$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_matrix}{Eigen\+::\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols, \+\_\+\+Options, \+\_\+\+Max\+Rows, \+\_\+\+Max\+Cols $>$\+::\mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default constructor. 
+
+For fixed-\/size matrices, does nothing.
+
+For dynamic-\/size matrices, creates an empty matrix of size 0. Does not allocate any array. Such a matrix is called a null matrix. This constructor is the unique way to create null matrices\+: resizing a matrix to 0 is not supported.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_plain_object_base_a99d9054ee2d5a40c6e00ded0265e9cea}{resize(\+Index,\+Index)}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_matrix_ae4bcda7578de9624709cbfa8d3ddd9d9}\label{class_eigen_1_1_matrix_ae4bcda7578de9624709cbfa8d3ddd9d9}} 
+\index{Eigen::Matrix$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Matrix$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}!Matrix@{Matrix}}
+\index{Matrix@{Matrix}!Eigen::Matrix$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Matrix$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}}
+\doxysubsubsection{\texorpdfstring{Matrix()}{Matrix()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Rows, int \+\_\+\+Cols, int \+\_\+\+Options, int \+\_\+\+Max\+Rows, int \+\_\+\+Max\+Cols$>$ \\
+template$<$typename Other\+Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_matrix}{Eigen\+::\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols, \+\_\+\+Options, \+\_\+\+Max\+Rows, \+\_\+\+Max\+Cols $>$\+::\mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Other\+Derived $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Copy constructor for generic expressions. 
+
+\begin{DoxySeeAlso}{See also}
+Matrix\+Base\+::operator=(const Eigen\+Base$<$\+Other\+Derived$>$\&) 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_matrix_ae714ec2f92b13d808c336faf185e5893}\label{class_eigen_1_1_matrix_ae714ec2f92b13d808c336faf185e5893}} 
+\index{Eigen::Matrix$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Matrix$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}!Matrix@{Matrix}}
+\index{Matrix@{Matrix}!Eigen::Matrix$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Matrix$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}}
+\doxysubsubsection{\texorpdfstring{Matrix()}{Matrix()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Rows, int \+\_\+\+Cols, int \+\_\+\+Storage, int \+\_\+\+Max\+Rows, int \+\_\+\+Max\+Cols$>$ \\
+template$<$typename Other\+Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_matrix}{Eigen\+::\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols, \+\_\+\+Storage, \+\_\+\+Max\+Rows, \+\_\+\+Max\+Cols $>$\+::\mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_rotation_base}{Rotation\+Base}}$<$ Other\+Derived, Cols\+At\+Compile\+Time $>$ \&}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructs a Dim x Dim rotation matrix from the rotation {\itshape r}. 
+
+\textbackslash{}geometry\+\_\+module 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_matrix_a571632ed666076d7403c8bd3eece44f0}\label{class_eigen_1_1_matrix_a571632ed666076d7403c8bd3eece44f0}} 
+\index{Eigen::Matrix$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Matrix$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}!coeffRef@{coeffRef}}
+\index{coeffRef@{coeffRef}!Eigen::Matrix$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Matrix$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}}
+\doxysubsubsection{\texorpdfstring{coeffRef()}{coeffRef()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Rows, int \+\_\+\+Cols, int \+\_\+\+Options, int \+\_\+\+Max\+Rows, int \+\_\+\+Max\+Cols$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Scalar\& \mbox{\hyperlink{class_eigen_1_1_plain_object_base}{Eigen\+::\+Plain\+Object\+Base}}$<$ Derived $>$\+::coeff\+Ref\hspace{0.3cm}{\ttfamily [inline]}}
+
+This is an overloaded version of Dense\+Coeffs\+Base$<$\+Derived,\+Write\+Accessors$>$\+::coeff\+Ref(\+Index) const provided to by-\/pass the creation of an evaluator of the expression, thus saving compilation efforts.
+
+See Dense\+Coeffs\+Base$<$\+Derived,\+Write\+Accessors$>$\+::coeff\+Ref(\+Index) const for details. \mbox{\Hypertarget{class_eigen_1_1_matrix_abc1104afcdeeea0a03e3cacafc81aac3}\label{class_eigen_1_1_matrix_abc1104afcdeeea0a03e3cacafc81aac3}} 
+\index{Eigen::Matrix$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Matrix$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}!coeffRef@{coeffRef}}
+\index{coeffRef@{coeffRef}!Eigen::Matrix$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Matrix$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}}
+\doxysubsubsection{\texorpdfstring{coeffRef()}{coeffRef()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Rows, int \+\_\+\+Cols, int \+\_\+\+Options, int \+\_\+\+Max\+Rows, int \+\_\+\+Max\+Cols$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Scalar\& \mbox{\hyperlink{class_eigen_1_1_plain_object_base}{Eigen\+::\+Plain\+Object\+Base}}$<$ Derived $>$\+::coeff\+Ref\hspace{0.3cm}{\ttfamily [inline]}}
+
+This is the const version of \mbox{\hyperlink{class_eigen_1_1_plain_object_base_a571632ed666076d7403c8bd3eece44f0}{coeff\+Ref(\+Index)}} which is thus synonym of coeff(\+Index). It is provided for convenience. \mbox{\Hypertarget{class_eigen_1_1_matrix_a25626a55b26a4323565f79d1b7c48ea8}\label{class_eigen_1_1_matrix_a25626a55b26a4323565f79d1b7c48ea8}} 
+\index{Eigen::Matrix$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Matrix$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}!coeffRef@{coeffRef}}
+\index{coeffRef@{coeffRef}!Eigen::Matrix$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Matrix$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}}
+\doxysubsubsection{\texorpdfstring{coeffRef()}{coeffRef()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Rows, int \+\_\+\+Cols, int \+\_\+\+Options, int \+\_\+\+Max\+Rows, int \+\_\+\+Max\+Cols$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Scalar\& \mbox{\hyperlink{class_eigen_1_1_plain_object_base}{Eigen\+::\+Plain\+Object\+Base}}$<$ Derived $>$\+::coeff\+Ref\hspace{0.3cm}{\ttfamily [inline]}}
+
+This is an overloaded version of Dense\+Coeffs\+Base$<$\+Derived,\+Write\+Accessors$>$\+::coeff\+Ref(\+Index,\+Index) const provided to by-\/pass the creation of an evaluator of the expression, thus saving compilation efforts.
+
+See Dense\+Coeffs\+Base$<$\+Derived,\+Write\+Accessors$>$\+::coeff\+Ref(\+Index,\+Index) const for details. \mbox{\Hypertarget{class_eigen_1_1_matrix_a313e36cf1be79c1e5b8dbbc158fcb0d9}\label{class_eigen_1_1_matrix_a313e36cf1be79c1e5b8dbbc158fcb0d9}} 
+\index{Eigen::Matrix$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Matrix$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}!coeffRef@{coeffRef}}
+\index{coeffRef@{coeffRef}!Eigen::Matrix$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Matrix$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}}
+\doxysubsubsection{\texorpdfstring{coeffRef()}{coeffRef()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Rows, int \+\_\+\+Cols, int \+\_\+\+Options, int \+\_\+\+Max\+Rows, int \+\_\+\+Max\+Cols$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Scalar\& \mbox{\hyperlink{class_eigen_1_1_plain_object_base}{Eigen\+::\+Plain\+Object\+Base}}$<$ Derived $>$\+::coeff\+Ref\hspace{0.3cm}{\ttfamily [inline]}}
+
+This is the const version of \mbox{\hyperlink{class_eigen_1_1_plain_object_base_a25626a55b26a4323565f79d1b7c48ea8}{coeff\+Ref(\+Index,\+Index)}} which is thus synonym of coeff(\+Index,\+Index). It is provided for convenience. \mbox{\Hypertarget{class_eigen_1_1_matrix_ae1be4ae99dbfc91c6a3a0d0af7165047}\label{class_eigen_1_1_matrix_ae1be4ae99dbfc91c6a3a0d0af7165047}} 
+\index{Eigen::Matrix$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Matrix$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!Eigen::Matrix$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Matrix$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Rows, int \+\_\+\+Cols, int \+\_\+\+Options, int \+\_\+\+Max\+Rows, int \+\_\+\+Max\+Cols$>$ \\
+template$<$typename Other\+Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}\& \mbox{\hyperlink{class_eigen_1_1_matrix}{Eigen\+::\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols, \+\_\+\+Options, \+\_\+\+Max\+Rows, \+\_\+\+Max\+Cols $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Other\+Derived $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Copies the generic expression {\itshape other} into $\ast$this. 
+
+The expression must provide a (templated) eval\+To(\+Derived\& dst) const function which does the actual job. In practice, this allows any user to write its own special matrix without having to modify \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}
+
+\begin{DoxyReturn}{Returns}
+a reference to $\ast$this. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_matrix_aa123b56b10819a0cbf5164abb242102f}\label{class_eigen_1_1_matrix_aa123b56b10819a0cbf5164abb242102f}} 
+\index{Eigen::Matrix$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Matrix$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!Eigen::Matrix$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Matrix$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Rows, int \+\_\+\+Cols, int \+\_\+\+Options, int \+\_\+\+Max\+Rows, int \+\_\+\+Max\+Cols$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}\& \mbox{\hyperlink{class_eigen_1_1_matrix}{Eigen\+::\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols, \+\_\+\+Options, \+\_\+\+Max\+Rows, \+\_\+\+Max\+Cols $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols, \+\_\+\+Options, \+\_\+\+Max\+Rows, \+\_\+\+Max\+Cols $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Assigns matrices to each other. 
+
+\begin{DoxyNote}{Note}
+This is a special case of the templated operator=. Its purpose is to prevent a default operator= from hiding the templated operator=. 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_eigen_1_1_matrix_a5893df80f2b3a446ce701616f8713229}\label{class_eigen_1_1_matrix_a5893df80f2b3a446ce701616f8713229}} 
+\index{Eigen::Matrix$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Matrix$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!Eigen::Matrix$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$@{Eigen::Matrix$<$ \_Scalar, \_Rows, \_Cols, \_Options, \_MaxRows, \_MaxCols $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Rows, int \+\_\+\+Cols, int \+\_\+\+Options, int \+\_\+\+Max\+Rows, int \+\_\+\+Max\+Cols$>$ \\
+template$<$typename Other\+Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$\+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols, \+\_\+\+Storage, \+\_\+\+Max\+Rows, \+\_\+\+Max\+Cols$>$\& \mbox{\hyperlink{class_eigen_1_1_matrix}{Eigen\+::\+Matrix}}$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols, \+\_\+\+Options, \+\_\+\+Max\+Rows, \+\_\+\+Max\+Cols $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_rotation_base}{Rotation\+Base}}$<$ Other\+Derived, Cols\+At\+Compile\+Time $>$ \&}]{r }\end{DoxyParamCaption})}
+
+
+
+Set a Dim x Dim rotation matrix from the rotation {\itshape r}. 
+
+\textbackslash{}geometry\+\_\+module 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/Matrix.\+h\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Geometry/Rotation\+Base.\+h\end{DoxyCompactItemize}

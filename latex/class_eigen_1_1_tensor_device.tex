@@ -1,0 +1,50 @@
+\hypertarget{class_eigen_1_1_tensor_device}{}\doxysection{Eigen\+::Tensor\+Device$<$ Expression\+Type, Device\+Type $>$ Class Template Reference}
+\label{class_eigen_1_1_tensor_device}\index{Eigen::TensorDevice$<$ ExpressionType, DeviceType $>$@{Eigen::TensorDevice$<$ ExpressionType, DeviceType $>$}}
+
+
+Pseudo expression providing an operator = that will evaluate its argument on the specified computing \textquotesingle{}device\textquotesingle{} (G\+PU, thread pool, ...)  
+
+
+
+
+{\ttfamily \#include $<$Tensor\+Device.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_device_a702c5a2b3f10a3ca17faafc995df0b7e}\label{class_eigen_1_1_tensor_device_a702c5a2b3f10a3ca17faafc995df0b7e}} 
+{\bfseries Tensor\+Device} (const Device\+Type \&device, Expression\+Type \&expression)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_device_af877c7b8a5132d919d0e78be7b36e3e3}\label{class_eigen_1_1_tensor_device_af877c7b8a5132d919d0e78be7b36e3e3}} 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_tensor_device}{Tensor\+Device}} \& {\bfseries operator=} (const Other\+Derived \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_device_a9bc36f8b922b0b2bdf1d99cb592ae988}\label{class_eigen_1_1_tensor_device_a9bc36f8b922b0b2bdf1d99cb592ae988}} 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_tensor_device}{Tensor\+Device}} \& {\bfseries operator+=} (const Other\+Derived \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_device_ab7e44bf8f27d659742a1e6bf1c912f6d}\label{class_eigen_1_1_tensor_device_ab7e44bf8f27d659742a1e6bf1c912f6d}} 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_tensor_device}{Tensor\+Device}} \& {\bfseries operator-\/=} (const Other\+Derived \&other)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_device_ac4c4490e7761d73a01006fdf854a433c}\label{class_eigen_1_1_tensor_device_ac4c4490e7761d73a01006fdf854a433c}} 
+const Device\+Type \& {\bfseries m\+\_\+device}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_device_aefaaef763b8d8a1b07a9875a7b2016ca}\label{class_eigen_1_1_tensor_device_aefaaef763b8d8a1b07a9875a7b2016ca}} 
+Expression\+Type \& {\bfseries m\+\_\+expression}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Expression\+Type, typename Device\+Type$>$\newline
+class Eigen\+::\+Tensor\+Device$<$ Expression\+Type, Device\+Type $>$}
+
+Pseudo expression providing an operator = that will evaluate its argument on the specified computing \textquotesingle{}device\textquotesingle{} (G\+PU, thread pool, ...) 
+
+Example\+: C.\+device(\+E\+I\+G\+E\+N\+\_\+\+G\+P\+U) = A + B;
+
+Todo\+: operator $\ast$= and /=. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/\+C\+X\+X11/src/\+Tensor/Tensor\+Device.\+h\end{DoxyCompactItemize}

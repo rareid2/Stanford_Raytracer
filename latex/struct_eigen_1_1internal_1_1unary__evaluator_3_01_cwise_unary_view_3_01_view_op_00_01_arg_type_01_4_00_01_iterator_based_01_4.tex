@@ -1,0 +1,50 @@
+\hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_cwise_unary_view_3_01_view_op_00_01_arg_type_01_4_00_01_iterator_based_01_4}{}\doxysection{Eigen\+::internal\+::unary\+\_\+evaluator$<$ Cwise\+Unary\+View$<$ View\+Op, Arg\+Type $>$, Iterator\+Based $>$ Struct Template Reference}
+\label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_cwise_unary_view_3_01_view_op_00_01_arg_type_01_4_00_01_iterator_based_01_4}\index{Eigen::internal::unary\_evaluator$<$ CwiseUnaryView$<$ ViewOp, ArgType $>$, IteratorBased $>$@{Eigen::internal::unary\_evaluator$<$ CwiseUnaryView$<$ ViewOp, ArgType $>$, IteratorBased $>$}}
+Inheritance diagram for Eigen\+::internal\+::unary\+\_\+evaluator$<$ Cwise\+Unary\+View$<$ View\+Op, Arg\+Type $>$, Iterator\+Based $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{struct_eigen_1_1internal_1_1unary__evaluator_3_01_cwise_unary_view_3_01_view_op_00_01_arg_type_01_4_00_01_iterator_based_01_4}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_eigen_1_1internal_1_1unary__evaluator_3_01_cwise_unary_view_3_01_view_op_00_01_arg_type_011a5afe598192a9657664b0cfbd26765b}{Inner\+Iterator}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_cwise_unary_view_3_01_view_op_00_01_arg_type_01_4_00_01_iterator_based_01_4_acb3f57451f7ad6d15340fc206618e356}\label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_cwise_unary_view_3_01_view_op_00_01_arg_type_01_4_00_01_iterator_based_01_4_acb3f57451f7ad6d15340fc206618e356}} 
+enum \{ {\bfseries Coeff\+Read\+Cost} = evaluator$<$Arg\+Type$>$\+::Coeff\+Read\+Cost + functor\+\_\+traits$<$View\+Op$>$\+::Cost, 
+{\bfseries Flags} = Xpr\+Type\+::Flags
+ \}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_cwise_unary_view_3_01_view_op_00_01_arg_type_01_4_00_01_iterator_based_01_4_aab21b88b28cfc1f27ff30b5ba82b5958}\label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_cwise_unary_view_3_01_view_op_00_01_arg_type_01_4_00_01_iterator_based_01_4_aab21b88b28cfc1f27ff30b5ba82b5958}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_cwise_unary_view}{Cwise\+Unary\+View}}$<$ View\+Op, Arg\+Type $>$ {\bfseries Xpr\+Type}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_cwise_unary_view_3_01_view_op_00_01_arg_type_01_4_00_01_iterator_based_01_4_a44f6668184d496d893b256a274249620}\label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_cwise_unary_view_3_01_view_op_00_01_arg_type_01_4_00_01_iterator_based_01_4_a44f6668184d496d893b256a274249620}} 
+{\bfseries unary\+\_\+evaluator} (const \mbox{\hyperlink{class_eigen_1_1_cwise_unary_view}{Xpr\+Type}} \&op)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_cwise_unary_view_3_01_view_op_00_01_arg_type_01_4_00_01_iterator_based_01_4_af5716e831f05ed2e87745522e85b9bdd}\label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_cwise_unary_view_3_01_view_op_00_01_arg_type_01_4_00_01_iterator_based_01_4_af5716e831f05ed2e87745522e85b9bdd}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1evaluator}{evaluator}}$<$ Arg\+Type $>$\+::\mbox{\hyperlink{class_eigen_1_1_inner_iterator}{Inner\+Iterator}} {\bfseries Eval\+Iterator}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_cwise_unary_view_3_01_view_op_00_01_arg_type_01_4_00_01_iterator_based_01_4_a6fb281b3edf00e5292504f2e7562c764}\label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_cwise_unary_view_3_01_view_op_00_01_arg_type_01_4_00_01_iterator_based_01_4_a6fb281b3edf00e5292504f2e7562c764}} 
+const View\+Op {\bfseries m\+\_\+functor}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_cwise_unary_view_3_01_view_op_00_01_arg_type_01_4_00_01_iterator_based_01_4_a457cb9d3de03b730e2a93c16138f8386}\label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_cwise_unary_view_3_01_view_op_00_01_arg_type_01_4_00_01_iterator_based_01_4_a457cb9d3de03b730e2a93c16138f8386}} 
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1evaluator}{evaluator}}$<$ Arg\+Type $>$ {\bfseries m\+\_\+arg\+Impl}
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Sparse\+Core/Sparse\+Cwise\+Unary\+Op.\+h\end{DoxyCompactItemize}

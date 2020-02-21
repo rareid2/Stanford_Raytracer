@@ -1,0 +1,64 @@
+\hypertarget{struct_eigen_1_1internal_1_1fftw__impl}{}\doxysection{Eigen\+::internal\+::fftw\+\_\+impl$<$ \+\_\+\+Scalar $>$ Struct Template Reference}
+\label{struct_eigen_1_1internal_1_1fftw__impl}\index{Eigen::internal::fftw\_impl$<$ \_Scalar $>$@{Eigen::internal::fftw\_impl$<$ \_Scalar $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1fftw__impl_ad37ae1f2aad603ea1ea69c26b1674af5}\label{struct_eigen_1_1internal_1_1fftw__impl_ad37ae1f2aad603ea1ea69c26b1674af5}} 
+typedef \+\_\+\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1fftw__impl_a9d8e84f20fe3651c1faef04b7fead298}\label{struct_eigen_1_1internal_1_1fftw__impl_a9d8e84f20fe3651c1faef04b7fead298}} 
+typedef std\+::complex$<$ Scalar $>$ {\bfseries Complex}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1fftw__impl_a64e11f55050b69bd41299bf97d5d0657}\label{struct_eigen_1_1internal_1_1fftw__impl_a64e11f55050b69bd41299bf97d5d0657}} 
+void {\bfseries clear} ()
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1fftw__impl_a05501269081c686ab80e5c8c5bcab72f}\label{struct_eigen_1_1internal_1_1fftw__impl_a05501269081c686ab80e5c8c5bcab72f}} 
+void {\bfseries fwd} (Complex $\ast$dst, const Complex $\ast$src, int nfft)
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1fftw__impl_a85a7d7260407e1019d393ddcffb68e09}\label{struct_eigen_1_1internal_1_1fftw__impl_a85a7d7260407e1019d393ddcffb68e09}} 
+void {\bfseries fwd} (Complex $\ast$dst, const Scalar $\ast$src, int nfft)
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1fftw__impl_a671245ef0355ec65de96dcdef10bf669}\label{struct_eigen_1_1internal_1_1fftw__impl_a671245ef0355ec65de96dcdef10bf669}} 
+void {\bfseries fwd2} (Complex $\ast$dst, const Complex $\ast$src, int n0, int n1)
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1fftw__impl_a76148ef976cee611506b6f30147eb427}\label{struct_eigen_1_1internal_1_1fftw__impl_a76148ef976cee611506b6f30147eb427}} 
+void {\bfseries inv} (Complex $\ast$dst, const Complex $\ast$src, int nfft)
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1fftw__impl_a3a89d08e9eb6783e780a3cf04850a811}\label{struct_eigen_1_1internal_1_1fftw__impl_a3a89d08e9eb6783e780a3cf04850a811}} 
+void {\bfseries inv} (Scalar $\ast$dst, const Complex $\ast$src, int nfft)
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1fftw__impl_a774406207808bedb1dcce992a446ffdd}\label{struct_eigen_1_1internal_1_1fftw__impl_a774406207808bedb1dcce992a446ffdd}} 
+void {\bfseries inv2} (Complex $\ast$dst, const Complex $\ast$src, int n0, int n1)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1fftw__impl_a927f022380b01d7899812baa51511392}\label{struct_eigen_1_1internal_1_1fftw__impl_a927f022380b01d7899812baa51511392}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1fftw__plan}{fftw\+\_\+plan}}$<$ Scalar $>$ {\bfseries Plan\+Data}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1fftw__impl_a6897978e8a42fe20cddbbfa9257b9419}\label{struct_eigen_1_1internal_1_1fftw__impl_a6897978e8a42fe20cddbbfa9257b9419}} 
+typedef std\+::map$<$ int64\+\_\+t, \mbox{\hyperlink{struct_eigen_1_1internal_1_1fftw__plan}{Plan\+Data}} $>$ {\bfseries Plan\+Map}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1fftw__impl_a705116e5b55434e52f90aef0eb4f8e8c}\label{struct_eigen_1_1internal_1_1fftw__impl_a705116e5b55434e52f90aef0eb4f8e8c}} 
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1fftw__plan}{Plan\+Data}} \& {\bfseries get\+\_\+plan} (int nfft, bool inverse, void $\ast$dst, const void $\ast$src)
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1fftw__impl_a07f7a7b9f8a6d74194641d54145c299a}\label{struct_eigen_1_1internal_1_1fftw__impl_a07f7a7b9f8a6d74194641d54145c299a}} 
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1fftw__plan}{Plan\+Data}} \& {\bfseries get\+\_\+plan} (int n0, int n1, bool inverse, void $\ast$dst, const void $\ast$src)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1fftw__impl_a94e5dea61b320ea677e1ac9e54ce9a9f}\label{struct_eigen_1_1internal_1_1fftw__impl_a94e5dea61b320ea677e1ac9e54ce9a9f}} 
+Plan\+Map {\bfseries m\+\_\+plans}
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/src/\+F\+F\+T/ei\+\_\+fftw\+\_\+impl.\+h\end{DoxyCompactItemize}

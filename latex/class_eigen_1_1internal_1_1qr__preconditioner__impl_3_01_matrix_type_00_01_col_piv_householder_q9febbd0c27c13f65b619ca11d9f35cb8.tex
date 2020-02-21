@@ -1,0 +1,35 @@
+\hypertarget{class_eigen_1_1internal_1_1qr__preconditioner__impl_3_01_matrix_type_00_01_col_piv_householder_q9febbd0c27c13f65b619ca11d9f35cb8}{}\doxysection{Eigen\+::internal\+::qr\+\_\+preconditioner\+\_\+impl$<$ Matrix\+Type, Col\+Piv\+Householder\+Q\+R\+Preconditioner, Precondition\+If\+More\+Cols\+Than\+Rows, true $>$ Class Template Reference}
+\label{class_eigen_1_1internal_1_1qr__preconditioner__impl_3_01_matrix_type_00_01_col_piv_householder_q9febbd0c27c13f65b619ca11d9f35cb8}\index{Eigen::internal::qr\_preconditioner\_impl$<$ MatrixType, ColPivHouseholderQRPreconditioner, PreconditionIfMoreColsThanRows, true $>$@{Eigen::internal::qr\_preconditioner\_impl$<$ MatrixType, ColPivHouseholderQRPreconditioner, PreconditionIfMoreColsThanRows, true $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1qr__preconditioner__impl_3_01_matrix_type_00_01_col_piv_householder_q9febbd0c27c13f65b619ca11d9f35cb8_a2030949eef1610eb68f18dcd7465dac4}\label{class_eigen_1_1internal_1_1qr__preconditioner__impl_3_01_matrix_type_00_01_col_piv_householder_q9febbd0c27c13f65b619ca11d9f35cb8_a2030949eef1610eb68f18dcd7465dac4}} 
+enum \{ \newline
+{\bfseries Rows\+At\+Compile\+Time} = Matrix\+Type\+::Rows\+At\+Compile\+Time, 
+{\bfseries Cols\+At\+Compile\+Time} = Matrix\+Type\+::Cols\+At\+Compile\+Time, 
+{\bfseries Max\+Rows\+At\+Compile\+Time} = Matrix\+Type\+::Max\+Rows\+At\+Compile\+Time, 
+{\bfseries Max\+Cols\+At\+Compile\+Time} = Matrix\+Type\+::Max\+Cols\+At\+Compile\+Time, 
+\newline
+{\bfseries Tr\+Options}
+ \}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1qr__preconditioner__impl_3_01_matrix_type_00_01_col_piv_householder_q9febbd0c27c13f65b619ca11d9f35cb8_a85b6c5ee23a5920211586a22d33c73a9}\label{class_eigen_1_1internal_1_1qr__preconditioner__impl_3_01_matrix_type_00_01_col_piv_householder_q9febbd0c27c13f65b619ca11d9f35cb8_a85b6c5ee23a5920211586a22d33c73a9}} 
+typedef Matrix\+Type\+::\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1qr__preconditioner__impl_3_01_matrix_type_00_01_col_piv_householder_q9febbd0c27c13f65b619ca11d9f35cb8_a58578c89efb3fbe5e0356412694f873f}\label{class_eigen_1_1internal_1_1qr__preconditioner__impl_3_01_matrix_type_00_01_col_piv_householder_q9febbd0c27c13f65b619ca11d9f35cb8_a58578c89efb3fbe5e0356412694f873f}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ Scalar, Cols\+At\+Compile\+Time, Rows\+At\+Compile\+Time, Tr\+Options, Max\+Cols\+At\+Compile\+Time, Max\+Rows\+At\+Compile\+Time $>$ {\bfseries Transpose\+Type\+With\+Same\+Storage\+Order}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1qr__preconditioner__impl_3_01_matrix_type_00_01_col_piv_householder_q9febbd0c27c13f65b619ca11d9f35cb8_ab4cbdc0bda98095ba9bbae49ea1d550d}\label{class_eigen_1_1internal_1_1qr__preconditioner__impl_3_01_matrix_type_00_01_col_piv_householder_q9febbd0c27c13f65b619ca11d9f35cb8_ab4cbdc0bda98095ba9bbae49ea1d550d}} 
+void {\bfseries allocate} (const \mbox{\hyperlink{class_eigen_1_1_jacobi_s_v_d}{Jacobi\+S\+VD}}$<$ Matrix\+Type, \mbox{\hyperlink{group__enums_gga46eba0d5c621f590b8cf1b53af31d56eabd2e2f4875c5b4b6e602a433d90c4e5e}{Col\+Piv\+Householder\+Q\+R\+Preconditioner}} $>$ \&svd)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1qr__preconditioner__impl_3_01_matrix_type_00_01_col_piv_householder_q9febbd0c27c13f65b619ca11d9f35cb8_a0ab01429feb699987a2e7003327e4ba5}\label{class_eigen_1_1internal_1_1qr__preconditioner__impl_3_01_matrix_type_00_01_col_piv_householder_q9febbd0c27c13f65b619ca11d9f35cb8_a0ab01429feb699987a2e7003327e4ba5}} 
+bool {\bfseries run} (\mbox{\hyperlink{class_eigen_1_1_jacobi_s_v_d}{Jacobi\+S\+VD}}$<$ Matrix\+Type, \mbox{\hyperlink{group__enums_gga46eba0d5c621f590b8cf1b53af31d56eabd2e2f4875c5b4b6e602a433d90c4e5e}{Col\+Piv\+Householder\+Q\+R\+Preconditioner}} $>$ \&svd, const Matrix\+Type \&matrix)
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+S\+V\+D/Jacobi\+S\+V\+D.\+h\end{DoxyCompactItemize}

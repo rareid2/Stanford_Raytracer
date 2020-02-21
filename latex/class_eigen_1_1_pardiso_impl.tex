@@ -1,0 +1,199 @@
+\hypertarget{class_eigen_1_1_pardiso_impl}{}\doxysection{Eigen\+::Pardiso\+Impl$<$ Derived $>$ Class Template Reference}
+\label{class_eigen_1_1_pardiso_impl}\index{Eigen::PardisoImpl$<$ Derived $>$@{Eigen::PardisoImpl$<$ Derived $>$}}
+Inheritance diagram for Eigen\+::Pardiso\+Impl$<$ Derived $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_eigen_1_1_pardiso_impl}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pardiso_impl_a1d0d18c447a9799662d6a8cd0f9583f3}\label{class_eigen_1_1_pardiso_impl_a1d0d18c447a9799662d6a8cd0f9583f3}} 
+enum \{ {\bfseries Scalar\+Is\+Complex} = Num\+Traits$<$Scalar$>$\+::Is\+Complex, 
+{\bfseries Cols\+At\+Compile\+Time} = Dynamic, 
+{\bfseries Max\+Cols\+At\+Compile\+Time} = Dynamic
+ \}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pardiso_impl_a2f2436d02c24adffa86fd417ce12b7c3}\label{class_eigen_1_1_pardiso_impl_a2f2436d02c24adffa86fd417ce12b7c3}} 
+typedef Traits\+::\+Matrix\+Type {\bfseries Matrix\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pardiso_impl_ae546657194f55140629bac75a8619769}\label{class_eigen_1_1_pardiso_impl_ae546657194f55140629bac75a8619769}} 
+typedef Traits\+::\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pardiso_impl_a4a4dfb3a20c538cd373f4b62de9c5fed}\label{class_eigen_1_1_pardiso_impl_a4a4dfb3a20c538cd373f4b62de9c5fed}} 
+typedef Traits\+::\+Real\+Scalar {\bfseries Real\+Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pardiso_impl_a234a0c3536cccbeabcfe9ed8376a3691}\label{class_eigen_1_1_pardiso_impl_a234a0c3536cccbeabcfe9ed8376a3691}} 
+typedef Traits\+::\+Storage\+Index {\bfseries Storage\+Index}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pardiso_impl_a970eeb6d1193e63762adb8c7a06df581}\label{class_eigen_1_1_pardiso_impl_a970eeb6d1193e63762adb8c7a06df581}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}}$<$ Scalar, \mbox{\hyperlink{group__enums_ggaacded1a18ae58b0f554751f6cdf9eb13a77c993a8d9f6efe5c1159fb2ab07dd4f}{Row\+Major}}, Storage\+Index $>$ {\bfseries Sparse\+Matrix\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pardiso_impl_a80b4f80cc8041abae10fe370172143fa}\label{class_eigen_1_1_pardiso_impl_a80b4f80cc8041abae10fe370172143fa}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ Scalar, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}, 1 $>$ {\bfseries Vector\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pardiso_impl_a90be930fec075f5fd78b9082f720d56b}\label{class_eigen_1_1_pardiso_impl_a90be930fec075f5fd78b9082f720d56b}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ Storage\+Index, 1, Matrix\+Type\+::\+Cols\+At\+Compile\+Time $>$ {\bfseries Int\+Row\+Vector\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pardiso_impl_a11e6b204912c77d1eceeb05f712b946b}\label{class_eigen_1_1_pardiso_impl_a11e6b204912c77d1eceeb05f712b946b}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ Storage\+Index, Matrix\+Type\+::\+Rows\+At\+Compile\+Time, 1 $>$ {\bfseries Int\+Col\+Vector\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pardiso_impl_a5b0f199e9396b2aaac3bf80d34ac10ec}\label{class_eigen_1_1_pardiso_impl_a5b0f199e9396b2aaac3bf80d34ac10ec}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_array}{Array}}$<$ Storage\+Index, 64, 1, \mbox{\hyperlink{group__enums_ggaacded1a18ae58b0f554751f6cdf9eb13a56908522e51443a0aa0567f879c2e78a}{Dont\+Align}} $>$ {\bfseries Parameter\+Type}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pardiso_impl_a52a56fde447df457c27f808ae81857a6}\label{class_eigen_1_1_pardiso_impl_a52a56fde447df457c27f808ae81857a6}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries cols} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pardiso_impl_a4da5aaafb4964daee9855b897ebc3a4b}\label{class_eigen_1_1_pardiso_impl_a4da5aaafb4964daee9855b897ebc3a4b}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries rows} () const
+\item 
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} \mbox{\hyperlink{class_eigen_1_1_pardiso_impl_a7dce1175518593e33d32e30ab0ffee3b}{info}} () const
+\begin{DoxyCompactList}\small\item\em Reports whether previous computation was successful. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_eigen_1_1_array}{Parameter\+Type}} \& \mbox{\hyperlink{class_eigen_1_1_pardiso_impl_a42a7983796076edc52e0e8d2869610ec}{pardiso\+Parameter\+Array}} ()
+\item 
+Derived \& \mbox{\hyperlink{class_eigen_1_1_pardiso_impl_af1773ce06014b55a69cd42daf34eeec4}{analyze\+Pattern}} (const Matrix\+Type \&matrix)
+\item 
+Derived \& \mbox{\hyperlink{class_eigen_1_1_pardiso_impl_a6a4c092c5fb581a946d3c4e5ec347dfb}{factorize}} (const Matrix\+Type \&matrix)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pardiso_impl_a01d51b4c6a2aa4d269f77d9f12ab8c34}\label{class_eigen_1_1_pardiso_impl_a01d51b4c6a2aa4d269f77d9f12ab8c34}} 
+Derived \& {\bfseries compute} (const Matrix\+Type \&matrix)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pardiso_impl_a1735d09abb438a282ddca4c5bd05d993}\label{class_eigen_1_1_pardiso_impl_a1735d09abb438a282ddca4c5bd05d993}} 
+{\footnotesize template$<$typename Rhs , typename Dest $>$ }\\void {\bfseries \+\_\+solve\+\_\+impl} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Rhs $>$ \&b, \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Dest $>$ \&dest) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pardiso_impl_a5bc3793e432180b0e990bb8fedcb302d}\label{class_eigen_1_1_pardiso_impl_a5bc3793e432180b0e990bb8fedcb302d}} 
+{\footnotesize template$<$typename B\+Derived , typename X\+Derived $>$ }\\void {\bfseries \+\_\+solve\+\_\+impl} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ B\+Derived $>$ \&b, \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ X\+Derived $>$ \&x) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pardiso_impl_a886c757fea6fe1d992a66524213f14fb}\label{class_eigen_1_1_pardiso_impl_a886c757fea6fe1d992a66524213f14fb}} 
+{\footnotesize template$<$typename Rhs , typename Dest $>$ }\\void {\bfseries \+\_\+solve\+\_\+impl} (const \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base}{Sparse\+Matrix\+Base}}$<$ Rhs $>$ \&b, \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base}{Sparse\+Matrix\+Base}}$<$ Dest $>$ \&dest) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pardiso_impl_aebf63524acad1cd560a3b293faf4df7e}\label{class_eigen_1_1_pardiso_impl_aebf63524acad1cd560a3b293faf4df7e}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_sparse_solver_base}{Sparse\+Solver\+Base}}$<$ Derived $>$ {\bfseries Base}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pardiso_impl_a8a43f20311beb4b0571cb9d0c6703277}\label{class_eigen_1_1_pardiso_impl_a8a43f20311beb4b0571cb9d0c6703277}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1pardiso__traits}{internal\+::pardiso\+\_\+traits}}$<$ Derived $>$ {\bfseries Traits}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pardiso_impl_aa480e5ca316d25bb2b556ed5473ab0de}\label{class_eigen_1_1_pardiso_impl_aa480e5ca316d25bb2b556ed5473ab0de}} 
+void {\bfseries pardiso\+Release} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pardiso_impl_a4d13fa79acda71b1164e07d61156462f}\label{class_eigen_1_1_pardiso_impl_a4d13fa79acda71b1164e07d61156462f}} 
+void {\bfseries pardiso\+Init} (int type)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pardiso_impl_ad34dfcda0a66d31a68b12bb8fc28f504}\label{class_eigen_1_1_pardiso_impl_ad34dfcda0a66d31a68b12bb8fc28f504}} 
+void {\bfseries manage\+Error\+Code} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} error) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pardiso_impl_ad213fb2c2199ca597b96f1f79653637f}\label{class_eigen_1_1_pardiso_impl_ad213fb2c2199ca597b96f1f79653637f}} 
+Derived \& {\bfseries derived} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pardiso_impl_af5f23a7e048060c3082c5a1ddfa91932}\label{class_eigen_1_1_pardiso_impl_af5f23a7e048060c3082c5a1ddfa91932}} 
+const Derived \& {\bfseries derived} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pardiso_impl_a48bb9ea75a9d6f123211a3606282424a}\label{class_eigen_1_1_pardiso_impl_a48bb9ea75a9d6f123211a3606282424a}} 
+\mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix\+Type}} {\bfseries m\+\_\+matrix}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pardiso_impl_aa46efea01be27c3b885ba115322b0a10}\label{class_eigen_1_1_pardiso_impl_aa46efea01be27c3b885ba115322b0a10}} 
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} {\bfseries m\+\_\+info}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pardiso_impl_afdf4efc140a9dc2d4b67aa2d05cb1e5e}\label{class_eigen_1_1_pardiso_impl_afdf4efc140a9dc2d4b67aa2d05cb1e5e}} 
+bool {\bfseries m\+\_\+analysis\+Is\+Ok}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pardiso_impl_a8e463ece1fbf394b1a87f4f44b5c7e8c}\label{class_eigen_1_1_pardiso_impl_a8e463ece1fbf394b1a87f4f44b5c7e8c}} 
+bool {\bfseries m\+\_\+factorization\+Is\+Ok}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pardiso_impl_a0601bfff34aeb0a19e438a633890cf29}\label{class_eigen_1_1_pardiso_impl_a0601bfff34aeb0a19e438a633890cf29}} 
+Storage\+Index {\bfseries m\+\_\+type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pardiso_impl_a88149995a0eb64e4588283e6e5c47127}\label{class_eigen_1_1_pardiso_impl_a88149995a0eb64e4588283e6e5c47127}} 
+Storage\+Index {\bfseries m\+\_\+msglvl}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pardiso_impl_a076c4728bcd09e2beb52d81f91037057}\label{class_eigen_1_1_pardiso_impl_a076c4728bcd09e2beb52d81f91037057}} 
+void $\ast$ {\bfseries m\+\_\+pt} \mbox{[}64\mbox{]}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pardiso_impl_aee886545d4a6cedc6a4b7733da1ba46b}\label{class_eigen_1_1_pardiso_impl_aee886545d4a6cedc6a4b7733da1ba46b}} 
+\mbox{\hyperlink{class_eigen_1_1_array}{Parameter\+Type}} {\bfseries m\+\_\+iparm}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pardiso_impl_a385da4c27886b82e0123a79f6805791d}\label{class_eigen_1_1_pardiso_impl_a385da4c27886b82e0123a79f6805791d}} 
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Int\+Col\+Vector\+Type}} {\bfseries m\+\_\+perm}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pardiso_impl_a7ae5cec21668dbe42aca97ef39bd8788}\label{class_eigen_1_1_pardiso_impl_a7ae5cec21668dbe42aca97ef39bd8788}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries m\+\_\+size}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pardiso_impl_ac52101f69d048d5c4b036eadf1f13673}\label{class_eigen_1_1_pardiso_impl_ac52101f69d048d5c4b036eadf1f13673}} 
+bool {\bfseries m\+\_\+is\+Initialized}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_pardiso_impl_af1773ce06014b55a69cd42daf34eeec4}\label{class_eigen_1_1_pardiso_impl_af1773ce06014b55a69cd42daf34eeec4}} 
+\index{Eigen::PardisoImpl$<$ Derived $>$@{Eigen::PardisoImpl$<$ Derived $>$}!analyzePattern@{analyzePattern}}
+\index{analyzePattern@{analyzePattern}!Eigen::PardisoImpl$<$ Derived $>$@{Eigen::PardisoImpl$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{analyzePattern()}{analyzePattern()}}
+{\footnotesize\ttfamily template$<$class Derived $>$ \\
+Derived \& \mbox{\hyperlink{class_eigen_1_1_pardiso_impl}{Eigen\+::\+Pardiso\+Impl}}$<$ Derived $>$\+::analyze\+Pattern (\begin{DoxyParamCaption}\item[{const Matrix\+Type \&}]{matrix }\end{DoxyParamCaption})}
+
+Performs a symbolic decomposition on the sparcity of {\itshape matrix}.
+
+This function is particularly useful when solving for several problems having the same structure.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_pardiso_impl_a6a4c092c5fb581a946d3c4e5ec347dfb}{factorize()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_pardiso_impl_a6a4c092c5fb581a946d3c4e5ec347dfb}\label{class_eigen_1_1_pardiso_impl_a6a4c092c5fb581a946d3c4e5ec347dfb}} 
+\index{Eigen::PardisoImpl$<$ Derived $>$@{Eigen::PardisoImpl$<$ Derived $>$}!factorize@{factorize}}
+\index{factorize@{factorize}!Eigen::PardisoImpl$<$ Derived $>$@{Eigen::PardisoImpl$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{factorize()}{factorize()}}
+{\footnotesize\ttfamily template$<$class Derived $>$ \\
+Derived \& \mbox{\hyperlink{class_eigen_1_1_pardiso_impl}{Eigen\+::\+Pardiso\+Impl}}$<$ Derived $>$\+::factorize (\begin{DoxyParamCaption}\item[{const Matrix\+Type \&}]{matrix }\end{DoxyParamCaption})}
+
+Performs a numeric decomposition of {\itshape matrix} 
+
+The given matrix must has the same sparcity than the matrix on which the symbolic decomposition has been performed.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_pardiso_impl_af1773ce06014b55a69cd42daf34eeec4}{analyze\+Pattern()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_pardiso_impl_a7dce1175518593e33d32e30ab0ffee3b}\label{class_eigen_1_1_pardiso_impl_a7dce1175518593e33d32e30ab0ffee3b}} 
+\index{Eigen::PardisoImpl$<$ Derived $>$@{Eigen::PardisoImpl$<$ Derived $>$}!info@{info}}
+\index{info@{info}!Eigen::PardisoImpl$<$ Derived $>$@{Eigen::PardisoImpl$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{info()}{info()}}
+{\footnotesize\ttfamily template$<$class Derived $>$ \\
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} \mbox{\hyperlink{class_eigen_1_1_pardiso_impl}{Eigen\+::\+Pardiso\+Impl}}$<$ Derived $>$\+::info (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Reports whether previous computation was successful. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily Success} if computation was succesful, {\ttfamily Numerical\+Issue} if the matrix appears to be negative. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_pardiso_impl_a42a7983796076edc52e0e8d2869610ec}\label{class_eigen_1_1_pardiso_impl_a42a7983796076edc52e0e8d2869610ec}} 
+\index{Eigen::PardisoImpl$<$ Derived $>$@{Eigen::PardisoImpl$<$ Derived $>$}!pardisoParameterArray@{pardisoParameterArray}}
+\index{pardisoParameterArray@{pardisoParameterArray}!Eigen::PardisoImpl$<$ Derived $>$@{Eigen::PardisoImpl$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{pardisoParameterArray()}{pardisoParameterArray()}}
+{\footnotesize\ttfamily template$<$class Derived $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_array}{Parameter\+Type}}\& \mbox{\hyperlink{class_eigen_1_1_pardiso_impl}{Eigen\+::\+Pardiso\+Impl}}$<$ Derived $>$\+::pardiso\+Parameter\+Array (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyWarning}{Warning}
+for advanced usage only. 
+\end{DoxyWarning}
+\begin{DoxyReturn}{Returns}
+a reference to the parameter array controlling P\+A\+R\+D\+I\+SO. See the P\+A\+R\+D\+I\+SO manual to know how to use it. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Pardiso\+Support/Pardiso\+Support.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,79 @@
+\hypertarget{classblitz__interface}{}\doxysection{blitz\+\_\+interface$<$ real $>$ Class Template Reference}
+\label{classblitz__interface}\index{blitz\_interface$<$ real $>$@{blitz\_interface$<$ real $>$}}
+Inheritance diagram for blitz\+\_\+interface$<$ real $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classblitz__interface}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classblitz__interface_a71bc6d9fcb4e572cd654031859baef7e}\label{classblitz__interface_a71bc6d9fcb4e572cd654031859baef7e}} 
+typedef real {\bfseries real\+\_\+type}
+\item 
+\mbox{\Hypertarget{classblitz__interface_a0f70f5e547319d7d9d401957a03598e7}\label{classblitz__interface_a0f70f5e547319d7d9d401957a03598e7}} 
+typedef std\+::vector$<$ real $>$ {\bfseries stl\+\_\+vector}
+\item 
+\mbox{\Hypertarget{classblitz__interface_a30aa4331eccca708856e133b66b164dd}\label{classblitz__interface_a30aa4331eccca708856e133b66b164dd}} 
+typedef std\+::vector$<$ stl\+\_\+vector $>$ {\bfseries stl\+\_\+matrix}
+\item 
+\mbox{\Hypertarget{classblitz__interface_aa24290043187ce20da802ad0f225b3f6}\label{classblitz__interface_aa24290043187ce20da802ad0f225b3f6}} 
+typedef blitz\+::\+Array$<$ real, 2 $>$ {\bfseries gene\+\_\+matrix}
+\item 
+\mbox{\Hypertarget{classblitz__interface_ad808bd31468f44d2ef93007ff178274c}\label{classblitz__interface_ad808bd31468f44d2ef93007ff178274c}} 
+typedef blitz\+::\+Array$<$ real, 1 $>$ {\bfseries gene\+\_\+vector}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classblitz__interface_a8b0112aaef84c3fcd8c54666b12744b4}\label{classblitz__interface_a8b0112aaef84c3fcd8c54666b12744b4}} 
+static std\+::string {\bfseries name} ()
+\item 
+\mbox{\Hypertarget{classblitz__interface_a6acfa1927d115d1dee3321d7d20750f6}\label{classblitz__interface_a6acfa1927d115d1dee3321d7d20750f6}} 
+static void {\bfseries free\+\_\+matrix} (gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, int N)
+\item 
+\mbox{\Hypertarget{classblitz__interface_a3e1d5fbd89956497407996500c08b997}\label{classblitz__interface_a3e1d5fbd89956497407996500c08b997}} 
+static void {\bfseries free\+\_\+vector} (gene\+\_\+vector \&\mbox{\hyperlink{class_eigen_1_1_matrix}{B}})
+\item 
+\mbox{\Hypertarget{classblitz__interface_a1b7993acbb17ef8e3735f3eb0df1ef9a}\label{classblitz__interface_a1b7993acbb17ef8e3735f3eb0df1ef9a}} 
+static void {\bfseries matrix\+\_\+from\+\_\+stl} (gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, stl\+\_\+matrix \&A\+\_\+stl)
+\item 
+\mbox{\Hypertarget{classblitz__interface_a45daaf20a09348ae29eb82f09e39da0b}\label{classblitz__interface_a45daaf20a09348ae29eb82f09e39da0b}} 
+static void {\bfseries vector\+\_\+from\+\_\+stl} (gene\+\_\+vector \&\mbox{\hyperlink{class_eigen_1_1_matrix}{B}}, stl\+\_\+vector \&B\+\_\+stl)
+\item 
+\mbox{\Hypertarget{classblitz__interface_a81033396864ea2ff2832a872adbaff77}\label{classblitz__interface_a81033396864ea2ff2832a872adbaff77}} 
+static void {\bfseries vector\+\_\+to\+\_\+stl} (gene\+\_\+vector \&\mbox{\hyperlink{class_eigen_1_1_matrix}{B}}, stl\+\_\+vector \&B\+\_\+stl)
+\item 
+\mbox{\Hypertarget{classblitz__interface_a7aac6f5a1a33cfede0a6fa024cd1c2b1}\label{classblitz__interface_a7aac6f5a1a33cfede0a6fa024cd1c2b1}} 
+static void {\bfseries matrix\+\_\+to\+\_\+stl} (gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, stl\+\_\+matrix \&A\+\_\+stl)
+\item 
+\mbox{\Hypertarget{classblitz__interface_ab49ec7669bb97387a962bee716cd0d8a}\label{classblitz__interface_ab49ec7669bb97387a962bee716cd0d8a}} 
+static void {\bfseries matrix\+\_\+matrix\+\_\+product} (const gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, const gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{B}}, gene\+\_\+matrix \&X, int N)
+\item 
+\mbox{\Hypertarget{classblitz__interface_ab0c6a929cabf395e90a7e699fb0780f6}\label{classblitz__interface_ab0c6a929cabf395e90a7e699fb0780f6}} 
+static void {\bfseries ata\+\_\+product} (const gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, gene\+\_\+matrix \&X, int N)
+\item 
+\mbox{\Hypertarget{classblitz__interface_a315fc012f5b096941c22cd87e3f36f7f}\label{classblitz__interface_a315fc012f5b096941c22cd87e3f36f7f}} 
+static void {\bfseries aat\+\_\+product} (const gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, gene\+\_\+matrix \&X, int N)
+\item 
+\mbox{\Hypertarget{classblitz__interface_ac4ee2d4264040c22fda37ab6fdc3218d}\label{classblitz__interface_ac4ee2d4264040c22fda37ab6fdc3218d}} 
+static void {\bfseries matrix\+\_\+vector\+\_\+product} (gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, gene\+\_\+vector \&\mbox{\hyperlink{class_eigen_1_1_matrix}{B}}, gene\+\_\+vector \&X, int N)
+\item 
+\mbox{\Hypertarget{classblitz__interface_a5a4a55988c97500c67bea493f813f221}\label{classblitz__interface_a5a4a55988c97500c67bea493f813f221}} 
+static void {\bfseries atv\+\_\+product} (gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, gene\+\_\+vector \&\mbox{\hyperlink{class_eigen_1_1_matrix}{B}}, gene\+\_\+vector \&X, int N)
+\item 
+\mbox{\Hypertarget{classblitz__interface_a1b896d7260ddb53711096374c0491f6c}\label{classblitz__interface_a1b896d7260ddb53711096374c0491f6c}} 
+static void {\bfseries axpy} (const real coef, const gene\+\_\+vector \&X, gene\+\_\+vector \&Y, int N)
+\item 
+\mbox{\Hypertarget{classblitz__interface_aca1bec53d9614d9fd7ff2df1a95b7965}\label{classblitz__interface_aca1bec53d9614d9fd7ff2df1a95b7965}} 
+static void {\bfseries copy\+\_\+matrix} (const gene\+\_\+matrix \&source, gene\+\_\+matrix \&cible, int N)
+\item 
+\mbox{\Hypertarget{classblitz__interface_a8aea6723caaf492cf66f34b7eeff3a55}\label{classblitz__interface_a8aea6723caaf492cf66f34b7eeff3a55}} 
+static void {\bfseries copy\+\_\+vector} (const gene\+\_\+vector \&source, gene\+\_\+vector \&cible, int N)
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/bench/btl/libs/blitz/blitz\+\_\+interface.\+hh\end{DoxyCompactItemize}

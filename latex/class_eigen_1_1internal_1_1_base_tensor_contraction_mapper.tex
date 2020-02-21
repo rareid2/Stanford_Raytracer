@@ -1,0 +1,38 @@
+\hypertarget{class_eigen_1_1internal_1_1_base_tensor_contraction_mapper}{}\doxysection{Eigen\+::internal\+::Base\+Tensor\+Contraction\+Mapper$<$ Scalar, Index, side, Tensor, nocontract\+\_\+t, contract\+\_\+t, packet\+\_\+size, inner\+\_\+dim\+\_\+contiguous, inner\+\_\+dim\+\_\+reordered, Alignment $>$ Class Template Reference}
+\label{class_eigen_1_1internal_1_1_base_tensor_contraction_mapper}\index{Eigen::internal::BaseTensorContractionMapper$<$ Scalar, Index, side, Tensor, nocontract\_t, contract\_t, packet\_size, inner\_dim\_contiguous, inner\_dim\_reordered, Alignment $>$@{Eigen::internal::BaseTensorContractionMapper$<$ Scalar, Index, side, Tensor, nocontract\_t, contract\_t, packet\_size, inner\_dim\_contiguous, inner\_dim\_reordered, Alignment $>$}}
+Inheritance diagram for Eigen\+::internal\+::Base\+Tensor\+Contraction\+Mapper$<$ Scalar, Index, side, Tensor, nocontract\+\_\+t, contract\+\_\+t, packet\+\_\+size, inner\+\_\+dim\+\_\+contiguous, inner\+\_\+dim\+\_\+reordered, Alignment $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.114428cm]{class_eigen_1_1internal_1_1_base_tensor_contraction_mapper}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_base_tensor_contraction_mapper_ad9bd19a6c7c8dac105ffc74c5b381a80}\label{class_eigen_1_1internal_1_1_base_tensor_contraction_mapper_ad9bd19a6c7c8dac105ffc74c5b381a80}} 
+typedef \mbox{\hyperlink{class_eigen_1_1internal_1_1_simple_tensor_contraction_mapper}{Simple\+Tensor\+Contraction\+Mapper}}$<$ Scalar, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}, side, \mbox{\hyperlink{class_eigen_1_1_tensor}{Tensor}}, nocontract\+\_\+t, contract\+\_\+t, packet\+\_\+size, inner\+\_\+dim\+\_\+contiguous, Alignment $>$ {\bfseries Parent\+Mapper}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_base_tensor_contraction_mapper_a368cf313bea3f39e4bf86e7d0131c9fb}\label{class_eigen_1_1internal_1_1_base_tensor_contraction_mapper_a368cf313bea3f39e4bf86e7d0131c9fb}} 
+typedef Tensor\+::\+Packet\+Return\+Type {\bfseries Packet}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_base_tensor_contraction_mapper_a8f37374e5a116772a53af6b262844660}\label{class_eigen_1_1internal_1_1_base_tensor_contraction_mapper_a8f37374e5a116772a53af6b262844660}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1unpacket__traits}{unpacket\+\_\+traits}}$<$ Packet $>$\+::\mbox{\hyperlink{struct_eigen_1_1half}{half}} {\bfseries Half\+Packet}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_base_tensor_contraction_mapper_ad9d679a86f141239fa3742787c73b2e2}\label{class_eigen_1_1internal_1_1_base_tensor_contraction_mapper_ad9d679a86f141239fa3742787c73b2e2}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC {\bfseries Base\+Tensor\+Contraction\+Mapper} (const \mbox{\hyperlink{class_eigen_1_1_tensor}{Tensor}} \&tensor, const nocontract\+\_\+t \&nocontract\+\_\+strides, const nocontract\+\_\+t \&ij\+\_\+strides, const contract\+\_\+t \&contract\+\_\+strides, const contract\+\_\+t \&k\+\_\+strides)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_base_tensor_contraction_mapper_ae5029de464b3b11235e822404e81a464}\label{class_eigen_1_1internal_1_1_base_tensor_contraction_mapper_ae5029de464b3b11235e822404e81a464}} 
+{\footnotesize template$<$int Alignment\+Type$>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Packet {\bfseries load\+Packet} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} i, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} j) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_base_tensor_contraction_mapper_aeb8735af5f4ed04f6001addde8fae7ef}\label{class_eigen_1_1internal_1_1_base_tensor_contraction_mapper_aeb8735af5f4ed04f6001addde8fae7ef}} 
+{\footnotesize template$<$int Alignment\+Type$>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_triplet}{Half\+Packet}} {\bfseries load\+Half\+Packet} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} i, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} j) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/\+C\+X\+X11/src/\+Tensor/Tensor\+Contraction\+Mapper.\+h\end{DoxyCompactItemize}

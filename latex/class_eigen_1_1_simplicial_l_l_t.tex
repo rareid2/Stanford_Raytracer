@@ -1,0 +1,172 @@
+\hypertarget{class_eigen_1_1_simplicial_l_l_t}{}\doxysection{Eigen\+::Simplicial\+L\+LT Class Reference}
+\label{class_eigen_1_1_simplicial_l_l_t}\index{Eigen::SimplicialLLT@{Eigen::SimplicialLLT}}
+
+
+A direct sparse \mbox{\hyperlink{class_eigen_1_1_l_l_t}{L\+LT}} Cholesky factorizations.  
+
+
+
+
+{\ttfamily \#include $<$Simplicial\+Cholesky.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_l_l_t_a4cd0ad7e2340f9ae36638b32172fab37}\label{class_eigen_1_1_simplicial_l_l_t_a4cd0ad7e2340f9ae36638b32172fab37}} 
+enum \{ {\bfseries Up\+Lo} = \+\_\+\+Up\+Lo
+ \}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_l_l_t_a911452eefeb22443f97cfbb4f1ef020d}\label{class_eigen_1_1_simplicial_l_l_t_a911452eefeb22443f97cfbb4f1ef020d}} 
+typedef \+\_\+\+Matrix\+Type {\bfseries Matrix\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_l_l_t_aee0789f07ecf9d00d463c5d3e50b623c}\label{class_eigen_1_1_simplicial_l_l_t_aee0789f07ecf9d00d463c5d3e50b623c}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_simplicial_cholesky_base}{Simplicial\+Cholesky\+Base}}$<$ \mbox{\hyperlink{class_eigen_1_1_simplicial_l_l_t}{Simplicial\+L\+LT}} $>$ {\bfseries Base}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_l_l_t_a10c93a32960fe4eb7d55d96075a9b0bc}\label{class_eigen_1_1_simplicial_l_l_t_a10c93a32960fe4eb7d55d96075a9b0bc}} 
+typedef Matrix\+Type\+::\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_l_l_t_a6b1c3a2f8ac026a40caaefaca01f2b0e}\label{class_eigen_1_1_simplicial_l_l_t_a6b1c3a2f8ac026a40caaefaca01f2b0e}} 
+typedef Matrix\+Type\+::\+Real\+Scalar {\bfseries Real\+Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_l_l_t_afc187e6870fb96b64390f8e2cca3f35f}\label{class_eigen_1_1_simplicial_l_l_t_afc187e6870fb96b64390f8e2cca3f35f}} 
+typedef Matrix\+Type\+::\+Storage\+Index {\bfseries Storage\+Index}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_l_l_t_afbe04a37b6a722db8e7f77912891b840}\label{class_eigen_1_1_simplicial_l_l_t_afbe04a37b6a722db8e7f77912891b840}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}}$<$ Scalar, \mbox{\hyperlink{group__enums_ggaacded1a18ae58b0f554751f6cdf9eb13a0103672ae41005ab03b4176c765afd62}{Col\+Major}}, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} $>$ {\bfseries Chol\+Matrix\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_l_l_t_a2adc7232b00b37a8f0eafa15551a4b4b}\label{class_eigen_1_1_simplicial_l_l_t_a2adc7232b00b37a8f0eafa15551a4b4b}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ Scalar, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}, 1 $>$ {\bfseries Vector\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_l_l_t_aac61927828f8ff1a3d5d19ee006462f3}\label{class_eigen_1_1_simplicial_l_l_t_aac61927828f8ff1a3d5d19ee006462f3}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_simplicial_l_l_t}{Simplicial\+L\+LT}} $>$ {\bfseries Traits}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_l_l_t_ace0b6daae06a5179014f494169eb4bdb}\label{class_eigen_1_1_simplicial_l_l_t_ace0b6daae06a5179014f494169eb4bdb}} 
+typedef Traits\+::\+MatrixL {\bfseries MatrixL}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_l_l_t_a915597b8ca19ec0b6208dcf9ff7af2a6}\label{class_eigen_1_1_simplicial_l_l_t_a915597b8ca19ec0b6208dcf9ff7af2a6}} 
+typedef Traits\+::\+MatrixU {\bfseries MatrixU}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_simplicial_l_l_t_abd9294399538d5a62418cb0b62dc0cec}{Simplicial\+L\+LT}} ()
+\item 
+\mbox{\hyperlink{class_eigen_1_1_simplicial_l_l_t_a6df9cc66170620b7f53a4d39e2c8b4f1}{Simplicial\+L\+LT}} (const Matrix\+Type \&matrix)
+\item 
+const MatrixL \mbox{\hyperlink{class_eigen_1_1_simplicial_l_l_t_a232f994f0106fa405c4066f7dbf81c95}{matrixL}} () const
+\item 
+const MatrixU \mbox{\hyperlink{class_eigen_1_1_simplicial_l_l_t_a173073880c5fc17661b4505259de4aa1}{matrixU}} () const
+\item 
+\mbox{\hyperlink{class_eigen_1_1_simplicial_l_l_t}{Simplicial\+L\+LT}} \& \mbox{\hyperlink{class_eigen_1_1_simplicial_l_l_t_a329535cf4d5e5370cb8b5cacd8cb6a6a}{compute}} (const Matrix\+Type \&matrix)
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_simplicial_l_l_t_a0356f4b58924502dd71ce234ec358567}{analyze\+Pattern}} (const Matrix\+Type \&a)
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_simplicial_l_l_t_aae5b7771084e24f22f0074f6551db14f}{factorize}} (const Matrix\+Type \&a)
+\item 
+Scalar \mbox{\hyperlink{class_eigen_1_1_simplicial_l_l_t_a05a34e5f9da53de1205780bd991b310d}{determinant}} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A direct sparse \mbox{\hyperlink{class_eigen_1_1_l_l_t}{L\+LT}} Cholesky factorizations. 
+
+This class provides a L\+L$^\wedge$T Cholesky factorizations of sparse matrices that are selfadjoint and positive definite. The factorization allows for solving A.\+X = B where X and B can be either dense or sparse.
+
+In order to reduce the fill-\/in, a symmetric permutation P is applied prior to the factorization such that the factorized matrix is P A P$^\wedge$-\/1.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Matrix\+Type} & the type of the sparse matrix A, it must be a Sparse\+Matrix$<$$>$ \\
+\hline
+{\em \+\_\+\+Up\+Lo} & the triangular part that will be used for the computations. It can be Lower or Upper. Default is Lower. \\
+\hline
+{\em \+\_\+\+Ordering} & The ordering method to use, either A\+M\+D\+Ordering$<$$>$ or Natural\+Ordering$<$$>$. Default is A\+M\+D\+Ordering$<$$>$\\
+\hline
+\end{DoxyTemplParams}
+\textbackslash{}implsparsesolverconcept
+
+\begin{DoxySeeAlso}{See also}
+class \mbox{\hyperlink{class_eigen_1_1_simplicial_l_d_l_t}{Simplicial\+L\+D\+LT}}, class \mbox{\hyperlink{class_eigen_1_1_a_m_d_ordering}{A\+M\+D\+Ordering}}, class \mbox{\hyperlink{class_eigen_1_1_natural_ordering}{Natural\+Ordering}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_l_l_t_abd9294399538d5a62418cb0b62dc0cec}\label{class_eigen_1_1_simplicial_l_l_t_abd9294399538d5a62418cb0b62dc0cec}} 
+\index{Eigen::SimplicialLLT@{Eigen::SimplicialLLT}!SimplicialLLT@{SimplicialLLT}}
+\index{SimplicialLLT@{SimplicialLLT}!Eigen::SimplicialLLT@{Eigen::SimplicialLLT}}
+\doxysubsubsection{\texorpdfstring{SimplicialLLT()}{SimplicialLLT()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Eigen\+::\+Simplicial\+L\+L\+T\+::\+Simplicial\+L\+LT (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default constructor \mbox{\Hypertarget{class_eigen_1_1_simplicial_l_l_t_a6df9cc66170620b7f53a4d39e2c8b4f1}\label{class_eigen_1_1_simplicial_l_l_t_a6df9cc66170620b7f53a4d39e2c8b4f1}} 
+\index{Eigen::SimplicialLLT@{Eigen::SimplicialLLT}!SimplicialLLT@{SimplicialLLT}}
+\index{SimplicialLLT@{SimplicialLLT}!Eigen::SimplicialLLT@{Eigen::SimplicialLLT}}
+\doxysubsubsection{\texorpdfstring{SimplicialLLT()}{SimplicialLLT()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Eigen\+::\+Simplicial\+L\+L\+T\+::\+Simplicial\+L\+LT (\begin{DoxyParamCaption}\item[{const Matrix\+Type \&}]{matrix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+Constructs and performs the \mbox{\hyperlink{class_eigen_1_1_l_l_t}{L\+LT}} factorization of {\itshape matrix} 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_l_l_t_a0356f4b58924502dd71ce234ec358567}\label{class_eigen_1_1_simplicial_l_l_t_a0356f4b58924502dd71ce234ec358567}} 
+\index{Eigen::SimplicialLLT@{Eigen::SimplicialLLT}!analyzePattern@{analyzePattern}}
+\index{analyzePattern@{analyzePattern}!Eigen::SimplicialLLT@{Eigen::SimplicialLLT}}
+\doxysubsubsection{\texorpdfstring{analyzePattern()}{analyzePattern()}}
+{\footnotesize\ttfamily void Eigen\+::\+Simplicial\+L\+L\+T\+::analyze\+Pattern (\begin{DoxyParamCaption}\item[{const Matrix\+Type \&}]{a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Performs a symbolic decomposition on the sparcity of {\itshape matrix}.
+
+This function is particularly useful when solving for several problems having the same structure.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_simplicial_l_l_t_aae5b7771084e24f22f0074f6551db14f}{factorize()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_l_l_t_a329535cf4d5e5370cb8b5cacd8cb6a6a}\label{class_eigen_1_1_simplicial_l_l_t_a329535cf4d5e5370cb8b5cacd8cb6a6a}} 
+\index{Eigen::SimplicialLLT@{Eigen::SimplicialLLT}!compute@{compute}}
+\index{compute@{compute}!Eigen::SimplicialLLT@{Eigen::SimplicialLLT}}
+\doxysubsubsection{\texorpdfstring{compute()}{compute()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_eigen_1_1_simplicial_l_l_t}{Simplicial\+L\+LT}}\& Eigen\+::\+Simplicial\+L\+L\+T\+::compute (\begin{DoxyParamCaption}\item[{const Matrix\+Type \&}]{matrix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Computes the sparse Cholesky decomposition of {\itshape matrix} \mbox{\Hypertarget{class_eigen_1_1_simplicial_l_l_t_a05a34e5f9da53de1205780bd991b310d}\label{class_eigen_1_1_simplicial_l_l_t_a05a34e5f9da53de1205780bd991b310d}} 
+\index{Eigen::SimplicialLLT@{Eigen::SimplicialLLT}!determinant@{determinant}}
+\index{determinant@{determinant}!Eigen::SimplicialLLT@{Eigen::SimplicialLLT}}
+\doxysubsubsection{\texorpdfstring{determinant()}{determinant()}}
+{\footnotesize\ttfamily Scalar Eigen\+::\+Simplicial\+L\+L\+T\+::determinant (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the determinant of the underlying matrix from the current factorization 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_l_l_t_aae5b7771084e24f22f0074f6551db14f}\label{class_eigen_1_1_simplicial_l_l_t_aae5b7771084e24f22f0074f6551db14f}} 
+\index{Eigen::SimplicialLLT@{Eigen::SimplicialLLT}!factorize@{factorize}}
+\index{factorize@{factorize}!Eigen::SimplicialLLT@{Eigen::SimplicialLLT}}
+\doxysubsubsection{\texorpdfstring{factorize()}{factorize()}}
+{\footnotesize\ttfamily void Eigen\+::\+Simplicial\+L\+L\+T\+::factorize (\begin{DoxyParamCaption}\item[{const Matrix\+Type \&}]{a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Performs a numeric decomposition of {\itshape matrix} 
+
+The given matrix must has the same sparcity than the matrix on which the symbolic decomposition has been performed.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_simplicial_l_l_t_a0356f4b58924502dd71ce234ec358567}{analyze\+Pattern()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_l_l_t_a232f994f0106fa405c4066f7dbf81c95}\label{class_eigen_1_1_simplicial_l_l_t_a232f994f0106fa405c4066f7dbf81c95}} 
+\index{Eigen::SimplicialLLT@{Eigen::SimplicialLLT}!matrixL@{matrixL}}
+\index{matrixL@{matrixL}!Eigen::SimplicialLLT@{Eigen::SimplicialLLT}}
+\doxysubsubsection{\texorpdfstring{matrixL()}{matrixL()}}
+{\footnotesize\ttfamily const MatrixL Eigen\+::\+Simplicial\+L\+L\+T\+::matrixL (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+an expression of the factor L 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_l_l_t_a173073880c5fc17661b4505259de4aa1}\label{class_eigen_1_1_simplicial_l_l_t_a173073880c5fc17661b4505259de4aa1}} 
+\index{Eigen::SimplicialLLT@{Eigen::SimplicialLLT}!matrixU@{matrixU}}
+\index{matrixU@{matrixU}!Eigen::SimplicialLLT@{Eigen::SimplicialLLT}}
+\doxysubsubsection{\texorpdfstring{matrixU()}{matrixU()}}
+{\footnotesize\ttfamily const MatrixU Eigen\+::\+Simplicial\+L\+L\+T\+::matrixU (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+an expression of the factor U (= L$^\wedge$$\ast$) 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Sparse\+Cholesky/Simplicial\+Cholesky.\+h\end{DoxyCompactItemize}

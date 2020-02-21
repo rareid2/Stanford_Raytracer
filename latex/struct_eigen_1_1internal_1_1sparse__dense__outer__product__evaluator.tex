@@ -1,0 +1,71 @@
+\hypertarget{struct_eigen_1_1internal_1_1sparse__dense__outer__product__evaluator}{}\doxysection{Eigen\+::internal\+::sparse\+\_\+dense\+\_\+outer\+\_\+product\+\_\+evaluator$<$ LhsT, RhsT, Need\+To\+Transpose $>$ Struct Template Reference}
+\label{struct_eigen_1_1internal_1_1sparse__dense__outer__product__evaluator}\index{Eigen::internal::sparse\_dense\_outer\_product\_evaluator$<$ LhsT, RhsT, NeedToTranspose $>$@{Eigen::internal::sparse\_dense\_outer\_product\_evaluator$<$ LhsT, RhsT, NeedToTranspose $>$}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_eigen_1_1internal_1_1sparse__dense__outer__product__evaluator_1_1_inner_iterator}{Inner\+Iterator}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1sparse__dense__outer__product__evaluator_a604be42d3de32cba953d419c890c07ff}\label{struct_eigen_1_1internal_1_1sparse__dense__outer__product__evaluator_a604be42d3de32cba953d419c890c07ff}} 
+enum \{ {\bfseries Flags} = Need\+To\+Transpose ? Row\+Major\+Bit \+: 0, 
+{\bfseries Coeff\+Read\+Cost} = Huge\+Cost
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1sparse__dense__outer__product__evaluator_a56283b61a79ec466676cf293a9dbabd5}\label{struct_eigen_1_1internal_1_1sparse__dense__outer__product__evaluator_a56283b61a79ec466676cf293a9dbabd5}} 
+{\bfseries sparse\+\_\+dense\+\_\+outer\+\_\+product\+\_\+evaluator} (const \mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Lhs1}} \&lhs, const Actual\+Rhs \&rhs)
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1sparse__dense__outer__product__evaluator_a5efbe051be702e03c39efe9df66424d1}\label{struct_eigen_1_1internal_1_1sparse__dense__outer__product__evaluator_a5efbe051be702e03c39efe9df66424d1}} 
+{\bfseries sparse\+\_\+dense\+\_\+outer\+\_\+product\+\_\+evaluator} (const Actual\+Rhs \&rhs, const \mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Lhs1}} \&lhs)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1sparse__dense__outer__product__evaluator_a6eeacae6f571d47f21cda0d18dec973f}\label{struct_eigen_1_1internal_1_1sparse__dense__outer__product__evaluator_a6eeacae6f571d47f21cda0d18dec973f}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1conditional}{conditional}}$<$ Need\+To\+Transpose, RhsT, LhsT $>$\+::type {\bfseries Lhs1}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1sparse__dense__outer__product__evaluator_a5b636f3b4837532777e980669cea08cb}\label{struct_eigen_1_1internal_1_1sparse__dense__outer__product__evaluator_a5b636f3b4837532777e980669cea08cb}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1conditional}{conditional}}$<$ Need\+To\+Transpose, LhsT, RhsT $>$\+::type {\bfseries Actual\+Rhs}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1sparse__dense__outer__product__evaluator_a97a752c1f0f08715513cbd2e2ae72366}\label{struct_eigen_1_1internal_1_1sparse__dense__outer__product__evaluator_a97a752c1f0f08715513cbd2e2ae72366}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_product}{Product}}$<$ LhsT, RhsT, Default\+Product $>$ {\bfseries Prod\+Xpr\+Type}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1sparse__dense__outer__product__evaluator_a991bf7a5286668f18ae986931a04e5bf}\label{struct_eigen_1_1internal_1_1sparse__dense__outer__product__evaluator_a991bf7a5286668f18ae986931a04e5bf}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1conditional}{conditional}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1is__same}{is\+\_\+same}}$<$ typename \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Lhs1}} $>$\+::Storage\+Kind, \mbox{\hyperlink{struct_eigen_1_1_sparse}{Sparse}} $>$\+::value, \mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Lhs1}}, \mbox{\hyperlink{class_eigen_1_1_sparse_view}{Sparse\+View}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Lhs1}} $>$ $>$\+::type {\bfseries Actual\+Lhs}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1sparse__dense__outer__product__evaluator_afb11be3f0777c8bad28896f14bc0b557}\label{struct_eigen_1_1internal_1_1sparse__dense__outer__product__evaluator_afb11be3f0777c8bad28896f14bc0b557}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1conditional}{conditional}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1is__same}{is\+\_\+same}}$<$ typename \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Lhs1}} $>$\+::Storage\+Kind, \mbox{\hyperlink{struct_eigen_1_1_sparse}{Sparse}} $>$\+::value, \mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Lhs1}} const  \&, \mbox{\hyperlink{class_eigen_1_1_sparse_view}{Sparse\+View}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Lhs1}} $>$ $>$\+::type {\bfseries Lhs\+Arg}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1sparse__dense__outer__product__evaluator_ae920f1300917449afe084a52eedf683b}\label{struct_eigen_1_1internal_1_1sparse__dense__outer__product__evaluator_ae920f1300917449afe084a52eedf683b}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1evaluator}{evaluator}}$<$ Actual\+Lhs $>$ {\bfseries Lhs\+Eval}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1sparse__dense__outer__product__evaluator_a9579f6d11c3068bfb1b756614e3db673}\label{struct_eigen_1_1internal_1_1sparse__dense__outer__product__evaluator_a9579f6d11c3068bfb1b756614e3db673}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1evaluator}{evaluator}}$<$ Actual\+Rhs $>$ {\bfseries Rhs\+Eval}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1sparse__dense__outer__product__evaluator_ac7db1d77e0e034402f9ac8ad50505110}\label{struct_eigen_1_1internal_1_1sparse__dense__outer__product__evaluator_ac7db1d77e0e034402f9ac8ad50505110}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1evaluator}{evaluator}}$<$ Actual\+Lhs $>$\+::\mbox{\hyperlink{class_eigen_1_1internal_1_1sparse__dense__outer__product__evaluator_1_1_inner_iterator}{Inner\+Iterator}} {\bfseries Lhs\+Iterator}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1sparse__dense__outer__product__evaluator_a3e2f6b63bc48b7188e2107bab123274e}\label{struct_eigen_1_1internal_1_1sparse__dense__outer__product__evaluator_a3e2f6b63bc48b7188e2107bab123274e}} 
+typedef Prod\+Xpr\+Type\+::\+Scalar {\bfseries Scalar}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1sparse__dense__outer__product__evaluator_ab179fb4ff41a981500a9f1e09a1a36ea}\label{struct_eigen_1_1internal_1_1sparse__dense__outer__product__evaluator_ab179fb4ff41a981500a9f1e09a1a36ea}} 
+const Lhs\+Arg {\bfseries m\+\_\+lhs}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1sparse__dense__outer__product__evaluator_a0c96dd7449c4225626e20ff76de0c272}\label{struct_eigen_1_1internal_1_1sparse__dense__outer__product__evaluator_a0c96dd7449c4225626e20ff76de0c272}} 
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1evaluator}{evaluator}}$<$ Actual\+Lhs $>$ {\bfseries m\+\_\+lhs\+Xpr\+Impl}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1sparse__dense__outer__product__evaluator_a0dacd6496a2633c352e6015d5591e7f1}\label{struct_eigen_1_1internal_1_1sparse__dense__outer__product__evaluator_a0dacd6496a2633c352e6015d5591e7f1}} 
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1evaluator}{evaluator}}$<$ Actual\+Rhs $>$ {\bfseries m\+\_\+rhs\+Xpr\+Impl}
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Sparse\+Core/Sparse\+Dense\+Product.\+h\end{DoxyCompactItemize}

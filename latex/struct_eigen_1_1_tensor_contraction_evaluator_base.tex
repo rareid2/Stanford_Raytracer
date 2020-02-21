@@ -1,0 +1,206 @@
+\hypertarget{struct_eigen_1_1_tensor_contraction_evaluator_base}{}\doxysection{Eigen\+::Tensor\+Contraction\+Evaluator\+Base$<$ Derived $>$ Struct Template Reference}
+\label{struct_eigen_1_1_tensor_contraction_evaluator_base}\index{Eigen::TensorContractionEvaluatorBase$<$ Derived $>$@{Eigen::TensorContractionEvaluatorBase$<$ Derived $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_contraction_evaluator_base_a8049a5f76f64ad72ed1fccf856c26a32}\label{struct_eigen_1_1_tensor_contraction_evaluator_base_a8049a5f76f64ad72ed1fccf856c26a32}} 
+enum \{ \newline
+{\bfseries Is\+Aligned} = true, 
+{\bfseries Packet\+Access} = (internal\+::unpacket\+\_\+traits$<$Packet\+Return\+Type$>$\+::size $>$ 1), 
+{\bfseries Layout} = Tensor\+Evaluator$<$Left\+Arg\+Type, Device$>$\+::Layout, 
+{\bfseries Coord\+Access} = false, 
+\newline
+{\bfseries Raw\+Access} = true
+ \}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_contraction_evaluator_base_afa6dea5d4bc12f61667ed05baecaa239}\label{struct_eigen_1_1_tensor_contraction_evaluator_base_afa6dea5d4bc12f61667ed05baecaa239}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ Derived $>$\+::Indices {\bfseries Indices}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_contraction_evaluator_base_a5421c8a5abf7038189c9ed50be1a8246}\label{struct_eigen_1_1_tensor_contraction_evaluator_base_a5421c8a5abf7038189c9ed50be1a8246}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ Derived $>$\+::Left\+Arg\+Type {\bfseries Left\+Arg\+Type}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_contraction_evaluator_base_a8661d0cd4198c090a6f50da7d7457f6c}\label{struct_eigen_1_1_tensor_contraction_evaluator_base_a8661d0cd4198c090a6f50da7d7457f6c}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ Derived $>$\+::Right\+Arg\+Type {\bfseries Right\+Arg\+Type}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_contraction_evaluator_base_a4a9a927d07b41e09823316da0575cb42}\label{struct_eigen_1_1_tensor_contraction_evaluator_base_a4a9a927d07b41e09823316da0575cb42}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ Derived $>$\+::Device {\bfseries Device}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_contraction_evaluator_base_aa5dd727964de1120361b1fc1cfd33ede}\label{struct_eigen_1_1_tensor_contraction_evaluator_base_aa5dd727964de1120361b1fc1cfd33ede}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_tensor_contraction_op}{Tensor\+Contraction\+Op}}$<$ Indices, Left\+Arg\+Type, Right\+Arg\+Type $>$ {\bfseries Xpr\+Type}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_contraction_evaluator_base_a8284b1fb35e07c6e30f875b12653b44b}\label{struct_eigen_1_1_tensor_contraction_evaluator_base_a8284b1fb35e07c6e30f875b12653b44b}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__const}{internal\+::remove\+\_\+const}}$<$ typename Xpr\+Type\+::\+Scalar $>$\+::type {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_contraction_evaluator_base_a79df006e2a7b5edd3e71382016865362}\label{struct_eigen_1_1_tensor_contraction_evaluator_base_a79df006e2a7b5edd3e71382016865362}} 
+typedef Xpr\+Type\+::\+Index {\bfseries Index}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_contraction_evaluator_base_a03e212da1d23eb224d3b92b81ad16c22}\label{struct_eigen_1_1_tensor_contraction_evaluator_base_a03e212da1d23eb224d3b92b81ad16c22}} 
+typedef Xpr\+Type\+::\+Coeff\+Return\+Type {\bfseries Coeff\+Return\+Type}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_contraction_evaluator_base_aebff34eb713205655a84ce43bf1a01af}\label{struct_eigen_1_1_tensor_contraction_evaluator_base_aebff34eb713205655a84ce43bf1a01af}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}}$<$ Coeff\+Return\+Type, Device $>$\+::type {\bfseries Packet\+Return\+Type}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_contraction_evaluator_base_ac0f70e0b1e4c1a617762ff7248fb5371}\label{struct_eigen_1_1_tensor_contraction_evaluator_base_ac0f70e0b1e4c1a617762ff7248fb5371}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1conditional}{internal\+::conditional}}$<$ static\+\_\+cast$<$ int $>$Layout)==static\+\_\+cast$<$ int $>$\mbox{\hyperlink{group__enums_ggaacded1a18ae58b0f554751f6cdf9eb13a0103672ae41005ab03b4176c765afd62}{Col\+Major}}), Left\+Arg\+Type, Right\+Arg\+Type $>$\+::type {\bfseries Eval\+Left\+Arg\+Type}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_contraction_evaluator_base_afdccf7a61bf850b51079805d7e62873c}\label{struct_eigen_1_1_tensor_contraction_evaluator_base_afdccf7a61bf850b51079805d7e62873c}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1conditional}{internal\+::conditional}}$<$ static\+\_\+cast$<$ int $>$Layout)==static\+\_\+cast$<$ int $>$\mbox{\hyperlink{group__enums_ggaacded1a18ae58b0f554751f6cdf9eb13a0103672ae41005ab03b4176c765afd62}{Col\+Major}}), Right\+Arg\+Type, Left\+Arg\+Type $>$\+::type {\bfseries Eval\+Right\+Arg\+Type}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_contraction_evaluator_base_ad6011a209a704e206b6f14452f776eb9}\label{struct_eigen_1_1_tensor_contraction_evaluator_base_ad6011a209a704e206b6f14452f776eb9}} 
+typedef \mbox{\hyperlink{class_eigen_1_1array}{array}}$<$ Index, Contract\+Dims $>$ {\bfseries contract\+\_\+t}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_contraction_evaluator_base_aecf8b70a8ce67a760797426b71476193}\label{struct_eigen_1_1_tensor_contraction_evaluator_base_aecf8b70a8ce67a760797426b71476193}} 
+typedef \mbox{\hyperlink{class_eigen_1_1array}{array}}$<$ Index, L\+Dims -\/ Contract\+Dims $>$ {\bfseries left\+\_\+nocontract\+\_\+t}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_contraction_evaluator_base_a63853e163622ba5eb9e70f3889a45091}\label{struct_eigen_1_1_tensor_contraction_evaluator_base_a63853e163622ba5eb9e70f3889a45091}} 
+typedef \mbox{\hyperlink{class_eigen_1_1array}{array}}$<$ Index, R\+Dims -\/ Contract\+Dims $>$ {\bfseries right\+\_\+nocontract\+\_\+t}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_contraction_evaluator_base_a1be9cbcba524958f7f37107fdc5a4c90}\label{struct_eigen_1_1_tensor_contraction_evaluator_base_a1be9cbcba524958f7f37107fdc5a4c90}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_d_sizes}{D\+Sizes}}$<$ Index, Num\+Dims $>$ {\bfseries Dimensions}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_contraction_evaluator_base_aa793ab4101a2169bdf623cd8128389f0}\label{struct_eigen_1_1_tensor_contraction_evaluator_base_aa793ab4101a2169bdf623cd8128389f0}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE {\bfseries Tensor\+Contraction\+Evaluator\+Base} (const \mbox{\hyperlink{class_eigen_1_1_tensor_contraction_op}{Xpr\+Type}} \&op, const Device \&device)
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_contraction_evaluator_base_aa523ce5b66dc5363452c79c17580b658}\label{struct_eigen_1_1_tensor_contraction_evaluator_base_aa523ce5b66dc5363452c79c17580b658}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{struct_eigen_1_1_d_sizes}{Dimensions}} \& {\bfseries dimensions} () const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_contraction_evaluator_base_a0cc230491ac304c0be1d6e3dd934587f}\label{struct_eigen_1_1_tensor_contraction_evaluator_base_a0cc230491ac304c0be1d6e3dd934587f}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE bool {\bfseries eval\+Sub\+Exprs\+If\+Needed} (\mbox{\hyperlink{class_eigen_1_1_triplet}{Scalar}} $\ast$data)
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_contraction_evaluator_base_a9ac0a3d010ff6a0b6b2512dfc0ea75aa}\label{struct_eigen_1_1_tensor_contraction_evaluator_base_a9ac0a3d010ff6a0b6b2512dfc0ea75aa}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC void {\bfseries eval\+To} (\mbox{\hyperlink{class_eigen_1_1_triplet}{Scalar}} $\ast$buffer) const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_contraction_evaluator_base_a72cf4fd8e6ba21d8048818993ac8c945}\label{struct_eigen_1_1_tensor_contraction_evaluator_base_a72cf4fd8e6ba21d8048818993ac8c945}} 
+{\footnotesize template$<$bool lhs\+\_\+inner\+\_\+dim\+\_\+contiguous, bool rhs\+\_\+inner\+\_\+dim\+\_\+contiguous, bool rhs\+\_\+inner\+\_\+dim\+\_\+reordered, int Alignment$>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC void {\bfseries eval\+Gemv} (\mbox{\hyperlink{class_eigen_1_1_triplet}{Scalar}} $\ast$buffer) const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_contraction_evaluator_base_aee0cb093c9876554ac9fecd6a96d4d87}\label{struct_eigen_1_1_tensor_contraction_evaluator_base_aee0cb093c9876554ac9fecd6a96d4d87}} 
+{\footnotesize template$<$bool lhs\+\_\+inner\+\_\+dim\+\_\+contiguous, bool rhs\+\_\+inner\+\_\+dim\+\_\+contiguous, bool rhs\+\_\+inner\+\_\+dim\+\_\+reordered, int Alignment$>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC void {\bfseries eval\+Gemm} (\mbox{\hyperlink{class_eigen_1_1_triplet}{Scalar}} $\ast$buffer) const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_contraction_evaluator_base_a56030af621dbf3097cef597ecb2b180a}\label{struct_eigen_1_1_tensor_contraction_evaluator_base_a56030af621dbf3097cef597ecb2b180a}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE void {\bfseries cleanup} ()
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_contraction_evaluator_base_af35dc8f04e25238ed04628398d1adc53}\label{struct_eigen_1_1_tensor_contraction_evaluator_base_af35dc8f04e25238ed04628398d1adc53}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Coeff\+Return\+Type {\bfseries coeff} (Index index) const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_contraction_evaluator_base_ad0f21541238d3add97d114afb6859b0f}\label{struct_eigen_1_1_tensor_contraction_evaluator_base_ad0f21541238d3add97d114afb6859b0f}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_tensor_op_cost}{Tensor\+Op\+Cost}} {\bfseries cost\+Per\+Coeff} (bool) const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_contraction_evaluator_base_a430b83d71a67ba792130b8d36c049a9f}\label{struct_eigen_1_1_tensor_contraction_evaluator_base_a430b83d71a67ba792130b8d36c049a9f}} 
+{\footnotesize template$<$int Load\+Mode$>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_triplet}{Packet\+Return\+Type}} {\bfseries packet} (Index index) const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_contraction_evaluator_base_a6babd619ca988fb16d5859c516308730}\label{struct_eigen_1_1_tensor_contraction_evaluator_base_a6babd619ca988fb16d5859c516308730}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_triplet}{Scalar}} $\ast$ {\bfseries data} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static const int {\bfseries L\+Dims}
+\item 
+static const int {\bfseries R\+Dims}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_contraction_evaluator_base_af8994c83d9d9273ccb11ad64e347d503}\label{struct_eigen_1_1_tensor_contraction_evaluator_base_af8994c83d9d9273ccb11ad64e347d503}} 
+static const int {\bfseries Contract\+Dims} = \mbox{\hyperlink{struct_eigen_1_1internal_1_1array__size}{internal\+::array\+\_\+size}}$<$Indices$>$\+::value
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_contraction_evaluator_base_aa83a71ef6b566a5daf74a98fc3bed5bd}\label{struct_eigen_1_1_tensor_contraction_evaluator_base_aa83a71ef6b566a5daf74a98fc3bed5bd}} 
+static const int {\bfseries Num\+Dims} = L\+Dims + R\+Dims -\/ 2 $\ast$ Contract\+Dims
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_contraction_evaluator_base_acb95d9b319da832c872e050f555be882}\label{struct_eigen_1_1_tensor_contraction_evaluator_base_acb95d9b319da832c872e050f555be882}} 
+\mbox{\hyperlink{struct_eigen_1_1_tensor_contraction_evaluator_base}{Tensor\+Contraction\+Evaluator\+Base}} \& {\bfseries operator=} (const \mbox{\hyperlink{struct_eigen_1_1_tensor_contraction_evaluator_base}{Tensor\+Contraction\+Evaluator\+Base}} \&)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_contraction_evaluator_base_aceac18282cc5f1613de33195d1b2b26a}\label{struct_eigen_1_1_tensor_contraction_evaluator_base_aceac18282cc5f1613de33195d1b2b26a}} 
+\mbox{\hyperlink{struct_eigen_1_1_d_sizes}{Dimensions}} {\bfseries m\+\_\+dimensions}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_contraction_evaluator_base_aeff23a8341ce58a417d6ea903d873597}\label{struct_eigen_1_1_tensor_contraction_evaluator_base_aeff23a8341ce58a417d6ea903d873597}} 
+\mbox{\hyperlink{class_eigen_1_1array}{contract\+\_\+t}} {\bfseries m\+\_\+k\+\_\+strides}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_contraction_evaluator_base_a8a5452f28c1356a1e065d1446e31faaf}\label{struct_eigen_1_1_tensor_contraction_evaluator_base_a8a5452f28c1356a1e065d1446e31faaf}} 
+\mbox{\hyperlink{class_eigen_1_1array}{contract\+\_\+t}} {\bfseries m\+\_\+left\+\_\+contracting\+\_\+strides}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_contraction_evaluator_base_a576ad81df3886a58735f82c8431a7569}\label{struct_eigen_1_1_tensor_contraction_evaluator_base_a576ad81df3886a58735f82c8431a7569}} 
+\mbox{\hyperlink{class_eigen_1_1array}{contract\+\_\+t}} {\bfseries m\+\_\+right\+\_\+contracting\+\_\+strides}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_contraction_evaluator_base_acd796b4ae4e27f678d424091074e2871}\label{struct_eigen_1_1_tensor_contraction_evaluator_base_acd796b4ae4e27f678d424091074e2871}} 
+bool {\bfseries m\+\_\+lhs\+\_\+inner\+\_\+dim\+\_\+contiguous}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_contraction_evaluator_base_a87e491dfe09186b80343fb4367658730}\label{struct_eigen_1_1_tensor_contraction_evaluator_base_a87e491dfe09186b80343fb4367658730}} 
+bool {\bfseries m\+\_\+rhs\+\_\+inner\+\_\+dim\+\_\+contiguous}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_contraction_evaluator_base_a80ff521ba2ceac9dabf4f7443934c729}\label{struct_eigen_1_1_tensor_contraction_evaluator_base_a80ff521ba2ceac9dabf4f7443934c729}} 
+bool {\bfseries m\+\_\+rhs\+\_\+inner\+\_\+dim\+\_\+reordered}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_contraction_evaluator_base_afd3e8052eb4e52616015be32ab25936a}\label{struct_eigen_1_1_tensor_contraction_evaluator_base_afd3e8052eb4e52616015be32ab25936a}} 
+\mbox{\hyperlink{class_eigen_1_1array}{left\+\_\+nocontract\+\_\+t}} {\bfseries m\+\_\+i\+\_\+strides}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_contraction_evaluator_base_a48dd20851a2b8b56162802665a3cc19d}\label{struct_eigen_1_1_tensor_contraction_evaluator_base_a48dd20851a2b8b56162802665a3cc19d}} 
+\mbox{\hyperlink{class_eigen_1_1array}{right\+\_\+nocontract\+\_\+t}} {\bfseries m\+\_\+j\+\_\+strides}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_contraction_evaluator_base_a6467d3a59f2812726b6ba65ad4e69993}\label{struct_eigen_1_1_tensor_contraction_evaluator_base_a6467d3a59f2812726b6ba65ad4e69993}} 
+\mbox{\hyperlink{class_eigen_1_1array}{left\+\_\+nocontract\+\_\+t}} {\bfseries m\+\_\+left\+\_\+nocontract\+\_\+strides}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_contraction_evaluator_base_a4e18dce7e14206da9b3f6229c491236e}\label{struct_eigen_1_1_tensor_contraction_evaluator_base_a4e18dce7e14206da9b3f6229c491236e}} 
+\mbox{\hyperlink{class_eigen_1_1array}{right\+\_\+nocontract\+\_\+t}} {\bfseries m\+\_\+right\+\_\+nocontract\+\_\+strides}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_contraction_evaluator_base_a18bbbed712ad56716c2684aa31e9552d}\label{struct_eigen_1_1_tensor_contraction_evaluator_base_a18bbbed712ad56716c2684aa31e9552d}} 
+Index {\bfseries m\+\_\+i\+\_\+size}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_contraction_evaluator_base_a9cd116ffd403b081d33bea8cc2e45067}\label{struct_eigen_1_1_tensor_contraction_evaluator_base_a9cd116ffd403b081d33bea8cc2e45067}} 
+Index {\bfseries m\+\_\+j\+\_\+size}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_contraction_evaluator_base_ab37182c2e62a75719c378c068b0b7eb1}\label{struct_eigen_1_1_tensor_contraction_evaluator_base_ab37182c2e62a75719c378c068b0b7eb1}} 
+Index {\bfseries m\+\_\+k\+\_\+size}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_contraction_evaluator_base_ae9d1c7f28b28e05c83d5f6ca409ee0aa}\label{struct_eigen_1_1_tensor_contraction_evaluator_base_ae9d1c7f28b28e05c83d5f6ca409ee0aa}} 
+\mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{Tensor\+Evaluator}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Eval\+Left\+Arg\+Type}}, Device $>$ {\bfseries m\+\_\+left\+Impl}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_contraction_evaluator_base_a9dd0b428a1715d19980f6edc044fa1d7}\label{struct_eigen_1_1_tensor_contraction_evaluator_base_a9dd0b428a1715d19980f6edc044fa1d7}} 
+\mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{Tensor\+Evaluator}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Eval\+Right\+Arg\+Type}}, Device $>$ {\bfseries m\+\_\+right\+Impl}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_contraction_evaluator_base_ac4295a2aa0f795d5adf7bc043df485d3}\label{struct_eigen_1_1_tensor_contraction_evaluator_base_ac4295a2aa0f795d5adf7bc043df485d3}} 
+const Device \& {\bfseries m\+\_\+device}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_contraction_evaluator_base_a4d16acbd9c1fc3dc814423c66f867ac0}\label{struct_eigen_1_1_tensor_contraction_evaluator_base_a4d16acbd9c1fc3dc814423c66f867ac0}} 
+\mbox{\hyperlink{class_eigen_1_1_triplet}{Scalar}} $\ast$ {\bfseries m\+\_\+result}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_contraction_evaluator_base_a0f8e459949846288aa4abcc57a3d97ef}\label{struct_eigen_1_1_tensor_contraction_evaluator_base_a0f8e459949846288aa4abcc57a3d97ef}} 
+\index{Eigen::TensorContractionEvaluatorBase$<$ Derived $>$@{Eigen::TensorContractionEvaluatorBase$<$ Derived $>$}!LDims@{LDims}}
+\index{LDims@{LDims}!Eigen::TensorContractionEvaluatorBase$<$ Derived $>$@{Eigen::TensorContractionEvaluatorBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{LDims}{LDims}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+const int \mbox{\hyperlink{struct_eigen_1_1_tensor_contraction_evaluator_base}{Eigen\+::\+Tensor\+Contraction\+Evaluator\+Base}}$<$ Derived $>$\+::L\+Dims\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{      internal::array\_size<typename TensorEvaluator<EvalLeftArgType, Device>::Dimensions>::value}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_contraction_evaluator_base_af3c4441685d72091d4a379aeeb76e534}\label{struct_eigen_1_1_tensor_contraction_evaluator_base_af3c4441685d72091d4a379aeeb76e534}} 
+\index{Eigen::TensorContractionEvaluatorBase$<$ Derived $>$@{Eigen::TensorContractionEvaluatorBase$<$ Derived $>$}!RDims@{RDims}}
+\index{RDims@{RDims}!Eigen::TensorContractionEvaluatorBase$<$ Derived $>$@{Eigen::TensorContractionEvaluatorBase$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{RDims}{RDims}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+const int \mbox{\hyperlink{struct_eigen_1_1_tensor_contraction_evaluator_base}{Eigen\+::\+Tensor\+Contraction\+Evaluator\+Base}}$<$ Derived $>$\+::R\+Dims\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{      internal::array\_size<typename TensorEvaluator<EvalRightArgType, Device>::Dimensions>::value}
+
+\end{DoxyCode}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/\+C\+X\+X11/src/\+Tensor/Tensor\+Contraction.\+h\end{DoxyCompactItemize}

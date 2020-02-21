@@ -1,0 +1,60 @@
+\hypertarget{struct_eigen_1_1internal_1_1product__evaluator_3_01_product_3_01_lhs_00_01_rhs_00_01_product_kin7ddac0b59f4a730d2a73e162a876e10d}{}\doxysection{Eigen\+::internal\+::product\+\_\+evaluator$<$ Product$<$ Lhs, Rhs, Product\+Kind $>$, Product\+Tag, Dense\+Shape, Diagonal\+Shape $>$ Struct Template Reference}
+\label{struct_eigen_1_1internal_1_1product__evaluator_3_01_product_3_01_lhs_00_01_rhs_00_01_product_kin7ddac0b59f4a730d2a73e162a876e10d}\index{Eigen::internal::product\_evaluator$<$ Product$<$ Lhs, Rhs, ProductKind $>$, ProductTag, DenseShape, DiagonalShape $>$@{Eigen::internal::product\_evaluator$<$ Product$<$ Lhs, Rhs, ProductKind $>$, ProductTag, DenseShape, DiagonalShape $>$}}
+Inheritance diagram for Eigen\+::internal\+::product\+\_\+evaluator$<$ Product$<$ Lhs, Rhs, Product\+Kind $>$, Product\+Tag, Dense\+Shape, Diagonal\+Shape $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.886598cm]{struct_eigen_1_1internal_1_1product__evaluator_3_01_product_3_01_lhs_00_01_rhs_00_01_product_kin7ddac0b59f4a730d2a73e162a876e10d}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1product__evaluator_3_01_product_3_01_lhs_00_01_rhs_00_01_product_kin7ddac0b59f4a730d2a73e162a876e10d_aefc519b77c990f3a6427e563905d2ec4}\label{struct_eigen_1_1internal_1_1product__evaluator_3_01_product_3_01_lhs_00_01_rhs_00_01_product_kin7ddac0b59f4a730d2a73e162a876e10d_aefc519b77c990f3a6427e563905d2ec4}} 
+enum \{ {\bfseries Storage\+Order} = int(Lhs\+::Flags) \& Row\+Major\+Bit ? Row\+Major \+: Col\+Major
+ \}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1product__evaluator_3_01_product_3_01_lhs_00_01_rhs_00_01_product_kin7ddac0b59f4a730d2a73e162a876e10d_a82bcc8acd2a59527f35aef165a32343a}\label{struct_eigen_1_1internal_1_1product__evaluator_3_01_product_3_01_lhs_00_01_rhs_00_01_product_kin7ddac0b59f4a730d2a73e162a876e10d_a82bcc8acd2a59527f35aef165a32343a}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1diagonal__product__evaluator__base}{diagonal\+\_\+product\+\_\+evaluator\+\_\+base}}$<$ Lhs, typename Rhs\+::\+Diagonal\+Vector\+Type, \mbox{\hyperlink{class_eigen_1_1_product}{Product}}$<$ Lhs, Rhs, Lazy\+Product $>$, \mbox{\hyperlink{group__enums_ggac22de43beeac7a78b384f99bed5cee0ba329fc3a54ceb2b6e0e73b400998b8a82}{On\+The\+Right}} $>$ {\bfseries Base}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1product__evaluator_3_01_product_3_01_lhs_00_01_rhs_00_01_product_kin7ddac0b59f4a730d2a73e162a876e10d_a373c292eedabdc9c7387241900918ff7}\label{struct_eigen_1_1internal_1_1product__evaluator_3_01_product_3_01_lhs_00_01_rhs_00_01_product_kin7ddac0b59f4a730d2a73e162a876e10d_a373c292eedabdc9c7387241900918ff7}} 
+typedef Base\+::\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1product__evaluator_3_01_product_3_01_lhs_00_01_rhs_00_01_product_kin7ddac0b59f4a730d2a73e162a876e10d_ac7863d180d1511bbfadb1268d2dd5bed}\label{struct_eigen_1_1internal_1_1product__evaluator_3_01_product_3_01_lhs_00_01_rhs_00_01_product_kin7ddac0b59f4a730d2a73e162a876e10d_ac7863d180d1511bbfadb1268d2dd5bed}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_product}{Product}}$<$ Lhs, Rhs, Product\+Kind $>$ {\bfseries Xpr\+Type}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1product__evaluator_3_01_product_3_01_lhs_00_01_rhs_00_01_product_kin7ddac0b59f4a730d2a73e162a876e10d_ad3cd0fbf7cdb82eb5179a16519215088}\label{struct_eigen_1_1internal_1_1product__evaluator_3_01_product_3_01_lhs_00_01_rhs_00_01_product_kin7ddac0b59f4a730d2a73e162a876e10d_ad3cd0fbf7cdb82eb5179a16519215088}} 
+typedef Xpr\+Type\+::\+Plain\+Object {\bfseries Plain\+Object}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1product__evaluator_3_01_product_3_01_lhs_00_01_rhs_00_01_product_kin7ddac0b59f4a730d2a73e162a876e10d_a37cd5c03052cac8cd4034ac2f0ae1ac5}\label{struct_eigen_1_1internal_1_1product__evaluator_3_01_product_3_01_lhs_00_01_rhs_00_01_product_kin7ddac0b59f4a730d2a73e162a876e10d_a37cd5c03052cac8cd4034ac2f0ae1ac5}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC {\bfseries product\+\_\+evaluator} (const \mbox{\hyperlink{class_eigen_1_1_product}{Xpr\+Type}} \&xpr)
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1product__evaluator_3_01_product_3_01_lhs_00_01_rhs_00_01_product_kin7ddac0b59f4a730d2a73e162a876e10d_a3c606e43648b8e7a9e5c9f7b5309805e}\label{struct_eigen_1_1internal_1_1product__evaluator_3_01_product_3_01_lhs_00_01_rhs_00_01_product_kin7ddac0b59f4a730d2a73e162a876e10d_a3c606e43648b8e7a9e5c9f7b5309805e}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Scalar {\bfseries coeff} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col) const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1product__evaluator_3_01_product_3_01_lhs_00_01_rhs_00_01_product_kin7ddac0b59f4a730d2a73e162a876e10d_ac9f46d8fcd22c329e02c172df2bd20d7}\label{struct_eigen_1_1internal_1_1product__evaluator_3_01_product_3_01_lhs_00_01_rhs_00_01_product_kin7ddac0b59f4a730d2a73e162a876e10d_ac9f46d8fcd22c329e02c172df2bd20d7}} 
+{\footnotesize template$<$int Load\+Mode, typename Packet\+Type $>$ }\\E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}} {\bfseries packet} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col) const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1product__evaluator_3_01_product_3_01_lhs_00_01_rhs_00_01_product_kin7ddac0b59f4a730d2a73e162a876e10d_a9f990d4fab5e64f05fdbcdacfc4c260b}\label{struct_eigen_1_1internal_1_1product__evaluator_3_01_product_3_01_lhs_00_01_rhs_00_01_product_kin7ddac0b59f4a730d2a73e162a876e10d_a9f990d4fab5e64f05fdbcdacfc4c260b}} 
+{\footnotesize template$<$int Load\+Mode, typename Packet\+Type $>$ }\\E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}} {\bfseries packet} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} idx) const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1product__evaluator_3_01_product_3_01_lhs_00_01_rhs_00_01_product_kin7ddac0b59f4a730d2a73e162a876e10d_a15788a29a644408e78f4e66a21a85425}\label{struct_eigen_1_1internal_1_1product__evaluator_3_01_product_3_01_lhs_00_01_rhs_00_01_product_kin7ddac0b59f4a730d2a73e162a876e10d_a15788a29a644408e78f4e66a21a85425}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Scalar {\bfseries coeff} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} idx) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1product__evaluator_3_01_product_3_01_lhs_00_01_rhs_00_01_product_kin7ddac0b59f4a730d2a73e162a876e10d_aac89e831a382ebe6172a2cc32e3159ac}\label{struct_eigen_1_1internal_1_1product__evaluator_3_01_product_3_01_lhs_00_01_rhs_00_01_product_kin7ddac0b59f4a730d2a73e162a876e10d_aac89e831a382ebe6172a2cc32e3159ac}} 
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1evaluator}{evaluator}}$<$ Diagonal\+Type $>$ {\bfseries m\+\_\+diag\+Impl}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1product__evaluator_3_01_product_3_01_lhs_00_01_rhs_00_01_product_kin7ddac0b59f4a730d2a73e162a876e10d_ab40d6e41275ebc97d46700e5b2f562ce}\label{struct_eigen_1_1internal_1_1product__evaluator_3_01_product_3_01_lhs_00_01_rhs_00_01_product_kin7ddac0b59f4a730d2a73e162a876e10d_ab40d6e41275ebc97d46700e5b2f562ce}} 
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1evaluator}{evaluator}}$<$ Matrix\+Type $>$ {\bfseries m\+\_\+mat\+Impl}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/Product\+Evaluators.\+h\end{DoxyCompactItemize}

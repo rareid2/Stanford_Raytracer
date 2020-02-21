@@ -1,0 +1,49 @@
+\hypertarget{class_matrix_replacement}{}\doxysection{Matrix\+Replacement Class Reference}
+\label{class_matrix_replacement}\index{MatrixReplacement@{MatrixReplacement}}
+Inheritance diagram for Matrix\+Replacement\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_matrix_replacement}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_matrix_replacement_a23c85bfde7652f654fe53f231dc9928e}\label{class_matrix_replacement_a23c85bfde7652f654fe53f231dc9928e}} 
+enum \{ {\bfseries Cols\+At\+Compile\+Time} = Eigen\+::Dynamic, 
+{\bfseries Max\+Cols\+At\+Compile\+Time} = Eigen\+::Dynamic, 
+{\bfseries Is\+Row\+Major} = false
+ \}
+\item 
+\mbox{\Hypertarget{class_matrix_replacement_aec775ba7fa545a05b1141cbea6d30f27}\label{class_matrix_replacement_aec775ba7fa545a05b1141cbea6d30f27}} 
+typedef double {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_matrix_replacement_ae4f64fa7e17b491d45316c29604c8c59}\label{class_matrix_replacement_ae4f64fa7e17b491d45316c29604c8c59}} 
+typedef double {\bfseries Real\+Scalar}
+\item 
+\mbox{\Hypertarget{class_matrix_replacement_a7e5fc118632e40c4752f405a4d8f9fa6}\label{class_matrix_replacement_a7e5fc118632e40c4752f405a4d8f9fa6}} 
+typedef int {\bfseries Storage\+Index}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_matrix_replacement_af6f14ddefd9023fc44de03b0d49423e7}\label{class_matrix_replacement_af6f14ddefd9023fc44de03b0d49423e7}} 
+\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} {\bfseries rows} () const
+\item 
+\mbox{\Hypertarget{class_matrix_replacement_a3688c31c1907e1f895e2b4f0c3a2333e}\label{class_matrix_replacement_a3688c31c1907e1f895e2b4f0c3a2333e}} 
+\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} {\bfseries cols} () const
+\item 
+\mbox{\Hypertarget{class_matrix_replacement_aa9bf2f9f11ec5d91576d2c6dbea78acb}\label{class_matrix_replacement_aa9bf2f9f11ec5d91576d2c6dbea78acb}} 
+{\footnotesize template$<$typename Rhs $>$ }\\\mbox{\hyperlink{class_eigen_1_1_product}{Eigen\+::\+Product}}$<$ \mbox{\hyperlink{class_matrix_replacement}{Matrix\+Replacement}}, Rhs, Eigen\+::\+Alias\+Free\+Product $>$ {\bfseries operator$\ast$} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Eigen\+::\+Matrix\+Base}}$<$ Rhs $>$ \&x) const
+\item 
+\mbox{\Hypertarget{class_matrix_replacement_a49a7f2bb559863898161cd450d58915a}\label{class_matrix_replacement_a49a7f2bb559863898161cd450d58915a}} 
+void {\bfseries attach\+My\+Matrix} (const \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}}$<$ double $>$ \&mat)
+\item 
+\mbox{\Hypertarget{class_matrix_replacement_a90fb4c6ce766a70ddcff42532359d4b8}\label{class_matrix_replacement_a90fb4c6ce766a70ddcff42532359d4b8}} 
+const \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}}$<$ double $>$ {\bfseries my\+\_\+matrix} () const
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/doc/examples/matrixfree\+\_\+cg.\+cpp\end{DoxyCompactItemize}

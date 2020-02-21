@@ -1,0 +1,141 @@
+\hypertarget{class_eigen_1_1_tensor_ref}{}\doxysection{Eigen\+::Tensor\+Ref Class Reference}
+\label{class_eigen_1_1_tensor_ref}\index{Eigen::TensorRef@{Eigen::TensorRef}}
+
+
+A reference to a tensor expression The expression will be evaluated lazily (as much as possible).  
+
+
+
+
+{\ttfamily \#include $<$Tensor\+Ref.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_ref_a34024fa29bb2e9c6a3e38fcd94886e11}\label{class_eigen_1_1_tensor_ref_a34024fa29bb2e9c6a3e38fcd94886e11}} 
+enum \{ \newline
+{\bfseries Is\+Aligned} = false, 
+{\bfseries Packet\+Access} = false, 
+{\bfseries Layout} = Plain\+Object\+Type\+::Layout, 
+{\bfseries Coord\+Access} = false, 
+\newline
+{\bfseries Raw\+Access} = false
+ \}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_ref_a21a321ec47bee405f616fbef3bc2054d}\label{class_eigen_1_1_tensor_ref_a21a321ec47bee405f616fbef3bc2054d}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_tensor_ref}{Tensor\+Ref}}$<$ Plain\+Object\+Type $>$ {\bfseries Self}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_ref_a61b8db4cbd243609f17a6b9e8e83cb48}\label{class_eigen_1_1_tensor_ref_a61b8db4cbd243609f17a6b9e8e83cb48}} 
+typedef Plain\+Object\+Type\+::\+Base {\bfseries Base}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_ref_ad4adfb7b4da49b254d49892a29fb645b}\label{class_eigen_1_1_tensor_ref_ad4adfb7b4da49b254d49892a29fb645b}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1nested}{Eigen\+::internal\+::nested}}$<$ \mbox{\hyperlink{class_eigen_1_1_tensor_ref}{Self}} $>$\+::type {\bfseries Nested}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_ref_a36247b7ab352b9100d7ce41ee144d117}\label{class_eigen_1_1_tensor_ref_a36247b7ab352b9100d7ce41ee144d117}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ Plain\+Object\+Type $>$\+::Storage\+Kind {\bfseries Storage\+Kind}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_ref_a521e6e9f577da9f6cfd700d5e4783897}\label{class_eigen_1_1_tensor_ref_a521e6e9f577da9f6cfd700d5e4783897}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ Plain\+Object\+Type $>$\+::Index {\bfseries Index}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_ref_a2a3d96d5b88f33a6708444ea23aa2ad4}\label{class_eigen_1_1_tensor_ref_a2a3d96d5b88f33a6708444ea23aa2ad4}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ Plain\+Object\+Type $>$\+::Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_ref_ab66eb19f8a7c185473ff175f2b5dcebd}\label{class_eigen_1_1_tensor_ref_ab66eb19f8a7c185473ff175f2b5dcebd}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$ Scalar $>$\+::Real {\bfseries Real\+Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_ref_a8323ed40e4ceab79800cb04cd521977f}\label{class_eigen_1_1_tensor_ref_a8323ed40e4ceab79800cb04cd521977f}} 
+typedef Base\+::\+Coeff\+Return\+Type {\bfseries Coeff\+Return\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_ref_a427a91f6fcb3c50ce494b828c4fb5475}\label{class_eigen_1_1_tensor_ref_a427a91f6fcb3c50ce494b828c4fb5475}} 
+typedef Scalar $\ast$ {\bfseries Pointer\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_ref_afce1c7870d18ed39eb3670157a678c31}\label{class_eigen_1_1_tensor_ref_afce1c7870d18ed39eb3670157a678c31}} 
+typedef Pointer\+Type {\bfseries Pointer\+Arg\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_ref_a72dfb57ca876d18dfbe9b27fef7b7db5}\label{class_eigen_1_1_tensor_ref_a72dfb57ca876d18dfbe9b27fef7b7db5}} 
+typedef Plain\+Object\+Type\+::\+Dimensions {\bfseries Dimensions}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_ref_ac166fe8487b1976ff2dd6475c14fc045}\label{class_eigen_1_1_tensor_ref_ac166fe8487b1976ff2dd6475c14fc045}} 
+{\footnotesize template$<$typename Expression $>$ }\\E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE {\bfseries Tensor\+Ref} (const Expression \&expr)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_ref_adf19e3cf16f0fc589a2fb1eb6703479e}\label{class_eigen_1_1_tensor_ref_adf19e3cf16f0fc589a2fb1eb6703479e}} 
+{\footnotesize template$<$typename Expression $>$ }\\E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_tensor_ref}{Tensor\+Ref}} \& {\bfseries operator=} (const Expression \&expr)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_ref_a711069880589f2e831b0d56215fbd381}\label{class_eigen_1_1_tensor_ref_a711069880589f2e831b0d56215fbd381}} 
+{\bfseries Tensor\+Ref} (const \mbox{\hyperlink{class_eigen_1_1_tensor_ref}{Tensor\+Ref}} \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_ref_ad3891260005cebf2621e06b649859f54}\label{class_eigen_1_1_tensor_ref_ad3891260005cebf2621e06b649859f54}} 
+\mbox{\hyperlink{class_eigen_1_1_tensor_ref}{Tensor\+Ref}} \& {\bfseries operator=} (const \mbox{\hyperlink{class_eigen_1_1_tensor_ref}{Tensor\+Ref}} \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_ref_a9112f00efa98dc91acdd244bc702f218}\label{class_eigen_1_1_tensor_ref_a9112f00efa98dc91acdd244bc702f218}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Index {\bfseries rank} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_ref_af2240db8c384ba4ab03fb4534de92507}\label{class_eigen_1_1_tensor_ref_af2240db8c384ba4ab03fb4534de92507}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Index {\bfseries dimension} (Index n) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_ref_aaf723103d0497e5fff5bb9abcb1ba22e}\label{class_eigen_1_1_tensor_ref_aaf723103d0497e5fff5bb9abcb1ba22e}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Dimensions \& {\bfseries dimensions} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_ref_a1e00f8b919e03a37f78f18fcf54d0c57}\label{class_eigen_1_1_tensor_ref_a1e00f8b919e03a37f78f18fcf54d0c57}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Index {\bfseries size} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_ref_a965b58c51ad5161f2bb76e9fcde0ebb9}\label{class_eigen_1_1_tensor_ref_a965b58c51ad5161f2bb76e9fcde0ebb9}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Scalar $\ast$ {\bfseries data} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_ref_a32a245621469689282520711e43205b2}\label{class_eigen_1_1_tensor_ref_a32a245621469689282520711e43205b2}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Scalar {\bfseries operator()} (Index index) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_ref_adf4894057c5e618a5b2ccb7f49bddb5b}\label{class_eigen_1_1_tensor_ref_adf4894057c5e618a5b2ccb7f49bddb5b}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Scalar {\bfseries operator()} (Index i0, Index i1) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_ref_ae1a18fca09a4b0d3f443155274660299}\label{class_eigen_1_1_tensor_ref_ae1a18fca09a4b0d3f443155274660299}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Scalar {\bfseries operator()} (Index i0, Index i1, Index i2) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_ref_a83bc73aea522de3cbbc0d81e461ef97d}\label{class_eigen_1_1_tensor_ref_a83bc73aea522de3cbbc0d81e461ef97d}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Scalar {\bfseries operator()} (Index i0, Index i1, Index i2, Index i3) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_ref_ad20fa36d530c3ef9fc320e0a5e743ae7}\label{class_eigen_1_1_tensor_ref_ad20fa36d530c3ef9fc320e0a5e743ae7}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Scalar {\bfseries operator()} (Index i0, Index i1, Index i2, Index i3, Index i4) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_ref_ae606331ada404da19d5ff41a84ed7a1a}\label{class_eigen_1_1_tensor_ref_ae606331ada404da19d5ff41a84ed7a1a}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Scalar \& {\bfseries coeff\+Ref} (Index i0, Index i1)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_ref_ade6e63693ecb5f2cc580bc7dcdf52c44}\label{class_eigen_1_1_tensor_ref_ade6e63693ecb5f2cc580bc7dcdf52c44}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Scalar \& {\bfseries coeff\+Ref} (Index i0, Index i1, Index i2)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_ref_a442523a6207bbc006eede11027bb6021}\label{class_eigen_1_1_tensor_ref_a442523a6207bbc006eede11027bb6021}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Scalar \& {\bfseries operator()} (Index i0, Index i1, Index i2, Index i3)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_ref_ad476ea11f10983f5f62e96a24fded1c1}\label{class_eigen_1_1_tensor_ref_ad476ea11f10983f5f62e96a24fded1c1}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Scalar \& {\bfseries coeff\+Ref} (Index i0, Index i1, Index i2, Index i3, Index i4)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_ref_a574975a6f0ef59023a2196c469917dfa}\label{class_eigen_1_1_tensor_ref_a574975a6f0ef59023a2196c469917dfa}} 
+{\footnotesize template$<$std\+::size\+\_\+t Num\+Indices$>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Scalar {\bfseries coeff} (const \mbox{\hyperlink{class_eigen_1_1array}{array}}$<$ Index, Num\+Indices $>$ \&indices) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_ref_a6a77e995f669f1d182ce957ae35c9ae4}\label{class_eigen_1_1_tensor_ref_a6a77e995f669f1d182ce957ae35c9ae4}} 
+{\footnotesize template$<$std\+::size\+\_\+t Num\+Indices$>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Scalar \& {\bfseries coeff\+Ref} (const \mbox{\hyperlink{class_eigen_1_1array}{array}}$<$ Index, Num\+Indices $>$ \&indices)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_ref_acbc5a90a652bf6af1027734b6b20e6ee}\label{class_eigen_1_1_tensor_ref_acbc5a90a652bf6af1027734b6b20e6ee}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Scalar {\bfseries coeff} (Index index) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_ref_ac21c28ee6b4e92da1e043123b08fc282}\label{class_eigen_1_1_tensor_ref_ac21c28ee6b4e92da1e043123b08fc282}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Scalar \& {\bfseries coeff\+Ref} (Index index)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_ref_a6bf4d4ecb3d9ada49d25bba2e6da6f4e}\label{class_eigen_1_1_tensor_ref_a6bf4d4ecb3d9ada49d25bba2e6da6f4e}} 
+static const Index {\bfseries Num\+Indices} = Plain\+Object\+Type\+::\+Num\+Indices
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A reference to a tensor expression The expression will be evaluated lazily (as much as possible). 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/\+C\+X\+X11/src/\+Tensor/Tensor\+Forward\+Declarations.\+h\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/\+C\+X\+X11/src/\+Tensor/Tensor\+Ref.\+h\end{DoxyCompactItemize}

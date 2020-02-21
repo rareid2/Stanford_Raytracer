@@ -1,0 +1,70 @@
+\hypertarget{classtensor__interface}{}\doxysection{tensor\+\_\+interface$<$ real $>$ Class Template Reference}
+\label{classtensor__interface}\index{tensor\_interface$<$ real $>$@{tensor\_interface$<$ real $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtensor__interface_afa06faf8933a667881bc24804ad661f7}\label{classtensor__interface_afa06faf8933a667881bc24804ad661f7}} 
+typedef real {\bfseries real\+\_\+type}
+\item 
+\mbox{\Hypertarget{classtensor__interface_a400cc4a34171aefeeb65249256d5fb44}\label{classtensor__interface_a400cc4a34171aefeeb65249256d5fb44}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_tensor}{Eigen\+::\+Tensor}}$<$ real, 2 $>$\+::Index {\bfseries Index}
+\item 
+\mbox{\Hypertarget{classtensor__interface_a16dac22850837e02cddb80efdd2e1882}\label{classtensor__interface_a16dac22850837e02cddb80efdd2e1882}} 
+typedef std\+::vector$<$ real $>$ {\bfseries stl\+\_\+vector}
+\item 
+\mbox{\Hypertarget{classtensor__interface_a3529526e75d1be756047a90bace424ed}\label{classtensor__interface_a3529526e75d1be756047a90bace424ed}} 
+typedef std\+::vector$<$ stl\+\_\+vector $>$ {\bfseries stl\+\_\+matrix}
+\item 
+\mbox{\Hypertarget{classtensor__interface_ae745087cb2eb6ffd72b7cdbae2b63e0f}\label{classtensor__interface_ae745087cb2eb6ffd72b7cdbae2b63e0f}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_tensor}{Eigen\+::\+Tensor}}$<$ real, 2 $>$ {\bfseries gene\+\_\+matrix}
+\item 
+\mbox{\Hypertarget{classtensor__interface_ac0fd2d09e933ae3b7edefe9b52e8472d}\label{classtensor__interface_ac0fd2d09e933ae3b7edefe9b52e8472d}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_tensor}{Eigen\+::\+Tensor}}$<$ real, 1 $>$ {\bfseries gene\+\_\+vector}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtensor__interface_a67ec853299d1e51e8de5792f29662d58}\label{classtensor__interface_a67ec853299d1e51e8de5792f29662d58}} 
+static std\+::string {\bfseries name} (void)
+\item 
+\mbox{\Hypertarget{classtensor__interface_acc4dd965c5eeba5461654fe375627b06}\label{classtensor__interface_acc4dd965c5eeba5461654fe375627b06}} 
+static void {\bfseries free\+\_\+matrix} (\mbox{\hyperlink{class_eigen_1_1_tensor}{gene\+\_\+matrix}} \&, int)
+\item 
+\mbox{\Hypertarget{classtensor__interface_a3b3eb0836a787c1efa320ad88d11a7f1}\label{classtensor__interface_a3b3eb0836a787c1efa320ad88d11a7f1}} 
+static void {\bfseries free\+\_\+vector} (\mbox{\hyperlink{class_eigen_1_1_tensor}{gene\+\_\+vector}} \&)
+\item 
+\mbox{\Hypertarget{classtensor__interface_ae8b9ffe5345b1a8bed0d7ad9e6aa6590}\label{classtensor__interface_ae8b9ffe5345b1a8bed0d7ad9e6aa6590}} 
+static B\+T\+L\+\_\+\+D\+O\+N\+T\+\_\+\+I\+N\+L\+I\+NE void {\bfseries matrix\+\_\+from\+\_\+stl} (\mbox{\hyperlink{class_eigen_1_1_tensor}{gene\+\_\+matrix}} \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, stl\+\_\+matrix \&A\+\_\+stl)
+\item 
+\mbox{\Hypertarget{classtensor__interface_a1c684ab8c12594170aa1ae75468cb9bc}\label{classtensor__interface_a1c684ab8c12594170aa1ae75468cb9bc}} 
+static B\+T\+L\+\_\+\+D\+O\+N\+T\+\_\+\+I\+N\+L\+I\+NE void {\bfseries vector\+\_\+from\+\_\+stl} (\mbox{\hyperlink{class_eigen_1_1_tensor}{gene\+\_\+vector}} \&\mbox{\hyperlink{class_eigen_1_1_matrix}{B}}, stl\+\_\+vector \&B\+\_\+stl)
+\item 
+\mbox{\Hypertarget{classtensor__interface_a7a0253893f96e390d00e9e37c05ace13}\label{classtensor__interface_a7a0253893f96e390d00e9e37c05ace13}} 
+static B\+T\+L\+\_\+\+D\+O\+N\+T\+\_\+\+I\+N\+L\+I\+NE void {\bfseries vector\+\_\+to\+\_\+stl} (\mbox{\hyperlink{class_eigen_1_1_tensor}{gene\+\_\+vector}} \&\mbox{\hyperlink{class_eigen_1_1_matrix}{B}}, stl\+\_\+vector \&B\+\_\+stl)
+\item 
+\mbox{\Hypertarget{classtensor__interface_a70c7fd98c15c2157ea7ff6aefee99ca5}\label{classtensor__interface_a70c7fd98c15c2157ea7ff6aefee99ca5}} 
+static B\+T\+L\+\_\+\+D\+O\+N\+T\+\_\+\+I\+N\+L\+I\+NE void {\bfseries matrix\+\_\+to\+\_\+stl} (\mbox{\hyperlink{class_eigen_1_1_tensor}{gene\+\_\+matrix}} \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, stl\+\_\+matrix \&A\+\_\+stl)
+\item 
+\mbox{\Hypertarget{classtensor__interface_a77f641ab91d01c341f26af6a5ee6c194}\label{classtensor__interface_a77f641ab91d01c341f26af6a5ee6c194}} 
+static void {\bfseries matrix\+\_\+matrix\+\_\+product} (const \mbox{\hyperlink{class_eigen_1_1_tensor}{gene\+\_\+matrix}} \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, const \mbox{\hyperlink{class_eigen_1_1_tensor}{gene\+\_\+matrix}} \&\mbox{\hyperlink{class_eigen_1_1_matrix}{B}}, \mbox{\hyperlink{class_eigen_1_1_tensor}{gene\+\_\+matrix}} \&X, int)
+\item 
+\mbox{\Hypertarget{classtensor__interface_a8c859c9a56554907eff907233548241a}\label{classtensor__interface_a8c859c9a56554907eff907233548241a}} 
+static void {\bfseries matrix\+\_\+vector\+\_\+product} (const \mbox{\hyperlink{class_eigen_1_1_tensor}{gene\+\_\+matrix}} \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, const \mbox{\hyperlink{class_eigen_1_1_tensor}{gene\+\_\+vector}} \&\mbox{\hyperlink{class_eigen_1_1_matrix}{B}}, \mbox{\hyperlink{class_eigen_1_1_tensor}{gene\+\_\+vector}} \&X, int)
+\item 
+\mbox{\Hypertarget{classtensor__interface_a39db73e71870bccd9bf1003f00b6d921}\label{classtensor__interface_a39db73e71870bccd9bf1003f00b6d921}} 
+static void {\bfseries axpy} (real coef, const \mbox{\hyperlink{class_eigen_1_1_tensor}{gene\+\_\+vector}} \&X, \mbox{\hyperlink{class_eigen_1_1_tensor}{gene\+\_\+vector}} \&Y, int)
+\item 
+\mbox{\Hypertarget{classtensor__interface_a82ae19986ec5ce20916994cb6bdff53c}\label{classtensor__interface_a82ae19986ec5ce20916994cb6bdff53c}} 
+static void {\bfseries axpby} (real a, const \mbox{\hyperlink{class_eigen_1_1_tensor}{gene\+\_\+vector}} \&X, real b, \mbox{\hyperlink{class_eigen_1_1_tensor}{gene\+\_\+vector}} \&Y, int)
+\item 
+\mbox{\Hypertarget{classtensor__interface_a1eceb8d5c423dd31f0da851c33a77000}\label{classtensor__interface_a1eceb8d5c423dd31f0da851c33a77000}} 
+static E\+I\+G\+E\+N\+\_\+\+D\+O\+N\+T\+\_\+\+I\+N\+L\+I\+NE void {\bfseries copy\+\_\+matrix} (const \mbox{\hyperlink{class_eigen_1_1_tensor}{gene\+\_\+matrix}} \&source, \mbox{\hyperlink{class_eigen_1_1_tensor}{gene\+\_\+matrix}} \&cible, int)
+\item 
+\mbox{\Hypertarget{classtensor__interface_a7d6a1019a054d36122b0cc1e753fca8c}\label{classtensor__interface_a7d6a1019a054d36122b0cc1e753fca8c}} 
+static E\+I\+G\+E\+N\+\_\+\+D\+O\+N\+T\+\_\+\+I\+N\+L\+I\+NE void {\bfseries copy\+\_\+vector} (const \mbox{\hyperlink{class_eigen_1_1_tensor}{gene\+\_\+vector}} \&source, \mbox{\hyperlink{class_eigen_1_1_tensor}{gene\+\_\+vector}} \&cible, int)
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/bench/btl/libs/tensors/tensor\+\_\+interface.\+hh\end{DoxyCompactItemize}

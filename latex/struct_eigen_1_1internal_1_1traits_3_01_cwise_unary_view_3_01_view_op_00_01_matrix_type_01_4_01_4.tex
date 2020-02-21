@@ -1,0 +1,35 @@
+\hypertarget{struct_eigen_1_1internal_1_1traits_3_01_cwise_unary_view_3_01_view_op_00_01_matrix_type_01_4_01_4}{}\doxysection{Eigen\+::internal\+::traits$<$ Cwise\+Unary\+View$<$ View\+Op, Matrix\+Type $>$ $>$ Struct Template Reference}
+\label{struct_eigen_1_1internal_1_1traits_3_01_cwise_unary_view_3_01_view_op_00_01_matrix_type_01_4_01_4}\index{Eigen::internal::traits$<$ CwiseUnaryView$<$ ViewOp, MatrixType $>$ $>$@{Eigen::internal::traits$<$ CwiseUnaryView$<$ ViewOp, MatrixType $>$ $>$}}
+Inheritance diagram for Eigen\+::internal\+::traits$<$ Cwise\+Unary\+View$<$ View\+Op, Matrix\+Type $>$ $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{struct_eigen_1_1internal_1_1traits_3_01_cwise_unary_view_3_01_view_op_00_01_matrix_type_01_4_01_4}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_cwise_unary_view_3_01_view_op_00_01_matrix_type_01_4_01_4_ae3e70a5d462afccd3d864a14c7640254}\label{struct_eigen_1_1internal_1_1traits_3_01_cwise_unary_view_3_01_view_op_00_01_matrix_type_01_4_01_4_ae3e70a5d462afccd3d864a14c7640254}} 
+enum \{ \newline
+{\bfseries Flags\+Lvalue\+Bit} = is\+\_\+lvalue$<$Matrix\+Type$>$\+::value ? Lvalue\+Bit \+: 0, 
+{\bfseries Flags} = traits$<$\+\_\+\+Matrix\+Type\+Nested$>$\+::Flags \& (Row\+Major\+Bit $\vert$ Flags\+Lvalue\+Bit $\vert$ Direct\+Access\+Bit), 
+{\bfseries Matrix\+Type\+Inner\+Stride} = inner\+\_\+stride\+\_\+at\+\_\+compile\+\_\+time$<$Matrix\+Type$>$\+::ret, 
+{\bfseries Inner\+Stride\+At\+Compile\+Time}, 
+\newline
+{\bfseries Outer\+Stride\+At\+Compile\+Time}
+ \}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_cwise_unary_view_3_01_view_op_00_01_matrix_type_01_4_01_4_ae388eca20138f05948bdcc57b1cf4af7}\label{struct_eigen_1_1internal_1_1traits_3_01_cwise_unary_view_3_01_view_op_00_01_matrix_type_01_4_01_4_ae388eca20138f05948bdcc57b1cf4af7}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1result__of}{result\+\_\+of}}$<$ View\+Op(const typename \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{traits}}$<$ Matrix\+Type $>$\+::Scalar \&) $>$\+::type {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_cwise_unary_view_3_01_view_op_00_01_matrix_type_01_4_01_4_abea5f8e7606b96895780857b0b6106e3}\label{struct_eigen_1_1internal_1_1traits_3_01_cwise_unary_view_3_01_view_op_00_01_matrix_type_01_4_01_4_abea5f8e7606b96895780857b0b6106e3}} 
+typedef Matrix\+Type\+::\+Nested {\bfseries Matrix\+Type\+Nested}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_cwise_unary_view_3_01_view_op_00_01_matrix_type_01_4_01_4_af439e90a224f9a012a2cc6ee5182929e}\label{struct_eigen_1_1internal_1_1traits_3_01_cwise_unary_view_3_01_view_op_00_01_matrix_type_01_4_01_4_af439e90a224f9a012a2cc6ee5182929e}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{remove\+\_\+all}}$<$ Matrix\+Type\+Nested $>$\+::type {\bfseries \+\_\+\+Matrix\+Type\+Nested}
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/Cwise\+Unary\+View.\+h\end{DoxyCompactItemize}

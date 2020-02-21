@@ -1,0 +1,43 @@
+\hypertarget{struct_eigen_1_1internal_1_1traits_3_01_tensor_custom_binary_op_3_01_custom_binary_func_00_01_lh13ec16c8467537dd695eeaba8e396b16}{}\doxysection{Eigen\+::internal\+::traits$<$ Tensor\+Custom\+Binary\+Op$<$ Custom\+Binary\+Func, Lhs\+Xpr\+Type, Rhs\+Xpr\+Type $>$ $>$ Struct Template Reference}
+\label{struct_eigen_1_1internal_1_1traits_3_01_tensor_custom_binary_op_3_01_custom_binary_func_00_01_lh13ec16c8467537dd695eeaba8e396b16}\index{Eigen::internal::traits$<$ TensorCustomBinaryOp$<$ CustomBinaryFunc, LhsXprType, RhsXprType $>$ $>$@{Eigen::internal::traits$<$ TensorCustomBinaryOp$<$ CustomBinaryFunc, LhsXprType, RhsXprType $>$ $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_tensor_custom_binary_op_3_01_custom_binary_func_00_01_lh13ec16c8467537dd695eeaba8e396b16_a772b775ff2f33846294728ff5a136a48}\label{struct_eigen_1_1internal_1_1traits_3_01_tensor_custom_binary_op_3_01_custom_binary_func_00_01_lh13ec16c8467537dd695eeaba8e396b16_a772b775ff2f33846294728ff5a136a48}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1promote__storage__type}{internal\+::promote\+\_\+storage\+\_\+type}}$<$ typename Lhs\+Xpr\+Type\+::\+Scalar, typename Rhs\+Xpr\+Type\+::\+Scalar $>$\+::ret {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_tensor_custom_binary_op_3_01_custom_binary_func_00_01_lh13ec16c8467537dd695eeaba8e396b16_ae41afd7daa063f80d0c9078044644fee}\label{struct_eigen_1_1internal_1_1traits_3_01_tensor_custom_binary_op_3_01_custom_binary_func_00_01_lh13ec16c8467537dd695eeaba8e396b16_ae41afd7daa063f80d0c9078044644fee}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1promote__storage__type}{internal\+::promote\+\_\+storage\+\_\+type}}$<$ typename Lhs\+Xpr\+Type\+::\+Coeff\+Return\+Type, typename Rhs\+Xpr\+Type\+::\+Coeff\+Return\+Type $>$\+::ret {\bfseries Coeff\+Return\+Type}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_tensor_custom_binary_op_3_01_custom_binary_func_00_01_lh13ec16c8467537dd695eeaba8e396b16_a40dbe61e600001cba4ebabf6efd302b9}\label{struct_eigen_1_1internal_1_1traits_3_01_tensor_custom_binary_op_3_01_custom_binary_func_00_01_lh13ec16c8467537dd695eeaba8e396b16_a40dbe61e600001cba4ebabf6efd302b9}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1promote__storage__type}{promote\+\_\+storage\+\_\+type}}$<$ typename \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{traits}}$<$ Lhs\+Xpr\+Type $>$\+::Storage\+Kind, typename \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{traits}}$<$ Rhs\+Xpr\+Type $>$\+::Storage\+Kind $>$\+::ret {\bfseries Storage\+Kind}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_tensor_custom_binary_op_3_01_custom_binary_func_00_01_lh13ec16c8467537dd695eeaba8e396b16_ac82b3aaf913cfd872a3407af9ee17fcf}\label{struct_eigen_1_1internal_1_1traits_3_01_tensor_custom_binary_op_3_01_custom_binary_func_00_01_lh13ec16c8467537dd695eeaba8e396b16_ac82b3aaf913cfd872a3407af9ee17fcf}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1promote__index__type}{promote\+\_\+index\+\_\+type}}$<$ typename \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{traits}}$<$ Lhs\+Xpr\+Type $>$\+::\mbox{\hyperlink{struct_eigen_1_1internal_1_1conditional}{Index}}, typename \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{traits}}$<$ Rhs\+Xpr\+Type $>$\+::\mbox{\hyperlink{struct_eigen_1_1internal_1_1conditional}{Index}} $>$\+::type {\bfseries Index}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_tensor_custom_binary_op_3_01_custom_binary_func_00_01_lh13ec16c8467537dd695eeaba8e396b16_a5c8c0b39e34134a2c8e1f8075df124e2}\label{struct_eigen_1_1internal_1_1traits_3_01_tensor_custom_binary_op_3_01_custom_binary_func_00_01_lh13ec16c8467537dd695eeaba8e396b16_a5c8c0b39e34134a2c8e1f8075df124e2}} 
+typedef Lhs\+Xpr\+Type\+::\+Nested {\bfseries Lhs\+Nested}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_tensor_custom_binary_op_3_01_custom_binary_func_00_01_lh13ec16c8467537dd695eeaba8e396b16_a61e9682fef29195931ee954eec0be4cc}\label{struct_eigen_1_1internal_1_1traits_3_01_tensor_custom_binary_op_3_01_custom_binary_func_00_01_lh13ec16c8467537dd695eeaba8e396b16_a61e9682fef29195931ee954eec0be4cc}} 
+typedef Rhs\+Xpr\+Type\+::\+Nested {\bfseries Rhs\+Nested}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_tensor_custom_binary_op_3_01_custom_binary_func_00_01_lh13ec16c8467537dd695eeaba8e396b16_a6333dcbf0db02c3ff672cab91ddac3c9}\label{struct_eigen_1_1internal_1_1traits_3_01_tensor_custom_binary_op_3_01_custom_binary_func_00_01_lh13ec16c8467537dd695eeaba8e396b16_a6333dcbf0db02c3ff672cab91ddac3c9}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__reference}{remove\+\_\+reference}}$<$ Lhs\+Nested $>$\+::type {\bfseries \+\_\+\+Lhs\+Nested}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_tensor_custom_binary_op_3_01_custom_binary_func_00_01_lh13ec16c8467537dd695eeaba8e396b16_aadfcdd5037dbc12cc457904f8e7f35fa}\label{struct_eigen_1_1internal_1_1traits_3_01_tensor_custom_binary_op_3_01_custom_binary_func_00_01_lh13ec16c8467537dd695eeaba8e396b16_aadfcdd5037dbc12cc457904f8e7f35fa}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__reference}{remove\+\_\+reference}}$<$ Rhs\+Nested $>$\+::type {\bfseries \+\_\+\+Rhs\+Nested}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_tensor_custom_binary_op_3_01_custom_binary_func_00_01_lh13ec16c8467537dd695eeaba8e396b16_afd395dbe83e183753ad16c7445e895ae}\label{struct_eigen_1_1internal_1_1traits_3_01_tensor_custom_binary_op_3_01_custom_binary_func_00_01_lh13ec16c8467537dd695eeaba8e396b16_afd395dbe83e183753ad16c7445e895ae}} 
+static const int {\bfseries Num\+Dimensions} = \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{traits}}$<$Lhs\+Xpr\+Type$>$\+::Num\+Dimensions
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_tensor_custom_binary_op_3_01_custom_binary_func_00_01_lh13ec16c8467537dd695eeaba8e396b16_aae1278b35e945f370b04c3e7b875d741}\label{struct_eigen_1_1internal_1_1traits_3_01_tensor_custom_binary_op_3_01_custom_binary_func_00_01_lh13ec16c8467537dd695eeaba8e396b16_aae1278b35e945f370b04c3e7b875d741}} 
+static const int {\bfseries Layout} = \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{traits}}$<$Lhs\+Xpr\+Type$>$\+::Layout
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/\+C\+X\+X11/src/\+Tensor/Tensor\+Custom\+Op.\+h\end{DoxyCompactItemize}

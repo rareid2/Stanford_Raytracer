@@ -1,0 +1,349 @@
+\hypertarget{class_eigen_1_1_l_l_t}{}\doxysection{Eigen\+::L\+LT$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo $>$ Class Template Reference}
+\label{class_eigen_1_1_l_l_t}\index{Eigen::LLT$<$ \_MatrixType, \_UpLo $>$@{Eigen::LLT$<$ \_MatrixType, \_UpLo $>$}}
+
+
+Standard Cholesky decomposition (L\+L$^\wedge$T) of a matrix and associated features.  
+
+
+
+
+{\ttfamily \#include $<$L\+L\+T.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_l_l_t_a6dc1eaf4f0f3d92ab6ef6703a363bf4b}\label{class_eigen_1_1_l_l_t_a6dc1eaf4f0f3d92ab6ef6703a363bf4b}} 
+enum \{ {\bfseries Rows\+At\+Compile\+Time} = Matrix\+Type\+::Rows\+At\+Compile\+Time, 
+{\bfseries Cols\+At\+Compile\+Time} = Matrix\+Type\+::Cols\+At\+Compile\+Time, 
+{\bfseries Max\+Cols\+At\+Compile\+Time} = Matrix\+Type\+::Max\+Cols\+At\+Compile\+Time
+ \}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_l_l_t_a765d05eb04421146ed4e363d9c62c1d7}\label{class_eigen_1_1_l_l_t_a765d05eb04421146ed4e363d9c62c1d7}} 
+enum \{ {\bfseries Packet\+Size} = internal\+::packet\+\_\+traits$<$Scalar$>$\+::size, 
+{\bfseries Alignment\+Mask} = int(Packet\+Size)-\/1, 
+{\bfseries Up\+Lo} = \+\_\+\+Up\+Lo
+ \}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_l_l_t_a51ef18ef9163d74028f6cb6d967a9242}\label{class_eigen_1_1_l_l_t_a51ef18ef9163d74028f6cb6d967a9242}} 
+typedef \+\_\+\+Matrix\+Type {\bfseries Matrix\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_l_l_t_ac3e9cca0fd73cbe446f5ee562386a934}\label{class_eigen_1_1_l_l_t_ac3e9cca0fd73cbe446f5ee562386a934}} 
+typedef Matrix\+Type\+::\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_l_l_t_a83aa63243f80d1d99fe0d2a91a5a157f}\label{class_eigen_1_1_l_l_t_a83aa63243f80d1d99fe0d2a91a5a157f}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$ typename Matrix\+Type\+::\+Scalar $>$\+::Real {\bfseries Real\+Scalar}
+\item 
+typedef \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Eigen\+::\+Index}} \mbox{\hyperlink{class_eigen_1_1_l_l_t_ac7a64274814fa76e8b1e9e945546037f}{Index}}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_l_l_t_ae946bd1d4fb9bc01f4a51b9007a32c1a}\label{class_eigen_1_1_l_l_t_ae946bd1d4fb9bc01f4a51b9007a32c1a}} 
+typedef Matrix\+Type\+::\+Storage\+Index {\bfseries Storage\+Index}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_l_l_t_a61954c19216610f6d6da9a816de03e2e}\label{class_eigen_1_1_l_l_t_a61954c19216610f6d6da9a816de03e2e}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1_l_l_t___traits}{internal\+::\+L\+L\+T\+\_\+\+Traits}}$<$ Matrix\+Type, Up\+Lo $>$ {\bfseries Traits}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_l_l_t_a16d1ec9ea6497ba1febb242c2e8a7a96}{L\+LT}} ()
+\begin{DoxyCompactList}\small\item\em Default Constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_eigen_1_1_l_l_t_ab3656cfbdf38e03c57d5cf79bf8131b6}{L\+LT}} (\mbox{\hyperlink{class_eigen_1_1_l_l_t_ac7a64274814fa76e8b1e9e945546037f}{Index}} size)
+\begin{DoxyCompactList}\small\item\em Default Constructor with memory preallocation. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_eigen_1_1_l_l_t_a0f9ef009097996bbf4287024a1f05836}\label{class_eigen_1_1_l_l_t_a0f9ef009097996bbf4287024a1f05836}} 
+{\footnotesize template$<$typename Input\+Type $>$ }\\{\bfseries L\+LT} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&matrix)
+\item 
+{\footnotesize template$<$typename Input\+Type $>$ }\\\mbox{\hyperlink{class_eigen_1_1_l_l_t_a1848a00addade9a0f7f70493c52ecc9d}{L\+LT}} (\mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&matrix)
+\begin{DoxyCompactList}\small\item\em Constructs a \mbox{\hyperlink{class_eigen_1_1_l_d_l_t}{L\+D\+LT}} factorization from a given matrix. \end{DoxyCompactList}\item 
+Traits\+::\+MatrixU \mbox{\hyperlink{class_eigen_1_1_l_l_t_a18a390f085567e650e8345cc7e7c0df8}{matrixU}} () const
+\item 
+Traits\+::\+MatrixL \mbox{\hyperlink{class_eigen_1_1_l_l_t_a7f4a3eedbf82e7ce2d6bf0dcd84cdfa3}{matrixL}} () const
+\item 
+{\footnotesize template$<$typename Rhs $>$ }\\const \mbox{\hyperlink{class_eigen_1_1_solve}{Solve}}$<$ \mbox{\hyperlink{class_eigen_1_1_l_l_t}{L\+LT}}, Rhs $>$ \mbox{\hyperlink{class_eigen_1_1_l_l_t_a3738bb3ce6f9b837a2beb432b937499f}{solve}} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Rhs $>$ \&b) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_l_l_t_a57636109ebeebe027e3697e486e65f47}\label{class_eigen_1_1_l_l_t_a57636109ebeebe027e3697e486e65f47}} 
+{\footnotesize template$<$typename Derived $>$ }\\void {\bfseries solve\+In\+Place} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Derived $>$ \&b\+AndX) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_l_l_t_a047903df237859a988d8935ad3a02d0f}\label{class_eigen_1_1_l_l_t_a047903df237859a988d8935ad3a02d0f}} 
+{\footnotesize template$<$typename Input\+Type $>$ }\\\mbox{\hyperlink{class_eigen_1_1_l_l_t}{L\+LT}} \& {\bfseries compute} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&matrix)
+\item 
+Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_l_l_t_a59338fa78db171d02fd5a2c9e4f3a30c}{rcond}} () const
+\item 
+const Matrix\+Type \& \mbox{\hyperlink{class_eigen_1_1_l_l_t_af62881fc95c7e54a93b63c20f2c62b46}{matrix\+L\+LT}} () const
+\item 
+Matrix\+Type \mbox{\hyperlink{class_eigen_1_1_l_l_t_a8b6ba1bc41811c50e65cac8db597d802}{reconstructed\+Matrix}} () const
+\item 
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} \mbox{\hyperlink{class_eigen_1_1_l_l_t_adb1295e7d2b1fd825a041345ae08be54}{info}} () const
+\begin{DoxyCompactList}\small\item\em Reports whether previous computation was successful. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{class_eigen_1_1_l_l_t}{L\+LT}} \& \mbox{\hyperlink{class_eigen_1_1_l_l_t_a559aba3a7c41f7fc87ec84327bb72ccd}{adjoint}} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_l_l_t_a964802e4662be3d2982c7ac7e5cb1cc4}\label{class_eigen_1_1_l_l_t_a964802e4662be3d2982c7ac7e5cb1cc4}} 
+\mbox{\hyperlink{class_eigen_1_1_l_l_t_ac7a64274814fa76e8b1e9e945546037f}{Index}} {\bfseries rows} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_l_l_t_a5d42bfeb153842ea6d88e15683b9a41f}\label{class_eigen_1_1_l_l_t_a5d42bfeb153842ea6d88e15683b9a41f}} 
+\mbox{\hyperlink{class_eigen_1_1_l_l_t_ac7a64274814fa76e8b1e9e945546037f}{Index}} {\bfseries cols} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_l_l_t_aef5a3811432035d8389d6cbc8a13370a}\label{class_eigen_1_1_l_l_t_aef5a3811432035d8389d6cbc8a13370a}} 
+{\footnotesize template$<$typename Vector\+Type $>$ }\\\mbox{\hyperlink{class_eigen_1_1_l_l_t}{L\+LT}} {\bfseries rank\+Update} (const \mbox{\hyperlink{struct_vector_type}{Vector\+Type}} \&vec, const Real\+Scalar \&sigma=1)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_l_l_t_a4931c43521d00b110453da8d8f58f428}\label{class_eigen_1_1_l_l_t_a4931c43521d00b110453da8d8f58f428}} 
+{\footnotesize template$<$typename Rhs\+Type , typename Dst\+Type $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC void {\bfseries \+\_\+solve\+\_\+impl} (const Rhs\+Type \&rhs, Dst\+Type \&dst) const
+\item 
+{\footnotesize template$<$typename Input\+Type $>$ }\\\mbox{\hyperlink{class_eigen_1_1_l_l_t}{L\+LT}}$<$ Matrix\+Type, \+\_\+\+Up\+Lo $>$ \& \mbox{\hyperlink{class_eigen_1_1_l_l_t_aecb45daf711328e0804f272131142b57}{compute}} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&a)
+\item 
+{\footnotesize template$<$typename Vector\+Type $>$ }\\\mbox{\hyperlink{class_eigen_1_1_l_l_t}{L\+LT}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo $>$ \mbox{\hyperlink{class_eigen_1_1_l_l_t_aae1ee59cb3c46723721da6fd72acc21a}{rank\+Update}} (const \mbox{\hyperlink{struct_vector_type}{Vector\+Type}} \&v, const Real\+Scalar \&sigma)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_l_l_t_a3536d368add68acb7c9067da5656aaf9}\label{class_eigen_1_1_l_l_t_a3536d368add68acb7c9067da5656aaf9}} 
+{\footnotesize template$<$typename Rhs\+Type , typename Dst\+Type $>$ }\\void {\bfseries \+\_\+solve\+\_\+impl} (const Rhs\+Type \&rhs, Dst\+Type \&dst) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_l_l_t_a661ba945968e0b91357f8cdf72db09f8}\label{class_eigen_1_1_l_l_t_a661ba945968e0b91357f8cdf72db09f8}} 
+static void {\bfseries check\+\_\+template\+\_\+parameters} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_l_l_t_ab632f0e414857af3782efbdc8a71a986}\label{class_eigen_1_1_l_l_t_ab632f0e414857af3782efbdc8a71a986}} 
+Matrix\+Type {\bfseries m\+\_\+matrix}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_l_l_t_a1e499b31d6f7c8411ec99602eef76ec8}\label{class_eigen_1_1_l_l_t_a1e499b31d6f7c8411ec99602eef76ec8}} 
+Real\+Scalar {\bfseries m\+\_\+l1\+\_\+norm}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_l_l_t_a9dff09bd7ff28372f9c7fd81972f1059}\label{class_eigen_1_1_l_l_t_a9dff09bd7ff28372f9c7fd81972f1059}} 
+bool {\bfseries m\+\_\+is\+Initialized}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_l_l_t_a40964f05dfde7eb3a964e9df50a905e5}\label{class_eigen_1_1_l_l_t_a40964f05dfde7eb3a964e9df50a905e5}} 
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} {\bfseries m\+\_\+info}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Matrix\+Type, int \+\_\+\+Up\+Lo$>$\newline
+class Eigen\+::\+L\+L\+T$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo $>$}
+
+Standard Cholesky decomposition (L\+L$^\wedge$T) of a matrix and associated features. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Matrix\+Type} & the type of the matrix of which we are computing the L\+L$^\wedge$T Cholesky decomposition \\
+\hline
+{\em \+\_\+\+Up\+Lo} & the triangular part that will be used for the decompositon\+: Lower (default) or Upper. The other triangular part won\textquotesingle{}t be read.\\
+\hline
+\end{DoxyTemplParams}
+This class performs a L\+L$^\wedge$T Cholesky decomposition of a symmetric, positive definite matrix A such that A = L\+L$^\wedge$$\ast$ = U$^\wedge$$\ast$U, where L is lower triangular.
+
+While the Cholesky decomposition is particularly useful to solve selfadjoint problems like D$^\wedge$$\ast$D x = b, for that purpose, we recommend the Cholesky decomposition without square root which is more stable and even faster. Nevertheless, this standard Cholesky decomposition remains useful in many other situations like generalised eigen problems with hermitian matrices.
+
+Remember that Cholesky decompositions are not rank-\/revealing. This \mbox{\hyperlink{class_eigen_1_1_l_l_t}{L\+LT}} decomposition is only stable on positive definite matrices, use \mbox{\hyperlink{class_eigen_1_1_l_d_l_t}{L\+D\+LT}} instead for the semidefinite case. Also, do not use a Cholesky decomposition to determine whether a system of equations has a solution.
+
+Example\+: 
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+
+
+{\bfseries{Performance\+:}} for best performance, it is recommended to use a column-\/major storage format with the Lower triangular part (the default), or, equivalently, a row-\/major storage format with the Upper triangular part. Otherwise, you might get a 20\% slowdown for the full factorization step, and rank-\/updates can be up to 3 times slower.
+
+This class supports the \mbox{\hyperlink{group___inplace_decomposition}{inplace decomposition }} mechanism.
+
+Note that during the decomposition, only the lower (or upper, as defined by \+\_\+\+Up\+Lo) triangular part of A is considered. Therefore, the strict lower part does not have to store correct values.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_matrix_base_a90c45f7a30265df792d5aeaddead2635}{Matrix\+Base\+::llt()}}, \mbox{\hyperlink{class_eigen_1_1_self_adjoint_view_a405e810491642a7f7b785f2ad6f93619}{Self\+Adjoint\+View\+::llt()}}, class \mbox{\hyperlink{class_eigen_1_1_l_d_l_t}{L\+D\+LT}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_l_l_t_ac7a64274814fa76e8b1e9e945546037f}\label{class_eigen_1_1_l_l_t_ac7a64274814fa76e8b1e9e945546037f}} 
+\index{Eigen::LLT$<$ \_MatrixType, \_UpLo $>$@{Eigen::LLT$<$ \_MatrixType, \_UpLo $>$}!Index@{Index}}
+\index{Index@{Index}!Eigen::LLT$<$ \_MatrixType, \_UpLo $>$@{Eigen::LLT$<$ \_MatrixType, \_UpLo $>$}}
+\doxysubsubsection{\texorpdfstring{Index}{Index}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , int \+\_\+\+Up\+Lo$>$ \\
+typedef \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Eigen\+::\+Index}} \mbox{\hyperlink{class_eigen_1_1_l_l_t}{Eigen\+::\+L\+LT}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo $>$\+::\mbox{\hyperlink{class_eigen_1_1_l_l_t_ac7a64274814fa76e8b1e9e945546037f}{Index}}}
+
+\begin{DoxyRefDesc}{Deprecated}
+\item[\mbox{\hyperlink{deprecated__deprecated000002}{Deprecated}}]since \mbox{\hyperlink{namespace_eigen}{Eigen}} 3.\+3 \end{DoxyRefDesc}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_l_l_t_a16d1ec9ea6497ba1febb242c2e8a7a96}\label{class_eigen_1_1_l_l_t_a16d1ec9ea6497ba1febb242c2e8a7a96}} 
+\index{Eigen::LLT$<$ \_MatrixType, \_UpLo $>$@{Eigen::LLT$<$ \_MatrixType, \_UpLo $>$}!LLT@{LLT}}
+\index{LLT@{LLT}!Eigen::LLT$<$ \_MatrixType, \_UpLo $>$@{Eigen::LLT$<$ \_MatrixType, \_UpLo $>$}}
+\doxysubsubsection{\texorpdfstring{LLT()}{LLT()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , int \+\_\+\+Up\+Lo$>$ \\
+\mbox{\hyperlink{class_eigen_1_1_l_l_t}{Eigen\+::\+L\+LT}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo $>$\+::\mbox{\hyperlink{class_eigen_1_1_l_l_t}{L\+LT}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default Constructor. 
+
+The default constructor is useful in cases in which the user intends to perform decompositions via L\+L\+T\+::compute(const Matrix\+Type\&). \mbox{\Hypertarget{class_eigen_1_1_l_l_t_ab3656cfbdf38e03c57d5cf79bf8131b6}\label{class_eigen_1_1_l_l_t_ab3656cfbdf38e03c57d5cf79bf8131b6}} 
+\index{Eigen::LLT$<$ \_MatrixType, \_UpLo $>$@{Eigen::LLT$<$ \_MatrixType, \_UpLo $>$}!LLT@{LLT}}
+\index{LLT@{LLT}!Eigen::LLT$<$ \_MatrixType, \_UpLo $>$@{Eigen::LLT$<$ \_MatrixType, \_UpLo $>$}}
+\doxysubsubsection{\texorpdfstring{LLT()}{LLT()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , int \+\_\+\+Up\+Lo$>$ \\
+\mbox{\hyperlink{class_eigen_1_1_l_l_t}{Eigen\+::\+L\+LT}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo $>$\+::\mbox{\hyperlink{class_eigen_1_1_l_l_t}{L\+LT}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eigen_1_1_l_l_t_ac7a64274814fa76e8b1e9e945546037f}{Index}}}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Default Constructor with memory preallocation. 
+
+Like the default constructor but with preallocation of the internal data according to the specified problem {\itshape size}. \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_l_l_t_a16d1ec9ea6497ba1febb242c2e8a7a96}{L\+L\+T()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_l_l_t_a1848a00addade9a0f7f70493c52ecc9d}\label{class_eigen_1_1_l_l_t_a1848a00addade9a0f7f70493c52ecc9d}} 
+\index{Eigen::LLT$<$ \_MatrixType, \_UpLo $>$@{Eigen::LLT$<$ \_MatrixType, \_UpLo $>$}!LLT@{LLT}}
+\index{LLT@{LLT}!Eigen::LLT$<$ \_MatrixType, \_UpLo $>$@{Eigen::LLT$<$ \_MatrixType, \_UpLo $>$}}
+\doxysubsubsection{\texorpdfstring{LLT()}{LLT()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , int \+\_\+\+Up\+Lo$>$ \\
+template$<$typename Input\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_l_l_t}{Eigen\+::\+L\+LT}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo $>$\+::\mbox{\hyperlink{class_eigen_1_1_l_l_t}{L\+LT}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&}]{matrix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Constructs a \mbox{\hyperlink{class_eigen_1_1_l_d_l_t}{L\+D\+LT}} factorization from a given matrix. 
+
+This overloaded constructor is provided for \mbox{\hyperlink{group___inplace_decomposition}{inplace decomposition }} when {\ttfamily Matrix\+Type} is a \mbox{\hyperlink{class_eigen_1_1_ref}{Eigen\+::\+Ref}}.
+
+\begin{DoxySeeAlso}{See also}
+L\+L\+T(const Eigen\+Base\&) 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_l_l_t_a559aba3a7c41f7fc87ec84327bb72ccd}\label{class_eigen_1_1_l_l_t_a559aba3a7c41f7fc87ec84327bb72ccd}} 
+\index{Eigen::LLT$<$ \_MatrixType, \_UpLo $>$@{Eigen::LLT$<$ \_MatrixType, \_UpLo $>$}!adjoint@{adjoint}}
+\index{adjoint@{adjoint}!Eigen::LLT$<$ \_MatrixType, \_UpLo $>$@{Eigen::LLT$<$ \_MatrixType, \_UpLo $>$}}
+\doxysubsubsection{\texorpdfstring{adjoint()}{adjoint()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , int \+\_\+\+Up\+Lo$>$ \\
+const \mbox{\hyperlink{class_eigen_1_1_l_l_t}{L\+LT}}\& \mbox{\hyperlink{class_eigen_1_1_l_l_t}{Eigen\+::\+L\+LT}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo $>$\+::adjoint (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the adjoint of {\ttfamily $\ast$this}, that is, a const reference to the decomposition itself as the underlying matrix is self-\/adjoint.
+\end{DoxyReturn}
+This method is provided for compatibility with other matrix decompositions, thus enabling generic code such as\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{x = decomposition.adjoint().solve(b) }
+\end{DoxyCode}
+ \mbox{\Hypertarget{class_eigen_1_1_l_l_t_aecb45daf711328e0804f272131142b57}\label{class_eigen_1_1_l_l_t_aecb45daf711328e0804f272131142b57}} 
+\index{Eigen::LLT$<$ \_MatrixType, \_UpLo $>$@{Eigen::LLT$<$ \_MatrixType, \_UpLo $>$}!compute@{compute}}
+\index{compute@{compute}!Eigen::LLT$<$ \_MatrixType, \_UpLo $>$@{Eigen::LLT$<$ \_MatrixType, \_UpLo $>$}}
+\doxysubsubsection{\texorpdfstring{compute()}{compute()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , int \+\_\+\+Up\+Lo$>$ \\
+template$<$typename Input\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_l_l_t}{L\+LT}}$<$Matrix\+Type,\+\_\+\+Up\+Lo$>$\& \mbox{\hyperlink{class_eigen_1_1_l_l_t}{Eigen\+::\+L\+LT}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo $>$\+::compute (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&}]{a }\end{DoxyParamCaption})}
+
+Computes / recomputes the Cholesky decomposition A = L\+L$^\wedge$$\ast$ = U$^\wedge$$\ast$U of {\itshape matrix} 
+
+\begin{DoxyReturn}{Returns}
+a reference to $\ast$this
+\end{DoxyReturn}
+Example\+: 
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+ \mbox{\Hypertarget{class_eigen_1_1_l_l_t_adb1295e7d2b1fd825a041345ae08be54}\label{class_eigen_1_1_l_l_t_adb1295e7d2b1fd825a041345ae08be54}} 
+\index{Eigen::LLT$<$ \_MatrixType, \_UpLo $>$@{Eigen::LLT$<$ \_MatrixType, \_UpLo $>$}!info@{info}}
+\index{info@{info}!Eigen::LLT$<$ \_MatrixType, \_UpLo $>$@{Eigen::LLT$<$ \_MatrixType, \_UpLo $>$}}
+\doxysubsubsection{\texorpdfstring{info()}{info()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , int \+\_\+\+Up\+Lo$>$ \\
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} \mbox{\hyperlink{class_eigen_1_1_l_l_t}{Eigen\+::\+L\+LT}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo $>$\+::info (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Reports whether previous computation was successful. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily Success} if computation was succesful, {\ttfamily Numerical\+Issue} if the matrix.\+appears not to be positive definite. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_l_l_t_a7f4a3eedbf82e7ce2d6bf0dcd84cdfa3}\label{class_eigen_1_1_l_l_t_a7f4a3eedbf82e7ce2d6bf0dcd84cdfa3}} 
+\index{Eigen::LLT$<$ \_MatrixType, \_UpLo $>$@{Eigen::LLT$<$ \_MatrixType, \_UpLo $>$}!matrixL@{matrixL}}
+\index{matrixL@{matrixL}!Eigen::LLT$<$ \_MatrixType, \_UpLo $>$@{Eigen::LLT$<$ \_MatrixType, \_UpLo $>$}}
+\doxysubsubsection{\texorpdfstring{matrixL()}{matrixL()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , int \+\_\+\+Up\+Lo$>$ \\
+Traits\+::\+MatrixL \mbox{\hyperlink{class_eigen_1_1_l_l_t}{Eigen\+::\+L\+LT}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo $>$\+::matrixL (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a view of the lower triangular matrix L 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_l_l_t_af62881fc95c7e54a93b63c20f2c62b46}\label{class_eigen_1_1_l_l_t_af62881fc95c7e54a93b63c20f2c62b46}} 
+\index{Eigen::LLT$<$ \_MatrixType, \_UpLo $>$@{Eigen::LLT$<$ \_MatrixType, \_UpLo $>$}!matrixLLT@{matrixLLT}}
+\index{matrixLLT@{matrixLLT}!Eigen::LLT$<$ \_MatrixType, \_UpLo $>$@{Eigen::LLT$<$ \_MatrixType, \_UpLo $>$}}
+\doxysubsubsection{\texorpdfstring{matrixLLT()}{matrixLLT()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , int \+\_\+\+Up\+Lo$>$ \\
+const Matrix\+Type\& \mbox{\hyperlink{class_eigen_1_1_l_l_t}{Eigen\+::\+L\+LT}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo $>$\+::matrix\+L\+LT (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the \mbox{\hyperlink{class_eigen_1_1_l_l_t}{L\+LT}} decomposition matrix
+\end{DoxyReturn}
+T\+O\+DO\+: document the storage layout \mbox{\Hypertarget{class_eigen_1_1_l_l_t_a18a390f085567e650e8345cc7e7c0df8}\label{class_eigen_1_1_l_l_t_a18a390f085567e650e8345cc7e7c0df8}} 
+\index{Eigen::LLT$<$ \_MatrixType, \_UpLo $>$@{Eigen::LLT$<$ \_MatrixType, \_UpLo $>$}!matrixU@{matrixU}}
+\index{matrixU@{matrixU}!Eigen::LLT$<$ \_MatrixType, \_UpLo $>$@{Eigen::LLT$<$ \_MatrixType, \_UpLo $>$}}
+\doxysubsubsection{\texorpdfstring{matrixU()}{matrixU()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , int \+\_\+\+Up\+Lo$>$ \\
+Traits\+::\+MatrixU \mbox{\hyperlink{class_eigen_1_1_l_l_t}{Eigen\+::\+L\+LT}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo $>$\+::matrixU (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a view of the upper triangular matrix U 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_l_l_t_aae1ee59cb3c46723721da6fd72acc21a}\label{class_eigen_1_1_l_l_t_aae1ee59cb3c46723721da6fd72acc21a}} 
+\index{Eigen::LLT$<$ \_MatrixType, \_UpLo $>$@{Eigen::LLT$<$ \_MatrixType, \_UpLo $>$}!rankUpdate@{rankUpdate}}
+\index{rankUpdate@{rankUpdate}!Eigen::LLT$<$ \_MatrixType, \_UpLo $>$@{Eigen::LLT$<$ \_MatrixType, \_UpLo $>$}}
+\doxysubsubsection{\texorpdfstring{rankUpdate()}{rankUpdate()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , int \+\_\+\+Up\+Lo$>$ \\
+template$<$typename Vector\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_l_l_t}{L\+LT}}$<$\+\_\+\+Matrix\+Type,\+\_\+\+Up\+Lo$>$ \mbox{\hyperlink{class_eigen_1_1_l_l_t}{Eigen\+::\+L\+LT}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo $>$\+::rank\+Update (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_vector_type}{Vector\+Type}} \&}]{v,  }\item[{const Real\+Scalar \&}]{sigma }\end{DoxyParamCaption})}
+
+Performs a rank one update (or dowdate) of the current decomposition. If A = L\+L$^\wedge$$\ast$ before the rank one update, then after it we have L\+L$^\wedge$$\ast$ = A + sigma $\ast$ v v$^\wedge$$\ast$ where {\itshape v} must be a vector of same dimension. \mbox{\Hypertarget{class_eigen_1_1_l_l_t_a59338fa78db171d02fd5a2c9e4f3a30c}\label{class_eigen_1_1_l_l_t_a59338fa78db171d02fd5a2c9e4f3a30c}} 
+\index{Eigen::LLT$<$ \_MatrixType, \_UpLo $>$@{Eigen::LLT$<$ \_MatrixType, \_UpLo $>$}!rcond@{rcond}}
+\index{rcond@{rcond}!Eigen::LLT$<$ \_MatrixType, \_UpLo $>$@{Eigen::LLT$<$ \_MatrixType, \_UpLo $>$}}
+\doxysubsubsection{\texorpdfstring{rcond()}{rcond()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , int \+\_\+\+Up\+Lo$>$ \\
+Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_l_l_t}{Eigen\+::\+L\+LT}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo $>$\+::rcond (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+an estimate of the reciprocal condition number of the matrix of which {\ttfamily $\ast$this} is the Cholesky decomposition. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_l_l_t_a8b6ba1bc41811c50e65cac8db597d802}\label{class_eigen_1_1_l_l_t_a8b6ba1bc41811c50e65cac8db597d802}} 
+\index{Eigen::LLT$<$ \_MatrixType, \_UpLo $>$@{Eigen::LLT$<$ \_MatrixType, \_UpLo $>$}!reconstructedMatrix@{reconstructedMatrix}}
+\index{reconstructedMatrix@{reconstructedMatrix}!Eigen::LLT$<$ \_MatrixType, \_UpLo $>$@{Eigen::LLT$<$ \_MatrixType, \_UpLo $>$}}
+\doxysubsubsection{\texorpdfstring{reconstructedMatrix()}{reconstructedMatrix()}}
+{\footnotesize\ttfamily template$<$typename Matrix\+Type , int \+\_\+\+Up\+Lo$>$ \\
+Matrix\+Type \mbox{\hyperlink{class_eigen_1_1_l_l_t}{Eigen\+::\+L\+LT}}$<$ Matrix\+Type, \+\_\+\+Up\+Lo $>$\+::reconstructed\+Matrix}
+
+\begin{DoxyReturn}{Returns}
+the matrix represented by the decomposition, i.\+e., it returns the product\+: L L$^\wedge$$\ast$. This function is provided for debug purpose. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_l_l_t_a3738bb3ce6f9b837a2beb432b937499f}\label{class_eigen_1_1_l_l_t_a3738bb3ce6f9b837a2beb432b937499f}} 
+\index{Eigen::LLT$<$ \_MatrixType, \_UpLo $>$@{Eigen::LLT$<$ \_MatrixType, \_UpLo $>$}!solve@{solve}}
+\index{solve@{solve}!Eigen::LLT$<$ \_MatrixType, \_UpLo $>$@{Eigen::LLT$<$ \_MatrixType, \_UpLo $>$}}
+\doxysubsubsection{\texorpdfstring{solve()}{solve()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , int \+\_\+\+Up\+Lo$>$ \\
+template$<$typename Rhs $>$ \\
+const \mbox{\hyperlink{class_eigen_1_1_solve}{Solve}}$<$\mbox{\hyperlink{class_eigen_1_1_l_l_t}{L\+LT}}, Rhs$>$ \mbox{\hyperlink{class_eigen_1_1_l_l_t}{Eigen\+::\+L\+LT}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo $>$\+::solve (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Rhs $>$ \&}]{b }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the solution x of $ A x = b $ using the current decomposition of A.
+\end{DoxyReturn}
+Since this \mbox{\hyperlink{class_eigen_1_1_l_l_t}{L\+LT}} class assumes anyway that the matrix A is invertible, the solution theoretically exists and is unique regardless of b.
+
+Example\+: 
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+
+
+\begin{DoxySeeAlso}{See also}
+solve\+In\+Place(), \mbox{\hyperlink{class_eigen_1_1_matrix_base_a90c45f7a30265df792d5aeaddead2635}{Matrix\+Base\+::llt()}}, \mbox{\hyperlink{class_eigen_1_1_self_adjoint_view_a405e810491642a7f7b785f2ad6f93619}{Self\+Adjoint\+View\+::llt()}} 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Cholesky/L\+L\+T.\+h\end{DoxyCompactItemize}

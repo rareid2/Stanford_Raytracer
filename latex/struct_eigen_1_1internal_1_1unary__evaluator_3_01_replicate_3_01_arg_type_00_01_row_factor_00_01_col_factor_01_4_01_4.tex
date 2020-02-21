@@ -1,0 +1,72 @@
+\hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4}{}\doxysection{Eigen\+::internal\+::unary\+\_\+evaluator$<$ Replicate$<$ Arg\+Type, Row\+Factor, Col\+Factor $>$ $>$ Struct Template Reference}
+\label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4}\index{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$@{Eigen::internal::unary\_evaluator$<$ Replicate$<$ ArgType, RowFactor, ColFactor $>$ $>$}}
+Inheritance diagram for Eigen\+::internal\+::unary\+\_\+evaluator$<$ Replicate$<$ Arg\+Type, Row\+Factor, Col\+Factor $>$ $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_ab8d66273836362ffa03d226893464f6f}\label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_ab8d66273836362ffa03d226893464f6f}} 
+enum \{ {\bfseries Factor} = (Row\+Factor==Dynamic $\vert$$\vert$ Col\+Factor==Dynamic) ? Dynamic \+: Row\+Factor$\ast$\+Col\+Factor
+ \}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_acad0c597aaf2f66ca5c7fd9e98fbce1d}\label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_acad0c597aaf2f66ca5c7fd9e98fbce1d}} 
+enum \{ {\bfseries Coeff\+Read\+Cost} = evaluator$<$Arg\+Type\+Nested\+Cleaned$>$\+::Coeff\+Read\+Cost, 
+{\bfseries Linear\+Access\+Mask} = Xpr\+Type\+::Is\+Vector\+At\+Compile\+Time ? Linear\+Access\+Bit \+: 0, 
+{\bfseries Flags} = (evaluator$<$Arg\+Type\+Nested\+Cleaned$>$\+::Flags \& (Hereditary\+Bits$\vert$\+Linear\+Access\+Mask) \& $\sim$\+Row\+Major\+Bit) $\vert$ (traits$<$Xpr\+Type$>$\+::Flags \& Row\+Major\+Bit), 
+{\bfseries Alignment} = evaluator$<$Arg\+Type\+Nested\+Cleaned$>$\+::Alignment
+ \}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a51ea76fb4a5f30995352d9a1ac8585d0}\label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a51ea76fb4a5f30995352d9a1ac8585d0}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_replicate}{Replicate}}$<$ Arg\+Type, Row\+Factor, Col\+Factor $>$ {\bfseries Xpr\+Type}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a9708d10de38d9593e1b324ff3213b333}\label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a9708d10de38d9593e1b324ff3213b333}} 
+typedef Xpr\+Type\+::\+Coeff\+Return\+Type {\bfseries Coeff\+Return\+Type}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a7fcc54eb5776cb4ef0df05fd0de171ca}\label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a7fcc54eb5776cb4ef0df05fd0de171ca}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1nested__eval}{internal\+::nested\+\_\+eval}}$<$ Arg\+Type, Factor $>$\+::type {\bfseries Arg\+Type\+Nested}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_ac90c0d4af3deaa85bb92112b00a46f61}\label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_ac90c0d4af3deaa85bb92112b00a46f61}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{internal\+::remove\+\_\+all}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Arg\+Type\+Nested}} $>$\+::type {\bfseries Arg\+Type\+Nested\+Cleaned}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a40cd28c769315ad3a71a33d6f371c14a}\label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a40cd28c769315ad3a71a33d6f371c14a}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC {\bfseries unary\+\_\+evaluator} (const \mbox{\hyperlink{class_eigen_1_1_replicate}{Xpr\+Type}} \&replicate)
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a1d7cfcb24f404ce54f84516c3e3edfe0}\label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a1d7cfcb24f404ce54f84516c3e3edfe0}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Coeff\+Return\+Type {\bfseries coeff} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col) const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a785a88469c65e80ed0edcacff52de5d2}\label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a785a88469c65e80ed0edcacff52de5d2}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Coeff\+Return\+Type {\bfseries coeff} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} index) const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_ab204763236c75b105b51d03e6afc748c}\label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_ab204763236c75b105b51d03e6afc748c}} 
+{\footnotesize template$<$int Load\+Mode, typename Packet\+Type $>$ }\\E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}} {\bfseries packet} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col) const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a7132e798ac3753d1d0c4cee1c2832026}\label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a7132e798ac3753d1d0c4cee1c2832026}} 
+{\footnotesize template$<$int Load\+Mode, typename Packet\+Type $>$ }\\E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}} {\bfseries packet} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} index) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a3bef0170821ffca1eeac2e571984e618}\label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a3bef0170821ffca1eeac2e571984e618}} 
+const \mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Arg\+Type\+Nested}} {\bfseries m\+\_\+arg}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a9dc15ac07a776d20a9612c2d04e766f2}\label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a9dc15ac07a776d20a9612c2d04e766f2}} 
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1evaluator}{evaluator}}$<$ \mbox{\hyperlink{class_eigen_1_1_triplet}{Arg\+Type\+Nested\+Cleaned}} $>$ {\bfseries m\+\_\+arg\+Impl}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_ac6ec2960821d55102ef914c1e5372fed}\label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_ac6ec2960821d55102ef914c1e5372fed}} 
+const \mbox{\hyperlink{class_eigen_1_1internal_1_1variable__if__dynamic}{variable\+\_\+if\+\_\+dynamic}}$<$ \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}, Arg\+Type\+::\+Rows\+At\+Compile\+Time $>$ {\bfseries m\+\_\+rows}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a6eb87502cae049d11d68481851d36604}\label{struct_eigen_1_1internal_1_1unary__evaluator_3_01_replicate_3_01_arg_type_00_01_row_factor_00_01_col_factor_01_4_01_4_a6eb87502cae049d11d68481851d36604}} 
+const \mbox{\hyperlink{class_eigen_1_1internal_1_1variable__if__dynamic}{variable\+\_\+if\+\_\+dynamic}}$<$ \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}, Arg\+Type\+::\+Cols\+At\+Compile\+Time $>$ {\bfseries m\+\_\+cols}
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/Core\+Evaluators.\+h\end{DoxyCompactItemize}

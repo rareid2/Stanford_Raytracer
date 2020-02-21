@@ -1,0 +1,65 @@
+\hypertarget{struct_eigen_1_1internal_1_1generic__product__impl_3_01_lhs_00_01_rhs_00_01_dense_shape_00_01_def53e16cb724bbb32f6918835a9970bd5}{}\doxysection{Eigen\+::internal\+::generic\+\_\+product\+\_\+impl$<$ Lhs, Rhs, Dense\+Shape, Dense\+Shape, Gemm\+Product $>$ Struct Template Reference}
+\label{struct_eigen_1_1internal_1_1generic__product__impl_3_01_lhs_00_01_rhs_00_01_dense_shape_00_01_def53e16cb724bbb32f6918835a9970bd5}\index{Eigen::internal::generic\_product\_impl$<$ Lhs, Rhs, DenseShape, DenseShape, GemmProduct $>$@{Eigen::internal::generic\_product\_impl$<$ Lhs, Rhs, DenseShape, DenseShape, GemmProduct $>$}}
+Inheritance diagram for Eigen\+::internal\+::generic\+\_\+product\+\_\+impl$<$ Lhs, Rhs, Dense\+Shape, Dense\+Shape, Gemm\+Product $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.417722cm]{struct_eigen_1_1internal_1_1generic__product__impl_3_01_lhs_00_01_rhs_00_01_dense_shape_00_01_def53e16cb724bbb32f6918835a9970bd5}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1generic__product__impl_3_01_lhs_00_01_rhs_00_01_dense_shape_00_01_def53e16cb724bbb32f6918835a9970bd5_acd1344255b77d2ca720baacff8c693fc}\label{struct_eigen_1_1internal_1_1generic__product__impl_3_01_lhs_00_01_rhs_00_01_dense_shape_00_01_def53e16cb724bbb32f6918835a9970bd5_acd1344255b77d2ca720baacff8c693fc}} 
+enum \{ {\bfseries Max\+Depth\+At\+Compile\+Time} = E\+I\+G\+E\+N\+\_\+\+S\+I\+Z\+E\+\_\+\+M\+I\+N\+\_\+\+P\+R\+E\+F\+E\+R\+\_\+\+F\+I\+X\+ED(Lhs\+::Max\+Cols\+At\+Compile\+Time,Rhs\+::Max\+Rows\+At\+Compile\+Time)
+ \}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1generic__product__impl_3_01_lhs_00_01_rhs_00_01_dense_shape_00_01_def53e16cb724bbb32f6918835a9970bd5_a7d3aa92ec37b93990f81bdcf8dd81fa6}\label{struct_eigen_1_1internal_1_1generic__product__impl_3_01_lhs_00_01_rhs_00_01_dense_shape_00_01_def53e16cb724bbb32f6918835a9970bd5_a7d3aa92ec37b93990f81bdcf8dd81fa6}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_product}{Product}}$<$ Lhs, Rhs $>$\+::Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1generic__product__impl_3_01_lhs_00_01_rhs_00_01_dense_shape_00_01_def53e16cb724bbb32f6918835a9970bd5_a069928907f0c060f486ae579898118e4}\label{struct_eigen_1_1internal_1_1generic__product__impl_3_01_lhs_00_01_rhs_00_01_dense_shape_00_01_def53e16cb724bbb32f6918835a9970bd5_a069928907f0c060f486ae579898118e4}} 
+typedef Lhs\+::\+Scalar {\bfseries Lhs\+Scalar}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1generic__product__impl_3_01_lhs_00_01_rhs_00_01_dense_shape_00_01_def53e16cb724bbb32f6918835a9970bd5_a99e2c53fcc72a0ab1e799b67c244263f}\label{struct_eigen_1_1internal_1_1generic__product__impl_3_01_lhs_00_01_rhs_00_01_dense_shape_00_01_def53e16cb724bbb32f6918835a9970bd5_a99e2c53fcc72a0ab1e799b67c244263f}} 
+typedef Rhs\+::\+Scalar {\bfseries Rhs\+Scalar}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1generic__product__impl_3_01_lhs_00_01_rhs_00_01_dense_shape_00_01_def53e16cb724bbb32f6918835a9970bd5_a285546901325a4aabeff70a6e38eaa2d}\label{struct_eigen_1_1internal_1_1generic__product__impl_3_01_lhs_00_01_rhs_00_01_dense_shape_00_01_def53e16cb724bbb32f6918835a9970bd5_a285546901325a4aabeff70a6e38eaa2d}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1blas__traits}{internal\+::blas\+\_\+traits}}$<$ Lhs $>$ {\bfseries Lhs\+Blas\+Traits}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1generic__product__impl_3_01_lhs_00_01_rhs_00_01_dense_shape_00_01_def53e16cb724bbb32f6918835a9970bd5_a2bc4c4c47bc42fbe21f8364c65f3d5cd}\label{struct_eigen_1_1internal_1_1generic__product__impl_3_01_lhs_00_01_rhs_00_01_dense_shape_00_01_def53e16cb724bbb32f6918835a9970bd5_a2bc4c4c47bc42fbe21f8364c65f3d5cd}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Lhs\+Blas\+Traits\+::\+Direct\+Linear\+Access\+Type}} {\bfseries Actual\+Lhs\+Type}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1generic__product__impl_3_01_lhs_00_01_rhs_00_01_dense_shape_00_01_def53e16cb724bbb32f6918835a9970bd5_ae7079ca4e009053a1671417cd1a0c38b}\label{struct_eigen_1_1internal_1_1generic__product__impl_3_01_lhs_00_01_rhs_00_01_dense_shape_00_01_def53e16cb724bbb32f6918835a9970bd5_ae7079ca4e009053a1671417cd1a0c38b}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{internal\+::remove\+\_\+all}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Actual\+Lhs\+Type}} $>$\+::type {\bfseries Actual\+Lhs\+Type\+Cleaned}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1generic__product__impl_3_01_lhs_00_01_rhs_00_01_dense_shape_00_01_def53e16cb724bbb32f6918835a9970bd5_aac62e7349be236fc2f74bb9dc783a59b}\label{struct_eigen_1_1internal_1_1generic__product__impl_3_01_lhs_00_01_rhs_00_01_dense_shape_00_01_def53e16cb724bbb32f6918835a9970bd5_aac62e7349be236fc2f74bb9dc783a59b}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1blas__traits}{internal\+::blas\+\_\+traits}}$<$ Rhs $>$ {\bfseries Rhs\+Blas\+Traits}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1generic__product__impl_3_01_lhs_00_01_rhs_00_01_dense_shape_00_01_def53e16cb724bbb32f6918835a9970bd5_a2b1f0a526c5172699d586366f2758f38}\label{struct_eigen_1_1internal_1_1generic__product__impl_3_01_lhs_00_01_rhs_00_01_dense_shape_00_01_def53e16cb724bbb32f6918835a9970bd5_a2b1f0a526c5172699d586366f2758f38}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Rhs\+Blas\+Traits\+::\+Direct\+Linear\+Access\+Type}} {\bfseries Actual\+Rhs\+Type}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1generic__product__impl_3_01_lhs_00_01_rhs_00_01_dense_shape_00_01_def53e16cb724bbb32f6918835a9970bd5_a3b29243bb00f03918bf08566f0c67d42}\label{struct_eigen_1_1internal_1_1generic__product__impl_3_01_lhs_00_01_rhs_00_01_dense_shape_00_01_def53e16cb724bbb32f6918835a9970bd5_a3b29243bb00f03918bf08566f0c67d42}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{internal\+::remove\+\_\+all}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Actual\+Rhs\+Type}} $>$\+::type {\bfseries Actual\+Rhs\+Type\+Cleaned}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1generic__product__impl_3_01_lhs_00_01_rhs_00_01_dense_shape_00_01_def53e16cb724bbb32f6918835a9970bd5_ae345bf5bf9e77559889870998f0518f9}\label{struct_eigen_1_1internal_1_1generic__product__impl_3_01_lhs_00_01_rhs_00_01_dense_shape_00_01_def53e16cb724bbb32f6918835a9970bd5_ae345bf5bf9e77559889870998f0518f9}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1generic__product__impl}{generic\+\_\+product\+\_\+impl}}$<$ Lhs, Rhs, \mbox{\hyperlink{struct_eigen_1_1_dense_shape}{Dense\+Shape}}, \mbox{\hyperlink{struct_eigen_1_1_dense_shape}{Dense\+Shape}}, Coeff\+Based\+Product\+Mode $>$ {\bfseries lazyproduct}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1generic__product__impl_3_01_lhs_00_01_rhs_00_01_dense_shape_00_01_def53e16cb724bbb32f6918835a9970bd5_aa89f104fd9e52d048200c7322f36da62}\label{struct_eigen_1_1internal_1_1generic__product__impl_3_01_lhs_00_01_rhs_00_01_dense_shape_00_01_def53e16cb724bbb32f6918835a9970bd5_aa89f104fd9e52d048200c7322f36da62}} 
+{\footnotesize template$<$typename Dst $>$ }\\static void {\bfseries eval\+To} (Dst \&dst, const Lhs \&lhs, const Rhs \&rhs)
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1generic__product__impl_3_01_lhs_00_01_rhs_00_01_dense_shape_00_01_def53e16cb724bbb32f6918835a9970bd5_ac90997f3a150d53a3574604ca61403de}\label{struct_eigen_1_1internal_1_1generic__product__impl_3_01_lhs_00_01_rhs_00_01_dense_shape_00_01_def53e16cb724bbb32f6918835a9970bd5_ac90997f3a150d53a3574604ca61403de}} 
+{\footnotesize template$<$typename Dst $>$ }\\static void {\bfseries add\+To} (Dst \&dst, const Lhs \&lhs, const Rhs \&rhs)
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1generic__product__impl_3_01_lhs_00_01_rhs_00_01_dense_shape_00_01_def53e16cb724bbb32f6918835a9970bd5_a4ab7938d01c375e504756856e8cd9544}\label{struct_eigen_1_1internal_1_1generic__product__impl_3_01_lhs_00_01_rhs_00_01_dense_shape_00_01_def53e16cb724bbb32f6918835a9970bd5_a4ab7938d01c375e504756856e8cd9544}} 
+{\footnotesize template$<$typename Dst $>$ }\\static void {\bfseries sub\+To} (Dst \&dst, const Lhs \&lhs, const Rhs \&rhs)
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1generic__product__impl_3_01_lhs_00_01_rhs_00_01_dense_shape_00_01_def53e16cb724bbb32f6918835a9970bd5_afdc6730448aab0a09ace45e90ae31634}\label{struct_eigen_1_1internal_1_1generic__product__impl_3_01_lhs_00_01_rhs_00_01_dense_shape_00_01_def53e16cb724bbb32f6918835a9970bd5_afdc6730448aab0a09ace45e90ae31634}} 
+{\footnotesize template$<$typename Dest $>$ }\\static void {\bfseries scale\+And\+Add\+To} (Dest \&dst, const Lhs \&a\+\_\+lhs, const Rhs \&a\+\_\+rhs, const Scalar \&alpha)
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/products/General\+Matrix\+Matrix.\+h\end{DoxyCompactItemize}

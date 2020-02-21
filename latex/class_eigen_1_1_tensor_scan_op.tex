@@ -1,0 +1,62 @@
+\hypertarget{class_eigen_1_1_tensor_scan_op}{}\doxysection{Eigen\+::Tensor\+Scan\+Op$<$ Op, Xpr\+Type $>$ Class Template Reference}
+\label{class_eigen_1_1_tensor_scan_op}\index{Eigen::TensorScanOp$<$ Op, XprType $>$@{Eigen::TensorScanOp$<$ Op, XprType $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_scan_op_a4729aae7a2a4bfa4b28c6a3e0cf057bc}\label{class_eigen_1_1_tensor_scan_op_a4729aae7a2a4bfa4b28c6a3e0cf057bc}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{Eigen\+::internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_tensor_scan_op}{Tensor\+Scan\+Op}} $>$\+::Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_scan_op_a8288bbf4fee44b48216a4f474e232cdb}\label{class_eigen_1_1_tensor_scan_op_a8288bbf4fee44b48216a4f474e232cdb}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Eigen\+::\+Num\+Traits}}$<$ Scalar $>$\+::Real {\bfseries Real\+Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_scan_op_a13b25e77a08992deabbd320172044e79}\label{class_eigen_1_1_tensor_scan_op_a13b25e77a08992deabbd320172044e79}} 
+typedef Xpr\+Type\+::\+Coeff\+Return\+Type {\bfseries Coeff\+Return\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_scan_op_a1c30340cc47c0e0066f1daa24ee8a656}\label{class_eigen_1_1_tensor_scan_op_a1c30340cc47c0e0066f1daa24ee8a656}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1nested}{Eigen\+::internal\+::nested}}$<$ \mbox{\hyperlink{class_eigen_1_1_tensor_scan_op}{Tensor\+Scan\+Op}} $>$\+::type {\bfseries Nested}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_scan_op_a291ad6ceb9b864bd67712e00efd5115f}\label{class_eigen_1_1_tensor_scan_op_a291ad6ceb9b864bd67712e00efd5115f}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{Eigen\+::internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_tensor_scan_op}{Tensor\+Scan\+Op}} $>$\+::Storage\+Kind {\bfseries Storage\+Kind}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_scan_op_abad0ac80094f927d232d462c0e38d67b}\label{class_eigen_1_1_tensor_scan_op_abad0ac80094f927d232d462c0e38d67b}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{Eigen\+::internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_tensor_scan_op}{Tensor\+Scan\+Op}} $>$\+::Index {\bfseries Index}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_scan_op_a9d0da3b1613efca99fe444c1c4c4f50d}\label{class_eigen_1_1_tensor_scan_op_a9d0da3b1613efca99fe444c1c4c4f50d}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE {\bfseries Tensor\+Scan\+Op} (const Xpr\+Type \&expr, const Index \&axis, bool exclusive=false, const Op \&op=Op())
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_scan_op_a25038654330d34eb8ee564af23bb486c}\label{class_eigen_1_1_tensor_scan_op_a25038654330d34eb8ee564af23bb486c}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Index {\bfseries axis} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_scan_op_aaa80317b0b1d955088e5f5db693816c3}\label{class_eigen_1_1_tensor_scan_op_aaa80317b0b1d955088e5f5db693816c3}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Xpr\+Type \& {\bfseries expression} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_scan_op_a2f6065e31dda8abf6b9faefece0d979f}\label{class_eigen_1_1_tensor_scan_op_a2f6065e31dda8abf6b9faefece0d979f}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Op {\bfseries accumulator} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_scan_op_a8d3a0a38b3835e8644ed2f68a852e6c8}\label{class_eigen_1_1_tensor_scan_op_a8d3a0a38b3835e8644ed2f68a852e6c8}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE bool {\bfseries exclusive} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_scan_op_a53f92e1d598f2edff80aba2b92d97c28}\label{class_eigen_1_1_tensor_scan_op_a53f92e1d598f2edff80aba2b92d97c28}} 
+Xpr\+Type\+::\+Nested {\bfseries m\+\_\+expr}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_scan_op_adce5b10a72e11e9fc1df9f06d399c257}\label{class_eigen_1_1_tensor_scan_op_adce5b10a72e11e9fc1df9f06d399c257}} 
+const Index {\bfseries m\+\_\+axis}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_scan_op_a8622909f2e97fc080c19bbdc3301e3f5}\label{class_eigen_1_1_tensor_scan_op_a8622909f2e97fc080c19bbdc3301e3f5}} 
+const Op {\bfseries m\+\_\+accumulator}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_scan_op_a1c33b98ff834d01b0593d5fe43990c42}\label{class_eigen_1_1_tensor_scan_op_a1c33b98ff834d01b0593d5fe43990c42}} 
+const bool {\bfseries m\+\_\+exclusive}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/\+C\+X\+X11/src/\+Tensor/Tensor\+Forward\+Declarations.\+h\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/\+C\+X\+X11/src/\+Tensor/Tensor\+Scan.\+h\end{DoxyCompactItemize}

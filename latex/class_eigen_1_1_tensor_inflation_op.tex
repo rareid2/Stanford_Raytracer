@@ -1,0 +1,50 @@
+\hypertarget{class_eigen_1_1_tensor_inflation_op}{}\doxysection{Eigen\+::Tensor\+Inflation\+Op$<$ Strides, Xpr\+Type $>$ Class Template Reference}
+\label{class_eigen_1_1_tensor_inflation_op}\index{Eigen::TensorInflationOp$<$ Strides, XprType $>$@{Eigen::TensorInflationOp$<$ Strides, XprType $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_inflation_op_a236d797b18abd1a3b63f20f2d421342e}\label{class_eigen_1_1_tensor_inflation_op_a236d797b18abd1a3b63f20f2d421342e}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{Eigen\+::internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_tensor_inflation_op}{Tensor\+Inflation\+Op}} $>$\+::Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_inflation_op_a328f34b1ae6629d1ceff82b08b538144}\label{class_eigen_1_1_tensor_inflation_op_a328f34b1ae6629d1ceff82b08b538144}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Eigen\+::\+Num\+Traits}}$<$ Scalar $>$\+::Real {\bfseries Real\+Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_inflation_op_a434347894bf1e84b4932cf62b205c185}\label{class_eigen_1_1_tensor_inflation_op_a434347894bf1e84b4932cf62b205c185}} 
+typedef Xpr\+Type\+::\+Coeff\+Return\+Type {\bfseries Coeff\+Return\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_inflation_op_a8d5118ec09afae8fd420cbebd370b281}\label{class_eigen_1_1_tensor_inflation_op_a8d5118ec09afae8fd420cbebd370b281}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1nested}{Eigen\+::internal\+::nested}}$<$ \mbox{\hyperlink{class_eigen_1_1_tensor_inflation_op}{Tensor\+Inflation\+Op}} $>$\+::type {\bfseries Nested}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_inflation_op_ae9a66f9458b7bb430952017d88c46bba}\label{class_eigen_1_1_tensor_inflation_op_ae9a66f9458b7bb430952017d88c46bba}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{Eigen\+::internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_tensor_inflation_op}{Tensor\+Inflation\+Op}} $>$\+::Storage\+Kind {\bfseries Storage\+Kind}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_inflation_op_afe1a7224db27007325cbee73f0287d2a}\label{class_eigen_1_1_tensor_inflation_op_afe1a7224db27007325cbee73f0287d2a}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{Eigen\+::internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_tensor_inflation_op}{Tensor\+Inflation\+Op}} $>$\+::Index {\bfseries Index}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_inflation_op_a16f2a510d49ead47bb7039b66cfdfd50}\label{class_eigen_1_1_tensor_inflation_op_a16f2a510d49ead47bb7039b66cfdfd50}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE {\bfseries Tensor\+Inflation\+Op} (const Xpr\+Type \&expr, const Strides \&strides)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_inflation_op_ab7c7ceb21fe8ea8d9bc976ff9573a4ce}\label{class_eigen_1_1_tensor_inflation_op_ab7c7ceb21fe8ea8d9bc976ff9573a4ce}} 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Strides \& {\bfseries strides} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_inflation_op_a37749a990846a95e7eddfb859037a8f3}\label{class_eigen_1_1_tensor_inflation_op_a37749a990846a95e7eddfb859037a8f3}} 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{internal\+::remove\+\_\+all}}$<$ typename Xpr\+Type\+::\+Nested $>$\+::type \& {\bfseries expression} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_inflation_op_a4b4667f8c883f8cfdbbd01aada0fd7c9}\label{class_eigen_1_1_tensor_inflation_op_a4b4667f8c883f8cfdbbd01aada0fd7c9}} 
+Xpr\+Type\+::\+Nested {\bfseries m\+\_\+xpr}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_inflation_op_a91289cb6f3f01a973104bd99f3952b88}\label{class_eigen_1_1_tensor_inflation_op_a91289cb6f3f01a973104bd99f3952b88}} 
+const Strides {\bfseries m\+\_\+strides}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/\+C\+X\+X11/src/\+Tensor/Tensor\+Forward\+Declarations.\+h\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/\+C\+X\+X11/src/\+Tensor/Tensor\+Inflation.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,80 @@
+\hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_select_op_3_01_if_arg_type_00_01_then_arg_346b931156fad56ae8aa875afe41cb55}{}\doxysection{Eigen\+::Tensor\+Evaluator$<$ const Tensor\+Select\+Op$<$ If\+Arg\+Type, Then\+Arg\+Type, Else\+Arg\+Type $>$, Device $>$ Struct Template Reference}
+\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_select_op_3_01_if_arg_type_00_01_then_arg_346b931156fad56ae8aa875afe41cb55}\index{Eigen::TensorEvaluator$<$ const TensorSelectOp$<$ IfArgType, ThenArgType, ElseArgType $>$, Device $>$@{Eigen::TensorEvaluator$<$ const TensorSelectOp$<$ IfArgType, ThenArgType, ElseArgType $>$, Device $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_select_op_3_01_if_arg_type_00_01_then_arg_346b931156fad56ae8aa875afe41cb55_a1517b772bb3ce9ee5c5bfa20761a3003}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_select_op_3_01_if_arg_type_00_01_then_arg_346b931156fad56ae8aa875afe41cb55_a1517b772bb3ce9ee5c5bfa20761a3003}} 
+enum \{ \newline
+{\bfseries Is\+Aligned} = Tensor\+Evaluator$<$Then\+Arg\+Type, Device$>$\+::Is\+Aligned \& Tensor\+Evaluator$<$Else\+Arg\+Type, Device$>$\+::Is\+Aligned, 
+{\bfseries Packet\+Access}, 
+{\bfseries Layout} = Tensor\+Evaluator$<$If\+Arg\+Type, Device$>$\+::Layout, 
+{\bfseries Coord\+Access} = false, 
+\newline
+{\bfseries Raw\+Access} = false
+ \}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_select_op_3_01_if_arg_type_00_01_then_arg_346b931156fad56ae8aa875afe41cb55_ab0a155d0db769e0bed53f8a54fefb517}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_select_op_3_01_if_arg_type_00_01_then_arg_346b931156fad56ae8aa875afe41cb55_ab0a155d0db769e0bed53f8a54fefb517}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_tensor_select_op}{Tensor\+Select\+Op}}$<$ If\+Arg\+Type, Then\+Arg\+Type, Else\+Arg\+Type $>$ {\bfseries Xpr\+Type}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_select_op_3_01_if_arg_type_00_01_then_arg_346b931156fad56ae8aa875afe41cb55_a34f245fca70f6acc8837912f7b6f0045}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_select_op_3_01_if_arg_type_00_01_then_arg_346b931156fad56ae8aa875afe41cb55_a34f245fca70f6acc8837912f7b6f0045}} 
+typedef Xpr\+Type\+::\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_select_op_3_01_if_arg_type_00_01_then_arg_346b931156fad56ae8aa875afe41cb55_a3594ccc5f3441e88fd3779694291cfdc}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_select_op_3_01_if_arg_type_00_01_then_arg_346b931156fad56ae8aa875afe41cb55_a3594ccc5f3441e88fd3779694291cfdc}} 
+typedef Xpr\+Type\+::\+Index {\bfseries Index}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_select_op_3_01_if_arg_type_00_01_then_arg_346b931156fad56ae8aa875afe41cb55_abce1006bb711b0f1e0703033ddd94d7e}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_select_op_3_01_if_arg_type_00_01_then_arg_346b931156fad56ae8aa875afe41cb55_abce1006bb711b0f1e0703033ddd94d7e}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_tensor_select_op}{Xpr\+Type}} $>$\+::Scalar {\bfseries Coeff\+Return\+Type}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_select_op_3_01_if_arg_type_00_01_then_arg_346b931156fad56ae8aa875afe41cb55_ab84ddedba4b5259453a94aca86143476}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_select_op_3_01_if_arg_type_00_01_then_arg_346b931156fad56ae8aa875afe41cb55_ab84ddedba4b5259453a94aca86143476}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}}$<$ Coeff\+Return\+Type, Device $>$\+::type {\bfseries Packet\+Return\+Type}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_select_op_3_01_if_arg_type_00_01_then_arg_346b931156fad56ae8aa875afe41cb55_af6ae270dbb6c5a83f627f8268680aa38}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_select_op_3_01_if_arg_type_00_01_then_arg_346b931156fad56ae8aa875afe41cb55_af6ae270dbb6c5a83f627f8268680aa38}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{Tensor\+Evaluator}}$<$ If\+Arg\+Type, Device $>$\+::Dimensions {\bfseries Dimensions}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_select_op_3_01_if_arg_type_00_01_then_arg_346b931156fad56ae8aa875afe41cb55_a5ae93a8eaa87a46c68abfbf192040e96}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_select_op_3_01_if_arg_type_00_01_then_arg_346b931156fad56ae8aa875afe41cb55_a5ae93a8eaa87a46c68abfbf192040e96}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC {\bfseries Tensor\+Evaluator} (const \mbox{\hyperlink{class_eigen_1_1_tensor_select_op}{Xpr\+Type}} \&op, const Device \&device)
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_select_op_3_01_if_arg_type_00_01_then_arg_346b931156fad56ae8aa875afe41cb55_ab8cffcde8bc7a61fea132cc45fe81fdb}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_select_op_3_01_if_arg_type_00_01_then_arg_346b931156fad56ae8aa875afe41cb55_ab8cffcde8bc7a61fea132cc45fe81fdb}} 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Dimensions \& {\bfseries dimensions} () const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_select_op_3_01_if_arg_type_00_01_then_arg_346b931156fad56ae8aa875afe41cb55_affbc63f9d8f3e0d2fc35c3bc5b63bdfc}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_select_op_3_01_if_arg_type_00_01_then_arg_346b931156fad56ae8aa875afe41cb55_affbc63f9d8f3e0d2fc35c3bc5b63bdfc}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE bool {\bfseries eval\+Sub\+Exprs\+If\+Needed} (Coeff\+Return\+Type $\ast$)
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_select_op_3_01_if_arg_type_00_01_then_arg_346b931156fad56ae8aa875afe41cb55_a54396bd3ed30a85505a6ddd93808cc40}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_select_op_3_01_if_arg_type_00_01_then_arg_346b931156fad56ae8aa875afe41cb55_a54396bd3ed30a85505a6ddd93808cc40}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE void {\bfseries cleanup} ()
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_select_op_3_01_if_arg_type_00_01_then_arg_346b931156fad56ae8aa875afe41cb55_a2b841a255d95b7c5b9639c7296641677}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_select_op_3_01_if_arg_type_00_01_then_arg_346b931156fad56ae8aa875afe41cb55_a2b841a255d95b7c5b9639c7296641677}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Coeff\+Return\+Type {\bfseries coeff} (Index index) const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_select_op_3_01_if_arg_type_00_01_then_arg_346b931156fad56ae8aa875afe41cb55_a6c927f6cf5fb351c1812bc188d28b04a}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_select_op_3_01_if_arg_type_00_01_then_arg_346b931156fad56ae8aa875afe41cb55_a6c927f6cf5fb351c1812bc188d28b04a}} 
+{\footnotesize template$<$int Load\+Mode$>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_triplet}{Packet\+Return\+Type}} {\bfseries packet} (Index index) const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_select_op_3_01_if_arg_type_00_01_then_arg_346b931156fad56ae8aa875afe41cb55_a430f560ee9e97a6415d77e23bf29b970}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_select_op_3_01_if_arg_type_00_01_then_arg_346b931156fad56ae8aa875afe41cb55_a430f560ee9e97a6415d77e23bf29b970}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_tensor_op_cost}{Tensor\+Op\+Cost}} {\bfseries cost\+Per\+Coeff} (bool vectorized) const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_select_op_3_01_if_arg_type_00_01_then_arg_346b931156fad56ae8aa875afe41cb55_afd9c57e6a8e5e0a8c48a44306a36571c}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_select_op_3_01_if_arg_type_00_01_then_arg_346b931156fad56ae8aa875afe41cb55_afd9c57e6a8e5e0a8c48a44306a36571c}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Coeff\+Return\+Type $\ast$ {\bfseries data} () const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_select_op_3_01_if_arg_type_00_01_then_arg_346b931156fad56ae8aa875afe41cb55_a6f8fea23435b866049d90dadd25955f3}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_select_op_3_01_if_arg_type_00_01_then_arg_346b931156fad56ae8aa875afe41cb55_a6f8fea23435b866049d90dadd25955f3}} 
+const \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{Tensor\+Evaluator}}$<$ If\+Arg\+Type, Device $>$ \& \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_select_op_3_01_if_arg_type_00_01_then_arg_346b931156fad56ae8aa875afe41cb55_a6f8fea23435b866049d90dadd25955f3}{cond\+\_\+impl}} () const
+\begin{DoxyCompactList}\small\item\em required by sycl in order to extract the accessor \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_select_op_3_01_if_arg_type_00_01_then_arg_346b931156fad56ae8aa875afe41cb55_aba02423503271daeef9165ec50b3b93d}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_select_op_3_01_if_arg_type_00_01_then_arg_346b931156fad56ae8aa875afe41cb55_aba02423503271daeef9165ec50b3b93d}} 
+const \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{Tensor\+Evaluator}}$<$ Then\+Arg\+Type, Device $>$ \& \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_select_op_3_01_if_arg_type_00_01_then_arg_346b931156fad56ae8aa875afe41cb55_aba02423503271daeef9165ec50b3b93d}{then\+\_\+impl}} () const
+\begin{DoxyCompactList}\small\item\em required by sycl in order to extract the accessor \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_select_op_3_01_if_arg_type_00_01_then_arg_346b931156fad56ae8aa875afe41cb55_a29162f5f68ca5bb5cd7d431523a6e8e9}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_select_op_3_01_if_arg_type_00_01_then_arg_346b931156fad56ae8aa875afe41cb55_a29162f5f68ca5bb5cd7d431523a6e8e9}} 
+const \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{Tensor\+Evaluator}}$<$ Else\+Arg\+Type, Device $>$ \& \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_select_op_3_01_if_arg_type_00_01_then_arg_346b931156fad56ae8aa875afe41cb55_a29162f5f68ca5bb5cd7d431523a6e8e9}{else\+\_\+impl}} () const
+\begin{DoxyCompactList}\small\item\em required by sycl in order to extract the accessor \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_select_op_3_01_if_arg_type_00_01_then_arg_346b931156fad56ae8aa875afe41cb55_a6ad7802106603a55b0b9357040692e71}\label{struct_eigen_1_1_tensor_evaluator_3_01const_01_tensor_select_op_3_01_if_arg_type_00_01_then_arg_346b931156fad56ae8aa875afe41cb55_a6ad7802106603a55b0b9357040692e71}} 
+static const int {\bfseries Packet\+Size} = \mbox{\hyperlink{struct_eigen_1_1internal_1_1unpacket__traits}{internal\+::unpacket\+\_\+traits}}$<$\mbox{\hyperlink{class_eigen_1_1_triplet}{Packet\+Return\+Type}}$>$\+::size
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/\+C\+X\+X11/src/\+Tensor/Tensor\+Evaluator.\+h\end{DoxyCompactItemize}

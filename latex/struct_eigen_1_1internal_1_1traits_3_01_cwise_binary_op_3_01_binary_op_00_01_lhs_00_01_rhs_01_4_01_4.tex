@@ -1,0 +1,48 @@
+\hypertarget{struct_eigen_1_1internal_1_1traits_3_01_cwise_binary_op_3_01_binary_op_00_01_lhs_00_01_rhs_01_4_01_4}{}\doxysection{Eigen\+::internal\+::traits$<$ Cwise\+Binary\+Op$<$ Binary\+Op, Lhs, Rhs $>$ $>$ Struct Template Reference}
+\label{struct_eigen_1_1internal_1_1traits_3_01_cwise_binary_op_3_01_binary_op_00_01_lhs_00_01_rhs_01_4_01_4}\index{Eigen::internal::traits$<$ CwiseBinaryOp$<$ BinaryOp, Lhs, Rhs $>$ $>$@{Eigen::internal::traits$<$ CwiseBinaryOp$<$ BinaryOp, Lhs, Rhs $>$ $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_cwise_binary_op_3_01_binary_op_00_01_lhs_00_01_rhs_01_4_01_4_a6cb9f5530923d92f49c17412cc202816}\label{struct_eigen_1_1internal_1_1traits_3_01_cwise_binary_op_3_01_binary_op_00_01_lhs_00_01_rhs_01_4_01_4_a6cb9f5530923d92f49c17412cc202816}} 
+enum \{ {\bfseries Rows\+At\+Compile\+Time} = traits$<$Ancestor$>$\+::Rows\+At\+Compile\+Time, 
+{\bfseries Cols\+At\+Compile\+Time} = traits$<$Ancestor$>$\+::Cols\+At\+Compile\+Time, 
+{\bfseries Max\+Rows\+At\+Compile\+Time} = traits$<$Ancestor$>$\+::Max\+Rows\+At\+Compile\+Time, 
+{\bfseries Max\+Cols\+At\+Compile\+Time} = traits$<$Ancestor$>$\+::Max\+Cols\+At\+Compile\+Time
+ \}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_cwise_binary_op_3_01_binary_op_00_01_lhs_00_01_rhs_01_4_01_4_a71cea182b852987a00fc5c771cb85944}\label{struct_eigen_1_1internal_1_1traits_3_01_cwise_binary_op_3_01_binary_op_00_01_lhs_00_01_rhs_01_4_01_4_a71cea182b852987a00fc5c771cb85944}} 
+enum \{ {\bfseries Flags} = cwise\+\_\+promote\+\_\+storage\+\_\+order$<$typename traits$<$Lhs$>$\+::Storage\+Kind,typename traits$<$Rhs$>$\+::Storage\+Kind,\+\_\+\+Lhs\+Nested\+::Flags \& Row\+Major\+Bit,\+\_\+\+Rhs\+Nested\+::Flags \& Row\+Major\+Bit$>$\+::value
+ \}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_cwise_binary_op_3_01_binary_op_00_01_lhs_00_01_rhs_01_4_01_4_afabc96be713b502009dfe217045d8248}\label{struct_eigen_1_1internal_1_1traits_3_01_cwise_binary_op_3_01_binary_op_00_01_lhs_00_01_rhs_01_4_01_4_afabc96be713b502009dfe217045d8248}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{remove\+\_\+all}}$<$ Lhs $>$\+::type {\bfseries Ancestor}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_cwise_binary_op_3_01_binary_op_00_01_lhs_00_01_rhs_01_4_01_4_a9ed2c0723977ac9cb53448b82bb79ced}\label{struct_eigen_1_1internal_1_1traits_3_01_cwise_binary_op_3_01_binary_op_00_01_lhs_00_01_rhs_01_4_01_4_a9ed2c0723977ac9cb53448b82bb79ced}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_triplet}{Ancestor}} $>$\+::Xpr\+Kind {\bfseries Xpr\+Kind}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_cwise_binary_op_3_01_binary_op_00_01_lhs_00_01_rhs_01_4_01_4_a98036d3d2f44b28a6cf76ef3ed6a299c}\label{struct_eigen_1_1internal_1_1traits_3_01_cwise_binary_op_3_01_binary_op_00_01_lhs_00_01_rhs_01_4_01_4_a98036d3d2f44b28a6cf76ef3ed6a299c}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1result__of}{result\+\_\+of}}$<$ Binary\+Op(const typename Lhs\+::\+Scalar \&, const typename Rhs\+::\+Scalar \&) $>$\+::type {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_cwise_binary_op_3_01_binary_op_00_01_lhs_00_01_rhs_01_4_01_4_a1a16cc45c6cee640f7e36d6b444ed396}\label{struct_eigen_1_1internal_1_1traits_3_01_cwise_binary_op_3_01_binary_op_00_01_lhs_00_01_rhs_01_4_01_4_a1a16cc45c6cee640f7e36d6b444ed396}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1cwise__promote__storage__type}{cwise\+\_\+promote\+\_\+storage\+\_\+type}}$<$ typename \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{traits}}$<$ Lhs $>$\+::Storage\+Kind, typename \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{traits}}$<$ Rhs $>$\+::Storage\+Kind, Binary\+Op $>$\+::ret {\bfseries Storage\+Kind}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_cwise_binary_op_3_01_binary_op_00_01_lhs_00_01_rhs_01_4_01_4_aab6f87a7cb551da9ec4df150314bb490}\label{struct_eigen_1_1internal_1_1traits_3_01_cwise_binary_op_3_01_binary_op_00_01_lhs_00_01_rhs_01_4_01_4_aab6f87a7cb551da9ec4df150314bb490}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1promote__index__type}{promote\+\_\+index\+\_\+type}}$<$ typename \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{traits}}$<$ Lhs $>$\+::\mbox{\hyperlink{struct_eigen_1_1internal_1_1conditional}{Storage\+Index}}, typename \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{traits}}$<$ Rhs $>$\+::\mbox{\hyperlink{struct_eigen_1_1internal_1_1conditional}{Storage\+Index}} $>$\+::type {\bfseries Storage\+Index}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_cwise_binary_op_3_01_binary_op_00_01_lhs_00_01_rhs_01_4_01_4_a8fed753b3298010bd51e25bbae71c435}\label{struct_eigen_1_1internal_1_1traits_3_01_cwise_binary_op_3_01_binary_op_00_01_lhs_00_01_rhs_01_4_01_4_a8fed753b3298010bd51e25bbae71c435}} 
+typedef Lhs\+::\+Nested {\bfseries Lhs\+Nested}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_cwise_binary_op_3_01_binary_op_00_01_lhs_00_01_rhs_01_4_01_4_a59de2b2b29033b7cfab53e1f5b52718c}\label{struct_eigen_1_1internal_1_1traits_3_01_cwise_binary_op_3_01_binary_op_00_01_lhs_00_01_rhs_01_4_01_4_a59de2b2b29033b7cfab53e1f5b52718c}} 
+typedef Rhs\+::\+Nested {\bfseries Rhs\+Nested}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_cwise_binary_op_3_01_binary_op_00_01_lhs_00_01_rhs_01_4_01_4_ae328452c3cfd91628ea98b98414e0b2a}\label{struct_eigen_1_1internal_1_1traits_3_01_cwise_binary_op_3_01_binary_op_00_01_lhs_00_01_rhs_01_4_01_4_ae328452c3cfd91628ea98b98414e0b2a}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__reference}{remove\+\_\+reference}}$<$ Lhs\+Nested $>$\+::type {\bfseries \+\_\+\+Lhs\+Nested}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_cwise_binary_op_3_01_binary_op_00_01_lhs_00_01_rhs_01_4_01_4_a84219d0382f4733aef9a89ae5929772a}\label{struct_eigen_1_1internal_1_1traits_3_01_cwise_binary_op_3_01_binary_op_00_01_lhs_00_01_rhs_01_4_01_4_a84219d0382f4733aef9a89ae5929772a}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__reference}{remove\+\_\+reference}}$<$ Rhs\+Nested $>$\+::type {\bfseries \+\_\+\+Rhs\+Nested}
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/Cwise\+Binary\+Op.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,575 @@
+\hypertarget{class_eigen_1_1_full_piv_l_u}{}\doxysection{Eigen\+::Full\+Piv\+LU Class Reference}
+\label{class_eigen_1_1_full_piv_l_u}\index{Eigen::FullPivLU@{Eigen::FullPivLU}}
+
+
+LU decomposition of a matrix with complete pivoting, and related features.  
+
+
+
+
+{\ttfamily \#include $<$Full\+Piv\+L\+U.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_a530d8df053461fb0a3e8a1110892198d}\label{class_eigen_1_1_full_piv_l_u_a530d8df053461fb0a3e8a1110892198d}} 
+enum \{ {\bfseries Max\+Rows\+At\+Compile\+Time} = Matrix\+Type\+::Max\+Rows\+At\+Compile\+Time, 
+{\bfseries Max\+Cols\+At\+Compile\+Time} = Matrix\+Type\+::Max\+Cols\+At\+Compile\+Time
+ \}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_a9d32f275359ca96e34d71d7d331588fb}\label{class_eigen_1_1_full_piv_l_u_a9d32f275359ca96e34d71d7d331588fb}} 
+typedef \+\_\+\+Matrix\+Type {\bfseries Matrix\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_a77ae1a55019ae72ee9950f5201db3dbd}\label{class_eigen_1_1_full_piv_l_u_a77ae1a55019ae72ee9950f5201db3dbd}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_solver_base}{Solver\+Base}}$<$ \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u}{Full\+Piv\+LU}} $>$ {\bfseries Base}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_a575c588404ff99fe47c44c92b723d7d0}\label{class_eigen_1_1_full_piv_l_u_a575c588404ff99fe47c44c92b723d7d0}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1plain__row__type}{internal\+::plain\+\_\+row\+\_\+type}}$<$ Matrix\+Type, Storage\+Index $>$\+::type {\bfseries Int\+Row\+Vector\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_a1953ae1e77a690872abd99072ed5f412}\label{class_eigen_1_1_full_piv_l_u_a1953ae1e77a690872abd99072ed5f412}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1plain__col__type}{internal\+::plain\+\_\+col\+\_\+type}}$<$ Matrix\+Type, Storage\+Index $>$\+::type {\bfseries Int\+Col\+Vector\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_a9a22f4ef72050674a5993b2c75bbbe11}\label{class_eigen_1_1_full_piv_l_u_a9a22f4ef72050674a5993b2c75bbbe11}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Matrix}}$<$ Cols\+At\+Compile\+Time, Max\+Cols\+At\+Compile\+Time $>$ {\bfseries Permutation\+Q\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_a16ff695086585359ce75a490612d5c17}\label{class_eigen_1_1_full_piv_l_u_a16ff695086585359ce75a490612d5c17}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Matrix}}$<$ Rows\+At\+Compile\+Time, Max\+Rows\+At\+Compile\+Time $>$ {\bfseries Permutation\+P\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_a552f5b4258bbec80ee5080c32f0cfa83}\label{class_eigen_1_1_full_piv_l_u_a552f5b4258bbec80ee5080c32f0cfa83}} 
+typedef Matrix\+Type\+::\+Plain\+Object {\bfseries Plain\+Object}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_a03ad44dda3c1be7b97f50f413c8582ef}{Full\+Piv\+LU}} ()
+\begin{DoxyCompactList}\small\item\em Default Constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_ad9fc69ddc8a390122b7d16552267d76b}{Full\+Piv\+LU}} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} rows, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} cols)
+\begin{DoxyCompactList}\small\item\em Default Constructor with memory preallocation. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Input\+Type $>$ }\\\mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_a1be10af9c2efc6de2ff38185ac0126f6}{Full\+Piv\+LU}} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&matrix)
+\item 
+{\footnotesize template$<$typename Input\+Type $>$ }\\\mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_aa24ad157e9c1753955a98c1d1120642d}{Full\+Piv\+LU}} (\mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&matrix)
+\begin{DoxyCompactList}\small\item\em Constructs a LU factorization from a given matrix. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Input\+Type $>$ }\\\mbox{\hyperlink{class_eigen_1_1_full_piv_l_u}{Full\+Piv\+LU}} \& \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_ab5bb53143afaa79dbff60d396a5dbb9b}{compute}} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&matrix)
+\item 
+const Matrix\+Type \& \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_a08a0afcf07fc9344c06a3c388fdc3b6d}{matrix\+LU}} () const
+\item 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_a88b1bdcb3f28d7b445fc026cd694c7ee}{nonzero\+Pivots}} () const
+\item 
+Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_ac33cca899d3c342ca71dac6524216fb7}{max\+Pivot}} () const
+\item 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+P\+Type}} \& \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_a109458012f3b673081d79538bf5c3570}{permutationP}} () const
+\item 
+const \mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Q\+Type}} \& \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_a787040a2044325af71f438af6ad226d2}{permutationQ}} () const
+\item 
+const \mbox{\hyperlink{struct_eigen_1_1internal_1_1kernel__retval}{internal\+::kernel\+\_\+retval}}$<$ \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u}{Full\+Piv\+LU}} $>$ \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_a9249476e95f961450ac4a1842a061ec7}{kernel}} () const
+\item 
+const \mbox{\hyperlink{struct_eigen_1_1internal_1_1image__retval}{internal\+::image\+\_\+retval}}$<$ \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u}{Full\+Piv\+LU}} $>$ \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_a39f27c41e85e3f6279893cb078ed3f5f}{image}} (const Matrix\+Type \&original\+Matrix) const
+\item 
+{\footnotesize template$<$typename Rhs $>$ }\\const \mbox{\hyperlink{class_eigen_1_1_solve}{Solve}}$<$ \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u}{Full\+Piv\+LU}}, Rhs $>$ \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_a4e4c2adb580bff893e0096ec93f8fe2b}{solve}} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Rhs $>$ \&b) const
+\item 
+Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_ac40f1c26597491cf8a8c8ed0fdb486f1}{rcond}} () const
+\item 
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ Matrix\+Type $>$\+::Scalar \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_aad92074f9afd5c46ede46025273c2063}{determinant}} () const
+\item 
+\mbox{\hyperlink{class_eigen_1_1_full_piv_l_u}{Full\+Piv\+LU}} \& \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_a3212fe6f3996c18b1512c0c577621dc7}{set\+Threshold}} (const Real\+Scalar \&\mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_a1827499973a8052f5a5137db56dd04b9}{threshold}})
+\item 
+\mbox{\hyperlink{class_eigen_1_1_full_piv_l_u}{Full\+Piv\+LU}} \& \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_a5ab0d23fe4ce0886e1dd3c34027d9eff}{set\+Threshold}} (Default\+\_\+t)
+\item 
+Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_a1827499973a8052f5a5137db56dd04b9}{threshold}} () const
+\item 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_a8d99bac6fb3f0f120acabb4e7fb61104}{rank}} () const
+\item 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_abbe2d6b161f79e9875ea0a72ede56c8a}{dimension\+Of\+Kernel}} () const
+\item 
+bool \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_a2b771856a5acb2e5253421f1fcd4d155}{is\+Injective}} () const
+\item 
+bool \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_a31102ddf8b3e4fe9616624d0184a3354}{is\+Surjective}} () const
+\item 
+bool \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_a45cd2c5b9a601bc270826da165234b7c}{is\+Invertible}} () const
+\item 
+const \mbox{\hyperlink{class_eigen_1_1_inverse}{Inverse}}$<$ \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u}{Full\+Piv\+LU}} $>$ \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_aeb3b300a38ce3e2597129cd5a67cbaf6}{inverse}} () const
+\item 
+Matrix\+Type \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_ab52a586765c61319410b9c9ad120c993}{reconstructed\+Matrix}} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_a181d3d92a2f1b633622c0953ebfa6b05}\label{class_eigen_1_1_full_piv_l_u_a181d3d92a2f1b633622c0953ebfa6b05}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries rows} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_abdfef3e6cd9c1f62b908b0dcf3dbeb9f}\label{class_eigen_1_1_full_piv_l_u_abdfef3e6cd9c1f62b908b0dcf3dbeb9f}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries cols} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_a2d270d38b55e5ace041b59940244a6cb}\label{class_eigen_1_1_full_piv_l_u_a2d270d38b55e5ace041b59940244a6cb}} 
+{\footnotesize template$<$typename Rhs\+Type , typename Dst\+Type $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC void {\bfseries \+\_\+solve\+\_\+impl} (const Rhs\+Type \&rhs, Dst\+Type \&dst) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_a23c1de3c8e9ccb32b605d9eafeb6ec5f}\label{class_eigen_1_1_full_piv_l_u_a23c1de3c8e9ccb32b605d9eafeb6ec5f}} 
+{\footnotesize template$<$bool Conjugate, typename Rhs\+Type , typename Dst\+Type $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC void {\bfseries \+\_\+solve\+\_\+impl\+\_\+transposed} (const Rhs\+Type \&rhs, Dst\+Type \&dst) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_a6b35bad1c9c3e6de66b1b8ce623a8707}\label{class_eigen_1_1_full_piv_l_u_a6b35bad1c9c3e6de66b1b8ce623a8707}} 
+{\footnotesize template$<$typename Matrix\+Type $>$ }\\{\bfseries Full\+Piv\+LU} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} rows, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} cols)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_a474c3af4301e3f82db8601e85a6be510}\label{class_eigen_1_1_full_piv_l_u_a474c3af4301e3f82db8601e85a6be510}} 
+{\footnotesize template$<$typename Rhs\+Type , typename Dst\+Type $>$ }\\void {\bfseries \+\_\+solve\+\_\+impl} (const Rhs\+Type \&rhs, Dst\+Type \&dst) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_a3ac07fd2a7c16e0fac5bf0e9d3a81ca7}\label{class_eigen_1_1_full_piv_l_u_a3ac07fd2a7c16e0fac5bf0e9d3a81ca7}} 
+{\footnotesize template$<$bool Conjugate, typename Rhs\+Type , typename Dst\+Type $>$ }\\void {\bfseries \+\_\+solve\+\_\+impl\+\_\+transposed} (const Rhs\+Type \&rhs, Dst\+Type \&dst) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_adce228d6856115b28542b432a7c754a3}\label{class_eigen_1_1_full_piv_l_u_adce228d6856115b28542b432a7c754a3}} 
+void {\bfseries compute\+In\+Place} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_aeac9c32edb194183badfbf4b7869db2d}\label{class_eigen_1_1_full_piv_l_u_aeac9c32edb194183badfbf4b7869db2d}} 
+static void {\bfseries check\+\_\+template\+\_\+parameters} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_a6b230b2bfe2975159eaa3072b4b378ea}\label{class_eigen_1_1_full_piv_l_u_a6b230b2bfe2975159eaa3072b4b378ea}} 
+Matrix\+Type {\bfseries m\+\_\+lu}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_ac0306ea4dfb18509da383fdd1b38b75a}\label{class_eigen_1_1_full_piv_l_u_ac0306ea4dfb18509da383fdd1b38b75a}} 
+\mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+P\+Type}} {\bfseries m\+\_\+p}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_ad2c5b2d7f024cfa5c2cfebbad66d48d8}\label{class_eigen_1_1_full_piv_l_u_ad2c5b2d7f024cfa5c2cfebbad66d48d8}} 
+\mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Q\+Type}} {\bfseries m\+\_\+q}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_af4980648859edac8b69fc5e893a0cafe}\label{class_eigen_1_1_full_piv_l_u_af4980648859edac8b69fc5e893a0cafe}} 
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Int\+Col\+Vector\+Type}} {\bfseries m\+\_\+rows\+Transpositions}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_aa06932fe3dd535e6dac40833e79763ec}\label{class_eigen_1_1_full_piv_l_u_aa06932fe3dd535e6dac40833e79763ec}} 
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Int\+Row\+Vector\+Type}} {\bfseries m\+\_\+cols\+Transpositions}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_afc3228ea34d1374a49f37a75b95851ad}\label{class_eigen_1_1_full_piv_l_u_afc3228ea34d1374a49f37a75b95851ad}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries m\+\_\+nonzero\+\_\+pivots}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_a82dfe6867970aa4396879147842d5bf2}\label{class_eigen_1_1_full_piv_l_u_a82dfe6867970aa4396879147842d5bf2}} 
+Real\+Scalar {\bfseries m\+\_\+l1\+\_\+norm}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_aa448be35ac6bd06e6773b26c97c33a7f}\label{class_eigen_1_1_full_piv_l_u_aa448be35ac6bd06e6773b26c97c33a7f}} 
+Real\+Scalar {\bfseries m\+\_\+maxpivot}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_a021b0e96fd805af31479e5228a3faf7d}\label{class_eigen_1_1_full_piv_l_u_a021b0e96fd805af31479e5228a3faf7d}} 
+Real\+Scalar {\bfseries m\+\_\+prescribed\+Threshold}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_ad3381d66a970a248a16318b2efad329a}\label{class_eigen_1_1_full_piv_l_u_ad3381d66a970a248a16318b2efad329a}} 
+signed char {\bfseries m\+\_\+det\+\_\+pq}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_aea21df7281ce70bbb3d6f5e75d5098fd}\label{class_eigen_1_1_full_piv_l_u_aea21df7281ce70bbb3d6f5e75d5098fd}} 
+bool {\bfseries m\+\_\+is\+Initialized}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_a1a59b0c6ed012e1ebf7959a103c42b22}\label{class_eigen_1_1_full_piv_l_u_a1a59b0c6ed012e1ebf7959a103c42b22}} 
+bool {\bfseries m\+\_\+use\+Prescribed\+Threshold}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+LU decomposition of a matrix with complete pivoting, and related features. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Matrix\+Type} & the type of the matrix of which we are computing the LU decomposition\\
+\hline
+\end{DoxyTemplParams}
+This class represents a LU decomposition of any matrix, with complete pivoting\+: the matrix A is decomposed as $ A = P^{-1} L U Q^{-1} $ where L is unit-\/lower-\/triangular, U is upper-\/triangular, and P and Q are permutation matrices. This is a rank-\/revealing LU decomposition. The eigenvalues (diagonal coefficients) of U are sorted in such a way that any zeros are at the end.
+
+This decomposition provides the generic approach to solving systems of linear equations, computing the rank, invertibility, inverse, kernel, and determinant.
+
+This LU decomposition is very stable and well tested with large matrices. However there are use cases where the S\+VD decomposition is inherently more stable and/or flexible. For example, when computing the kernel of a matrix, working with the S\+VD allows to select the smallest singular values of the matrix, something that the LU decomposition doesn\textquotesingle{}t see.
+
+The data of the LU decomposition can be directly accessed through the methods \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_a08a0afcf07fc9344c06a3c388fdc3b6d}{matrix\+L\+U()}}, \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_a109458012f3b673081d79538bf5c3570}{permutation\+P()}}, \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_a787040a2044325af71f438af6ad226d2}{permutation\+Q()}}.
+
+As an exemple, here is how the original matrix can be retrieved\+: 
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+
+
+This class supports the \mbox{\hyperlink{group___inplace_decomposition}{inplace decomposition }} mechanism.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_matrix_base_a25da97d31acab0ee5d9d13bdbb0569da}{Matrix\+Base\+::full\+Piv\+Lu()}}, \mbox{\hyperlink{class_eigen_1_1_matrix_base_a7ad8f77004bb956b603bb43fd2e3c061}{Matrix\+Base\+::determinant()}}, \mbox{\hyperlink{class_eigen_1_1_matrix_base_a7712eb69e8ea3c8f7b8da1c44dbdeebf}{Matrix\+Base\+::inverse()}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_a03ad44dda3c1be7b97f50f413c8582ef}\label{class_eigen_1_1_full_piv_l_u_a03ad44dda3c1be7b97f50f413c8582ef}} 
+\index{Eigen::FullPivLU@{Eigen::FullPivLU}!FullPivLU@{FullPivLU}}
+\index{FullPivLU@{FullPivLU}!Eigen::FullPivLU@{Eigen::FullPivLU}}
+\doxysubsubsection{\texorpdfstring{FullPivLU()}{FullPivLU()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily Eigen\+::\+Full\+Piv\+L\+U\+::\+Full\+Piv\+LU (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Default Constructor. 
+
+The default constructor is useful in cases in which the user intends to perform decompositions via L\+U\+::compute(const Matrix\+Type\&). \mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_ad9fc69ddc8a390122b7d16552267d76b}\label{class_eigen_1_1_full_piv_l_u_ad9fc69ddc8a390122b7d16552267d76b}} 
+\index{Eigen::FullPivLU@{Eigen::FullPivLU}!FullPivLU@{FullPivLU}}
+\index{FullPivLU@{FullPivLU}!Eigen::FullPivLU@{Eigen::FullPivLU}}
+\doxysubsubsection{\texorpdfstring{FullPivLU()}{FullPivLU()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily Eigen\+::\+Full\+Piv\+L\+U\+::\+Full\+Piv\+LU (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{rows,  }\item[{\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}}]{cols }\end{DoxyParamCaption})}
+
+
+
+Default Constructor with memory preallocation. 
+
+Like the default constructor but with preallocation of the internal data according to the specified problem {\itshape size}. \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_a03ad44dda3c1be7b97f50f413c8582ef}{Full\+Piv\+L\+U()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_a1be10af9c2efc6de2ff38185ac0126f6}\label{class_eigen_1_1_full_piv_l_u_a1be10af9c2efc6de2ff38185ac0126f6}} 
+\index{Eigen::FullPivLU@{Eigen::FullPivLU}!FullPivLU@{FullPivLU}}
+\index{FullPivLU@{FullPivLU}!Eigen::FullPivLU@{Eigen::FullPivLU}}
+\doxysubsubsection{\texorpdfstring{FullPivLU()}{FullPivLU()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$typename Input\+Type $>$ \\
+Eigen\+::\+Full\+Piv\+L\+U\+::\+Full\+Piv\+LU (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&}]{matrix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+Constructor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em matrix} & the matrix of which to compute the LU decomposition. It is required to be nonzero. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_aa24ad157e9c1753955a98c1d1120642d}\label{class_eigen_1_1_full_piv_l_u_aa24ad157e9c1753955a98c1d1120642d}} 
+\index{Eigen::FullPivLU@{Eigen::FullPivLU}!FullPivLU@{FullPivLU}}
+\index{FullPivLU@{FullPivLU}!Eigen::FullPivLU@{Eigen::FullPivLU}}
+\doxysubsubsection{\texorpdfstring{FullPivLU()}{FullPivLU()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$typename Input\+Type $>$ \\
+Eigen\+::\+Full\+Piv\+L\+U\+::\+Full\+Piv\+LU (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&}]{matrix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructs a LU factorization from a given matrix. 
+
+This overloaded constructor is provided for \mbox{\hyperlink{group___inplace_decomposition}{inplace decomposition }} when {\ttfamily Matrix\+Type} is a \mbox{\hyperlink{class_eigen_1_1_ref}{Eigen\+::\+Ref}}.
+
+\begin{DoxySeeAlso}{See also}
+Full\+Piv\+L\+U(const Eigen\+Base\&) 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_ab5bb53143afaa79dbff60d396a5dbb9b}\label{class_eigen_1_1_full_piv_l_u_ab5bb53143afaa79dbff60d396a5dbb9b}} 
+\index{Eigen::FullPivLU@{Eigen::FullPivLU}!compute@{compute}}
+\index{compute@{compute}!Eigen::FullPivLU@{Eigen::FullPivLU}}
+\doxysubsubsection{\texorpdfstring{compute()}{compute()}}
+{\footnotesize\ttfamily template$<$typename Input\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_full_piv_l_u}{Full\+Piv\+LU}}\& Eigen\+::\+Full\+Piv\+L\+U\+::compute (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&}]{matrix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Computes the LU decomposition of the given matrix.
+
+
+\begin{DoxyParams}{Parameters}
+{\em matrix} & the matrix of which to compute the LU decomposition. It is required to be nonzero.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a reference to $\ast$this 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_aad92074f9afd5c46ede46025273c2063}\label{class_eigen_1_1_full_piv_l_u_aad92074f9afd5c46ede46025273c2063}} 
+\index{Eigen::FullPivLU@{Eigen::FullPivLU}!determinant@{determinant}}
+\index{determinant@{determinant}!Eigen::FullPivLU@{Eigen::FullPivLU}}
+\doxysubsubsection{\texorpdfstring{determinant()}{determinant()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ Matrix\+Type $>$\+::Scalar Eigen\+::\+Full\+Piv\+L\+U\+::determinant (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+the determinant of the matrix of which $\ast$this is the LU decomposition. It has only linear complexity (that is, O(n) where n is the dimension of the square matrix) as the LU decomposition has already been computed.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This is only for square matrices.
+
+For fixed-\/size matrices of size up to 4, \mbox{\hyperlink{class_eigen_1_1_matrix_base_a7ad8f77004bb956b603bb43fd2e3c061}{Matrix\+Base\+::determinant()}} offers optimized paths.
+\end{DoxyNote}
+\begin{DoxyWarning}{Warning}
+a determinant can be very big or small, so for matrices of large enough dimension, there is a risk of overflow/underflow.
+\end{DoxyWarning}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_matrix_base_a7ad8f77004bb956b603bb43fd2e3c061}{Matrix\+Base\+::determinant()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_abbe2d6b161f79e9875ea0a72ede56c8a}\label{class_eigen_1_1_full_piv_l_u_abbe2d6b161f79e9875ea0a72ede56c8a}} 
+\index{Eigen::FullPivLU@{Eigen::FullPivLU}!dimensionOfKernel@{dimensionOfKernel}}
+\index{dimensionOfKernel@{dimensionOfKernel}!Eigen::FullPivLU@{Eigen::FullPivLU}}
+\doxysubsubsection{\texorpdfstring{dimensionOfKernel()}{dimensionOfKernel()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} Eigen\+::\+Full\+Piv\+L\+U\+::dimension\+Of\+Kernel (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the dimension of the kernel of the matrix of which $\ast$this is the LU decomposition.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This method has to determine which pivots should be considered nonzero. For that, it uses the threshold value that you can control by calling \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_a3212fe6f3996c18b1512c0c577621dc7}{set\+Threshold(const Real\+Scalar\&)}}. 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_a39f27c41e85e3f6279893cb078ed3f5f}\label{class_eigen_1_1_full_piv_l_u_a39f27c41e85e3f6279893cb078ed3f5f}} 
+\index{Eigen::FullPivLU@{Eigen::FullPivLU}!image@{image}}
+\index{image@{image}!Eigen::FullPivLU@{Eigen::FullPivLU}}
+\doxysubsubsection{\texorpdfstring{image()}{image()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{struct_eigen_1_1internal_1_1image__retval}{internal\+::image\+\_\+retval}}$<$\mbox{\hyperlink{class_eigen_1_1_full_piv_l_u}{Full\+Piv\+LU}}$>$ Eigen\+::\+Full\+Piv\+L\+U\+::image (\begin{DoxyParamCaption}\item[{const Matrix\+Type \&}]{original\+Matrix }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the image of the matrix, also called its column-\/space. The columns of the returned matrix will form a basis of the image (column-\/space).
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em original\+Matrix} & the original matrix, of which $\ast$this is the LU decomposition. The reason why it is needed to pass it here, is that this allows a large optimization, as otherwise this method would need to reconstruct it from the LU decomposition.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+If the image has dimension zero, then the returned matrix is a column-\/vector filled with zeros.
+
+This method has to determine which pivots should be considered nonzero. For that, it uses the threshold value that you can control by calling \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_a3212fe6f3996c18b1512c0c577621dc7}{set\+Threshold(const Real\+Scalar\&)}}.
+\end{DoxyNote}
+Example\+: 
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_a9249476e95f961450ac4a1842a061ec7}{kernel()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_aeb3b300a38ce3e2597129cd5a67cbaf6}\label{class_eigen_1_1_full_piv_l_u_aeb3b300a38ce3e2597129cd5a67cbaf6}} 
+\index{Eigen::FullPivLU@{Eigen::FullPivLU}!inverse@{inverse}}
+\index{inverse@{inverse}!Eigen::FullPivLU@{Eigen::FullPivLU}}
+\doxysubsubsection{\texorpdfstring{inverse()}{inverse()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{class_eigen_1_1_inverse}{Inverse}}$<$\mbox{\hyperlink{class_eigen_1_1_full_piv_l_u}{Full\+Piv\+LU}}$>$ Eigen\+::\+Full\+Piv\+L\+U\+::inverse (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the inverse of the matrix of which $\ast$this is the LU decomposition.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+If this matrix is not invertible, the returned matrix has undefined coefficients. Use \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_a45cd2c5b9a601bc270826da165234b7c}{is\+Invertible()}} to first determine whether this matrix is invertible.
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_matrix_base_a7712eb69e8ea3c8f7b8da1c44dbdeebf}{Matrix\+Base\+::inverse()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_a2b771856a5acb2e5253421f1fcd4d155}\label{class_eigen_1_1_full_piv_l_u_a2b771856a5acb2e5253421f1fcd4d155}} 
+\index{Eigen::FullPivLU@{Eigen::FullPivLU}!isInjective@{isInjective}}
+\index{isInjective@{isInjective}!Eigen::FullPivLU@{Eigen::FullPivLU}}
+\doxysubsubsection{\texorpdfstring{isInjective()}{isInjective()}}
+{\footnotesize\ttfamily bool Eigen\+::\+Full\+Piv\+L\+U\+::is\+Injective (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+true if the matrix of which $\ast$this is the LU decomposition represents an injective linear map, i.\+e. has trivial kernel; false otherwise.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This method has to determine which pivots should be considered nonzero. For that, it uses the threshold value that you can control by calling \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_a3212fe6f3996c18b1512c0c577621dc7}{set\+Threshold(const Real\+Scalar\&)}}. 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_a45cd2c5b9a601bc270826da165234b7c}\label{class_eigen_1_1_full_piv_l_u_a45cd2c5b9a601bc270826da165234b7c}} 
+\index{Eigen::FullPivLU@{Eigen::FullPivLU}!isInvertible@{isInvertible}}
+\index{isInvertible@{isInvertible}!Eigen::FullPivLU@{Eigen::FullPivLU}}
+\doxysubsubsection{\texorpdfstring{isInvertible()}{isInvertible()}}
+{\footnotesize\ttfamily bool Eigen\+::\+Full\+Piv\+L\+U\+::is\+Invertible (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+true if the matrix of which $\ast$this is the LU decomposition is invertible.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This method has to determine which pivots should be considered nonzero. For that, it uses the threshold value that you can control by calling \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_a3212fe6f3996c18b1512c0c577621dc7}{set\+Threshold(const Real\+Scalar\&)}}. 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_a31102ddf8b3e4fe9616624d0184a3354}\label{class_eigen_1_1_full_piv_l_u_a31102ddf8b3e4fe9616624d0184a3354}} 
+\index{Eigen::FullPivLU@{Eigen::FullPivLU}!isSurjective@{isSurjective}}
+\index{isSurjective@{isSurjective}!Eigen::FullPivLU@{Eigen::FullPivLU}}
+\doxysubsubsection{\texorpdfstring{isSurjective()}{isSurjective()}}
+{\footnotesize\ttfamily bool Eigen\+::\+Full\+Piv\+L\+U\+::is\+Surjective (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+true if the matrix of which $\ast$this is the LU decomposition represents a surjective linear map; false otherwise.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This method has to determine which pivots should be considered nonzero. For that, it uses the threshold value that you can control by calling \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_a3212fe6f3996c18b1512c0c577621dc7}{set\+Threshold(const Real\+Scalar\&)}}. 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_a9249476e95f961450ac4a1842a061ec7}\label{class_eigen_1_1_full_piv_l_u_a9249476e95f961450ac4a1842a061ec7}} 
+\index{Eigen::FullPivLU@{Eigen::FullPivLU}!kernel@{kernel}}
+\index{kernel@{kernel}!Eigen::FullPivLU@{Eigen::FullPivLU}}
+\doxysubsubsection{\texorpdfstring{kernel()}{kernel()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{struct_eigen_1_1internal_1_1kernel__retval}{internal\+::kernel\+\_\+retval}}$<$\mbox{\hyperlink{class_eigen_1_1_full_piv_l_u}{Full\+Piv\+LU}}$>$ Eigen\+::\+Full\+Piv\+L\+U\+::kernel (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the kernel of the matrix, also called its null-\/space. The columns of the returned matrix will form a basis of the kernel.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+If the kernel has dimension zero, then the returned matrix is a column-\/vector filled with zeros.
+
+This method has to determine which pivots should be considered nonzero. For that, it uses the threshold value that you can control by calling \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_a3212fe6f3996c18b1512c0c577621dc7}{set\+Threshold(const Real\+Scalar\&)}}.
+\end{DoxyNote}
+Example\+: 
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_a39f27c41e85e3f6279893cb078ed3f5f}{image()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_a08a0afcf07fc9344c06a3c388fdc3b6d}\label{class_eigen_1_1_full_piv_l_u_a08a0afcf07fc9344c06a3c388fdc3b6d}} 
+\index{Eigen::FullPivLU@{Eigen::FullPivLU}!matrixLU@{matrixLU}}
+\index{matrixLU@{matrixLU}!Eigen::FullPivLU@{Eigen::FullPivLU}}
+\doxysubsubsection{\texorpdfstring{matrixLU()}{matrixLU()}}
+{\footnotesize\ttfamily const Matrix\+Type\& Eigen\+::\+Full\+Piv\+L\+U\+::matrix\+LU (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the LU decomposition matrix\+: the upper-\/triangular part is U, the unit-\/lower-\/triangular part is L (at least for square matrices; in the non-\/square case, special care is needed, see the documentation of class \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u}{Full\+Piv\+LU}}).
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+matrix\+L(), matrix\+U() 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_ac33cca899d3c342ca71dac6524216fb7}\label{class_eigen_1_1_full_piv_l_u_ac33cca899d3c342ca71dac6524216fb7}} 
+\index{Eigen::FullPivLU@{Eigen::FullPivLU}!maxPivot@{maxPivot}}
+\index{maxPivot@{maxPivot}!Eigen::FullPivLU@{Eigen::FullPivLU}}
+\doxysubsubsection{\texorpdfstring{maxPivot()}{maxPivot()}}
+{\footnotesize\ttfamily Real\+Scalar Eigen\+::\+Full\+Piv\+L\+U\+::max\+Pivot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the absolute value of the biggest pivot, i.\+e. the biggest diagonal coefficient of U. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_a88b1bdcb3f28d7b445fc026cd694c7ee}\label{class_eigen_1_1_full_piv_l_u_a88b1bdcb3f28d7b445fc026cd694c7ee}} 
+\index{Eigen::FullPivLU@{Eigen::FullPivLU}!nonzeroPivots@{nonzeroPivots}}
+\index{nonzeroPivots@{nonzeroPivots}!Eigen::FullPivLU@{Eigen::FullPivLU}}
+\doxysubsubsection{\texorpdfstring{nonzeroPivots()}{nonzeroPivots()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} Eigen\+::\+Full\+Piv\+L\+U\+::nonzero\+Pivots (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the number of nonzero pivots in the LU decomposition. Here nonzero is meant in the exact sense, not in a fuzzy sense. So that notion isn\textquotesingle{}t really intrinsically interesting, but it is still useful when implementing algorithms.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_a8d99bac6fb3f0f120acabb4e7fb61104}{rank()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_a109458012f3b673081d79538bf5c3570}\label{class_eigen_1_1_full_piv_l_u_a109458012f3b673081d79538bf5c3570}} 
+\index{Eigen::FullPivLU@{Eigen::FullPivLU}!permutationP@{permutationP}}
+\index{permutationP@{permutationP}!Eigen::FullPivLU@{Eigen::FullPivLU}}
+\doxysubsubsection{\texorpdfstring{permutationP()}{permutationP()}}
+{\footnotesize\ttfamily const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+P\+Type}}\& Eigen\+::\+Full\+Piv\+L\+U\+::permutationP (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the permutation matrix P
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_a787040a2044325af71f438af6ad226d2}{permutation\+Q()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_a787040a2044325af71f438af6ad226d2}\label{class_eigen_1_1_full_piv_l_u_a787040a2044325af71f438af6ad226d2}} 
+\index{Eigen::FullPivLU@{Eigen::FullPivLU}!permutationQ@{permutationQ}}
+\index{permutationQ@{permutationQ}!Eigen::FullPivLU@{Eigen::FullPivLU}}
+\doxysubsubsection{\texorpdfstring{permutationQ()}{permutationQ()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Q\+Type}}\& Eigen\+::\+Full\+Piv\+L\+U\+::permutationQ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the permutation matrix Q
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_a109458012f3b673081d79538bf5c3570}{permutation\+P()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_a8d99bac6fb3f0f120acabb4e7fb61104}\label{class_eigen_1_1_full_piv_l_u_a8d99bac6fb3f0f120acabb4e7fb61104}} 
+\index{Eigen::FullPivLU@{Eigen::FullPivLU}!rank@{rank}}
+\index{rank@{rank}!Eigen::FullPivLU@{Eigen::FullPivLU}}
+\doxysubsubsection{\texorpdfstring{rank()}{rank()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} Eigen\+::\+Full\+Piv\+L\+U\+::rank (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the rank of the matrix of which $\ast$this is the LU decomposition.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This method has to determine which pivots should be considered nonzero. For that, it uses the threshold value that you can control by calling \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_a3212fe6f3996c18b1512c0c577621dc7}{set\+Threshold(const Real\+Scalar\&)}}. 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_ac40f1c26597491cf8a8c8ed0fdb486f1}\label{class_eigen_1_1_full_piv_l_u_ac40f1c26597491cf8a8c8ed0fdb486f1}} 
+\index{Eigen::FullPivLU@{Eigen::FullPivLU}!rcond@{rcond}}
+\index{rcond@{rcond}!Eigen::FullPivLU@{Eigen::FullPivLU}}
+\doxysubsubsection{\texorpdfstring{rcond()}{rcond()}}
+{\footnotesize\ttfamily Real\+Scalar Eigen\+::\+Full\+Piv\+L\+U\+::rcond (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+an estimate of the reciprocal condition number of the matrix of which {\ttfamily $\ast$this} is the LU decomposition. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_ab52a586765c61319410b9c9ad120c993}\label{class_eigen_1_1_full_piv_l_u_ab52a586765c61319410b9c9ad120c993}} 
+\index{Eigen::FullPivLU@{Eigen::FullPivLU}!reconstructedMatrix@{reconstructedMatrix}}
+\index{reconstructedMatrix@{reconstructedMatrix}!Eigen::FullPivLU@{Eigen::FullPivLU}}
+\doxysubsubsection{\texorpdfstring{reconstructedMatrix()}{reconstructedMatrix()}}
+{\footnotesize\ttfamily Matrix\+Type Eigen\+::\+Full\+Piv\+L\+U\+::reconstructed\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+the matrix represented by the decomposition, i.\+e., it returns the product\+: $ P^{-1} L U Q^{-1} $. This function is provided for debug purposes. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_a3212fe6f3996c18b1512c0c577621dc7}\label{class_eigen_1_1_full_piv_l_u_a3212fe6f3996c18b1512c0c577621dc7}} 
+\index{Eigen::FullPivLU@{Eigen::FullPivLU}!setThreshold@{setThreshold}}
+\index{setThreshold@{setThreshold}!Eigen::FullPivLU@{Eigen::FullPivLU}}
+\doxysubsubsection{\texorpdfstring{setThreshold()}{setThreshold()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u}{Full\+Piv\+LU}}\& Eigen\+::\+Full\+Piv\+L\+U\+::set\+Threshold (\begin{DoxyParamCaption}\item[{const Real\+Scalar \&}]{threshold }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Allows to prescribe a threshold to be used by certain methods, such as \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_a8d99bac6fb3f0f120acabb4e7fb61104}{rank()}}, who need to determine when pivots are to be considered nonzero. This is not used for the LU decomposition itself.
+
+When it needs to get the threshold value, \mbox{\hyperlink{namespace_eigen}{Eigen}} calls \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_a1827499973a8052f5a5137db56dd04b9}{threshold()}}. By default, this uses a formula to automatically determine a reasonable threshold. Once you have called the present method \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_a3212fe6f3996c18b1512c0c577621dc7}{set\+Threshold(const Real\+Scalar\&)}}, your value is used instead.
+
+
+\begin{DoxyParams}{Parameters}
+{\em threshold} & The new value to use as the threshold.\\
+\hline
+\end{DoxyParams}
+A pivot will be considered nonzero if its absolute value is strictly greater than $ \vert pivot \vert \leqslant threshold \times \vert maxpivot \vert $ where maxpivot is the biggest pivot.
+
+If you want to come back to the default behavior, call \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_a5ab0d23fe4ce0886e1dd3c34027d9eff}{set\+Threshold(\+Default\+\_\+t)}} \mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_a5ab0d23fe4ce0886e1dd3c34027d9eff}\label{class_eigen_1_1_full_piv_l_u_a5ab0d23fe4ce0886e1dd3c34027d9eff}} 
+\index{Eigen::FullPivLU@{Eigen::FullPivLU}!setThreshold@{setThreshold}}
+\index{setThreshold@{setThreshold}!Eigen::FullPivLU@{Eigen::FullPivLU}}
+\doxysubsubsection{\texorpdfstring{setThreshold()}{setThreshold()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u}{Full\+Piv\+LU}}\& Eigen\+::\+Full\+Piv\+L\+U\+::set\+Threshold (\begin{DoxyParamCaption}\item[{Default\+\_\+t}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Allows to come back to the default behavior, letting \mbox{\hyperlink{namespace_eigen}{Eigen}} use its default formula for determining the threshold.
+
+You should pass the special object Eigen\+::\+Default as parameter here. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{lu.setThreshold(Eigen::Default); }
+\end{DoxyCode}
+
+
+See the documentation of \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_a3212fe6f3996c18b1512c0c577621dc7}{set\+Threshold(const Real\+Scalar\&)}}. \mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_a4e4c2adb580bff893e0096ec93f8fe2b}\label{class_eigen_1_1_full_piv_l_u_a4e4c2adb580bff893e0096ec93f8fe2b}} 
+\index{Eigen::FullPivLU@{Eigen::FullPivLU}!solve@{solve}}
+\index{solve@{solve}!Eigen::FullPivLU@{Eigen::FullPivLU}}
+\doxysubsubsection{\texorpdfstring{solve()}{solve()}}
+{\footnotesize\ttfamily template$<$typename Rhs $>$ \\
+const \mbox{\hyperlink{class_eigen_1_1_solve}{Solve}}$<$\mbox{\hyperlink{class_eigen_1_1_full_piv_l_u}{Full\+Piv\+LU}}, Rhs$>$ Eigen\+::\+Full\+Piv\+L\+U\+::solve (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Rhs $>$ \&}]{b }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a solution x to the equation Ax=b, where A is the matrix of which $\ast$this is the LU decomposition.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em b} & the right-\/hand-\/side of the equation to solve. Can be a vector or a matrix, the only requirement in order for the equation to make sense is that b.\+rows()==A.\+rows(), where A is the matrix of which $\ast$this is the LU decomposition.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a solution.
+\end{DoxyReturn}
+\textbackslash{}note\+\_\+about\+\_\+checking\+\_\+solutions
+
+\textbackslash{}note\+\_\+about\+\_\+arbitrary\+\_\+choice\+\_\+of\+\_\+solution \textbackslash{}note\+\_\+about\+\_\+using\+\_\+kernel\+\_\+to\+\_\+study\+\_\+multiple\+\_\+solutions
+
+Example\+: 
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+
+
+\begin{DoxySeeAlso}{See also}
+Triangular\+View\+::solve(), \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_a9249476e95f961450ac4a1842a061ec7}{kernel()}}, \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_aeb3b300a38ce3e2597129cd5a67cbaf6}{inverse()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_full_piv_l_u_a1827499973a8052f5a5137db56dd04b9}\label{class_eigen_1_1_full_piv_l_u_a1827499973a8052f5a5137db56dd04b9}} 
+\index{Eigen::FullPivLU@{Eigen::FullPivLU}!threshold@{threshold}}
+\index{threshold@{threshold}!Eigen::FullPivLU@{Eigen::FullPivLU}}
+\doxysubsubsection{\texorpdfstring{threshold()}{threshold()}}
+{\footnotesize\ttfamily Real\+Scalar Eigen\+::\+Full\+Piv\+L\+U\+::threshold (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns the threshold that will be used by certain methods such as \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_a8d99bac6fb3f0f120acabb4e7fb61104}{rank()}}.
+
+See the documentation of \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u_a3212fe6f3996c18b1512c0c577621dc7}{set\+Threshold(const Real\+Scalar\&)}}. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/util/Forward\+Declarations.\+h\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+L\+U/Full\+Piv\+L\+U.\+h\end{DoxyCompactItemize}

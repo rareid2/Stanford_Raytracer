@@ -1,0 +1,317 @@
+\hypertarget{class_eigen_1_1_real_schur}{}\doxysection{Eigen\+::Real\+Schur$<$ \+\_\+\+Matrix\+Type $>$ Class Template Reference}
+\label{class_eigen_1_1_real_schur}\index{Eigen::RealSchur$<$ \_MatrixType $>$@{Eigen::RealSchur$<$ \_MatrixType $>$}}
+
+
+Performs a real Schur decomposition of a square matrix.  
+
+
+
+
+{\ttfamily \#include $<$Real\+Schur.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_real_schur_ae1ed06b10a140e495b6e2850207b68c9}\label{class_eigen_1_1_real_schur_ae1ed06b10a140e495b6e2850207b68c9}} 
+enum \{ \newline
+{\bfseries Rows\+At\+Compile\+Time} = Matrix\+Type\+::Rows\+At\+Compile\+Time, 
+{\bfseries Cols\+At\+Compile\+Time} = Matrix\+Type\+::Cols\+At\+Compile\+Time, 
+{\bfseries Options} = Matrix\+Type\+::Options, 
+{\bfseries Max\+Rows\+At\+Compile\+Time} = Matrix\+Type\+::Max\+Rows\+At\+Compile\+Time, 
+\newline
+{\bfseries Max\+Cols\+At\+Compile\+Time} = Matrix\+Type\+::Max\+Cols\+At\+Compile\+Time
+ \}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_real_schur_a2c400724529c2d19e886e865244f6ea7}\label{class_eigen_1_1_real_schur_a2c400724529c2d19e886e865244f6ea7}} 
+typedef \+\_\+\+Matrix\+Type {\bfseries Matrix\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_real_schur_a9f63de2b06466efed32c6e721bde71c9}\label{class_eigen_1_1_real_schur_a9f63de2b06466efed32c6e721bde71c9}} 
+typedef Matrix\+Type\+::\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_real_schur_a269c5cf978680481656ad5e86d45894a}\label{class_eigen_1_1_real_schur_a269c5cf978680481656ad5e86d45894a}} 
+typedef std\+::complex$<$ typename \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$ Scalar $>$\+::Real $>$ {\bfseries Complex\+Scalar}
+\item 
+typedef \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Eigen\+::\+Index}} \mbox{\hyperlink{class_eigen_1_1_real_schur_a8bd4653e2d9569a44ecc95e746422d3f}{Index}}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_real_schur_aba61940000501482e45b704ca403fa22}\label{class_eigen_1_1_real_schur_aba61940000501482e45b704ca403fa22}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ Complex\+Scalar, Cols\+At\+Compile\+Time, 1, Options \&$\sim$\mbox{\hyperlink{group__enums_ggaacded1a18ae58b0f554751f6cdf9eb13a77c993a8d9f6efe5c1159fb2ab07dd4f}{Row\+Major}}, Max\+Cols\+At\+Compile\+Time, 1 $>$ {\bfseries Eigenvalue\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_real_schur_ad7d4f7f6f061e66838a4a1c7666efa52}\label{class_eigen_1_1_real_schur_ad7d4f7f6f061e66838a4a1c7666efa52}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ Scalar, Cols\+At\+Compile\+Time, 1, Options \&$\sim$\mbox{\hyperlink{group__enums_ggaacded1a18ae58b0f554751f6cdf9eb13a77c993a8d9f6efe5c1159fb2ab07dd4f}{Row\+Major}}, Max\+Cols\+At\+Compile\+Time, 1 $>$ {\bfseries Column\+Vector\+Type}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_real_schur_a826c83e2f1d4c8332606a14ea121ff5f}{Real\+Schur}} (\mbox{\hyperlink{class_eigen_1_1_real_schur_a8bd4653e2d9569a44ecc95e746422d3f}{Index}} size=Rows\+At\+Compile\+Time==\mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}} ? 1 \+:Rows\+At\+Compile\+Time)
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Input\+Type $>$ }\\\mbox{\hyperlink{class_eigen_1_1_real_schur_afef4d3dc5a493aca2760c20b34337016}{Real\+Schur}} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&matrix, bool computeU=true)
+\begin{DoxyCompactList}\small\item\em Constructor; computes real Schur decomposition of given matrix. \end{DoxyCompactList}\item 
+const Matrix\+Type \& \mbox{\hyperlink{class_eigen_1_1_real_schur_a85622ccbecff99c8933d21f0a22b22bb}{matrixU}} () const
+\begin{DoxyCompactList}\small\item\em Returns the orthogonal matrix in the Schur decomposition. \end{DoxyCompactList}\item 
+const Matrix\+Type \& \mbox{\hyperlink{class_eigen_1_1_real_schur_abb78996b43b8642a5f507415730445cb}{matrixT}} () const
+\begin{DoxyCompactList}\small\item\em Returns the quasi-\/triangular matrix in the Schur decomposition. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Input\+Type $>$ }\\\mbox{\hyperlink{class_eigen_1_1_real_schur}{Real\+Schur}} \& \mbox{\hyperlink{class_eigen_1_1_real_schur_a60caf9ffad11d728ea458c4dd36d0a98}{compute}} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&matrix, bool computeU=true)
+\begin{DoxyCompactList}\small\item\em Computes Schur decomposition of given matrix. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Hess\+Matrix\+Type , typename Orth\+Matrix\+Type $>$ }\\\mbox{\hyperlink{class_eigen_1_1_real_schur}{Real\+Schur}} \& \mbox{\hyperlink{class_eigen_1_1_real_schur_ac4acc917dcaddefae5f35acd2c536d65}{compute\+From\+Hessenberg}} (const Hess\+Matrix\+Type \&matrixH, const Orth\+Matrix\+Type \&matrixQ, bool computeU)
+\begin{DoxyCompactList}\small\item\em Computes Schur decomposition of a Hessenberg matrix H = Z T Z$^\wedge$T. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} \mbox{\hyperlink{class_eigen_1_1_real_schur_a386fd2b1a3a8401eca7183ac074deec8}{info}} () const
+\begin{DoxyCompactList}\small\item\em Reports whether previous computation was successful. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_eigen_1_1_real_schur}{Real\+Schur}} \& \mbox{\hyperlink{class_eigen_1_1_real_schur_ad189e8776ee20a12046694f98b354322}{set\+Max\+Iterations}} (\mbox{\hyperlink{class_eigen_1_1_real_schur_a8bd4653e2d9569a44ecc95e746422d3f}{Index}} max\+Iters)
+\begin{DoxyCompactList}\small\item\em Sets the maximum number of iterations allowed. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_eigen_1_1_real_schur_a99453076a9617a6af353b5b1f3220c25}\label{class_eigen_1_1_real_schur_a99453076a9617a6af353b5b1f3220c25}} 
+\mbox{\hyperlink{class_eigen_1_1_real_schur_a8bd4653e2d9569a44ecc95e746422d3f}{Index}} \mbox{\hyperlink{class_eigen_1_1_real_schur_a99453076a9617a6af353b5b1f3220c25}{get\+Max\+Iterations}} ()
+\begin{DoxyCompactList}\small\item\em Returns the maximum number of iterations. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_eigen_1_1_real_schur_aa6d762f59f27cfbe33db709a2e0a2ba1}\label{class_eigen_1_1_real_schur_aa6d762f59f27cfbe33db709a2e0a2ba1}} 
+{\footnotesize template$<$typename Input\+Type $>$ }\\\mbox{\hyperlink{class_eigen_1_1_real_schur}{Real\+Schur}}$<$ Matrix\+Type $>$ \& {\bfseries compute} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&matrix, bool computeU)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_real_schur_a26f621f7dc83eed739b739ad5d73f0bd}\label{class_eigen_1_1_real_schur_a26f621f7dc83eed739b739ad5d73f0bd}} 
+{\footnotesize template$<$typename Hess\+Matrix\+Type , typename Orth\+Matrix\+Type $>$ }\\\mbox{\hyperlink{class_eigen_1_1_real_schur}{Real\+Schur}}$<$ Matrix\+Type $>$ \& {\bfseries compute\+From\+Hessenberg} (const Hess\+Matrix\+Type \&matrixH, const Orth\+Matrix\+Type \&matrixQ, bool computeU)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static const int \mbox{\hyperlink{class_eigen_1_1_real_schur_a5cf45fb60964a3e7ea3a6718a8d7acdf}{m\+\_\+max\+Iterations\+Per\+Row}} = 40
+\begin{DoxyCompactList}\small\item\em Maximum number of iterations per row. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Matrix\+Type$>$\newline
+class Eigen\+::\+Real\+Schur$<$ \+\_\+\+Matrix\+Type $>$}
+
+Performs a real Schur decomposition of a square matrix. 
+
+\textbackslash{}eigenvalues\+\_\+module
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Matrix\+Type} & the type of the matrix of which we are computing the real Schur decomposition; this is expected to be an instantiation of the \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}} class template.\\
+\hline
+\end{DoxyTemplParams}
+Given a real square matrix A, this class computes the real Schur decomposition\+: $ A = U T U^T $ where U is a real orthogonal matrix and T is a real quasi-\/triangular matrix. An orthogonal matrix is a matrix whose inverse is equal to its transpose, $ U^{-1} = U^T $. A quasi-\/triangular matrix is a block-\/triangular matrix whose diagonal consists of 1-\/by-\/1 blocks and 2-\/by-\/2 blocks with complex eigenvalues. The eigenvalues of the blocks on the diagonal of T are the same as the eigenvalues of the matrix A, and thus the real Schur decomposition is used in \mbox{\hyperlink{class_eigen_1_1_eigen_solver}{Eigen\+Solver}} to compute the eigendecomposition of a matrix.
+
+Call the function \mbox{\hyperlink{class_eigen_1_1_real_schur_a60caf9ffad11d728ea458c4dd36d0a98}{compute()}} to compute the real Schur decomposition of a given matrix. Alternatively, you can use the Real\+Schur(const Matrix\+Type\&, bool) constructor which computes the real Schur decomposition at construction time. Once the decomposition is computed, you can use the \mbox{\hyperlink{class_eigen_1_1_real_schur_a85622ccbecff99c8933d21f0a22b22bb}{matrix\+U()}} and \mbox{\hyperlink{class_eigen_1_1_real_schur_abb78996b43b8642a5f507415730445cb}{matrix\+T()}} functions to retrieve the matrices U and T in the decomposition.
+
+The documentation of Real\+Schur(const Matrix\+Type\&, bool) contains an example of the typical use of this class.
+
+\begin{DoxyNote}{Note}
+The implementation is adapted from \href{http://math.nist.gov/javanumerics/jama/}{\texttt{ J\+A\+MA}} (public domain). Their code is based on E\+I\+S\+P\+A\+CK.
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+class \mbox{\hyperlink{class_eigen_1_1_complex_schur}{Complex\+Schur}}, class \mbox{\hyperlink{class_eigen_1_1_eigen_solver}{Eigen\+Solver}}, class \mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver}{Complex\+Eigen\+Solver}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_real_schur_a8bd4653e2d9569a44ecc95e746422d3f}\label{class_eigen_1_1_real_schur_a8bd4653e2d9569a44ecc95e746422d3f}} 
+\index{Eigen::RealSchur$<$ \_MatrixType $>$@{Eigen::RealSchur$<$ \_MatrixType $>$}!Index@{Index}}
+\index{Index@{Index}!Eigen::RealSchur$<$ \_MatrixType $>$@{Eigen::RealSchur$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{Index}{Index}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+typedef \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Eigen\+::\+Index}} \mbox{\hyperlink{class_eigen_1_1_real_schur}{Eigen\+::\+Real\+Schur}}$<$ \+\_\+\+Matrix\+Type $>$\+::\mbox{\hyperlink{class_eigen_1_1_real_schur_a8bd4653e2d9569a44ecc95e746422d3f}{Index}}}
+
+\begin{DoxyRefDesc}{Deprecated}
+\item[\mbox{\hyperlink{deprecated__deprecated000022}{Deprecated}}]since \mbox{\hyperlink{namespace_eigen}{Eigen}} 3.\+3 \end{DoxyRefDesc}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_real_schur_a826c83e2f1d4c8332606a14ea121ff5f}\label{class_eigen_1_1_real_schur_a826c83e2f1d4c8332606a14ea121ff5f}} 
+\index{Eigen::RealSchur$<$ \_MatrixType $>$@{Eigen::RealSchur$<$ \_MatrixType $>$}!RealSchur@{RealSchur}}
+\index{RealSchur@{RealSchur}!Eigen::RealSchur$<$ \_MatrixType $>$@{Eigen::RealSchur$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{RealSchur()}{RealSchur()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_real_schur}{Eigen\+::\+Real\+Schur}}$<$ \+\_\+\+Matrix\+Type $>$\+::\mbox{\hyperlink{class_eigen_1_1_real_schur}{Real\+Schur}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eigen_1_1_real_schur_a8bd4653e2d9569a44ecc95e746422d3f}{Index}}}]{size = {\ttfamily RowsAtCompileTime==\mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}~?~1~\+:~RowsAtCompileTime} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Default constructor. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em size} & Positive integer, size of the matrix whose Schur decomposition will be computed.\\
+\hline
+\end{DoxyParams}
+The default constructor is useful in cases in which the user intends to perform decompositions via \mbox{\hyperlink{class_eigen_1_1_real_schur_a60caf9ffad11d728ea458c4dd36d0a98}{compute()}}. The {\ttfamily size} parameter is only used as a hint. It is not an error to give a wrong {\ttfamily size}, but it may impair performance.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_real_schur_a60caf9ffad11d728ea458c4dd36d0a98}{compute()}} for an example. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_real_schur_afef4d3dc5a493aca2760c20b34337016}\label{class_eigen_1_1_real_schur_afef4d3dc5a493aca2760c20b34337016}} 
+\index{Eigen::RealSchur$<$ \_MatrixType $>$@{Eigen::RealSchur$<$ \_MatrixType $>$}!RealSchur@{RealSchur}}
+\index{RealSchur@{RealSchur}!Eigen::RealSchur$<$ \_MatrixType $>$@{Eigen::RealSchur$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{RealSchur()}{RealSchur()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+template$<$typename Input\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_real_schur}{Eigen\+::\+Real\+Schur}}$<$ \+\_\+\+Matrix\+Type $>$\+::\mbox{\hyperlink{class_eigen_1_1_real_schur}{Real\+Schur}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&}]{matrix,  }\item[{bool}]{computeU = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Constructor; computes real Schur decomposition of given matrix. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em matrix} & Square matrix whose Schur decomposition is to be computed. \\
+\hline
+\mbox{\texttt{ in}}  & {\em computeU} & If true, both T and U are computed; if false, only T is computed.\\
+\hline
+\end{DoxyParams}
+This constructor calls \mbox{\hyperlink{class_eigen_1_1_real_schur_a60caf9ffad11d728ea458c4dd36d0a98}{compute()}} to compute the Schur decomposition.
+
+Example\+: 
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+ 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_real_schur_a60caf9ffad11d728ea458c4dd36d0a98}\label{class_eigen_1_1_real_schur_a60caf9ffad11d728ea458c4dd36d0a98}} 
+\index{Eigen::RealSchur$<$ \_MatrixType $>$@{Eigen::RealSchur$<$ \_MatrixType $>$}!compute@{compute}}
+\index{compute@{compute}!Eigen::RealSchur$<$ \_MatrixType $>$@{Eigen::RealSchur$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{compute()}{compute()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+template$<$typename Input\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_real_schur}{Real\+Schur}}\& \mbox{\hyperlink{class_eigen_1_1_real_schur}{Eigen\+::\+Real\+Schur}}$<$ \+\_\+\+Matrix\+Type $>$\+::compute (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&}]{matrix,  }\item[{bool}]{computeU = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Computes Schur decomposition of given matrix. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em matrix} & Square matrix whose Schur decomposition is to be computed. \\
+\hline
+\mbox{\texttt{ in}}  & {\em computeU} & If true, both T and U are computed; if false, only T is computed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to {\ttfamily $\ast$this} 
+\end{DoxyReturn}
+The Schur decomposition is computed by first reducing the matrix to Hessenberg form using the class \mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition}{Hessenberg\+Decomposition}}. The Hessenberg matrix is then reduced to triangular form by performing Francis QR iterations with implicit double shift. The cost of computing the Schur decomposition depends on the number of iterations; as a rough guide, it may be taken to be $25n^3$ flops if {\itshape computeU} is true and $10n^3$ flops if {\itshape computeU} is false.
+
+Example\+: 
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+
+
+\begin{DoxySeeAlso}{See also}
+compute(const Matrix\+Type\&, bool, Index) 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_real_schur_ac4acc917dcaddefae5f35acd2c536d65}\label{class_eigen_1_1_real_schur_ac4acc917dcaddefae5f35acd2c536d65}} 
+\index{Eigen::RealSchur$<$ \_MatrixType $>$@{Eigen::RealSchur$<$ \_MatrixType $>$}!computeFromHessenberg@{computeFromHessenberg}}
+\index{computeFromHessenberg@{computeFromHessenberg}!Eigen::RealSchur$<$ \_MatrixType $>$@{Eigen::RealSchur$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{computeFromHessenberg()}{computeFromHessenberg()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+template$<$typename Hess\+Matrix\+Type , typename Orth\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_real_schur}{Real\+Schur}}\& \mbox{\hyperlink{class_eigen_1_1_real_schur}{Eigen\+::\+Real\+Schur}}$<$ \+\_\+\+Matrix\+Type $>$\+::compute\+From\+Hessenberg (\begin{DoxyParamCaption}\item[{const Hess\+Matrix\+Type \&}]{matrixH,  }\item[{const Orth\+Matrix\+Type \&}]{matrixQ,  }\item[{bool}]{computeU }\end{DoxyParamCaption})}
+
+
+
+Computes Schur decomposition of a Hessenberg matrix H = Z T Z$^\wedge$T. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em matrixH} & \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}} in Hessenberg form H \\
+\hline
+\mbox{\texttt{ in}}  & {\em matrixQ} & orthogonal matrix Q that transform a matrix A to H \+: A = Q H Q$^\wedge$T \\
+\hline
+ & {\em computeU} & Computes the matriX U of the Schur vectors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to {\ttfamily $\ast$this} 
+\end{DoxyReturn}
+This routine assumes that the matrix is already reduced in Hessenberg form matrixH using either the class \mbox{\hyperlink{class_eigen_1_1_hessenberg_decomposition}{Hessenberg\+Decomposition}} or another mean. It computes the upper quasi-\/triangular matrix T of the Schur decomposition of H When computeU is true, this routine computes the matrix U such that A = U T U$^\wedge$T = (QZ) T (QZ)$^\wedge$T = Q H Q$^\wedge$T where A is the initial matrix
+
+N\+O\+TE Q is referenced if computeU is true; so, if the initial orthogonal matrix is not available, the user should give an identity matrix (Q.\+set\+Identity())
+
+\begin{DoxySeeAlso}{See also}
+compute(const Matrix\+Type\&, bool) 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_real_schur_a386fd2b1a3a8401eca7183ac074deec8}\label{class_eigen_1_1_real_schur_a386fd2b1a3a8401eca7183ac074deec8}} 
+\index{Eigen::RealSchur$<$ \_MatrixType $>$@{Eigen::RealSchur$<$ \_MatrixType $>$}!info@{info}}
+\index{info@{info}!Eigen::RealSchur$<$ \_MatrixType $>$@{Eigen::RealSchur$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{info()}{info()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} \mbox{\hyperlink{class_eigen_1_1_real_schur}{Eigen\+::\+Real\+Schur}}$<$ \+\_\+\+Matrix\+Type $>$\+::info (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Reports whether previous computation was successful. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily Success} if computation was succesful, {\ttfamily No\+Convergence} otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_real_schur_abb78996b43b8642a5f507415730445cb}\label{class_eigen_1_1_real_schur_abb78996b43b8642a5f507415730445cb}} 
+\index{Eigen::RealSchur$<$ \_MatrixType $>$@{Eigen::RealSchur$<$ \_MatrixType $>$}!matrixT@{matrixT}}
+\index{matrixT@{matrixT}!Eigen::RealSchur$<$ \_MatrixType $>$@{Eigen::RealSchur$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{matrixT()}{matrixT()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+const Matrix\+Type\& \mbox{\hyperlink{class_eigen_1_1_real_schur}{Eigen\+::\+Real\+Schur}}$<$ \+\_\+\+Matrix\+Type $>$\+::matrixT (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the quasi-\/triangular matrix in the Schur decomposition. 
+
+\begin{DoxyReturn}{Returns}
+A const reference to the matrix T.
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondition}
+Either the constructor Real\+Schur(const Matrix\+Type\&, bool) or the member function compute(const Matrix\+Type\&, bool) has been called before to compute the Schur decomposition of a matrix.
+\end{DoxyPrecond}
+\begin{DoxySeeAlso}{See also}
+Real\+Schur(const Matrix\+Type\&, bool) for an example 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_real_schur_a85622ccbecff99c8933d21f0a22b22bb}\label{class_eigen_1_1_real_schur_a85622ccbecff99c8933d21f0a22b22bb}} 
+\index{Eigen::RealSchur$<$ \_MatrixType $>$@{Eigen::RealSchur$<$ \_MatrixType $>$}!matrixU@{matrixU}}
+\index{matrixU@{matrixU}!Eigen::RealSchur$<$ \_MatrixType $>$@{Eigen::RealSchur$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{matrixU()}{matrixU()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+const Matrix\+Type\& \mbox{\hyperlink{class_eigen_1_1_real_schur}{Eigen\+::\+Real\+Schur}}$<$ \+\_\+\+Matrix\+Type $>$\+::matrixU (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the orthogonal matrix in the Schur decomposition. 
+
+\begin{DoxyReturn}{Returns}
+A const reference to the matrix U.
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondition}
+Either the constructor Real\+Schur(const Matrix\+Type\&, bool) or the member function compute(const Matrix\+Type\&, bool) has been called before to compute the Schur decomposition of a matrix, and {\ttfamily computeU} was set to true (the default value).
+\end{DoxyPrecond}
+\begin{DoxySeeAlso}{See also}
+Real\+Schur(const Matrix\+Type\&, bool) for an example 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_real_schur_ad189e8776ee20a12046694f98b354322}\label{class_eigen_1_1_real_schur_ad189e8776ee20a12046694f98b354322}} 
+\index{Eigen::RealSchur$<$ \_MatrixType $>$@{Eigen::RealSchur$<$ \_MatrixType $>$}!setMaxIterations@{setMaxIterations}}
+\index{setMaxIterations@{setMaxIterations}!Eigen::RealSchur$<$ \_MatrixType $>$@{Eigen::RealSchur$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{setMaxIterations()}{setMaxIterations()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_real_schur}{Real\+Schur}}\& \mbox{\hyperlink{class_eigen_1_1_real_schur}{Eigen\+::\+Real\+Schur}}$<$ \+\_\+\+Matrix\+Type $>$\+::set\+Max\+Iterations (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eigen_1_1_real_schur_a8bd4653e2d9569a44ecc95e746422d3f}{Index}}}]{max\+Iters }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the maximum number of iterations allowed. 
+
+If not specified by the user, the maximum number of iterations is m\+\_\+max\+Iterations\+Per\+Row times the size of the matrix. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_real_schur_a5cf45fb60964a3e7ea3a6718a8d7acdf}\label{class_eigen_1_1_real_schur_a5cf45fb60964a3e7ea3a6718a8d7acdf}} 
+\index{Eigen::RealSchur$<$ \_MatrixType $>$@{Eigen::RealSchur$<$ \_MatrixType $>$}!m\_maxIterationsPerRow@{m\_maxIterationsPerRow}}
+\index{m\_maxIterationsPerRow@{m\_maxIterationsPerRow}!Eigen::RealSchur$<$ \_MatrixType $>$@{Eigen::RealSchur$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{m\_maxIterationsPerRow}{m\_maxIterationsPerRow}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+const int \mbox{\hyperlink{class_eigen_1_1_real_schur}{Eigen\+::\+Real\+Schur}}$<$ \+\_\+\+Matrix\+Type $>$\+::m\+\_\+max\+Iterations\+Per\+Row = 40\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Maximum number of iterations per row. 
+
+If not otherwise specified, the maximum number of iterations is this number times the size of the matrix. It is currently set to 40. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Eigenvalues/Real\+Schur.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,91 @@
+\hypertarget{classgmm__interface}{}\doxysection{gmm\+\_\+interface$<$ real $>$ Class Template Reference}
+\label{classgmm__interface}\index{gmm\_interface$<$ real $>$@{gmm\_interface$<$ real $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classgmm__interface_a1d5f0a210c808c57dcde7942d5fd3d58}\label{classgmm__interface_a1d5f0a210c808c57dcde7942d5fd3d58}} 
+typedef real {\bfseries real\+\_\+type}
+\item 
+\mbox{\Hypertarget{classgmm__interface_af2a482efc9416914452cfaa6357b8f6b}\label{classgmm__interface_af2a482efc9416914452cfaa6357b8f6b}} 
+typedef std\+::vector$<$ real $>$ {\bfseries stl\+\_\+vector}
+\item 
+\mbox{\Hypertarget{classgmm__interface_a4ac5b5e30b45264a3c7dc280db5c851e}\label{classgmm__interface_a4ac5b5e30b45264a3c7dc280db5c851e}} 
+typedef std\+::vector$<$ stl\+\_\+vector $>$ {\bfseries stl\+\_\+matrix}
+\item 
+\mbox{\Hypertarget{classgmm__interface_aa7f6a4ef4dd2a41810df9ae7c3c8d69f}\label{classgmm__interface_aa7f6a4ef4dd2a41810df9ae7c3c8d69f}} 
+typedef gmm\+::dense\+\_\+matrix$<$ real $>$ {\bfseries gene\+\_\+matrix}
+\item 
+\mbox{\Hypertarget{classgmm__interface_a2ae07696d9e19dd6aeb67c38e00f6e2b}\label{classgmm__interface_a2ae07696d9e19dd6aeb67c38e00f6e2b}} 
+typedef stl\+\_\+vector {\bfseries gene\+\_\+vector}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classgmm__interface_a847915dbbfe39cc8a4c084f7cf32e467}\label{classgmm__interface_a847915dbbfe39cc8a4c084f7cf32e467}} 
+static std\+::string {\bfseries name} (void)
+\item 
+\mbox{\Hypertarget{classgmm__interface_a9c8560b6e2eecaac270e030c20f37f33}\label{classgmm__interface_a9c8560b6e2eecaac270e030c20f37f33}} 
+static void {\bfseries free\+\_\+matrix} (gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, int N)
+\item 
+\mbox{\Hypertarget{classgmm__interface_a17da0b9e23043f5c1a825b9c39e826e0}\label{classgmm__interface_a17da0b9e23043f5c1a825b9c39e826e0}} 
+static void {\bfseries free\+\_\+vector} (gene\+\_\+vector \&\mbox{\hyperlink{class_eigen_1_1_matrix}{B}})
+\item 
+\mbox{\Hypertarget{classgmm__interface_a0017598ebb0651e556ccf7a2080efde5}\label{classgmm__interface_a0017598ebb0651e556ccf7a2080efde5}} 
+static void {\bfseries matrix\+\_\+from\+\_\+stl} (gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, stl\+\_\+matrix \&A\+\_\+stl)
+\item 
+\mbox{\Hypertarget{classgmm__interface_a695e75d14e15e7e942cbcb083b27e745}\label{classgmm__interface_a695e75d14e15e7e942cbcb083b27e745}} 
+static void {\bfseries vector\+\_\+from\+\_\+stl} (gene\+\_\+vector \&\mbox{\hyperlink{class_eigen_1_1_matrix}{B}}, stl\+\_\+vector \&B\+\_\+stl)
+\item 
+\mbox{\Hypertarget{classgmm__interface_a268696c22120ed1a4145224c668e6a25}\label{classgmm__interface_a268696c22120ed1a4145224c668e6a25}} 
+static void {\bfseries vector\+\_\+to\+\_\+stl} (gene\+\_\+vector \&\mbox{\hyperlink{class_eigen_1_1_matrix}{B}}, stl\+\_\+vector \&B\+\_\+stl)
+\item 
+\mbox{\Hypertarget{classgmm__interface_ac0d36266a607a0834ab7c3a0916f3a09}\label{classgmm__interface_ac0d36266a607a0834ab7c3a0916f3a09}} 
+static void {\bfseries matrix\+\_\+to\+\_\+stl} (gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, stl\+\_\+matrix \&A\+\_\+stl)
+\item 
+\mbox{\Hypertarget{classgmm__interface_aa5ad7ea760e34c5e20ce806a00611d75}\label{classgmm__interface_aa5ad7ea760e34c5e20ce806a00611d75}} 
+static void {\bfseries matrix\+\_\+matrix\+\_\+product} (const gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, const gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{B}}, gene\+\_\+matrix \&X, int N)
+\item 
+\mbox{\Hypertarget{classgmm__interface_a8a4ee623e9b3b3e51bf8ddb423463f41}\label{classgmm__interface_a8a4ee623e9b3b3e51bf8ddb423463f41}} 
+static void {\bfseries transposed\+\_\+matrix\+\_\+matrix\+\_\+product} (const gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, const gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{B}}, gene\+\_\+matrix \&X, int N)
+\item 
+\mbox{\Hypertarget{classgmm__interface_adf15f35fd991837fb414f799623d3daf}\label{classgmm__interface_adf15f35fd991837fb414f799623d3daf}} 
+static void {\bfseries ata\+\_\+product} (const gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, gene\+\_\+matrix \&X, int N)
+\item 
+\mbox{\Hypertarget{classgmm__interface_a4757d90d58332b7198024841b403f7c5}\label{classgmm__interface_a4757d90d58332b7198024841b403f7c5}} 
+static void {\bfseries aat\+\_\+product} (const gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, gene\+\_\+matrix \&X, int N)
+\item 
+\mbox{\Hypertarget{classgmm__interface_a16dda411b3178039c1999ad1c9850ab8}\label{classgmm__interface_a16dda411b3178039c1999ad1c9850ab8}} 
+static void {\bfseries matrix\+\_\+vector\+\_\+product} (gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, gene\+\_\+vector \&\mbox{\hyperlink{class_eigen_1_1_matrix}{B}}, gene\+\_\+vector \&X, int N)
+\item 
+\mbox{\Hypertarget{classgmm__interface_a45360d829e5ef8588296e21bfd944f99}\label{classgmm__interface_a45360d829e5ef8588296e21bfd944f99}} 
+static void {\bfseries atv\+\_\+product} (gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, gene\+\_\+vector \&\mbox{\hyperlink{class_eigen_1_1_matrix}{B}}, gene\+\_\+vector \&X, int N)
+\item 
+\mbox{\Hypertarget{classgmm__interface_a40e2c43541b9975952531d62e5396006}\label{classgmm__interface_a40e2c43541b9975952531d62e5396006}} 
+static void {\bfseries axpy} (const real coef, const gene\+\_\+vector \&X, gene\+\_\+vector \&Y, int N)
+\item 
+\mbox{\Hypertarget{classgmm__interface_abe2594eee753df865441080168cdfe8a}\label{classgmm__interface_abe2594eee753df865441080168cdfe8a}} 
+static void {\bfseries axpby} (real a, const gene\+\_\+vector \&X, real b, gene\+\_\+vector \&Y, int N)
+\item 
+\mbox{\Hypertarget{classgmm__interface_aa7c05e04a4584bbc1fb96933aef2d626}\label{classgmm__interface_aa7c05e04a4584bbc1fb96933aef2d626}} 
+static void {\bfseries copy\+\_\+matrix} (const gene\+\_\+matrix \&source, gene\+\_\+matrix \&cible, int N)
+\item 
+\mbox{\Hypertarget{classgmm__interface_aca31758483bf3665afac4e2039e852cd}\label{classgmm__interface_aca31758483bf3665afac4e2039e852cd}} 
+static void {\bfseries copy\+\_\+vector} (const gene\+\_\+vector \&source, gene\+\_\+vector \&cible, int N)
+\item 
+\mbox{\Hypertarget{classgmm__interface_abea99a97020bbe936bd6187980b4a485}\label{classgmm__interface_abea99a97020bbe936bd6187980b4a485}} 
+static void {\bfseries trisolve\+\_\+lower} (const gene\+\_\+matrix \&L, const gene\+\_\+vector \&\mbox{\hyperlink{class_eigen_1_1_matrix}{B}}, gene\+\_\+vector \&X, int N)
+\item 
+\mbox{\Hypertarget{classgmm__interface_a199ec7e27ecab364d889f5317885b8b7}\label{classgmm__interface_a199ec7e27ecab364d889f5317885b8b7}} 
+static void {\bfseries partial\+\_\+lu\+\_\+decomp} (const gene\+\_\+matrix \&X, gene\+\_\+matrix \&R, int N)
+\item 
+\mbox{\Hypertarget{classgmm__interface_a07c8359f77d9d52fdb35009acf1f7b37}\label{classgmm__interface_a07c8359f77d9d52fdb35009acf1f7b37}} 
+static void {\bfseries hessenberg} (const gene\+\_\+matrix \&X, gene\+\_\+matrix \&R, int N)
+\item 
+\mbox{\Hypertarget{classgmm__interface_ad184d3cbcb2a3e484720e23696fe79fd}\label{classgmm__interface_ad184d3cbcb2a3e484720e23696fe79fd}} 
+static void {\bfseries tridiagonalization} (const gene\+\_\+matrix \&X, gene\+\_\+matrix \&R, int N)
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/bench/btl/libs/gmm/gmm\+\_\+interface.\+hh\end{DoxyCompactItemize}

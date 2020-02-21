@@ -1,0 +1,265 @@
+\hypertarget{class_eigen_1_1_real_q_z}{}\doxysection{Eigen\+::Real\+QZ$<$ \+\_\+\+Matrix\+Type $>$ Class Template Reference}
+\label{class_eigen_1_1_real_q_z}\index{Eigen::RealQZ$<$ \_MatrixType $>$@{Eigen::RealQZ$<$ \_MatrixType $>$}}
+
+
+Performs a real QZ decomposition of a pair of square matrices.  
+
+
+
+
+{\ttfamily \#include $<$Real\+Q\+Z.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_real_q_z_a2b649e67bd658f2aac88fb7583594fa2}\label{class_eigen_1_1_real_q_z_a2b649e67bd658f2aac88fb7583594fa2}} 
+enum \{ \newline
+{\bfseries Rows\+At\+Compile\+Time} = Matrix\+Type\+::Rows\+At\+Compile\+Time, 
+{\bfseries Cols\+At\+Compile\+Time} = Matrix\+Type\+::Cols\+At\+Compile\+Time, 
+{\bfseries Options} = Matrix\+Type\+::Options, 
+{\bfseries Max\+Rows\+At\+Compile\+Time} = Matrix\+Type\+::Max\+Rows\+At\+Compile\+Time, 
+\newline
+{\bfseries Max\+Cols\+At\+Compile\+Time} = Matrix\+Type\+::Max\+Cols\+At\+Compile\+Time
+ \}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_real_q_z_a78d0d6fe0e8a689523cf2da3f35abe1d}\label{class_eigen_1_1_real_q_z_a78d0d6fe0e8a689523cf2da3f35abe1d}} 
+typedef \+\_\+\+Matrix\+Type {\bfseries Matrix\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_real_q_z_a06ae61ee5b81d0539fae804f91cd7acb}\label{class_eigen_1_1_real_q_z_a06ae61ee5b81d0539fae804f91cd7acb}} 
+typedef Matrix\+Type\+::\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_real_q_z_a2788cf1defe2e6a0116f43efba689373}\label{class_eigen_1_1_real_q_z_a2788cf1defe2e6a0116f43efba689373}} 
+typedef std\+::complex$<$ typename \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$ Scalar $>$\+::Real $>$ {\bfseries Complex\+Scalar}
+\item 
+typedef \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Eigen\+::\+Index}} \mbox{\hyperlink{class_eigen_1_1_real_q_z_a6201e534e901b5f4e66f72c176b534a3}{Index}}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_real_q_z_afbbe25cec217b5e046a5c30ff5cd06a9}\label{class_eigen_1_1_real_q_z_afbbe25cec217b5e046a5c30ff5cd06a9}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ Complex\+Scalar, Cols\+At\+Compile\+Time, 1, Options \&$\sim$\mbox{\hyperlink{group__enums_ggaacded1a18ae58b0f554751f6cdf9eb13a77c993a8d9f6efe5c1159fb2ab07dd4f}{Row\+Major}}, Max\+Cols\+At\+Compile\+Time, 1 $>$ {\bfseries Eigenvalue\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_real_q_z_a9881cece39bdf8c3e3cf46358b26dacf}\label{class_eigen_1_1_real_q_z_a9881cece39bdf8c3e3cf46358b26dacf}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ Scalar, Cols\+At\+Compile\+Time, 1, Options \&$\sim$\mbox{\hyperlink{group__enums_ggaacded1a18ae58b0f554751f6cdf9eb13a77c993a8d9f6efe5c1159fb2ab07dd4f}{Row\+Major}}, Max\+Cols\+At\+Compile\+Time, 1 $>$ {\bfseries Column\+Vector\+Type}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_real_q_z_ad8fb9235870a8361a2fdd8dcc2e80d01}{Real\+QZ}} (\mbox{\hyperlink{class_eigen_1_1_real_q_z_a6201e534e901b5f4e66f72c176b534a3}{Index}} size=Rows\+At\+Compile\+Time==\mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}} ? 1 \+:Rows\+At\+Compile\+Time)
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_eigen_1_1_real_q_z_ac6e41c839f8dae31c9a3906ea7540119}{Real\+QZ}} (const Matrix\+Type \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, const Matrix\+Type \&\mbox{\hyperlink{class_eigen_1_1_matrix}{B}}, bool compute\+QZ=true)
+\begin{DoxyCompactList}\small\item\em Constructor; computes real QZ decomposition of given matrices. \end{DoxyCompactList}\item 
+const Matrix\+Type \& \mbox{\hyperlink{class_eigen_1_1_real_q_z_a212bc2f69ea4eff830fde70e209e40fb}{matrixQ}} () const
+\begin{DoxyCompactList}\small\item\em Returns matrix Q in the QZ decomposition. \end{DoxyCompactList}\item 
+const Matrix\+Type \& \mbox{\hyperlink{class_eigen_1_1_real_q_z_a19a116383f11423179b4d8f316da6f67}{matrixZ}} () const
+\begin{DoxyCompactList}\small\item\em Returns matrix Z in the QZ decomposition. \end{DoxyCompactList}\item 
+const Matrix\+Type \& \mbox{\hyperlink{class_eigen_1_1_real_q_z_ad24d7bf534afb55adaef00f00846adaf}{matrixS}} () const
+\begin{DoxyCompactList}\small\item\em Returns matrix S in the QZ decomposition. \end{DoxyCompactList}\item 
+const Matrix\+Type \& \mbox{\hyperlink{class_eigen_1_1_real_q_z_a8dc963d8ea2a17df9d8d718e9e34d06f}{matrixT}} () const
+\begin{DoxyCompactList}\small\item\em Returns matrix S in the QZ decomposition. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_eigen_1_1_real_q_z}{Real\+QZ}} \& \mbox{\hyperlink{class_eigen_1_1_real_q_z_a2b6847964d9f1903193cc3e67c196849}{compute}} (const Matrix\+Type \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, const Matrix\+Type \&\mbox{\hyperlink{class_eigen_1_1_matrix}{B}}, bool compute\+QZ=true)
+\begin{DoxyCompactList}\small\item\em Computes QZ decomposition of given matrix. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} \mbox{\hyperlink{class_eigen_1_1_real_q_z_a36bd77afed89f3f5c110a715e69e4c64}{info}} () const
+\begin{DoxyCompactList}\small\item\em Reports whether previous computation was successful. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_eigen_1_1_real_q_z_afbecc6d0ab1de42be9db79428da48ab6}\label{class_eigen_1_1_real_q_z_afbecc6d0ab1de42be9db79428da48ab6}} 
+\mbox{\hyperlink{class_eigen_1_1_real_q_z_a6201e534e901b5f4e66f72c176b534a3}{Index}} \mbox{\hyperlink{class_eigen_1_1_real_q_z_afbecc6d0ab1de42be9db79428da48ab6}{iterations}} () const
+\begin{DoxyCompactList}\small\item\em Returns number of performed Q\+R-\/like iterations. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_eigen_1_1_real_q_z}{Real\+QZ}} \& \mbox{\hyperlink{class_eigen_1_1_real_q_z_a30ae65666b1757e4a2b6a28eaec12226}{set\+Max\+Iterations}} (\mbox{\hyperlink{class_eigen_1_1_real_q_z_a6201e534e901b5f4e66f72c176b534a3}{Index}} max\+Iters)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Matrix\+Type$>$\newline
+class Eigen\+::\+Real\+Q\+Z$<$ \+\_\+\+Matrix\+Type $>$}
+
+Performs a real QZ decomposition of a pair of square matrices. 
+
+\textbackslash{}eigenvalues\+\_\+module
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Matrix\+Type} & the type of the matrix of which we are computing the real QZ decomposition; this is expected to be an instantiation of the \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}} class template.\\
+\hline
+\end{DoxyTemplParams}
+Given a real square matrices A and B, this class computes the real QZ decomposition\+: $ A = Q S Z $, $ B = Q T Z $ where Q and Z are real orthogonal matrixes, T is upper-\/triangular matrix, and S is upper quasi-\/triangular matrix. An orthogonal matrix is a matrix whose inverse is equal to its transpose, $ U^{-1} = U^T $. A quasi-\/triangular matrix is a block-\/triangular matrix whose diagonal consists of 1-\/by-\/1 blocks and 2-\/by-\/2 blocks where further reduction is impossible due to complex eigenvalues.
+
+The eigenvalues of the pencil $ A - z B $ can be obtained from 1x1 and 2x2 blocks on the diagonals of S and T.
+
+Call the function \mbox{\hyperlink{class_eigen_1_1_real_q_z_a2b6847964d9f1903193cc3e67c196849}{compute()}} to compute the real QZ decomposition of a given pair of matrices. Alternatively, you can use the \mbox{\hyperlink{class_eigen_1_1_real_q_z_ac6e41c839f8dae31c9a3906ea7540119}{Real\+Q\+Z(const Matrix\+Type\& B, const Matrix\+Type\& B, bool compute\+Q\+Z)}} constructor which computes the real QZ decomposition at construction time. Once the decomposition is computed, you can use the \mbox{\hyperlink{class_eigen_1_1_real_q_z_ad24d7bf534afb55adaef00f00846adaf}{matrix\+S()}}, \mbox{\hyperlink{class_eigen_1_1_real_q_z_a8dc963d8ea2a17df9d8d718e9e34d06f}{matrix\+T()}}, \mbox{\hyperlink{class_eigen_1_1_real_q_z_a212bc2f69ea4eff830fde70e209e40fb}{matrix\+Q()}} and \mbox{\hyperlink{class_eigen_1_1_real_q_z_a19a116383f11423179b4d8f316da6f67}{matrix\+Z()}} functions to retrieve the matrices S, T, Q and Z in the decomposition. If compute\+QZ==false, some time is saved by not computing matrices Q and Z.
+
+Example\+: 
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+
+
+\begin{DoxyNote}{Note}
+The implementation is based on the algorithm in \char`\"{}\+Matrix Computations\char`\"{} by Gene H. Golub and Charles F. Van Loan, and a paper \char`\"{}\+An algorithm for
+generalized eigenvalue problems\char`\"{} by C.\+B.\+Moler and G.\+W.\+Stewart.
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+class \mbox{\hyperlink{class_eigen_1_1_real_schur}{Real\+Schur}}, class \mbox{\hyperlink{class_eigen_1_1_complex_schur}{Complex\+Schur}}, class \mbox{\hyperlink{class_eigen_1_1_eigen_solver}{Eigen\+Solver}}, class \mbox{\hyperlink{class_eigen_1_1_complex_eigen_solver}{Complex\+Eigen\+Solver}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_real_q_z_a6201e534e901b5f4e66f72c176b534a3}\label{class_eigen_1_1_real_q_z_a6201e534e901b5f4e66f72c176b534a3}} 
+\index{Eigen::RealQZ$<$ \_MatrixType $>$@{Eigen::RealQZ$<$ \_MatrixType $>$}!Index@{Index}}
+\index{Index@{Index}!Eigen::RealQZ$<$ \_MatrixType $>$@{Eigen::RealQZ$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{Index}{Index}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+typedef \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Eigen\+::\+Index}} \mbox{\hyperlink{class_eigen_1_1_real_q_z}{Eigen\+::\+Real\+QZ}}$<$ \+\_\+\+Matrix\+Type $>$\+::\mbox{\hyperlink{class_eigen_1_1_real_q_z_a6201e534e901b5f4e66f72c176b534a3}{Index}}}
+
+\begin{DoxyRefDesc}{Deprecated}
+\item[\mbox{\hyperlink{deprecated__deprecated000021}{Deprecated}}]since \mbox{\hyperlink{namespace_eigen}{Eigen}} 3.\+3 \end{DoxyRefDesc}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_real_q_z_ad8fb9235870a8361a2fdd8dcc2e80d01}\label{class_eigen_1_1_real_q_z_ad8fb9235870a8361a2fdd8dcc2e80d01}} 
+\index{Eigen::RealQZ$<$ \_MatrixType $>$@{Eigen::RealQZ$<$ \_MatrixType $>$}!RealQZ@{RealQZ}}
+\index{RealQZ@{RealQZ}!Eigen::RealQZ$<$ \_MatrixType $>$@{Eigen::RealQZ$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{RealQZ()}{RealQZ()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_real_q_z}{Eigen\+::\+Real\+QZ}}$<$ \+\_\+\+Matrix\+Type $>$\+::\mbox{\hyperlink{class_eigen_1_1_real_q_z}{Real\+QZ}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eigen_1_1_real_q_z_a6201e534e901b5f4e66f72c176b534a3}{Index}}}]{size = {\ttfamily RowsAtCompileTime==\mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}~?~1~\+:~RowsAtCompileTime} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Default constructor. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em size} & Positive integer, size of the matrix whose QZ decomposition will be computed.\\
+\hline
+\end{DoxyParams}
+The default constructor is useful in cases in which the user intends to perform decompositions via \mbox{\hyperlink{class_eigen_1_1_real_q_z_a2b6847964d9f1903193cc3e67c196849}{compute()}}. The {\ttfamily size} parameter is only used as a hint. It is not an error to give a wrong {\ttfamily size}, but it may impair performance.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_real_q_z_a2b6847964d9f1903193cc3e67c196849}{compute()}} for an example. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_real_q_z_ac6e41c839f8dae31c9a3906ea7540119}\label{class_eigen_1_1_real_q_z_ac6e41c839f8dae31c9a3906ea7540119}} 
+\index{Eigen::RealQZ$<$ \_MatrixType $>$@{Eigen::RealQZ$<$ \_MatrixType $>$}!RealQZ@{RealQZ}}
+\index{RealQZ@{RealQZ}!Eigen::RealQZ$<$ \_MatrixType $>$@{Eigen::RealQZ$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{RealQZ()}{RealQZ()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_real_q_z}{Eigen\+::\+Real\+QZ}}$<$ \+\_\+\+Matrix\+Type $>$\+::\mbox{\hyperlink{class_eigen_1_1_real_q_z}{Real\+QZ}} (\begin{DoxyParamCaption}\item[{const Matrix\+Type \&}]{A,  }\item[{const Matrix\+Type \&}]{B,  }\item[{bool}]{compute\+QZ = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor; computes real QZ decomposition of given matrices. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em A} & \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}} A. \\
+\hline
+\mbox{\texttt{ in}}  & {\em B} & \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}} B. \\
+\hline
+\mbox{\texttt{ in}}  & {\em compute\+QZ} & If false, A and Z are not computed.\\
+\hline
+\end{DoxyParams}
+This constructor calls \mbox{\hyperlink{class_eigen_1_1_real_q_z_a2b6847964d9f1903193cc3e67c196849}{compute()}} to compute the QZ decomposition. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_real_q_z_a2b6847964d9f1903193cc3e67c196849}\label{class_eigen_1_1_real_q_z_a2b6847964d9f1903193cc3e67c196849}} 
+\index{Eigen::RealQZ$<$ \_MatrixType $>$@{Eigen::RealQZ$<$ \_MatrixType $>$}!compute@{compute}}
+\index{compute@{compute}!Eigen::RealQZ$<$ \_MatrixType $>$@{Eigen::RealQZ$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{compute()}{compute()}}
+{\footnotesize\ttfamily template$<$typename Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_real_q_z}{Real\+QZ}}$<$ Matrix\+Type $>$ \& \mbox{\hyperlink{class_eigen_1_1_real_q_z}{Eigen\+::\+Real\+QZ}}$<$ Matrix\+Type $>$\+::compute (\begin{DoxyParamCaption}\item[{const Matrix\+Type \&}]{A,  }\item[{const Matrix\+Type \&}]{B,  }\item[{bool}]{compute\+QZ = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Computes QZ decomposition of given matrix. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em A} & \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}} A. \\
+\hline
+\mbox{\texttt{ in}}  & {\em B} & \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}} B. \\
+\hline
+\mbox{\texttt{ in}}  & {\em compute\+QZ} & If false, A and Z are not computed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to {\ttfamily $\ast$this} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_real_q_z_a36bd77afed89f3f5c110a715e69e4c64}\label{class_eigen_1_1_real_q_z_a36bd77afed89f3f5c110a715e69e4c64}} 
+\index{Eigen::RealQZ$<$ \_MatrixType $>$@{Eigen::RealQZ$<$ \_MatrixType $>$}!info@{info}}
+\index{info@{info}!Eigen::RealQZ$<$ \_MatrixType $>$@{Eigen::RealQZ$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{info()}{info()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} \mbox{\hyperlink{class_eigen_1_1_real_q_z}{Eigen\+::\+Real\+QZ}}$<$ \+\_\+\+Matrix\+Type $>$\+::info (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Reports whether previous computation was successful. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily Success} if computation was succesful, {\ttfamily No\+Convergence} otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_real_q_z_a212bc2f69ea4eff830fde70e209e40fb}\label{class_eigen_1_1_real_q_z_a212bc2f69ea4eff830fde70e209e40fb}} 
+\index{Eigen::RealQZ$<$ \_MatrixType $>$@{Eigen::RealQZ$<$ \_MatrixType $>$}!matrixQ@{matrixQ}}
+\index{matrixQ@{matrixQ}!Eigen::RealQZ$<$ \_MatrixType $>$@{Eigen::RealQZ$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{matrixQ()}{matrixQ()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+const Matrix\+Type\& \mbox{\hyperlink{class_eigen_1_1_real_q_z}{Eigen\+::\+Real\+QZ}}$<$ \+\_\+\+Matrix\+Type $>$\+::matrixQ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns matrix Q in the QZ decomposition. 
+
+\begin{DoxyReturn}{Returns}
+A const reference to the matrix Q. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_real_q_z_ad24d7bf534afb55adaef00f00846adaf}\label{class_eigen_1_1_real_q_z_ad24d7bf534afb55adaef00f00846adaf}} 
+\index{Eigen::RealQZ$<$ \_MatrixType $>$@{Eigen::RealQZ$<$ \_MatrixType $>$}!matrixS@{matrixS}}
+\index{matrixS@{matrixS}!Eigen::RealQZ$<$ \_MatrixType $>$@{Eigen::RealQZ$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{matrixS()}{matrixS()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+const Matrix\+Type\& \mbox{\hyperlink{class_eigen_1_1_real_q_z}{Eigen\+::\+Real\+QZ}}$<$ \+\_\+\+Matrix\+Type $>$\+::matrixS (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns matrix S in the QZ decomposition. 
+
+\begin{DoxyReturn}{Returns}
+A const reference to the matrix S. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_real_q_z_a8dc963d8ea2a17df9d8d718e9e34d06f}\label{class_eigen_1_1_real_q_z_a8dc963d8ea2a17df9d8d718e9e34d06f}} 
+\index{Eigen::RealQZ$<$ \_MatrixType $>$@{Eigen::RealQZ$<$ \_MatrixType $>$}!matrixT@{matrixT}}
+\index{matrixT@{matrixT}!Eigen::RealQZ$<$ \_MatrixType $>$@{Eigen::RealQZ$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{matrixT()}{matrixT()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+const Matrix\+Type\& \mbox{\hyperlink{class_eigen_1_1_real_q_z}{Eigen\+::\+Real\+QZ}}$<$ \+\_\+\+Matrix\+Type $>$\+::matrixT (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns matrix S in the QZ decomposition. 
+
+\begin{DoxyReturn}{Returns}
+A const reference to the matrix S. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_real_q_z_a19a116383f11423179b4d8f316da6f67}\label{class_eigen_1_1_real_q_z_a19a116383f11423179b4d8f316da6f67}} 
+\index{Eigen::RealQZ$<$ \_MatrixType $>$@{Eigen::RealQZ$<$ \_MatrixType $>$}!matrixZ@{matrixZ}}
+\index{matrixZ@{matrixZ}!Eigen::RealQZ$<$ \_MatrixType $>$@{Eigen::RealQZ$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{matrixZ()}{matrixZ()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+const Matrix\+Type\& \mbox{\hyperlink{class_eigen_1_1_real_q_z}{Eigen\+::\+Real\+QZ}}$<$ \+\_\+\+Matrix\+Type $>$\+::matrixZ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns matrix Z in the QZ decomposition. 
+
+\begin{DoxyReturn}{Returns}
+A const reference to the matrix Z. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_real_q_z_a30ae65666b1757e4a2b6a28eaec12226}\label{class_eigen_1_1_real_q_z_a30ae65666b1757e4a2b6a28eaec12226}} 
+\index{Eigen::RealQZ$<$ \_MatrixType $>$@{Eigen::RealQZ$<$ \_MatrixType $>$}!setMaxIterations@{setMaxIterations}}
+\index{setMaxIterations@{setMaxIterations}!Eigen::RealQZ$<$ \_MatrixType $>$@{Eigen::RealQZ$<$ \_MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{setMaxIterations()}{setMaxIterations()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_real_q_z}{Real\+QZ}}\& \mbox{\hyperlink{class_eigen_1_1_real_q_z}{Eigen\+::\+Real\+QZ}}$<$ \+\_\+\+Matrix\+Type $>$\+::set\+Max\+Iterations (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eigen_1_1_real_q_z_a6201e534e901b5f4e66f72c176b534a3}{Index}}}]{max\+Iters }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the maximal number of iterations allowed to converge to one eigenvalue or decouple the problem. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Eigenvalues/Real\+Q\+Z.\+h\end{DoxyCompactItemize}

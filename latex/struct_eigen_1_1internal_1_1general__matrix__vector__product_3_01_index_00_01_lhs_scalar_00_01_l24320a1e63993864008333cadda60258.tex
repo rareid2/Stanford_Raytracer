@@ -1,0 +1,44 @@
+\hypertarget{struct_eigen_1_1internal_1_1general__matrix__vector__product_3_01_index_00_01_lhs_scalar_00_01_l24320a1e63993864008333cadda60258}{}\doxysection{Eigen\+::internal\+::general\+\_\+matrix\+\_\+vector\+\_\+product$<$ Index, Lhs\+Scalar, Lhs\+Mapper, Row\+Major, Conjugate\+Lhs, Rhs\+Scalar, Rhs\+Mapper, Conjugate\+Rhs, Version $>$ Struct Template Reference}
+\label{struct_eigen_1_1internal_1_1general__matrix__vector__product_3_01_index_00_01_lhs_scalar_00_01_l24320a1e63993864008333cadda60258}\index{Eigen::internal::general\_matrix\_vector\_product$<$ Index, LhsScalar, LhsMapper, RowMajor, ConjugateLhs, RhsScalar, RhsMapper, ConjugateRhs, Version $>$@{Eigen::internal::general\_matrix\_vector\_product$<$ Index, LhsScalar, LhsMapper, RowMajor, ConjugateLhs, RhsScalar, RhsMapper, ConjugateRhs, Version $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1general__matrix__vector__product_3_01_index_00_01_lhs_scalar_00_01_l24320a1e63993864008333cadda60258_ad829900e3dc2524aac63d9c35bd88edc}\label{struct_eigen_1_1internal_1_1general__matrix__vector__product_3_01_index_00_01_lhs_scalar_00_01_l24320a1e63993864008333cadda60258_ad829900e3dc2524aac63d9c35bd88edc}} 
+enum \{ {\bfseries Vectorizable}, 
+{\bfseries Lhs\+Packet\+Size} = Vectorizable ? packet\+\_\+traits$<$Lhs\+Scalar$>$\+::size \+: 1, 
+{\bfseries Rhs\+Packet\+Size} = Vectorizable ? packet\+\_\+traits$<$Rhs\+Scalar$>$\+::size \+: 1, 
+{\bfseries Res\+Packet\+Size} = Vectorizable ? packet\+\_\+traits$<$Res\+Scalar$>$\+::size \+: 1
+ \}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1general__matrix__vector__product_3_01_index_00_01_lhs_scalar_00_01_l24320a1e63993864008333cadda60258_a4b5437643d10b8c62c3d563f64f5cc33}\label{struct_eigen_1_1internal_1_1general__matrix__vector__product_3_01_index_00_01_lhs_scalar_00_01_l24320a1e63993864008333cadda60258_a4b5437643d10b8c62c3d563f64f5cc33}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_scalar_binary_op_traits}{Scalar\+Binary\+Op\+Traits}}$<$ Lhs\+Scalar, Rhs\+Scalar $>$\+::Return\+Type {\bfseries Res\+Scalar}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1general__matrix__vector__product_3_01_index_00_01_lhs_scalar_00_01_l24320a1e63993864008333cadda60258_a3793a43c5edfb50f5ff0e6a97038ea65}\label{struct_eigen_1_1internal_1_1general__matrix__vector__product_3_01_index_00_01_lhs_scalar_00_01_l24320a1e63993864008333cadda60258_a3793a43c5edfb50f5ff0e6a97038ea65}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1packet__traits}{packet\+\_\+traits}}$<$ Lhs\+Scalar $>$\+::type {\bfseries \+\_\+\+Lhs\+Packet}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1general__matrix__vector__product_3_01_index_00_01_lhs_scalar_00_01_l24320a1e63993864008333cadda60258_ac43fffe804640b476e9cc08636be2e75}\label{struct_eigen_1_1internal_1_1general__matrix__vector__product_3_01_index_00_01_lhs_scalar_00_01_l24320a1e63993864008333cadda60258_ac43fffe804640b476e9cc08636be2e75}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1packet__traits}{packet\+\_\+traits}}$<$ Rhs\+Scalar $>$\+::type {\bfseries \+\_\+\+Rhs\+Packet}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1general__matrix__vector__product_3_01_index_00_01_lhs_scalar_00_01_l24320a1e63993864008333cadda60258_a4ec28d44f847984c83adc9e0d507a8b8}\label{struct_eigen_1_1internal_1_1general__matrix__vector__product_3_01_index_00_01_lhs_scalar_00_01_l24320a1e63993864008333cadda60258_a4ec28d44f847984c83adc9e0d507a8b8}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1packet__traits}{packet\+\_\+traits}}$<$ Res\+Scalar $>$\+::type {\bfseries \+\_\+\+Res\+Packet}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1general__matrix__vector__product_3_01_index_00_01_lhs_scalar_00_01_l24320a1e63993864008333cadda60258_a197f9dc10db441240fb8a057c48256ad}\label{struct_eigen_1_1internal_1_1general__matrix__vector__product_3_01_index_00_01_lhs_scalar_00_01_l24320a1e63993864008333cadda60258_a197f9dc10db441240fb8a057c48256ad}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1conditional}{conditional}}$<$ Vectorizable, \mbox{\hyperlink{class_eigen_1_1_triplet}{\+\_\+\+Lhs\+Packet}}, Lhs\+Scalar $>$\+::type {\bfseries Lhs\+Packet}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1general__matrix__vector__product_3_01_index_00_01_lhs_scalar_00_01_l24320a1e63993864008333cadda60258_a893602fbf8107460928a5719c0aba439}\label{struct_eigen_1_1internal_1_1general__matrix__vector__product_3_01_index_00_01_lhs_scalar_00_01_l24320a1e63993864008333cadda60258_a893602fbf8107460928a5719c0aba439}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1conditional}{conditional}}$<$ Vectorizable, \mbox{\hyperlink{class_eigen_1_1_triplet}{\+\_\+\+Rhs\+Packet}}, Rhs\+Scalar $>$\+::type {\bfseries Rhs\+Packet}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1general__matrix__vector__product_3_01_index_00_01_lhs_scalar_00_01_l24320a1e63993864008333cadda60258_a98df9cc19f5efce862938a7efb2985b6}\label{struct_eigen_1_1internal_1_1general__matrix__vector__product_3_01_index_00_01_lhs_scalar_00_01_l24320a1e63993864008333cadda60258_a98df9cc19f5efce862938a7efb2985b6}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1conditional}{conditional}}$<$ Vectorizable, \mbox{\hyperlink{class_eigen_1_1_triplet}{\+\_\+\+Res\+Packet}}, Res\+Scalar $>$\+::type {\bfseries Res\+Packet}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1general__matrix__vector__product_3_01_index_00_01_lhs_scalar_00_01_l24320a1e63993864008333cadda60258_afb8a4749f583d4725c5254d91c9fcbfb}\label{struct_eigen_1_1internal_1_1general__matrix__vector__product_3_01_index_00_01_lhs_scalar_00_01_l24320a1e63993864008333cadda60258_afb8a4749f583d4725c5254d91c9fcbfb}} 
+static E\+I\+G\+E\+N\+\_\+\+D\+O\+N\+T\+\_\+\+I\+N\+L\+I\+NE void {\bfseries run} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} rows, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} cols, const Lhs\+Mapper \&lhs, const Rhs\+Mapper \&rhs, Res\+Scalar $\ast$res, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} res\+Incr, Res\+Scalar alpha)
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/products/General\+Matrix\+Vector.\+h\end{DoxyCompactItemize}

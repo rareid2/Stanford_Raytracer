@@ -1,0 +1,169 @@
+\hypertarget{class_eigen_1_1_uniform_scaling}{}\doxysection{Eigen\+::Uniform\+Scaling$<$ \+\_\+\+Scalar $>$ Class Template Reference}
+\label{class_eigen_1_1_uniform_scaling}\index{Eigen::UniformScaling$<$ \_Scalar $>$@{Eigen::UniformScaling$<$ \_Scalar $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \+\_\+\+Scalar \mbox{\hyperlink{class_eigen_1_1_uniform_scaling_a04c4339f58f1210c5d4d34b1bd7ae283}{Scalar}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_uniform_scaling_ab17e233af501c69ff47c0dd16f43cc39}{Uniform\+Scaling}} ()
+\item 
+\mbox{\hyperlink{class_eigen_1_1_uniform_scaling_a3a3e2fa318eb29c2c4f87e23a8a75144}{Uniform\+Scaling}} (const \mbox{\hyperlink{class_eigen_1_1_uniform_scaling_a04c4339f58f1210c5d4d34b1bd7ae283}{Scalar}} \&s)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_uniform_scaling_a600949d7c5ed124adacaba53b631b6e6}\label{class_eigen_1_1_uniform_scaling_a600949d7c5ed124adacaba53b631b6e6}} 
+const \mbox{\hyperlink{class_eigen_1_1_uniform_scaling_a04c4339f58f1210c5d4d34b1bd7ae283}{Scalar}} \& {\bfseries factor} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_uniform_scaling_a380501e65319cfa832da20730f0bf122}\label{class_eigen_1_1_uniform_scaling_a380501e65319cfa832da20730f0bf122}} 
+\mbox{\hyperlink{class_eigen_1_1_uniform_scaling_a04c4339f58f1210c5d4d34b1bd7ae283}{Scalar}} \& {\bfseries factor} ()
+\item 
+\mbox{\hyperlink{class_eigen_1_1_uniform_scaling}{Uniform\+Scaling}} \mbox{\hyperlink{class_eigen_1_1_uniform_scaling_af3044cffe5703a1946c33a953b0f9bb6}{operator$\ast$}} (const \mbox{\hyperlink{class_eigen_1_1_uniform_scaling}{Uniform\+Scaling}} \&other) const
+\item 
+{\footnotesize template$<$int Dim$>$ }\\\mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$ \mbox{\hyperlink{class_eigen_1_1_uniform_scaling_a04c4339f58f1210c5d4d34b1bd7ae283}{Scalar}}, Dim, \mbox{\hyperlink{group__enums_ggaee59a86102f150923b0cac6d4ff05107a0872f0a82453aaae40339c33acbb31fb}{Affine}} $>$ \mbox{\hyperlink{class_eigen_1_1_uniform_scaling_a19c405341f2c861eb0ddfc4f760fecf8}{operator$\ast$}} (const \mbox{\hyperlink{class_eigen_1_1_translation}{Translation}}$<$ \mbox{\hyperlink{class_eigen_1_1_uniform_scaling_a04c4339f58f1210c5d4d34b1bd7ae283}{Scalar}}, Dim $>$ \&t) const
+\item 
+{\footnotesize template$<$int Dim, int Mode, int Options$>$ }\\\mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$ \mbox{\hyperlink{class_eigen_1_1_uniform_scaling_a04c4339f58f1210c5d4d34b1bd7ae283}{Scalar}}, Dim,(int(Mode)==int(\mbox{\hyperlink{group__enums_ggaee59a86102f150923b0cac6d4ff05107a84413028615d2d718bafd2dfb93dafef}{Isometry}})?Affine\+:\+Mode)$>$ \mbox{\hyperlink{class_eigen_1_1_uniform_scaling_a0fc239af586bb24d7db99c6b8ce42373}{operator$\ast$}} (const \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$ \mbox{\hyperlink{class_eigen_1_1_uniform_scaling_a04c4339f58f1210c5d4d34b1bd7ae283}{Scalar}}, Dim, Mode, Options $>$ \&t) const
+\item 
+{\footnotesize template$<$typename Derived $>$ }\\\mbox{\hyperlink{struct_eigen_1_1internal_1_1plain__matrix__type}{internal\+::plain\+\_\+matrix\+\_\+type}}$<$ Derived $>$\+::type \mbox{\hyperlink{class_eigen_1_1_uniform_scaling_a1caa980503c4bba685aa65b419cad64b}{operator$\ast$}} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Derived $>$ \&other) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_uniform_scaling_a991e1de828f897a9d6f706fe9d129387}\label{class_eigen_1_1_uniform_scaling_a991e1de828f897a9d6f706fe9d129387}} 
+{\footnotesize template$<$typename Derived , int Dim$>$ }\\\mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{class_eigen_1_1_uniform_scaling_a04c4339f58f1210c5d4d34b1bd7ae283}{Scalar}}, Dim, Dim $>$ {\bfseries operator$\ast$} (const \mbox{\hyperlink{class_eigen_1_1_rotation_base}{Rotation\+Base}}$<$ Derived, Dim $>$ \&r) const
+\item 
+\mbox{\hyperlink{class_eigen_1_1_uniform_scaling}{Uniform\+Scaling}} \mbox{\hyperlink{class_eigen_1_1_uniform_scaling_a60dba22bebe9e2c97cfbc76f85eb1b78}{inverse}} () const
+\item 
+{\footnotesize template$<$typename New\+Scalar\+Type $>$ }\\\mbox{\hyperlink{class_eigen_1_1_uniform_scaling}{Uniform\+Scaling}}$<$ New\+Scalar\+Type $>$ \mbox{\hyperlink{class_eigen_1_1_uniform_scaling_af93a9ee1d6efc102b65a197f3ea3d4cd}{cast}} () const
+\item 
+{\footnotesize template$<$typename Other\+Scalar\+Type $>$ }\\\mbox{\hyperlink{class_eigen_1_1_uniform_scaling_a898cc0c97625ce671d7ea951f6eb2fc4}{Uniform\+Scaling}} (const \mbox{\hyperlink{class_eigen_1_1_uniform_scaling}{Uniform\+Scaling}}$<$ Other\+Scalar\+Type $>$ \&other)
+\item 
+bool \mbox{\hyperlink{class_eigen_1_1_uniform_scaling_a7f736fdbe43f7bce3d277312efdc315e}{is\+Approx}} (const \mbox{\hyperlink{class_eigen_1_1_uniform_scaling}{Uniform\+Scaling}} \&other, const typename \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_uniform_scaling_a04c4339f58f1210c5d4d34b1bd7ae283}{Scalar}} $>$\+::Real \&prec=\mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_uniform_scaling_a04c4339f58f1210c5d4d34b1bd7ae283}{Scalar}} $>$\+::dummy\+\_\+precision()) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_uniform_scaling_a6f473538d51d9d2966077a11acd2c071}\label{class_eigen_1_1_uniform_scaling_a6f473538d51d9d2966077a11acd2c071}} 
+\mbox{\hyperlink{class_eigen_1_1_uniform_scaling_a04c4339f58f1210c5d4d34b1bd7ae283}{Scalar}} {\bfseries m\+\_\+factor}
+\end{DoxyCompactItemize}
+\doxysubsection*{Related Functions}
+(Note that these are not member functions.) \begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Derived , typename Scalar $>$ }\\\mbox{\hyperlink{class_eigen_1_1_uniform_scaling_a8f79e131479dbe709ee1173b1be9a8f0}{operator$\ast$}} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Derived $>$ \&matrix, const \mbox{\hyperlink{class_eigen_1_1_uniform_scaling}{Uniform\+Scaling}}$<$ \mbox{\hyperlink{class_eigen_1_1_uniform_scaling_a04c4339f58f1210c5d4d34b1bd7ae283}{Scalar}} $>$ \&s)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_uniform_scaling_a04c4339f58f1210c5d4d34b1bd7ae283}\label{class_eigen_1_1_uniform_scaling_a04c4339f58f1210c5d4d34b1bd7ae283}} 
+\index{Eigen::UniformScaling$<$ \_Scalar $>$@{Eigen::UniformScaling$<$ \_Scalar $>$}!Scalar@{Scalar}}
+\index{Scalar@{Scalar}!Eigen::UniformScaling$<$ \_Scalar $>$@{Eigen::UniformScaling$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{Scalar}{Scalar}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+typedef \+\_\+\+Scalar \mbox{\hyperlink{class_eigen_1_1_uniform_scaling}{Eigen\+::\+Uniform\+Scaling}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_eigen_1_1_uniform_scaling_a04c4339f58f1210c5d4d34b1bd7ae283}{Scalar}}}
+
+the scalar type of the coefficients 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_uniform_scaling_ab17e233af501c69ff47c0dd16f43cc39}\label{class_eigen_1_1_uniform_scaling_ab17e233af501c69ff47c0dd16f43cc39}} 
+\index{Eigen::UniformScaling$<$ \_Scalar $>$@{Eigen::UniformScaling$<$ \_Scalar $>$}!UniformScaling@{UniformScaling}}
+\index{UniformScaling@{UniformScaling}!Eigen::UniformScaling$<$ \_Scalar $>$@{Eigen::UniformScaling$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{UniformScaling()}{UniformScaling()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_uniform_scaling}{Eigen\+::\+Uniform\+Scaling}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_eigen_1_1_uniform_scaling}{Uniform\+Scaling}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default constructor without initialization. \mbox{\Hypertarget{class_eigen_1_1_uniform_scaling_a3a3e2fa318eb29c2c4f87e23a8a75144}\label{class_eigen_1_1_uniform_scaling_a3a3e2fa318eb29c2c4f87e23a8a75144}} 
+\index{Eigen::UniformScaling$<$ \_Scalar $>$@{Eigen::UniformScaling$<$ \_Scalar $>$}!UniformScaling@{UniformScaling}}
+\index{UniformScaling@{UniformScaling}!Eigen::UniformScaling$<$ \_Scalar $>$@{Eigen::UniformScaling$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{UniformScaling()}{UniformScaling()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_uniform_scaling}{Eigen\+::\+Uniform\+Scaling}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_eigen_1_1_uniform_scaling}{Uniform\+Scaling}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_uniform_scaling_a04c4339f58f1210c5d4d34b1bd7ae283}{Scalar}} \&}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+Constructs and initialize a uniform scaling transformation \mbox{\Hypertarget{class_eigen_1_1_uniform_scaling_a898cc0c97625ce671d7ea951f6eb2fc4}\label{class_eigen_1_1_uniform_scaling_a898cc0c97625ce671d7ea951f6eb2fc4}} 
+\index{Eigen::UniformScaling$<$ \_Scalar $>$@{Eigen::UniformScaling$<$ \_Scalar $>$}!UniformScaling@{UniformScaling}}
+\index{UniformScaling@{UniformScaling}!Eigen::UniformScaling$<$ \_Scalar $>$@{Eigen::UniformScaling$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{UniformScaling()}{UniformScaling()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+template$<$typename Other\+Scalar\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_uniform_scaling}{Eigen\+::\+Uniform\+Scaling}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_eigen_1_1_uniform_scaling}{Uniform\+Scaling}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_uniform_scaling}{Uniform\+Scaling}}$<$ Other\+Scalar\+Type $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+Copy constructor with scalar type conversion 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_uniform_scaling_af93a9ee1d6efc102b65a197f3ea3d4cd}\label{class_eigen_1_1_uniform_scaling_af93a9ee1d6efc102b65a197f3ea3d4cd}} 
+\index{Eigen::UniformScaling$<$ \_Scalar $>$@{Eigen::UniformScaling$<$ \_Scalar $>$}!cast@{cast}}
+\index{cast@{cast}!Eigen::UniformScaling$<$ \_Scalar $>$@{Eigen::UniformScaling$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{cast()}{cast()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+template$<$typename New\+Scalar\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_uniform_scaling}{Uniform\+Scaling}}$<$New\+Scalar\+Type$>$ \mbox{\hyperlink{class_eigen_1_1_uniform_scaling}{Eigen\+::\+Uniform\+Scaling}}$<$ \+\_\+\+Scalar $>$\+::cast (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily $\ast$this} with scalar type casted to {\itshape New\+Scalar\+Type} 
+\end{DoxyReturn}
+Note that if {\itshape New\+Scalar\+Type} is equal to the current scalar type of {\ttfamily $\ast$this} then this function smartly returns a const reference to {\ttfamily $\ast$this}. \mbox{\Hypertarget{class_eigen_1_1_uniform_scaling_a60dba22bebe9e2c97cfbc76f85eb1b78}\label{class_eigen_1_1_uniform_scaling_a60dba22bebe9e2c97cfbc76f85eb1b78}} 
+\index{Eigen::UniformScaling$<$ \_Scalar $>$@{Eigen::UniformScaling$<$ \_Scalar $>$}!inverse@{inverse}}
+\index{inverse@{inverse}!Eigen::UniformScaling$<$ \_Scalar $>$@{Eigen::UniformScaling$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{inverse()}{inverse()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_uniform_scaling}{Uniform\+Scaling}} \mbox{\hyperlink{class_eigen_1_1_uniform_scaling}{Eigen\+::\+Uniform\+Scaling}}$<$ \+\_\+\+Scalar $>$\+::inverse (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the inverse scaling 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_uniform_scaling_a7f736fdbe43f7bce3d277312efdc315e}\label{class_eigen_1_1_uniform_scaling_a7f736fdbe43f7bce3d277312efdc315e}} 
+\index{Eigen::UniformScaling$<$ \_Scalar $>$@{Eigen::UniformScaling$<$ \_Scalar $>$}!isApprox@{isApprox}}
+\index{isApprox@{isApprox}!Eigen::UniformScaling$<$ \_Scalar $>$@{Eigen::UniformScaling$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{isApprox()}{isApprox()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+bool \mbox{\hyperlink{class_eigen_1_1_uniform_scaling}{Eigen\+::\+Uniform\+Scaling}}$<$ \+\_\+\+Scalar $>$\+::is\+Approx (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_uniform_scaling}{Uniform\+Scaling}}$<$ \+\_\+\+Scalar $>$ \&}]{other,  }\item[{const typename \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_uniform_scaling_a04c4339f58f1210c5d4d34b1bd7ae283}{Scalar}} $>$\+::Real \&}]{prec = {\ttfamily \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$\mbox{\hyperlink{class_eigen_1_1_uniform_scaling_a04c4339f58f1210c5d4d34b1bd7ae283}{Scalar}}$>$\+:\+:dummy\+\_\+precision()} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if {\ttfamily $\ast$this} is approximately equal to {\itshape other}, within the precision determined by {\itshape prec}.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+Matrix\+Base\+::is\+Approx() 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_uniform_scaling_a1caa980503c4bba685aa65b419cad64b}\label{class_eigen_1_1_uniform_scaling_a1caa980503c4bba685aa65b419cad64b}} 
+\index{Eigen::UniformScaling$<$ \_Scalar $>$@{Eigen::UniformScaling$<$ \_Scalar $>$}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Eigen::UniformScaling$<$ \_Scalar $>$@{Eigen::UniformScaling$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+template$<$typename Derived $>$ \\
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1plain__matrix__type}{internal\+::plain\+\_\+matrix\+\_\+type}}$<$Derived$>$\+::type \mbox{\hyperlink{class_eigen_1_1_uniform_scaling}{Eigen\+::\+Uniform\+Scaling}}$<$ \+\_\+\+Scalar $>$\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Derived $>$ \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Concatenates a uniform scaling and a linear transformation matrix \mbox{\Hypertarget{class_eigen_1_1_uniform_scaling_a0fc239af586bb24d7db99c6b8ce42373}\label{class_eigen_1_1_uniform_scaling_a0fc239af586bb24d7db99c6b8ce42373}} 
+\index{Eigen::UniformScaling$<$ \_Scalar $>$@{Eigen::UniformScaling$<$ \_Scalar $>$}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Eigen::UniformScaling$<$ \_Scalar $>$@{Eigen::UniformScaling$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+template$<$int Dim, int Mode, int Options$>$ \\
+\mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$\mbox{\hyperlink{class_eigen_1_1_uniform_scaling_a04c4339f58f1210c5d4d34b1bd7ae283}{Scalar}},Dim,(int(Mode)==int(\mbox{\hyperlink{group__enums_ggaee59a86102f150923b0cac6d4ff05107a84413028615d2d718bafd2dfb93dafef}{Isometry}})?Affine\+:\+Mode)$>$ \mbox{\hyperlink{class_eigen_1_1_uniform_scaling}{Eigen\+::\+Uniform\+Scaling}}$<$ \+\_\+\+Scalar $>$\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$ \mbox{\hyperlink{class_eigen_1_1_uniform_scaling_a04c4339f58f1210c5d4d34b1bd7ae283}{Scalar}}, Dim, Mode, Options $>$ \&}]{t }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Concatenates a uniform scaling and an affine transformation \mbox{\Hypertarget{class_eigen_1_1_uniform_scaling_a19c405341f2c861eb0ddfc4f760fecf8}\label{class_eigen_1_1_uniform_scaling_a19c405341f2c861eb0ddfc4f760fecf8}} 
+\index{Eigen::UniformScaling$<$ \_Scalar $>$@{Eigen::UniformScaling$<$ \_Scalar $>$}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Eigen::UniformScaling$<$ \_Scalar $>$@{Eigen::UniformScaling$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$typename Scalar $>$ \\
+template$<$int Dim$>$ \\
+\mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$ \mbox{\hyperlink{class_eigen_1_1_uniform_scaling_a04c4339f58f1210c5d4d34b1bd7ae283}{Scalar}}, Dim, \mbox{\hyperlink{group__enums_ggaee59a86102f150923b0cac6d4ff05107a0872f0a82453aaae40339c33acbb31fb}{Affine}} $>$ \mbox{\hyperlink{class_eigen_1_1_uniform_scaling}{Eigen\+::\+Uniform\+Scaling}}$<$ \mbox{\hyperlink{class_eigen_1_1_uniform_scaling_a04c4339f58f1210c5d4d34b1bd7ae283}{Scalar}} $>$\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_translation}{Translation}}$<$ \mbox{\hyperlink{class_eigen_1_1_uniform_scaling_a04c4339f58f1210c5d4d34b1bd7ae283}{Scalar}}, Dim $>$ \&}]{t }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Concatenates a uniform scaling and a translation \mbox{\Hypertarget{class_eigen_1_1_uniform_scaling_af3044cffe5703a1946c33a953b0f9bb6}\label{class_eigen_1_1_uniform_scaling_af3044cffe5703a1946c33a953b0f9bb6}} 
+\index{Eigen::UniformScaling$<$ \_Scalar $>$@{Eigen::UniformScaling$<$ \_Scalar $>$}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Eigen::UniformScaling$<$ \_Scalar $>$@{Eigen::UniformScaling$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_uniform_scaling}{Uniform\+Scaling}} \mbox{\hyperlink{class_eigen_1_1_uniform_scaling}{Eigen\+::\+Uniform\+Scaling}}$<$ \+\_\+\+Scalar $>$\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_uniform_scaling}{Uniform\+Scaling}}$<$ \+\_\+\+Scalar $>$ \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Concatenates two uniform scaling 
+
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_uniform_scaling_a8f79e131479dbe709ee1173b1be9a8f0}\label{class_eigen_1_1_uniform_scaling_a8f79e131479dbe709ee1173b1be9a8f0}} 
+\index{Eigen::UniformScaling$<$ \_Scalar $>$@{Eigen::UniformScaling$<$ \_Scalar $>$}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Eigen::UniformScaling$<$ \_Scalar $>$@{Eigen::UniformScaling$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}}
+{\footnotesize\ttfamily template$<$typename Derived , typename Scalar $>$ \\
+operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Derived $>$ \&}]{matrix,  }\item[{const \mbox{\hyperlink{class_eigen_1_1_uniform_scaling}{Uniform\+Scaling}}$<$ \mbox{\hyperlink{class_eigen_1_1_uniform_scaling_a04c4339f58f1210c5d4d34b1bd7ae283}{Scalar}} $>$ \&}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [related]}}
+
+Concatenates a linear transformation matrix and a uniform scaling 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/util/Forward\+Declarations.\+h\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Geometry/Scaling.\+h\end{DoxyCompactItemize}

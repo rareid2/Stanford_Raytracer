@@ -1,0 +1,90 @@
+\hypertarget{class_eigen_1_1_polynomial_solver}{}\doxysection{Eigen\+::Polynomial\+Solver$<$ \+\_\+\+Scalar, \+\_\+\+Deg $>$ Class Template Reference}
+\label{class_eigen_1_1_polynomial_solver}\index{Eigen::PolynomialSolver$<$ \_Scalar, \_Deg $>$@{Eigen::PolynomialSolver$<$ \_Scalar, \_Deg $>$}}
+
+
+A polynomial solver.  
+
+
+
+
+{\ttfamily \#include $<$Polynomial\+Solver.\+h$>$}
+
+Inheritance diagram for Eigen\+::Polynomial\+Solver$<$ \+\_\+\+Scalar, \+\_\+\+Deg $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_eigen_1_1_polynomial_solver}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_polynomial_solver_a6c1f40c9dae2575137d0dea21765d295}\label{class_eigen_1_1_polynomial_solver_a6c1f40c9dae2575137d0dea21765d295}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_polynomial_solver_base}{Polynomial\+Solver\+Base}}$<$ \+\_\+\+Scalar, \+\_\+\+Deg $>$ {\bfseries P\+S\+\_\+\+Base}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_polynomial_solver_a3c77ec640a0dbf1fa35c2a05ad68d751}\label{class_eigen_1_1_polynomial_solver_a3c77ec640a0dbf1fa35c2a05ad68d751}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ Scalar, \+\_\+\+Deg, \+\_\+\+Deg $>$ {\bfseries Companion\+Matrix\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_polynomial_solver_ab80550e9fd2d1bc76fe7409ea36347df}\label{class_eigen_1_1_polynomial_solver_ab80550e9fd2d1bc76fe7409ea36347df}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_eigen_solver}{Eigen\+Solver}}$<$ \mbox{\hyperlink{class_eigen_1_1_matrix}{Companion\+Matrix\+Type}} $>$ {\bfseries Eigen\+Solver\+Type}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Other\+Polynomial $>$ }\\void \mbox{\hyperlink{class_eigen_1_1_polynomial_solver_ac3ceae48528f3798d44c15a025cb03b8}{compute}} (const Other\+Polynomial \&poly)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_polynomial_solver_a2d2847948772246f7d90cc2f22d80b46}\label{class_eigen_1_1_polynomial_solver_a2d2847948772246f7d90cc2f22d80b46}} 
+{\footnotesize template$<$typename Other\+Polynomial $>$ }\\{\bfseries Polynomial\+Solver} (const Other\+Polynomial \&poly)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_polynomial_solver_ab244e954db8a5a777c799cd7a1ad6631}\label{class_eigen_1_1_polynomial_solver_ab244e954db8a5a777c799cd7a1ad6631}} 
+\mbox{\hyperlink{class_eigen_1_1_eigen_solver}{Eigen\+Solver\+Type}} {\bfseries m\+\_\+eigen\+Solver}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_polynomial_solver_ac0426c8e64f4152d2365d3b114d4c7d3}\label{class_eigen_1_1_polynomial_solver_ac0426c8e64f4152d2365d3b114d4c7d3}} 
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Roots\+Type}} {\bfseries m\+\_\+roots}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Scalar, int \+\_\+\+Deg$>$\newline
+class Eigen\+::\+Polynomial\+Solver$<$ \+\_\+\+Scalar, \+\_\+\+Deg $>$}
+
+A polynomial solver. 
+
+Computes the complex roots of a real polynomial.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+Scalar} & the scalar type, i.\+e., the type of the polynomial coefficients \\
+\hline
+{\em \+\_\+\+Deg} & the degree of the polynomial, can be a compile time value or Dynamic. Notice that the number of polynomial coefficients is \+\_\+\+Deg+1.\\
+\hline
+\end{DoxyParams}
+This class implements a polynomial solver and provides convenient methods such as
+\begin{DoxyItemize}
+\item real roots,
+\item greatest, smallest complex roots,
+\item real roots with greatest, smallest absolute real value.
+\item greatest, smallest real roots.
+\end{DoxyItemize}
+
+W\+A\+R\+N\+I\+NG\+: this polynomial solver is experimental, part of the unsupported \mbox{\hyperlink{namespace_eigen}{Eigen}} modules.
+
+Currently a QR algorithm is used to compute the eigenvalues of the companion matrix of the polynomial to compute its roots. This supposes that the complex moduli of the roots are all distinct\+: e.\+g. there should be no multiple roots or conjugate roots for instance. With 32bit (float) floating types this problem shows up frequently. However, almost always, correct accuracy is reached even in these cases for 64bit (double) floating types and small polynomial degree ($<$20). 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_polynomial_solver_ac3ceae48528f3798d44c15a025cb03b8}\label{class_eigen_1_1_polynomial_solver_ac3ceae48528f3798d44c15a025cb03b8}} 
+\index{Eigen::PolynomialSolver$<$ \_Scalar, \_Deg $>$@{Eigen::PolynomialSolver$<$ \_Scalar, \_Deg $>$}!compute@{compute}}
+\index{compute@{compute}!Eigen::PolynomialSolver$<$ \_Scalar, \_Deg $>$@{Eigen::PolynomialSolver$<$ \_Scalar, \_Deg $>$}}
+\doxysubsubsection{\texorpdfstring{compute()}{compute()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Deg$>$ \\
+template$<$typename Other\+Polynomial $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_polynomial_solver}{Eigen\+::\+Polynomial\+Solver}}$<$ \+\_\+\+Scalar, \+\_\+\+Deg $>$\+::compute (\begin{DoxyParamCaption}\item[{const Other\+Polynomial \&}]{poly }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Computes the complex roots of a new polynomial. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/src/\+Polynomials/Polynomial\+Solver.\+h\end{DoxyCompactItemize}

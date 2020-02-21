@@ -1,0 +1,83 @@
+\hypertarget{class_eigen_1_1_tensor_concatenation_op}{}\doxysection{Eigen\+::Tensor\+Concatenation\+Op$<$ Axis, Lhs\+Xpr\+Type, Rhs\+Xpr\+Type $>$ Class Template Reference}
+\label{class_eigen_1_1_tensor_concatenation_op}\index{Eigen::TensorConcatenationOp$<$ Axis, LhsXprType, RhsXprType $>$@{Eigen::TensorConcatenationOp$<$ Axis, LhsXprType, RhsXprType $>$}}
+
+
+\mbox{\hyperlink{class_eigen_1_1_tensor}{Tensor}} concatenation class.  
+
+
+
+
+{\ttfamily \#include $<$Tensor\+Concatenation.\+h$>$}
+
+Inheritance diagram for Eigen\+::Tensor\+Concatenation\+Op$<$ Axis, Lhs\+Xpr\+Type, Rhs\+Xpr\+Type $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.901528cm]{class_eigen_1_1_tensor_concatenation_op}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_concatenation_op_ab6168dbb30bf57f40cfe9953fa255fee}\label{class_eigen_1_1_tensor_concatenation_op_ab6168dbb30bf57f40cfe9953fa255fee}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_tensor_concatenation_op}{Tensor\+Concatenation\+Op}} $>$\+::Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_concatenation_op_a0b5672d304832d232cb421ece668290f}\label{class_eigen_1_1_tensor_concatenation_op_a0b5672d304832d232cb421ece668290f}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_tensor_concatenation_op}{Tensor\+Concatenation\+Op}} $>$\+::Storage\+Kind {\bfseries Storage\+Kind}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_concatenation_op_a72164848fbcaab6670bd33aa605418ac}\label{class_eigen_1_1_tensor_concatenation_op_a72164848fbcaab6670bd33aa605418ac}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_tensor_concatenation_op}{Tensor\+Concatenation\+Op}} $>$\+::Index {\bfseries Index}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_concatenation_op_a4d5fc215747e4838c724be67dbd18993}\label{class_eigen_1_1_tensor_concatenation_op_a4d5fc215747e4838c724be67dbd18993}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1nested}{internal\+::nested}}$<$ \mbox{\hyperlink{class_eigen_1_1_tensor_concatenation_op}{Tensor\+Concatenation\+Op}} $>$\+::type {\bfseries Nested}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_concatenation_op_ab8588a7cd2279fbdcdf3780b4529ff35}\label{class_eigen_1_1_tensor_concatenation_op_ab8588a7cd2279fbdcdf3780b4529ff35}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1promote__storage__type}{internal\+::promote\+\_\+storage\+\_\+type}}$<$ typename Lhs\+Xpr\+Type\+::\+Coeff\+Return\+Type, typename Rhs\+Xpr\+Type\+::\+Coeff\+Return\+Type $>$\+::ret {\bfseries Coeff\+Return\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_concatenation_op_a884f426dfd66a809b7ffec0781935648}\label{class_eigen_1_1_tensor_concatenation_op_a884f426dfd66a809b7ffec0781935648}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$ Scalar $>$\+::Real {\bfseries Real\+Scalar}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_concatenation_op_a5cc21137208c46e256726330bbc534cb}\label{class_eigen_1_1_tensor_concatenation_op_a5cc21137208c46e256726330bbc534cb}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE {\bfseries Tensor\+Concatenation\+Op} (const Lhs\+Xpr\+Type \&lhs, const Rhs\+Xpr\+Type \&rhs, Axis axis)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_concatenation_op_a20aaea2686b34489c3e82dce100da68b}\label{class_eigen_1_1_tensor_concatenation_op_a20aaea2686b34489c3e82dce100da68b}} 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{internal\+::remove\+\_\+all}}$<$ typename Lhs\+Xpr\+Type\+::\+Nested $>$\+::type \& {\bfseries lhs\+Expression} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_concatenation_op_a7096c305c14ecbbc1f7003ac6e8aa8ec}\label{class_eigen_1_1_tensor_concatenation_op_a7096c305c14ecbbc1f7003ac6e8aa8ec}} 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{internal\+::remove\+\_\+all}}$<$ typename Rhs\+Xpr\+Type\+::\+Nested $>$\+::type \& {\bfseries rhs\+Expression} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_concatenation_op_a3bd9000382f6e6955b52215807f64f98}\label{class_eigen_1_1_tensor_concatenation_op_a3bd9000382f6e6955b52215807f64f98}} 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Axis \& {\bfseries axis} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_concatenation_op_a710e8f1a467787ede3f88ace80eff45a}\label{class_eigen_1_1_tensor_concatenation_op_a710e8f1a467787ede3f88ace80eff45a}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_tensor_concatenation_op}{Tensor\+Concatenation\+Op}} \& {\bfseries operator=} (const \mbox{\hyperlink{class_eigen_1_1_tensor_concatenation_op}{Tensor\+Concatenation\+Op}} \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_concatenation_op_a6abf89d1db219401bd0929105bb707c3}\label{class_eigen_1_1_tensor_concatenation_op_a6abf89d1db219401bd0929105bb707c3}} 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_tensor_concatenation_op}{Tensor\+Concatenation\+Op}} \& {\bfseries operator=} (const Other\+Derived \&other)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_concatenation_op_ad92209adbb94862ec2f9d53a882eb8db}\label{class_eigen_1_1_tensor_concatenation_op_ad92209adbb94862ec2f9d53a882eb8db}} 
+Lhs\+Xpr\+Type\+::\+Nested {\bfseries m\+\_\+lhs\+\_\+xpr}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_concatenation_op_a7a2c714579db12b6016754e24675ddd7}\label{class_eigen_1_1_tensor_concatenation_op_a7a2c714579db12b6016754e24675ddd7}} 
+Rhs\+Xpr\+Type\+::\+Nested {\bfseries m\+\_\+rhs\+\_\+xpr}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_concatenation_op_a9add3da4824fe46a3a523f823e0aebe9}\label{class_eigen_1_1_tensor_concatenation_op_a9add3da4824fe46a3a523f823e0aebe9}} 
+const Axis {\bfseries m\+\_\+axis}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Axis, typename Lhs\+Xpr\+Type, typename Rhs\+Xpr\+Type$>$\newline
+class Eigen\+::\+Tensor\+Concatenation\+Op$<$ Axis, Lhs\+Xpr\+Type, Rhs\+Xpr\+Type $>$}
+
+\mbox{\hyperlink{class_eigen_1_1_tensor}{Tensor}} concatenation class. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/\+C\+X\+X11/src/\+Tensor/Tensor\+Concatenation.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,114 @@
+\hypertarget{class_eigen_1_1_cwise_unary_view}{}\doxysection{Eigen\+::Cwise\+Unary\+View$<$ View\+Op, Matrix\+Type $>$ Class Template Reference}
+\label{class_eigen_1_1_cwise_unary_view}\index{Eigen::CwiseUnaryView$<$ ViewOp, MatrixType $>$@{Eigen::CwiseUnaryView$<$ ViewOp, MatrixType $>$}}
+
+
+Generic lvalue expression of a coefficient-\/wise unary operator of a matrix or a vector.  
+
+
+
+
+{\ttfamily \#include $<$Cwise\+Unary\+View.\+h$>$}
+
+Inheritance diagram for Eigen\+::Cwise\+Unary\+View$<$ View\+Op, Matrix\+Type $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.989343cm]{class_eigen_1_1_cwise_unary_view}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_cwise_unary_view_a505263841437a9055a728640a8783500}\label{class_eigen_1_1_cwise_unary_view_a505263841437a9055a728640a8783500}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_cwise_unary_view_impl}{Cwise\+Unary\+View\+Impl}}$<$ View\+Op, Matrix\+Type, typename \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ Matrix\+Type $>$\+::Storage\+Kind $>$\+::Base {\bfseries Base}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_cwise_unary_view_a6cec9334332dde27fb2f7469dbbd867a}\label{class_eigen_1_1_cwise_unary_view_a6cec9334332dde27fb2f7469dbbd867a}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1ref__selector}{internal\+::ref\+\_\+selector}}$<$ Matrix\+Type $>$\+::non\+\_\+const\+\_\+type {\bfseries Matrix\+Type\+Nested}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_cwise_unary_view_af1826ee451a9e0c2bada93e59ea2f3b1}\label{class_eigen_1_1_cwise_unary_view_af1826ee451a9e0c2bada93e59ea2f3b1}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{internal\+::remove\+\_\+all}}$<$ Matrix\+Type $>$\+::type {\bfseries Nested\+Expression}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_cwise_unary_view_a33c42081b0a0cd9f2d3ae8d53b2f2f14}\label{class_eigen_1_1_cwise_unary_view_a33c42081b0a0cd9f2d3ae8d53b2f2f14}} 
+{\bfseries Cwise\+Unary\+View} (Matrix\+Type \&mat, const View\+Op \&\mbox{\hyperlink{structfunc}{func}}=View\+Op())
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_cwise_unary_view_a73f4f47d27550f52fb441312dc1f9b6d}\label{class_eigen_1_1_cwise_unary_view_a73f4f47d27550f52fb441312dc1f9b6d}} 
+E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries rows} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_cwise_unary_view_a2f67b90c44c20fa9cbaf48bc9bcc95d8}\label{class_eigen_1_1_cwise_unary_view_a2f67b90c44c20fa9cbaf48bc9bcc95d8}} 
+E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries cols} () const
+\item 
+const View\+Op \& \mbox{\hyperlink{class_eigen_1_1_cwise_unary_view_af01271cdadcbcf195b5d3130ff2e1a48}{functor}} () const
+\item 
+const \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{internal\+::remove\+\_\+all}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Matrix\+Type\+Nested}} $>$\+::type \& \mbox{\hyperlink{class_eigen_1_1_cwise_unary_view_a21d59e387e600b1d650cb002175760b4}{nested\+Expression}} () const
+\item 
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__reference}{internal\+::remove\+\_\+reference}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Matrix\+Type\+Nested}} $>$\+::type \& \mbox{\hyperlink{class_eigen_1_1_cwise_unary_view_add6689b53e595e968e89592ea30b6800}{nested\+Expression}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_cwise_unary_view_af3527b262bf7e654de105eec439cd51a}\label{class_eigen_1_1_cwise_unary_view_af3527b262bf7e654de105eec439cd51a}} 
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Matrix\+Type\+Nested}} {\bfseries m\+\_\+matrix}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_cwise_unary_view_a75f8e8b7cdaeff50e664061bba0e7206}\label{class_eigen_1_1_cwise_unary_view_a75f8e8b7cdaeff50e664061bba0e7206}} 
+View\+Op {\bfseries m\+\_\+functor}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename View\+Op, typename Matrix\+Type$>$\newline
+class Eigen\+::\+Cwise\+Unary\+View$<$ View\+Op, Matrix\+Type $>$}
+
+Generic lvalue expression of a coefficient-\/wise unary operator of a matrix or a vector. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em View\+Op} & template functor implementing the view \\
+\hline
+{\em Matrix\+Type} & the type of the matrix we are applying the unary operator\\
+\hline
+\end{DoxyTemplParams}
+This class represents a lvalue expression of a generic unary view operator of a matrix or a vector. It is the return type of real() and imag(), and most of the time this is the only way it is used.
+
+\begin{DoxySeeAlso}{See also}
+Matrix\+Base\+::unary\+View\+Expr(const Custom\+Unary\+Op \&) const, class \mbox{\hyperlink{class_eigen_1_1_cwise_unary_op}{Cwise\+Unary\+Op}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_cwise_unary_view_af01271cdadcbcf195b5d3130ff2e1a48}\label{class_eigen_1_1_cwise_unary_view_af01271cdadcbcf195b5d3130ff2e1a48}} 
+\index{Eigen::CwiseUnaryView$<$ ViewOp, MatrixType $>$@{Eigen::CwiseUnaryView$<$ ViewOp, MatrixType $>$}!functor@{functor}}
+\index{functor@{functor}!Eigen::CwiseUnaryView$<$ ViewOp, MatrixType $>$@{Eigen::CwiseUnaryView$<$ ViewOp, MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{functor()}{functor()}}
+{\footnotesize\ttfamily template$<$typename View\+Op , typename Matrix\+Type $>$ \\
+const View\+Op\& \mbox{\hyperlink{class_eigen_1_1_cwise_unary_view}{Eigen\+::\+Cwise\+Unary\+View}}$<$ View\+Op, Matrix\+Type $>$\+::functor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the functor representing unary operation 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_cwise_unary_view_add6689b53e595e968e89592ea30b6800}\label{class_eigen_1_1_cwise_unary_view_add6689b53e595e968e89592ea30b6800}} 
+\index{Eigen::CwiseUnaryView$<$ ViewOp, MatrixType $>$@{Eigen::CwiseUnaryView$<$ ViewOp, MatrixType $>$}!nestedExpression@{nestedExpression}}
+\index{nestedExpression@{nestedExpression}!Eigen::CwiseUnaryView$<$ ViewOp, MatrixType $>$@{Eigen::CwiseUnaryView$<$ ViewOp, MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{nestedExpression()}{nestedExpression()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename View\+Op , typename Matrix\+Type $>$ \\
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__reference}{internal\+::remove\+\_\+reference}}$<$\mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Matrix\+Type\+Nested}}$>$\+::type\& \mbox{\hyperlink{class_eigen_1_1_cwise_unary_view}{Eigen\+::\+Cwise\+Unary\+View}}$<$ View\+Op, Matrix\+Type $>$\+::nested\+Expression (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the nested expression 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_cwise_unary_view_a21d59e387e600b1d650cb002175760b4}\label{class_eigen_1_1_cwise_unary_view_a21d59e387e600b1d650cb002175760b4}} 
+\index{Eigen::CwiseUnaryView$<$ ViewOp, MatrixType $>$@{Eigen::CwiseUnaryView$<$ ViewOp, MatrixType $>$}!nestedExpression@{nestedExpression}}
+\index{nestedExpression@{nestedExpression}!Eigen::CwiseUnaryView$<$ ViewOp, MatrixType $>$@{Eigen::CwiseUnaryView$<$ ViewOp, MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{nestedExpression()}{nestedExpression()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename View\+Op , typename Matrix\+Type $>$ \\
+const \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{internal\+::remove\+\_\+all}}$<$\mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Matrix\+Type\+Nested}}$>$\+::type\& \mbox{\hyperlink{class_eigen_1_1_cwise_unary_view}{Eigen\+::\+Cwise\+Unary\+View}}$<$ View\+Op, Matrix\+Type $>$\+::nested\+Expression (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the nested expression 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/Cwise\+Unary\+View.\+h\end{DoxyCompactItemize}

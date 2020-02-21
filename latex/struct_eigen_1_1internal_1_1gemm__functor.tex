@@ -1,0 +1,43 @@
+\hypertarget{struct_eigen_1_1internal_1_1gemm__functor}{}\doxysection{Eigen\+::internal\+::gemm\+\_\+functor$<$ Scalar, Index, Gemm, Lhs, Rhs, Dest, Blocking\+Type $>$ Struct Template Reference}
+\label{struct_eigen_1_1internal_1_1gemm__functor}\index{Eigen::internal::gemm\_functor$<$ Scalar, Index, Gemm, Lhs, Rhs, Dest, BlockingType $>$@{Eigen::internal::gemm\_functor$<$ Scalar, Index, Gemm, Lhs, Rhs, Dest, BlockingType $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1gemm__functor_a5e2e68b3b5ffc8461b57a564dba32c50}\label{struct_eigen_1_1internal_1_1gemm__functor_a5e2e68b3b5ffc8461b57a564dba32c50}} 
+typedef Gemm\+::\+Traits {\bfseries Traits}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1gemm__functor_ab6ef495befcff2df21dcd72b23c63d8b}\label{struct_eigen_1_1internal_1_1gemm__functor_ab6ef495befcff2df21dcd72b23c63d8b}} 
+{\bfseries gemm\+\_\+functor} (const Lhs \&lhs, const Rhs \&rhs, Dest \&dest, const Scalar \&actual\+Alpha, Blocking\+Type \&blocking)
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1gemm__functor_a10901ca9388438219a91c0968e8118d9}\label{struct_eigen_1_1internal_1_1gemm__functor_a10901ca9388438219a91c0968e8118d9}} 
+void {\bfseries init\+Parallel\+Session} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} num\+\_\+threads) const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1gemm__functor_adf335ccd5e878cddf3145d890c888ccb}\label{struct_eigen_1_1internal_1_1gemm__functor_adf335ccd5e878cddf3145d890c888ccb}} 
+void {\bfseries operator()} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} rows, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col=0, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} cols=-\/1, \mbox{\hyperlink{struct_eigen_1_1internal_1_1_gemm_parallel_info}{Gemm\+Parallel\+Info}}$<$ \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} $>$ $\ast$info=0) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1gemm__functor_ac6f8ffeaafe2b77482fb2823b873229a}\label{struct_eigen_1_1internal_1_1gemm__functor_ac6f8ffeaafe2b77482fb2823b873229a}} 
+const Lhs \& {\bfseries m\+\_\+lhs}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1gemm__functor_a1dbea6badf09fbba36dc310601e31a77}\label{struct_eigen_1_1internal_1_1gemm__functor_a1dbea6badf09fbba36dc310601e31a77}} 
+const Rhs \& {\bfseries m\+\_\+rhs}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1gemm__functor_a0a5d7ecf3c8912fd58586b29f8649def}\label{struct_eigen_1_1internal_1_1gemm__functor_a0a5d7ecf3c8912fd58586b29f8649def}} 
+Dest \& {\bfseries m\+\_\+dest}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1gemm__functor_a7403054b4de857243937730e8bc02576}\label{struct_eigen_1_1internal_1_1gemm__functor_a7403054b4de857243937730e8bc02576}} 
+Scalar {\bfseries m\+\_\+actual\+Alpha}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1gemm__functor_aa5708efe545c969cfea4637c575e2e46}\label{struct_eigen_1_1internal_1_1gemm__functor_aa5708efe545c969cfea4637c575e2e46}} 
+Blocking\+Type \& {\bfseries m\+\_\+blocking}
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/products/General\+Matrix\+Matrix.\+h\end{DoxyCompactItemize}

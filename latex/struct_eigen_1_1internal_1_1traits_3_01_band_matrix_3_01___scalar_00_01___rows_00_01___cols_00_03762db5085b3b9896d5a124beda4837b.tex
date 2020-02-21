@@ -1,0 +1,38 @@
+\hypertarget{struct_eigen_1_1internal_1_1traits_3_01_band_matrix_3_01___scalar_00_01___rows_00_01___cols_00_03762db5085b3b9896d5a124beda4837b}{}\doxysection{Eigen\+::internal\+::traits$<$ Band\+Matrix$<$ \+\_\+\+Scalar, \+\_\+\+Rows, \+\_\+\+Cols, \+\_\+\+Supers, \+\_\+\+Subs, \+\_\+\+Options $>$ $>$ Struct Template Reference}
+\label{struct_eigen_1_1internal_1_1traits_3_01_band_matrix_3_01___scalar_00_01___rows_00_01___cols_00_03762db5085b3b9896d5a124beda4837b}\index{Eigen::internal::traits$<$ BandMatrix$<$ \_Scalar, \_Rows, \_Cols, \_Supers, \_Subs, \_Options $>$ $>$@{Eigen::internal::traits$<$ BandMatrix$<$ \_Scalar, \_Rows, \_Cols, \_Supers, \_Subs, \_Options $>$ $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_band_matrix_3_01___scalar_00_01___rows_00_01___cols_00_03762db5085b3b9896d5a124beda4837b_aafdbae28d002b9e31772213629a1b007}\label{struct_eigen_1_1internal_1_1traits_3_01_band_matrix_3_01___scalar_00_01___rows_00_01___cols_00_03762db5085b3b9896d5a124beda4837b_aafdbae28d002b9e31772213629a1b007}} 
+enum \{ \newline
+{\bfseries Coeff\+Read\+Cost} = Num\+Traits$<$Scalar$>$\+::Read\+Cost, 
+{\bfseries Rows\+At\+Compile\+Time} = \+\_\+\+Rows, 
+{\bfseries Cols\+At\+Compile\+Time} = \+\_\+\+Cols, 
+{\bfseries Max\+Rows\+At\+Compile\+Time} = \+\_\+\+Rows, 
+\newline
+{\bfseries Max\+Cols\+At\+Compile\+Time} = \+\_\+\+Cols, 
+{\bfseries Flags} = Lvalue\+Bit, 
+{\bfseries Supers} = \+\_\+\+Supers, 
+{\bfseries Subs} = \+\_\+\+Subs, 
+\newline
+{\bfseries Options} = \+\_\+\+Options, 
+{\bfseries Data\+Rows\+At\+Compile\+Time} = ((Supers!=Dynamic) \&\& (Subs!=Dynamic)) ? 1 + Supers + Subs \+: Dynamic
+ \}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_band_matrix_3_01___scalar_00_01___rows_00_01___cols_00_03762db5085b3b9896d5a124beda4837b_a7491ccd4fec074ebedf02909f324b36a}\label{struct_eigen_1_1internal_1_1traits_3_01_band_matrix_3_01___scalar_00_01___rows_00_01___cols_00_03762db5085b3b9896d5a124beda4837b_a7491ccd4fec074ebedf02909f324b36a}} 
+typedef \+\_\+\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_band_matrix_3_01___scalar_00_01___rows_00_01___cols_00_03762db5085b3b9896d5a124beda4837b_add341ed484b43c00348eeab9dc99d0d8}\label{struct_eigen_1_1internal_1_1traits_3_01_band_matrix_3_01___scalar_00_01___rows_00_01___cols_00_03762db5085b3b9896d5a124beda4837b_add341ed484b43c00348eeab9dc99d0d8}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_dense}{Dense}} {\bfseries Storage\+Kind}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_band_matrix_3_01___scalar_00_01___rows_00_01___cols_00_03762db5085b3b9896d5a124beda4837b_a7cde578b2a145709789123f8922b66fa}\label{struct_eigen_1_1internal_1_1traits_3_01_band_matrix_3_01___scalar_00_01___rows_00_01___cols_00_03762db5085b3b9896d5a124beda4837b_a7cde578b2a145709789123f8922b66fa}} 
+typedef \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Eigen\+::\+Index}} {\bfseries Storage\+Index}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_band_matrix_3_01___scalar_00_01___rows_00_01___cols_00_03762db5085b3b9896d5a124beda4837b_aafd270c1440909d8c2c7901e57e73f9e}\label{struct_eigen_1_1internal_1_1traits_3_01_band_matrix_3_01___scalar_00_01___rows_00_01___cols_00_03762db5085b3b9896d5a124beda4837b_aafd270c1440909d8c2c7901e57e73f9e}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ Scalar, Data\+Rows\+At\+Compile\+Time, Cols\+At\+Compile\+Time, Options \&\mbox{\hyperlink{group__enums_ggaacded1a18ae58b0f554751f6cdf9eb13a77c993a8d9f6efe5c1159fb2ab07dd4f}{Row\+Major}}?Row\+Major\+:\+Col\+Major $>$ {\bfseries Coefficients\+Type}
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/Band\+Matrix.\+h\end{DoxyCompactItemize}

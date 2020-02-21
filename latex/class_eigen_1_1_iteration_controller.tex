@@ -1,0 +1,126 @@
+\hypertarget{class_eigen_1_1_iteration_controller}{}\doxysection{Eigen\+::Iteration\+Controller Class Reference}
+\label{class_eigen_1_1_iteration_controller}\index{Eigen::IterationController@{Eigen::IterationController}}
+
+
+Controls the iterations of the iterative solvers.  
+
+
+
+
+{\ttfamily \#include $<$Iteration\+Controller.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_iteration_controller_a192cc7f73d6595d169f0ba09d4296cda}\label{class_eigen_1_1_iteration_controller_a192cc7f73d6595d169f0ba09d4296cda}} 
+void {\bfseries init} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_iteration_controller_a85385eecf35223c3ea985d0cea1b33ae}\label{class_eigen_1_1_iteration_controller_a85385eecf35223c3ea985d0cea1b33ae}} 
+{\bfseries Iteration\+Controller} (double r=1.\+0E-\/8, int noi=0, size\+\_\+t mit=size\+\_\+t(-\/1))
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_iteration_controller_a89f3f6d2826e8e3a462a62c297c8d139}\label{class_eigen_1_1_iteration_controller_a89f3f6d2826e8e3a462a62c297c8d139}} 
+void {\bfseries operator++} (int)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_iteration_controller_a61e41184c8858f847d87a7dfb751c7f9}\label{class_eigen_1_1_iteration_controller_a61e41184c8858f847d87a7dfb751c7f9}} 
+void {\bfseries operator++} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_iteration_controller_ae8d50bf180cbcf9f1201dfff5274aac5}\label{class_eigen_1_1_iteration_controller_ae8d50bf180cbcf9f1201dfff5274aac5}} 
+bool {\bfseries first} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_iteration_controller_ab3e02d3d9f2c08ac9e41cfa93856e0ae}\label{class_eigen_1_1_iteration_controller_ab3e02d3d9f2c08ac9e41cfa93856e0ae}} 
+int {\bfseries noise\+Level} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_iteration_controller_a99621a09b56cf6edeb536302bddf6417}\label{class_eigen_1_1_iteration_controller_a99621a09b56cf6edeb536302bddf6417}} 
+void {\bfseries set\+Noise\+Level} (int n)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_iteration_controller_a71470e89f1175fb5d0dbe13ba5a46656}\label{class_eigen_1_1_iteration_controller_a71470e89f1175fb5d0dbe13ba5a46656}} 
+void {\bfseries reduce\+Noise\+Level} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_iteration_controller_a4ef521c21a33a7f20213e690868f5dc8}\label{class_eigen_1_1_iteration_controller_a4ef521c21a33a7f20213e690868f5dc8}} 
+double {\bfseries max\+Residual} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_iteration_controller_acba21ed80db5610a9a1f69dbd04a1c40}\label{class_eigen_1_1_iteration_controller_acba21ed80db5610a9a1f69dbd04a1c40}} 
+void {\bfseries set\+Max\+Residual} (double r)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_iteration_controller_af739b1bda26910c6fc19757832aff0f3}\label{class_eigen_1_1_iteration_controller_af739b1bda26910c6fc19757832aff0f3}} 
+double {\bfseries residual} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_iteration_controller_a030a9ba60a60d970469bc21b0d687933}\label{class_eigen_1_1_iteration_controller_a030a9ba60a60d970469bc21b0d687933}} 
+void {\bfseries set\+Callback} (void($\ast$t)(const \mbox{\hyperlink{class_eigen_1_1_iteration_controller}{Iteration\+Controller}} \&))
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_iteration_controller_acc4ebc37c510ec0ba70af27ce9e51bb5}\label{class_eigen_1_1_iteration_controller_acc4ebc37c510ec0ba70af27ce9e51bb5}} 
+size\+\_\+t {\bfseries iteration} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_iteration_controller_accf6eba315d00a2db827c2fab2521dad}\label{class_eigen_1_1_iteration_controller_accf6eba315d00a2db827c2fab2521dad}} 
+void {\bfseries set\+Iteration} (size\+\_\+t i)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_iteration_controller_a49c76e40ccfcf053e6be148abc8d27b4}\label{class_eigen_1_1_iteration_controller_a49c76e40ccfcf053e6be148abc8d27b4}} 
+size\+\_\+t {\bfseries max\+Iterarions} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_iteration_controller_ae9c85f641e476a3d0b7a8fc0befd3dee}\label{class_eigen_1_1_iteration_controller_ae9c85f641e476a3d0b7a8fc0befd3dee}} 
+void {\bfseries set\+Max\+Iterations} (size\+\_\+t i)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_iteration_controller_a1f61aa20c957a8f4a8a1f9d2d79c4b09}\label{class_eigen_1_1_iteration_controller_a1f61aa20c957a8f4a8a1f9d2d79c4b09}} 
+double {\bfseries rhs\+Norm} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_iteration_controller_a4aa73982fdd3a0549c4b04464e0f031c}\label{class_eigen_1_1_iteration_controller_a4aa73982fdd3a0549c4b04464e0f031c}} 
+void {\bfseries set\+Rhs\+Norm} (double r)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_iteration_controller_a723ae9cb3788b7fb34697b1f62741716}\label{class_eigen_1_1_iteration_controller_a723ae9cb3788b7fb34697b1f62741716}} 
+bool {\bfseries converged} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_iteration_controller_abd2f4666cc76e8afcd241eb482cb21e5}\label{class_eigen_1_1_iteration_controller_abd2f4666cc76e8afcd241eb482cb21e5}} 
+bool {\bfseries converged} (double nr)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_iteration_controller_a033e0322b6e5ad935388316cb1df95dc}\label{class_eigen_1_1_iteration_controller_a033e0322b6e5ad935388316cb1df95dc}} 
+{\footnotesize template$<$typename Vector\+Type $>$ }\\bool {\bfseries converged} (const \mbox{\hyperlink{struct_vector_type}{Vector\+Type}} \&v)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_iteration_controller_af58f849ee9625eeb99749478f17eb44b}\label{class_eigen_1_1_iteration_controller_af58f849ee9625eeb99749478f17eb44b}} 
+bool {\bfseries finished} (double nr)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_iteration_controller_aa43c7653d26cdec6e6f4597e18bca1df}\label{class_eigen_1_1_iteration_controller_aa43c7653d26cdec6e6f4597e18bca1df}} 
+{\footnotesize template$<$typename Vector\+Type $>$ }\\bool {\bfseries finished} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ \mbox{\hyperlink{struct_vector_type}{Vector\+Type}} $>$ \&v)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_iteration_controller_a43364d62c43861aff44cb0a86c4615a6}\label{class_eigen_1_1_iteration_controller_a43364d62c43861aff44cb0a86c4615a6}} 
+double \mbox{\hyperlink{class_eigen_1_1_iteration_controller_a43364d62c43861aff44cb0a86c4615a6}{m\+\_\+rhsn}}
+\begin{DoxyCompactList}\small\item\em Right hand side norm. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_eigen_1_1_iteration_controller_a42f72b0f3d490a6ceaa7bc76a51c1471}\label{class_eigen_1_1_iteration_controller_a42f72b0f3d490a6ceaa7bc76a51c1471}} 
+size\+\_\+t \mbox{\hyperlink{class_eigen_1_1_iteration_controller_a42f72b0f3d490a6ceaa7bc76a51c1471}{m\+\_\+maxiter}}
+\begin{DoxyCompactList}\small\item\em Max. number of iterations. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_eigen_1_1_iteration_controller_afcff4288066c186967f15defcd833f5d}\label{class_eigen_1_1_iteration_controller_afcff4288066c186967f15defcd833f5d}} 
+int \mbox{\hyperlink{class_eigen_1_1_iteration_controller_afcff4288066c186967f15defcd833f5d}{m\+\_\+noise}}
+\begin{DoxyCompactList}\small\item\em if noise $>$ 0 iterations are printed \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_eigen_1_1_iteration_controller_a5342235a082ee820516fd593ee1efeac}\label{class_eigen_1_1_iteration_controller_a5342235a082ee820516fd593ee1efeac}} 
+double \mbox{\hyperlink{class_eigen_1_1_iteration_controller_a5342235a082ee820516fd593ee1efeac}{m\+\_\+resmax}}
+\begin{DoxyCompactList}\small\item\em maximum residual \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_eigen_1_1_iteration_controller_a86b8b4dbf11f27d56953a01e03a48f84}\label{class_eigen_1_1_iteration_controller_a86b8b4dbf11f27d56953a01e03a48f84}} 
+double {\bfseries m\+\_\+resminreach}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_iteration_controller_a6fae2dedef77dda90b893c5fc48d1247}\label{class_eigen_1_1_iteration_controller_a6fae2dedef77dda90b893c5fc48d1247}} 
+double {\bfseries m\+\_\+resadd}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_iteration_controller_ac9d122615471416cc827a3d8e8ea15f2}\label{class_eigen_1_1_iteration_controller_ac9d122615471416cc827a3d8e8ea15f2}} 
+size\+\_\+t \mbox{\hyperlink{class_eigen_1_1_iteration_controller_ac9d122615471416cc827a3d8e8ea15f2}{m\+\_\+nit}}
+\begin{DoxyCompactList}\small\item\em iteration number \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_eigen_1_1_iteration_controller_af60d33d2bdd09f3d00fd73ddc91fc1e6}\label{class_eigen_1_1_iteration_controller_af60d33d2bdd09f3d00fd73ddc91fc1e6}} 
+double \mbox{\hyperlink{class_eigen_1_1_iteration_controller_af60d33d2bdd09f3d00fd73ddc91fc1e6}{m\+\_\+res}}
+\begin{DoxyCompactList}\small\item\em last computed residual \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_eigen_1_1_iteration_controller_a706c2b8b3dfaadc8625321ce9d7b9b1a}\label{class_eigen_1_1_iteration_controller_a706c2b8b3dfaadc8625321ce9d7b9b1a}} 
+bool {\bfseries m\+\_\+written}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_iteration_controller_a9d60bd37d5aef6fbfd023e4843286ae9}\label{class_eigen_1_1_iteration_controller_a9d60bd37d5aef6fbfd023e4843286ae9}} 
+void($\ast$ {\bfseries m\+\_\+callback} )(const \mbox{\hyperlink{class_eigen_1_1_iteration_controller}{Iteration\+Controller}} \&)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Controls the iterations of the iterative solvers. 
+
+This class has been adapted from the iteration class of G\+M\+M++ and I\+TL libraries. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/src/\+Iterative\+Solvers/Iteration\+Controller.\+h\end{DoxyCompactItemize}

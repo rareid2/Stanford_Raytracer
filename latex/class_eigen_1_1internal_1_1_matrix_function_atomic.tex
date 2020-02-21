@@ -1,0 +1,81 @@
+\hypertarget{class_eigen_1_1internal_1_1_matrix_function_atomic}{}\doxysection{Eigen\+::internal\+::Matrix\+Function\+Atomic$<$ Matrix\+Type $>$ Class Template Reference}
+\label{class_eigen_1_1internal_1_1_matrix_function_atomic}\index{Eigen::internal::MatrixFunctionAtomic$<$ MatrixType $>$@{Eigen::internal::MatrixFunctionAtomic$<$ MatrixType $>$}}
+
+
+Helper class for computing matrix functions of atomic matrices.  
+
+
+
+
+{\ttfamily \#include $<$Matrix\+Function.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_matrix_function_atomic_a36e1110dfad326a36f2024128a7cd57f}\label{class_eigen_1_1internal_1_1_matrix_function_atomic_a36e1110dfad326a36f2024128a7cd57f}} 
+typedef Matrix\+Type\+::\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_matrix_function_atomic_ae4e08534a2fec6687f96ab5d72520ddc}\label{class_eigen_1_1internal_1_1_matrix_function_atomic_ae4e08534a2fec6687f96ab5d72520ddc}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1stem__function}{stem\+\_\+function}}$<$ Scalar $>$\+::type {\bfseries Stem\+Function}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1internal_1_1_matrix_function_atomic_a0786bb0349fe5ca5f8df13db7e21e882}{Matrix\+Function\+Atomic}} (Stem\+Function f)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+Matrix\+Type \mbox{\hyperlink{class_eigen_1_1internal_1_1_matrix_function_atomic_a704ccdc87d66cb6f93d16e0a0b9e8acf}{compute}} (const Matrix\+Type \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}})
+\begin{DoxyCompactList}\small\item\em Compute matrix function of atomic matrix. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Matrix\+Type$>$\newline
+class Eigen\+::internal\+::\+Matrix\+Function\+Atomic$<$ Matrix\+Type $>$}
+
+Helper class for computing matrix functions of atomic matrices. 
+
+Here, an atomic matrix is a triangular matrix whose diagonal entries are close to each other. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_matrix_function_atomic_a0786bb0349fe5ca5f8df13db7e21e882}\label{class_eigen_1_1internal_1_1_matrix_function_atomic_a0786bb0349fe5ca5f8df13db7e21e882}} 
+\index{Eigen::internal::MatrixFunctionAtomic$<$ MatrixType $>$@{Eigen::internal::MatrixFunctionAtomic$<$ MatrixType $>$}!MatrixFunctionAtomic@{MatrixFunctionAtomic}}
+\index{MatrixFunctionAtomic@{MatrixFunctionAtomic}!Eigen::internal::MatrixFunctionAtomic$<$ MatrixType $>$@{Eigen::internal::MatrixFunctionAtomic$<$ MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{MatrixFunctionAtomic()}{MatrixFunctionAtomic()}}
+{\footnotesize\ttfamily template$<$typename Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1internal_1_1_matrix_function_atomic}{Eigen\+::internal\+::\+Matrix\+Function\+Atomic}}$<$ Matrix\+Type $>$\+::\mbox{\hyperlink{class_eigen_1_1internal_1_1_matrix_function_atomic}{Matrix\+Function\+Atomic}} (\begin{DoxyParamCaption}\item[{Stem\+Function}]{f }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em f} & matrix function to compute. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1_matrix_function_atomic_a704ccdc87d66cb6f93d16e0a0b9e8acf}\label{class_eigen_1_1internal_1_1_matrix_function_atomic_a704ccdc87d66cb6f93d16e0a0b9e8acf}} 
+\index{Eigen::internal::MatrixFunctionAtomic$<$ MatrixType $>$@{Eigen::internal::MatrixFunctionAtomic$<$ MatrixType $>$}!compute@{compute}}
+\index{compute@{compute}!Eigen::internal::MatrixFunctionAtomic$<$ MatrixType $>$@{Eigen::internal::MatrixFunctionAtomic$<$ MatrixType $>$}}
+\doxysubsubsection{\texorpdfstring{compute()}{compute()}}
+{\footnotesize\ttfamily template$<$typename Matrix\+Type $>$ \\
+Matrix\+Type \mbox{\hyperlink{class_eigen_1_1internal_1_1_matrix_function_atomic}{Eigen\+::internal\+::\+Matrix\+Function\+Atomic}}$<$ Matrix\+Type $>$\+::compute (\begin{DoxyParamCaption}\item[{const Matrix\+Type \&}]{A }\end{DoxyParamCaption})}
+
+
+
+Compute matrix function of atomic matrix. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em A} & argument of matrix function, should be upper triangular and atomic \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+f(\+A), the matrix function evaluated at the given matrix 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/src/\+Matrix\+Functions/Matrix\+Function.\+h\end{DoxyCompactItemize}

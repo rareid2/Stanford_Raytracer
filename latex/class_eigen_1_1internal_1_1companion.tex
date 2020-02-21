@@ -1,0 +1,105 @@
+\hypertarget{class_eigen_1_1internal_1_1companion}{}\doxysection{Eigen\+::internal\+::companion$<$ \+\_\+\+Scalar, \+\_\+\+Deg $>$ Class Template Reference}
+\label{class_eigen_1_1internal_1_1companion}\index{Eigen::internal::companion$<$ \_Scalar, \_Deg $>$@{Eigen::internal::companion$<$ \_Scalar, \_Deg $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1companion_ab3eaca3598c30debb25dccb533487b02}\label{class_eigen_1_1internal_1_1companion_ab3eaca3598c30debb25dccb533487b02}} 
+enum \{ {\bfseries Deg} = \+\_\+\+Deg, 
+{\bfseries Deg\+\_\+1} =decrement\+\_\+if\+\_\+fixed\+\_\+size$<$Deg$>$\+::ret
+ \}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1companion_a061d1e325a0417ef9cb926133d833e39}\label{class_eigen_1_1internal_1_1companion_a061d1e325a0417ef9cb926133d833e39}} 
+typedef \+\_\+\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1companion_a1c462f30c15c1a6233192a2c348139d6}\label{class_eigen_1_1internal_1_1companion_a1c462f30c15c1a6233192a2c348139d6}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$ Scalar $>$\+::Real {\bfseries Real\+Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1companion_a69824f07c37938d96dae2e5e4fc97718}\label{class_eigen_1_1internal_1_1companion_a69824f07c37938d96dae2e5e4fc97718}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ Scalar, Deg, 1 $>$ {\bfseries Right\+Column}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1companion_aad7128996067bbf85be2bb7ca8d287d7}\label{class_eigen_1_1internal_1_1companion_aad7128996067bbf85be2bb7ca8d287d7}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ Scalar, Deg\+\_\+1, 1 $>$ {\bfseries Bottom\+Left\+Diagonal}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1companion_adcabc9870db81cf1e0db6d645d260c81}\label{class_eigen_1_1internal_1_1companion_adcabc9870db81cf1e0db6d645d260c81}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ Scalar, Deg, Deg $>$ {\bfseries Dense\+Companion\+Matrix\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1companion_a8a2e8d224bcac4436dd7eb5c04b817d5}\label{class_eigen_1_1internal_1_1companion_a8a2e8d224bcac4436dd7eb5c04b817d5}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ Scalar, \+\_\+\+Deg, Deg\+\_\+1 $>$ {\bfseries Left\+Block}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1companion_ae5f271a028b6c68e794ac2f407185672}\label{class_eigen_1_1internal_1_1companion_ae5f271a028b6c68e794ac2f407185672}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ Scalar, Deg\+\_\+1, Deg\+\_\+1 $>$ {\bfseries Bottom\+Left\+Block}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1companion_afd51b7245870ba33037049bcd2773410}\label{class_eigen_1_1internal_1_1companion_afd51b7245870ba33037049bcd2773410}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ Scalar, 1, Deg\+\_\+1 $>$ {\bfseries Left\+Block\+First\+Row}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1companion_a39a8698e815c86ce2222ac44e5d4bab8}\label{class_eigen_1_1internal_1_1companion_a39a8698e815c86ce2222ac44e5d4bab8}} 
+typedef Dense\+Index {\bfseries Index}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1companion_a0f8d9a20b773ec0798e4a299747a2492}\label{class_eigen_1_1internal_1_1companion_a0f8d9a20b773ec0798e4a299747a2492}} 
+const E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \+\_\+\+Scalar {\bfseries operator()} (Index row, Index col) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1companion_a9a47d9aae9fa578cb7b0e6531b02dbb0}\label{class_eigen_1_1internal_1_1companion_a9a47d9aae9fa578cb7b0e6531b02dbb0}} 
+{\footnotesize template$<$typename Vector\+Type $>$ }\\void {\bfseries set\+Polynomial} (const \mbox{\hyperlink{struct_vector_type}{Vector\+Type}} \&poly)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1companion_a83f785c9dd58c7733ed37a962e618b59}\label{class_eigen_1_1internal_1_1companion_a83f785c9dd58c7733ed37a962e618b59}} 
+{\footnotesize template$<$typename Vector\+Type $>$ }\\{\bfseries companion} (const \mbox{\hyperlink{struct_vector_type}{Vector\+Type}} \&poly)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1companion_ad1708946cec9972b8347aa47b72302f2}\label{class_eigen_1_1internal_1_1companion_ad1708946cec9972b8347aa47b72302f2}} 
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Dense\+Companion\+Matrix\+Type}} {\bfseries dense\+Matrix} () const
+\item 
+void \mbox{\hyperlink{class_eigen_1_1internal_1_1companion_a7362d054f04f6d554fb6c8a279287000}{balance}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_eigen_1_1internal_1_1companion_ac5c7b024fdd218ea68165bd948f48e83}{balanced}} (Scalar col\+Norm, Scalar row\+Norm, bool \&is\+Balanced, Scalar \&colB, Scalar \&rowB)
+\item 
+bool \mbox{\hyperlink{class_eigen_1_1internal_1_1companion_a9945fcaca89aecc2fbff0e9b06510de0}{balancedR}} (Scalar col\+Norm, Scalar row\+Norm, bool \&is\+Balanced, Scalar \&colB, Scalar \&rowB)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1companion_a864db74e59b4ea649de5078a10f60881}\label{class_eigen_1_1internal_1_1companion_a864db74e59b4ea649de5078a10f60881}} 
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Right\+Column}} {\bfseries m\+\_\+monic}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1companion_ae2665afb531c1fe81e018c41c582db4f}\label{class_eigen_1_1internal_1_1companion_ae2665afb531c1fe81e018c41c582db4f}} 
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Bottom\+Left\+Diagonal}} {\bfseries m\+\_\+bl\+\_\+diag}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1companion_a7362d054f04f6d554fb6c8a279287000}\label{class_eigen_1_1internal_1_1companion_a7362d054f04f6d554fb6c8a279287000}} 
+\index{Eigen::internal::companion$<$ \_Scalar, \_Deg $>$@{Eigen::internal::companion$<$ \_Scalar, \_Deg $>$}!balance@{balance}}
+\index{balance@{balance}!Eigen::internal::companion$<$ \_Scalar, \_Deg $>$@{Eigen::internal::companion$<$ \_Scalar, \_Deg $>$}}
+\doxysubsubsection{\texorpdfstring{balance()}{balance()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Deg$>$ \\
+void \mbox{\hyperlink{class_eigen_1_1internal_1_1companion}{Eigen\+::internal\+::companion}}$<$ \+\_\+\+Scalar, \+\_\+\+Deg $>$\+::balance}
+
+Balancing algorithm from B. N. P\+A\+R\+L\+E\+TT and C. R\+E\+I\+N\+S\+CH (1969) \char`\"{}\+Balancing a matrix for calculation of eigenvalues and eigenvectors\char`\"{} adapted to the case of companion matrices. A matrix with non zero row and non zero column is balanced for a certain norm if the i-\/th row and the i-\/th column have same norm for all i. \mbox{\Hypertarget{class_eigen_1_1internal_1_1companion_ac5c7b024fdd218ea68165bd948f48e83}\label{class_eigen_1_1internal_1_1companion_ac5c7b024fdd218ea68165bd948f48e83}} 
+\index{Eigen::internal::companion$<$ \_Scalar, \_Deg $>$@{Eigen::internal::companion$<$ \_Scalar, \_Deg $>$}!balanced@{balanced}}
+\index{balanced@{balanced}!Eigen::internal::companion$<$ \_Scalar, \_Deg $>$@{Eigen::internal::companion$<$ \_Scalar, \_Deg $>$}}
+\doxysubsubsection{\texorpdfstring{balanced()}{balanced()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Deg$>$ \\
+bool \mbox{\hyperlink{class_eigen_1_1internal_1_1companion}{Eigen\+::internal\+::companion}}$<$ \+\_\+\+Scalar, \+\_\+\+Deg $>$\+::balanced (\begin{DoxyParamCaption}\item[{Scalar}]{col\+Norm,  }\item[{Scalar}]{row\+Norm,  }\item[{bool \&}]{is\+Balanced,  }\item[{Scalar \&}]{colB,  }\item[{Scalar \&}]{rowB }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+Helper function for the balancing algorithm. \begin{DoxyReturn}{Returns}
+true if the row and the column, having col\+Norm and row\+Norm as norms, are balanced, false otherwise. colB and rowB are repectively the multipliers for the column and the row in order to balance them. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1companion_a9945fcaca89aecc2fbff0e9b06510de0}\label{class_eigen_1_1internal_1_1companion_a9945fcaca89aecc2fbff0e9b06510de0}} 
+\index{Eigen::internal::companion$<$ \_Scalar, \_Deg $>$@{Eigen::internal::companion$<$ \_Scalar, \_Deg $>$}!balancedR@{balancedR}}
+\index{balancedR@{balancedR}!Eigen::internal::companion$<$ \_Scalar, \_Deg $>$@{Eigen::internal::companion$<$ \_Scalar, \_Deg $>$}}
+\doxysubsubsection{\texorpdfstring{balancedR()}{balancedR()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Deg$>$ \\
+bool \mbox{\hyperlink{class_eigen_1_1internal_1_1companion}{Eigen\+::internal\+::companion}}$<$ \+\_\+\+Scalar, \+\_\+\+Deg $>$\+::balancedR (\begin{DoxyParamCaption}\item[{Scalar}]{col\+Norm,  }\item[{Scalar}]{row\+Norm,  }\item[{bool \&}]{is\+Balanced,  }\item[{Scalar \&}]{colB,  }\item[{Scalar \&}]{rowB }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+Helper function for the balancing algorithm. \begin{DoxyReturn}{Returns}
+true if the row and the column, having col\+Norm and row\+Norm as norms, are balanced, false otherwise. colB and rowB are repectively the multipliers for the column and the row in order to balance them. 
+\end{DoxyReturn}
+Set the norm of the column and the row to the geometric mean of the row and column norm
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/src/\+Polynomials/Companion.\+h\end{DoxyCompactItemize}

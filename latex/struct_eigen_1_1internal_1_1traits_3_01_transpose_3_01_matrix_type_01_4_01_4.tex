@@ -1,0 +1,38 @@
+\hypertarget{struct_eigen_1_1internal_1_1traits_3_01_transpose_3_01_matrix_type_01_4_01_4}{}\doxysection{Eigen\+::internal\+::traits$<$ Transpose$<$ Matrix\+Type $>$ $>$ Struct Template Reference}
+\label{struct_eigen_1_1internal_1_1traits_3_01_transpose_3_01_matrix_type_01_4_01_4}\index{Eigen::internal::traits$<$ Transpose$<$ MatrixType $>$ $>$@{Eigen::internal::traits$<$ Transpose$<$ MatrixType $>$ $>$}}
+Inheritance diagram for Eigen\+::internal\+::traits$<$ Transpose$<$ Matrix\+Type $>$ $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{struct_eigen_1_1internal_1_1traits_3_01_transpose_3_01_matrix_type_01_4_01_4}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_transpose_3_01_matrix_type_01_4_01_4_a92b1a3cc6175097f8d95d4bc79702259}\label{struct_eigen_1_1internal_1_1traits_3_01_transpose_3_01_matrix_type_01_4_01_4_a92b1a3cc6175097f8d95d4bc79702259}} 
+enum \{ \newline
+{\bfseries Rows\+At\+Compile\+Time} = Matrix\+Type\+::Cols\+At\+Compile\+Time, 
+{\bfseries Cols\+At\+Compile\+Time} = Matrix\+Type\+::Rows\+At\+Compile\+Time, 
+{\bfseries Max\+Rows\+At\+Compile\+Time} = Matrix\+Type\+::Max\+Cols\+At\+Compile\+Time, 
+{\bfseries Max\+Cols\+At\+Compile\+Time} = Matrix\+Type\+::Max\+Rows\+At\+Compile\+Time, 
+\newline
+{\bfseries Flags\+Lvalue\+Bit} = is\+\_\+lvalue$<$Matrix\+Type$>$\+::value ? Lvalue\+Bit \+: 0, 
+{\bfseries Flags0} = traits$<$Matrix\+Type\+Nested\+Plain$>$\+::Flags \& $\sim$(Lvalue\+Bit $\vert$ Nest\+By\+Ref\+Bit), 
+{\bfseries Flags1} = Flags0 $\vert$ Flags\+Lvalue\+Bit, 
+{\bfseries Flags} = Flags1 $^\wedge$ Row\+Major\+Bit, 
+\newline
+{\bfseries Inner\+Stride\+At\+Compile\+Time} = inner\+\_\+stride\+\_\+at\+\_\+compile\+\_\+time$<$Matrix\+Type$>$\+::ret, 
+{\bfseries Outer\+Stride\+At\+Compile\+Time} = outer\+\_\+stride\+\_\+at\+\_\+compile\+\_\+time$<$Matrix\+Type$>$\+::ret
+ \}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_transpose_3_01_matrix_type_01_4_01_4_af03354ff50cf117fe23a0caac756e3ee}\label{struct_eigen_1_1internal_1_1traits_3_01_transpose_3_01_matrix_type_01_4_01_4_af03354ff50cf117fe23a0caac756e3ee}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1ref__selector}{ref\+\_\+selector}}$<$ Matrix\+Type $>$\+::type {\bfseries Matrix\+Type\+Nested}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1traits_3_01_transpose_3_01_matrix_type_01_4_01_4_ae5b6205259511832d2015de8dcf8e40b}\label{struct_eigen_1_1internal_1_1traits_3_01_transpose_3_01_matrix_type_01_4_01_4_ae5b6205259511832d2015de8dcf8e40b}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__reference}{remove\+\_\+reference}}$<$ Matrix\+Type\+Nested $>$\+::type {\bfseries Matrix\+Type\+Nested\+Plain}
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/Transpose.\+h\end{DoxyCompactItemize}

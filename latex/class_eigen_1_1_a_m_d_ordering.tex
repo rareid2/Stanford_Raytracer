@@ -1,0 +1,58 @@
+\hypertarget{class_eigen_1_1_a_m_d_ordering}{}\doxysection{Eigen\+::A\+M\+D\+Ordering$<$ Storage\+Index $>$ Class Template Reference}
+\label{class_eigen_1_1_a_m_d_ordering}\index{Eigen::AMDOrdering$<$ StorageIndex $>$@{Eigen::AMDOrdering$<$ StorageIndex $>$}}
+
+
+{\ttfamily \#include $<$Ordering.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_a_m_d_ordering_ac28e5bdf8e7b08114bd76bc1fb95cc9a}\label{class_eigen_1_1_a_m_d_ordering_ac28e5bdf8e7b08114bd76bc1fb95cc9a}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Matrix}}$<$ \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}, \mbox{\hyperlink{namespace_eigen_ad81fa7195215a0ce30017dfac309f0b2}{Dynamic}}, Storage\+Index $>$ {\bfseries Permutation\+Type}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Matrix\+Type $>$ }\\void \mbox{\hyperlink{class_eigen_1_1_a_m_d_ordering_afce433557abcba9e49fa81581a58fa51}{operator()}} (const Matrix\+Type \&mat, \mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Type}} \&perm)
+\item 
+{\footnotesize template$<$typename Src\+Type , unsigned int Src\+Up\+Lo$>$ }\\void \mbox{\hyperlink{class_eigen_1_1_a_m_d_ordering_a7f3fd7224b084f0f5655c97ea8eb6466}{operator()}} (const \mbox{\hyperlink{class_eigen_1_1_sparse_self_adjoint_view}{Sparse\+Self\+Adjoint\+View}}$<$ Src\+Type, Src\+Up\+Lo $>$ \&mat, \mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Type}} \&perm)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Storage\+Index$>$\newline
+class Eigen\+::\+A\+M\+D\+Ordering$<$ Storage\+Index $>$}
+
+\mbox{\hyperlink{struct_functor}{Functor}} computing the {\itshape approximate} {\itshape minimum} {\itshape degree} ordering If the matrix is not structurally symmetric, an ordering of A$^\wedge$\+T+A is computed 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Storage\+Index} & The type of indices of the matrix \\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_c_o_l_a_m_d_ordering}{C\+O\+L\+A\+M\+D\+Ordering}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_a_m_d_ordering_afce433557abcba9e49fa81581a58fa51}\label{class_eigen_1_1_a_m_d_ordering_afce433557abcba9e49fa81581a58fa51}} 
+\index{Eigen::AMDOrdering$<$ StorageIndex $>$@{Eigen::AMDOrdering$<$ StorageIndex $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!Eigen::AMDOrdering$<$ StorageIndex $>$@{Eigen::AMDOrdering$<$ StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Storage\+Index $>$ \\
+template$<$typename Matrix\+Type $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_a_m_d_ordering}{Eigen\+::\+A\+M\+D\+Ordering}}$<$ Storage\+Index $>$\+::operator() (\begin{DoxyParamCaption}\item[{const Matrix\+Type \&}]{mat,  }\item[{\mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Type}} \&}]{perm }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Compute the permutation vector from a sparse matrix This routine is much faster if the input matrix is column-\/major ~\newline
+ \mbox{\Hypertarget{class_eigen_1_1_a_m_d_ordering_a7f3fd7224b084f0f5655c97ea8eb6466}\label{class_eigen_1_1_a_m_d_ordering_a7f3fd7224b084f0f5655c97ea8eb6466}} 
+\index{Eigen::AMDOrdering$<$ StorageIndex $>$@{Eigen::AMDOrdering$<$ StorageIndex $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!Eigen::AMDOrdering$<$ StorageIndex $>$@{Eigen::AMDOrdering$<$ StorageIndex $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Storage\+Index $>$ \\
+template$<$typename Src\+Type , unsigned int Src\+Up\+Lo$>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_a_m_d_ordering}{Eigen\+::\+A\+M\+D\+Ordering}}$<$ Storage\+Index $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_sparse_self_adjoint_view}{Sparse\+Self\+Adjoint\+View}}$<$ Src\+Type, Src\+Up\+Lo $>$ \&}]{mat,  }\item[{\mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Type}} \&}]{perm }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Compute the permutation with a selfadjoint matrix 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Ordering\+Methods/Ordering.\+h\end{DoxyCompactItemize}

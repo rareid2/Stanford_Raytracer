@@ -1,0 +1,22 @@
+\hypertarget{struct_eigen_1_1internal_1_1triangular__solver__unroller_3_01_lhs_00_01_rhs_00_01_mode_00_01_looefec01585c67928d42a9958d8c8f161e}{}\doxysection{Eigen\+::internal\+::triangular\+\_\+solver\+\_\+unroller$<$ Lhs, Rhs, Mode, Loop\+Index, Size, false $>$ Struct Template Reference}
+\label{struct_eigen_1_1internal_1_1triangular__solver__unroller_3_01_lhs_00_01_rhs_00_01_mode_00_01_looefec01585c67928d42a9958d8c8f161e}\index{Eigen::internal::triangular\_solver\_unroller$<$ Lhs, Rhs, Mode, LoopIndex, Size, false $>$@{Eigen::internal::triangular\_solver\_unroller$<$ Lhs, Rhs, Mode, LoopIndex, Size, false $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1triangular__solver__unroller_3_01_lhs_00_01_rhs_00_01_mode_00_01_looefec01585c67928d42a9958d8c8f161e_aebeac06c73259f898d2b50ce73268b02}\label{struct_eigen_1_1internal_1_1triangular__solver__unroller_3_01_lhs_00_01_rhs_00_01_mode_00_01_looefec01585c67928d42a9958d8c8f161e_aebeac06c73259f898d2b50ce73268b02}} 
+enum \{ {\bfseries Is\+Lower} = ((Mode\&Lower)==Lower), 
+{\bfseries Diag\+Index} = Is\+Lower ? Loop\+Index \+: Size -\/ Loop\+Index -\/ 1, 
+{\bfseries Start\+Index} = Is\+Lower ? 0 \+: Diag\+Index+1
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1triangular__solver__unroller_3_01_lhs_00_01_rhs_00_01_mode_00_01_looefec01585c67928d42a9958d8c8f161e_a01b18f6c3a53d6b6f11763d3618b83c0}\label{struct_eigen_1_1internal_1_1triangular__solver__unroller_3_01_lhs_00_01_rhs_00_01_mode_00_01_looefec01585c67928d42a9958d8c8f161e_a01b18f6c3a53d6b6f11763d3618b83c0}} 
+static void {\bfseries run} (const Lhs \&lhs, Rhs \&rhs)
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/Solve\+Triangular.\+h\end{DoxyCompactItemize}

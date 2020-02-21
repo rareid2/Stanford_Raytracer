@@ -1,0 +1,22 @@
+\hypertarget{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_accessor_constructor}{}\doxysection{Eigen\+::Tensor\+Sycl\+::internal\+::Accessor\+Constructor Struct Reference}
+\label{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_accessor_constructor}\index{Eigen::TensorSycl::internal::AccessorConstructor@{Eigen::TensorSycl::internal::AccessorConstructor}}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_accessor_constructor_a7afcb4b214e2371f61cdeb81eda14e5a}\label{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_accessor_constructor_a7afcb4b214e2371f61cdeb81eda14e5a}} 
+{\footnotesize template$<$typename Arg $>$ }\\static auto {\bfseries get\+Tuple} (cl\+::sycl\+::handler \&cgh, Arg eval) -\/$>$ decltype(\mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_extract_accessor}{Extract\+Accessor}}$<$ Arg $>$\+::get\+Tuple(cgh, eval))
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_accessor_constructor_a143c5607532668fb8ad51139ef814af2}\label{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_accessor_constructor_a143c5607532668fb8ad51139ef814af2}} 
+{\footnotesize template$<$typename Arg1 , typename Arg2 $>$ }\\static auto {\bfseries get\+Tuple} (cl\+::sycl\+::handler \&cgh, Arg1 eval1, Arg2 eval2) -\/$>$ decltype(utility\+::tuple\+::append(\mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_extract_accessor}{Extract\+Accessor}}$<$ Arg1 $>$\+::get\+Tuple(cgh, eval1), \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_extract_accessor}{Extract\+Accessor}}$<$ Arg2 $>$\+::get\+Tuple(cgh, eval2)))
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_accessor_constructor_ad3fdd38122365383400b4ac68fb9c8ee}\label{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_accessor_constructor_ad3fdd38122365383400b4ac68fb9c8ee}} 
+{\footnotesize template$<$typename Arg1 , typename Arg2 , typename Arg3 $>$ }\\static auto {\bfseries get\+Tuple} (cl\+::sycl\+::handler \&cgh, Arg1 eval1, Arg2 eval2, Arg3 eval3) -\/$>$ decltype(utility\+::tuple\+::append(\mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_extract_accessor}{Extract\+Accessor}}$<$ Arg1 $>$\+::get\+Tuple(cgh, eval1), utility\+::tuple\+::append(\mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_extract_accessor}{Extract\+Accessor}}$<$ Arg2 $>$\+::get\+Tuple(cgh, eval2), \mbox{\hyperlink{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_extract_accessor}{Extract\+Accessor}}$<$ Arg3 $>$\+::get\+Tuple(cgh, eval3))))
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_accessor_constructor_a7f94ccf32448b107bd46bd2dfc40f2bc}\label{struct_eigen_1_1_tensor_sycl_1_1internal_1_1_accessor_constructor_a7f94ccf32448b107bd46bd2dfc40f2bc}} 
+{\footnotesize template$<$cl\+::sycl\+::access\+::mode AcM, typename Arg $>$ }\\static auto {\bfseries get\+Accessor} (cl\+::sycl\+::handler \&cgh, Arg eval) -\/$>$ decltype(utility\+::tuple\+::make\+\_\+tuple(eval.\+device().template get\+\_\+sycl\+\_\+accessor$<$ AcM, typename \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{Eigen\+::internal\+::remove\+\_\+all}}$<$ typename Arg\+::\+Coeff\+Return\+Type $>$\+::type $>$(eval.\+dimensions().Total\+Size(), cgh, eval.\+data())))
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/\+C\+X\+X11/src/\+Tensor/Tensor\+Sycl\+Extract\+Accessor.\+h\end{DoxyCompactItemize}

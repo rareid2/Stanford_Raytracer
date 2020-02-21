@@ -1,0 +1,79 @@
+\hypertarget{classmtl4__interface}{}\doxysection{mtl4\+\_\+interface$<$ real $>$ Class Template Reference}
+\label{classmtl4__interface}\index{mtl4\_interface$<$ real $>$@{mtl4\_interface$<$ real $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmtl4__interface_a83d2c63d4cbc2f90f8f7c47a2b0015fc}\label{classmtl4__interface_a83d2c63d4cbc2f90f8f7c47a2b0015fc}} 
+typedef real {\bfseries real\+\_\+type}
+\item 
+\mbox{\Hypertarget{classmtl4__interface_abe1b58369df8fb6cb4d983b4faf02ad7}\label{classmtl4__interface_abe1b58369df8fb6cb4d983b4faf02ad7}} 
+typedef std\+::vector$<$ real $>$ {\bfseries stl\+\_\+vector}
+\item 
+\mbox{\Hypertarget{classmtl4__interface_a3da80d6f61e08e6cc69149795141f705}\label{classmtl4__interface_a3da80d6f61e08e6cc69149795141f705}} 
+typedef std\+::vector$<$ stl\+\_\+vector $>$ {\bfseries stl\+\_\+matrix}
+\item 
+\mbox{\Hypertarget{classmtl4__interface_a55523e845e9f9427d87d3a289279d57c}\label{classmtl4__interface_a55523e845e9f9427d87d3a289279d57c}} 
+typedef mtl\+::dense2D$<$ real, mtl\+::matrix\+::parameters$<$ mtl\+::tag\+::col\+\_\+major $>$ $>$ {\bfseries gene\+\_\+matrix}
+\item 
+\mbox{\Hypertarget{classmtl4__interface_ab0c96d9984a36ac41a08c2695473e9f0}\label{classmtl4__interface_ab0c96d9984a36ac41a08c2695473e9f0}} 
+typedef mtl\+::dense\+\_\+vector$<$ real $>$ {\bfseries gene\+\_\+vector}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmtl4__interface_a435f1ee0a4c76a995a19b722efd69931}\label{classmtl4__interface_a435f1ee0a4c76a995a19b722efd69931}} 
+static std\+::string {\bfseries name} ()
+\item 
+\mbox{\Hypertarget{classmtl4__interface_abbd7d5eec097afa14a93af3c7ce1969c}\label{classmtl4__interface_abbd7d5eec097afa14a93af3c7ce1969c}} 
+static void {\bfseries free\+\_\+matrix} (gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, int N)
+\item 
+\mbox{\Hypertarget{classmtl4__interface_a37c7f6cf2afa4fc2a7120817c366310d}\label{classmtl4__interface_a37c7f6cf2afa4fc2a7120817c366310d}} 
+static void {\bfseries free\+\_\+vector} (gene\+\_\+vector \&\mbox{\hyperlink{class_eigen_1_1_matrix}{B}})
+\item 
+\mbox{\Hypertarget{classmtl4__interface_a0cc7f8989c6aaeb5b141e0455182064f}\label{classmtl4__interface_a0cc7f8989c6aaeb5b141e0455182064f}} 
+static void {\bfseries matrix\+\_\+from\+\_\+stl} (gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, stl\+\_\+matrix \&A\+\_\+stl)
+\item 
+\mbox{\Hypertarget{classmtl4__interface_a6dfe3c64075969fe118bc5ae4367fffd}\label{classmtl4__interface_a6dfe3c64075969fe118bc5ae4367fffd}} 
+static void {\bfseries vector\+\_\+from\+\_\+stl} (gene\+\_\+vector \&\mbox{\hyperlink{class_eigen_1_1_matrix}{B}}, stl\+\_\+vector \&B\+\_\+stl)
+\item 
+\mbox{\Hypertarget{classmtl4__interface_a6ed87ddf048aad7a37aeddc68e034353}\label{classmtl4__interface_a6ed87ddf048aad7a37aeddc68e034353}} 
+static void {\bfseries vector\+\_\+to\+\_\+stl} (gene\+\_\+vector \&\mbox{\hyperlink{class_eigen_1_1_matrix}{B}}, stl\+\_\+vector \&B\+\_\+stl)
+\item 
+\mbox{\Hypertarget{classmtl4__interface_aa17752486162687527baeb5187df9854}\label{classmtl4__interface_aa17752486162687527baeb5187df9854}} 
+static void {\bfseries matrix\+\_\+to\+\_\+stl} (gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, stl\+\_\+matrix \&A\+\_\+stl)
+\item 
+\mbox{\Hypertarget{classmtl4__interface_a57b8da25c43b877fd4e480d65dd97c09}\label{classmtl4__interface_a57b8da25c43b877fd4e480d65dd97c09}} 
+static void {\bfseries matrix\+\_\+matrix\+\_\+product} (const gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, const gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{B}}, gene\+\_\+matrix \&X, int N)
+\item 
+\mbox{\Hypertarget{classmtl4__interface_a6a1fe4d2ffe7d5dba7ef6383f109eed5}\label{classmtl4__interface_a6a1fe4d2ffe7d5dba7ef6383f109eed5}} 
+static void {\bfseries transposed\+\_\+matrix\+\_\+matrix\+\_\+product} (const gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, const gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{B}}, gene\+\_\+matrix \&X, int N)
+\item 
+\mbox{\Hypertarget{classmtl4__interface_ab516084fc8d5460c76bcd987a782388d}\label{classmtl4__interface_ab516084fc8d5460c76bcd987a782388d}} 
+static void {\bfseries aat\+\_\+product} (const gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, gene\+\_\+matrix \&X, int N)
+\item 
+\mbox{\Hypertarget{classmtl4__interface_afdbeb5505a83d59bb5c0baa4d77d6d13}\label{classmtl4__interface_afdbeb5505a83d59bb5c0baa4d77d6d13}} 
+static void {\bfseries matrix\+\_\+vector\+\_\+product} (gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, gene\+\_\+vector \&\mbox{\hyperlink{class_eigen_1_1_matrix}{B}}, gene\+\_\+vector \&X, int N)
+\item 
+\mbox{\Hypertarget{classmtl4__interface_abecd88134cb94d6428a21042cdf3fb5e}\label{classmtl4__interface_abecd88134cb94d6428a21042cdf3fb5e}} 
+static void {\bfseries atv\+\_\+product} (gene\+\_\+matrix \&\mbox{\hyperlink{class_eigen_1_1_matrix}{A}}, gene\+\_\+vector \&\mbox{\hyperlink{class_eigen_1_1_matrix}{B}}, gene\+\_\+vector \&X, int N)
+\item 
+\mbox{\Hypertarget{classmtl4__interface_abbfa2f205b4636923dff7ae12d6c45b4}\label{classmtl4__interface_abbfa2f205b4636923dff7ae12d6c45b4}} 
+static void {\bfseries axpy} (const real coef, const gene\+\_\+vector \&X, gene\+\_\+vector \&Y, int N)
+\item 
+\mbox{\Hypertarget{classmtl4__interface_af925280e0c44856358a54d81a34aad09}\label{classmtl4__interface_af925280e0c44856358a54d81a34aad09}} 
+static void {\bfseries axpby} (real a, const gene\+\_\+vector \&X, real b, gene\+\_\+vector \&Y, int N)
+\item 
+\mbox{\Hypertarget{classmtl4__interface_a51283dd52248d281f0e9f47a6ced9824}\label{classmtl4__interface_a51283dd52248d281f0e9f47a6ced9824}} 
+static void {\bfseries trisolve\+\_\+lower} (const gene\+\_\+matrix \&L, const gene\+\_\+vector \&\mbox{\hyperlink{class_eigen_1_1_matrix}{B}}, gene\+\_\+vector \&X, int N)
+\item 
+\mbox{\Hypertarget{classmtl4__interface_a18f1be3a3856f6832bab6c574bee15a5}\label{classmtl4__interface_a18f1be3a3856f6832bab6c574bee15a5}} 
+static void {\bfseries copy\+\_\+matrix} (const gene\+\_\+matrix \&source, gene\+\_\+matrix \&cible, int N)
+\item 
+\mbox{\Hypertarget{classmtl4__interface_a085ae5e0c9dab9baa3294f37afb6cd04}\label{classmtl4__interface_a085ae5e0c9dab9baa3294f37afb6cd04}} 
+static void {\bfseries copy\+\_\+vector} (const gene\+\_\+vector \&source, gene\+\_\+vector \&cible, int N)
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/bench/btl/libs/mtl4/mtl4\+\_\+interface.\+hh\end{DoxyCompactItemize}

@@ -1,0 +1,65 @@
+\hypertarget{struct_eigen_1_1internal_1_1binary__evaluator_3_01_cwise_binary_op_3_01_binary_op_00_01_lhs_00_05c4f9212bd4fb2e2b8664dee5123f03b}{}\doxysection{Eigen\+::internal\+::binary\+\_\+evaluator$<$ Cwise\+Binary\+Op$<$ Binary\+Op, Lhs, Rhs $>$, Iterator\+Based, Iterator\+Based $>$ Struct Template Reference}
+\label{struct_eigen_1_1internal_1_1binary__evaluator_3_01_cwise_binary_op_3_01_binary_op_00_01_lhs_00_05c4f9212bd4fb2e2b8664dee5123f03b}\index{Eigen::internal::binary\_evaluator$<$ CwiseBinaryOp$<$ BinaryOp, Lhs, Rhs $>$, IteratorBased, IteratorBased $>$@{Eigen::internal::binary\_evaluator$<$ CwiseBinaryOp$<$ BinaryOp, Lhs, Rhs $>$, IteratorBased, IteratorBased $>$}}
+Inheritance diagram for Eigen\+::internal\+::binary\+\_\+evaluator$<$ Cwise\+Binary\+Op$<$ Binary\+Op, Lhs, Rhs $>$, Iterator\+Based, Iterator\+Based $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.714055cm]{struct_eigen_1_1internal_1_1binary__evaluator_3_01_cwise_binary_op_3_01_binary_op_00_01_lhs_00_05c4f9212bd4fb2e2b8664dee5123f03b}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_eigen_1_1internal_1_1binary__evaluator_3_01_cwise_binary_op_3_01_binary_op_00_01_lhs_00_01bbcbab6e07c6c8a44f9c2134b78b5906}{Inner\+Iterator}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1binary__evaluator_3_01_cwise_binary_op_3_01_binary_op_00_01_lhs_00_05c4f9212bd4fb2e2b8664dee5123f03b_a174b94656f5513b88f3c990c0027599b}\label{struct_eigen_1_1internal_1_1binary__evaluator_3_01_cwise_binary_op_3_01_binary_op_00_01_lhs_00_05c4f9212bd4fb2e2b8664dee5123f03b_a174b94656f5513b88f3c990c0027599b}} 
+enum \{ {\bfseries Coeff\+Read\+Cost} = evaluator$<$Lhs$>$\+::Coeff\+Read\+Cost + evaluator$<$Rhs$>$\+::Coeff\+Read\+Cost + functor\+\_\+traits$<$Binary\+Op$>$\+::Cost, 
+{\bfseries Flags} = Xpr\+Type\+::Flags
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1binary__evaluator_3_01_cwise_binary_op_3_01_binary_op_00_01_lhs_00_05c4f9212bd4fb2e2b8664dee5123f03b_a7747e8ec8f8ab77d4b5c34d8ec147d63}\label{struct_eigen_1_1internal_1_1binary__evaluator_3_01_cwise_binary_op_3_01_binary_op_00_01_lhs_00_05c4f9212bd4fb2e2b8664dee5123f03b_a7747e8ec8f8ab77d4b5c34d8ec147d63}} 
+{\bfseries binary\+\_\+evaluator} (const \mbox{\hyperlink{class_eigen_1_1_cwise_binary_op}{Xpr\+Type}} \&xpr)
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1binary__evaluator_3_01_cwise_binary_op_3_01_binary_op_00_01_lhs_00_05c4f9212bd4fb2e2b8664dee5123f03b_a9dcef6b1bd94b3ef2340701cb89a7d88}\label{struct_eigen_1_1internal_1_1binary__evaluator_3_01_cwise_binary_op_3_01_binary_op_00_01_lhs_00_05c4f9212bd4fb2e2b8664dee5123f03b_a9dcef6b1bd94b3ef2340701cb89a7d88}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries non\+Zeros\+Estimate} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1binary__evaluator_3_01_cwise_binary_op_3_01_binary_op_00_01_lhs_00_05c4f9212bd4fb2e2b8664dee5123f03b_acb7cc7a296290d6e21c34baf0e2c38ff}\label{struct_eigen_1_1internal_1_1binary__evaluator_3_01_cwise_binary_op_3_01_binary_op_00_01_lhs_00_05c4f9212bd4fb2e2b8664dee5123f03b_acb7cc7a296290d6e21c34baf0e2c38ff}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1evaluator}{evaluator}}$<$ Lhs $>$\+::\mbox{\hyperlink{class_eigen_1_1_inner_iterator}{Inner\+Iterator}} {\bfseries Lhs\+Iterator}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1binary__evaluator_3_01_cwise_binary_op_3_01_binary_op_00_01_lhs_00_05c4f9212bd4fb2e2b8664dee5123f03b_a8b08189bacce399c408feb4ab50a7c78}\label{struct_eigen_1_1internal_1_1binary__evaluator_3_01_cwise_binary_op_3_01_binary_op_00_01_lhs_00_05c4f9212bd4fb2e2b8664dee5123f03b_a8b08189bacce399c408feb4ab50a7c78}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1evaluator}{evaluator}}$<$ Rhs $>$\+::\mbox{\hyperlink{class_eigen_1_1_inner_iterator}{Inner\+Iterator}} {\bfseries Rhs\+Iterator}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1binary__evaluator_3_01_cwise_binary_op_3_01_binary_op_00_01_lhs_00_05c4f9212bd4fb2e2b8664dee5123f03b_ae069e9a63aefcd03761787f7959fc01b}\label{struct_eigen_1_1internal_1_1binary__evaluator_3_01_cwise_binary_op_3_01_binary_op_00_01_lhs_00_05c4f9212bd4fb2e2b8664dee5123f03b_ae069e9a63aefcd03761787f7959fc01b}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_cwise_binary_op}{Cwise\+Binary\+Op}}$<$ Binary\+Op, Lhs, Rhs $>$ {\bfseries Xpr\+Type}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1binary__evaluator_3_01_cwise_binary_op_3_01_binary_op_00_01_lhs_00_05c4f9212bd4fb2e2b8664dee5123f03b_aa23c1b09c906e6b06c6199fbf135ac24}\label{struct_eigen_1_1internal_1_1binary__evaluator_3_01_cwise_binary_op_3_01_binary_op_00_01_lhs_00_05c4f9212bd4fb2e2b8664dee5123f03b_aa23c1b09c906e6b06c6199fbf135ac24}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_cwise_binary_op}{Xpr\+Type}} $>$\+::Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1binary__evaluator_3_01_cwise_binary_op_3_01_binary_op_00_01_lhs_00_05c4f9212bd4fb2e2b8664dee5123f03b_ae3bf399ed58846129f844e952e4171df}\label{struct_eigen_1_1internal_1_1binary__evaluator_3_01_cwise_binary_op_3_01_binary_op_00_01_lhs_00_05c4f9212bd4fb2e2b8664dee5123f03b_ae3bf399ed58846129f844e952e4171df}} 
+typedef Xpr\+Type\+::\+Storage\+Index {\bfseries Storage\+Index}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1binary__evaluator_3_01_cwise_binary_op_3_01_binary_op_00_01_lhs_00_05c4f9212bd4fb2e2b8664dee5123f03b_a25ce5e8eb8ee596b2c0f3b6b43179c70}\label{struct_eigen_1_1internal_1_1binary__evaluator_3_01_cwise_binary_op_3_01_binary_op_00_01_lhs_00_05c4f9212bd4fb2e2b8664dee5123f03b_a25ce5e8eb8ee596b2c0f3b6b43179c70}} 
+const Binary\+Op {\bfseries m\+\_\+functor}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1binary__evaluator_3_01_cwise_binary_op_3_01_binary_op_00_01_lhs_00_05c4f9212bd4fb2e2b8664dee5123f03b_ac9d9bb135cf00c16bb4efea3977a6dbe}\label{struct_eigen_1_1internal_1_1binary__evaluator_3_01_cwise_binary_op_3_01_binary_op_00_01_lhs_00_05c4f9212bd4fb2e2b8664dee5123f03b_ac9d9bb135cf00c16bb4efea3977a6dbe}} 
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1evaluator}{evaluator}}$<$ Lhs $>$ {\bfseries m\+\_\+lhs\+Impl}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1binary__evaluator_3_01_cwise_binary_op_3_01_binary_op_00_01_lhs_00_05c4f9212bd4fb2e2b8664dee5123f03b_a96a2e714753042bdd908cb1e21899d7f}\label{struct_eigen_1_1internal_1_1binary__evaluator_3_01_cwise_binary_op_3_01_binary_op_00_01_lhs_00_05c4f9212bd4fb2e2b8664dee5123f03b_a96a2e714753042bdd908cb1e21899d7f}} 
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1evaluator}{evaluator}}$<$ Rhs $>$ {\bfseries m\+\_\+rhs\+Impl}
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Sparse\+Core/Sparse\+Cwise\+Binary\+Op.\+h\end{DoxyCompactItemize}

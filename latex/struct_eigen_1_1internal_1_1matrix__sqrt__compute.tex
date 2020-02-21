@@ -1,0 +1,59 @@
+\hypertarget{struct_eigen_1_1internal_1_1matrix__sqrt__compute}{}\doxysection{Eigen\+::internal\+::matrix\+\_\+sqrt\+\_\+compute$<$ Matrix\+Type, Is\+Complex $>$ Struct Template Reference}
+\label{struct_eigen_1_1internal_1_1matrix__sqrt__compute}\index{Eigen::internal::matrix\_sqrt\_compute$<$ MatrixType, IsComplex $>$@{Eigen::internal::matrix\_sqrt\_compute$<$ MatrixType, IsComplex $>$}}
+
+
+Helper struct for computing matrix square roots of general matrices.  
+
+
+
+
+{\ttfamily \#include $<$Matrix\+Square\+Root.\+h$>$}
+
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Result\+Type $>$ }\\static void \mbox{\hyperlink{struct_eigen_1_1internal_1_1matrix__sqrt__compute_a29c137f6d7c0cbe4df034be5aed427f6}{run}} (const Matrix\+Type \&arg, Result\+Type \&result)
+\begin{DoxyCompactList}\small\item\em Compute the matrix square root. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Matrix\+Type, int Is\+Complex = Num\+Traits$<$typename internal\+::traits$<$\+Matrix\+Type$>$\+::\+Scalar$>$\+::\+Is\+Complex$>$\newline
+struct Eigen\+::internal\+::matrix\+\_\+sqrt\+\_\+compute$<$ Matrix\+Type, Is\+Complex $>$}
+
+Helper struct for computing matrix square roots of general matrices. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Matrix\+Type} & type of the argument of the matrix square root, expected to be an instantiation of the \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}} class template.\\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxySeeAlso}{See also}
+Matrix\+Square\+Root\+Triangular, Matrix\+Square\+Root\+Quasi\+Triangular, Matrix\+Base\+::sqrt() 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1matrix__sqrt__compute_a29c137f6d7c0cbe4df034be5aed427f6}\label{struct_eigen_1_1internal_1_1matrix__sqrt__compute_a29c137f6d7c0cbe4df034be5aed427f6}} 
+\index{Eigen::internal::matrix\_sqrt\_compute$<$ MatrixType, IsComplex $>$@{Eigen::internal::matrix\_sqrt\_compute$<$ MatrixType, IsComplex $>$}!run@{run}}
+\index{run@{run}!Eigen::internal::matrix\_sqrt\_compute$<$ MatrixType, IsComplex $>$@{Eigen::internal::matrix\_sqrt\_compute$<$ MatrixType, IsComplex $>$}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily template$<$typename Matrix\+Type , int Is\+Complex = Num\+Traits$<$typename internal\+::traits$<$\+Matrix\+Type$>$\+::\+Scalar$>$\+::\+Is\+Complex$>$ \\
+template$<$typename Result\+Type $>$ \\
+static void \mbox{\hyperlink{struct_eigen_1_1internal_1_1matrix__sqrt__compute}{Eigen\+::internal\+::matrix\+\_\+sqrt\+\_\+compute}}$<$ Matrix\+Type, Is\+Complex $>$\+::run (\begin{DoxyParamCaption}\item[{const Matrix\+Type \&}]{arg,  }\item[{Result\+Type \&}]{result }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Compute the matrix square root. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em arg} & matrix whose square root is to be computed. \\
+\hline
+\mbox{\texttt{ out}}  & {\em result} & square root of {\ttfamily arg}.\\
+\hline
+\end{DoxyParams}
+See Matrix\+Base\+::sqrt() for details on how this computation is implemented. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/src/\+Matrix\+Functions/Matrix\+Square\+Root.\+h\end{DoxyCompactItemize}

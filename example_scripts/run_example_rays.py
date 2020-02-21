@@ -17,8 +17,7 @@ from spacepy.time import Ticktock
 R_E = 6371
 
 # -------------- Simulation parameters -----------------
-t_max = 20     # Maximum duration in seconds (changed from 5 to 20 by riley)
-
+t_max = 20     # Maximum duration in seconds
 dt0 = 1e-3      # Initial timestep in seconds
 dtmax = 0.1     # Maximum allowable timestep in seconds
 root = 2        # Which root of the Appleton-Hartree equation
@@ -29,13 +28,13 @@ maxerr = 5.0e-4 # Error bound for adaptive timestepping
 maxsteps = 2e5  # Max number of timesteps (abort if reached)
 use_IGRF = 0    # Magnetic field model (1 for IGRF, 0 for dipole)
 use_tsyg = 1    # Use the Tsyganenko magnetic field model corrections
-minalt   = (R_E + 400)*1e3 # cutoff altitude in meters (changed from 800 to 500 by riley)
+minalt   = (R_E + 400)*1e3 # cutoff altitude in meters
 
 # -------------- Starting ray parameters -------------
-inp_lat = 21;           # launch latitude (geomagnetic)
-inp_lon = 104;            # launch longitude (geomagnetic)
+inp_lat = 5.58;           # launch latitude (geomagnetic)
+inp_lon = 71.5;            # launch longitude (geomagnetic)
 freq = 440;                 # ray frequency in Hz. How about concert A?
-inp_alt = (900+R_E)*1e3         # Launch altitude in meters
+inp_alt = (6000+R_E)*1e3         # Launch altitude in meters
 launch_direction = 'field-aligned'
 
 # -------------- Environmental parameters -------------

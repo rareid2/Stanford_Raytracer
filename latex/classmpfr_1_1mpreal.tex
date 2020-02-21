@@ -1,0 +1,796 @@
+\hypertarget{classmpfr_1_1mpreal}{}\doxysection{mpfr\+::mpreal Class Reference}
+\label{classmpfr_1_1mpreal}\index{mpfr::mpreal@{mpfr::mpreal}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a74b08628ebe3b25cb7e08d28bc87a42d}\label{classmpfr_1_1mpreal_a74b08628ebe3b25cb7e08d28bc87a42d}} 
+{\bfseries mpreal} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&u)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_afc57c4273e1547f98db16b41bc304e14}\label{classmpfr_1_1mpreal_afc57c4273e1547f98db16b41bc304e14}} 
+{\bfseries mpreal} (const mpf\+\_\+t u)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_ad991d6226d8cdd978d743ceefa3969e5}\label{classmpfr_1_1mpreal_ad991d6226d8cdd978d743ceefa3969e5}} 
+{\bfseries mpreal} (const mpz\+\_\+t u, mp\+\_\+prec\+\_\+t prec=mpreal\+::get\+\_\+default\+\_\+prec(), mp\+\_\+rnd\+\_\+t mode=mpreal\+::get\+\_\+default\+\_\+rnd())
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_af8647b1b46480b35ca71ca8b4e963471}\label{classmpfr_1_1mpreal_af8647b1b46480b35ca71ca8b4e963471}} 
+{\bfseries mpreal} (const mpq\+\_\+t u, mp\+\_\+prec\+\_\+t prec=mpreal\+::get\+\_\+default\+\_\+prec(), mp\+\_\+rnd\+\_\+t mode=mpreal\+::get\+\_\+default\+\_\+rnd())
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a719c3d6efce9bf4edf605793b3017a9f}\label{classmpfr_1_1mpreal_a719c3d6efce9bf4edf605793b3017a9f}} 
+{\bfseries mpreal} (const double u, mp\+\_\+prec\+\_\+t prec=mpreal\+::get\+\_\+default\+\_\+prec(), mp\+\_\+rnd\+\_\+t mode=mpreal\+::get\+\_\+default\+\_\+rnd())
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_aa32eb4b480368db0b153cee6a275edcd}\label{classmpfr_1_1mpreal_aa32eb4b480368db0b153cee6a275edcd}} 
+{\bfseries mpreal} (const long double u, mp\+\_\+prec\+\_\+t prec=mpreal\+::get\+\_\+default\+\_\+prec(), mp\+\_\+rnd\+\_\+t mode=mpreal\+::get\+\_\+default\+\_\+rnd())
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_abf092f1b26631d929a3bc8bc9366d5b7}\label{classmpfr_1_1mpreal_abf092f1b26631d929a3bc8bc9366d5b7}} 
+{\bfseries mpreal} (const unsigned long long int u, mp\+\_\+prec\+\_\+t prec=mpreal\+::get\+\_\+default\+\_\+prec(), mp\+\_\+rnd\+\_\+t mode=mpreal\+::get\+\_\+default\+\_\+rnd())
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_afd97c92d01079a2fcc5965ae8c924c98}\label{classmpfr_1_1mpreal_afd97c92d01079a2fcc5965ae8c924c98}} 
+{\bfseries mpreal} (const long long int u, mp\+\_\+prec\+\_\+t prec=mpreal\+::get\+\_\+default\+\_\+prec(), mp\+\_\+rnd\+\_\+t mode=mpreal\+::get\+\_\+default\+\_\+rnd())
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_afe90ffeaa0b8deb8e96aa6df1e55b23d}\label{classmpfr_1_1mpreal_afe90ffeaa0b8deb8e96aa6df1e55b23d}} 
+{\bfseries mpreal} (const unsigned long int u, mp\+\_\+prec\+\_\+t prec=mpreal\+::get\+\_\+default\+\_\+prec(), mp\+\_\+rnd\+\_\+t mode=mpreal\+::get\+\_\+default\+\_\+rnd())
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a0cb61a8a4e5266db74df1ca5f64c1743}\label{classmpfr_1_1mpreal_a0cb61a8a4e5266db74df1ca5f64c1743}} 
+{\bfseries mpreal} (const unsigned int u, mp\+\_\+prec\+\_\+t prec=mpreal\+::get\+\_\+default\+\_\+prec(), mp\+\_\+rnd\+\_\+t mode=mpreal\+::get\+\_\+default\+\_\+rnd())
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_ab3444b6afda61cd871dd426eb078ec19}\label{classmpfr_1_1mpreal_ab3444b6afda61cd871dd426eb078ec19}} 
+{\bfseries mpreal} (const long int u, mp\+\_\+prec\+\_\+t prec=mpreal\+::get\+\_\+default\+\_\+prec(), mp\+\_\+rnd\+\_\+t mode=mpreal\+::get\+\_\+default\+\_\+rnd())
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a57a936769bf2657134b73f041b771e6e}\label{classmpfr_1_1mpreal_a57a936769bf2657134b73f041b771e6e}} 
+{\bfseries mpreal} (const int u, mp\+\_\+prec\+\_\+t prec=mpreal\+::get\+\_\+default\+\_\+prec(), mp\+\_\+rnd\+\_\+t mode=mpreal\+::get\+\_\+default\+\_\+rnd())
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_afe16d889eded45f1fec612bb9671cc06}\label{classmpfr_1_1mpreal_afe16d889eded45f1fec612bb9671cc06}} 
+{\bfseries mpreal} (const mpfr\+\_\+t u, bool shared=false)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_ad296a1c6af9b15eda9c177a22b38af09}\label{classmpfr_1_1mpreal_ad296a1c6af9b15eda9c177a22b38af09}} 
+{\bfseries mpreal} (const char $\ast$s, mp\+\_\+prec\+\_\+t prec=mpreal\+::get\+\_\+default\+\_\+prec(), int base=10, mp\+\_\+rnd\+\_\+t mode=mpreal\+::get\+\_\+default\+\_\+rnd())
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_aec2c38d5275fac999ef1dbbecbd4cf4b}\label{classmpfr_1_1mpreal_aec2c38d5275fac999ef1dbbecbd4cf4b}} 
+{\bfseries mpreal} (const std\+::string \&s, mp\+\_\+prec\+\_\+t prec=mpreal\+::get\+\_\+default\+\_\+prec(), int base=10, mp\+\_\+rnd\+\_\+t mode=mpreal\+::get\+\_\+default\+\_\+rnd())
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a1699f2ceccfc9425091cc4e580b6d799}\label{classmpfr_1_1mpreal_a1699f2ceccfc9425091cc4e580b6d799}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator=} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a4c89896f01bbe7d73e3f1af7ebd4de3d}\label{classmpfr_1_1mpreal_a4c89896f01bbe7d73e3f1af7ebd4de3d}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator=} (const mpf\+\_\+t v)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a146b8d983c0c642fe3e648b223d9995e}\label{classmpfr_1_1mpreal_a146b8d983c0c642fe3e648b223d9995e}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator=} (const mpz\+\_\+t v)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a7bfa3c0ceedeb72dda02dd2b8c5ba146}\label{classmpfr_1_1mpreal_a7bfa3c0ceedeb72dda02dd2b8c5ba146}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator=} (const mpq\+\_\+t v)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a601e6c07470897815e9d900d3dcbebca}\label{classmpfr_1_1mpreal_a601e6c07470897815e9d900d3dcbebca}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator=} (const long double v)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_ab691ed4a075cf08596a1cce0ec8b701f}\label{classmpfr_1_1mpreal_ab691ed4a075cf08596a1cce0ec8b701f}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator=} (const double v)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a405fdd2c06bfc3e07a02e8a3a1da72df}\label{classmpfr_1_1mpreal_a405fdd2c06bfc3e07a02e8a3a1da72df}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator=} (const unsigned long int v)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a24a437b9aad42f73fe18ce215b45e6d0}\label{classmpfr_1_1mpreal_a24a437b9aad42f73fe18ce215b45e6d0}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator=} (const unsigned long long int v)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a4854f8aec75b2d566725fa3176c53efb}\label{classmpfr_1_1mpreal_a4854f8aec75b2d566725fa3176c53efb}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator=} (const long long int v)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a6bf853df98f85a3dffe25d3559369163}\label{classmpfr_1_1mpreal_a6bf853df98f85a3dffe25d3559369163}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator=} (const unsigned int v)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a31e517482686fa0a4fa6cea4d5e445c0}\label{classmpfr_1_1mpreal_a31e517482686fa0a4fa6cea4d5e445c0}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator=} (const long int v)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a6f4c6e29a98fece6d7422fcf94f59230}\label{classmpfr_1_1mpreal_a6f4c6e29a98fece6d7422fcf94f59230}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator=} (const int v)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a6ac45a50f5e74ce3fa616326e924daf3}\label{classmpfr_1_1mpreal_a6ac45a50f5e74ce3fa616326e924daf3}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator=} (const char $\ast$s)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a6eb08aa12d016751003ba7a6441311fb}\label{classmpfr_1_1mpreal_a6eb08aa12d016751003ba7a6441311fb}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator=} (const std\+::string \&s)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a53d576213a366d6eade2db942779370c}\label{classmpfr_1_1mpreal_a53d576213a366d6eade2db942779370c}} 
+{\footnotesize template$<$typename real\+\_\+t $>$ }\\\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator=} (const std\+::complex$<$ real\+\_\+t $>$ \&z)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a599bc5e3105572a45d929000a85045b9}\label{classmpfr_1_1mpreal_a599bc5e3105572a45d929000a85045b9}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator+=} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a11fd44a6fe5b15dd2e8d96c5f65f0b59}\label{classmpfr_1_1mpreal_a11fd44a6fe5b15dd2e8d96c5f65f0b59}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator+=} (const mpf\+\_\+t v)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_af358241f7202834d8ad23023022bdfdd}\label{classmpfr_1_1mpreal_af358241f7202834d8ad23023022bdfdd}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator+=} (const mpz\+\_\+t v)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a3ad00ab797af13b27ac97a6a913c2300}\label{classmpfr_1_1mpreal_a3ad00ab797af13b27ac97a6a913c2300}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator+=} (const mpq\+\_\+t v)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_ace8e22533d35098614513b754a13f770}\label{classmpfr_1_1mpreal_ace8e22533d35098614513b754a13f770}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator+=} (const long double u)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a0dca623e9956147770303ee15878fe34}\label{classmpfr_1_1mpreal_a0dca623e9956147770303ee15878fe34}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator+=} (const double u)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a567045ba2bf2fa0487998c485ea63d59}\label{classmpfr_1_1mpreal_a567045ba2bf2fa0487998c485ea63d59}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator+=} (const unsigned long int u)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_aa17b08d73f23daa92b5c9190b9dc047b}\label{classmpfr_1_1mpreal_aa17b08d73f23daa92b5c9190b9dc047b}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator+=} (const unsigned int u)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a5e329f00abadaf2cce0c8f28e5752532}\label{classmpfr_1_1mpreal_a5e329f00abadaf2cce0c8f28e5752532}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator+=} (const long int u)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a221c5f8aa2f218defc4edc3c674e328b}\label{classmpfr_1_1mpreal_a221c5f8aa2f218defc4edc3c674e328b}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator+=} (const int u)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a938583fa36b2c14f19fe8ed4f4473381}\label{classmpfr_1_1mpreal_a938583fa36b2c14f19fe8ed4f4473381}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator+=} (const long long int u)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a3bc6222a7dc1ac6d4b052caccb31854f}\label{classmpfr_1_1mpreal_a3bc6222a7dc1ac6d4b052caccb31854f}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator+=} (const unsigned long long int u)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a8aafaacaea104a79fb62d8813226500f}\label{classmpfr_1_1mpreal_a8aafaacaea104a79fb62d8813226500f}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator-\/=} (const long long int u)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_af03eaa3ad5b492b8fc8259f80fa03f30}\label{classmpfr_1_1mpreal_af03eaa3ad5b492b8fc8259f80fa03f30}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator-\/=} (const unsigned long long int u)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a5f9aebe5664c2a335468c8ed0d08fa6f}\label{classmpfr_1_1mpreal_a5f9aebe5664c2a335468c8ed0d08fa6f}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator$\ast$=} (const long long int u)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_ab42f3da81f3cff5598e5beb7a5023e01}\label{classmpfr_1_1mpreal_ab42f3da81f3cff5598e5beb7a5023e01}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator$\ast$=} (const unsigned long long int u)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a9f6b4a0f16104e98d0f96b5666b08329}\label{classmpfr_1_1mpreal_a9f6b4a0f16104e98d0f96b5666b08329}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator/=} (const long long int u)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_afea64d8e2e5a6cb47dc70fd9930e511a}\label{classmpfr_1_1mpreal_afea64d8e2e5a6cb47dc70fd9930e511a}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator/=} (const unsigned long long int u)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a3f7f5d20cfe5d4d5cbcee9ad7b450ca3}\label{classmpfr_1_1mpreal_a3f7f5d20cfe5d4d5cbcee9ad7b450ca3}} 
+const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries operator+} () const
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a61a1b623268aceed3a8726043ca36141}\label{classmpfr_1_1mpreal_a61a1b623268aceed3a8726043ca36141}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator++} ()
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_af2055ba5e51b26c340934752cea5369c}\label{classmpfr_1_1mpreal_af2055ba5e51b26c340934752cea5369c}} 
+const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries operator++} (int)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a2536a5acec72aeac5991195d989b58f0}\label{classmpfr_1_1mpreal_a2536a5acec72aeac5991195d989b58f0}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator-\/=} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a1b0d5cf16b75c1ed350293a8aeabfc15}\label{classmpfr_1_1mpreal_a1b0d5cf16b75c1ed350293a8aeabfc15}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator-\/=} (const mpz\+\_\+t v)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a0b7b3405bb6ee8c4c92fe865bae7d9c4}\label{classmpfr_1_1mpreal_a0b7b3405bb6ee8c4c92fe865bae7d9c4}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator-\/=} (const mpq\+\_\+t v)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_ae0d03e2b8b26c0146b1cf30632f9aabd}\label{classmpfr_1_1mpreal_ae0d03e2b8b26c0146b1cf30632f9aabd}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator-\/=} (const long double u)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_ae4ddbb1d37397e2966e36173a295820f}\label{classmpfr_1_1mpreal_ae4ddbb1d37397e2966e36173a295820f}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator-\/=} (const double u)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a8539ff4ec9c132a0edb090b6ea4e7829}\label{classmpfr_1_1mpreal_a8539ff4ec9c132a0edb090b6ea4e7829}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator-\/=} (const unsigned long int u)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a5593ec77590090019911beb2a1626e39}\label{classmpfr_1_1mpreal_a5593ec77590090019911beb2a1626e39}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator-\/=} (const unsigned int u)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a134e91de686b1452c5464a95ebcf0622}\label{classmpfr_1_1mpreal_a134e91de686b1452c5464a95ebcf0622}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator-\/=} (const long int u)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_aebb3a046d6e25569dd3b0acdf9f16107}\label{classmpfr_1_1mpreal_aebb3a046d6e25569dd3b0acdf9f16107}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator-\/=} (const int u)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a27b354824f9819f6e5b08ed3b3bc1d1e}\label{classmpfr_1_1mpreal_a27b354824f9819f6e5b08ed3b3bc1d1e}} 
+const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries operator-\/} () const
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a681766b514d543127679499a280d6f36}\label{classmpfr_1_1mpreal_a681766b514d543127679499a280d6f36}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator-\/-\/} ()
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_aa1475ade1373d162edeac76dcaacd50e}\label{classmpfr_1_1mpreal_aa1475ade1373d162edeac76dcaacd50e}} 
+const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries operator-\/-\/} (int)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a3f74af400dce1b806988bbc1b2e71f7f}\label{classmpfr_1_1mpreal_a3f74af400dce1b806988bbc1b2e71f7f}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator$\ast$=} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a1f3bcd9404bcdf88809f3be75858173b}\label{classmpfr_1_1mpreal_a1f3bcd9404bcdf88809f3be75858173b}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator$\ast$=} (const mpz\+\_\+t v)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a614dbd44cff679973e73912f5134065a}\label{classmpfr_1_1mpreal_a614dbd44cff679973e73912f5134065a}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator$\ast$=} (const mpq\+\_\+t v)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a42ce49a390792207414606eb2e8c3c23}\label{classmpfr_1_1mpreal_a42ce49a390792207414606eb2e8c3c23}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator$\ast$=} (const long double v)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_ac37a367924c0c68781e524ad5a57ecea}\label{classmpfr_1_1mpreal_ac37a367924c0c68781e524ad5a57ecea}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator$\ast$=} (const double v)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a885eea4cadb32ee7629415e0e4417f04}\label{classmpfr_1_1mpreal_a885eea4cadb32ee7629415e0e4417f04}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator$\ast$=} (const unsigned long int v)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a128a405177e3b45ac206a84fa8399bfd}\label{classmpfr_1_1mpreal_a128a405177e3b45ac206a84fa8399bfd}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator$\ast$=} (const unsigned int v)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a0f53d551514bb8be2a4f61b2c987acd7}\label{classmpfr_1_1mpreal_a0f53d551514bb8be2a4f61b2c987acd7}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator$\ast$=} (const long int v)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_adb093a9fc2c67022b88f147f9402420b}\label{classmpfr_1_1mpreal_adb093a9fc2c67022b88f147f9402420b}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator$\ast$=} (const int v)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a51c9c348c197d3f6c1350a8bb8d7388b}\label{classmpfr_1_1mpreal_a51c9c348c197d3f6c1350a8bb8d7388b}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator/=} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_ae0a2fecaed751c86c5b6ec6662aade2c}\label{classmpfr_1_1mpreal_ae0a2fecaed751c86c5b6ec6662aade2c}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator/=} (const mpz\+\_\+t v)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_ad4a57af3693680a29d5e64494323c0ad}\label{classmpfr_1_1mpreal_ad4a57af3693680a29d5e64494323c0ad}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator/=} (const mpq\+\_\+t v)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a90a9bfbcc293820e1377926a282155df}\label{classmpfr_1_1mpreal_a90a9bfbcc293820e1377926a282155df}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator/=} (const long double v)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a6f009ae992b2d480d0269b2c900d4443}\label{classmpfr_1_1mpreal_a6f009ae992b2d480d0269b2c900d4443}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator/=} (const double v)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_af6e80eab23c214524e3e189258e1c49d}\label{classmpfr_1_1mpreal_af6e80eab23c214524e3e189258e1c49d}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator/=} (const unsigned long int v)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a0d835a0db56d3230066dbbbab17e73e5}\label{classmpfr_1_1mpreal_a0d835a0db56d3230066dbbbab17e73e5}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator/=} (const unsigned int v)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_af429c9d09ca6c393da15b818aadbb608}\label{classmpfr_1_1mpreal_af429c9d09ca6c393da15b818aadbb608}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator/=} (const long int v)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_adbfdd0b15032bb84dbc8a7794799b40b}\label{classmpfr_1_1mpreal_adbfdd0b15032bb84dbc8a7794799b40b}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator/=} (const int v)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_ad112dada6ff0284143b9293e24faad46}\label{classmpfr_1_1mpreal_ad112dada6ff0284143b9293e24faad46}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator$<$$<$=} (const unsigned long int u)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a961b4d9199f42aaf41e2da287664ca98}\label{classmpfr_1_1mpreal_a961b4d9199f42aaf41e2da287664ca98}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator$<$$<$=} (const unsigned int u)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_aa79c9ddda376ecd804fa5ca97c44f568}\label{classmpfr_1_1mpreal_aa79c9ddda376ecd804fa5ca97c44f568}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator$<$$<$=} (const long int u)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_affc87cc39468cd2777c57d1402e69b12}\label{classmpfr_1_1mpreal_affc87cc39468cd2777c57d1402e69b12}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator$<$$<$=} (const int u)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a7091280a4eb2278a6b13e41f7e05ccbf}\label{classmpfr_1_1mpreal_a7091280a4eb2278a6b13e41f7e05ccbf}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator$>$$>$=} (const unsigned long int u)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_ae588196811bc2d0c64893fbb153bb060}\label{classmpfr_1_1mpreal_ae588196811bc2d0c64893fbb153bb060}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator$>$$>$=} (const unsigned int u)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a1e1b279915a57320dfca4299a40d1381}\label{classmpfr_1_1mpreal_a1e1b279915a57320dfca4299a40d1381}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator$>$$>$=} (const long int u)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a2182af5564600fa7bbec90dff97fb7f5}\label{classmpfr_1_1mpreal_a2182af5564600fa7bbec90dff97fb7f5}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries operator$>$$>$=} (const int u)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a8668c7c60f1060a9c35cebc1f818e516}\label{classmpfr_1_1mpreal_a8668c7c60f1060a9c35cebc1f818e516}} 
+bool {\bfseries to\+Bool} () const
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a4f3de2ed6629255ee7fb5e3ed9ad50e2}\label{classmpfr_1_1mpreal_a4f3de2ed6629255ee7fb5e3ed9ad50e2}} 
+long {\bfseries to\+Long} (mp\+\_\+rnd\+\_\+t mode=G\+M\+P\+\_\+\+R\+N\+DZ) const
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a283bb8637d725d59ea1b3e2c7159ef8b}\label{classmpfr_1_1mpreal_a283bb8637d725d59ea1b3e2c7159ef8b}} 
+unsigned long {\bfseries to\+U\+Long} (mp\+\_\+rnd\+\_\+t mode=G\+M\+P\+\_\+\+R\+N\+DZ) const
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_aa59c1e2a2ae1ebffc2bf21a13bd55638}\label{classmpfr_1_1mpreal_aa59c1e2a2ae1ebffc2bf21a13bd55638}} 
+long long {\bfseries to\+L\+Long} (mp\+\_\+rnd\+\_\+t mode=G\+M\+P\+\_\+\+R\+N\+DZ) const
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_acbda71ccfc35989a61ef7811262430d0}\label{classmpfr_1_1mpreal_acbda71ccfc35989a61ef7811262430d0}} 
+unsigned long long {\bfseries to\+U\+L\+Long} (mp\+\_\+rnd\+\_\+t mode=G\+M\+P\+\_\+\+R\+N\+DZ) const
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a65701dfcda1e63a744cca47fa979ed29}\label{classmpfr_1_1mpreal_a65701dfcda1e63a744cca47fa979ed29}} 
+float {\bfseries to\+Float} (mp\+\_\+rnd\+\_\+t mode=G\+M\+P\+\_\+\+R\+N\+DN) const
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a392fec4ce0f7ee156acf9a344b81c68f}\label{classmpfr_1_1mpreal_a392fec4ce0f7ee156acf9a344b81c68f}} 
+double {\bfseries to\+Double} (mp\+\_\+rnd\+\_\+t mode=G\+M\+P\+\_\+\+R\+N\+DN) const
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a4dea97c2ce362d9f4cbe49cbce792ca7}\label{classmpfr_1_1mpreal_a4dea97c2ce362d9f4cbe49cbce792ca7}} 
+long double {\bfseries to\+L\+Double} (mp\+\_\+rnd\+\_\+t mode=G\+M\+P\+\_\+\+R\+N\+DN) const
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a915b866f027158e5336bfd59b60e3e76}\label{classmpfr_1_1mpreal_a915b866f027158e5336bfd59b60e3e76}} 
+\+::mpfr\+\_\+ptr {\bfseries mpfr\+\_\+ptr} ()
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_abf7ba82a953b2501b71d736f83454ea1}\label{classmpfr_1_1mpreal_abf7ba82a953b2501b71d736f83454ea1}} 
+\+::mpfr\+\_\+srcptr {\bfseries mpfr\+\_\+ptr} () const
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a566f64ca066c54923d19c11d6c3d15cd}\label{classmpfr_1_1mpreal_a566f64ca066c54923d19c11d6c3d15cd}} 
+\+::mpfr\+\_\+srcptr {\bfseries mpfr\+\_\+srcptr} () const
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_ae4aae5f6374f94dbad8152cad907be01}\label{classmpfr_1_1mpreal_ae4aae5f6374f94dbad8152cad907be01}} 
+std\+::string {\bfseries to\+String} (int n=-\/1, int b=10, mp\+\_\+rnd\+\_\+t mode=mpreal\+::get\+\_\+default\+\_\+rnd()) const
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a2fae3d876f85d4d04bd2ea606b5ccbb6}\label{classmpfr_1_1mpreal_a2fae3d876f85d4d04bd2ea606b5ccbb6}} 
+std\+::string {\bfseries to\+String} (const std\+::string \&format) const
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a3985df8c0026e1919d078bfd5ff9a755}\label{classmpfr_1_1mpreal_a3985df8c0026e1919d078bfd5ff9a755}} 
+std\+::ostream \& {\bfseries output} (std\+::ostream \&os) const
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a3a7ea3586a91489fa7509562becd304d}\label{classmpfr_1_1mpreal_a3a7ea3586a91489fa7509562becd304d}} 
+mp\+\_\+prec\+\_\+t {\bfseries get\+\_\+prec} () const
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a7e096c82de9a582878e55834733788bc}\label{classmpfr_1_1mpreal_a7e096c82de9a582878e55834733788bc}} 
+void {\bfseries set\+\_\+prec} (mp\+\_\+prec\+\_\+t prec, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode=get\+\_\+default\+\_\+rnd())
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_aef1a02c88e35bf7d6e524c587c8f04ff}\label{classmpfr_1_1mpreal_aef1a02c88e35bf7d6e524c587c8f04ff}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries set\+Precision} (int Precision, mp\+\_\+rnd\+\_\+t Rounding\+Mode=get\+\_\+default\+\_\+rnd())
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_ab554a180ceca6eed0e5798b316f944b0}\label{classmpfr_1_1mpreal_ab554a180ceca6eed0e5798b316f944b0}} 
+int {\bfseries get\+Precision} () const
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a4cdc2a97eab3db526d7a4eef802fdd08}\label{classmpfr_1_1mpreal_a4cdc2a97eab3db526d7a4eef802fdd08}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries set\+Inf} (int Sign=+1)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a22dc42100dc3e65b0ab6ecc4e50b8511}\label{classmpfr_1_1mpreal_a22dc42100dc3e65b0ab6ecc4e50b8511}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries set\+Nan} ()
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a69cebb5059e49c332da6d0448248e974}\label{classmpfr_1_1mpreal_a69cebb5059e49c332da6d0448248e974}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries set\+Zero} (int Sign=+1)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a4797fe1018fce0dc04fb47f754776984}\label{classmpfr_1_1mpreal_a4797fe1018fce0dc04fb47f754776984}} 
+\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \& {\bfseries set\+Sign} (int Sign, mp\+\_\+rnd\+\_\+t Rounding\+Mode=get\+\_\+default\+\_\+rnd())
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a28ca7be1715bb0264f49df08050dae8a}\label{classmpfr_1_1mpreal_a28ca7be1715bb0264f49df08050dae8a}} 
+mp\+\_\+exp\+\_\+t {\bfseries get\+\_\+exp} ()
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a6479b3d4adbffa32090235272bde717f}\label{classmpfr_1_1mpreal_a6479b3d4adbffa32090235272bde717f}} 
+int {\bfseries set\+\_\+exp} (mp\+\_\+exp\+\_\+t e)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_aa26641b86f5da7ea4d6c2c152c4f0478}\label{classmpfr_1_1mpreal_aa26641b86f5da7ea4d6c2c152c4f0478}} 
+int {\bfseries check\+\_\+range} (int t, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode=get\+\_\+default\+\_\+rnd())
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a3e1259ddd0b70e450f180416fcb6ebe4}\label{classmpfr_1_1mpreal_a3e1259ddd0b70e450f180416fcb6ebe4}} 
+int {\bfseries subnormalize} (int t, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode=get\+\_\+default\+\_\+rnd())
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_af2562b87b51837e39296db6c224ec034}\label{classmpfr_1_1mpreal_af2562b87b51837e39296db6c224ec034}} 
+bool {\bfseries fits\+\_\+in\+\_\+bits} (double x, int n)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_ae0bdf9ca1838bd5851ac1c7c6b360553}\label{classmpfr_1_1mpreal_ae0bdf9ca1838bd5851ac1c7c6b360553}} 
+static mp\+\_\+rnd\+\_\+t {\bfseries get\+\_\+default\+\_\+rnd} ()
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_aae18e3b781bffbf4fd9938d4d3043aa1}\label{classmpfr_1_1mpreal_aae18e3b781bffbf4fd9938d4d3043aa1}} 
+static mp\+\_\+prec\+\_\+t {\bfseries get\+\_\+default\+\_\+prec} ()
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a9b73e807e478274ffb15289730a0c8cb}\label{classmpfr_1_1mpreal_a9b73e807e478274ffb15289730a0c8cb}} 
+static void {\bfseries set\+\_\+default\+\_\+prec} (mp\+\_\+prec\+\_\+t prec)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a2f1cca163386a7eac4b6b8fd42e1a59e}\label{classmpfr_1_1mpreal_a2f1cca163386a7eac4b6b8fd42e1a59e}} 
+static void {\bfseries set\+\_\+default\+\_\+rnd} (mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a36e85ed79db09759c34ed7fd3633f6f8}\label{classmpfr_1_1mpreal_a36e85ed79db09759c34ed7fd3633f6f8}} 
+static mp\+\_\+exp\+\_\+t {\bfseries get\+\_\+emin} (void)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a657bbecc169f605afbacf5656a2842fd}\label{classmpfr_1_1mpreal_a657bbecc169f605afbacf5656a2842fd}} 
+static mp\+\_\+exp\+\_\+t {\bfseries get\+\_\+emax} (void)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_aabf7b148f6c8086b7865aa8306258b32}\label{classmpfr_1_1mpreal_aabf7b148f6c8086b7865aa8306258b32}} 
+static mp\+\_\+exp\+\_\+t {\bfseries get\+\_\+emin\+\_\+min} (void)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_ae011332a08888a0be59d57f2e72ec4c4}\label{classmpfr_1_1mpreal_ae011332a08888a0be59d57f2e72ec4c4}} 
+static mp\+\_\+exp\+\_\+t {\bfseries get\+\_\+emin\+\_\+max} (void)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a05156da386da2186d1c6c8ae977f1989}\label{classmpfr_1_1mpreal_a05156da386da2186d1c6c8ae977f1989}} 
+static mp\+\_\+exp\+\_\+t {\bfseries get\+\_\+emax\+\_\+min} (void)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a66094b022a262fcd9def5413508eeb92}\label{classmpfr_1_1mpreal_a66094b022a262fcd9def5413508eeb92}} 
+static mp\+\_\+exp\+\_\+t {\bfseries get\+\_\+emax\+\_\+max} (void)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a50385a3c1da8ba2581a85e55862d2278}\label{classmpfr_1_1mpreal_a50385a3c1da8ba2581a85e55862d2278}} 
+static int {\bfseries set\+\_\+emin} (mp\+\_\+exp\+\_\+t exp)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a92c6a0583c16f828e4a4a0a43e817874}\label{classmpfr_1_1mpreal_a92c6a0583c16f828e4a4a0a43e817874}} 
+static int {\bfseries set\+\_\+emax} (mp\+\_\+exp\+\_\+t exp)
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_ae59940edff7ad1bc412896d42cac1107}\label{classmpfr_1_1mpreal_ae59940edff7ad1bc412896d42cac1107}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries operator-\/} (const unsigned long int b, const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&a)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_adb60770f29631836e3ba86d8e6eebc3c}\label{classmpfr_1_1mpreal_adb60770f29631836e3ba86d8e6eebc3c}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries operator-\/} (const unsigned int b, const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&a)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a7c89fb98b6bbb4d4865ae96485f8df2c}\label{classmpfr_1_1mpreal_a7c89fb98b6bbb4d4865ae96485f8df2c}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries operator-\/} (const long int b, const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&a)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_aa9dc530037157b688c5f3f7d989305ff}\label{classmpfr_1_1mpreal_aa9dc530037157b688c5f3f7d989305ff}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries operator-\/} (const int b, const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&a)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a8b79f142a741ee261308dd34a1456ce7}\label{classmpfr_1_1mpreal_a8b79f142a741ee261308dd34a1456ce7}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries operator-\/} (const double b, const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&a)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a0e8e551961962b0685bdd1a6edfc717f}\label{classmpfr_1_1mpreal_a0e8e551961962b0685bdd1a6edfc717f}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries operator/} (const unsigned long int b, const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&a)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a32cb8488c555297aeddedd7f9fde1c4c}\label{classmpfr_1_1mpreal_a32cb8488c555297aeddedd7f9fde1c4c}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries operator/} (const unsigned int b, const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&a)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_af913b5db3cab0a3043a2bcffa883669c}\label{classmpfr_1_1mpreal_af913b5db3cab0a3043a2bcffa883669c}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries operator/} (const long int b, const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&a)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a8a3a191da4862bf8031efc34b5f08369}\label{classmpfr_1_1mpreal_a8a3a191da4862bf8031efc34b5f08369}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries operator/} (const int b, const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&a)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a7d5d7ae458cb29af1a0d70ca6a3f2bdb}\label{classmpfr_1_1mpreal_a7d5d7ae458cb29af1a0d70ca6a3f2bdb}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries operator/} (const double b, const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&a)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a3159d96495661555b131fbb6f7062b7d}\label{classmpfr_1_1mpreal_a3159d96495661555b131fbb6f7062b7d}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries sqr} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a2dab7f61c48554fbe7983e89ddde0ca2}\label{classmpfr_1_1mpreal_a2dab7f61c48554fbe7983e89ddde0ca2}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries sqrt} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_aad84c16ed3135db8ed6a5e7fc1b90d99}\label{classmpfr_1_1mpreal_aad84c16ed3135db8ed6a5e7fc1b90d99}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries sqrt} (const unsigned long int v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a8d3b5447e637fe30c504dab8af506195}\label{classmpfr_1_1mpreal_a8d3b5447e637fe30c504dab8af506195}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries cbrt} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a22efa265c1e7a85d18ec79ecc8a24b76}\label{classmpfr_1_1mpreal_a22efa265c1e7a85d18ec79ecc8a24b76}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries root} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, unsigned long int k, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a140e3c02c83671ec4812e0f05fd8e52b}\label{classmpfr_1_1mpreal_a140e3c02c83671ec4812e0f05fd8e52b}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries pow} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&a, const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&b, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a34d1770acaca8ebdf2a37f93a0c210c9}\label{classmpfr_1_1mpreal_a34d1770acaca8ebdf2a37f93a0c210c9}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries pow} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&a, const mpz\+\_\+t b, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_af13a9da92c2e631a54594b95c795b7f3}\label{classmpfr_1_1mpreal_af13a9da92c2e631a54594b95c795b7f3}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries pow} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&a, const unsigned long int b, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a8c3f1288e40f04a3c7ad494ee6cac53e}\label{classmpfr_1_1mpreal_a8c3f1288e40f04a3c7ad494ee6cac53e}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries pow} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&a, const long int b, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a1a1832337d1b3e20d207e8e7a38680e2}\label{classmpfr_1_1mpreal_a1a1832337d1b3e20d207e8e7a38680e2}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries pow} (const unsigned long int a, const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&b, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_aeb8a18633ab737a89d20feeafa5ffadf}\label{classmpfr_1_1mpreal_aeb8a18633ab737a89d20feeafa5ffadf}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries pow} (const unsigned long int a, const unsigned long int b, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a2072d017d8a12724c5ce6dba63e02258}\label{classmpfr_1_1mpreal_a2072d017d8a12724c5ce6dba63e02258}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries fabs} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a2470dd8932e8492574aa9f6ab6375354}\label{classmpfr_1_1mpreal_a2470dd8932e8492574aa9f6ab6375354}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries abs} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a3a63d87bcff230f66ddc72b876ed5988}\label{classmpfr_1_1mpreal_a3a63d87bcff230f66ddc72b876ed5988}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries dim} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&a, const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&b, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_ab4352298d84c7f41b82ff8e8179dd639}\label{classmpfr_1_1mpreal_ab4352298d84c7f41b82ff8e8179dd639}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries mul\+\_\+2ui} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, unsigned long int k, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_ad6f3dc1115fdf1c128a2cefa887b8387}\label{classmpfr_1_1mpreal_ad6f3dc1115fdf1c128a2cefa887b8387}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries mul\+\_\+2si} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, long int k, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_af8b52940243f476a88a043a29399812b}\label{classmpfr_1_1mpreal_af8b52940243f476a88a043a29399812b}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries div\+\_\+2ui} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, unsigned long int k, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_ab8344ad4e2f5a745d77a9899c4a8faa3}\label{classmpfr_1_1mpreal_ab8344ad4e2f5a745d77a9899c4a8faa3}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries div\+\_\+2si} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, long int k, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_ac27aec15567e6dc87bd2305636d36aad}\label{classmpfr_1_1mpreal_ac27aec15567e6dc87bd2305636d36aad}} 
+int {\bfseries cmpabs} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&a, const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&b)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a7b4cec1f62e5b7f2c60f9adef29b06a1}\label{classmpfr_1_1mpreal_a7b4cec1f62e5b7f2c60f9adef29b06a1}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries log} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a9f4f06670a07a8299a09cb2d7eef88e7}\label{classmpfr_1_1mpreal_a9f4f06670a07a8299a09cb2d7eef88e7}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries log2} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a6a3f837868f35b3fc36ef59a75e6ad78}\label{classmpfr_1_1mpreal_a6a3f837868f35b3fc36ef59a75e6ad78}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries logb} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a6c3cef3e80ed716a34375442d9c3f59f}\label{classmpfr_1_1mpreal_a6c3cef3e80ed716a34375442d9c3f59f}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries log10} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a104c263b4ec365bc77a123ffe3030ed5}\label{classmpfr_1_1mpreal_a104c263b4ec365bc77a123ffe3030ed5}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries exp} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a0327950522d75824fe7387052a84a4f3}\label{classmpfr_1_1mpreal_a0327950522d75824fe7387052a84a4f3}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries exp2} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_aefc547c183e259dbeee6e443a0af5892}\label{classmpfr_1_1mpreal_aefc547c183e259dbeee6e443a0af5892}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries exp10} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a08d438044a1db328868ecb034eae67a9}\label{classmpfr_1_1mpreal_a08d438044a1db328868ecb034eae67a9}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries log1p} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a9fb18da2e8681cec6531de38e8732543}\label{classmpfr_1_1mpreal_a9fb18da2e8681cec6531de38e8732543}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries expm1} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a370496683af44981e47a573c6460da85}\label{classmpfr_1_1mpreal_a370496683af44981e47a573c6460da85}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries cos} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a78712b0fc1725f679ded51a5ea5ea7b0}\label{classmpfr_1_1mpreal_a78712b0fc1725f679ded51a5ea5ea7b0}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries sin} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_abfa638a20d8418c0ed478de644bc2714}\label{classmpfr_1_1mpreal_abfa638a20d8418c0ed478de644bc2714}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries tan} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_aa8b553552e79ccca3c2c9d4ee55c15b2}\label{classmpfr_1_1mpreal_aa8b553552e79ccca3c2c9d4ee55c15b2}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries sec} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_acc22d7c5a85ab23383cc76d576b12df8}\label{classmpfr_1_1mpreal_acc22d7c5a85ab23383cc76d576b12df8}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries csc} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a58b19d4d007ade66aaebf1fb607523ec}\label{classmpfr_1_1mpreal_a58b19d4d007ade66aaebf1fb607523ec}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries cot} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a1de4bf2b882f278e3ccabec09a1c020d}\label{classmpfr_1_1mpreal_a1de4bf2b882f278e3ccabec09a1c020d}} 
+int {\bfseries sin\+\_\+cos} (\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&s, \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&c, const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a4c96d575ac6462aa14fd025a6d161f0b}\label{classmpfr_1_1mpreal_a4c96d575ac6462aa14fd025a6d161f0b}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries acos} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a5ff53fed1cb51bffd4195012282c3be2}\label{classmpfr_1_1mpreal_a5ff53fed1cb51bffd4195012282c3be2}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries asin} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a45bb1eadb3fc75820ed92872151ba50f}\label{classmpfr_1_1mpreal_a45bb1eadb3fc75820ed92872151ba50f}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries atan} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a216836615e95f6bedff236fe30899ce8}\label{classmpfr_1_1mpreal_a216836615e95f6bedff236fe30899ce8}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries atan2} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&y, const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&x, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a4e9e63e3f2243c9ecc6adc5e69b09bb7}\label{classmpfr_1_1mpreal_a4e9e63e3f2243c9ecc6adc5e69b09bb7}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries acot} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_ad9b5d480298dfab612acaf81b392bf23}\label{classmpfr_1_1mpreal_ad9b5d480298dfab612acaf81b392bf23}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries asec} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a1d380f1f7d14e2db9f2e7ac9713c0914}\label{classmpfr_1_1mpreal_a1d380f1f7d14e2db9f2e7ac9713c0914}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries acsc} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a098259e16e50b23d9b1f37957035689c}\label{classmpfr_1_1mpreal_a098259e16e50b23d9b1f37957035689c}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries cosh} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a1bc50846dca301ba24f27eaf6a39141a}\label{classmpfr_1_1mpreal_a1bc50846dca301ba24f27eaf6a39141a}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries sinh} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a266b92639df2b1e418348911a81a0f30}\label{classmpfr_1_1mpreal_a266b92639df2b1e418348911a81a0f30}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries tanh} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_ad98ebb97e38c1c5f6f10fd9e9da0b098}\label{classmpfr_1_1mpreal_ad98ebb97e38c1c5f6f10fd9e9da0b098}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries sech} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a993301c4e1c82e63f4255deda31902cd}\label{classmpfr_1_1mpreal_a993301c4e1c82e63f4255deda31902cd}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries csch} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a323b25c61b8dca455b40916d917eb1cc}\label{classmpfr_1_1mpreal_a323b25c61b8dca455b40916d917eb1cc}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries coth} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a1d2ae4fcf11de8fe4040eaa46b7ed44f}\label{classmpfr_1_1mpreal_a1d2ae4fcf11de8fe4040eaa46b7ed44f}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries acosh} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a75570d9e62f5d8d60aabdf2229e2df80}\label{classmpfr_1_1mpreal_a75570d9e62f5d8d60aabdf2229e2df80}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries asinh} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a966522c1bf5e624bad8f4f9796080191}\label{classmpfr_1_1mpreal_a966522c1bf5e624bad8f4f9796080191}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries atanh} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a4d41ab36db23febe5543c5124f6261ec}\label{classmpfr_1_1mpreal_a4d41ab36db23febe5543c5124f6261ec}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries acoth} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_ac51268a292c44bf1ca12881959dc9cb3}\label{classmpfr_1_1mpreal_ac51268a292c44bf1ca12881959dc9cb3}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries asech} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a9de3b2b7e84f3ca4bd9bb22f38547b73}\label{classmpfr_1_1mpreal_a9de3b2b7e84f3ca4bd9bb22f38547b73}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries acsch} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_aabd530c52251185b2180d313ce6a83eb}\label{classmpfr_1_1mpreal_aabd530c52251185b2180d313ce6a83eb}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries hypot} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&x, const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&y, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a21061462ac9fb2f44c98a74981132160}\label{classmpfr_1_1mpreal_a21061462ac9fb2f44c98a74981132160}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries fac\+\_\+ui} (unsigned long int v, mp\+\_\+prec\+\_\+t prec, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a6fc903ffe64034da8c2f68380fe436c0}\label{classmpfr_1_1mpreal_a6fc903ffe64034da8c2f68380fe436c0}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries eint} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a93da19b1a4a83b95987b61546121d7a8}\label{classmpfr_1_1mpreal_a93da19b1a4a83b95987b61546121d7a8}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries gamma} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a1ce6df2772a20b9601e0741c1cb6c2d1}\label{classmpfr_1_1mpreal_a1ce6df2772a20b9601e0741c1cb6c2d1}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries tgamma} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_aaa50b65a4792be553c50ea2148e9bf89}\label{classmpfr_1_1mpreal_aaa50b65a4792be553c50ea2148e9bf89}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries lngamma} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a2e65fec1773a880e2ad70fe997ec47dc}\label{classmpfr_1_1mpreal_a2e65fec1773a880e2ad70fe997ec47dc}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries lgamma} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, int $\ast$signp, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a56d80c8bff0bd5354b8f56a42f8621fc}\label{classmpfr_1_1mpreal_a56d80c8bff0bd5354b8f56a42f8621fc}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries zeta} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a7c1226697da013c11d71575a2f22c20f}\label{classmpfr_1_1mpreal_a7c1226697da013c11d71575a2f22c20f}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries erf} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a6f61408d2f72ced328141781bc44076d}\label{classmpfr_1_1mpreal_a6f61408d2f72ced328141781bc44076d}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries erfc} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a18f534fa82cb1dd85680f67e5c0e7afb}\label{classmpfr_1_1mpreal_a18f534fa82cb1dd85680f67e5c0e7afb}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries besselj0} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a2e6c146a884a1c7a2301f68160242bd7}\label{classmpfr_1_1mpreal_a2e6c146a884a1c7a2301f68160242bd7}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries besselj1} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_adb82ad0c103f8ab1f6af281d5ef688ae}\label{classmpfr_1_1mpreal_adb82ad0c103f8ab1f6af281d5ef688ae}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries besseljn} (long n, const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_ac3a1c1eb427fcb52385dbd3adbaa4674}\label{classmpfr_1_1mpreal_ac3a1c1eb427fcb52385dbd3adbaa4674}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries bessely0} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a6d3ca1fe3cd09d74fa028e588324fb32}\label{classmpfr_1_1mpreal_a6d3ca1fe3cd09d74fa028e588324fb32}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries bessely1} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a268799a03b21f51352202e8b7b744cf8}\label{classmpfr_1_1mpreal_a268799a03b21f51352202e8b7b744cf8}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries besselyn} (long n, const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a230fff689406392f31c617b16d69760d}\label{classmpfr_1_1mpreal_a230fff689406392f31c617b16d69760d}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries fma} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v1, const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v2, const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v3, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a55c5103274b0a64ec242daffb2e42be1}\label{classmpfr_1_1mpreal_a55c5103274b0a64ec242daffb2e42be1}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries fms} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v1, const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v2, const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v3, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a2ccc78b4a2808051b8df64af8ee08ae5}\label{classmpfr_1_1mpreal_a2ccc78b4a2808051b8df64af8ee08ae5}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries agm} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v1, const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v2, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_ae08b6ab42e4d80dfdd8c56bc88a57d54}\label{classmpfr_1_1mpreal_ae08b6ab42e4d80dfdd8c56bc88a57d54}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries sum} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} tab\mbox{[}$\,$\mbox{]}, const unsigned long int n, int \&status, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a6d0d38004b8d7c4fcbaa5df8cbc7178c}\label{classmpfr_1_1mpreal_a6d0d38004b8d7c4fcbaa5df8cbc7178c}} 
+int {\bfseries sgn} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_aa5a869f108d3bc294cc59972aaa7102b}\label{classmpfr_1_1mpreal_aa5a869f108d3bc294cc59972aaa7102b}} 
+int {\bfseries sinh\+\_\+cosh} (\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&s, \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&c, const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a2ca1d2b47465886e7311ceaada4cb754}\label{classmpfr_1_1mpreal_a2ca1d2b47465886e7311ceaada4cb754}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries li2} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a70aac22d91ebc9fbf0a7db554ef04dcf}\label{classmpfr_1_1mpreal_a70aac22d91ebc9fbf0a7db554ef04dcf}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries fmod} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&x, const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&y, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a8f8971f816341b2b91f109045856ebde}\label{classmpfr_1_1mpreal_a8f8971f816341b2b91f109045856ebde}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries rec\+\_\+sqrt} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a376912865c92858f768c81829670098d}\label{classmpfr_1_1mpreal_a376912865c92858f768c81829670098d}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries rem} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&x, const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&y, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a2600eaa1295f8f48870875e614cc8433}\label{classmpfr_1_1mpreal_a2600eaa1295f8f48870875e614cc8433}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries mod} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&x, const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&y, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a632770bde4ce1ec1b855c91d2e154a20}\label{classmpfr_1_1mpreal_a632770bde4ce1ec1b855c91d2e154a20}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries digamma} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_aba065deb805e32d4dd81d35574494bb3}\label{classmpfr_1_1mpreal_aba065deb805e32d4dd81d35574494bb3}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries ai} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_adf65932d5eb9b7db739e6c8197ceb464}\label{classmpfr_1_1mpreal_adf65932d5eb9b7db739e6c8197ceb464}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries urandom} (gmp\+\_\+randstate\+\_\+t \&state, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a04e7f93a94d6f46a8871a7f9578676fa}\label{classmpfr_1_1mpreal_a04e7f93a94d6f46a8871a7f9578676fa}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries grandom} (gmp\+\_\+randstate\+\_\+t \&state, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_ab1e3a708dd39b6a7fa28a3c2aa4a0e8d}\label{classmpfr_1_1mpreal_ab1e3a708dd39b6a7fa28a3c2aa4a0e8d}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries grandom} (unsigned int seed)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a903c81f59fda6bba15af71846ef60b04}\label{classmpfr_1_1mpreal_a903c81f59fda6bba15af71846ef60b04}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries random} (unsigned int seed)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_aacc5bc0c75437f192c4f5f9849add5d8}\label{classmpfr_1_1mpreal_aacc5bc0c75437f192c4f5f9849add5d8}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries modf} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&n)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a1fc93166f7ab21599b0c4d555e743330}\label{classmpfr_1_1mpreal_a1fc93166f7ab21599b0c4d555e743330}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries const\+\_\+log2} (mp\+\_\+prec\+\_\+t prec, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a6f732dafda8d410744836713bc7f47d4}\label{classmpfr_1_1mpreal_a6f732dafda8d410744836713bc7f47d4}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries const\+\_\+pi} (mp\+\_\+prec\+\_\+t prec, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_ab0b5605b75753a3b3f6faaee6af323c6}\label{classmpfr_1_1mpreal_ab0b5605b75753a3b3f6faaee6af323c6}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries const\+\_\+euler} (mp\+\_\+prec\+\_\+t prec, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_aacfb1259ee1daebcac7602ecaaa1c9e9}\label{classmpfr_1_1mpreal_aacfb1259ee1daebcac7602ecaaa1c9e9}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries const\+\_\+catalan} (mp\+\_\+prec\+\_\+t prec, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_aa03a7926a475fc97bd29b1b32b3141aa}\label{classmpfr_1_1mpreal_aa03a7926a475fc97bd29b1b32b3141aa}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries const\+\_\+infinity} (int sign, mp\+\_\+prec\+\_\+t prec)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a777669be7a1401649a85a77e148f48c0}\label{classmpfr_1_1mpreal_a777669be7a1401649a85a77e148f48c0}} 
+std\+::ostream \& {\bfseries operator$<$$<$} (std\+::ostream \&os, const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a4794a8726e371763295dea52873c78a5}\label{classmpfr_1_1mpreal_a4794a8726e371763295dea52873c78a5}} 
+std\+::istream \& {\bfseries operator$>$$>$} (std\+::istream \&is, \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a4b18d5efebbb96dc7ae155cbd7792419}\label{classmpfr_1_1mpreal_a4b18d5efebbb96dc7ae155cbd7792419}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries rint} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a0ed0e5980d42d2780b8184a133d9ec76}\label{classmpfr_1_1mpreal_a0ed0e5980d42d2780b8184a133d9ec76}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries ceil} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a86d85e530d2134840ab3b42613f643d4}\label{classmpfr_1_1mpreal_a86d85e530d2134840ab3b42613f643d4}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries floor} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a928eef07d974e441ae58c92ed8b67a16}\label{classmpfr_1_1mpreal_a928eef07d974e441ae58c92ed8b67a16}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries round} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a69ed8def39fbbe4e4288284cdf5ccb20}\label{classmpfr_1_1mpreal_a69ed8def39fbbe4e4288284cdf5ccb20}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries trunc} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a0d7136286c567d416b328ca0cdb0df0c}\label{classmpfr_1_1mpreal_a0d7136286c567d416b328ca0cdb0df0c}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries rint\+\_\+ceil} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a4154169c6bf181cf25333a9f58acadf1}\label{classmpfr_1_1mpreal_a4154169c6bf181cf25333a9f58acadf1}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries rint\+\_\+floor} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a266f3c7efa2657d84b9c6b90306cb3fc}\label{classmpfr_1_1mpreal_a266f3c7efa2657d84b9c6b90306cb3fc}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries rint\+\_\+round} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a46581ab1edd2af6dee12c093d45caa3e}\label{classmpfr_1_1mpreal_a46581ab1edd2af6dee12c093d45caa3e}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries rint\+\_\+trunc} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_aa90854592c9ce594e37700a5c75f38d2}\label{classmpfr_1_1mpreal_aa90854592c9ce594e37700a5c75f38d2}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries frac} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_ab8f9b0b5c2508418c3dc16972cd1453f}\label{classmpfr_1_1mpreal_ab8f9b0b5c2508418c3dc16972cd1453f}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries remainder} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&x, const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&y, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a6821fd89bfe204f455bb8d6f9d02a497}\label{classmpfr_1_1mpreal_a6821fd89bfe204f455bb8d6f9d02a497}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries remquo} (long $\ast$q, const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&x, const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&y, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_aacbdab9efab67bf291ffce0241553c15}\label{classmpfr_1_1mpreal_aacbdab9efab67bf291ffce0241553c15}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries nexttoward} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&x, const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&y)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_aec40d55d73eb61c4350fb1582e43fbfd}\label{classmpfr_1_1mpreal_aec40d55d73eb61c4350fb1582e43fbfd}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries nextabove} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&x)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a775745f4f3df78d4a460debe98f38bb1}\label{classmpfr_1_1mpreal_a775745f4f3df78d4a460debe98f38bb1}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries nextbelow} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&x)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a27a3af2e05cb41aa76a1114bf74260cc}\label{classmpfr_1_1mpreal_a27a3af2e05cb41aa76a1114bf74260cc}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries urandomb} (gmp\+\_\+randstate\+\_\+t \&state)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a976f178f62157e4a6feee48dfa920a80}\label{classmpfr_1_1mpreal_a976f178f62157e4a6feee48dfa920a80}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries random2} (mp\+\_\+size\+\_\+t size, mp\+\_\+exp\+\_\+t exp)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_ae5a94d2e143c07951b7240ac95390df7}\label{classmpfr_1_1mpreal_ae5a94d2e143c07951b7240ac95390df7}} 
+bool() {\bfseries isnan} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a7699954862f6fb59ee3905d124694608}\label{classmpfr_1_1mpreal_a7699954862f6fb59ee3905d124694608}} 
+bool() {\bfseries isinf} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a70a81c885e2fefe53c850d82989925f2}\label{classmpfr_1_1mpreal_a70a81c885e2fefe53c850d82989925f2}} 
+bool() {\bfseries isfinite} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_aecd109d7efc9f5fbcdd6ff180a9361fd}\label{classmpfr_1_1mpreal_aecd109d7efc9f5fbcdd6ff180a9361fd}} 
+bool {\bfseries isnum} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_aced5c3fe849c0f4f4717f1f4b4217932}\label{classmpfr_1_1mpreal_aced5c3fe849c0f4f4717f1f4b4217932}} 
+bool {\bfseries iszero} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_aa71f5e9cfce9c94c285bf7e2be87df9c}\label{classmpfr_1_1mpreal_aa71f5e9cfce9c94c285bf7e2be87df9c}} 
+bool {\bfseries isint} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_aab30c989272836557b19153ccc190835}\label{classmpfr_1_1mpreal_aab30c989272836557b19153ccc190835}} 
+bool {\bfseries isregular} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&v)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_abe1580967102f81bd80296c994d72291}\label{classmpfr_1_1mpreal_abe1580967102f81bd80296c994d72291}} 
+void {\bfseries swap} (\mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&x, \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&y)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a92d70422913a835646b6a6ff68f9b318}\label{classmpfr_1_1mpreal_a92d70422913a835646b6a6ff68f9b318}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries fmax} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&x, const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&y, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\item 
+\mbox{\Hypertarget{classmpfr_1_1mpreal_a8e1ed35615eb8f0e7bd6375f391c40be}\label{classmpfr_1_1mpreal_a8e1ed35615eb8f0e7bd6375f391c40be}} 
+const friend \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} {\bfseries fmin} (const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&x, const \mbox{\hyperlink{classmpfr_1_1mpreal}{mpreal}} \&y, mp\+\_\+rnd\+\_\+t rnd\+\_\+mode)
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/test/mpreal/mpreal.\+h\end{DoxyCompactItemize}

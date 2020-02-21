@@ -1,0 +1,38 @@
+\hypertarget{struct_eigen_1_1internal_1_1generic__product__impl_3_01_lhs_00_01_rhs_00_01_dense_shape_00_01_de08ea17a2bb9af046a7c3ddff957c62b0}{}\doxysection{Eigen\+::internal\+::generic\+\_\+product\+\_\+impl$<$ Lhs, Rhs, Dense\+Shape, Dense\+Shape, Gemv\+Product $>$ Struct Template Reference}
+\label{struct_eigen_1_1internal_1_1generic__product__impl_3_01_lhs_00_01_rhs_00_01_dense_shape_00_01_de08ea17a2bb9af046a7c3ddff957c62b0}\index{Eigen::internal::generic\_product\_impl$<$ Lhs, Rhs, DenseShape, DenseShape, GemvProduct $>$@{Eigen::internal::generic\_product\_impl$<$ Lhs, Rhs, DenseShape, DenseShape, GemvProduct $>$}}
+Inheritance diagram for Eigen\+::internal\+::generic\+\_\+product\+\_\+impl$<$ Lhs, Rhs, Dense\+Shape, Dense\+Shape, Gemv\+Product $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.421320cm]{struct_eigen_1_1internal_1_1generic__product__impl_3_01_lhs_00_01_rhs_00_01_dense_shape_00_01_de08ea17a2bb9af046a7c3ddff957c62b0}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1generic__product__impl_3_01_lhs_00_01_rhs_00_01_dense_shape_00_01_de08ea17a2bb9af046a7c3ddff957c62b0_a26f8e77a3e1702e69a58bca4ea056faf}\label{struct_eigen_1_1internal_1_1generic__product__impl_3_01_lhs_00_01_rhs_00_01_dense_shape_00_01_de08ea17a2bb9af046a7c3ddff957c62b0_a26f8e77a3e1702e69a58bca4ea056faf}} 
+enum \{ {\bfseries Side} = Lhs\+::Is\+Vector\+At\+Compile\+Time ? On\+The\+Left \+: On\+The\+Right
+ \}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1generic__product__impl_3_01_lhs_00_01_rhs_00_01_dense_shape_00_01_de08ea17a2bb9af046a7c3ddff957c62b0_a1a79587ef5a2bf73ddfeea19a4c0923e}\label{struct_eigen_1_1internal_1_1generic__product__impl_3_01_lhs_00_01_rhs_00_01_dense_shape_00_01_de08ea17a2bb9af046a7c3ddff957c62b0_a1a79587ef5a2bf73ddfeea19a4c0923e}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1nested__eval}{nested\+\_\+eval}}$<$ Lhs, 1 $>$\+::type {\bfseries Lhs\+Nested}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1generic__product__impl_3_01_lhs_00_01_rhs_00_01_dense_shape_00_01_de08ea17a2bb9af046a7c3ddff957c62b0_aca8444e4ca795a68d6c5c9abfecdf761}\label{struct_eigen_1_1internal_1_1generic__product__impl_3_01_lhs_00_01_rhs_00_01_dense_shape_00_01_de08ea17a2bb9af046a7c3ddff957c62b0_aca8444e4ca795a68d6c5c9abfecdf761}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1nested__eval}{nested\+\_\+eval}}$<$ Rhs, 1 $>$\+::type {\bfseries Rhs\+Nested}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1generic__product__impl_3_01_lhs_00_01_rhs_00_01_dense_shape_00_01_de08ea17a2bb9af046a7c3ddff957c62b0_a59ca00a9b3299df178c59062fd5d4aab}\label{struct_eigen_1_1internal_1_1generic__product__impl_3_01_lhs_00_01_rhs_00_01_dense_shape_00_01_de08ea17a2bb9af046a7c3ddff957c62b0_a59ca00a9b3299df178c59062fd5d4aab}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_product}{Product}}$<$ Lhs, Rhs $>$\+::Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1generic__product__impl_3_01_lhs_00_01_rhs_00_01_dense_shape_00_01_de08ea17a2bb9af046a7c3ddff957c62b0_a575508a1fc3c0ef7a04dce7d33e08b3a}\label{struct_eigen_1_1internal_1_1generic__product__impl_3_01_lhs_00_01_rhs_00_01_dense_shape_00_01_de08ea17a2bb9af046a7c3ddff957c62b0_a575508a1fc3c0ef7a04dce7d33e08b3a}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{internal\+::remove\+\_\+all}}$<$ typename \mbox{\hyperlink{struct_eigen_1_1internal_1_1conditional}{internal\+::conditional}}$<$ int(Side)==\mbox{\hyperlink{group__enums_ggac22de43beeac7a78b384f99bed5cee0ba329fc3a54ceb2b6e0e73b400998b8a82}{On\+The\+Right}}, \mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Lhs\+Nested}}, \mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Rhs\+Nested}} $>$\+::type $>$\+::type {\bfseries Matrix\+Type}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1generic__product__impl_3_01_lhs_00_01_rhs_00_01_dense_shape_00_01_de08ea17a2bb9af046a7c3ddff957c62b0_a8baafd628addab2c5bc815dde9c8eb9b}\label{struct_eigen_1_1internal_1_1generic__product__impl_3_01_lhs_00_01_rhs_00_01_dense_shape_00_01_de08ea17a2bb9af046a7c3ddff957c62b0_a8baafd628addab2c5bc815dde9c8eb9b}} 
+{\footnotesize template$<$typename Dest $>$ }\\static E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE void {\bfseries scale\+And\+Add\+To} (Dest \&dst, const Lhs \&lhs, const Rhs \&rhs, const Scalar \&alpha)
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/Product\+Evaluators.\+h\end{DoxyCompactItemize}

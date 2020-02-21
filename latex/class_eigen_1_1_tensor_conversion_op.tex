@@ -1,0 +1,65 @@
+\hypertarget{class_eigen_1_1_tensor_conversion_op}{}\doxysection{Eigen\+::Tensor\+Conversion\+Op$<$ Target\+Type, Xpr\+Type $>$ Class Template Reference}
+\label{class_eigen_1_1_tensor_conversion_op}\index{Eigen::TensorConversionOp$<$ TargetType, XprType $>$@{Eigen::TensorConversionOp$<$ TargetType, XprType $>$}}
+
+
+\mbox{\hyperlink{class_eigen_1_1_tensor}{Tensor}} conversion class. This class makes it possible to vectorize type casting operations when the number of scalars per packet in the source and the destination type differ.  
+
+
+
+
+{\ttfamily \#include $<$Tensor\+Conversion.\+h$>$}
+
+Inheritance diagram for Eigen\+::Tensor\+Conversion\+Op$<$ Target\+Type, Xpr\+Type $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_eigen_1_1_tensor_conversion_op}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_conversion_op_ac871dd4b36d79e4f230180105c5efed4}\label{class_eigen_1_1_tensor_conversion_op_ac871dd4b36d79e4f230180105c5efed4}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_tensor_conversion_op}{Tensor\+Conversion\+Op}} $>$\+::Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_conversion_op_a41fcb6a201998f6d1bbc9070445df9ff}\label{class_eigen_1_1_tensor_conversion_op_a41fcb6a201998f6d1bbc9070445df9ff}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_tensor_conversion_op}{Tensor\+Conversion\+Op}} $>$\+::Storage\+Kind {\bfseries Storage\+Kind}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_conversion_op_ac7c68058d4475ca4b84ae9e8a3f376e0}\label{class_eigen_1_1_tensor_conversion_op_ac7c68058d4475ca4b84ae9e8a3f376e0}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_tensor_conversion_op}{Tensor\+Conversion\+Op}} $>$\+::Index {\bfseries Index}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_conversion_op_af18f9121fee79ffa57fbe69befea605b}\label{class_eigen_1_1_tensor_conversion_op_af18f9121fee79ffa57fbe69befea605b}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1nested}{internal\+::nested}}$<$ \mbox{\hyperlink{class_eigen_1_1_tensor_conversion_op}{Tensor\+Conversion\+Op}} $>$\+::type {\bfseries Nested}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_conversion_op_a82e8ed75416e8661a7106e064cb48196}\label{class_eigen_1_1_tensor_conversion_op_a82e8ed75416e8661a7106e064cb48196}} 
+typedef Scalar {\bfseries Coeff\+Return\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_conversion_op_a5d80c004750e3460cbbe41aeb4b86672}\label{class_eigen_1_1_tensor_conversion_op_a5d80c004750e3460cbbe41aeb4b86672}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$ Scalar $>$\+::Real {\bfseries Real\+Scalar}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_conversion_op_a851ec93ca1b52e50c682c9542bc79d6a}\label{class_eigen_1_1_tensor_conversion_op_a851ec93ca1b52e50c682c9542bc79d6a}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE {\bfseries Tensor\+Conversion\+Op} (const Xpr\+Type \&xpr)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_conversion_op_abd03a6571c387ba62a727998b95525c1}\label{class_eigen_1_1_tensor_conversion_op_abd03a6571c387ba62a727998b95525c1}} 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{internal\+::remove\+\_\+all}}$<$ typename Xpr\+Type\+::\+Nested $>$\+::type \& {\bfseries expression} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_tensor_conversion_op_aaa47abd5b83f631335607d2a0f56d911}\label{class_eigen_1_1_tensor_conversion_op_aaa47abd5b83f631335607d2a0f56d911}} 
+Xpr\+Type\+::\+Nested {\bfseries m\+\_\+xpr}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Target\+Type, typename Xpr\+Type$>$\newline
+class Eigen\+::\+Tensor\+Conversion\+Op$<$ Target\+Type, Xpr\+Type $>$}
+
+\mbox{\hyperlink{class_eigen_1_1_tensor}{Tensor}} conversion class. This class makes it possible to vectorize type casting operations when the number of scalars per packet in the source and the destination type differ. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/\+C\+X\+X11/src/\+Tensor/Tensor\+Conversion.\+h\end{DoxyCompactItemize}

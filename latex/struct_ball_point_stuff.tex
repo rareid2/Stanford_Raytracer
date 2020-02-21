@@ -1,0 +1,88 @@
+\hypertarget{struct_ball_point_stuff}{}\doxysection{Ball\+Point\+Stuff$<$ Dim $>$ Struct Template Reference}
+\label{struct_ball_point_stuff}\index{BallPointStuff$<$ Dim $>$@{BallPointStuff$<$ Dim $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_ball_point_stuff_a9abb441fdc3ee8d174544fd0a886e16f}\label{struct_ball_point_stuff_a9abb441fdc3ee8d174544fd0a886e16f}} 
+typedef double {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{struct_ball_point_stuff_ad28c35c35ec23d8ca99ec0fd5f9680ce}\label{struct_ball_point_stuff_ad28c35c35ec23d8ca99ec0fd5f9680ce}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ double, Dim, 1 $>$ {\bfseries Vector\+Type}
+\item 
+\mbox{\Hypertarget{struct_ball_point_stuff_ac349707cb8f921f556d67d9e78c10963}\label{struct_ball_point_stuff_ac349707cb8f921f556d67d9e78c10963}} 
+typedef \mbox{\hyperlink{struct_ball}{Ball}}$<$ Dim $>$ {\bfseries Ball\+Type}
+\item 
+\mbox{\Hypertarget{struct_ball_point_stuff_a409930ee0df5dca8737b5ea508307ebc}\label{struct_ball_point_stuff_a409930ee0df5dca8737b5ea508307ebc}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Aligned\+Box}}$<$ double, Dim $>$ {\bfseries Box\+Type}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_ball_point_stuff_a99062d9afc6afe1f8a7c8853cd723176}\label{struct_ball_point_stuff_a99062d9afc6afe1f8a7c8853cd723176}} 
+{\bfseries Ball\+Point\+Stuff} (const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \&inP)
+\item 
+\mbox{\Hypertarget{struct_ball_point_stuff_a76bc551923878fb4d404b21c2c0500da}\label{struct_ball_point_stuff_a76bc551923878fb4d404b21c2c0500da}} 
+bool {\bfseries intersect\+Volume} (const \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Box\+Type}} \&r)
+\item 
+\mbox{\Hypertarget{struct_ball_point_stuff_ac9ee65aeabd3c24f7b6577b7dd17a8e8}\label{struct_ball_point_stuff_ac9ee65aeabd3c24f7b6577b7dd17a8e8}} 
+bool {\bfseries intersect\+Object} (const \mbox{\hyperlink{struct_ball}{Ball\+Type}} \&b)
+\item 
+\mbox{\Hypertarget{struct_ball_point_stuff_a272cdbc5fd934c41f1a346d4c91d531a}\label{struct_ball_point_stuff_a272cdbc5fd934c41f1a346d4c91d531a}} 
+bool {\bfseries intersect\+Volume\+Volume} (const \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Box\+Type}} \&r1, const \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Box\+Type}} \&r2)
+\item 
+\mbox{\Hypertarget{struct_ball_point_stuff_ae4baa20e64034648bffabcee2f649281}\label{struct_ball_point_stuff_ae4baa20e64034648bffabcee2f649281}} 
+bool {\bfseries intersect\+Volume\+Object} (const \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Box\+Type}} \&r, const \mbox{\hyperlink{struct_ball}{Ball\+Type}} \&b)
+\item 
+\mbox{\Hypertarget{struct_ball_point_stuff_a80c45be6a67043c8384a0f8c0efa9869}\label{struct_ball_point_stuff_a80c45be6a67043c8384a0f8c0efa9869}} 
+bool {\bfseries intersect\+Object\+Volume} (const \mbox{\hyperlink{struct_ball}{Ball\+Type}} \&b, const \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Box\+Type}} \&r)
+\item 
+\mbox{\Hypertarget{struct_ball_point_stuff_af04b82e9447744045197d438f52ba517}\label{struct_ball_point_stuff_af04b82e9447744045197d438f52ba517}} 
+bool {\bfseries intersect\+Object\+Object} (const \mbox{\hyperlink{struct_ball}{Ball\+Type}} \&b1, const \mbox{\hyperlink{struct_ball}{Ball\+Type}} \&b2)
+\item 
+\mbox{\Hypertarget{struct_ball_point_stuff_add0cd9514df2bc591981918cc97e5201}\label{struct_ball_point_stuff_add0cd9514df2bc591981918cc97e5201}} 
+bool {\bfseries intersect\+Volume\+Object} (const \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Box\+Type}} \&r, const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \&v)
+\item 
+\mbox{\Hypertarget{struct_ball_point_stuff_ab88745ed3b3b54f82c410d91675f3be9}\label{struct_ball_point_stuff_ab88745ed3b3b54f82c410d91675f3be9}} 
+bool {\bfseries intersect\+Object\+Object} (const \mbox{\hyperlink{struct_ball}{Ball\+Type}} \&b, const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \&v)
+\item 
+\mbox{\Hypertarget{struct_ball_point_stuff_a3d46c4b90956c91b849e6ceb4d2c8423}\label{struct_ball_point_stuff_a3d46c4b90956c91b849e6ceb4d2c8423}} 
+double {\bfseries minimum\+On\+Volume} (const \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Box\+Type}} \&r)
+\item 
+\mbox{\Hypertarget{struct_ball_point_stuff_a2a21e6a7f4ca3c45ede152799c1531f2}\label{struct_ball_point_stuff_a2a21e6a7f4ca3c45ede152799c1531f2}} 
+double {\bfseries minimum\+On\+Object} (const \mbox{\hyperlink{struct_ball}{Ball\+Type}} \&b)
+\item 
+\mbox{\Hypertarget{struct_ball_point_stuff_ae7bcb3f2b204fd91867535dcd869a433}\label{struct_ball_point_stuff_ae7bcb3f2b204fd91867535dcd869a433}} 
+double {\bfseries minimum\+On\+Volume\+Volume} (const \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Box\+Type}} \&r1, const \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Box\+Type}} \&r2)
+\item 
+\mbox{\Hypertarget{struct_ball_point_stuff_a3bcf3e32fe9b91adac660f17d14e15b1}\label{struct_ball_point_stuff_a3bcf3e32fe9b91adac660f17d14e15b1}} 
+double {\bfseries minimum\+On\+Volume\+Object} (const \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Box\+Type}} \&r, const \mbox{\hyperlink{struct_ball}{Ball\+Type}} \&b)
+\item 
+\mbox{\Hypertarget{struct_ball_point_stuff_ac5ff4bc8b68c12ea9342c2a525839bc8}\label{struct_ball_point_stuff_ac5ff4bc8b68c12ea9342c2a525839bc8}} 
+double {\bfseries minimum\+On\+Object\+Volume} (const \mbox{\hyperlink{struct_ball}{Ball\+Type}} \&b, const \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Box\+Type}} \&r)
+\item 
+\mbox{\Hypertarget{struct_ball_point_stuff_a4dfb3e06ed68a87e41fb5928b8af3ade}\label{struct_ball_point_stuff_a4dfb3e06ed68a87e41fb5928b8af3ade}} 
+double {\bfseries minimum\+On\+Object\+Object} (const \mbox{\hyperlink{struct_ball}{Ball\+Type}} \&b1, const \mbox{\hyperlink{struct_ball}{Ball\+Type}} \&b2)
+\item 
+\mbox{\Hypertarget{struct_ball_point_stuff_ac6d7b05db89a8639fe0b9dfaac19e7ef}\label{struct_ball_point_stuff_ac6d7b05db89a8639fe0b9dfaac19e7ef}} 
+double {\bfseries minimum\+On\+Volume\+Object} (const \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Box\+Type}} \&r, const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \&v)
+\item 
+\mbox{\Hypertarget{struct_ball_point_stuff_a6887f6414530bb2859c05f20c0d2c175}\label{struct_ball_point_stuff_a6887f6414530bb2859c05f20c0d2c175}} 
+double {\bfseries minimum\+On\+Object\+Object} (const \mbox{\hyperlink{struct_ball}{Ball\+Type}} \&b, const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \&v)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_ball_point_stuff_a2c55234ade26f374bd39c2fe980ec314}\label{struct_ball_point_stuff_a2c55234ade26f374bd39c2fe980ec314}} 
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} {\bfseries p}
+\item 
+\mbox{\Hypertarget{struct_ball_point_stuff_a8f94a04329d9818f675514bede547f73}\label{struct_ball_point_stuff_a8f94a04329d9818f675514bede547f73}} 
+int {\bfseries calls}
+\item 
+\mbox{\Hypertarget{struct_ball_point_stuff_ae48b8d3fc0f3647022f8dc6ab0c5cfde}\label{struct_ball_point_stuff_ae48b8d3fc0f3647022f8dc6ab0c5cfde}} 
+int {\bfseries count}
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/test/B\+V\+H.\+cpp\end{DoxyCompactItemize}

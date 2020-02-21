@@ -1,0 +1,66 @@
+\hypertarget{struct_eigen_1_1internal_1_1evaluator_3_01_sparse_compressed_base_3_01_derived_01_4_01_4}{}\doxysection{Eigen\+::internal\+::evaluator$<$ Sparse\+Compressed\+Base$<$ Derived $>$ $>$ Struct Template Reference}
+\label{struct_eigen_1_1internal_1_1evaluator_3_01_sparse_compressed_base_3_01_derived_01_4_01_4}\index{Eigen::internal::evaluator$<$ SparseCompressedBase$<$ Derived $>$ $>$@{Eigen::internal::evaluator$<$ SparseCompressedBase$<$ Derived $>$ $>$}}
+Inheritance diagram for Eigen\+::internal\+::evaluator$<$ Sparse\+Compressed\+Base$<$ Derived $>$ $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{struct_eigen_1_1internal_1_1evaluator_3_01_sparse_compressed_base_3_01_derived_01_4_01_4}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1evaluator_3_01_sparse_compressed_base_3_01_derived_01_4_01_4_a98811b95cac10e1f5b2fce295fa4c680}\label{struct_eigen_1_1internal_1_1evaluator_3_01_sparse_compressed_base_3_01_derived_01_4_01_4_a98811b95cac10e1f5b2fce295fa4c680}} 
+enum \{ {\bfseries Coeff\+Read\+Cost} = Num\+Traits$<$Scalar$>$\+::Read\+Cost, 
+{\bfseries Flags} = Derived\+::Flags
+ \}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1evaluator_3_01_sparse_compressed_base_3_01_derived_01_4_01_4_a0ee9c4e4302545da033cb6574a92b0c5}\label{struct_eigen_1_1internal_1_1evaluator_3_01_sparse_compressed_base_3_01_derived_01_4_01_4_a0ee9c4e4302545da033cb6574a92b0c5}} 
+typedef Derived\+::\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1evaluator_3_01_sparse_compressed_base_3_01_derived_01_4_01_4_abc5d24ea2cacb1f9fa79e7e936e70816}\label{struct_eigen_1_1internal_1_1evaluator_3_01_sparse_compressed_base_3_01_derived_01_4_01_4_abc5d24ea2cacb1f9fa79e7e936e70816}} 
+typedef Derived\+::\+Inner\+Iterator {\bfseries Inner\+Iterator}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1evaluator_3_01_sparse_compressed_base_3_01_derived_01_4_01_4_a6a09f2251fbe97b764aedfe9a05a19d7}\label{struct_eigen_1_1internal_1_1evaluator_3_01_sparse_compressed_base_3_01_derived_01_4_01_4_a6a09f2251fbe97b764aedfe9a05a19d7}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_dense_coeffs_base}{Dense\+Coeffs\+Base}}$<$ Derived, \mbox{\hyperlink{group__enums_gga9f93eac38eb83deb0e8dbd42ddf11d5daa1f2b0e6a668b11f2958940965d2b572}{Read\+Only\+Accessors}} $>$\+::Coeff\+Return\+Type {\bfseries Coeff\+Return\+Type}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1evaluator_3_01_sparse_compressed_base_3_01_derived_01_4_01_4_a8966591401961c5fca4e62c2b8528e64}\label{struct_eigen_1_1internal_1_1evaluator_3_01_sparse_compressed_base_3_01_derived_01_4_01_4_a8966591401961c5fca4e62c2b8528e64}} 
+{\bfseries evaluator} (const Derived \&mat)
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1evaluator_3_01_sparse_compressed_base_3_01_derived_01_4_01_4_a74c6ee3163e15762c0db29c1b7b4e713}\label{struct_eigen_1_1internal_1_1evaluator_3_01_sparse_compressed_base_3_01_derived_01_4_01_4_a74c6ee3163e15762c0db29c1b7b4e713}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries non\+Zeros\+Estimate} () const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1evaluator_3_01_sparse_compressed_base_3_01_derived_01_4_01_4_ab4e0103cff2c817eb14041310678f803}\label{struct_eigen_1_1internal_1_1evaluator_3_01_sparse_compressed_base_3_01_derived_01_4_01_4_ab4e0103cff2c817eb14041310678f803}} 
+{\bfseries operator Derived \&} ()
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1evaluator_3_01_sparse_compressed_base_3_01_derived_01_4_01_4_a9cf03d1ff5caf19c5d09c5302cad0247}\label{struct_eigen_1_1internal_1_1evaluator_3_01_sparse_compressed_base_3_01_derived_01_4_01_4_a9cf03d1ff5caf19c5d09c5302cad0247}} 
+{\bfseries operator const Derived \&} () const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1evaluator_3_01_sparse_compressed_base_3_01_derived_01_4_01_4_a63fb9cb11ea2851c27a6216b31338c52}\label{struct_eigen_1_1internal_1_1evaluator_3_01_sparse_compressed_base_3_01_derived_01_4_01_4_a63fb9cb11ea2851c27a6216b31338c52}} 
+const Scalar \& {\bfseries coeff} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col) const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1evaluator_3_01_sparse_compressed_base_3_01_derived_01_4_01_4_aca6df0008fe8db31ad15d21777ac88ca}\label{struct_eigen_1_1internal_1_1evaluator_3_01_sparse_compressed_base_3_01_derived_01_4_01_4_aca6df0008fe8db31ad15d21777ac88ca}} 
+Scalar \& {\bfseries coeff\+Ref} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1evaluator_3_01_sparse_compressed_base_3_01_derived_01_4_01_4_a4c68f588a99a46a47ee5b3f75f3a5bf8}\label{struct_eigen_1_1internal_1_1evaluator_3_01_sparse_compressed_base_3_01_derived_01_4_01_4_a4c68f588a99a46a47ee5b3f75f3a5bf8}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries find} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1evaluator_3_01_sparse_compressed_base_3_01_derived_01_4_01_4_a7ade0dc31f165f3a986b6b071fb8bc58}\label{struct_eigen_1_1internal_1_1evaluator_3_01_sparse_compressed_base_3_01_derived_01_4_01_4_a7ade0dc31f165f3a986b6b071fb8bc58}} 
+const Derived $\ast$ {\bfseries m\+\_\+matrix}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1internal_1_1evaluator_3_01_sparse_compressed_base_3_01_derived_01_4_01_4_aae5203679f27d57f812976ee83afc227}\label{struct_eigen_1_1internal_1_1evaluator_3_01_sparse_compressed_base_3_01_derived_01_4_01_4_aae5203679f27d57f812976ee83afc227}} 
+const Scalar {\bfseries m\+\_\+zero}
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Sparse\+Core/Sparse\+Compressed\+Base.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,133 @@
+\hypertarget{struct_eigen_1_1_tensor_evaluator}{}\doxysection{Eigen\+::Tensor\+Evaluator$<$ Derived, Device $>$ Class Template Reference}
+\label{struct_eigen_1_1_tensor_evaluator}\index{Eigen::TensorEvaluator$<$ Derived, Device $>$@{Eigen::TensorEvaluator$<$ Derived, Device $>$}}
+
+
+A cost model used to limit the number of threads used for evaluating tensor expression.  
+
+
+
+
+{\ttfamily \#include $<$Tensor\+Cost\+Model.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_aca37bb17829287c64a79b8c1d4a88606}\label{struct_eigen_1_1_tensor_evaluator_aca37bb17829287c64a79b8c1d4a88606}} 
+enum \{ {\bfseries Is\+Aligned} = Derived\+::Is\+Aligned, 
+{\bfseries Packet\+Access} = (internal\+::unpacket\+\_\+traits$<$Packet\+Return\+Type$>$\+::size $>$ 1), 
+{\bfseries Layout} = Derived\+::Layout
+ \}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_a932b320bc0d4f0c027d28f6f9918bbc6}\label{struct_eigen_1_1_tensor_evaluator_a932b320bc0d4f0c027d28f6f9918bbc6}} 
+typedef Derived\+::\+Index {\bfseries Index}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_a163cadb184cc08462355caf1031115a4}\label{struct_eigen_1_1_tensor_evaluator_a163cadb184cc08462355caf1031115a4}} 
+typedef Derived\+::\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_a664eb29b0c38061939b400fbc551c580}\label{struct_eigen_1_1_tensor_evaluator_a664eb29b0c38061939b400fbc551c580}} 
+typedef Derived\+::\+Scalar {\bfseries Coeff\+Return\+Type}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_abe9fdcfec79a555a6762f8443c6a6a2c}\label{struct_eigen_1_1_tensor_evaluator_abe9fdcfec79a555a6762f8443c6a6a2c}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_packet_type}{Packet\+Type}}$<$ Coeff\+Return\+Type, Device $>$\+::type {\bfseries Packet\+Return\+Type}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_ac4139a59583bb1e6385d3a0195548b6b}\label{struct_eigen_1_1_tensor_evaluator_ac4139a59583bb1e6385d3a0195548b6b}} 
+typedef Derived\+::\+Dimensions {\bfseries Dimensions}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_a43bea98dc719e3b6ac73ab2df0291455}\label{struct_eigen_1_1_tensor_evaluator_a43bea98dc719e3b6ac73ab2df0291455}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE {\bfseries Tensor\+Evaluator} (const Derived \&m, const Device \&\mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_a98b51809ed8f7a1f736eb7b952b9636e}{device}})
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_aabcd5bdca16b32dd86ebddd3b37b1f6c}\label{struct_eigen_1_1_tensor_evaluator_aabcd5bdca16b32dd86ebddd3b37b1f6c}} 
+const Derived \& {\bfseries derived} () const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_adac9ea07379564104381037c6a5e2d7f}\label{struct_eigen_1_1_tensor_evaluator_adac9ea07379564104381037c6a5e2d7f}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Dimensions \& {\bfseries dimensions} () const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_ae188d806978166eb8cbffbd63c944fb3}\label{struct_eigen_1_1_tensor_evaluator_ae188d806978166eb8cbffbd63c944fb3}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE bool {\bfseries eval\+Sub\+Exprs\+If\+Needed} (Coeff\+Return\+Type $\ast$dest)
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_a76ec54bcca9523ec104aaa9adaf74983}\label{struct_eigen_1_1_tensor_evaluator_a76ec54bcca9523ec104aaa9adaf74983}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE void {\bfseries cleanup} ()
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_a7747e4223120fe698801fa12c186561d}\label{struct_eigen_1_1_tensor_evaluator_a7747e4223120fe698801fa12c186561d}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Coeff\+Return\+Type {\bfseries coeff} (Index index) const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_ac3af69e412d8b4f1e65fcca48e08db26}\label{struct_eigen_1_1_tensor_evaluator_ac3af69e412d8b4f1e65fcca48e08db26}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Scalar \& {\bfseries coeff\+Ref} (Index index)
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_af8ba36b08b6aaabc799d5d86a48dcb9d}\label{struct_eigen_1_1_tensor_evaluator_af8ba36b08b6aaabc799d5d86a48dcb9d}} 
+{\footnotesize template$<$int Load\+Mode$>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_triplet}{Packet\+Return\+Type}} {\bfseries packet} (Index index) const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_ab67599edd4fad044494d6043ddc876df}\label{struct_eigen_1_1_tensor_evaluator_ab67599edd4fad044494d6043ddc876df}} 
+{\footnotesize template$<$int Store\+Mode$>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE void {\bfseries write\+Packet} (Index index, const \mbox{\hyperlink{class_eigen_1_1_triplet}{Packet\+Return\+Type}} \&x)
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_aefd30945bf0ff3afa451a750bcd10158}\label{struct_eigen_1_1_tensor_evaluator_aefd30945bf0ff3afa451a750bcd10158}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Coeff\+Return\+Type {\bfseries coeff} (const \mbox{\hyperlink{class_eigen_1_1array}{array}}$<$ Dense\+Index, Num\+Coords $>$ \&coords) const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_a78e691c3a908d98afe75f3d9b1101669}\label{struct_eigen_1_1_tensor_evaluator_a78e691c3a908d98afe75f3d9b1101669}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Scalar \& {\bfseries coeff\+Ref} (const \mbox{\hyperlink{class_eigen_1_1array}{array}}$<$ Dense\+Index, Num\+Coords $>$ \&coords)
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_af3251d42e115c7c14f7c82a68a3b799d}\label{struct_eigen_1_1_tensor_evaluator_af3251d42e115c7c14f7c82a68a3b799d}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_tensor_op_cost}{Tensor\+Op\+Cost}} {\bfseries cost\+Per\+Coeff} (bool vectorized) const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_a2eea86ebd5046050b35b417a17a0e749}\label{struct_eigen_1_1_tensor_evaluator_a2eea86ebd5046050b35b417a17a0e749}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ Derived $>$\+::template \mbox{\hyperlink{struct_eigen_1_1_make_pointer}{Make\+Pointer}}$<$ Scalar $>$\+::Type {\bfseries data} () const
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_a98b51809ed8f7a1f736eb7b952b9636e}\label{struct_eigen_1_1_tensor_evaluator_a98b51809ed8f7a1f736eb7b952b9636e}} 
+const Device \& \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator_a98b51809ed8f7a1f736eb7b952b9636e}{device}} () const
+\begin{DoxyCompactList}\small\item\em required by sycl in order to construct sycl buffer from raw pointer \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static const int {\bfseries Num\+Coords}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_a9f43988037092bdbd6b8e60d03df6d60}\label{struct_eigen_1_1_tensor_evaluator_a9f43988037092bdbd6b8e60d03df6d60}} 
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ Derived $>$\+::template \mbox{\hyperlink{struct_eigen_1_1_make_pointer}{Make\+Pointer}}$<$ Scalar $>$\+::Type {\bfseries m\+\_\+data}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_a4dd80cef8c2ef13f419d3f1c4d1ea198}\label{struct_eigen_1_1_tensor_evaluator_a4dd80cef8c2ef13f419d3f1c4d1ea198}} 
+Dimensions {\bfseries m\+\_\+dims}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_a13eb5009d2c2e60155de55e7c3d2bd6f}\label{struct_eigen_1_1_tensor_evaluator_a13eb5009d2c2e60155de55e7c3d2bd6f}} 
+const Device \& {\bfseries m\+\_\+device}
+\item 
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_aa71daf2f52a3753294e445f823e50956}\label{struct_eigen_1_1_tensor_evaluator_aa71daf2f52a3753294e445f823e50956}} 
+const Derived \& {\bfseries m\+\_\+impl}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Derived, typename Device$>$\newline
+class Eigen\+::\+Tensor\+Evaluator$<$ Derived, Device $>$}
+
+A cost model used to limit the number of threads used for evaluating tensor expression. 
+
+The tensor evaluator classes.
+
+These classes are responsible for the evaluation of the tensor expression.
+
+T\+O\+DO\+: add support for more types of expressions, in particular expressions leading to lvalues (slicing, reshaping, etc...) 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{struct_eigen_1_1_tensor_evaluator_a29350fbd4c81a9c6c4a1daa9ac6b822a}\label{struct_eigen_1_1_tensor_evaluator_a29350fbd4c81a9c6c4a1daa9ac6b822a}} 
+\index{Eigen::TensorEvaluator$<$ Derived, Device $>$@{Eigen::TensorEvaluator$<$ Derived, Device $>$}!NumCoords@{NumCoords}}
+\index{NumCoords@{NumCoords}!Eigen::TensorEvaluator$<$ Derived, Device $>$@{Eigen::TensorEvaluator$<$ Derived, Device $>$}}
+\doxysubsubsection{\texorpdfstring{NumCoords}{NumCoords}}
+{\footnotesize\ttfamily template$<$typename Derived , typename Device $>$ \\
+const int \mbox{\hyperlink{struct_eigen_1_1_tensor_evaluator}{Eigen\+::\+Tensor\+Evaluator}}$<$ Derived, Device $>$\+::Num\+Coords\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= internal::traits<Derived>::NumDimensions > 0 ?}
+\DoxyCodeLine{                               internal::traits<Derived>::NumDimensions : 0}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/unsupported/\+Eigen/\+C\+X\+X11/src/\+Tensor/Tensor\+Evaluator.\+h\end{DoxyCompactItemize}

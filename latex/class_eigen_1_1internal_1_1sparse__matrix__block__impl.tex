@@ -1,0 +1,121 @@
+\hypertarget{class_eigen_1_1internal_1_1sparse__matrix__block__impl}{}\doxysection{Eigen\+::internal\+::sparse\+\_\+matrix\+\_\+block\+\_\+impl$<$ Sparse\+Matrix\+Type, Block\+Rows, Block\+Cols $>$ Class Template Reference}
+\label{class_eigen_1_1internal_1_1sparse__matrix__block__impl}\index{Eigen::internal::sparse\_matrix\_block\_impl$<$ SparseMatrixType, BlockRows, BlockCols $>$@{Eigen::internal::sparse\_matrix\_block\_impl$<$ SparseMatrixType, BlockRows, BlockCols $>$}}
+Inheritance diagram for Eigen\+::internal\+::sparse\+\_\+matrix\+\_\+block\+\_\+impl$<$ Sparse\+Matrix\+Type, Block\+Rows, Block\+Cols $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_eigen_1_1internal_1_1sparse__matrix__block__impl}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1sparse__matrix__block__impl_a162472de983430610f4ed0bbe3a3ad76}\label{class_eigen_1_1internal_1_1sparse__matrix__block__impl_a162472de983430610f4ed0bbe3a3ad76}} 
+enum \{ {\bfseries Is\+Row\+Major} = internal\+::traits$<$Block\+Type$>$\+::Is\+Row\+Major
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1sparse__matrix__block__impl_a774cbba24725f7aff7dd861ea497726e}\label{class_eigen_1_1internal_1_1sparse__matrix__block__impl_a774cbba24725f7aff7dd861ea497726e}} 
+{\bfseries sparse\+\_\+matrix\+\_\+block\+\_\+impl} (Sparse\+Matrix\+Type \&xpr, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} i)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1sparse__matrix__block__impl_af1e7119b5d54afe75bf374e2e5600e32}\label{class_eigen_1_1internal_1_1sparse__matrix__block__impl_af1e7119b5d54afe75bf374e2e5600e32}} 
+{\bfseries sparse\+\_\+matrix\+\_\+block\+\_\+impl} (Sparse\+Matrix\+Type \&xpr, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} start\+Row, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} start\+Col, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} block\+Rows, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} block\+Cols)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1sparse__matrix__block__impl_a1163a9d4638cbd5f950d413805842374}\label{class_eigen_1_1internal_1_1sparse__matrix__block__impl_a1163a9d4638cbd5f950d413805842374}} 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\\mbox{\hyperlink{class_eigen_1_1_block}{Block\+Type}} \& {\bfseries operator=} (const \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base}{Sparse\+Matrix\+Base}}$<$ Other\+Derived $>$ \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1sparse__matrix__block__impl_aae730b7511c6b56fad9cc6a118b43f35}\label{class_eigen_1_1internal_1_1sparse__matrix__block__impl_aae730b7511c6b56fad9cc6a118b43f35}} 
+\mbox{\hyperlink{class_eigen_1_1_block}{Block\+Type}} \& {\bfseries operator=} (const \mbox{\hyperlink{class_eigen_1_1_block}{Block\+Type}} \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1sparse__matrix__block__impl_abadc00922ce8ee648673eb7d11149d59}\label{class_eigen_1_1internal_1_1sparse__matrix__block__impl_abadc00922ce8ee648673eb7d11149d59}} 
+const Scalar $\ast$ {\bfseries value\+Ptr} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1sparse__matrix__block__impl_acb2138832cabff4115a9f5e6ecfe12c9}\label{class_eigen_1_1internal_1_1sparse__matrix__block__impl_acb2138832cabff4115a9f5e6ecfe12c9}} 
+Scalar $\ast$ {\bfseries value\+Ptr} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1sparse__matrix__block__impl_a0746c7f2edb192473158ae76211fce88}\label{class_eigen_1_1internal_1_1sparse__matrix__block__impl_a0746c7f2edb192473158ae76211fce88}} 
+const Storage\+Index $\ast$ {\bfseries inner\+Index\+Ptr} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1sparse__matrix__block__impl_aba23570866bc23dd76bfee9396754706}\label{class_eigen_1_1internal_1_1sparse__matrix__block__impl_aba23570866bc23dd76bfee9396754706}} 
+Storage\+Index $\ast$ {\bfseries inner\+Index\+Ptr} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1sparse__matrix__block__impl_a2e8bfd071182d603a71dd6c73445f49e}\label{class_eigen_1_1internal_1_1sparse__matrix__block__impl_a2e8bfd071182d603a71dd6c73445f49e}} 
+const Storage\+Index $\ast$ {\bfseries outer\+Index\+Ptr} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1sparse__matrix__block__impl_a2c6a22bc4a2a0d53cea353c81f7bf8b4}\label{class_eigen_1_1internal_1_1sparse__matrix__block__impl_a2c6a22bc4a2a0d53cea353c81f7bf8b4}} 
+Storage\+Index $\ast$ {\bfseries outer\+Index\+Ptr} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1sparse__matrix__block__impl_ae8aadd2b55a7db81a135417ebc0e9873}\label{class_eigen_1_1internal_1_1sparse__matrix__block__impl_ae8aadd2b55a7db81a135417ebc0e9873}} 
+const Storage\+Index $\ast$ {\bfseries inner\+Non\+Zero\+Ptr} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1sparse__matrix__block__impl_a521924a60b09e28d8e0469938d9b8895}\label{class_eigen_1_1internal_1_1sparse__matrix__block__impl_a521924a60b09e28d8e0469938d9b8895}} 
+Storage\+Index $\ast$ {\bfseries inner\+Non\+Zero\+Ptr} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1sparse__matrix__block__impl_afa4bd65b91a545ea4e90cbca873bacb8}\label{class_eigen_1_1internal_1_1sparse__matrix__block__impl_afa4bd65b91a545ea4e90cbca873bacb8}} 
+bool {\bfseries is\+Compressed} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1sparse__matrix__block__impl_a7a80a01219e90200d3295c2b5f550352}\label{class_eigen_1_1internal_1_1sparse__matrix__block__impl_a7a80a01219e90200d3295c2b5f550352}} 
+Scalar \& {\bfseries coeff\+Ref} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1sparse__matrix__block__impl_ab21b170a7e0771a3296aeaddb887bd20}\label{class_eigen_1_1internal_1_1sparse__matrix__block__impl_ab21b170a7e0771a3296aeaddb887bd20}} 
+const Scalar {\bfseries coeff} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} row, \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} col) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1sparse__matrix__block__impl_a6135aeb3c7a4faa78dfde905fc03f7ef}\label{class_eigen_1_1internal_1_1sparse__matrix__block__impl_a6135aeb3c7a4faa78dfde905fc03f7ef}} 
+const Scalar {\bfseries coeff} (\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} index) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1sparse__matrix__block__impl_aa6e48a586f5ba7fc61b521975e6275b1}\label{class_eigen_1_1internal_1_1sparse__matrix__block__impl_aa6e48a586f5ba7fc61b521975e6275b1}} 
+const Scalar \& {\bfseries last\+Coeff} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1sparse__matrix__block__impl_aedd6cb6445713e6c98b8c8252b28d34e}\label{class_eigen_1_1internal_1_1sparse__matrix__block__impl_aedd6cb6445713e6c98b8c8252b28d34e}} 
+E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries rows} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1sparse__matrix__block__impl_a97a487a6ab5607ab12b5c2bf85203e18}\label{class_eigen_1_1internal_1_1sparse__matrix__block__impl_a97a487a6ab5607ab12b5c2bf85203e18}} 
+E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries cols} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1sparse__matrix__block__impl_a6aec8eef9c168ea084dff19c37b859e7}\label{class_eigen_1_1internal_1_1sparse__matrix__block__impl_a6aec8eef9c168ea084dff19c37b859e7}} 
+const Sparse\+Matrix\+Type \& {\bfseries nested\+Expression} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1sparse__matrix__block__impl_a62206fb0d95122f1cd1932913a064d72}\label{class_eigen_1_1internal_1_1sparse__matrix__block__impl_a62206fb0d95122f1cd1932913a064d72}} 
+Sparse\+Matrix\+Type \& {\bfseries nested\+Expression} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1sparse__matrix__block__impl_acbd63f92710b35b0b418129398851005}\label{class_eigen_1_1internal_1_1sparse__matrix__block__impl_acbd63f92710b35b0b418129398851005}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries start\+Row} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1sparse__matrix__block__impl_aab1763d7eb48ee86131a7393312dab92}\label{class_eigen_1_1internal_1_1sparse__matrix__block__impl_aab1763d7eb48ee86131a7393312dab92}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries start\+Col} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1sparse__matrix__block__impl_a3a0a7d062e40ff7a141e06931db734f7}\label{class_eigen_1_1internal_1_1sparse__matrix__block__impl_a3a0a7d062e40ff7a141e06931db734f7}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries block\+Rows} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1sparse__matrix__block__impl_ab9e843a9a898987a8ca9b4f1919fb00f}\label{class_eigen_1_1internal_1_1sparse__matrix__block__impl_ab9e843a9a898987a8ca9b4f1919fb00f}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries block\+Cols} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1sparse__matrix__block__impl_ae0f4078329f9a1d56ef432d410652134}\label{class_eigen_1_1internal_1_1sparse__matrix__block__impl_ae0f4078329f9a1d56ef432d410652134}} 
+enum \{ {\bfseries Outer\+Size} = Is\+Row\+Major ? Block\+Rows \+: Block\+Cols
+ \}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1sparse__matrix__block__impl_aa336897cd666b1c976550a1b72258b0c}\label{class_eigen_1_1internal_1_1sparse__matrix__block__impl_aa336897cd666b1c976550a1b72258b0c}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Base\+::\+Index\+Vector}} {\bfseries Index\+Vector}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1sparse__matrix__block__impl_a42911d89cfd0ffb8df755ad5c831f3c4}\label{class_eigen_1_1internal_1_1sparse__matrix__block__impl_a42911d89cfd0ffb8df755ad5c831f3c4}} 
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1ref__selector}{internal\+::ref\+\_\+selector}}$<$ Sparse\+Matrix\+Type $>$\+::non\+\_\+const\+\_\+type {\bfseries m\+\_\+matrix}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1sparse__matrix__block__impl_ae40d81f5f65429e5dfff1cbaf7aa99bc}\label{class_eigen_1_1internal_1_1sparse__matrix__block__impl_ae40d81f5f65429e5dfff1cbaf7aa99bc}} 
+\mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}} {\bfseries m\+\_\+outer\+Start}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1sparse__matrix__block__impl_a937446f6277a7e32f839cc9da640e940}\label{class_eigen_1_1internal_1_1sparse__matrix__block__impl_a937446f6277a7e32f839cc9da640e940}} 
+const \mbox{\hyperlink{class_eigen_1_1internal_1_1variable__if__dynamic}{internal\+::variable\+\_\+if\+\_\+dynamic}}$<$ \mbox{\hyperlink{namespace_eigen_a62e77e0933482dafde8fe197d9a2cfde}{Index}}, Outer\+Size $>$ {\bfseries m\+\_\+outer\+Size}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Sparse\+Core/Sparse\+Block.\+h\end{DoxyCompactItemize}

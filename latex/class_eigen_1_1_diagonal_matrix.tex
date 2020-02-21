@@ -1,0 +1,229 @@
+\hypertarget{class_eigen_1_1_diagonal_matrix}{}\doxysection{Eigen\+::Diagonal\+Matrix$<$ \+\_\+\+Scalar, Size\+At\+Compile\+Time, Max\+Size\+At\+Compile\+Time $>$ Class Template Reference}
+\label{class_eigen_1_1_diagonal_matrix}\index{Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$@{Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$}}
+
+
+Represents a diagonal matrix with its storage.  
+
+
+
+
+{\ttfamily \#include $<$Diagonal\+Matrix.\+h$>$}
+
+Inheritance diagram for Eigen\+::Diagonal\+Matrix$<$ \+\_\+\+Scalar, Size\+At\+Compile\+Time, Max\+Size\+At\+Compile\+Time $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.952548cm]{class_eigen_1_1_diagonal_matrix}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_diagonal_matrix_a15bb0b30b931772c81d558207dd3804b}\label{class_eigen_1_1_diagonal_matrix_a15bb0b30b931772c81d558207dd3804b}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_diagonal_matrix}{Diagonal\+Matrix}} $>$\+::Diagonal\+Vector\+Type {\bfseries Diagonal\+Vector\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_diagonal_matrix_a927965f00d816212b6651b1f6bce783d}\label{class_eigen_1_1_diagonal_matrix_a927965f00d816212b6651b1f6bce783d}} 
+typedef \+\_\+\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_diagonal_matrix_ac61c867d48e814e1f90ae8b3ad73ae1b}\label{class_eigen_1_1_diagonal_matrix_ac61c867d48e814e1f90ae8b3ad73ae1b}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_diagonal_matrix}{Diagonal\+Matrix}} $>$\+::Storage\+Kind {\bfseries Storage\+Kind}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_diagonal_matrix_aaebe61dfe47cc30064d8daaee8092d62}\label{class_eigen_1_1_diagonal_matrix_aaebe61dfe47cc30064d8daaee8092d62}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_diagonal_matrix}{Diagonal\+Matrix}} $>$\+::Storage\+Index {\bfseries Storage\+Index}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Diagonal\+Vector\+Type \& \mbox{\hyperlink{class_eigen_1_1_diagonal_matrix_ad131ac22e927f7d3fabd694caec2919f}{diagonal}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Diagonal\+Vector\+Type \& \mbox{\hyperlink{class_eigen_1_1_diagonal_matrix_aea4c301c837d0af2fdab5d7d1f32c97d}{diagonal}} ()
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_diagonal_matrix_a828c0f7d55a4f66908e76b3af1acc37f}{Diagonal\+Matrix}} ()
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_diagonal_matrix_a82e6fd9b8f7f614bc05b4f941a875d7a}{Diagonal\+Matrix}} (\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} dim)
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_diagonal_matrix_a1443056b287f069d6771d7945e45ad60}{Diagonal\+Matrix}} (const Scalar \&x, const Scalar \&y)
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_diagonal_matrix_aebf160f0165e6602249cbe03148f6c04}{Diagonal\+Matrix}} (const Scalar \&x, const Scalar \&y, const Scalar \&z)
+\item 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_diagonal_matrix_ad7d030d35ab1f1b2f3e51860069f4226}{Diagonal\+Matrix}} (const \mbox{\hyperlink{class_eigen_1_1_diagonal_base}{Diagonal\+Base}}$<$ Other\+Derived $>$ \&other)
+\item 
+\mbox{\hyperlink{class_eigen_1_1_diagonal_matrix_ad5efd7a4e35667a76cdbbdb664bb92c5}{Diagonal\+Matrix}} (const \mbox{\hyperlink{class_eigen_1_1_diagonal_matrix}{Diagonal\+Matrix}} \&other)
+\item 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_diagonal_matrix_a3a6492f390f0d881f14376e673fd42c3}{Diagonal\+Matrix}} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Other\+Derived $>$ \&other)
+\item 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_diagonal_matrix}{Diagonal\+Matrix}} \& \mbox{\hyperlink{class_eigen_1_1_diagonal_matrix_a0a189cd40211ce0790fb3fe218af2aed}{operator=}} (const \mbox{\hyperlink{class_eigen_1_1_diagonal_base}{Diagonal\+Base}}$<$ Other\+Derived $>$ \&other)
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_diagonal_matrix}{Diagonal\+Matrix}} \& \mbox{\hyperlink{class_eigen_1_1_diagonal_matrix_a28c7f367f27a1fa0791e46e756e1c287}{operator=}} (const \mbox{\hyperlink{class_eigen_1_1_diagonal_matrix}{Diagonal\+Matrix}} \&other)
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC void \mbox{\hyperlink{class_eigen_1_1_diagonal_matrix_a4ebe032fddd2507357c0bb233637c450}{resize}} (\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} \mbox{\hyperlink{struct_eigen_1_1_eigen_base_ac2c9348df3bb9c0044dbae6c278a8977}{size}})
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC void \mbox{\hyperlink{class_eigen_1_1_diagonal_matrix_a4d9b1c1fd53e4bee2e94098c8378db8e}{set\+Zero}} ()
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC void \mbox{\hyperlink{class_eigen_1_1_diagonal_matrix_a9f1a1ca602e5432b6856d3a6783a6d1c}{set\+Zero}} (\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} \mbox{\hyperlink{struct_eigen_1_1_eigen_base_ac2c9348df3bb9c0044dbae6c278a8977}{size}})
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC void \mbox{\hyperlink{class_eigen_1_1_diagonal_matrix_a4d52100471c1212cbaba950b0c39f8c9}{set\+Identity}} ()
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC void \mbox{\hyperlink{class_eigen_1_1_diagonal_matrix_ae0cb9721da2963320857ec4b64eed1ea}{set\+Identity}} (\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} \mbox{\hyperlink{struct_eigen_1_1_eigen_base_ac2c9348df3bb9c0044dbae6c278a8977}{size}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_diagonal_matrix_abddafa7ea3792ba8f25f8146ac03d722}\label{class_eigen_1_1_diagonal_matrix_abddafa7ea3792ba8f25f8146ac03d722}} 
+const typedef \mbox{\hyperlink{class_eigen_1_1_diagonal_matrix}{Diagonal\+Matrix}} \& {\bfseries Nested}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_diagonal_matrix_aecf48407617023fcdb1c808b7d3720be}\label{class_eigen_1_1_diagonal_matrix_aecf48407617023fcdb1c808b7d3720be}} 
+Diagonal\+Vector\+Type {\bfseries m\+\_\+diagonal}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Scalar, int Size\+At\+Compile\+Time, int Max\+Size\+At\+Compile\+Time$>$\newline
+class Eigen\+::\+Diagonal\+Matrix$<$ \+\_\+\+Scalar, Size\+At\+Compile\+Time, Max\+Size\+At\+Compile\+Time $>$}
+
+Represents a diagonal matrix with its storage. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+Scalar} & the type of coefficients \\
+\hline
+{\em Size\+At\+Compile\+Time} & the dimension of the matrix, or Dynamic \\
+\hline
+{\em Max\+Size\+At\+Compile\+Time} & the dimension of the matrix, or Dynamic. This parameter is optional and defaults to Size\+At\+Compile\+Time. Most of the time, you do not need to specify it.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+class \mbox{\hyperlink{class_eigen_1_1_diagonal_wrapper}{Diagonal\+Wrapper}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_diagonal_matrix_a828c0f7d55a4f66908e76b3af1acc37f}\label{class_eigen_1_1_diagonal_matrix_a828c0f7d55a4f66908e76b3af1acc37f}} 
+\index{Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$@{Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$}!DiagonalMatrix@{DiagonalMatrix}}
+\index{DiagonalMatrix@{DiagonalMatrix}!Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$@{Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$}}
+\doxysubsubsection{\texorpdfstring{DiagonalMatrix()}{DiagonalMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [1/7]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int Size\+At\+Compile\+Time, int Max\+Size\+At\+Compile\+Time$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_diagonal_matrix}{Eigen\+::\+Diagonal\+Matrix}}$<$ \+\_\+\+Scalar, Size\+At\+Compile\+Time, Max\+Size\+At\+Compile\+Time $>$\+::\mbox{\hyperlink{class_eigen_1_1_diagonal_matrix}{Diagonal\+Matrix}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default constructor without initialization \mbox{\Hypertarget{class_eigen_1_1_diagonal_matrix_a82e6fd9b8f7f614bc05b4f941a875d7a}\label{class_eigen_1_1_diagonal_matrix_a82e6fd9b8f7f614bc05b4f941a875d7a}} 
+\index{Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$@{Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$}!DiagonalMatrix@{DiagonalMatrix}}
+\index{DiagonalMatrix@{DiagonalMatrix}!Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$@{Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$}}
+\doxysubsubsection{\texorpdfstring{DiagonalMatrix()}{DiagonalMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [2/7]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int Size\+At\+Compile\+Time, int Max\+Size\+At\+Compile\+Time$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_diagonal_matrix}{Eigen\+::\+Diagonal\+Matrix}}$<$ \+\_\+\+Scalar, Size\+At\+Compile\+Time, Max\+Size\+At\+Compile\+Time $>$\+::\mbox{\hyperlink{class_eigen_1_1_diagonal_matrix}{Diagonal\+Matrix}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}}}]{dim }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+Constructs a diagonal matrix with given dimension ~\newline
+ \mbox{\Hypertarget{class_eigen_1_1_diagonal_matrix_a1443056b287f069d6771d7945e45ad60}\label{class_eigen_1_1_diagonal_matrix_a1443056b287f069d6771d7945e45ad60}} 
+\index{Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$@{Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$}!DiagonalMatrix@{DiagonalMatrix}}
+\index{DiagonalMatrix@{DiagonalMatrix}!Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$@{Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$}}
+\doxysubsubsection{\texorpdfstring{DiagonalMatrix()}{DiagonalMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [3/7]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int Size\+At\+Compile\+Time, int Max\+Size\+At\+Compile\+Time$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_diagonal_matrix}{Eigen\+::\+Diagonal\+Matrix}}$<$ \+\_\+\+Scalar, Size\+At\+Compile\+Time, Max\+Size\+At\+Compile\+Time $>$\+::\mbox{\hyperlink{class_eigen_1_1_diagonal_matrix}{Diagonal\+Matrix}} (\begin{DoxyParamCaption}\item[{const Scalar \&}]{x,  }\item[{const Scalar \&}]{y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+2D constructor. \mbox{\Hypertarget{class_eigen_1_1_diagonal_matrix_aebf160f0165e6602249cbe03148f6c04}\label{class_eigen_1_1_diagonal_matrix_aebf160f0165e6602249cbe03148f6c04}} 
+\index{Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$@{Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$}!DiagonalMatrix@{DiagonalMatrix}}
+\index{DiagonalMatrix@{DiagonalMatrix}!Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$@{Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$}}
+\doxysubsubsection{\texorpdfstring{DiagonalMatrix()}{DiagonalMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [4/7]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int Size\+At\+Compile\+Time, int Max\+Size\+At\+Compile\+Time$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_diagonal_matrix}{Eigen\+::\+Diagonal\+Matrix}}$<$ \+\_\+\+Scalar, Size\+At\+Compile\+Time, Max\+Size\+At\+Compile\+Time $>$\+::\mbox{\hyperlink{class_eigen_1_1_diagonal_matrix}{Diagonal\+Matrix}} (\begin{DoxyParamCaption}\item[{const Scalar \&}]{x,  }\item[{const Scalar \&}]{y,  }\item[{const Scalar \&}]{z }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+3D constructor. \mbox{\Hypertarget{class_eigen_1_1_diagonal_matrix_ad7d030d35ab1f1b2f3e51860069f4226}\label{class_eigen_1_1_diagonal_matrix_ad7d030d35ab1f1b2f3e51860069f4226}} 
+\index{Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$@{Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$}!DiagonalMatrix@{DiagonalMatrix}}
+\index{DiagonalMatrix@{DiagonalMatrix}!Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$@{Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$}}
+\doxysubsubsection{\texorpdfstring{DiagonalMatrix()}{DiagonalMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [5/7]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int Size\+At\+Compile\+Time, int Max\+Size\+At\+Compile\+Time$>$ \\
+template$<$typename Other\+Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_diagonal_matrix}{Eigen\+::\+Diagonal\+Matrix}}$<$ \+\_\+\+Scalar, Size\+At\+Compile\+Time, Max\+Size\+At\+Compile\+Time $>$\+::\mbox{\hyperlink{class_eigen_1_1_diagonal_matrix}{Diagonal\+Matrix}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_diagonal_base}{Diagonal\+Base}}$<$ Other\+Derived $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Copy constructor. \mbox{\Hypertarget{class_eigen_1_1_diagonal_matrix_ad5efd7a4e35667a76cdbbdb664bb92c5}\label{class_eigen_1_1_diagonal_matrix_ad5efd7a4e35667a76cdbbdb664bb92c5}} 
+\index{Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$@{Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$}!DiagonalMatrix@{DiagonalMatrix}}
+\index{DiagonalMatrix@{DiagonalMatrix}!Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$@{Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$}}
+\doxysubsubsection{\texorpdfstring{DiagonalMatrix()}{DiagonalMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [6/7]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int Size\+At\+Compile\+Time, int Max\+Size\+At\+Compile\+Time$>$ \\
+\mbox{\hyperlink{class_eigen_1_1_diagonal_matrix}{Eigen\+::\+Diagonal\+Matrix}}$<$ \+\_\+\+Scalar, Size\+At\+Compile\+Time, Max\+Size\+At\+Compile\+Time $>$\+::\mbox{\hyperlink{class_eigen_1_1_diagonal_matrix}{Diagonal\+Matrix}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_diagonal_matrix}{Diagonal\+Matrix}}$<$ \+\_\+\+Scalar, Size\+At\+Compile\+Time, Max\+Size\+At\+Compile\+Time $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+copy constructor. prevent a default copy constructor from hiding the other templated constructor \mbox{\Hypertarget{class_eigen_1_1_diagonal_matrix_a3a6492f390f0d881f14376e673fd42c3}\label{class_eigen_1_1_diagonal_matrix_a3a6492f390f0d881f14376e673fd42c3}} 
+\index{Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$@{Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$}!DiagonalMatrix@{DiagonalMatrix}}
+\index{DiagonalMatrix@{DiagonalMatrix}!Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$@{Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$}}
+\doxysubsubsection{\texorpdfstring{DiagonalMatrix()}{DiagonalMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [7/7]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int Size\+At\+Compile\+Time, int Max\+Size\+At\+Compile\+Time$>$ \\
+template$<$typename Other\+Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_diagonal_matrix}{Eigen\+::\+Diagonal\+Matrix}}$<$ \+\_\+\+Scalar, Size\+At\+Compile\+Time, Max\+Size\+At\+Compile\+Time $>$\+::\mbox{\hyperlink{class_eigen_1_1_diagonal_matrix}{Diagonal\+Matrix}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Other\+Derived $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+generic constructor from expression of the diagonal coefficients 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_diagonal_matrix_aea4c301c837d0af2fdab5d7d1f32c97d}\label{class_eigen_1_1_diagonal_matrix_aea4c301c837d0af2fdab5d7d1f32c97d}} 
+\index{Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$@{Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$}!diagonal@{diagonal}}
+\index{diagonal@{diagonal}!Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$@{Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$}}
+\doxysubsubsection{\texorpdfstring{diagonal()}{diagonal()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int Size\+At\+Compile\+Time, int Max\+Size\+At\+Compile\+Time$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Diagonal\+Vector\+Type\& \mbox{\hyperlink{class_eigen_1_1_diagonal_matrix}{Eigen\+::\+Diagonal\+Matrix}}$<$ \+\_\+\+Scalar, Size\+At\+Compile\+Time, Max\+Size\+At\+Compile\+Time $>$\+::diagonal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a reference to the stored vector of diagonal coefficients. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_diagonal_matrix_ad131ac22e927f7d3fabd694caec2919f}\label{class_eigen_1_1_diagonal_matrix_ad131ac22e927f7d3fabd694caec2919f}} 
+\index{Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$@{Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$}!diagonal@{diagonal}}
+\index{diagonal@{diagonal}!Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$@{Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$}}
+\doxysubsubsection{\texorpdfstring{diagonal()}{diagonal()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int Size\+At\+Compile\+Time, int Max\+Size\+At\+Compile\+Time$>$ \\
+const E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Diagonal\+Vector\+Type\& \mbox{\hyperlink{class_eigen_1_1_diagonal_matrix}{Eigen\+::\+Diagonal\+Matrix}}$<$ \+\_\+\+Scalar, Size\+At\+Compile\+Time, Max\+Size\+At\+Compile\+Time $>$\+::diagonal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+const version of \mbox{\hyperlink{class_eigen_1_1_diagonal_matrix_aea4c301c837d0af2fdab5d7d1f32c97d}{diagonal()}}. \mbox{\Hypertarget{class_eigen_1_1_diagonal_matrix_a0a189cd40211ce0790fb3fe218af2aed}\label{class_eigen_1_1_diagonal_matrix_a0a189cd40211ce0790fb3fe218af2aed}} 
+\index{Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$@{Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$@{Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int Size\+At\+Compile\+Time, int Max\+Size\+At\+Compile\+Time$>$ \\
+template$<$typename Other\+Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_diagonal_matrix}{Diagonal\+Matrix}}\& \mbox{\hyperlink{class_eigen_1_1_diagonal_matrix}{Eigen\+::\+Diagonal\+Matrix}}$<$ \+\_\+\+Scalar, Size\+At\+Compile\+Time, Max\+Size\+At\+Compile\+Time $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_diagonal_base}{Diagonal\+Base}}$<$ Other\+Derived $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Copy operator. \mbox{\Hypertarget{class_eigen_1_1_diagonal_matrix_a28c7f367f27a1fa0791e46e756e1c287}\label{class_eigen_1_1_diagonal_matrix_a28c7f367f27a1fa0791e46e756e1c287}} 
+\index{Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$@{Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$@{Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int Size\+At\+Compile\+Time, int Max\+Size\+At\+Compile\+Time$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_diagonal_matrix}{Diagonal\+Matrix}}\& \mbox{\hyperlink{class_eigen_1_1_diagonal_matrix}{Eigen\+::\+Diagonal\+Matrix}}$<$ \+\_\+\+Scalar, Size\+At\+Compile\+Time, Max\+Size\+At\+Compile\+Time $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_diagonal_matrix}{Diagonal\+Matrix}}$<$ \+\_\+\+Scalar, Size\+At\+Compile\+Time, Max\+Size\+At\+Compile\+Time $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+This is a special case of the templated operator=. Its purpose is to prevent a default operator= from hiding the templated operator=. \mbox{\Hypertarget{class_eigen_1_1_diagonal_matrix_a4ebe032fddd2507357c0bb233637c450}\label{class_eigen_1_1_diagonal_matrix_a4ebe032fddd2507357c0bb233637c450}} 
+\index{Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$@{Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$}!resize@{resize}}
+\index{resize@{resize}!Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$@{Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$}}
+\doxysubsubsection{\texorpdfstring{resize()}{resize()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int Size\+At\+Compile\+Time, int Max\+Size\+At\+Compile\+Time$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC void \mbox{\hyperlink{class_eigen_1_1_diagonal_matrix}{Eigen\+::\+Diagonal\+Matrix}}$<$ \+\_\+\+Scalar, Size\+At\+Compile\+Time, Max\+Size\+At\+Compile\+Time $>$\+::resize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}}}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Resizes to given size. \mbox{\Hypertarget{class_eigen_1_1_diagonal_matrix_a4d52100471c1212cbaba950b0c39f8c9}\label{class_eigen_1_1_diagonal_matrix_a4d52100471c1212cbaba950b0c39f8c9}} 
+\index{Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$@{Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$}!setIdentity@{setIdentity}}
+\index{setIdentity@{setIdentity}!Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$@{Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$}}
+\doxysubsubsection{\texorpdfstring{setIdentity()}{setIdentity()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int Size\+At\+Compile\+Time, int Max\+Size\+At\+Compile\+Time$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC void \mbox{\hyperlink{class_eigen_1_1_diagonal_matrix}{Eigen\+::\+Diagonal\+Matrix}}$<$ \+\_\+\+Scalar, Size\+At\+Compile\+Time, Max\+Size\+At\+Compile\+Time $>$\+::set\+Identity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets this matrix to be the identity matrix of the current size. \mbox{\Hypertarget{class_eigen_1_1_diagonal_matrix_ae0cb9721da2963320857ec4b64eed1ea}\label{class_eigen_1_1_diagonal_matrix_ae0cb9721da2963320857ec4b64eed1ea}} 
+\index{Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$@{Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$}!setIdentity@{setIdentity}}
+\index{setIdentity@{setIdentity}!Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$@{Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$}}
+\doxysubsubsection{\texorpdfstring{setIdentity()}{setIdentity()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int Size\+At\+Compile\+Time, int Max\+Size\+At\+Compile\+Time$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC void \mbox{\hyperlink{class_eigen_1_1_diagonal_matrix}{Eigen\+::\+Diagonal\+Matrix}}$<$ \+\_\+\+Scalar, Size\+At\+Compile\+Time, Max\+Size\+At\+Compile\+Time $>$\+::set\+Identity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}}}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets this matrix to be the identity matrix of the given size. \mbox{\Hypertarget{class_eigen_1_1_diagonal_matrix_a4d9b1c1fd53e4bee2e94098c8378db8e}\label{class_eigen_1_1_diagonal_matrix_a4d9b1c1fd53e4bee2e94098c8378db8e}} 
+\index{Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$@{Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$}!setZero@{setZero}}
+\index{setZero@{setZero}!Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$@{Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$}}
+\doxysubsubsection{\texorpdfstring{setZero()}{setZero()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int Size\+At\+Compile\+Time, int Max\+Size\+At\+Compile\+Time$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC void \mbox{\hyperlink{class_eigen_1_1_diagonal_matrix}{Eigen\+::\+Diagonal\+Matrix}}$<$ \+\_\+\+Scalar, Size\+At\+Compile\+Time, Max\+Size\+At\+Compile\+Time $>$\+::set\+Zero (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets all coefficients to zero. \mbox{\Hypertarget{class_eigen_1_1_diagonal_matrix_a9f1a1ca602e5432b6856d3a6783a6d1c}\label{class_eigen_1_1_diagonal_matrix_a9f1a1ca602e5432b6856d3a6783a6d1c}} 
+\index{Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$@{Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$}!setZero@{setZero}}
+\index{setZero@{setZero}!Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$@{Eigen::DiagonalMatrix$<$ \_Scalar, SizeAtCompileTime, MaxSizeAtCompileTime $>$}}
+\doxysubsubsection{\texorpdfstring{setZero()}{setZero()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int Size\+At\+Compile\+Time, int Max\+Size\+At\+Compile\+Time$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC void \mbox{\hyperlink{class_eigen_1_1_diagonal_matrix}{Eigen\+::\+Diagonal\+Matrix}}$<$ \+\_\+\+Scalar, Size\+At\+Compile\+Time, Max\+Size\+At\+Compile\+Time $>$\+::set\+Zero (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}}}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Resizes and sets all coefficients to zero. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/rileyannereid/\+Pycharm\+Projects/\+Stanford\+\_\+\+Raytracer/damping/lib/eigen/\+Eigen/src/\+Core/Diagonal\+Matrix.\+h\end{DoxyCompactItemize}
