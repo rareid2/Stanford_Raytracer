@@ -5,7 +5,7 @@
 *.o
 *.mod
 
-# Exclude all files in the bin and env folder
+# Exclude all files in the bin and env and idea folder
 bin/*
 env/*
 .idea/*
