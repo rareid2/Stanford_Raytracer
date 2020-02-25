@@ -24,9 +24,10 @@ H_IONO = 1000e3
 n = 200
 dsxorbit, vpmorbit = orbits(n)
 
-freq = 30e3  # Hz
+freq = 1e3  # Hz
 orbital_pos = 0  # from 0 to n
-directions = np.array[0, 0, -1]
+pos0 = [12677107.852887288, 1094813.8049563468, 671478.3829286593]
+directions = [np.array([1, 0, 0])]
 """
 # TODO: include a y component?
 directions = list()
