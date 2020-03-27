@@ -8,7 +8,7 @@ endif
 
 sources = \
 	TS05_aka_TS04.for \
-	geopack2005.for
+	geopack2008.for
 
 # Use the -fstatic option with g95.  With gfortran, use -fno-automatic
 ifeq "$(G95)" "g95"
@@ -18,7 +18,7 @@ ifeq "$(G95)" "gfortran"
 FLAGS = -O3 -Wall -fno-automatic
 endif
 
-OBJECTS = TS05_aka_TS04.o geopack2005.o
+OBJECTS = TS05_aka_TS04.o geopack2008.o
 
 all: libtsy.a
 
