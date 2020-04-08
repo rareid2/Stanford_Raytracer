@@ -1,3 +1,5 @@
+# short script to generate a movie from plots in plot folder
+
 import ffmpeg
 
 (

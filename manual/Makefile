@@ -2,7 +2,6 @@
 
 EPSFIGS = \
 
-
 #  AmbientFields.eps \
 #  Profiles.eps \
 #	ScatteredProfile1.eps \
