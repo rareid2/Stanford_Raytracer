@@ -23,7 +23,7 @@ R_E = 6371e3  # m
 from DSX_TLE import x_DSX, y_DSX, z_DSX
 
 # create lists
-freq = 10e3
+freq = [26e3]
 n_pos = 0
 positions = [np.array([x_DSX[n_pos],y_DSX[n_pos],z_DSX[n_pos]])]
 directions = [np.array([0,0,0])]
@@ -60,7 +60,7 @@ plt.legend.linespaceing = 0.1
 plt.legend.loc = 'upper right'
 
 # save it!
-savename = 'plots/1kHz_damp_mode1.png'
+savename = 'plots/26kHz_damp_mode1.png'
 plt.savefig(savename)
 
 plt.show()
