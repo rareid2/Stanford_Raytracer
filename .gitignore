@@ -9,6 +9,7 @@
 bin/*
 env/*
 docs/*
+.idea/*
 
 # Make sure we include the folder itself tho
 !bin/.gitkeep
