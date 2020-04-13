@@ -19,7 +19,7 @@ H_IONO = 1000e3
 
 #  --------------------------- CHANGE ENV SETTINGS HERE  --------------------------
 # Environmental parameters
-yearday = '2020099'  # YYYYDDD
+yearday = '2020104'  # YYYYDDD
 seconds = 0
 minutes = 0
 hours = 0 # military
@@ -28,7 +28,7 @@ milliseconds_day = hours*3.6e6 + minutes*6e4 + seconds*1e3
 y = dt.datetime(int(yearday[0:4]), 1, 1) + dt.timedelta(int(yearday[4:]) - 1)
 ray_datenum = dt.datetime(y.year, y.month, y.day, hours, minutes, seconds)
 
-Kp = 2
+Kp = 6
 AE = 1.6
 Pdyn = 4
 Dst = 1.0

@@ -42,7 +42,18 @@ z_VPM = z_sat[1]
 freq = [26e3]
 n_pos = 300
 positions = [np.array([x_DSX[n_pos], y_DSX[n_pos], z_DSX[n_pos]])]
-directions = [np.zeros(3)]
+
+# need to be unit vectors
+theta = np.array([45, 60, 75, 90, 105, 120, 135, 225, 240, 255, 270, 285, 300, 315])
+theta = np.array([315])
+thetax = np.cos(np.deg2rad(theta))
+thetaz = np.sin(np.deg2rad(theta))
+directions = []
+for angx, angz in zip(thetax, thetaz):
+    directions.append(np.array([angx, 0, angz]))
+
+# number of rays
+n_rays = len(freq) * len(positions) * len(directions)
 
 # run!
 run_rays(freq, positions, directions)
@@ -77,39 +88,51 @@ for r in raylist:
 
 #-------------------------- Plot rays ----------------------------------
 fig, ax = plt.subplots(1,1, sharex=True, sharey=True)
-lw = 3  # linewidth
+lw = 2  # linewidth
+
+#initialize
+r_length = []
 
 for r in rays:
+
     rx = []
     rz = []
 
     rx.append(r.x / R_E)
     rz.append(r.z / R_E)
 
-    damp = []
-    for d in damplist:
-        damp.append(d["damping"])
+    rx = np.squeeze(np.array(rx))
+    rz = np.squeeze(np.array(rz))
 
-    if np.size(damp) - np.size(rx) > 0:
-        damp = damp[0:np.size(rx)]
-    elif np.size(damp) - np.size(rx) < 0:
-        damplast = damp[-1]
-        for n in range(np.size(damp), np.size(rx)):
-            damp.append(damplast)
+    r_length.append(len(r))
+    #if len(r) == max(r_length):
+        #points = np.array([rx, rz]).T.reshape(-1, 1, 2)
+        #segments = np.concatenate([points[:-1], points[1:]], axis=1)
 
-    rx = np.array(rx)
-    rz = np.array(rz)
+for d in damplist:
+    damp = d["damping"]
+    #for d in damplist:
+    #    damp.append(d["damping"])
+
+    #if np.size(damp) - np.size(rx) > 0:
+    #    damp = damp[0:np.size(rx)]
+    #elif np.size(damp) - np.size(rx) < 0:
+    #    damplast = damp[-1]
+    #    for n in range(np.size(damp), np.size(rx)):
+    #        damp.append(damplast)
 
     damp = np.squeeze(np.array(damp))
+    if len(damp) < max(r_length):
+        leftover = max(r_length) - len(damp)
+        damp = np.concatenate((damp, np.zeros(int(leftover))), axis=0)
+    #damplist2.append(np.squeeze(np.array(damp)))
 
-    points = np.array([rx, rz]).T.reshape(-1, 1, 2)
-    segments = np.concatenate([points[:-1], points[1:]], axis=1)
+    lc = LineCollection([np.column_stack([rx, damp])], cmap='Reds')
+lc.set_array(rx)
+lc.set_linewidths(lw)
+line = ax.add_collection(lc)
 
-    lc = LineCollection(segments, cmap='Reds')
-    lc.set_array(damp)
-    lc.set_linewidth(lw)
-    line = ax.add_collection(lc)
-    fig.colorbar(line, ax=ax, label = 'Normalized wave power')
+fig.colorbar(line, ax=ax, label = 'Normalized wave power')
 
 # -------------------------- Figure formatting ---------------------------
 L_shells = [2, 3, 4, 5]  # Field lines to draw
@@ -132,8 +155,10 @@ for L in L_shells:
     ax.plot(-Lx, Lz, color='b', linewidth=1, linestyle='dashed')  # Field line (other side)
 
 # -------- sat orbits   --------
+
 plt.plot(x_DSX/R_E, z_DSX/R_E, c='y', zorder = 101, label = 'DSX')
-plt.plot(x_VPM[50:145]/R_E, z_VPM[50:145]/R_E, c='y', zorder = 102, label = 'VPM')
+plt.plot(x_VPM/R_E, z_VPM/R_E, c='y', zorder = 102, label = 'VPM')
+plt.plot(x_DSX[300]/R_E, z_DSX[300]/R_E, '-bo', zorder = 103)
 
 # -------- plasmapause --------
 plasma_model_dump = os.path.join(ray_out_dir, 'model_dump_mode_1_XZ.dat')
@@ -175,8 +200,8 @@ plt.title(fig_title)
 
 # -------- saving --------
 #savename = 'plots/XZ_' + str_freq + 'kHz_%03d.png' %p
-savename = 'plots/XZ_' + str_freq + 'kHz_test2.png'
-fig.savefig(savename)
+#savename = 'plots/XZ_' + str_freq + 'kHz_test2.png'
+#fig.savefig(savename)
 
-fig.show()
-plt.close()
+plt.show()
+#plt.close()
