@@ -41,7 +41,7 @@ z_VPM = z_sat[1]
 # ------------------ Ray Tracing --------------------------
 # create lists - must be lists even if only one arg
 freq = [26e3]
-n_pos = 100
+n_pos = 300
 positions = [np.array([x_DSX[n_pos], y_DSX[n_pos], z_DSX[n_pos]])]
 #positions = [np.array([-2*R_E,y_DSX[n_pos], 0])]
 
