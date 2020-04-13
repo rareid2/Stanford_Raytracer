@@ -11,6 +11,8 @@ import matplotlib.pyplot as plt
 from skyfield.api import load, EarthSatellite
 from skyfield.timelib import Time
 import datetime as dt
+from spacepy.coordinates import Coords
+from spacepy.time import Ticktock
 
 from raytracer_settings import *
 
@@ -50,9 +52,7 @@ for TLE in TLE_list:
     y_sat.append(Rpos[1])
     z_sat.append(Rpos[2])
 
-# to visualize
-
-plt.plot(x_sat[1]/R_E,z_sat[1]/R_E)
-plt.show()
+#plt.plot(x_sat[1]/R_E,z_sat[1]/R_E)
+#plt.show()
 
 # end of script
