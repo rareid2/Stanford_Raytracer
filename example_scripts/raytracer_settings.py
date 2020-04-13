@@ -28,7 +28,7 @@ milliseconds_day = hours*3.6e6 + minutes*6e4 + seconds*1e3
 y = dt.datetime(int(yearday[0:4]), 1, 1) + dt.timedelta(int(yearday[4:]) - 1)
 ray_datenum = dt.datetime(y.year, y.month, y.day, hours, minutes, seconds)
 
-Kp = 6
+Kp = 2
 AE = 1.6
 Pdyn = 4
 Dst = 1.0

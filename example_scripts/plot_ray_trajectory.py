@@ -10,6 +10,7 @@ this is currently set for XZ coordinates
 import numpy as np
 import matplotlib.pyplot as plt
 import os
+import sys
 import datetime as dt
 
 # import functions and settings from this example scripts directory
@@ -40,12 +41,13 @@ z_VPM = z_sat[1]
 # ------------------ Ray Tracing --------------------------
 # create lists - must be lists even if only one arg
 freq = [26e3]
-n_pos = 300
+n_pos = 100
 positions = [np.array([x_DSX[n_pos], y_DSX[n_pos], z_DSX[n_pos]])]
+#positions = [np.array([-2*R_E,y_DSX[n_pos], 0])]
 
 # need to be unit vectors
 theta = np.array([45, 60, 75, 90, 105, 120, 135, 225, 240, 255, 270, 285, 300, 315])
-theta = np.array([315])
+theta = np.array([315, 300])
 thetax = np.cos(np.deg2rad(theta))
 thetaz = np.sin(np.deg2rad(theta))
 directions = []
@@ -75,6 +77,12 @@ for filename in file_titles:
     if '.damp' in filename:
         damplist += read_damp(os.path.join(ray_out_dir, filename))
 
+# quick check: did the rays propagate?
+raylist = [checkray for checkray in raylist if not len(checkray["time"]) < 2]
+# abandon if not
+if raylist == []:
+    sys.exit(0)
+
 # ------------------ Coordinate Conversion --------------------------
 
 # convert to desired coordinate system into vector list rays
@@ -92,45 +100,31 @@ lw = 2  # linewidth
 
 #initialize
 r_length = []
+rx = []
+rz = []
 
 for r in rays:
-
-    rx = []
-    rz = []
-
     rx.append(r.x / R_E)
     rz.append(r.z / R_E)
-
-    rx = np.squeeze(np.array(rx))
-    rz = np.squeeze(np.array(rz))
-
     r_length.append(len(r))
-    #if len(r) == max(r_length):
-        #points = np.array([rx, rz]).T.reshape(-1, 1, 2)
-        #segments = np.concatenate([points[:-1], points[1:]], axis=1)
 
+dlist = []
 for d in damplist:
     damp = d["damping"]
-    #for d in damplist:
-    #    damp.append(d["damping"])
-
-    #if np.size(damp) - np.size(rx) > 0:
-    #    damp = damp[0:np.size(rx)]
-    #elif np.size(damp) - np.size(rx) < 0:
-    #    damplast = damp[-1]
-    #    for n in range(np.size(damp), np.size(rx)):
-    #        damp.append(damplast)
-
     damp = np.squeeze(np.array(damp))
     if len(damp) < max(r_length):
         leftover = max(r_length) - len(damp)
         damp = np.concatenate((damp, np.zeros(int(leftover))), axis=0)
-    #damplist2.append(np.squeeze(np.array(damp)))
+    dlist.append(damp)
 
-    lc = LineCollection([np.column_stack([rx, damp])], cmap='Reds')
-lc.set_array(rx)
-lc.set_linewidths(lw)
-line = ax.add_collection(lc)
+def myplot(ax, xs, ys, zs, cmap):
+    for x, y, z in zip(xs, ys, zs):
+        plot = LineCollection([np.column_stack((x, y))], cmap=cmap)
+        plot.set_array(z)
+        ax.add_collection(plot)
+    return plot
+
+line = myplot(ax, rx, rz, dlist, 'Reds')
 
 fig.colorbar(line, ax=ax, label = 'Normalized wave power')
 
