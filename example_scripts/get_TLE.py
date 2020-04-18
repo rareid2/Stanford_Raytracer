@@ -8,6 +8,9 @@ get TLE's from http://celestrak.com/satcat/search.php
 DSX NORAD ID: 44344
 VPM NORAD ID: 45120
 
+returns position of satellite for one orbit, with orbit starting at given time
+in geocentric cartesian coordinates in meters
+
 """
 
 # import packages
@@ -21,7 +24,9 @@ from spacepy.time import Ticktock
 
 from raytracer_settings import *
 
-def get_TLE(line1,line2,name):
+
+# --------------------------------- START FUNCTION -------------------------------------
+def get_TLE(line1,line2,sat_name):
 
     # load timescale UTC
     ts = load.timescale()
@@ -31,10 +36,10 @@ def get_TLE(line1,line2,name):
     # line2 = '2 44344 042.2458 098.1824 1975230 124.0282 256.3811 04.54371606013099'
 
     # find the satellite
-    satellite = EarthSatellite(line1, line2, name, ts)
+    satellite = EarthSatellite(line1, line2, sat_name, ts)
 
     # find when TLE was generated - keep updated every 1-2 weeks
-    print(name, 'TLE is current as of:', satellite.epoch.utc_jpl())
+    print(sat_name, 'TLE is current as of:', satellite.epoch.utc_jpl())
 
     # grab time from ray_tracer settings
     datenum = ray_datenum.replace(tzinfo=utc)  # specifiy UTC time zone
