@@ -19,14 +19,14 @@ H_IONO = 1000e3
 
 #  --------------------------- CHANGE ENV SETTINGS HERE  --------------------------
 # Environmental parameters
-yearday = '2020104'  # YYYYDDD
+# yearday format - used by raytracer
+yearday = '2020105'  # YYYYDDD
 seconds = 0
 minutes = 0
 hours = 0 # military
-# milliseconds into the day
+# milliseconds into the day - used by raytracer
 milliseconds_day = hours*3.6e6 + minutes*6e4 + seconds*1e3
-y = dt.datetime(int(yearday[0:4]), 1, 1) + dt.timedelta(int(yearday[4:]) - 1)
-ray_datenum = dt.datetime(y.year, y.month, y.day, hours, minutes, seconds)
+ray_datenum = dt.datetime(int(yearday[0:4]), 1, 1) + dt.timedelta(int(yearday[4:]) - 1)
 
 Kp = 2
 AE = 1.6
@@ -38,7 +38,7 @@ BzIMF = -5
 W = [0.132, 0.303, 0.083, 0.070, 0.211, 0.308]  # Doesn't matter if we're not using Tsyg
 
 # Simulation parameters
-t_max = 20       # Maximum duration in seconds
+t_max = 10       # Maximum duration in seconds
 dt0 = 1e-3       # Initial timestep in seconds
 dtmax = 0.1      # Maximum allowable timestep in seconds
 root = 2         # Which root of the Appleton-Hartree equation
