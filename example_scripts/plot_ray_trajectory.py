@@ -140,14 +140,15 @@ ax.add_artist(earth)
 ax.add_artist(iono)
 
 # -------- fieldlines -------- (from IGRF13 model)
-for L in L_shells:
-    # Plot dipole field lines for both profile views
-    lam = np.linspace(-80, 80, 181)
-    L_r = L * pow(np.cos(lam * D2R), 2)
-    Lx = L_r * np.cos(lam * D2R)
-    Lz = L_r * np.sin(lam * D2R)
-    ax.plot(Lx, Lz, color='b', linewidth=1, linestyle='dashed')  # Field line
-    ax.plot(-Lx, Lz, color='b', linewidth=1, linestyle='dashed')  # Field line (other side)
+
+#for L in L_shells:
+#    # Plot dipole field lines for both profile views
+#    lam = np.linspace(-80, 80, 181)
+#    L_r = L * pow(np.cos(lam * D2R), 2)
+#    Lx = L_r * np.cos(lam * D2R)
+#    Lz = L_r * np.sin(lam * D2R)
+#    ax.plot(Lx, Lz, color='b', linewidth=1, linestyle='dashed')  # Field line
+#    ax.plot(-Lx, Lz, color='b', linewidth=1, linestyle='dashed')  # Field line (other side)
 
 # -------- sat orbits   --------
 
