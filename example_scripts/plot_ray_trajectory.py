@@ -41,13 +41,13 @@ z_VPM = z_sat[1]
 # ------------------ Ray Tracing --------------------------
 # create lists - must be lists even if only one arg
 freq = [26e3]
-n_pos = 300
-positions = [np.array([x_DSX[n_pos], y_DSX[n_pos], z_DSX[n_pos]])]
+#positions = [np.array([x_DSX[int(n_pos)], y_DSX[int(n_pos)], z_DSX[int(n_pos)]]) for n_pos in np.linspace(0,599,7)]
 #positions = [np.array([-2*R_E,y_DSX[n_pos], 0])]
-
+n_pos = 150
+positions = [np.array([x_DSX[n_pos], y_DSX[n_pos], z_DSX[n_pos]])]
 # need to be unit vectors
-theta = np.array([45, 60, 75, 90, 105, 120, 135, 225, 240, 255, 270, 285, 300, 315])
-theta = np.array([315, 300])
+theta = np.array([45, 315])
+#theta = np.array([315, 300])
 thetax = np.cos(np.deg2rad(theta))
 thetaz = np.sin(np.deg2rad(theta))
 directions = []
@@ -79,6 +79,7 @@ for filename in file_titles:
 
 # quick check: did the rays propagate?
 raylist = [checkray for checkray in raylist if not len(checkray["time"]) < 2]
+
 # abandon if not
 if raylist == []:
     sys.exit(0)
@@ -138,7 +139,7 @@ iono = plt.Circle((0, 0), (R_E + H_IONO) / R_E, color='g', alpha=0.5, zorder=99)
 ax.add_artist(earth)
 ax.add_artist(iono)
 
-# -------- fieldlines -------- (dipole model)
+# -------- fieldlines -------- (from IGRF13 model)
 for L in L_shells:
     # Plot dipole field lines for both profile views
     lam = np.linspace(-80, 80, 181)
@@ -152,7 +153,7 @@ for L in L_shells:
 
 plt.plot(x_DSX/R_E, z_DSX/R_E, c='y', zorder = 101, label = 'DSX')
 plt.plot(x_VPM/R_E, z_VPM/R_E, c='y', zorder = 102, label = 'VPM')
-plt.plot(x_DSX[300]/R_E, z_DSX[300]/R_E, '-bo', zorder = 103)
+plt.plot(x_DSX[n_pos]/R_E, z_DSX[n_pos]/R_E, '-bo', zorder = 103)
 
 # -------- plasmapause --------
 plasma_model_dump = os.path.join(ray_out_dir, 'model_dump_mode_1_XZ.dat')
@@ -172,7 +173,7 @@ clims = [-2, 5]
 # Plot background plasma (equatorial slice)
 g = plt.pcolormesh(px, py, np.log(Ne_xz), cmap = 'twilight')
 #fig.colorbar(g, ax=ax, orientation="horizontal", pad = 0.2, label= 'Plasmasphere density')
-#
+
 
 # -------- figure formatting --------
 ax.set_aspect('equal')
