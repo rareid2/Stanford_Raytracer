@@ -19,15 +19,27 @@ H_IONO = 1000e3
 
 #  --------------------------- CHANGE ENV SETTINGS HERE  --------------------------
 # Environmental parameters
-# yearday format - used by raytracer
-yearday = '2020105'  # YYYYDDD
-seconds = 0
+
+# change time information here - use UTC -
+year = 2017
+month = 1
+day = 1
+hours = 0
 minutes = 0
-hours = 0 # military
-# milliseconds into the day - used by raytracer
+seconds = 0
+
+# convert for raytracer settings
+days_in_the_year = (dt.date(year, month, day) - dt.date(year,1,1)).days + 1
+days_in_the_year = format(days_in_the_year, '03d')
+
+# yearday and miliseconds day are used by raytracer
+yearday = str(year)+ str(days_in_the_year)   # YYYYDDD
 milliseconds_day = hours*3.6e6 + minutes*6e4 + seconds*1e3
+
+# used for plotting the ray
 ray_datenum = dt.datetime(int(yearday[0:4]), 1, 1) + dt.timedelta(int(yearday[4:]) - 1)
 
+# space weather settings
 Kp = 2
 AE = 1.6
 Pdyn = 4
@@ -94,7 +106,7 @@ mode4_modelfile = os.path.join(project_root,
 ray_out_dir = os.path.join(project_root, "test_outputs")
 
 # Create directory for outputs if doesn't already exist
-print("output directory:", ray_out_dir)
+# print("output directory:", ray_out_dir)
 if not os.path.exists(ray_out_dir):
     os.mkdir(ray_out_dir)
 
