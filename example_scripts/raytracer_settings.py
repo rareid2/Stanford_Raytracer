@@ -21,7 +21,7 @@ H_IONO = 1000e3
 # Environmental parameters
 
 # change time information here - use UTC -
-year = 2017
+year = 2020
 month = 1
 day = 1
 hours = 0
