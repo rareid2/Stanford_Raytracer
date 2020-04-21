@@ -11,11 +11,11 @@ of starting point of magnetic field line
 OUTPUT: lat, lon, alt list in deg N, deg E, m from center of Earth
 
 """
+
 import numpy as np
 import matplotlib.pyplot as plt
 import pyIGRF
 from raytracer_settings import *
-
 
 # --------------------------- START FUNCTION ---------------------------
 
@@ -29,9 +29,7 @@ def IGRFline(lat_start, lon_start, alt_start):
     #steplen = distance/np.abs(nsteps)
 
     # convert to km from surface of Earth for pyIGRF
-    #alt_start = (alt_start - R_E) / 1e3
-    #lat_start = lat_start * D2R # theta in sph
-    #lon_start = lon_start * D2R # phi in sph
+    alt_start = (alt_start - R_E) / 1e3
 
     # conevrt ray_datenum to year and fraction of the year - needed for pyIGRF
     sec2yr = 31536000
@@ -76,38 +74,11 @@ def IGRFline(lat_start, lon_start, alt_start):
     lat = [i for i in lat if i != 0]
     lon = [i for i in lon if i != 0]
     alt = [i for i in alt if i != 0]
-    print(alt)
 
     alt_out = [i * 1e3 + R_E for i in alt] # convert back to ECEF in m
     lat_out = [i * R2D for i in lat]
     lon_out = [i * R2D for i in lon]
-    print(alt_out)
 
     return lat_out,lon_out,alt_out
 
 # --------------------------- END FUNCTION ---------------------------
-
-from spacepy import coordinates as coord
-from spacepy.time import Ticktock
-
-lat, lon, alt = IGRFline(0,0,3*R_E/1e3)
-sph_coords = list(zip(alt, lat, lon))
-cvals = coord.Coords(sph_coords, 'GEO', 'sph')
-tvec_datetime = [ray_datenum + dt.timedelta(seconds=s) for s in range(len(sph_coords))]
-cvals.ticks = Ticktock(tvec_datetime)  # add ticks
-newcoord = cvals.convert('GEO', 'car')
-#print(newcoord)
-
-#lat, lon, alt = IGRFline(0,0,2*R_E)
-
-#x = [r*np.sin(deg2rad) for r in lat if i != 0]
-
-
-fig, ax = plt.subplots(1,1, sharex=True, sharey=True)
-earth = plt.Circle((0, 0), 1, color='b', alpha=1)
-ax.add_artist(earth)
-
-plt.plot(newcoord.x/R_E, newcoord.z/R_E)
-#plt.plot(newcoord.x/R_E, newcoord.y/R_E)
-#plt.plot(newcoord.x/R_E, newcoord.z/R_E)
-plt.show()
