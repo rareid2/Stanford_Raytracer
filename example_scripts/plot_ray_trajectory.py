@@ -19,8 +19,7 @@ from run_rays import run_rays
 from raytracer_settings import *
 
 # for IGRF
-from IGRFline import IGRFline
-from IGRFdirection import IGRFdirection
+from IGRF_funcs import IGRFline, IGRFdirection
 
 # Spacepy (for coordinate transforms)
 from spacepy import coordinates as coord
@@ -65,8 +64,8 @@ for position in positions:
     # convert to lla
     llacoord = cvals.convert('GEO', 'sph')
 
-    lat, lon, alt = IGRFline(llacoord.lati, llacoord.long, llacoord.radi)
-    sph_coords = list(zip(alt, lat, lon))
+    lat2, lon2, alt2 = IGRFline(llacoord.lati, llacoord.long, llacoord.radi)
+    sph_coords = list(zip(alt2, lat2, lon2))
     cvals = coord.Coords(sph_coords, 'GEO', 'sph')
     tvec_datetime = [ray_datenum + dt.timedelta(seconds=s) for s in range(len(sph_coords))]
     cvals.ticks = Ticktock(tvec_datetime)  # add ticks
@@ -171,9 +170,9 @@ def myplot(ax, xs, ys, zs, cmap):
         ax.add_collection(plot)
     return plot
 
-line = myplot(ax, rx, rz, dlist, 'Reds')
+#line = myplot(ax, rx, rz, dlist, 'Reds')
 
-fig.colorbar(line, ax=ax, label = 'Normalized wave power')
+#fig.colorbar(line, ax=ax, label = 'Normalized wave power')
 
 # -------------------------- Figure formatting ---------------------------
 L_shells = [2, 3, 4, 5]  # Field lines to draw
@@ -202,7 +201,7 @@ for L in L_shells:
     plt.plot(-newcoord.x/R_E, -newcoord.z/R_E, color='b', linewidth=1, linestyle='dashed')
 
 # plot field line from orbital position
-plt.plot(field_line.x/R_E, field_line.z/R_E, color='g', linewidth=1, linestyle='dashed')
+plt.plot(field_line.x/R_E, field_line.z/R_E, color='r', linewidth=1, linestyle='dashed')
 
 for L in L_shells:
     # Plot dipole field lines for both profile views
@@ -215,8 +214,8 @@ for L in L_shells:
 
 # -------- sat orbits   --------
 
-plt.plot(x_DSX/R_E, z_DSX/R_E, c='y', zorder = 101, label = 'DSX')
-plt.plot(x_VPM/R_E, z_VPM/R_E, c='y', zorder = 102, label = 'VPM')
+#plt.plot(x_DSX/R_E, z_DSX/R_E, c='y', zorder = 101, label = 'DSX')
+#plt.plot(x_VPM/R_E, z_VPM/R_E, c='y', zorder = 102, label = 'VPM')
 plt.plot(x_DSX[n_pos]/R_E, z_DSX[n_pos]/R_E, '-bo', zorder = 103)
 
 # -------- plasmapause --------
