@@ -19,7 +19,7 @@ from run_rays import run_rays
 from raytracer_settings import *
 
 # for IGRF
-from IGRF_funcs import IGRFline, IGRFdirection
+#from IGRF_funcs import IGRFline, IGRFdirection
 
 # Spacepy (for coordinate transforms)
 from spacepy import coordinates as coord
@@ -47,11 +47,12 @@ freq = [26e3]
 n_pos = 40
 positions = [np.array([x_DSX[n_pos], y_DSX[n_pos], z_DSX[n_pos]])]
 thetalist = [0] # in deg
-directions = []
+directions = [np.array([0.707,0,0.707])]
 
 # theta is counterclockwise direction, use 0 for field-aligned
 
 # find the direction of the local magnetic field line using IGRFdirection
+"""
 
 for position in positions:
 
@@ -64,7 +65,7 @@ for position in positions:
     # convert to lla
     llacoord = cvals.convert('GEO', 'sph')
 
-    lat2, lon2, alt2 = IGRFline(llacoord.lati, llacoord.long, llacoord.radi)
+    #lat2, lon2, alt2 = IGRFline(llacoord.lati, llacoord.long, llacoord.radi)
     sph_coords = list(zip(alt2, lat2, lon2))
     cvals = coord.Coords(sph_coords, 'GEO', 'sph')
     tvec_datetime = [ray_datenum + dt.timedelta(seconds=s) for s in range(len(sph_coords))]
@@ -72,10 +73,10 @@ for position in positions:
     field_line = cvals.convert('GEO', 'car')
 
     # find direction of local magnetic field line
-    dr, dp, dth = IGRFdirection(llacoord.lati, llacoord.long, llacoord.radi)
-    dx = dr * np.sin(dth) * np.cos(dp)
-    dy = dr * np.sin(dth) * np.sin(dp)
-    dz = dr * np.cos(dth)
+    #dr, dp, dth = IGRFdirection(llacoord.lati, llacoord.long, llacoord.radi)
+    #dx = dr * np.sin(dth) * np.cos(dp)
+    #dy = dr * np.sin(dth) * np.sin(dp)
+    #dz = dr * np.cos(dth)
 
     # desired angles:
     for theta in thetalist:
@@ -90,7 +91,7 @@ for position in positions:
         if direction.all() == unit_d.all():
             direction = np.zeros(3)
         directions.append(direction)
-
+"""
 # need to be unit vectors
 #theta = np.array([45, 315])
 #thetax = np.cos(np.deg2rad(theta))
@@ -170,9 +171,9 @@ def myplot(ax, xs, ys, zs, cmap):
         ax.add_collection(plot)
     return plot
 
-#line = myplot(ax, rx, rz, dlist, 'Reds')
+line = myplot(ax, rx, rz, dlist, 'Reds')
 
-#fig.colorbar(line, ax=ax, label = 'Normalized wave power')
+fig.colorbar(line, ax=ax, label = 'Normalized wave power')
 
 # -------------------------- Figure formatting ---------------------------
 L_shells = [2, 3, 4, 5]  # Field lines to draw
@@ -186,22 +187,22 @@ ax.add_artist(iono)
 
 # -------- fieldlines -------- (from IGRF13 model)
 
-for L in L_shells:
+#for L in L_shells:
 #   Plot IGRF field lines
-    lat, lon, alt = IGRFline(0, 0, L * R_E)
-    sph_coords = list(zip(alt, lat, lon))
-    cvals = coord.Coords(sph_coords, 'GEO', 'sph')
-    tvec_datetime = [ray_datenum + dt.timedelta(seconds=s) for s in range(len(sph_coords))]
-    cvals.ticks = Ticktock(tvec_datetime)  # add ticks
-    newcoord = cvals.convert('GEO', 'car')
+#    lat, lon, alt = IGRFline(0, 0, L * R_E)
+#    sph_coords = list(zip(alt, lat, lon))
+#    cvals = coord.Coords(sph_coords, 'GEO', 'sph')
+#    tvec_datetime = [ray_datenum + dt.timedelta(seconds=s) for s in range(len(sph_coords))]
+#    cvals.ticks = Ticktock(tvec_datetime)  # add ticks
+#    newcoord = cvals.convert('GEO', 'car')
 
-    plt.plot(newcoord.x/R_E, newcoord.z/R_E, color='b', linewidth=1, linestyle='dashed')
-    plt.plot(-newcoord.x/R_E, newcoord.z/R_E, color='b', linewidth=1, linestyle='dashed')
-    plt.plot(newcoord.x/R_E, -newcoord.z/R_E, color='b', linewidth=1, linestyle='dashed')
-    plt.plot(-newcoord.x/R_E, -newcoord.z/R_E, color='b', linewidth=1, linestyle='dashed')
+#    plt.plot(newcoord.x/R_E, newcoord.z/R_E, color='b', linewidth=1, linestyle='dashed')
+#    plt.plot(-newcoord.x/R_E, newcoord.z/R_E, color='b', linewidth=1, linestyle='dashed')
+#    plt.plot(newcoord.x/R_E, -newcoord.z/R_E, color='b', linewidth=1, linestyle='dashed')
+#    plt.plot(-newcoord.x/R_E, -newcoord.z/R_E, color='b', linewidth=1, linestyle='dashed')
 
 # plot field line from orbital position
-plt.plot(field_line.x/R_E, field_line.z/R_E, color='r', linewidth=1, linestyle='dashed')
+#plt.plot(field_line.x/R_E, field_line.z/R_E, color='r', linewidth=1, linestyle='dashed')
 
 for L in L_shells:
     # Plot dipole field lines for both profile views
