@@ -22,8 +22,8 @@ H_IONO = 1000e3
 
 # change time information here - use UTC -
 year = 2020
-month = 1
-day = 1
+month = 4
+day = 20
 hours = 0
 minutes = 0
 seconds = 0
