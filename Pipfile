@@ -11,11 +11,7 @@ matplotlib = "*"
 datetime = "*"
 pandas = "*"
 skyfield = "*"
-
-[packages.spacepy]
-git = "https://github.com/rareid2/spacepy.git"
-ref = "master"
-editable = "true"
+spacepy = {git = "https://github.com/rareid2/spacepy.git",ref = "master"}
 
 [requires]
 python_version = "3.7"

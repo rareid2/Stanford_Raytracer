@@ -32,12 +32,11 @@ def run_rays(freq, positions, directions):
     f = open(ray_inpfile, 'w')
 
     # Go through list of positions, write a new ray for every direction and freq at each pos
-    for pos0 in positions:
-        for dir0 in directions:
-            for fr in freq:
-                w0 = fr * 2.0 * np.pi
-                f.write('%1.15e %1.15e %1.15e %1.15e %1.15e %1.15e %1.15e\n' % (
-                    pos0[0], pos0[1], pos0[2], dir0[0], dir0[1], dir0[2], w0))
+    for pos0, dir0 in zip(positions, directions):
+        for fr in freq:
+            w0 = fr * 2.0 * np.pi
+            f.write('%1.15e %1.15e %1.15e %1.15e %1.15e %1.15e %1.15e\n' % (
+                pos0[0], pos0[1], pos0[2], dir0[0], dir0[1], dir0[2], w0))
     f.close()
 
     # GCPM model and damping code needs to be run in the same directory
