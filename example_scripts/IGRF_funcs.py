@@ -1,216 +1,94 @@
 """
 
 functions to generate magnetic field intensity and line from IGRF13 coefficients
-using pyIGRF package and function adapted from MATLAB igrf package and
-Dr. Austin Sousa's thesis work
-
+from Dr. Austin Sousa's thesis work
+using a branched version of spacepy
 author: Riley R
 Apr. 2020
 
 """
 
-# import packages
 import numpy as np
-import matplotlib.pyplot as plt
-# for IGRF ODE
-import pyIGRF
-from scipy.integrate import ode
-# for current time
-from raytracer_settings import *
-# Spacepy (for coordinate transforms)
-from spacepy import coordinates as coord
+import spacepy.irbempy as irbem
+import spacepy.coordinates as coord
 from spacepy.time import Ticktock
+import matplotlib.pyplot as plt
+import datetime as dt
+from scipy.integrate import ode
+from example_scripts.raytracer_settings import *
 
-import spacepy.time as spt
-"""
-function: IGRFdirection
-
-INPUT: coordinates as lat (deg N), lon (deg E), alt (m from center of Earth)
-of starting point of magnetic field line
-
-OUTPUT: unit vector of direction of local magnetic field line in lla
 
 """
+generate direction of local magnetic field line
+inputs are the 3d position in cartesian geocentric coordinates
+bmodel is defined as:
+    Bmodel index number (from irbempy)
+                - 0 = IGRF13
+                - 1 = Eccentric tilted dipole
+                - 2 = Jensen&Cain 1960
+                - 3 = GSFC 12/66 updated to 1970
+                - 4 = User-defined model (Default: Centred dipole + uniform [Dungey open model] )
+                - 5 = Centred dipole
 
-# --------------------------- START FUNCTION ---------------------------
+extfield = 0 (not sure what this does rn)
+direction is either 1 or -1
+B_dir can be called indivudally without using trace_fieldline_ODE
 
-def IGRFdirection(t, x, direction):
-
-    # working in XZ plane
-    # take in XZ coordinates in the cartesian form
-    pos = coord.Coords([x[0], 0, x[2]], 'GEO', 'car')
-    print(pos)
-
-    # conevrt ray_datenum to year and fraction of the year - needed for pyIGRF
-    sec2yr = 31536000
-    day2sec = 86400
-
-    sec_in_yr = day2sec*int(days_in_the_year) + milliseconds_day/(1e3)
-    year_frac = ray_datenum.year + (sec_in_yr/sec2yr)
-
-    # convert coordinates to lla
-    pos.ticks = Ticktock(ray_datenum)  # add ticks
-    pos_lla = pos.convert('GEO', 'sph')
-
-    print(pos_lla)
-    # get magnetic field values
-    B_out = pyIGRF.igrf_value(pos_lla.lati, pos_lla.long, pos_lla.radi, year_frac)
-
-    Bt, Bp, Br = B_out[3:6]
-    Br = -Br
-
-    Bdir = polar2cart(Br, Bt, Bp)
-    print('Bdir', Bdir)
-
-    return [Bdir[0][0], Bdir[2][0]]
-
-# --------------------------- END FUNCTION ---------------------------
-
-"""
-function: IGRFline
-
-INPUT: coordinates as lat_start (deg N), lon_start (deg E), alt_start (m from center of Earth)
-of starting point of magnetic field line
-
-OUTPUT: lat, lon, alt list in deg N, deg E, m from center of Earth
+inputs to B_dir if called on its own: 
+t = set at 0 if called indivuallay, else let ODE integrated call it
+x = starting position 2 COMPONENT IN EARTH RADII GEOCENTRIC CART
 
 """
 
-# --------------------------- START FUNCTION ---------------------------
+def B_dir(t, x, bmodel, extfield, direction):
+    pos = coord.Coords([x[0], 0, x[1]], 'GEO', 'car')
+    tv = Ticktock(ray_datenum)
+    B = irbem.get_Bfield(tv, pos, extMag=extfield, options=[1, 0, 0, 0, bmodel], omnivals=None)
+    Bmags = direction * B['Bvec'] / B['Blocal']
 
-def IGRFline(p0, direction):
+    return [Bmags[0][0], Bmags[0][2]]
+
+"""
+trace field line uses ODE to trace along field line
+call with initial position in Earth radii in
+p0 = 2 COMPONENT XZ position in eatrh radii in GEO cartesian
+extfield = 0
+bmodel = use IGRF = 0
+direction = 1 or -1 
+"""
+def trace_fieldline_ODE(p0, bmodel, extfield, direction):
 
     x = []
     z = []
-    dt = 0.1
-    r = ode(IGRFdirection)
+    dt = 5e-2
+    r = ode(B_dir)
     r.set_integrator('vode')
 
     r.set_initial_value(p0, 0)
-    r.set_f_params(direction)
+    r.set_f_params(bmodel, extfield, direction)
     counts = 0
     while r.successful():
         r.integrate(r.t + dt)
         x.append(r.y[0])
         z.append(r.y[1])
 
-        #         print r.y, counts
         counts += 1
         if np.linalg.norm(r.y) < 1:
-            print
-            "hit the earth!"
+            # hit the earth
             break
 
         if counts > 500:
-            print
-            "max count!"
+            print('max count')
             break
     return x, z
-    # seems to be good conditions to finish the field line
-    #nsteps = 1000
-    #distance = 100e3
-    #steplen = distance / np.abs(nsteps)
-    #distance = (alt_start/R_E)*R_E*4/1e3
-    #steplen = distance/np.abs(nsteps)
-
-    # convert to km from surface of Earth for pyIGRF
-    #alt_start = (alt_start - R_E) / 1e3
-
-    # conevrt ray_datenum to year and fraction of the year - needed for pyIGRF
-    #sec2yr = 31536000
-    #day2sec = 86400
-
-    #sec_in_yr = day2sec*int(days_in_the_year) + milliseconds_day/(1e3)
-    #year_frac = ray_datenum.year + (sec_in_yr/sec2yr)
-
-    # initialize
-    #lat = np.zeros(nsteps)
-    """
-    
-    lon = np.zeros(nsteps)
-    alt = np.zeros(nsteps)
-    lat[0] = lat_start*D2R
-    lon[0] = lon_start*D2R
-    alt[0] = alt_start
-
-    for index in range(nsteps-1):
-
-        # get magnetic field values
-        B_out = pyIGRF.igrf_value(lat[index]*R2D, lon[index]*R2D, alt[index], year_frac)
-
-        Bt, Bp, Br = B_out[3:6]
-        Br = -Br
-
-        B = np.hypot(Br, np.hypot(Bp, Bt))
-
-        dr = Br / B
-        dp = Bp / B
-        dt = Bt / B
-
-        # stop if field line hits Earth
-        if alt[index] + steplen * dr < 0:
-            print('hit earth')
-            break
-        # else update to next step
-        else:
-            alt[index + 1] = alt[index] + steplen * dr
-            lat[index + 1] = lat[index] + steplen * dt / alt[index]
-            lon[index + 1] = lon[index] + steplen * dp / (alt[index] * np.cos(lat[index]))
-
-    # remove extra zeroes
-    lat = [i for i in lat if i != 0]
-    lon = [i for i in lon if i != 0]
-    alt = [i for i in alt if i != 0]
-
-    alt_out = [i * 1e3 + R_E for i in alt] # convert back to ECEF in m
-    lat_out = [i * R2D for i in lat]
-    lon_out = [i * R2D for i in lon]
-
-    return lat_out,lon_out,alt_out
-"""
-# --------------------------- END FUNCTION ---------------------------
-
-"""
-function: IGRFdirection
-
-INPUT: coordinates as lat (deg N), lon (deg E), alt (m from center of Earth)
-of starting point of magnetic field line
-
-OUTPUT: unit vector of direction of local magnetic field line in lla
-
-
-
-# --------------------------- START FUNCTION ---------------------------
-
-def IGRFdirection(lat, lon, alt):
-
-    # convert to km from surface of Earth for pyIGRF
-    alt = (alt - R_E) / 1e3
-
-    # conevrt ray_datenum to year and fraction of the year - needed for pyIGRF
-    sec2yr = 31536000
-    day2sec = 86400
-
-    sec_in_yr = day2sec*int(days_in_the_year) + milliseconds_day/(1e3)
-    year_frac = ray_datenum.year + (sec_in_yr/sec2yr)
-
-    # get magnetic field values
-    B_out = pyIGRF.igrf_value(lat, lon, alt, year_frac)
-
-    Bt, Bp, Br = B_out[3:6]
-    Br = -Br
-
-    return Br, Bp, Bt
-
-# --------------------------- END FUNCTION ---------------------------
 
 """
 
-import math
+#example call
 
-def polar2cart(r, theta, phi):
-    return [
-         r * math.sin(theta) * math.cos(phi),
-         r * math.sin(theta) * math.sin(phi),
-         r * math.cos(theta)
-    ]
+startpoint = [1.5291777608361319, -1.310595670385567] # Start from the equator
+direction = 1
+x,z = trace_fieldline_ODE(startpoint,0,'0',direction)
+#plt.plot(x,z)
+#plt.show()
+"""

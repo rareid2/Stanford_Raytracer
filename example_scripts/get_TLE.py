@@ -24,11 +24,6 @@ from spacepy.time import Ticktock
 
 from raytracer_settings import *
 
-# TLE form:
-line1 = '1 44344U 19036F   20099.44261897 -.00000008 +00000-0 +00000-0 0  9998'
-line2 = '2 44344 042.2458 098.1824 1975230 124.0282 256.3811 04.54371606013099'
-
-
 # --------------------------------- START FUNCTION -------------------------------------
 def get_TLE(line1,line2, sat_name):
 
@@ -52,23 +47,24 @@ def get_TLE(line1,line2, sat_name):
     orbital_period = 3600*24/float(line2.rsplit(None, 1)[-1])
 
     # generate time vector
-    t_pos = [datenum + dt.timedelta(seconds=s) for s in np.linspace(0,orbital_period)]
+    t_pos = [datenum + dt.timedelta(seconds=s) for s in np.linspace(0,2*orbital_period)]
     t = ts.utc(t_pos)
-
     # find geocentric cartesian coordinates over orbit for satellite
     geocentric = satellite.at(t)
 
-    return geocentric.position.m
+    return geocentric.position.m, t_pos
+
 
 
 """
-
 # for testing
+line1 = '1 45120U 19071K   20113.86456076  .00004088  00000-0  13479-3 0  9996'
+line2 = '2 45120  51.6417 271.7875 0011770 209.5167 150.5152 15.33686764 12484'
 x, t_pos = get_TLE(line1, line2, 'DSX')
 # visualize orbit in XZ plane
 plt.plot(x[0]/R_E,x[2]/R_E)
 plt.show()
-
 """
+
 
 # --------------------------------- END FUNCTION -------------------------------------
