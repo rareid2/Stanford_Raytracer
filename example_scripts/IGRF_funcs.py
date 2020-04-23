@@ -55,6 +55,7 @@ extfield = 0
 bmodel = use IGRF = 0
 direction = 1 or -1 
 """
+
 def trace_fieldline_ODE(p0, bmodel, extfield, direction):
 
     x = []
@@ -83,9 +84,7 @@ def trace_fieldline_ODE(p0, bmodel, extfield, direction):
             break
     return x, y, z
 
-
 """
-
 #example call
 
 startpoint = [1.5291777608361319, 1.5, -1.310595670385567] # Start from the equator
