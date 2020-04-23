@@ -2,13 +2,13 @@
 
 here is a script that will call run_rays and plot the trajectory with
 normalized wave power as a color scale
-this is currently set for XZ coordinates
 
 """
 
 # import needed packages
 import numpy as np
 import matplotlib.pyplot as plt
+from mpl_toolkits import mplot3d
 import os
 import sys
 import datetime as dt
@@ -29,16 +29,16 @@ from get_TLE import get_TLE
 # TODO: coordinates?
 # --------------------------- Orbits -------------------------------
 # DSX TLE:
-line1 = '1 44344U 19036F   20099.44261897 -.00000008 +00000-0 +00000-0 0  9998'
-line2 = '2 44344 042.2458 098.1824 1975230 124.0282 256.3811 04.54371606013099'
+line1 = '1 44344U 19036F   20113.30349832 -.00000013 +00000-0 +00000-0 0  9992'
+line2 = '2 44344 042.2517 093.1041 1975016 129.9693 249.1586 04.54371641013721'
 DSX_pos, DSX_t = get_TLE(line1, line2, 'DSX')
 x_DSX = DSX_pos[0]
 y_DSX = DSX_pos[1]
 z_DSX = DSX_pos[2]
 
 # VPM TLE:
-line1 = '1 25544U 98067A   20113.89738775  .00001317  00000-0  31724-4 0  9994'
-line2 = '2 25544  51.6435 262.1138 0001684 177.7541 317.3974 15.49303487223443'
+line1 = '1 45120U 19071K   20113.86456076  .00004088  00000-0  13479-3 0  9996'
+line2 = '2 45120  51.6417 271.7875 0011770 209.5167 150.5152 15.33686764012484'
 VPM_pos, VPM_t = get_TLE(line1, line2, 'VPM')
 x_VPM = VPM_pos[0]
 y_VPM = VPM_pos[1]
@@ -48,7 +48,8 @@ z_VPM = VPM_pos[2]
 # define lists here - must be lists even if only one arg
 
 freq = [26e3]
-n_pos = np.linspace(0,49,2)
+#n_pos = np.linspace(0,2,1)
+n_pos = [10]
 positions = [np.array([x_DSX[int(npos)], y_DSX[int(npos)], z_DSX[int(npos)]]) for npos in n_pos]
 
 """
@@ -57,7 +58,7 @@ for example: 0 deg = parallel Bfield
 15 = 15 deg counterclockwise to Bfield
 """
 
-thetalist = [0] # in deg
+thetalist = [0, 45] # in deg
 
 # initialize - leave empty
 directions = []
@@ -92,7 +93,6 @@ for position in positions:
 # number of rays
 n_rays = len(freq) * len(positions) * len(directions)
 print('about to run: ', n_rays, ' rays')
-
 # run!
 run_rays(freq, positions, directions)
 
@@ -132,16 +132,20 @@ for r in raylist:
     rays.append(tmp_coords)
 
 #----------------------------- Plot rays ----------------------------------
-fig, ax = plt.subplots(1,1, sharex=True, sharey=True)
+#fig, ax = plt.subplots(1,1, sharex=True, sharey=True)
 lw = 2  # linewidth
+fig = plt.figure()
+ax = plt.axes(projection='3d')
 
 #initialize
 r_length = []
 rx = []
+ry = []
 rz = []
 
 for r in rays:
     rx.append(r.x / R_E)
+    ry.append(r.y / R_E)
     rz.append(r.z / R_E)
     r_length.append(len(r))
 
@@ -154,41 +158,56 @@ for d in damplist:
     #    damp = np.concatenate((damp, np.zeros(int(leftover))), axis=0)
     dlist.append(damp)
 
-def myplot(ax, xs, ys, zs, cmap):
-    for x, y, z in zip(xs, ys, zs):
-        plot = LineCollection([np.column_stack((x, y))], cmap=cmap, zorder=102)
-        plot.set_array(z)
-        ax.add_collection(plot)
-    return plot
+#def myplot(ax, xs, ys, zs, cs, cmap):
+#    for x, y, z, c in zip(xs, ys, zs, cs):
+#        plot = LineCollection([np.column_stack((x, y, z))], cmap=cmap, zorder=102)
+#        plot.set_array(c)
+#        ax.add_collection(plot)
+#    return plot
 
-line = myplot(ax, rx, rz, dlist, 'Reds')
+# compress for plotting in 3D
+darray = np.ndarray.flatten(np.array(dlist))
+rx = np.ndarray.flatten(np.array(rx))
+ry = np.ndarray.flatten(np.array(ry))
+rz = np.ndarray.flatten(np.array(rz))
+
+# plot it!
+line = ax.scatter3D(rx, ry, rz, c=darray, cmap='Reds');
 fig.colorbar(line, ax=ax, label = 'Normalized wave power')
 
-# --------------------------- Figure formatting ---------------------------
+# --------------------------- Earth and Ionosphere ---------------------------
+u = np.linspace(0, 2 * np.pi, 100)
+v = np.linspace(0, np.pi, 100)
+earthx = np.outer(np.cos(u), np.sin(v))
+earthy = np.outer(np.sin(u), np.sin(v))
+earthz = np.outer(np.ones(np.size(u)), np.cos(v))
+ax.plot_surface(earthx, earthy, earthz, color='b', zorder = 100)
+
+# add in the ionosphere
+iono_r = (R_E + H_IONO) / R_E
+ionox = iono_r * np.outer(np.cos(u), np.sin(v))
+ionoy = iono_r * np.outer(np.sin(u), np.sin(v))
+ionoz = iono_r * np.outer(np.ones(np.size(u)), np.cos(v))
+ax.plot_surface(ionox, ionoy, ionoz, color='g', alpha = 0.2, zorder = 99)
+
+# ------------------------ Field Lines --------------------------
 L_shells = [2, 3, 4]  # Field lines to draw
-
-# Earth and Iono
-earth = plt.Circle((0, 0), 1, color='b', alpha=1, zorder=100)
-iono = plt.Circle((0, 0), (R_E + H_IONO) / R_E, color='g', alpha=0.5, zorder=99)
-ax.add_artist(earth)
-ax.add_artist(iono)
-
-# ---------------------- Field Lines -----------------------
 # (from IGRF13 model)
 for L in L_shells:
     Lx, Lz = trace_fieldline_ODE([L,0], 0, '0', 1)
-    plt.plot(Lx, Lz, color='b', linewidth=1, linestyle='dashed')
+    plt.plot(Lx, np.zeros(len(Lx)), Lz, color='b', linewidth=1, linestyle='dashed')
     Lx, Lz = trace_fieldline_ODE([L,0], 0, '0', -1)
-    plt.plot(Lx, Lz, color='b', linewidth=1, linestyle='dashed')
+    plt.plot(Lx, np.zeros(len(Lx)), Lz, color='b', linewidth=1, linestyle='dashed')
     Lx, Lz = trace_fieldline_ODE([-L,0], 0, '0', 1)
-    plt.plot(Lx, Lz, color='b', linewidth=1, linestyle='dashed')
+    plt.plot(Lx, np.zeros(len(Lx)), Lz, color='b', linewidth=1, linestyle='dashed')
     Lx, Lz = trace_fieldline_ODE([-L,0], 0, '0', -1)
-    plt.plot(Lx, Lz, color='b', linewidth=1, linestyle='dashed')
+    plt.plot(Lx, np.zeros(len(Lx)), Lz, color='b', linewidth=1, linestyle='dashed')
 
 # plot field line from orbital position
 for linex, linez in zip(Bxlines, Bzlines):
     plt.plot(linex, linez, color='r', linewidth=1, linestyle='dashed')
-
+fig.show()
+"""
 # ---------------------- Satellite Orbits   -----------------------------
 plt.plot(x_DSX/R_E, z_DSX/R_E, c='y', zorder = 105, label = 'DSX')
 plt.plot(x_VPM/R_E, z_VPM/R_E, c='y', zorder = 105, label = 'VPM')
@@ -237,3 +256,4 @@ fig.savefig(savename, format='svg')
 
 plt.show()
 plt.close()
+"""

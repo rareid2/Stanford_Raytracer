@@ -23,10 +23,10 @@ H_IONO = 1000e3
 # change time information here - use UTC -
 year = 2020
 month = 4
-day = 23
-hours = 0
-minutes = 0
-seconds = 0
+day = 6
+hours = 22
+minutes = 4
+seconds = 30
 
 # convert for raytracer settings
 days_in_the_year = (dt.date(year, month, day) - dt.date(year,1,1)).days + 1

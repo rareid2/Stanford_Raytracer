@@ -36,22 +36,21 @@ B_dir can be called indivudally without using trace_fieldline_ODE
 
 inputs to B_dir if called on its own: 
 t = set at 0 if called indivuallay, else let ODE integrated call it
-x = starting position 2 COMPONENT IN EARTH RADII GEOCENTRIC CART
+x = starting position 3 COMPONENT IN EARTH RADII GEOCENTRIC CART
 
 """
 
 def B_dir(t, x, bmodel, extfield, direction):
-    pos = coord.Coords([x[0], 0, x[1]], 'GEO', 'car')
+    pos = coord.Coords([x[0], x[1], x[2]], 'GEO', 'car')
     tv = Ticktock(ray_datenum)
     B = irbem.get_Bfield(tv, pos, extMag=extfield, options=[1, 0, 0, 0, bmodel], omnivals=None)
     Bmags = direction * B['Bvec'] / B['Blocal']
-
-    return [Bmags[0][0], Bmags[0][2]]
+    return [Bmags[0][0], Bmags[0][1], Bmags[0][2]]
 
 """
 trace field line uses ODE to trace along field line
 call with initial position in Earth radii in
-p0 = 2 COMPONENT XZ position in eatrh radii in GEO cartesian
+p0 = 3 COMPONENT XYZ position in eatrh radii in GEO cartesian
 extfield = 0
 bmodel = use IGRF = 0
 direction = 1 or -1 
@@ -59,6 +58,7 @@ direction = 1 or -1
 def trace_fieldline_ODE(p0, bmodel, extfield, direction):
 
     x = []
+    y = []
     z = []
     dt = 5e-2
     r = ode(B_dir)
@@ -70,7 +70,8 @@ def trace_fieldline_ODE(p0, bmodel, extfield, direction):
     while r.successful():
         r.integrate(r.t + dt)
         x.append(r.y[0])
-        z.append(r.y[1])
+        y.append(r.y[1])
+        z.append(r.y[2])
 
         counts += 1
         if np.linalg.norm(r.y) < 1:
@@ -80,15 +81,16 @@ def trace_fieldline_ODE(p0, bmodel, extfield, direction):
         if counts > 500:
             print('max count')
             break
-    return x, z
+    return x, y, z
+
 
 """
 
 #example call
 
-startpoint = [1.5291777608361319, -1.310595670385567] # Start from the equator
+startpoint = [1.5291777608361319, 1.5, -1.310595670385567] # Start from the equator
 direction = 1
-x,z = trace_fieldline_ODE(startpoint,0,'0',direction)
-#plt.plot(x,z)
-#plt.show()
+x,y,z = trace_fieldline_ODE(startpoint,0,'0',direction)
+plt.plot(x,z)
+plt.show()
 """
