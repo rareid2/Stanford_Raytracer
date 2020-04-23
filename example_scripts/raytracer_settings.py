@@ -28,16 +28,16 @@ hours = 22
 minutes = 4
 seconds = 30
 
+# used for plotting the ray
+ray_datenum = dt.datetime(year, month, day, hours, minutes, seconds)
+
 # convert for raytracer settings
-days_in_the_year = (dt.date(year, month, day) - dt.date(year,1,1)).days + 1
+days_in_the_year = ray_datenum.timetuple().tm_yday
 days_in_the_year = format(days_in_the_year, '03d')
 
 # yearday and miliseconds day are used by raytracer
 yearday = str(year)+ str(days_in_the_year)   # YYYYDDD
 milliseconds_day = hours*3.6e6 + minutes*6e4 + seconds*1e3
-
-# used for plotting the ray
-ray_datenum = dt.datetime(int(yearday[0:4]), 1, 1) + dt.timedelta(int(yearday[4:]) - 1)
 
 # space weather settings
 Kp = 2

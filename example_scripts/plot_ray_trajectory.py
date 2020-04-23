@@ -17,14 +17,13 @@ from example_scripts.raytracer_utils import readdump, read_rayfile, read_rayfile
 from example_scripts.run_rays import run_rays
 from example_scripts.raytracer_settings import *
 from example_scripts.IGRF_funcs import B_dir, trace_fieldline_ODE
-# Spacepy (for coordinate transforms)
+# Spacepy (for coordinate transforms) -- my dev version of spacepy
 from spacepy import coordinates as coord
 from spacepy.time import Ticktock
-# for color bar plotting
-from matplotlib.collections import LineCollection
-from matplotlib.colors import LogNorm, ListedColormap, BoundaryNorm
 # for satellite orbits
 from get_TLE import get_TLE
+
+
 
 # TODO: coordinates?
 # --------------------------- Orbits -------------------------------
@@ -32,63 +31,49 @@ from get_TLE import get_TLE
 line1 = '1 44344U 19036F   20113.30349832 -.00000013 +00000-0 +00000-0 0  9992'
 line2 = '2 44344 042.2517 093.1041 1975016 129.9693 249.1586 04.54371641013721'
 DSX_pos, DSX_t = get_TLE(line1, line2, 'DSX')
-x_DSX = DSX_pos[0]
-y_DSX = DSX_pos[1]
-z_DSX = DSX_pos[2]
+x_DSX, y_DSX, z_DSX = DSX_pos[0], DSX_pos[1], DSX_pos[2]
 
 # VPM TLE:
 line1 = '1 45120U 19071K   20113.86456076  .00004088  00000-0  13479-3 0  9996'
 line2 = '2 45120  51.6417 271.7875 0011770 209.5167 150.5152 15.33686764012484'
 VPM_pos, VPM_t = get_TLE(line1, line2, 'VPM')
-x_VPM = VPM_pos[0]
-y_VPM = VPM_pos[1]
-z_VPM = VPM_pos[2]
+x_VPM, y_VPM, z_VPM = VPM_pos[0], VPM_pos[1], VPM_pos[2]
 
 # --------------------------- Ray Tracing --------------------------
 # define lists here - must be lists even if only one arg
 
 freq = [26e3]
 #n_pos = np.linspace(0,2,1)
-n_pos = [10]
+n_pos = [0]
 positions = [np.array([x_DSX[int(npos)], y_DSX[int(npos)], z_DSX[int(npos)]]) for npos in n_pos]
-
-"""
-thetalist is angle from local magnetic field direction in XZ plane
-for example: 0 deg = parallel Bfield 
-15 = 15 deg counterclockwise to Bfield
-"""
-
 thetalist = [0, 45] # in deg
+
+""" thetalist is angle from local magnetic field direction rotated around x-axis
+for example: 0 deg = parallel Bfield & 15 = 15 deg counterclockwise to Bfield """
 
 # initialize - leave empty
 directions = []
-Bxlines = []
-Bzlines =[]
+Blines = []
 
 for position in positions:
-    # grab XZ position
-    startpoint = [position[0]/R_E, position[2]/R_E]
-    path = 1
+    # grab position
+    startpoint = [position[0]/R_E, position[1]/R_E, position[2]/R_E]
     # get bfield direction
-    Bx, Bz = B_dir(0, startpoint, 0, '0', path)
+    Bx, By, Bz = B_dir(0, startpoint, 0, '0', 1)
+    dirB = np.reshape(np.array([Bx, By, Bz]), (1,3))
 
     # grab full magnetic field line for plotting later
-    Bxline, Bzline = trace_fieldline_ODE(startpoint, 0, '0', path)
-    Bxlines.append(np.array(Bxline))
-    Bzlines.append(np.array(Bzline))
-    Bxline, Bzline = trace_fieldline_ODE(startpoint, 0, '0', -1*path)
-    Bxlines.append(np.array(Bxline))
-    Bzlines.append(np.array(Bzline))
+    Blines.append(trace_fieldline_ODE(startpoint, 0, '0', 1))
+    Blines.append(trace_fieldline_ODE(startpoint, 0, '0', -1))
 
-    # rotate around direction of field line
+    # rotate around direction of field line around x axis
     for theta in thetalist:
-        # rotate using theta
-        Rv = np.array([Bx * np.cos(D2R * theta) - Bz * np.sin(D2R * theta),
-                       Bx * np.sin(D2R * theta) + Bz * np.cos(D2R * theta)])
-        dir_vec = np.array([Rv[0], 0, Rv[1]])
-        direction = dir_vec/np.linalg.norm(dir_vec)
-        # add that direction
-        directions.append(direction)
+        R = [ [1, 0, 0], [0, np.cos(D2R * theta), - np.sin(D2R * theta)],
+              [0, np.sin(D2R * theta), np.cos(D2R * theta)] ]
+        direction = np.matmul(dirB, np.reshape(np.array(R), (3, 3)))
+        direction = direction/np.linalg.norm(direction)
+        # add that normalized direction
+        directions.append(np.squeeze(direction))
 
 # number of rays
 n_rays = len(freq) * len(positions) * len(directions)
@@ -97,7 +82,6 @@ print('about to run: ', n_rays, ' rays')
 run_rays(freq, positions, directions)
 
 # ---------------------- Load output directory -------------------------
-
 # Load all the rayfiles in the output directory
 file_titles = os.listdir(ray_out_dir)
 
@@ -115,13 +99,11 @@ for filename in file_titles:
 
 # quick check: did the rays propagate?
 raylist = [checkray for checkray in raylist if not len(checkray["time"]) < 2]
-
 # abandon if not
 if raylist == []:
     sys.exit(0)
 
 # ------------------------ Coordinate Conversion --------------------------
-
 # convert to desired coordinate system into vector list rays
 rays = []
 for r in raylist:
@@ -132,8 +114,6 @@ for r in raylist:
     rays.append(tmp_coords)
 
 #----------------------------- Plot rays ----------------------------------
-#fig, ax = plt.subplots(1,1, sharex=True, sharey=True)
-lw = 2  # linewidth
 fig = plt.figure()
 ax = plt.axes(projection='3d')
 
@@ -176,12 +156,13 @@ line = ax.scatter3D(rx, ry, rz, c=darray, cmap='Reds');
 fig.colorbar(line, ax=ax, label = 'Normalized wave power')
 
 # --------------------------- Earth and Ionosphere ---------------------------
+# add the earth
 u = np.linspace(0, 2 * np.pi, 100)
 v = np.linspace(0, np.pi, 100)
 earthx = np.outer(np.cos(u), np.sin(v))
 earthy = np.outer(np.sin(u), np.sin(v))
 earthz = np.outer(np.ones(np.size(u)), np.cos(v))
-ax.plot_surface(earthx, earthy, earthz, color='b', zorder = 100)
+ax.plot_surface(earthx, earthy, earthz, color='b', alpha = 0.75, zorder = 100)
 
 # add in the ionosphere
 iono_r = (R_E + H_IONO) / R_E
@@ -191,69 +172,65 @@ ionoz = iono_r * np.outer(np.ones(np.size(u)), np.cos(v))
 ax.plot_surface(ionox, ionoy, ionoz, color='g', alpha = 0.2, zorder = 99)
 
 # ------------------------ Field Lines --------------------------
-L_shells = [2, 3, 4]  # Field lines to draw
+L_shells = [2, 3]  # Field lines to draw
+
 # (from IGRF13 model)
 for L in L_shells:
-    Lx, Lz = trace_fieldline_ODE([L,0], 0, '0', 1)
-    plt.plot(Lx, np.zeros(len(Lx)), Lz, color='b', linewidth=1, linestyle='dashed')
-    Lx, Lz = trace_fieldline_ODE([L,0], 0, '0', -1)
-    plt.plot(Lx, np.zeros(len(Lx)), Lz, color='b', linewidth=1, linestyle='dashed')
-    Lx, Lz = trace_fieldline_ODE([-L,0], 0, '0', 1)
-    plt.plot(Lx, np.zeros(len(Lx)), Lz, color='b', linewidth=1, linestyle='dashed')
-    Lx, Lz = trace_fieldline_ODE([-L,0], 0, '0', -1)
-    plt.plot(Lx, np.zeros(len(Lx)), Lz, color='b', linewidth=1, linestyle='dashed')
+    # plot field lines around the earth
+    around_earth = [[L, 0, 0], [L + np.sqrt(2) / 2, L + np.sqrt(2) / 2, 0], [0, L, 0],
+                    [-(L + np.sqrt(2) / 2), L + np.sqrt(2) / 2, 0], [-L, 0, 0],
+                    [-(L + np.sqrt(2) / 2), -(L + np.sqrt(2) / 2), 0], [0, -L, 0],
+                    [(L + np.sqrt(2) / 2), -(L + np.sqrt(2) / 2), 0]]
+    for spot in around_earth:
+        Lx, Ly, Lz = trace_fieldline_ODE(spot, 0, '0', 1)
+        plt.plot(Lx, Ly, Lz, color='b', linewidth=1, linestyle='dashed')
+        Lx, Ly, Lz = trace_fieldline_ODE(spot, 0, '0', -1)
+        plt.plot(Lx, Ly, Lz, color='b', linewidth=1, linestyle='dashed')
 
 # plot field line from orbital position
-for linex, linez in zip(Bxlines, Bzlines):
-    plt.plot(linex, linez, color='r', linewidth=1, linestyle='dashed')
-fig.show()
-"""
+for blinex, bliney, blinez in Blines:
+    ax.plot(blinex, bliney, blinez, color='r', linewidth=1, linestyle='dashed')
+
 # ---------------------- Satellite Orbits   -----------------------------
-plt.plot(x_DSX/R_E, z_DSX/R_E, c='y', zorder = 105, label = 'DSX')
-plt.plot(x_VPM/R_E, z_VPM/R_E, c='y', zorder = 105, label = 'VPM')
+ax.plot(x_DSX / R_E, y_DSX / R_E, z_DSX / R_E, c='y', zorder = 101, label = 'DSX')
+ax.plot(x_VPM / R_E, y_VPM / R_E, z_VPM / R_E, c='y', zorder = 101, label = 'VPM')
 for npos in n_pos:
-    plt.plot(x_DSX[int(npos)]/R_E, z_DSX[int(npos)]/R_E, '-bo', zorder = 103)
+    ax.scatter(x_DSX[int(npos)] / R_E, y_DSX[int(npos)] / R_E, z_DSX[int(npos)] / R_E,
+                  c='b', zorder = 102)
 
 # ------------------------- Plasmasphere ------------------------------
-plasma_model_dump = os.path.join(ray_out_dir, 'model_dump_mode_1_XZ.dat')
-d_xz = readdump(plasma_model_dump)
-Ne_xz = d_xz['Ns'][0, :, :, :].squeeze().T * 1e-6
-Ne_xz[np.isnan(Ne_xz)] = 0
+#plasma_model_dump = os.path.join(ray_out_dir, 'model_dump_mode_1_XZ.dat')
+#d_xz = readdump(plasma_model_dump)
+#Ne_xz = d_xz['Ns'][0, :, :, :].squeeze().T * 1e-6
+#Ne_xz[np.isnan(Ne_xz)] = 0
 
 # Axis spacing depends on how the modeldump was ran
-psize = 10
-px = np.linspace(-10, 10, 200)
-py = np.linspace(-10, 10, 200)
-
-# Colorbar limits (log space)
-clims = [-2, 5]
+#psize = 10 #R_E
+#px = np.linspace(-psize, psize, 200)
+#py = np.linspace(-psize, psize, 200)
 
 # Plot background plasma (equatorial slice)
-g = plt.pcolormesh(px, py, np.log(Ne_xz), cmap = 'twilight')
+#line = ax.scatter(px, py, c=np.log(Ne_xz), cmap='twilight');
+#g = plt.pcolormesh(px, py, np.log(Ne_xz), cmap = 'twilight')
 #fig.colorbar(g, ax=ax, orientation="horizontal", pad = 0.2, label= 'Plasmasphere density')
 
 # ----------------------------- More Formatting ----------------------------
-ax.set_aspect('equal')
-max_lim = max(L_shells)+1
-
-plt.xticks(np.arange(-max_lim, max_lim, step=1))
-plt.yticks(np.arange(-max_lim, max_lim, step=1))
-plt.xlabel('L (R$_E$)')
-plt.ylabel('L (R$_E$)')
-plt.xlim([-max_lim, max_lim])
-plt.ylim([-2.5, 2.5])
-
+ax.set_xlabel('L (R$_E$)')
+ax.set_ylabel('L (R$_E$)')
+ax.set_zlabel('L (R$_E$)')
 #ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.25), ncol=2)
-str_freq = str(int(freq[0] / 1e3))
-str_orbital_pos = str(n_pos)
-fig_title = str_freq + ' kHz rays in XZ plane'
+raytime = ray_datenum.strftime("%d-%b-%Y (%H:%M:%S.%f)")
+fig_title = 'Ray launch at ' + raytime
 plt.title(fig_title)
+fig.show()
+"""
 
 # ------------------------------- Saving ---------------------------------------
 #savename = 'plots/XZ_' + str_freq + 'kHz_%03d.png' %p
-savename = 'plots/XZ_' + str_freq + 'kHz_SVGTEST.svg'
-fig.savefig(savename, format='svg')
+savename = 'plots/testing3d.png'
+#fig.savefig(savename, format='svg')
 
+fig.savefig(savename)
 plt.show()
 plt.close()
 """
