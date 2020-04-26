@@ -218,13 +218,15 @@ for npos in n_pos:
 ax.set_xlabel('L (R$_E$)')
 ax.set_ylabel('L (R$_E$)')
 ax.set_zlabel('L (R$_E$)')
-#ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.25), ncol=2)
-raytime = ray_datenum.strftime("%d-%b-%Y (%H:%M:%S.%f)")
-fig_title = 'Ray launch at ' + raytime
-plt.title(fig_title)
-fig.show()
-"""
 
+
+fig.show()
+#ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.25), ncol=2)
+#raytime = ray_datenum.strftime("%d-%b-%Y (%H:%M:%S.%f)")
+#fig_title = 'Ray launch at ' + raytime
+#plt.title(fig_title)
+
+"""
 # ------------------------------- Saving ---------------------------------------
 #savename = 'plots/XZ_' + str_freq + 'kHz_%03d.png' %p
 savename = 'plots/testing3d.png'

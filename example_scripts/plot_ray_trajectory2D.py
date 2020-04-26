@@ -42,7 +42,7 @@ x_VPM, y_VPM, z_VPM = VPM_pos[0], VPM_pos[1], VPM_pos[2]
 # --------------------------- Ray Tracing --------------------------
 # define lists here - must be lists even if only one arg
 
-freq = [26e3]
+freq = [8.2e3]
 n_pos = np.linspace(0,49,2)
 positions = [np.array([x_DSX[int(npos)], y_DSX[int(npos)], z_DSX[int(npos)]]) for npos in n_pos]
 
@@ -143,6 +143,9 @@ for d in damplist:
     #    damp = np.concatenate((damp, np.zeros(int(leftover))), axis=0)
     dlist.append(damp)
 
+# normalize
+normdlist = [float(i)/sum(dlist[0]) for i in dlist[0]]
+
 def myplot(ax, xs, ys, zs, cmap):
     for x, y, z in zip(xs, ys, zs):
         plot = LineCollection([np.column_stack((x, y))], cmap=cmap, zorder=102)
@@ -150,7 +153,7 @@ def myplot(ax, xs, ys, zs, cmap):
         ax.add_collection(plot)
     return plot
 
-line = myplot(ax, rx, rz, dlist, 'Reds')
+line = myplot(ax, rx, rz, normdlist, 'Reds')
 fig.colorbar(line, ax=ax, label = 'Normalized wave power')
 
 # --------------------------- Figure formatting ---------------------------
@@ -173,6 +176,7 @@ for L in L_shells:
     plt.plot(Lx, Lz, color='b', linewidth=1, linestyle='dashed')
     Lx, Ly, Lz = trace_fieldline_ODE([-L,0,0], 0, '0', -1)
     plt.plot(Lx, Lz, color='b', linewidth=1, linestyle='dashed')
+print('finished plotting field lines')
 
 # plot field line from orbital position
 for blinex, bliney, blinez in Blines:
@@ -183,7 +187,7 @@ plt.plot(x_DSX/R_E, z_DSX/R_E, c='y', zorder = 105, label = 'DSX')
 plt.plot(x_VPM/R_E, z_VPM/R_E, c='y', zorder = 105, label = 'VPM')
 for npos in n_pos:
     plt.plot(x_DSX[int(npos)]/R_E, z_DSX[int(npos)]/R_E, '-bo', zorder = 103)
-
+    plt.plot(x_VPM[int(npos)] / R_E, z_VPM[int(npos)] / R_E, '-ro', zorder=103)
 # ------------------------- Plasmasphere ------------------------------
 plasma_model_dump = os.path.join(ray_out_dir, 'model_dump_mode_1_XZ.dat')
 d_xz = readdump(plasma_model_dump)
@@ -214,15 +218,13 @@ plt.xlim([-max_lim, max_lim])
 plt.ylim([-2.5, 2.5])
 
 #ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.25), ncol=2)
-str_freq = str(int(freq[0] / 1e3))
-str_orbital_pos = str(n_pos)
-fig_title = str_freq + ' kHz rays in XZ plane'
+fig_title = str(freq[0]/1e3) + ' kHz rays in XZ plane'
 plt.title(fig_title)
 
 # ------------------------------- Saving ---------------------------------------
 #savename = 'plots/XZ_' + str_freq + 'kHz_%03d.png' %p
-savename = 'plots/XZ_' + str_freq + 'kHz_SVGTEST.svg'
-fig.savefig(savename, format='svg')
+savename = 'plots/ray_' + str(ray_datenum) + '.png'
+fig.savefig(savename, format='png')
 
-plt.show()
+fig.show()
 plt.close()
