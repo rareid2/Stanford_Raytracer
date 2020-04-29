@@ -61,7 +61,7 @@ def trace_fieldline_ODE(p0, bmodel, extfield, direction):
     x = []
     y = []
     z = []
-    dt = 5e-2
+    dt = 3e-2
     r = ode(B_dir)
     r.set_integrator('vode')
 

@@ -21,7 +21,6 @@ from skyfield.api import EarthSatellite, Topos, load, utc
 import datetime as dt
 from spacepy.coordinates import Coords
 from spacepy.time import Ticktock
-
 from raytracer_settings import *
 
 # --------------------------------- START FUNCTION -------------------------------------
@@ -53,13 +52,15 @@ def get_TLE(line1, line2, sat_name):
     geocentric = satellite.at(t)
 
     return geocentric.position.m, t_pos
+
 """
-# for testing
-line1 = '1 44344U 19036F   20113.30349832 -.00000013 +00000-0 +00000-0 0  9992'
-line2 = '2 44344 042.2517 093.1041 1975016 129.9693 249.1586 04.54371641013721'
+
+#for testing
+line1 = '1 44344U 19036F   20117.92375283 -.00000009 +00000-0 +00000-0 0  9998'
+line2 = '2 44344 042.2535 091.4116 1974932 131.9492 246.6867 04.54371554013931'
 x, t_pos = get_TLE(line1, line2, 'DSX')
 # visualize orbit in XZ plane
-plt.plot(x[0]/R_E,x[2]/R_E)
+plt.plot(x[0]/R_E,x[1]/R_E)
 plt.show()
 """
 
@@ -75,8 +76,8 @@ def get_pos(line1, line2, sat_name, datenum):
     ts = load.timescale()
 
     # TLE form:
-    # line1 = '1 44344U 19036F   20099.44261897 -.00000008 +00000-0 +00000-0 0  9998'
-    # line2 = '2 44344 042.2458 098.1824 1975230 124.0282 256.3811 04.54371606013099'
+    #line1 = '1 44344U 19036F   20099.44261897 -.00000008 +00000-0 +00000-0 0  9998'
+    #line2 = '2 44344 042.2458 098.1824 1975230 124.0282 256.3811 04.54371606013099'
 
     # find the satellite
     satellite = EarthSatellite(line1, line2)
@@ -86,8 +87,10 @@ def get_pos(line1, line2, sat_name, datenum):
 
     # grab time from ray_tracer settings
     datenum = datenum.replace(tzinfo=utc)  # specifiy UTC time zone
+
     t = ts.utc(datenum)
     # find geocentric cartesian coordinates over orbit for satellite
     geocentric = satellite.at(t)
+
 
     return geocentric.position.m, t

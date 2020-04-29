@@ -31,48 +31,54 @@ x_VPM = []
 y_VPM = []
 z_VPM = []
 
+# let's get for the next 2weeks
 secperweek = 604800
+secperday = 86400
 minperweek = 10080
 hrperweek = 168
-time_period = np.linspace(0, 2*hrperweek, (2*hrperweek)+1)
+time_period = np.linspace(0, int(secperweek*2), int(secperweek*2)+1)
+datenum_o = [datenum + dt.timedelta(seconds=s) for s in time_period]
 
-for s in time_period:
-
-    #iterate by min
-    datenum_o = datenum + dt.timedelta(minutes=s)
-
+s = 0
+for daten in datenum_o:
     # DSX TLE:
-    line1 = '1 44344U 19036F   20116.38366941 -.00000011 +00000-0 +00000+0 0  9990'
-    line2 = '2 44344 042.2529 091.9758 1974961 131.2888 247.5136 04.54371596013862'
-    DSX_pos, DSX_t = get_pos(line1, line2, 'DSX', datenum_o)
+    line1 = '1 44344U 19036F   20117.92375283 -.00000009 +00000-0 +00000-0 0  9998'
+    line2 = '2 44344 042.2535 091.4116 1974932 131.9492 246.6867 04.54371554013931'
+    DSX_pos, DSX_t = get_pos(line1, line2, 'DSX', daten)
     x_DSX.append(DSX_pos[0])
     y_DSX.append(DSX_pos[1])
     z_DSX.append(DSX_pos[2])
 
     # VPM TLE:
-    line1 = '1 45120U 19071K   20116.53609353  .00004260  00000-0  13987-3 0  9997'
-    line2 = '2 45120  51.6427 258.8751 0011734 219.6893 140.3231 15.33710671012897'
-    VPM_pos, VPM_t = get_pos(line1, line2, 'VPM', datenum_o)
+    line1 = '1 45120U 19071K   20119.07726718  .00004309  00000-0  14125-3 0  9993'
+    line2 = '2 45120  51.6431 246.5927 0011612 229.4528 130.5444 15.33735479013284'
+    VPM_pos, VPM_t = get_pos(line1, line2, 'VPM', daten)
     x_VPM.append(VPM_pos[0])
     y_VPM.append(VPM_pos[1])
     z_VPM.append(VPM_pos[2])
 
+    s += 1
     print(s)
 
 print('finished generating data')
 
 # save data to a txtfile
 orbitdata = list(zip(x_DSX, y_DSX, z_DSX, x_VPM, y_VPM, z_VPM))
-afile = open('orbit_data.txt', 'w')
+afile = open('orbit_pos.txt', 'w')
 np.savetxt(afile, orbitdata)
 afile.close()
 
+# save time to a txtfile
+afile = open('orbit_time.txt', 'w')
+np.savetxt(afile, datenum_o)
+afile.close()
 
 
 """
 ============================================================
 3D animation
 ============================================================
+"""
 """
 
 # get data
@@ -140,3 +146,67 @@ FFwriter=animation.FFMpegWriter(fps=int(framerate), extra_args=['-vcodec', 'libx
 anim.save(savename, writer=FFwriter)
 
 print('we done')
+
+"""
+"""
+############################################################
+# figure out when at apogee and perigee over the next 2 weeks
+# get data
+data = np.genfromtxt('orbit_data.txt')
+dsxdata = data[:,0:3]
+apa = []
+
+for i in range(len(dsxdata)):
+    dat = dsxdata[i]
+    x = dat[0] / R_E
+    if x<-1 or x>1:
+        apa.append(i)
+
+new_orbitdata = [data[ap] for ap in apa]
+
+# save data to a txtfile
+afile = open('new_orbit_data.txt', 'w')
+np.savetxt(afile, new_orbitdata)
+afile.close()
+
+# save apa to a txtfile
+afile = open('apa.txt', 'w')
+np.savetxt(afile, apa)
+afile.close()
+"""
+
+
+"""
+#distances = [np.sqrt(data[i,0]**2 + data[i,1]**2 + data[i,2]**2) for i in range(len(data))]
+#for dist in distances:
+#    if dist < 12350540.7 + 500e3 or dist > 18444281.95 - 500e3:
+#        apa.append(distances.index(dist))
+
+new_data = [data[i,0:3] for i in apa]
+xray = [dat[0]/R_E for dat in new_data]
+yray = [dat[1]/R_E for dat in new_data]
+zray = [dat[2]/R_E for dat in new_data]
+
+#apa_new = []
+xray = []
+yray = []
+zray = []
+
+for i in range(len(new_data)):
+    dat = new_data[i]
+    x = dat[0] / R_E
+    if x<-1 or x>1:
+        xray.append(dat[0])
+        yray.append(dat[1])
+        zray.append(dat[2])
+        apa_new.append(i)
+
+
+
+plt.xlim([-3,3])
+plt.ylim([-3,3])
+plt.scatter(xray, zray)
+
+savename = 'plots/rayUGHS.png'
+plt.savefig(savename, format='png')
+"""
