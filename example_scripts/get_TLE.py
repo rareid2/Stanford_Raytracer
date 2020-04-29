@@ -9,14 +9,12 @@ DSX NORAD ID: 44344
 VPM NORAD ID: 45120
 
 returns position of satellite for one orbit, with orbit starting at given time
-in geocentric cartesian coordinates in meters
 
 """
 
 # import packages
 import numpy as np
 import matplotlib.pyplot as plt
-
 from skyfield.api import EarthSatellite, Topos, load, utc
 import datetime as dt
 from spacepy.coordinates import Coords
@@ -64,9 +62,6 @@ plt.plot(x[0]/R_E,x[1]/R_E)
 plt.show()
 """
 
-
-
-
 # --------------------------------- END FUNCTION -------------------------------------
 
 # --------------------------------- START FUNCTION -------------------------------------
@@ -75,22 +70,16 @@ def get_pos(line1, line2, sat_name, datenum):
     # load timescale UTC
     ts = load.timescale()
 
-    # TLE form:
-    #line1 = '1 44344U 19036F   20099.44261897 -.00000008 +00000-0 +00000-0 0  9998'
-    #line2 = '2 44344 042.2458 098.1824 1975230 124.0282 256.3811 04.54371606013099'
-
     # find the satellite
     satellite = EarthSatellite(line1, line2)
 
-    # find when TLE was generated - keep updated every 1-2 weeks
-    # print(sat_name, 'TLE is current as of:', satellite.epoch.utc_jpl())
-
     # grab time from ray_tracer settings
     datenum = datenum.replace(tzinfo=utc)  # specifiy UTC time zone
-
     t = ts.utc(datenum)
-    # find geocentric cartesian coordinates over orbit for satellite
+
+    # find satellite
     geocentric = satellite.at(t)
 
-
     return geocentric.position.m, t
+
+    # this is GEI in meters cartesian

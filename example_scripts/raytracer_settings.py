@@ -61,7 +61,7 @@ maxerr = 5.0e-4  # Error bound for adaptive timestepping
 maxsteps = 2e5   # Max number of timesteps (abort if reached)
 use_IGRF = 1     # Magnetic field model (1 for IGRF, 0 for dipole)
 use_tsyg = 1     # Use the Tsyganenko magnetic field model corrections
-minalt = R_E     # cutoff altitude in meters
+minalt = R_E + 400e3   # cutoff altitude in meters
 # TODO: make a max cutoff alt or check if inside the plasmasphere
 
 # Which plasmasphere models should we run?
