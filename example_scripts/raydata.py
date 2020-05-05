@@ -60,15 +60,24 @@ for ap in apa:
     vpmpositions.append(orbitdata[ap][3:6])
     raytime.append(timedata[ap])
 
+# only do for 3 days (let's do next week) - 150,000 time points
+# do every 5 seconds - 10,000 rays
+
+dsxpositions = dsxpositions[300000:450000]
+vpmpositions = vpmpositions[300000:450000]
+raytime = raytime[300000:450000]
 
 print('got all positions')
 
 looplen = len(dsxpositions)
-n = 150000
+n = 1500
 
+
+allmyrays = []
+allmydamp = []
 bfoots = []
-workbook = xlsxwriter.Workbook('more_conjunctions.xlsx')
-worksheet = workbook.add_worksheet()
+#workbook = xlsxwriter.Workbook('more_conjunctions.xlsx')
+#worksheet = workbook.add_worksheet()
 
 s = 0
 # iterate
@@ -188,12 +197,15 @@ for numcount in np.linspace(0,looplen-1,n):
     footprint.ticks = Ticktock(ray_datenum, 'UTC')
     footprint = footprint.convert('GEO', 'car')
     bfoots.append(footprint)
-    for ir in range(len(rx[0])):
-        worksheet.write(ir + 1, s * 5, rx[0][ir])
-        worksheet.write(ir + 1, (s * 5) + 1, ry[0][ir])
-        worksheet.write(ir + 1, (s * 5) + 2, rz[0][ir])
-        worksheet.write(ir + 1, (s * 5) + 3, dlist[0][ir])
+    allmyrays.append(np.vstack([rx[-1:],ry[-1:],rz[-1:]]))
+    allmydamp.append(dlist[-1:])
+
+    #for ir in range(len(rx[0])):
+    #    worksheet.write(ir + 1, s * 5, rx[0][ir])
+    #    worksheet.write(ir + 1, (s * 5) + 1, ry[0][ir])
+    #    worksheet.write(ir + 1, (s * 5) + 2, rz[0][ir])
+    #    worksheet.write(ir + 1, (s * 5) + 3, dlist[0][ir])
 
     s += 1
 
-workbook.close()
+#workbook.close()
