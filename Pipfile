@@ -14,8 +14,11 @@ skyfield = "*"
 spacepy = {git = "https://github.com/rareid2/spacepy.git",ref = "master"}
 ffmpeg = "*"
 ffmpeg-python = "*"
+<<<<<<< HEAD
 xlsxwrite = "*"
 xlsxwriter = "*"
+=======
+>>>>>>> a40385af70d8379ef79a0df25c5c9dc386b09bc8
 
 [requires]
 python_version = "3.7"

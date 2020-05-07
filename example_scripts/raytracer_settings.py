@@ -50,7 +50,11 @@ BzIMF = -5
 W = [0.132, 0.303, 0.083, 0.070, 0.211, 0.308]  # Doesn't matter if we're not using Tsyg
 
 # Simulation parameters
+<<<<<<< HEAD
 t_max = 30       # Maximum duration in seconds
+=======
+t_max = 10       # Maximum duration in seconds
+>>>>>>> a40385af70d8379ef79a0df25c5c9dc386b09bc8
 dt0 = 1e-3       # Initial timestep in seconds
 dtmax = 0.1      # Maximum allowable timestep in seconds
 root = 2         # Which root of the Appleton-Hartree equation
@@ -61,7 +65,11 @@ maxerr = 5.0e-4  # Error bound for adaptive timestepping
 maxsteps = 2e5   # Max number of timesteps (abort if reached)
 use_IGRF = 1     # Magnetic field model (1 for IGRF, 0 for dipole)
 use_tsyg = 1     # Use the Tsyganenko magnetic field model corrections
+<<<<<<< HEAD
 minalt = R_E + 400e3   # cutoff altitude in meters
+=======
+minalt = R_E     # cutoff altitude in meters
+>>>>>>> a40385af70d8379ef79a0df25c5c9dc386b09bc8
 # TODO: make a max cutoff alt or check if inside the plasmasphere
 
 # Which plasmasphere models should we run?
