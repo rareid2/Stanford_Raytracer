@@ -9,28 +9,19 @@ DSX NORAD ID: 44344
 VPM NORAD ID: 45120
 
 returns position of satellite for one orbit, with orbit starting at given time
-<<<<<<< HEAD
-=======
+
 in geocentric cartesian coordinates in meters
->>>>>>> a40385af70d8379ef79a0df25c5c9dc386b09bc8
+
 
 """
 
 # import packages
 import numpy as np
 import matplotlib.pyplot as plt
-<<<<<<< HEAD
-=======
-
->>>>>>> a40385af70d8379ef79a0df25c5c9dc386b09bc8
 from skyfield.api import EarthSatellite, Topos, load, utc
 import datetime as dt
 from spacepy.coordinates import Coords
 from spacepy.time import Ticktock
-<<<<<<< HEAD
-=======
-
->>>>>>> a40385af70d8379ef79a0df25c5c9dc386b09bc8
 from raytracer_settings import *
 
 # --------------------------------- START FUNCTION -------------------------------------
@@ -62,7 +53,7 @@ def get_TLE(line1, line2, sat_name):
     geocentric = satellite.at(t)
 
     return geocentric.position.m, t_pos
-<<<<<<< HEAD
+
 
 """
 
@@ -75,7 +66,7 @@ plt.plot(x[0]/R_E,x[1]/R_E)
 plt.show()
 """
 
-=======
+
 """
 # for testing
 line1 = '1 44344U 19036F   20113.30349832 -.00000013 +00000-0 +00000-0 0  9992'
@@ -87,9 +78,6 @@ plt.show()
 """
 
 
-
-
->>>>>>> a40385af70d8379ef79a0df25c5c9dc386b09bc8
 # --------------------------------- END FUNCTION -------------------------------------
 
 # --------------------------------- START FUNCTION -------------------------------------
@@ -98,7 +86,6 @@ def get_pos(line1, line2, sat_name, datenum):
     # load timescale UTC
     ts = load.timescale()
 
-<<<<<<< HEAD
     # find the satellite
     satellite = EarthSatellite(line1, line2)
 
@@ -112,7 +99,6 @@ def get_pos(line1, line2, sat_name, datenum):
     return geocentric.position.m, t
 
     # this is GEI in meters cartesian
-=======
     # TLE form:
     # line1 = '1 44344U 19036F   20099.44261897 -.00000008 +00000-0 +00000-0 0  9998'
     # line2 = '2 44344 042.2458 098.1824 1975230 124.0282 256.3811 04.54371606013099'
@@ -130,4 +116,3 @@ def get_pos(line1, line2, sat_name, datenum):
     geocentric = satellite.at(t)
 
     return geocentric.position.m, t
->>>>>>> a40385af70d8379ef79a0df25c5c9dc386b09bc8

@@ -7,7 +7,7 @@
 
 # Exclude all files in the bin and env and idea folder
 bin/*
-env/*
+SR-env/*
 docs/*
 .idea/*
 
