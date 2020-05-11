@@ -17,27 +17,6 @@ H_IONO = 1000e3
 
 #  --------------------------- CHANGE ENV SETTINGS HERE  --------------------------
 # Environmental parameters
-
-# change time information here - use UTC -
-year = 2020
-month = 5
-day = 17
-hours = 0
-minutes = 0
-seconds = 0
-
-# used for plotting the ray
-ray_datenum = dt.datetime(year, month, day, hours, minutes, seconds)
-
-# convert for raytracer settings
-days_in_the_year = ray_datenum.timetuple().tm_yday
-days_in_the_year = format(days_in_the_year, '03d')
-
-# yearday and miliseconds day are used by raytracer
-yearday = str(year)+ str(days_in_the_year)   # YYYYDDD
-milliseconds_day = hours*3.6e6 + minutes*6e4 + seconds*1e3
-
-# space weather settings
 Kp = 2
 AE = 1.6
 Pdyn = 4
@@ -85,7 +64,7 @@ scattered_interp_local_window_scale = 5
 
 
 #  ---------------------------- SET UP FILE SETTINGS  ------------------------------
-project_root = os.getcwd()  # grabs current full path
+project_root = os.getcwd() + '/example_scripts'  # grabs current full path
 
 # Set input file path
 ray_inpfile = os.path.join(project_root, "ray_inpfile.txt")

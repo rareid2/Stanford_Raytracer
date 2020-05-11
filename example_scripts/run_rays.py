@@ -13,19 +13,13 @@ total launched rays = (np.size(freq) * np.size(directions))* np.size(positions)
 """
 
 # import packages
-import numpy as np               # for math
-import matplotlib.pyplot as plt  # for plotting
-import os                        # for running commands
-import datetime as dt            # for coordinate transforms
-
-# Spacepy (for coordinate transforms)
-from spacepy import coordinates as coord
-from spacepy.time import Ticktock
+import numpy as np        
+import os                        
 
 # get settings
 from raytracer_settings import *
 
-def run_rays(freq, positions, directions):
+def run_rays(freq, positions, directions, yearday, milliseconds_day):
     #  ------------------------------- START THE RAYTRACER  --------------------------------
 
     # Write the ray input file
@@ -42,6 +36,7 @@ def run_rays(freq, positions, directions):
     # GCPM model and damping code needs to be run in the same directory
     # as the binary file (and all the misc data files)
     cwd = os.getcwd()
+    os.chdir('example_scripts')
     os.chdir('../bin')
 
     for mode in modes_to_do:

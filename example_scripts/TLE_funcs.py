@@ -12,7 +12,6 @@ from skyfield.api import EarthSatellite, Topos, load, utc
 import datetime as dt
 from spacepy.coordinates import Coords
 from spacepy.time import Ticktock
-from raytracer_settings import *
 
 """
 
@@ -78,7 +77,7 @@ FUNCTION TLE2posfast
 
 INPUTS:  line 1 and 2 = list of TLE lines strings
          satnames = list of satnames strings
-         plen = length to propagate the orbit in HOURS AS AN INT
+         plen = length to propagate the orbit in SECONDS AS AN INT
          FYI - one orbit is about 5 hours for DSX and about 1.5 hours for VPM
 OUTPUTS: orbital position in geo cartesian km and time vector corresponding to orbit (UTC) 
 
@@ -89,7 +88,7 @@ ALSO WILL USE THE STARTING TIME AS RAY_DATENUM
 from sgp4.api import Satrec, SatrecArray, jday
 import julian
 
-def TLE2posfast(lines1, lines2, satnames, plen):
+def TLE2posfast(lines1, lines2, satnames, plen, ray_datenum):
 
     # fast function uses Julian time (weird)
     jd, fr = jday(ray_datenum.year, ray_datenum.month, ray_datenum.day, ray_datenum.hour, ray_datenum.minute,
@@ -97,10 +96,9 @@ def TLE2posfast(lines1, lines2, satnames, plen):
     np.set_printoptions(precision=2)
 
     frac = 1/86400
-    secperhr = 3600
 
     # create time arrays in desired format
-    frarray = np.arange(0, float((secperhr * plen)*frac), frac)
+    frarray = np.arange(0, float(plen*frac), frac)
     jdarray = jd * np.ones(len(frarray))
 
     # set up dict

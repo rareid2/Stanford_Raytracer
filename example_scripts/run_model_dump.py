@@ -12,26 +12,47 @@ set different parameters here
 """
 
 # import packages needed
-
 import numpy as np
 import subprocess
 import os
 import datetime
 
 # import function for the ngo plasmasphere model config
-
 from gen_ngo_defaults import gen_ngo_defaults
 
 # import settings
-
 from raytracer_settings import *
+
+
+# change time information here - use UTC -
+year = 2020
+month = 5
+day = 17
+hours = 0
+minutes = 0
+seconds = 0
+
+# used for plotting the ray
+ray_datenum = dt.datetime(year, month, day, hours, minutes, seconds)
+
+# convert for raytracer settings
+days_in_the_year = ray_datenum.timetuple().tm_yday
+days_in_the_year = format(days_in_the_year, '03d')
+
+# yearday and miliseconds day are used by raytracer
+yearday = str(year)+ str(days_in_the_year)   # YYYYDDD
+milliseconds_day = hours*3.6e6 + minutes*6e4 + seconds*1e3
+
+
 
 #  -------------------------------- INITIALIZE   --------------------------------------
 
 # GCPM model and damping code needs to be run in the same directory
 # as the binary file (and all the misc data files)
 
-cwd = os.getcwd();
+# had to add this in to fix issues with current directory
+cwd = os.getcwd()
+os.chdir('example_scripts')
 os.chdir('../bin')
 
 mag_dump = False  # True for mag dipole coords, false for SM

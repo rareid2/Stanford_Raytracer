@@ -14,8 +14,7 @@ from spacepy.time import Ticktock
 import matplotlib.pyplot as plt
 import datetime as dt
 from scipy.integrate import ode
-from example_scripts.raytracer_settings import *
-
+from raytracer_settings import *
 
 """
 generate direction of local magnetic field line
@@ -35,7 +34,7 @@ inputs to B_dir if called on its own:
 t = set at 0 if called indivuallay, else let ODE integrated call it
 x = starting position 3 COMPONENT IN EARTH RADII GEOCENTRIC CART
 """
-
+# need to inclide ray_datenum as an input here
 def B_dir(t, x, bmodel, extfield, direction):
     pos = coord.Coords([x[0], x[1], x[2]], 'GEO', 'car')
     tv = Ticktock(ray_datenum)
