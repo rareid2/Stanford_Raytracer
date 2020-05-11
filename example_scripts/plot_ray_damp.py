@@ -20,7 +20,8 @@ from matplotlib.colors import ListedColormap, BoundaryNorm
 R_E = 6371e3  # m
 
 # ------------------ create Orbits --------------------------
-from DSX_TLE import x_DSX, y_DSX, z_DSX
+from TLE_funcs import TLE2pos
+# insert TLE's here and get position at time t
 
 # create lists
 freq = [26e3]

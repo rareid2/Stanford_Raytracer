@@ -1,15 +1,7 @@
 """
-
 here is a script to define ALL settings for the ray tracer and models
 to keep everything
 central
-
-1 45120U 19071K   20129.17647827  .00002522  00000-0  87254-4 0  9997
-2 45120  51.6425 197.7757 0011573 268.0401  91.9256 15.33808425 14835
-
-1 44344U 19036F   20128.70428886 -.00000024  00000-0  00000-0 0  9991
-2 44344  42.2576  87.4622 1974688 136.5688 240.8204  4.54371402 14427
-
 """
 
 # import packages needed to define settings
@@ -28,8 +20,8 @@ H_IONO = 1000e3
 
 # change time information here - use UTC -
 year = 2020
-month = 4
-day = 29
+month = 5
+day = 17
 hours = 0
 minutes = 0
 seconds = 0
