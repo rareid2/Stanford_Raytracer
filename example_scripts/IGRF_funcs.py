@@ -7,10 +7,6 @@ author: Riley R
 Apr. 2020
 
 """
-<<<<<<< HEAD
-=======
-
->>>>>>> a40385af70d8379ef79a0df25c5c9dc386b09bc8
 import numpy as np
 import spacepy.irbempy as irbem
 import spacepy.coordinates as coord
@@ -32,24 +28,12 @@ bmodel is defined as:
                 - 3 = GSFC 12/66 updated to 1970
                 - 4 = User-defined model (Default: Centred dipole + uniform [Dungey open model] )
                 - 5 = Centred dipole
-<<<<<<< HEAD
 extfield = 0 (not sure what this does rn)
 direction is either 1 or -1
 B_dir can be called indivudally without using trace_fieldline_ODE
 inputs to B_dir if called on its own: 
 t = set at 0 if called indivuallay, else let ODE integrated call it
 x = starting position 3 COMPONENT IN EARTH RADII GEOCENTRIC CART
-=======
-
-extfield = 0 (not sure what this does rn)
-direction is either 1 or -1
-B_dir can be called indivudally without using trace_fieldline_ODE
-
-inputs to B_dir if called on its own: 
-t = set at 0 if called indivuallay, else let ODE integrated call it
-x = starting position 3 COMPONENT IN EARTH RADII GEOCENTRIC CART
-
->>>>>>> a40385af70d8379ef79a0df25c5c9dc386b09bc8
 """
 
 def B_dir(t, x, bmodel, extfield, direction):
@@ -98,17 +82,11 @@ def trace_fieldline_ODE(p0, bmodel, extfield, direction):
 
 """
 #example call
-<<<<<<< HEAD
 startpoint = [1.5291777608361319, 1.5, -1.310595670385567]
-=======
-
-startpoint = [1.5291777608361319, 1.5, -1.310595670385567] # Start from the equator
->>>>>>> a40385af70d8379ef79a0df25c5c9dc386b09bc8
 direction = 1
 x,y,z = trace_fieldline_ODE(startpoint,0,'0',direction)
 plt.plot(x,z)
 plt.show()
-<<<<<<< HEAD
 """
 
 def B_direasy(t, x):
@@ -171,6 +149,4 @@ ax.add_artist(earth)
 plt.ylim([-5, 5])
 plt.xlim([-5, 5])
 plt.show()
-=======
->>>>>>> a40385af70d8379ef79a0df25c5c9dc386b09bc8
 """

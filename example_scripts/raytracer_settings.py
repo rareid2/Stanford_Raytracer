@@ -4,6 +4,12 @@ here is a script to define ALL settings for the ray tracer and models
 to keep everything
 central
 
+1 45120U 19071K   20129.17647827  .00002522  00000-0  87254-4 0  9997
+2 45120  51.6425 197.7757 0011573 268.0401  91.9256 15.33808425 14835
+
+1 44344U 19036F   20128.70428886 -.00000024  00000-0  00000-0 0  9991
+2 44344  42.2576  87.4622 1974688 136.5688 240.8204  4.54371402 14427
+
 """
 
 # import packages needed to define settings
@@ -50,11 +56,7 @@ BzIMF = -5
 W = [0.132, 0.303, 0.083, 0.070, 0.211, 0.308]  # Doesn't matter if we're not using Tsyg
 
 # Simulation parameters
-<<<<<<< HEAD
 t_max = 30       # Maximum duration in seconds
-=======
-t_max = 10       # Maximum duration in seconds
->>>>>>> a40385af70d8379ef79a0df25c5c9dc386b09bc8
 dt0 = 1e-3       # Initial timestep in seconds
 dtmax = 0.1      # Maximum allowable timestep in seconds
 root = 2         # Which root of the Appleton-Hartree equation
@@ -65,11 +67,7 @@ maxerr = 5.0e-4  # Error bound for adaptive timestepping
 maxsteps = 2e5   # Max number of timesteps (abort if reached)
 use_IGRF = 1     # Magnetic field model (1 for IGRF, 0 for dipole)
 use_tsyg = 1     # Use the Tsyganenko magnetic field model corrections
-<<<<<<< HEAD
 minalt = R_E + 400e3   # cutoff altitude in meters
-=======
-minalt = R_E     # cutoff altitude in meters
->>>>>>> a40385af70d8379ef79a0df25c5c9dc386b09bc8
 # TODO: make a max cutoff alt or check if inside the plasmasphere
 
 # Which plasmasphere models should we run?

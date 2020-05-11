@@ -1,18 +1,11 @@
 """
-
 here is a function that will split up TLE's into an orbit
 to plot nicely with ray tracer
-
 get TLE's from http://celestrak.com/satcat/search.php
-
 DSX NORAD ID: 44344
 VPM NORAD ID: 45120
-
 returns position of satellite for one orbit, with orbit starting at given time
-
 in geocentric cartesian coordinates in meters
-
-
 """
 
 # import packages
@@ -56,7 +49,6 @@ def get_TLE(line1, line2, sat_name):
 
 
 """
-
 #for testing
 line1 = '1 44344U 19036F   20117.92375283 -.00000009 +00000-0 +00000-0 0  9998'
 line2 = '2 44344 042.2535 091.4116 1974932 131.9492 246.6867 04.54371554013931'
