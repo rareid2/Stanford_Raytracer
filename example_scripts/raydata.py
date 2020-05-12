@@ -5,9 +5,9 @@ here is a script that will call run_rays and save
 
 # import needed packages
 import numpy as np
-import matplotlib.pyplot as plt
 import os
 import sys
+import matplotlib.pyplot as plt
 import datetime as dt
 from dateutil import parser
 from raytracer_utils import readdump, read_rayfile, read_rayfiles, read_damp
@@ -16,8 +16,6 @@ from raytracer_settings import *
 from IGRF_funcs import B_dir, trace_fieldline_ODE, findFootprints, B_direasy
 from spacepy import coordinates as coord
 from spacepy.time import Ticktock
-from matplotlib.collections import LineCollection
-from matplotlib.colors import LogNorm, ListedColormap, BoundaryNorm
 from TLE_funcs import TLE2posfast
 
 # -------------------------------- SET TIME --------------------------------
@@ -44,11 +42,19 @@ lines2 = [l21, l22]
 satnames = ['DSX', 'VPM']
 
 # get DSX and VPM positions for a day
-r, tvec = TLE2posfast(lines1, lines2, satnames, 1, ray_datenum)
+r, tvec = TLE2posfast(lines1, lines2, satnames, 3, ray_datenum)
 
-# convert to meters
+# convert to meters and SM coord
 dsx = [rpos*1e3 for rpos in r[0]]
 vpm = [rpos*1e3 for rpos in r[1]]
+
+dray = []
+dfoot = []
+
+#dsxpos = coord.Coords(dsx, 'GDZ', 'car', units=['m', 'm', 'm'])
+#dsxpos.ticks = Ticktock(ray_datenum, 'UTC') # add ticks
+#SM_dsx = dsxpos.convert('SM', 'car')
+#print(SM_dsx)
 
 # -------------------------------- DEFINE RAY DIRECTIONS --------------------------------
 positions = dsx
@@ -56,8 +62,9 @@ freq = [8.2e3] # Hz
 directions = []
 thetalist = [0]  # in deg -- what angles to launch at? 
 
+i = 0
 for position, rayt in zip(positions, tvec):
-
+    print(position)
     # grab position and find direction of local bfield
     startpoint = [position[0]/R_E, position[1]/R_E, position[2]/R_E]
     Bx, By, Bz = B_direasy(rayt, startpoint)
@@ -71,7 +78,7 @@ for position, rayt in zip(positions, tvec):
         direction = direction/np.linalg.norm(direction)
         # add that normalized direction
         directions.append(np.squeeze(direction))
-
+ 
     # -------------------------------- RUN RAYS --------------------------------
     # convert for raytracer settings
     days_in_the_year = rayt.timetuple().tm_yday
@@ -85,7 +92,6 @@ for position, rayt in zip(positions, tvec):
     run_rays(freq, [position], directions, yearday, milliseconds_day)
 
     # -------------------------------- LOAD OUTPUT --------------------------------
-
     # Load all the rayfiles in the output directory
     file_titles = os.listdir(ray_out_dir)
 
@@ -109,7 +115,6 @@ for position, rayt in zip(positions, tvec):
         sys.exit(0)
 
     # -------------------------------- CONVERT COORDINATES --------------------------------
-
     # convert to desired coordinate system into vector list rays
     rays = []
     for r in raylist:
@@ -117,8 +122,9 @@ for position, rayt in zip(positions, tvec):
         tvec_datetime = [rayt + dt.timedelta(seconds=s) for s in r['time']]
         tmp_coords.ticks = Ticktock(tvec_datetime, 'UTC')  # add ticks
         tmp_coords.sim_time = r['time']
-        new_coords = tmp_coords.convert('GEO', 'car')
-        rays.append(new_coords)
+        #new_coords = tmp_coords.convert('GEO', 'car')
+        #rays.append(new_coords)
+        rays.append(tmp_coords)
 
     #initialize
     rx = []
@@ -135,55 +141,35 @@ for position, rayt in zip(positions, tvec):
         damp = d["damping"]
         damp = np.squeeze(np.array(damp))
         dlist.append(damp)
-    # -------------------------------- PLOTTING --------------------------------
 
-    fig, ax = plt.subplots(1,1, sharex=True, sharey=True)
-    lw = 2  # linewidth
-    
-    def myplot(ax, xs, ys, zs, cmap):
-        for x, y, z in zip(xs, ys, zs):
-            plot = LineCollection([np.column_stack((x, y))], cmap=cmap, zorder=102)
-            plot.set_array(z)
-            ax.add_collection(plot)
-        return plot
-
-    #line = myplot(ax, rx[0], rz[0], dlist[0], 'Reds')
-    #fig.colorbar(line, ax=ax, label = 'Normalized wave power')
-    #rpltlst = [[x, z] for x, z in zip(rx[0], rz[0])]
-    
-    #rpltlst = np.array(rpltlst)
-    points = np.array([rx[0], rz[0]]).T.reshape(-1, 1, 2)
-    segments = np.concatenate([points[:-1], points[1:]], axis=1)
-    line_segments = LineCollection(segments, cmap = 'Reds')
-    line_segments.set_array(dlist[0])
-
-    ax.add_collection(line_segments)
-    axcb = fig.colorbar(line_segments, ax=ax, label = 'Normalized wave power')
-    axcb.set_label('Line Number')
-
-    #plt.plot(rx[0], rz[0])
-    earth = plt.Circle((0, 0), 1, color='b', alpha=1, zorder=100)
-    #ax.add_artist(earth)
-    ax.set_aspect('equal')
-    max_lim = 4
-
-    #plt.xticks(np.arange(-max_lim, max_lim, step=1))
-    #plt.yticks(np.arange(-max_lim, max_lim, step=1))
-    plt.xlabel('L (R$_E$)')
-    plt.ylabel('L (R$_E$)')
-    plt.xlim([-max_lim, max_lim])
-    plt.ylim([-2.5, 2.5])
-
-    #savename = 'raytest.png'
-    #fig.savefig(savename, format='png')
-    #plt.close()
-    plt.show()
-    
     # -------------------------------- GET FOOTPRINT --------------------------------
-
     footprint = findFootprints(rayt, startpoint, 'north')
     footprint.ticks = Ticktock(rayt, 'UTC')
     footprint = footprint.convert('GEO', 'car')
-    #bfoots.append(footprint)
-    #allmyrays.append(np.vstack([rx[-1:],ry[-1:],rz[-1:]]))
-    #allmydamp.append(dlist[-1:])
+    
+    # -------------------------------- FIND DISTANCE --------------------------------
+    dr = np.sqrt((rx[0][-1] - vpm[i][0]/R_E)**2 + (ry[0][-1] - vpm[i][1]/R_E)**2 + (rz[0][-1] - vpm[i][2]/R_E)**2)
+    df = np.sqrt((footprint.x - vpm[i][0]/R_E)**2 + (footprint.y - vpm[i][1]/R_E)**2 + (footprint.z - vpm[i][2]/R_E)**2)
+
+    dray.append(dr*R_E/1e3) # in km
+    dfoot.append(df*R_E/1e3)  # in km
+    print(i, 'dist is', dr*R_E/1e3, ' km')
+    i+=1
+
+# easy
+fig, ax = plt.subplots(1, 1)
+ax.plot(tvec, dray, label='field-aligned ray')
+ax.plot(tvec, dfoot, label='fieldline footprint')
+
+# formatting
+for label in ax.get_xticklabels():
+    label.set_rotation(40)
+    label.set_horizontalalignment('right')
+
+#ax.set_ylim([0,6000])
+ax.set_xlabel('UTC Time')
+ax.set_ylabel('Distance in km')
+plt.legend()
+ax.set_title('Distance from Launched Rays on DSX to VPM  \n for 8.2kHz field-aligned ray')
+plt.savefig('distvstime.png')
+plt.show()

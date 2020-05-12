@@ -35,7 +35,7 @@ t = set at 0 if called indivuallay, else let ODE integrated call it
 x = starting position 3 COMPONENT IN EARTH RADII GEOCENTRIC CART
 """
 # need to inclide ray_datenum as an input here
-def B_dir(t, x, bmodel, extfield, direction):
+def B_dir(t, x, bmodel, extfield, direction, ray_datenum):
     pos = coord.Coords([x[0], x[1], x[2]], 'GEO', 'car')
     tv = Ticktock(ray_datenum)
     B = irbem.get_Bfield(tv, pos, extMag=extfield, options=[1, 0, 0, 0, bmodel], omnivals=None)
@@ -51,7 +51,7 @@ bmodel = use IGRF = 0
 direction = 1 or -1 
 """
 
-def trace_fieldline_ODE(p0, bmodel, extfield, direction):
+def trace_fieldline_ODE(p0, bmodel, extfield, direction, ray_datenum):
 
     x = []
     y = []
@@ -61,7 +61,7 @@ def trace_fieldline_ODE(p0, bmodel, extfield, direction):
     r.set_integrator('vode')
 
     r.set_initial_value(p0, 0)
-    r.set_f_params(bmodel, extfield, direction)
+    r.set_f_params(bmodel, extfield, direction, ray_datenum)
     counts = 0
     while r.successful():
         r.integrate(r.t + dt)

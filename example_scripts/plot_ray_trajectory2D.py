@@ -11,133 +11,89 @@ import matplotlib.pyplot as plt
 import os
 import sys
 import datetime as dt
-# import functions and settings from example scripts directory
-from example_scripts.raytracer_utils import readdump, read_rayfile, read_rayfiles, read_damp
-from example_scripts.run_rays import run_rays
-from example_scripts.raytracer_settings import *
-from example_scripts.IGRF_funcs import B_dir, trace_fieldline_ODE
-# Spacepy (for coordinate transforms)
+from dateutil import parser
+from raytracer_utils import readdump, read_rayfile, read_rayfiles, read_damp
+from run_rays import run_rays
+from raytracer_settings import *
+from IGRF_funcs import B_dir, trace_fieldline_ODE, findFootprints, B_direasy
 from spacepy import coordinates as coord
 from spacepy.time import Ticktock
-# for color bar plotting
 from matplotlib.collections import LineCollection
 from matplotlib.colors import LogNorm, ListedColormap, BoundaryNorm
-# for satellite orbits
-from get_TLE import get_TLE
-
-import xlsxwriter
+from TLE_funcs import TLE2posfast
 
 
-workbook = xlsxwriter.Workbook('more_conjunctions.xlsx')
-worksheet = workbook.add_worksheet()
+# -------------------------------- SET TIME --------------------------------
+# change time information here - use UTC -
+year = 2020
+month = 5
+day = 17
+hours = 3
+minutes = 0
+seconds = 0
 
-worksheet.write(0, 0, 'date')
-worksheet.write(1, 0, 'freq')
-worksheet.write(2, 0, 'angle')
-worksheet.write(3, 0, 'DSXpos')
-worksheet.write(4, 0, 'VPMpos')
-worksheet.write(6, 0, 'rx')
-worksheet.write(6, 1, 'ry')
-worksheet.write(6, 2, 'rz')
-worksheet.write(6, 3, 'amp')
-worksheet.write(6, 4, 'Lx')
-worksheet.write(6, 5, 'Ly')
-worksheet.write(6, 6, 'Lz')
-worksheet.write(6, 7, '-Lx')
-worksheet.write(6, 8, '-Ly')
-worksheet.write(6, 9, '-Lz')
+ray_datenum = dt.datetime(year, month, day, hours, minutes, seconds)
 
+# -------------------------------- GET POSITIONS --------------------------------
+# DSX TLE
+l11 = '1 44344U 19036F   20130.24435661 -.00000027 +00000-0 +00000+0 0  9994'
+l21 = '2 44344 042.2583 086.8979 1974641 137.2296 239.9665 04.54371389014496'
+# VPM TLE
+l12 = '1 45120U 19071K   20132.49935632  .00001453  00000-0  55129-4 0  9998'
+l22 = '2 45120  51.6416 181.7127 0011592 280.5137  79.4539 15.33820525015342'
 
-# TODO: coordinates?
-# --------------------------- Orbits -------------------------------
-# DSX TLE:
-line1 = '1 44344U 19036F   20116.38366941 -.00000011 +00000-0 +00000+0 0  9990'
-line2 = '2 44344 042.2529 091.9758 1974961 131.2888 247.5136 04.54371596013862'
+lines1 = [l11, l12]
+lines2 = [l21, l22]
+satnames = ['DSX', 'VPM']
 
-DSX_pos, DSX_t = get_TLE(line1, line2, 'DSX')
-x_DSX, y_DSX, z_DSX = DSX_pos[0], DSX_pos[1], DSX_pos[2]
+# get DSX and VPM positions for... 
+r, tvec = TLE2posfast(lines1, lines2, satnames, 1, ray_datenum)
 
-# VPM TLE:
-line1 = '1 45120U 19071K   20116.86188762  .00004015  00000-0  13248-3 0  9997'
-line2 = '2 45120  51.6428 257.3005 0011715 220.9363 139.0740 15.33712868012946'
-VPM_pos, VPM_t = get_TLE(line1, line2, 'VPM')
-x_VPM, y_VPM, z_VPM = VPM_pos[0], VPM_pos[1], VPM_pos[2]
+# convert to meters and SM coord
+dsx = [rpos*1e3 for rpos in r[0]]
+vpm = [rpos*1e3 for rpos in r[1]]
 
-# --------------------------- Ray Tracing --------------------------
-# define lists here - must be lists even if only one arg
-# started at midnight on the 29th
-freq = [8.2e3]
-#n_pos = np.linspace(0,49,1)
+#dsxpos = coord.Coords(dsx, 'GDZ', 'car', units=['m', 'm', 'm'])
+#dsxpos.ticks = Ticktock(ray_datenum, 'UTC') # add ticks
+#SM_dsx = dsxpos.convert('SM', 'car')
+#print(SM_dsx)
 
-positions = []
+# -------------------------------- DEFINE RAY DIRECTIONS --------------------------------
+positions = dsx
+freq = [8.2e3] # Hz
+directions = []
+thetalist = [0]  # in deg -- what angles to launch at? 
 
-orbitdata = np.genfromtxt('orbit_data.txt')
+s = 0
+for position, rayt in zip(positions, tvec):
 
-apa_new = np.genfromtxt('apa.txt')
-apa_new = [int(apa) for apa in apa_new]
-apa_new = apa_new[0::100]
-mytime = []
-vpmspots = []
-#apa_new = [1,2,3,4]
-for ap in apa_new:
-    pos = orbitdata[ap]
-    vpmspot = pos[3:6]
-    pos = pos[0:3]
-    positions.append(pos)
-    vpmspots.append(vpmspot)
-    mytime.append(ray_datenum + dt.timedelta(minutes=ap))
+    # grab position and find direction of local bfield
+    startpoint = [position[0]/R_E, position[1]/R_E, position[2]/R_E]
+    Bx, By, Bz = B_direasy(rayt, startpoint)
+    dirB = np.reshape(np.array([Bx, By, Bz]), (1, 3))
 
-print('got all positions')
+    # rotate around direction of field line around x axis
+    for theta in thetalist:
+        R = [ [1, 0, 0], [0, np.cos(D2R * theta), - np.sin(D2R * theta)],
+            [0, np.sin(D2R * theta), np.cos(D2R * theta)] ]
+        direction = np.matmul(dirB, np.reshape(np.array(R), (3, 3)))
+        direction = direction/np.linalg.norm(direction)
+        # add that normalized direction
+        directions.append(np.squeeze(direction))
+ 
+    # -------------------------------- RUN RAYS --------------------------------
+    # convert for raytracer settings
+    days_in_the_year = rayt.timetuple().tm_yday
+    days_in_the_year = format(days_in_the_year, '03d')
 
-mypositions = positions
+    # yearday and miliseconds day are used by raytracer
+    yearday = str(year)+ str(days_in_the_year)   # YYYYDDD
+    milliseconds_day = hours*3.6e6 + minutes*6e4 + seconds*1e3
 
-#positions = [np.array([x_DSX[int(npos)], y_DSX[int(npos)], z_DSX[int(npos)]]) for npos in n_pos]
-looplen = len(mypositions)
-looplen = 2
-for numcount in range(looplen):
-    positions = [mypositions[numcount]]
-    ray_datenum = mytime[numcount]
-    """
-    thetalist is angle from local magnetic field direction in XZ plane
-    for example: 0 deg = parallel Bfield 
-    15 = 15 deg counterclockwise to Bfield
-    """
+    # position is in GEO meters - is that correct? 
+    run_rays(freq, [position], directions, yearday, milliseconds_day)
 
-    thetalist = [] # in deg
-
-    # initialize - leave empty
-    directions = []
-    Blines = []
-
-    for position in positions:
-        # grab position
-        startpoint = [position[0]/R_E, position[1]/R_E, position[2]/R_E]
-        # get bfield direction
-        Bx, By, Bz = B_dir(0, startpoint, 0, '0', 1)
-        dirB = np.reshape(np.array([Bx, By, Bz]), (1,3))
-
-        # grab full magnetic field line for plotting later
-        Blines.append(trace_fieldline_ODE(startpoint, 0, '0', 1))
-        Blines.append(trace_fieldline_ODE(startpoint, 0, '0', -1))
-
-        # rotate around direction of field line around x axis
-        for theta in thetalist:
-            R = [ [1, 0, 0], [0, np.cos(D2R * theta), - np.sin(D2R * theta)],
-                  [0, np.sin(D2R * theta), np.cos(D2R * theta)] ]
-            direction = np.matmul(dirB, np.reshape(np.array(R), (3, 3)))
-            direction = direction/np.linalg.norm(direction)
-            # add that normalized direction
-            directions.append(np.squeeze(direction))
-
-    # number of rays
-    # n_rays = len(freq) * len(positions) * len(directions)
-    # print('about to run: ', n_rays, ' rays')
-
-    # run!
-    run_rays(freq, positions, directions)
-
-    # ---------------------- Load output directory -------------------------
-
+    # -------------------------------- LOAD OUTPUT --------------------------------
     # Load all the rayfiles in the output directory
     file_titles = os.listdir(ray_out_dir)
 
@@ -160,23 +116,19 @@ for numcount in range(looplen):
     if raylist == []:
         sys.exit(0)
 
-    # ------------------------ Coordinate Conversion --------------------------
-
+    # -------------------------------- CONVERT COORDINATES --------------------------------
     # convert to desired coordinate system into vector list rays
     rays = []
     for r in raylist:
         tmp_coords = coord.Coords(list(zip(r['pos'].x, r['pos'].y, r['pos'].z)), 'SM', 'car', units=['m', 'm', 'm'])
-        tvec_datetime = [ray_datenum + dt.timedelta(seconds=s) for s in r['time']]
-        tmp_coords.ticks = Ticktock(tvec_datetime)  # add ticks
+        tvec_datetime = [rayt + dt.timedelta(seconds=s) for s in r['time']]
+        tmp_coords.ticks = Ticktock(tvec_datetime, 'UTC')  # add ticks
         tmp_coords.sim_time = r['time']
+        #new_coords = tmp_coords.convert('GEO', 'car')
+        #rays.append(new_coords)
         rays.append(tmp_coords)
 
-    #----------------------------- Plot rays ----------------------------------
-    fig, ax = plt.subplots(1,1, sharex=True, sharey=True)
-    lw = 2  # linewidth
-
     #initialize
-    r_length = []
     rx = []
     ry = []
     rz = []
@@ -185,61 +137,38 @@ for numcount in range(looplen):
         rx.append(r.x / R_E)
         ry.append(r.y / R_E)
         rz.append(r.z / R_E)
-        r_length.append(len(r))
-
+    
     dlist = []
     for d in damplist:
         damp = d["damping"]
         damp = np.squeeze(np.array(damp))
-        #if len(damp) < max(r_length):
-        #    leftover = max(r_length) - len(damp)
-        #    damp = np.concatenate((damp, np.zeros(int(leftover))), axis=0)
         dlist.append(damp)
 
-    def myplot(ax, xs, ys, zs, cmap):
-        for x, y, z in zip(xs, ys, zs):
-            plot = LineCollection([np.column_stack((x, y))], cmap=cmap, zorder=102)
-            plot.set_array(z)
-            ax.add_collection(plot)
-        return plot
 
-    line = myplot(ax, rx, rz, dlist, 'Reds')
-    fig.colorbar(line, ax=ax, label = 'Normalized wave power')
+    # -------------------------------- PLOTTING --------------------------------
+    fig, ax = plt.subplots(1,1, sharex=True, sharey=True)
+    lw = 2  # linewidth
 
-    # --------------------------- Figure formatting ---------------------------
-    L_shells = [2, 3, 4]  # Field lines to draw
+    # plot sat positions
+    plt.plot(startpoint[0], startpoint[2], '-go', zorder=105)
+    plt.plot(vpm[s][0]/R_E, vpm[s][2]/R_E, '-yo', zorder=106)
+    
+    # create line segments for plotting
+    points = np.array([rx[0], rz[0]]).T.reshape(-1, 1, 2)
+    segments = np.concatenate([points[:-1], points[1:]], axis=1)
+    line_segments = LineCollection(segments, cmap = 'Reds')
+    line_segments.set_array(dlist[0])
 
-    # Earth and Iono
-    earth = plt.Circle((0, 0), 1, color='b', alpha=1, zorder=100)
+    ax.add_collection(line_segments)
+    axcb = fig.colorbar(line_segments, ax=ax, label = 'Normalized wave power')
+
+    # -------------------------------- EARTH AND IONO --------------------------------
+    earth = plt.Circle((0, 0), 1, color='b', alpha=0.75, zorder=100)
     iono = plt.Circle((0, 0), (R_E + H_IONO) / R_E, color='g', alpha=0.5, zorder=99)
     ax.add_artist(earth)
     ax.add_artist(iono)
 
-    # ---------------------- Field Lines -----------------------
-    # (from IGRF13 model)
-    for L in L_shells:
-        Lx, Ly, Lz = trace_fieldline_ODE([L,0,0], 0, '0', 1)
-        plt.plot(Lx, Lz, color='b', linewidth=1, linestyle='dashed')
-        Lx, Ly, Lz = trace_fieldline_ODE([L,0,0], 0, '0', -1)
-        plt.plot(Lx, Lz, color='b', linewidth=1, linestyle='dashed')
-        Lx, Ly, Lz = trace_fieldline_ODE([-L,0,0], 0, '0', 1)
-        plt.plot(Lx, Lz, color='b', linewidth=1, linestyle='dashed')
-        Lx, Ly, Lz = trace_fieldline_ODE([-L,0,0], 0, '0', -1)
-        plt.plot(Lx, Lz, color='b', linewidth=1, linestyle='dashed')
-    print('finished plotting field lines')
-
-    # plot field line from orbital position
-    for blinex, bliney, blinez in Blines:
-        plt.plot(blinex, blinez, color='r', linewidth=1, linestyle='dashed')
-
-    # ---------------------- Satellite Orbits   -----------------------------
-    plt.plot(position[0] / R_E, position[2] / R_E, 'r', zorder = 105, label = 'DSX')
-    plt.plot(vpmspots[numcount][0] / R_E, vpmspots[numcount][2] / R_E, 'r', zorder = 105, label = 'VPM')
-    #for npos in n_pos:
-    plt.plot(x_DSX / R_E, z_DSX / R_E, 'y', zorder = 103)
-    plt.plot(x_VPM / R_E, z_VPM / R_E, 'y', zorder = 103)
-
-    # ------------------------- Plasmasphere ------------------------------
+    # -------------------------------- PLASMASPHERE AND BFIELD --------------------------------
     plasma_model_dump = os.path.join(ray_out_dir, 'model_dump_mode_1_XZ.dat')
     d_xz = readdump(plasma_model_dump)
     Ne_xz = d_xz['Ns'][0, :, :, :].squeeze().T * 1e-6
@@ -257,9 +186,41 @@ for numcount in range(looplen):
     g = plt.pcolormesh(px, py, np.log(Ne_xz), cmap = 'twilight')
     #fig.colorbar(g, ax=ax, orientation="horizontal", pad = 0.2, label= 'Plasmasphere density')
 
-    # ----------------------------- More Formatting ----------------------------
+    # (from IGRF13 model)
+    L_shells = [2, 3, 4]  # Field lines to draw
+    for L in L_shells:
+        Lx, Ly, Lz = trace_fieldline_ODE([L,0,0], 0, '0', 1, rayt)
+        plt.plot(Lx, Lz, color='b', linewidth=1, linestyle='dashed')
+        Lx, Ly, Lz = trace_fieldline_ODE([L,0,0], 0, '0', -1, rayt)
+        plt.plot(Lx, Lz, color='b', linewidth=1, linestyle='dashed')
+        Lx, Ly, Lz = trace_fieldline_ODE([-L,0,0], 0, '0', 1, rayt)
+        plt.plot(Lx, Lz, color='b', linewidth=1, linestyle='dashed')
+        Lx, Ly, Lz = trace_fieldline_ODE([-L,0,0], 0, '0', -1, rayt)
+        plt.plot(Lx, Lz, color='b', linewidth=1, linestyle='dashed')
+    print('finished plotting field lines')
+
+    # plot field line from orbital position
+    Blines = []
+    Blines.append(trace_fieldline_ODE(startpoint, 0, '0', 1, rayt))
+    Blines.append(trace_fieldline_ODE(startpoint, 0, '0', -1, rayt))
+    for blinex, bliney, blinez in Blines:
+        plt.plot(blinex, blinez, color='r', linewidth=1, linestyle='dashed')
+
+    # -------------------------------- GET FOOTPRINT --------------------------------
+    footprint = findFootprints(rayt, startpoint, 'north')
+    footprint.ticks = Ticktock(rayt, 'UTC')
+    footprint = footprint.convert('GEO', 'car')
+    plt.plot(footprint.x, footprint.z, '-ro')
+    print(footprint)
+    
+    #bfoots.append(footprint)
+    #allmyrays.append(np.vstack([rx[-1:],ry[-1:],rz[-1:]]))
+    #allmydamp.append(dlist[-1:])
+    s+=1
+
+    # -------------------------------- FORMATTING --------------------------------
     ax.set_aspect('equal')
-    max_lim = max(L_shells)+1
+    max_lim = 4
 
     plt.xticks(np.arange(-max_lim, max_lim, step=1))
     plt.yticks(np.arange(-max_lim, max_lim, step=1))
@@ -268,44 +229,8 @@ for numcount in range(looplen):
     plt.xlim([-max_lim, max_lim])
     plt.ylim([-2.5, 2.5])
 
-    #ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.25), ncol=2)
-    fig_title = str(freq[0]/1e3) + ' kHz rays in XZ plane'
-    plt.title(fig_title)
-
-    # ------------------------------- Saving ---------------------------------------
-    #savename = 'plots/XZ_' + str_freq + 'kHz_%03d.png' %p
-    savename = 'plots/ray_' + str(ray_datenum) + '.png'
-    fig.savefig(savename, format='png')
-
+    #savename = 'raytest.png'
+    #fig.savefig(savename, format='png')
+    #plt.close()
     plt.show()
-    plt.close()
-
-    #vpmspot = VPMdata[apa_new[numcount],3:6]
-
-    worksheet.write(0, (11 * numcount) + 1, str(ray_datenum))
-    worksheet.write(1, (11 * numcount) + 1, freq[0])
-    worksheet.write(2, (11 * numcount) + 1, thetalist[0])
-    worksheet.write(3, (11 * numcount) + 1, positions[0][0])
-    worksheet.write(3, (11 * numcount) + 2, positions[0][1])
-    worksheet.write(3, (11 * numcount) + 3, positions[0][2])
-    worksheet.write(4, (11 * numcount) + 1, vpmspots[0][0])
-    worksheet.write(4, (11 * numcount) + 2, vpmspots[0][1])
-    worksheet.write(4, (11 * numcount) + 3, vpmspots[0][2])
-
-    # Iterate over the data and write it out row by row.
-    for i in range(len(rx[0])):
-        worksheet.write(i + 7, (11 * numcount), rx[0][i])
-        worksheet.write(i + 7, (11 * numcount) + 1, ry[0][i])
-        worksheet.write(i + 7, (11 * numcount) + 2, rz[0][i])
-        worksheet.write(i + 7, (11 * numcount) + 3, dlist[0][i])
-        for m in range(len(Blines[0])):
-            worksheet.write(i + 7, (11 * numcount) + 4, Blines[0][0][m])
-            worksheet.write(i + 7, (11 * numcount) + 5, Blines[0][1][m])
-            worksheet.write(i + 7, (11 * numcount) + 6, Blines[0][2][m])
-        for n in range(len(Blines[1])):
-            worksheet.write(i + 7, (11 * numcount) + 7, Blines[1][0][n])
-            worksheet.write(i + 7, (11 * numcount) + 8, Blines[1][1][n])
-            worksheet.write(i + 7, (11 * numcount) + 9, Blines[1][2][n])
-    print('wrote to xls')
-
-workbook.close()  # mistake here
+    
