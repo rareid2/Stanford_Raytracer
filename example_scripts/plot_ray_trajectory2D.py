@@ -2,7 +2,8 @@
 """
 here is a script that will call run_rays and plot the trajectory with
 normalized wave power as a color scale
-this is currently set for XZ coordinates
+this is currently set for XZ coordinates in SM
+ONLY WORKS FOR A SINGLE POSITION - CHANGE THE TIME FOR DIFF POSITIONS
 """
 
 # import needed packages
@@ -20,21 +21,22 @@ from spacepy import coordinates as coord
 from spacepy.time import Ticktock
 from matplotlib.collections import LineCollection
 from matplotlib.colors import LogNorm, ListedColormap, BoundaryNorm
-from TLE_funcs import TLE2posfast
+from TLE_funcs import TLE2pos
 
 
 # -------------------------------- SET TIME --------------------------------
 # change time information here - use UTC -
 year = 2020
 month = 5
-day = 17
-hours = 3
-minutes = 0
+day = 12
+hours = 21
+minutes = 45
 seconds = 0
 
 ray_datenum = dt.datetime(year, month, day, hours, minutes, seconds)
 
 # -------------------------------- GET POSITIONS --------------------------------
+# these will be in ECI coordinates (GEI)
 # DSX TLE
 l11 = '1 44344U 19036F   20130.24435661 -.00000027 +00000-0 +00000+0 0  9994'
 l21 = '2 44344 042.2583 086.8979 1974641 137.2296 239.9665 04.54371389014496'
@@ -47,190 +49,210 @@ lines2 = [l21, l22]
 satnames = ['DSX', 'VPM']
 
 # get DSX and VPM positions for... 
-r, tvec = TLE2posfast(lines1, lines2, satnames, 1, ray_datenum)
+plen = 1  # second
+r, tvec = TLE2pos(lines1, lines2, satnames, plen, ray_datenum)
 
-# convert to meters and SM coord
+# convert to meters
 dsx = [rpos*1e3 for rpos in r[0]]
 vpm = [rpos*1e3 for rpos in r[1]]
 
-#dsxpos = coord.Coords(dsx, 'GDZ', 'car', units=['m', 'm', 'm'])
-#dsxpos.ticks = Ticktock(ray_datenum, 'UTC') # add ticks
-#SM_dsx = dsxpos.convert('SM', 'car')
-#print(SM_dsx)
+# convert startpoint to SM for raytracer
+dsxpos = coord.Coords(dsx, 'GEI', 'car', units=['m', 'm', 'm'])
+dsxpos.ticks = Ticktock(ray_datenum, 'UTC') # add ticks
+SM_dsx = dsxpos.convert('SM', 'car')
+
+# convert vpm to SM for plotting
+vpmpos = coord.Coords(vpm, 'GEI', 'car', units=['m', 'm', 'm'])
+vpmpos.ticks = Ticktock(ray_datenum, 'UTC') # add ticks
+SM_vpm = vpmpos.convert('SM', 'car')
 
 # -------------------------------- DEFINE RAY DIRECTIONS --------------------------------
-positions = dsx
+position = [float(SM_dsx.x), float(SM_dsx.y), float(SM_dsx.z)]
+positions = []
 freq = [8.2e3] # Hz
 directions = []
-thetalist = [0]  # in deg -- what angles to launch at? 
+thetalist = [0, 5]  # in deg -- what angles to launch at? 
 
-s = 0
-for position, rayt in zip(positions, tvec):
+# grab position and find direction of local bfield
+# convert to RE for bfield lib
+startpoint = [position[0]/R_E, position[1]/R_E, position[2]/R_E]
+Bx, By, Bz = B_direasy(tvec, startpoint)
+dirB = np.reshape(np.array([Bx, By, Bz]), (1, 3))
 
-    # grab position and find direction of local bfield
-    startpoint = [position[0]/R_E, position[1]/R_E, position[2]/R_E]
-    Bx, By, Bz = B_direasy(rayt, startpoint)
-    dirB = np.reshape(np.array([Bx, By, Bz]), (1, 3))
-
-    # rotate around direction of field line around x axis
-    for theta in thetalist:
-        R = [ [1, 0, 0], [0, np.cos(D2R * theta), - np.sin(D2R * theta)],
-            [0, np.sin(D2R * theta), np.cos(D2R * theta)] ]
-        direction = np.matmul(dirB, np.reshape(np.array(R), (3, 3)))
-        direction = direction/np.linalg.norm(direction)
-        # add that normalized direction
-        directions.append(np.squeeze(direction))
- 
-    # -------------------------------- RUN RAYS --------------------------------
-    # convert for raytracer settings
-    days_in_the_year = rayt.timetuple().tm_yday
-    days_in_the_year = format(days_in_the_year, '03d')
-
-    # yearday and miliseconds day are used by raytracer
-    yearday = str(year)+ str(days_in_the_year)   # YYYYDDD
-    milliseconds_day = hours*3.6e6 + minutes*6e4 + seconds*1e3
-
-    # position is in GEO meters - is that correct? 
-    run_rays(freq, [position], directions, yearday, milliseconds_day)
-
-    # -------------------------------- LOAD OUTPUT --------------------------------
-    # Load all the rayfiles in the output directory
-    file_titles = os.listdir(ray_out_dir)
-
-    # create empty lists to fill with ray files and damp files
-    raylist = []
-    damplist = []
-
-    for filename in file_titles:
-        if '.ray' in filename:
-            raylist += read_rayfile(os.path.join(ray_out_dir, filename))
-
-    for filename in file_titles:
-        if '.damp' in filename:
-            damplist += read_damp(os.path.join(ray_out_dir, filename))
-
-    # quick check: did the rays propagate?
-    raylist = [checkray for checkray in raylist if not len(checkray["time"]) < 2]
-
-    # abandon if not
-    if raylist == []:
-        sys.exit(0)
-
-    # -------------------------------- CONVERT COORDINATES --------------------------------
-    # convert to desired coordinate system into vector list rays
-    rays = []
-    for r in raylist:
-        tmp_coords = coord.Coords(list(zip(r['pos'].x, r['pos'].y, r['pos'].z)), 'SM', 'car', units=['m', 'm', 'm'])
-        tvec_datetime = [rayt + dt.timedelta(seconds=s) for s in r['time']]
-        tmp_coords.ticks = Ticktock(tvec_datetime, 'UTC')  # add ticks
-        tmp_coords.sim_time = r['time']
-        #new_coords = tmp_coords.convert('GEO', 'car')
-        #rays.append(new_coords)
-        rays.append(tmp_coords)
-
-    #initialize
-    rx = []
-    ry = []
-    rz = []
-
-    for r in rays:
-        rx.append(r.x / R_E)
-        ry.append(r.y / R_E)
-        rz.append(r.z / R_E)
+# rotate around direction of field line around x axis
+for theta in thetalist:
+    R = [ [1, 0, 0], [0, np.cos(D2R * theta), - np.sin(D2R * theta)],
+        [0, np.sin(D2R * theta), np.cos(D2R * theta)] ]
+    direction = np.matmul(dirB, np.reshape(np.array(R), (3, 3)))
+    direction = -direction/np.linalg.norm(direction)
     
-    dlist = []
-    for d in damplist:
-        damp = d["damping"]
-        damp = np.squeeze(np.array(damp))
-        dlist.append(damp)
+    # add that normalized direction
+    directions.append(np.squeeze(direction))
 
-
-    # -------------------------------- PLOTTING --------------------------------
-    fig, ax = plt.subplots(1,1, sharex=True, sharey=True)
-    lw = 2  # linewidth
-
-    # plot sat positions
-    plt.plot(startpoint[0], startpoint[2], '-go', zorder=105)
-    plt.plot(vpm[s][0]/R_E, vpm[s][2]/R_E, '-yo', zorder=106)
+    # make sure position list matches direction list
+    positions.append(position)
     
-    # create line segments for plotting
-    points = np.array([rx[0], rz[0]]).T.reshape(-1, 1, 2)
+# -------------------------------- RUN RAYS --------------------------------
+# convert for raytracer settings
+days_in_the_year = ray_datenum.timetuple().tm_yday
+days_in_the_year = format(days_in_the_year, '03d')
+
+# yearday and miliseconds day are used by raytracer
+yearday = str(year)+ str(days_in_the_year)   # YYYYDDD
+milliseconds_day = hours*3.6e6 + minutes*6e4 + seconds*1e3
+
+# run it!
+run_rays(freq, positions, directions, yearday, milliseconds_day)
+
+# -------------------------------- LOAD OUTPUT --------------------------------
+# Load all the rayfiles in the output directory
+file_titles = os.listdir(ray_out_dir)
+
+# create empty lists to fill with ray files and damp files
+raylist = []
+damplist = []
+
+for filename in file_titles:
+    if '.ray' in filename:
+        raylist += read_rayfile(os.path.join(ray_out_dir, filename))
+
+for filename in file_titles:
+    if '.damp' in filename:
+        damplist += read_damp(os.path.join(ray_out_dir, filename))
+
+# -------------------------------- CONVERT COORDINATES --------------------------------
+# convert to desired coordinate system into vector list rays
+rays = []
+for r in raylist:
+    tmp_coords = coord.Coords(list(zip(r['pos'].x, r['pos'].y, r['pos'].z)), 'SM', 'car', units=['m', 'm', 'm'])
+    tvec_datetime = [ray_datenum + dt.timedelta(seconds=s) for s in r['time']]
+    tmp_coords.ticks = Ticktock(tvec_datetime, 'UTC')  # add ticks
+    tmp_coords.sim_time = r['time']
+    #new_coords = tmp_coords.convert('GEO', 'car')
+    #rays.append(new_coords)
+    rays.append(tmp_coords)
+
+#initialize
+rx = []
+ry = []
+rz = []
+
+for r in rays:
+    rx.append(r.x / R_E)
+    ry.append(r.y / R_E)
+    rz.append(r.z / R_E)
+
+dlist = []
+for d in damplist:
+    damp = d["damping"]
+    damp = np.squeeze(np.array(damp))
+    dlist.append(damp)
+
+
+# -------------------------------- PLOTTING --------------------------------
+fig, ax = plt.subplots(1,1, sharex=True, sharey=True)
+lw = 2  # linewidth
+
+# plot sat positions in RE
+plt.plot(startpoint[0], startpoint[2], '-go', zorder=105)
+plt.plot(SM_vpm.x/R_E, SM_vpm.z/R_E, '-yo', zorder=106)
+
+# TODO: plot PROJECTIONS, not just XZ coord
+
+# create line segments for plotting
+# one line for each ray
+for p in range(len(rx)):
+    points = np.array([rx[p], rz[p]]).T.reshape(-1, 1, 2)
     segments = np.concatenate([points[:-1], points[1:]], axis=1)
     line_segments = LineCollection(segments, cmap = 'Reds')
-    line_segments.set_array(dlist[0])
-
     ax.add_collection(line_segments)
-    axcb = fig.colorbar(line_segments, ax=ax, label = 'Normalized wave power')
+    line_segments.set_array(dlist[p])
+# add in color bar
+axcb = fig.colorbar(line_segments, ax=ax, label = 'Normalized wave power')
 
-    # -------------------------------- EARTH AND IONO --------------------------------
-    earth = plt.Circle((0, 0), 1, color='b', alpha=0.75, zorder=100)
-    iono = plt.Circle((0, 0), (R_E + H_IONO) / R_E, color='g', alpha=0.5, zorder=99)
-    ax.add_artist(earth)
-    ax.add_artist(iono)
+# -------------------------------- EARTH AND IONO --------------------------------
+earth = plt.Circle((0, 0), 1, color='b', alpha=0.5, zorder=100)
+iono = plt.Circle((0, 0), (R_E + H_IONO) / R_E, color='g', alpha=0.5, zorder=99)
+ax.add_artist(earth)
+ax.add_artist(iono)
 
-    # -------------------------------- PLASMASPHERE AND BFIELD --------------------------------
-    plasma_model_dump = os.path.join(ray_out_dir, 'model_dump_mode_1_XZ.dat')
-    d_xz = readdump(plasma_model_dump)
-    Ne_xz = d_xz['Ns'][0, :, :, :].squeeze().T * 1e-6
-    Ne_xz[np.isnan(Ne_xz)] = 0
+# -------------------------------- PLASMASPHERE --------------------------------
+plasma_model_dump = os.path.join(ray_out_dir, 'model_dump_mode_1_XZ.dat')
+d_xz = readdump(plasma_model_dump)
+Ne_xz = d_xz['Ns'][0, :, :, :].squeeze().T * 1e-6
+Ne_xz[np.isnan(Ne_xz)] = 0
 
-    # Axis spacing depends on how the modeldump was ran
-    psize = 10
-    px = np.linspace(-10, 10, 200)
-    py = np.linspace(-10, 10, 200)
+# Axis spacing depends on how the modeldump was ran
+psize = 10
+px = np.linspace(-10, 10, 200)
+py = np.linspace(-10, 10, 200)
 
-    # Colorbar limits (log space)
-    clims = [-2, 5]
+# Colorbar limits (log space)
+clims = [-2, 5]
 
-    # Plot background plasma (equatorial slice)
-    g = plt.pcolormesh(px, py, np.log(Ne_xz), cmap = 'twilight')
-    #fig.colorbar(g, ax=ax, orientation="horizontal", pad = 0.2, label= 'Plasmasphere density')
+# Plot background plasma (equatorial slice)
+g = plt.pcolormesh(px, py, np.log(Ne_xz), cmap = 'twilight')
+#fig.colorbar(g, ax=ax, orientation="horizontal", pad = 0.2, label= 'Plasmasphere density')
 
-    # (from IGRF13 model)
-    L_shells = [2, 3, 4]  # Field lines to draw
-    for L in L_shells:
-        Lx, Ly, Lz = trace_fieldline_ODE([L,0,0], 0, '0', 1, rayt)
-        plt.plot(Lx, Lz, color='b', linewidth=1, linestyle='dashed')
-        Lx, Ly, Lz = trace_fieldline_ODE([L,0,0], 0, '0', -1, rayt)
-        plt.plot(Lx, Lz, color='b', linewidth=1, linestyle='dashed')
-        Lx, Ly, Lz = trace_fieldline_ODE([-L,0,0], 0, '0', 1, rayt)
-        plt.plot(Lx, Lz, color='b', linewidth=1, linestyle='dashed')
-        Lx, Ly, Lz = trace_fieldline_ODE([-L,0,0], 0, '0', -1, rayt)
-        plt.plot(Lx, Lz, color='b', linewidth=1, linestyle='dashed')
-    print('finished plotting field lines')
+# ---------------------------------- BFIELD -----------------------------------
+# (from IGRF13 model)
+L_shells = [2, 3, 4]  # Field lines to draw
+#for L in L_shells:
+#    Lx, Ly, Lz = trace_fieldline_ODE([L,0,0], 0, '0', 1, ray_datenum)
+#    plt.plot(Lx, Lz, color='b', linewidth=1, linestyle='dashed')
+#    Lx, Ly, Lz = trace_fieldline_ODE([L,0,0], 0, '0', -1, ray_datenum)
+#    plt.plot(Lx, Lz, color='b', linewidth=1, linestyle='dashed')
+#    Lx, Ly, Lz = trace_fieldline_ODE([-L,0,0], 0, '0', 1, ray_datenum)
+#    plt.plot(Lx, Lz, color='b', linewidth=1, linestyle='dashed')
+#    Lx, Ly, Lz = trace_fieldline_ODE([-L,0,0], 0, '0', -1, ray_datenum)
+#    plt.plot(Lx, Lz, color='b', linewidth=1, linestyle='dashed')
+#print('finished plotting field lines')
 
-    # plot field line from orbital position
-    Blines = []
-    Blines.append(trace_fieldline_ODE(startpoint, 0, '0', 1, rayt))
-    Blines.append(trace_fieldline_ODE(startpoint, 0, '0', -1, rayt))
-    for blinex, bliney, blinez in Blines:
-        plt.plot(blinex, blinez, color='r', linewidth=1, linestyle='dashed')
+# plot field line from orbital position
+# need to convert back to GEO car
+CAR_dsx = SM_dsx.convert('GEO', 'car')
+bstart = [float(CAR_dsx.x)/R_E, float(CAR_dsx.y)/R_E, float(CAR_dsx.z)/R_E]
 
-    # -------------------------------- GET FOOTPRINT --------------------------------
-    footprint = findFootprints(rayt, startpoint, 'north')
-    footprint.ticks = Ticktock(rayt, 'UTC')
-    footprint = footprint.convert('GEO', 'car')
-    plt.plot(footprint.x, footprint.z, '-ro')
-    print(footprint)
+Blines = []
+
+Blines.append(trace_fieldline_ODE(bstart, 0, '0', 1, ray_datenum))
+Blines.append(trace_fieldline_ODE(bstart, 0, '0', -1, ray_datenum))
+
+for blinex, bliney, blinez in Blines:
+    raytime = []
+    # create list of the same times
+    for m in range(int(len(blinex))):
+        raytime.append(ray_datenum)
     
-    #bfoots.append(footprint)
-    #allmyrays.append(np.vstack([rx[-1:],ry[-1:],rz[-1:]]))
-    #allmydamp.append(dlist[-1:])
-    s+=1
+    # convert to SM coords
+    bpos = np.column_stack((blinex, bliney, blinez))
+    print('bpos is', len(bpos))
+    bpos = coord.Coords(bpos, 'GEO', 'car', units=['Re', 'Re', 'Re'])
+    print(bpos)
+    bpos.ticks = Ticktock(raytime, 'UTC') # add ticks
+    SM_b = bpos.convert('SM', 'car')
 
-    # -------------------------------- FORMATTING --------------------------------
-    ax.set_aspect('equal')
-    max_lim = 4
+    # plot
+    plt.plot(SM_b.x, SM_b.z, color='r', linewidth=1, linestyle='dashed')
 
-    plt.xticks(np.arange(-max_lim, max_lim, step=1))
-    plt.yticks(np.arange(-max_lim, max_lim, step=1))
-    plt.xlabel('L (R$_E$)')
-    plt.ylabel('L (R$_E$)')
-    plt.xlim([-max_lim, max_lim])
-    plt.ylim([-2.5, 2.5])
+# -------------------------------- GET FOOTPRINT --------------------------------
+footprint = findFootprints(ray_datenum, startpoint, 'north')
+footprint.ticks = Ticktock(ray_datenum, 'UTC')
+footprint = footprint.convert('SM', 'car')
+plt.plot(footprint.x, footprint.z, '-ro')
 
-    #savename = 'raytest.png'
-    #fig.savefig(savename, format='png')
-    #plt.close()
-    plt.show()
-    
+# -------------------------------- FORMATTING --------------------------------
+ax.set_aspect('equal')
+max_lim = 4
+
+plt.xticks(np.arange(-max_lim, max_lim, step=1))
+plt.yticks(np.arange(-max_lim, max_lim, step=1))
+plt.xlabel('L (R$_E$)')
+plt.ylabel('L (R$_E$)')
+plt.xlim([-max_lim, max_lim])
+plt.ylim([-2.5, 2.5])
+
+#savename = 'raytest.png'
+#fig.savefig(savename, format='png')
+#plt.close()
+plt.show()

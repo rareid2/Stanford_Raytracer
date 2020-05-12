@@ -16,7 +16,7 @@ from raytracer_settings import *
 from IGRF_funcs import B_dir, trace_fieldline_ODE, findFootprints, B_direasy
 from spacepy import coordinates as coord
 from spacepy.time import Ticktock
-from TLE_funcs import TLE2posfast
+from TLE_funcs import TLE2pos
 
 # -------------------------------- SET TIME --------------------------------
 # change time information here - use UTC -
@@ -42,7 +42,7 @@ lines2 = [l21, l22]
 satnames = ['DSX', 'VPM']
 
 # get DSX and VPM positions for a day
-r, tvec = TLE2posfast(lines1, lines2, satnames, 3, ray_datenum)
+r, tvec = TLE2posfast(lines1, lines2, satnames, 86400/3, ray_datenum)
 
 # convert to meters and SM coord
 dsx = [rpos*1e3 for rpos in r[0]]
@@ -112,7 +112,10 @@ for position, rayt in zip(positions, tvec):
 
     # abandon if not
     if raylist == []:
-        sys.exit(0)
+        dray.append(np.nan)
+        dfoot.append(np.nan)
+        continue
+
 
     # -------------------------------- CONVERT COORDINATES --------------------------------
     # convert to desired coordinate system into vector list rays
@@ -173,3 +176,7 @@ plt.legend()
 ax.set_title('Distance from Launched Rays on DSX to VPM  \n for 8.2kHz field-aligned ray')
 plt.savefig('distvstime.png')
 plt.show()
+# might need a check here for rays that don't propagate
+# next step is just to take the last ray point convert from SM to GE) lla
+# take the VPM point and convert to GEO lla
+# take the footpoint and vonert to GEO lla
