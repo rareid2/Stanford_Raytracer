@@ -149,10 +149,12 @@ for position, rayt in zip(positions, tvec):
 
     #line = myplot(ax, rx[0], rz[0], dlist[0], 'Reds')
     #fig.colorbar(line, ax=ax, label = 'Normalized wave power')
+    #rpltlst = [[x, z] for x, z in zip(rx[0], rz[0])]
     
-    rtest = [np.column_stack([r_x, r_z]) for r_x, r_z in zip(rx[0], rz[0])]
-    print(rtest)
-    line_segments = LineCollection([np.column_stack([r_x, r_z]) for r_x, r_z in zip(rx[0], rz[0])], cmap = 'Reds')
+    #rpltlst = np.array(rpltlst)
+    points = np.array([rx[0], rz[0]]).T.reshape(-1, 1, 2)
+    segments = np.concatenate([points[:-1], points[1:]], axis=1)
+    line_segments = LineCollection(segments, cmap = 'Reds')
     line_segments.set_array(dlist[0])
 
     ax.add_collection(line_segments)
@@ -172,10 +174,10 @@ for position, rayt in zip(positions, tvec):
     plt.xlim([-max_lim, max_lim])
     plt.ylim([-2.5, 2.5])
 
-    savename = 'raytest.png'
-    fig.savefig(savename, format='png')
+    #savename = 'raytest.png'
+    #fig.savefig(savename, format='png')
     #plt.close()
-    #plt.show()
+    plt.show()
     
     # -------------------------------- GET FOOTPRINT --------------------------------
 
