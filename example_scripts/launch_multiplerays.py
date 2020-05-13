@@ -60,7 +60,7 @@ dfoot = []
 positions = dsx
 freq = [8.2e3] # Hz
 directions = []
-thetalist = [0]  # in deg -- what angles to launch at? 
+thetalist = [0, 5, 10, 15, -5, -10, -15]  # in deg -- what angles to launch at? 
 
 i = 0
 for position, rayt in zip(positions, tvec):

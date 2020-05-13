@@ -12,7 +12,6 @@ import matplotlib.pyplot as plt
 import os
 import sys
 import datetime as dt
-from dateutil import parser
 from raytracer_utils import readdump, read_rayfile, read_rayfiles, read_damp
 from run_rays import run_rays
 from raytracer_settings import *
@@ -23,14 +22,16 @@ from matplotlib.collections import LineCollection
 from matplotlib.colors import LogNorm, ListedColormap, BoundaryNorm
 from TLE_funcs import TLE2pos
 
+# coordinate mania!
+# TLES give us GEI, raytracer needs SM, and IGRF funcs needs GEO
 
 # -------------------------------- SET TIME --------------------------------
 # change time information here - use UTC -
 year = 2020
 month = 5
-day = 12
-hours = 21
-minutes = 45
+day = 17
+hours = 12
+minutes = 0
 seconds = 0
 
 ray_datenum = dt.datetime(year, month, day, hours, minutes, seconds)
@@ -69,12 +70,12 @@ SM_vpm = vpmpos.convert('SM', 'car')
 # -------------------------------- DEFINE RAY DIRECTIONS --------------------------------
 position = [float(SM_dsx.x), float(SM_dsx.y), float(SM_dsx.z)]
 positions = []
-freq = [8.2e3] # Hz
+freq = [18e3] # Hz
 directions = []
-thetalist = [0, 5]  # in deg -- what angles to launch at? 
+thetalist = [0, 5, 10, 15, 20, 25, 30, 35, 45, -5, -10, -15, -20, -25, -30, -35, -45]  # in deg -- what angles to launch at? 
 
 # grab position and find direction of local bfield
-# convert to RE for bfield lib
+# convert to RE for bfield lib - SM is okay here
 startpoint = [position[0]/R_E, position[1]/R_E, position[2]/R_E]
 Bx, By, Bz = B_direasy(tvec, startpoint)
 dirB = np.reshape(np.array([Bx, By, Bz]), (1, 3))
@@ -84,7 +85,7 @@ for theta in thetalist:
     R = [ [1, 0, 0], [0, np.cos(D2R * theta), - np.sin(D2R * theta)],
         [0, np.sin(D2R * theta), np.cos(D2R * theta)] ]
     direction = np.matmul(dirB, np.reshape(np.array(R), (3, 3)))
-    direction = -direction/np.linalg.norm(direction)
+    direction = direction/np.linalg.norm(direction)
     
     # add that normalized direction
     directions.append(np.squeeze(direction))
@@ -148,21 +149,35 @@ for d in damplist:
     damp = np.squeeze(np.array(damp))
     dlist.append(damp)
 
-
 # -------------------------------- PLOTTING --------------------------------
 fig, ax = plt.subplots(1,1, sharex=True, sharey=True)
 lw = 2  # linewidth
 
-# plot sat positions in RE
-plt.plot(startpoint[0], startpoint[2], '-go', zorder=105)
-plt.plot(SM_vpm.x/R_E, SM_vpm.z/R_E, '-yo', zorder=106)
+# for z axis rotation of ray, fieldlines, and sat positions
+LLA_dsx = SM_dsx.convert('SM', 'sph')
+th = LLA_dsx.long
 
-# TODO: plot PROJECTIONS, not just XZ coord
+# rotate and plot sat positions in SM RE
+dsxx = startpoint[0] * np.cos(np.deg2rad(-th)) - startpoint[1] * np.sin(np.deg2rad(-th))
+dsxy = startpoint[0] * np.sin(np.deg2rad(-th)) + startpoint[1] * np.cos(np.deg2rad(-th))
+dsxz = startpoint[2]
+
+vpmx = SM_vpm.x/R_E * np.cos(np.deg2rad(-th)) - SM_vpm.y/R_E * np.sin(np.deg2rad(-th))
+vpmy = SM_vpm.x/R_E * np.sin(np.deg2rad(-th)) + SM_vpm.y/R_E * np.cos(np.deg2rad(-th))
+vpmz = SM_vpm.z/R_E
+
+plt.plot(dsxx, dsxz, '-go', zorder=105, label='DSX')
+plt.plot(vpmx, vpmz, '-yo', zorder=106, label='VPM')
+
+# rotate rays
+rxr = rx * np.cos(np.deg2rad(-th)) - ry * np.sin(np.deg2rad(-th))
+ryr = rx * np.sin(np.deg2rad(-th)) + ry * np.cos(np.deg2rad(-th))
+rzr = rz
 
 # create line segments for plotting
 # one line for each ray
-for p in range(len(rx)):
-    points = np.array([rx[p], rz[p]]).T.reshape(-1, 1, 2)
+for p in range(len(rxr)):
+    points = np.array([rxr[p], rzr[p]]).T.reshape(-1, 1, 2)
     segments = np.concatenate([points[:-1], points[1:]], axis=1)
     line_segments = LineCollection(segments, cmap = 'Reds')
     ax.add_collection(line_segments)
@@ -195,24 +210,25 @@ g = plt.pcolormesh(px, py, np.log(Ne_xz), cmap = 'twilight')
 #fig.colorbar(g, ax=ax, orientation="horizontal", pad = 0.2, label= 'Plasmasphere density')
 
 # ---------------------------------- BFIELD -----------------------------------
-# (from IGRF13 model)
-L_shells = [2, 3, 4]  # Field lines to draw
-#for L in L_shells:
-#    Lx, Ly, Lz = trace_fieldline_ODE([L,0,0], 0, '0', 1, ray_datenum)
-#    plt.plot(Lx, Lz, color='b', linewidth=1, linestyle='dashed')
-#    Lx, Ly, Lz = trace_fieldline_ODE([L,0,0], 0, '0', -1, ray_datenum)
-#    plt.plot(Lx, Lz, color='b', linewidth=1, linestyle='dashed')
-#    Lx, Ly, Lz = trace_fieldline_ODE([-L,0,0], 0, '0', 1, ray_datenum)
-#    plt.plot(Lx, Lz, color='b', linewidth=1, linestyle='dashed')
-#    Lx, Ly, Lz = trace_fieldline_ODE([-L,0,0], 0, '0', -1, ray_datenum)
-#    plt.plot(Lx, Lz, color='b', linewidth=1, linestyle='dashed')
-#print('finished plotting field lines')
 
-# plot field line from orbital position
-# need to convert back to GEO car
+ # need to convert to GEO car
 CAR_dsx = SM_dsx.convert('GEO', 'car')
 bstart = [float(CAR_dsx.x)/R_E, float(CAR_dsx.y)/R_E, float(CAR_dsx.z)/R_E]
 
+# (from IGRF13 model)
+L_shells = [2, 3, 4]  # Field lines to draw in plane with DSX
+for L in L_shells:
+    Lx, Ly, Lz = trace_fieldline_ODE([L,0,0], 0, '0', 1, ray_datenum)
+    plt.plot(Lx, Lz, color='b', linewidth=1, linestyle='dashed')
+    Lx, Ly, Lz = trace_fieldline_ODE([L,0,0], 0, '0', -1, ray_datenum)
+    plt.plot(Lx, Lz, color='b', linewidth=1, linestyle='dashed')
+    Lx, Ly, Lz = trace_fieldline_ODE([-L,0,0], 0, '0', 1, ray_datenum)
+    plt.plot(Lx, Lz, color='b', linewidth=1, linestyle='dashed')
+    Lx, Ly, Lz = trace_fieldline_ODE([-L,0,0], 0, '0', -1, ray_datenum)
+    plt.plot(Lx, Lz, color='b', linewidth=1, linestyle='dashed')
+print('finished plotting field lines')
+
+# plot field line from orbital position
 Blines = []
 
 Blines.append(trace_fieldline_ODE(bstart, 0, '0', 1, ray_datenum))
@@ -220,26 +236,37 @@ Blines.append(trace_fieldline_ODE(bstart, 0, '0', -1, ray_datenum))
 
 for blinex, bliney, blinez in Blines:
     raytime = []
+
     # create list of the same times
     for m in range(int(len(blinex))):
         raytime.append(ray_datenum)
     
     # convert to SM coords
     bpos = np.column_stack((blinex, bliney, blinez))
-    print('bpos is', len(bpos))
     bpos = coord.Coords(bpos, 'GEO', 'car', units=['Re', 'Re', 'Re'])
-    print(bpos)
     bpos.ticks = Ticktock(raytime, 'UTC') # add ticks
     SM_b = bpos.convert('SM', 'car')
 
+    # rotate around z axis
+    #LLA_dsx = SM_dsx.convert('SM', 'sph')
+    #th = LLA_dsx.long
+    brot_x = SM_b.x * np.cos(np.deg2rad(-th)) - SM_b.y * np.sin(np.deg2rad(-th))
+    brot_y = SM_b.x * np.sin(np.deg2rad(-th)) + SM_b.y * np.cos(np.deg2rad(-th))
+    brot_z = SM_b.z
+
     # plot
-    plt.plot(SM_b.x, SM_b.z, color='r', linewidth=1, linestyle='dashed')
+    plt.plot(brot_x, brot_z, color='r', linewidth=1, linestyle='dashed')
 
 # -------------------------------- GET FOOTPRINT --------------------------------
-footprint = findFootprints(ray_datenum, startpoint, 'north')
+# also in GEO car, so need to use bstart 
+footprint = findFootprints(ray_datenum, bstart, 'north')
 footprint.ticks = Ticktock(ray_datenum, 'UTC')
 footprint = footprint.convert('SM', 'car')
-plt.plot(footprint.x, footprint.z, '-ro')
+# rotate around z axis as well
+foot_x = footprint.x * np.cos(np.deg2rad(-th)) - footprint.y * np.sin(np.deg2rad(-th))
+foot_y = footprint.x * np.sin(np.deg2rad(-th)) + footprint.y * np.cos(np.deg2rad(-th))
+foot_z = footprint.z
+plt.plot(foot_x, foot_z, '-ro', label='Bfield footpoint')
 
 # -------------------------------- FORMATTING --------------------------------
 ax.set_aspect('equal')
@@ -251,6 +278,10 @@ plt.xlabel('L (R$_E$)')
 plt.ylabel('L (R$_E$)')
 plt.xlim([-max_lim, max_lim])
 plt.ylim([-2.5, 2.5])
+
+mytitle = str(freq[0]/1e3) + 'kHz rays at ' + str(ray_datenum)
+plt.title(mytitle)
+ax.legend(loc = 'lower center', fontsize =  'x-small')
 
 #savename = 'raytest.png'
 #fig.savefig(savename, format='png')
