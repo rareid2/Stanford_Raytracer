@@ -70,7 +70,7 @@ SM_vpm = vpmpos.convert('SM', 'car')
 # -------------------------------- DEFINE RAY DIRECTIONS --------------------------------
 position = [float(SM_dsx.x), float(SM_dsx.y), float(SM_dsx.z)]
 positions = []
-freq = [18e3] # Hz
+freq = [8.2e3] # Hz
 directions = []
 thetalist = [0, 5, 10, 15, 20, 25, 30, 35, 45, -5, -10, -15, -20, -25, -30, -35, -45]  # in deg -- what angles to launch at? 
 
@@ -155,7 +155,7 @@ lw = 2  # linewidth
 
 # for z axis rotation of ray, fieldlines, and sat positions
 LLA_dsx = SM_dsx.convert('SM', 'sph')
-th = LLA_dsx.long
+th = LLA_dsx.long + 180
 
 # rotate and plot sat positions in SM RE
 dsxx = startpoint[0] * np.cos(np.deg2rad(-th)) - startpoint[1] * np.sin(np.deg2rad(-th))

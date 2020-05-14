@@ -19,8 +19,40 @@ import os
 # get settings
 from raytracer_settings import *
 
-def run_rays(freq, positions, directions, yearday, milliseconds_day):
-    #  ------------------------------- START THE RAYTRACER  --------------------------------
+def run_rays(freq, positions, directions, yearday, milliseconds_day, tmpdir):
+
+    #  ---------------------------- SET UP FILE SETTINGS  ------------------------------
+    project_root = os.getcwd() + '/example_scripts'  # grabs current full path
+    tempdirectory = tmpdir
+
+    #radstr = ''.join(random.choices(string.ascii_lowercase, k=16))
+    radstr = 'ray_inpfile.txt'
+
+    # Set input file path
+    ray_inpfile = os.path.join(tempdirectory, radstr)
+    print(f'tempfile is {ray_inpfile}')
+
+    # Set config file for Ngo Model (Mode 1)
+    configfile = os.path.join(project_root, "newray_default.in")
+
+    # Set config file for mode 3
+    mode3_interpfile = os.path.join(project_root, 'precomputed_grids',
+                                                'gcpm_kp4_2001001_L10_80x80x80_noderiv.txt')
+    # Set config file for mode 4
+    mode4_modelfile = os.path.join(project_root,
+                                'precomputed_grids', 'precomputed_model_gcpm_2010001_0_kp2_L10_random.dat')
+
+    # Set up the output directory
+    ray_out_dir = tempdirectory
+
+    # Create directory for outputs if doesn't already exist
+    # print("output directory:", ray_out_dir)
+    #if not os.path.exists(ray_out_dir):
+    #    os.mkdir(ray_out_dir)
+
+    # ---------------------------- END SET UP FILE SETTINGS  ------------------------------
+
+    # ------------------------------- START THE RAYTRACER  --------------------------------
 
     # Write the ray input file
     f = open(ray_inpfile, 'w')

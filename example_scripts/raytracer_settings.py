@@ -8,6 +8,8 @@ central
 import numpy as np               # for math
 import os                        # for running commands
 import datetime as dt            # for coordinate transforms
+import tempfile
+import random, string
 
 # Constants
 D2R = (np.pi / 180.0)
@@ -35,7 +37,7 @@ root = 2         # Which root of the Appleton-Hartree equation
                  # (2=whistler in magnetosphere)
 fixedstep = 0    # Don't use fixed step sizes, that's a bad idea.
 maxerr = 5.0e-4  # Error bound for adaptive timestepping
-maxsteps = 2e5   # Max number of timesteps (abort if reached)
+maxsteps = 2e3   # Max number of timesteps (abort if reached)
 use_IGRF = 1     # Magnetic field model (1 for IGRF, 0 for dipole)
 use_tsyg = 1     # Use the Tsyganenko magnetic field model corrections
 minalt = R_E + 400e3   # cutoff altitude in meters
@@ -61,31 +63,3 @@ scattered_interp_exact = 0  # Try 0 if there's weirdness at discontinuities
 scattered_interp_local_window_scale = 5
 
 #  --------------------------- END CHANGE ENV SETTINGS HERE  --------------------------
-
-
-#  ---------------------------- SET UP FILE SETTINGS  ------------------------------
-project_root = os.getcwd() + '/example_scripts'  # grabs current full path
-
-# Set input file path
-ray_inpfile = os.path.join(project_root, "ray_inpfile.txt")
-
-# Set config file for Ngo Model (Mode 1)
-configfile = os.path.join(project_root, "newray_default.in")
-
-# Set config file for mode 3
-mode3_interpfile = os.path.join(project_root, 'precomputed_grids',
-                                            'gcpm_kp4_2001001_L10_80x80x80_noderiv.txt')
-# Set config file for mode 4
-mode4_modelfile = os.path.join(project_root,
-                               'precomputed_grids', 'precomputed_model_gcpm_2010001_0_kp2_L10_random.dat')
-
-# Set up the output directory
-ray_out_dir = os.path.join(project_root, "test_outputs")
-
-# Create directory for outputs if doesn't already exist
-# print("output directory:", ray_out_dir)
-if not os.path.exists(ray_out_dir):
-    os.mkdir(ray_out_dir)
-
-#  ---------------------------- END SET UP FILE SETTINGS  ------------------------------
-

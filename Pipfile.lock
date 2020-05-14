@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "6c38ca092572096cb22c34a7f4f3e655af70876c90c45c0002b0499ac6140809"
+            "sha256": "b3c05bd0dce528f5952771655cda02d16bc9b0f7b184e51c9f65d41ff20d4065"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -59,11 +59,26 @@
             ],
             "version": "==0.18.2"
         },
+        "haversine": {
+            "hashes": [
+                "sha256:157982c06bf77de8b8a535e5a372baa8a2f8aa0e109eb8d3adef2c5ea13a7d47",
+                "sha256:b710aaf32c442a6d04aa89678be55e3f6c11f9752fc01c216e89b13120b36269"
+            ],
+            "index": "pypi",
+            "version": "==2.2.0"
+        },
         "jplephem": {
             "hashes": [
                 "sha256:316aa8ebb6d13fd2158c06b2709bcde382d04bf63bb1e48d0bce89937088c6e3"
             ],
             "version": "==2.14"
+        },
+        "julian": {
+            "hashes": [
+                "sha256:deee4090faad584c1875d97e72808198f802a9d2dc38a70fe2a8f790ea5dbd0a"
+            ],
+            "index": "pypi",
+            "version": "==0.14"
         },
         "kiwisolver": {
             "hashes": [

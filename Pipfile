@@ -16,6 +16,7 @@ ffmpeg = "*"
 ffmpeg-python = "*"
 sgp4 = "*"
 julian = "*"
+haversine = "*"
 
 [requires]
 python_version = "3.7"
