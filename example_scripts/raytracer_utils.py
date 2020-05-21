@@ -70,7 +70,6 @@ def read_damp(dampfile):
         data = dict()
         data['time'] = tmp[1]
         data['damping'] = tmp[2]
-
         out.append(data)
 
     return out

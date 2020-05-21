@@ -449,6 +449,7 @@ subroutine solve_dispersion_relation(k, w, x, k1, k2, &
             (dot_product(k, k)*dot_product(B0, B0))
   sin2phi = 1.0_DP - cos2phi
   phi = acos(sqrt(cos2phi))
+  ! print *, 'kvectorriley: ', phi
 
   ! Magnitude of B0
   B0mag = sqrt(dot_product(B0,B0))
@@ -764,7 +765,7 @@ subroutine raytracer_run( pos,time,vprel,vgrel,n,&
 
      ! Print the current time step -- comment this out if you don't want
      ! all that output on your screen
-     print '(a,f5.2)', 't=', t
+     ! print '(a,f5.2)', 't=', t
 
 
      if( fixedstep == 0 ) then

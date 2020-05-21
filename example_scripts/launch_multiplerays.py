@@ -18,7 +18,7 @@ from spacepy.time import Ticktock
 from TLE_funcs import TLE2pos
 from haversine import haversine, Unit
 from multiprocessing import Pool, cpu_count
-import tempfile, shutil
+import tempfile, shutil, time
 
 # coordinate mania!
 # TLES give us GEI car in km, raytracer needs SM car in m
@@ -74,7 +74,7 @@ positions = np.column_stack((SM_dsx.x, SM_dsx.y, SM_dsx.z))
 # need to check what this creates ^ 
 freq = [8.2e3] # Hz
 directions = []
-thetalist = [0, 15, 30, 45, -15, -30, -45]  # in deg -- what angles to launch at? 
+thetalist = [0, 15, 20, 30, 35, 45, -15, -20, -30, -45]  # in deg -- what angles to launch at? 
 
 rayperpos = int(len(thetalist))
 
@@ -112,7 +112,7 @@ def launchmanyrays(position, rayt):
 
     # yearday and miliseconds day are used by raytracer
     yearday = str(year)+ str(days_in_the_year)   # YYYYDDD
-    milliseconds_day = hours*3.6e6 + minutes*6e4 + seconds*1e3
+    milliseconds_day = rayt.hour*3.6e6 + rayt.minute*6e4 + rayt.second*1e3
 
     # position is in GEO meters - is that correct?
     tmpdir = tempfile.mkdtemp() 
@@ -212,15 +212,21 @@ def launchmanyrays(position, rayt):
     shutil.rmtree(tmpdir)
 
     return averageraydist, df, rayt
-    
+
     #print(' \n \n \n  \n \n \n  \n \n \n  TIME IS:       \n \n \n', rayt, ' \n \n \n \n \n \n')
 
 # parallelization
 nmbrcores = cpu_count()
+#nmbrcores = nmbrcores//2
 lstarg = zip(positions, tvec)
+
+start = time.time()
 with Pool(nmbrcores) as p:
     results = p.starmap(launchmanyrays, lstarg)
     #print(results)
+
+end = time.time()
+print(f'time is with 2 cores {end-start}')
 
 """
 # easy

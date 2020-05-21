@@ -8,6 +8,7 @@ ONLY WORKS FOR A SINGLE POSITION - CHANGE THE TIME FOR DIFF POSITIONS
 
 # import needed packages
 import numpy as np
+import matplotlib
 import matplotlib.pyplot as plt
 import os
 import sys
@@ -21,6 +22,7 @@ from spacepy.time import Ticktock
 from matplotlib.collections import LineCollection
 from matplotlib.colors import LogNorm, ListedColormap, BoundaryNorm
 from TLE_funcs import TLE2pos
+import tempfile
 
 # coordinate mania!
 # TLES give us GEI, raytracer needs SM, and IGRF funcs needs GEO
@@ -72,7 +74,7 @@ position = [float(SM_dsx.x), float(SM_dsx.y), float(SM_dsx.z)]
 positions = []
 freq = [8.2e3] # Hz
 directions = []
-thetalist = [0, 5, 10, 15, 20, 25, 30, 35, 45, -5, -10, -15, -20, -25, -30, -35, -45]  # in deg -- what angles to launch at? 
+thetalist = [0, 5, 10, 15, 20, 25, 30, 35, 45]  # in deg -- what angles to launch at? 
 
 # grab position and find direction of local bfield
 # convert to RE for bfield lib - SM is okay here
@@ -84,15 +86,20 @@ dirB = np.reshape(np.array([Bx, By, Bz]), (1, 3))
 for theta in thetalist:
     R = [ [1, 0, 0], [0, np.cos(D2R * theta), - np.sin(D2R * theta)],
         [0, np.sin(D2R * theta), np.cos(D2R * theta)] ]
+    #print(R)
     direction = np.matmul(dirB, np.reshape(np.array(R), (3, 3)))
     direction = direction/np.linalg.norm(direction)
+
+    if theta == 0:
+        direction = np.zeros(3)
     
-    # add that normalized direction
+    # add the normalized direction (or zeros)
+
     directions.append(np.squeeze(direction))
 
     # make sure position list matches direction list
     positions.append(position)
-    
+
 # -------------------------------- RUN RAYS --------------------------------
 # convert for raytracer settings
 days_in_the_year = ray_datenum.timetuple().tm_yday
@@ -103,10 +110,12 @@ yearday = str(year)+ str(days_in_the_year)   # YYYYDDD
 milliseconds_day = hours*3.6e6 + minutes*6e4 + seconds*1e3
 
 # run it!
-run_rays(freq, positions, directions, yearday, milliseconds_day)
+tmpdir = tempfile.mkdtemp() 
+run_rays(freq, positions, directions, yearday, milliseconds_day, tmpdir)
 
 # -------------------------------- LOAD OUTPUT --------------------------------
 # Load all the rayfiles in the output directory
+ray_out_dir = tmpdir
 file_titles = os.listdir(ray_out_dir)
 
 # create empty lists to fill with ray files and damp files
@@ -166,8 +175,8 @@ vpmx = SM_vpm.x/R_E * np.cos(np.deg2rad(-th)) - SM_vpm.y/R_E * np.sin(np.deg2rad
 vpmy = SM_vpm.x/R_E * np.sin(np.deg2rad(-th)) + SM_vpm.y/R_E * np.cos(np.deg2rad(-th))
 vpmz = SM_vpm.z/R_E
 
-plt.plot(dsxx, dsxz, '-go', zorder=105, label='DSX')
-plt.plot(vpmx, vpmz, '-yo', zorder=106, label='VPM')
+plt.plot(dsxx, dsxz, '-go', zorder=104, label='DSX')
+plt.plot(vpmx, vpmz, '-yo', zorder=102, label='VPM')
 
 # rotate rays
 rxr = rx * np.cos(np.deg2rad(-th)) - ry * np.sin(np.deg2rad(-th))
@@ -175,16 +184,12 @@ ryr = rx * np.sin(np.deg2rad(-th)) + ry * np.cos(np.deg2rad(-th))
 rzr = rz
 
 # create line segments for plotting
-# one line for each ray
-for p in range(len(rxr)):
-    points = np.array([rxr[p], rzr[p]]).T.reshape(-1, 1, 2)
-    segments = np.concatenate([points[:-1], points[1:]], axis=1)
-    line_segments = LineCollection(segments, cmap = 'Reds')
-    ax.add_collection(line_segments)
-    line_segments.set_array(dlist[p])
-# add in color bar
-axcb = fig.colorbar(line_segments, ax=ax, label = 'Normalized wave power')
 
+for p in range(len(rxr)):
+    plotp = ax.scatter(rxr[p], rzr[p], c=dlist[p], s = 1, cmap = 'Reds', vmin = 0, vmax = 1.5, zorder = 103)
+
+# add in color bar - will be just for the last ray, but bounds are set
+plt.colorbar(plotp, label = 'Normalized wave power')
 # -------------------------------- EARTH AND IONO --------------------------------
 earth = plt.Circle((0, 0), 1, color='b', alpha=0.5, zorder=100)
 iono = plt.Circle((0, 0), (R_E + H_IONO) / R_E, color='g', alpha=0.5, zorder=99)
@@ -192,7 +197,9 @@ ax.add_artist(earth)
 ax.add_artist(iono)
 
 # -------------------------------- PLASMASPHERE --------------------------------
-plasma_model_dump = os.path.join(ray_out_dir, 'model_dump_mode_1_XZ.dat')
+# bad pls change this
+path2plasma = '/Users/rileyannereid/workspace/Stanford_Raytracer/example_scripts/test_outputs/'
+plasma_model_dump = os.path.join(path2plasma, 'model_dump_mode_1_XZ.dat')
 d_xz = readdump(plasma_model_dump)
 Ne_xz = d_xz['Ns'][0, :, :, :].squeeze().T * 1e-6
 Ne_xz[np.isnan(Ne_xz)] = 0
