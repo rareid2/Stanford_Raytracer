@@ -14,7 +14,6 @@ from spacepy.time import Ticktock
 import matplotlib.pyplot as plt
 import datetime as dt
 from scipy.integrate import ode
-from raytracer_settings import *
 
 """
 generate direction of local magnetic field line
@@ -33,19 +32,10 @@ direction is either 1 or -1
 
 def B_dir(t, x, bmodel, extfield, direction, ray_datenum):
     pos = coord.Coords([x[0], x[1], x[2]], 'GEO', 'car')
-    tv = Ticktock(ray_datenum)
+    tv = Ticktock(ray_datenum, 'UTC')
     B = irbem.get_Bfield(tv, pos, extMag=extfield, options=[1, 0, 0, 0, bmodel], omnivals=None)
     Bmags = direction * B['Bvec'] / B['Blocal']
     return [Bmags[0][0], Bmags[0][1], Bmags[0][2]]
-
-"""
-trace field line uses ODE to trace along field line
-call with initial position in Earth radii in
-p0 = 3 COMPONENT XYZ position in eatrh radii in GEO cartesian
-extfield = 0
-bmodel = use IGRF = 0
-direction = 1 or -1 
-"""
 
 def trace_fieldline_ODE(p0, bmodel, extfield, direction, ray_datenum):
 
@@ -75,23 +65,16 @@ def trace_fieldline_ODE(p0, bmodel, extfield, direction, ray_datenum):
             break
     return x, y, z
 
-"""
-#example call
-startpoint = [1.5291777608361319, 1.5, -1.310595670385567]
-direction = 1
-x,y,z = trace_fieldline_ODE(startpoint,0,'0',direction)
-plt.plot(x,z)
-plt.show()
-"""
 
-# takes in dateimte object for UTC and SM cartesian coordinates in earth raddi
-def B_direasy(t, x):
+# takes in datetime object in UTC and GEO car coordinates in earth raddi
+# returns unit vec of B field direction
+def B_direasy(t, x, thatdir):
 
     bmodel = 0       # IGRF13
     extfield = '0'
-    direction = 1    # north
+    direction = thatdir 
 
-    pos = coord.Coords([x[0], x[1], x[2]], 'SM', 'car')
+    pos = coord.Coords([x[0], x[1], x[2]], 'GEO', 'car')
     tv = Ticktock(t, 'UTC')
     B = irbem.get_Bfield(tv, pos, extMag=extfield, options=[1, 0, 0, 0, bmodel], omnivals=None)
     Bmags = direction * B['Bvec'] / B['Blocal']
@@ -99,7 +82,8 @@ def B_direasy(t, x):
     return [Bmags[0][0], Bmags[0][1], Bmags[0][2]]
 
 
-
+# takes in datetime object in UTC and GEO car coordinates in earth radii
+# returns spherical coord (alt, lat, lon) in GDZ in km deg deg
 def findFootprints(t, x, hemis):
 
     # hemis valid cases are 'same', 'other', 'north' or 'south'

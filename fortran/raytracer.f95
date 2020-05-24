@@ -442,18 +442,17 @@ subroutine solve_dispersion_relation(k, w, x, k1, k2, &
   real(kind=DP) :: phi
 
   call funcPlasmaParams(x, qs, Ns, ms, nus, B0, funcPlasmaParamsData)
-  
+  print *, 'The B0 right now is: ', B0
   ! Find the angle the k vector makes with B0
   ! cos^2(phi)
   cos2phi = (dot_product(k, B0)*dot_product(k, B0)) / &
             (dot_product(k, k)*dot_product(B0, B0))
   sin2phi = 1.0_DP - cos2phi
   phi = acos(sqrt(cos2phi))
-  ! print *, 'kvectorriley: ', phi
 
   ! Magnitude of B0
   B0mag = sqrt(dot_product(B0,B0))
-  
+
   ! Find the stix parameters
   call stix_parameters(w, qs, Ns, ms, nus, B0mag, S,D,P,R,L)
   
