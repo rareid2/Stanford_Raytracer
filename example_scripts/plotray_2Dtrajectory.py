@@ -51,8 +51,10 @@ lines2 = [l21, l22]
 satnames = ['DSX', 'VPM']
 
 # get DSX and VPM positions for... 
-plen = 1  # second
-r, tvec = TLE2pos(lines1, lines2, satnames, plen, ray_datenum)
+r, tvec = TLE2pos(lines1, lines2, satnames, 1, ray_datenum)
+
+# redefine time here -- more accurate
+ray_datenum = tvec[0]
 
 # convert to meters
 dsx = [rpos*1e3 for rpos in r[0]]
@@ -77,10 +79,9 @@ MAGsph_vpm = GEIcar_vpm.convert('MAG', 'sph')
 position = [float(SMcar_dsx.x), float(SMcar_dsx.y), float(SMcar_dsx.z)]
 
 freq = [26e3] # Hz
-thetalist = [0]  # in deg -- what angles to launch at? 
+thetalist = [45, 50, 55, 60, 65, 70, 75, 80, 85, 90, -45, -50, -55, -60, -65, -70, -75, -80, -85]  # in deg -- what angles to launch at? 
 
 # grab position and find direction of local bfield
-# convert to RE for IGRF funcs
 GEOcar_dsx = GEIcar_dsx.convert('GEO', 'car')
 
 # check with hemi we are in
@@ -160,7 +161,6 @@ for r in raylist:
     tmp_coords.ticks = Ticktock(tvec_datetime, 'UTC')  # add ticks
     tmp_coords.sim_time = r['time']
     new_coords = tmp_coords.convert('MAG', 'sph')
-    # print('ray end at: ', new_coords[-1])
     rays.append(new_coords)
 
 dlist = []
@@ -168,7 +168,8 @@ for d in damplist:
     damp = d["damping"]
     damp = np.squeeze(np.array(damp))
     dlist.append(damp)
-
+    #print(damp)
+    
 # -------------------------------- PLOTTING --------------------------------
 fig, ax = plt.subplots(1,1, sharex=True, sharey=True)
 lw = 2  # linewidth
@@ -293,7 +294,6 @@ MAGsph_foot = GDZsph_foot.convert('MAG', 'sph')
 # rotate and plot
 Rot_foot = coord.Coords([float(MAGsph_foot.radi), float(MAGsph_foot.lati), float(MAGsph_foot.long + th)], 'MAG', 'sph', units=['Re', 'deg', 'deg'])
 MAGcar_foot = Rot_foot.convert('MAG', 'car')
-
 plt.plot(MAGcar_foot.x, MAGcar_foot.z, '-ro', label='Bfield footpoint')
 
 # -------------------------------- FORMATTING --------------------------------
@@ -311,7 +311,9 @@ mytitle = str(freq[0]/1e3) + 'kHz rays at ' + str(ray_datenum)
 plt.title(mytitle)
 ax.legend(loc = 'lower center', fontsize =  'x-small')
 
-#savename = 'raytest.png'
-#fig.savefig(savename, format='png')
+savename = 'example_scripts/plots/' + str(freq[0]/1e3) + 'kray' + str(ray_datenum.year) + str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.hour) + str(ray_datenum.minute) + '.png'
+fig.savefig(savename, format='png')
 #plt.close()
 plt.show()
+
+# -------------------------------- END --------------------------------

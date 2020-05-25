@@ -18,21 +18,15 @@ from spacepy.time import Ticktock
 from TLE_funcs import TLE2pos
 from haversine import haversine, Unit
 from multiprocessing import Pool, cpu_count
-import tempfile, shutil, time
-
-# coordinate mania!
-# TLES give us GEI car in km, raytracer needs SM car in m
-# and IGRF funcs  B_dir, tracefieldline, and findfootprint need GEO car in RE
-# and IGRF func Bdireasy need SM car in RE
-# we want all in MAG SPH at end
+import tempfile, shutil, time, pickle
 
 # -------------------------------- SET TIME --------------------------------
 # change time information here - use UTC -
 year = 2020
 month = 5
 day = 20
-hours = 0
-minutes = 0
+hours = 1
+minutes = 30
 seconds = 0
 
 ray_datenum = dt.datetime(year, month, day, hours, minutes, seconds)
@@ -51,60 +45,75 @@ lines2 = [l21, l22]
 satnames = ['DSX', 'VPM']
 
 # get DSX and VPM positions for... 
-plen = 10  # second
+plen = 1  # second
 r, tvec = TLE2pos(lines1, lines2, satnames, plen, ray_datenum)
 
 # convert to meters
 dsx = [rpos*1e3 for rpos in r[0]]
 vpm = [rpos*1e3 for rpos in r[1]]
 
-# convert startpoint to SM for raytracer
-dsxpos = coord.Coords(dsx, 'GEI', 'car', units=['m', 'm', 'm'])
-dsxpos.ticks = Ticktock(tvec, 'UTC') # add ticks
-SM_dsx = dsxpos.convert('SM', 'car')
+# convert startpoint to SM car for raytracer
+GEIcar_dsx = coord.Coords(dsx, 'GEI', 'car', units=['m', 'm', 'm'])
+GEIcar_dsx.ticks = Ticktock(tvec, 'UTC') # add ticks
+SMcar_dsx = GEIcar_dsx.convert('SM', 'car')
 
-# convert vpm to MAG LLA for distance comp.
-vpmpos = coord.Coords(vpm, 'GEI', 'car', units=['m', 'm', 'm'])
-vpmpos.ticks = Ticktock(tvec, 'UTC') # add ticks
-MAG_vpm = vpmpos.convert('MAG', 'sph')
+# convert vpm to MAG sph
+GEIcar_vpm = coord.Coords(vpm, 'GEI', 'car', units=['m', 'm', 'm'])
+GEIcar_vpm.ticks = Ticktock(tvec, 'UTC') # add ticks
+MAGsph_vpm = GEIcar_vpm.convert('MAG', 'sph')
 
 # -------------------------------- DEFINE RAY DIRECTIONS --------------------------------
-positions = np.column_stack((SM_dsx.x, SM_dsx.y, SM_dsx.z))
+dsxpositions = np.column_stack((SMcar_dsx.x, SMcar_dsx.y, SMcar_dsx.z))
+vpmpositions = np.column_stack((MAGsph_vpm.radi, MAGsph_vpm.lati, MAGsph_vpm.long))
 
-# need to check what this creates ^ 
-freq = [8.2e3] # Hz
-directions = []
-thetalist = [0, 15, 20, 30, 35, 45, -15, -20, -30, -45]  # in deg -- what angles to launch at? 
+freq = [26e3] # Hz
+thetalist = [45, 50, 55, 60, 65, 70, 75, 80, 85, 90, -45, -50, -55, -60, -65, -70, -75, -80, -85]  # in deg -- what angles to launch at? 
 
-rayperpos = int(len(thetalist))
+def launchmanyrays(position, vpmpos, rayt):
 
-def launchmanyrays(position, rayt):
-#for position, rayt in zip(positions, tvec):
-
-    # declare lists to return 
-    dfoot = []
-    dray = []
-
-    finalpos = []
-    # print('position is', position)
     # grab position and find direction of local bfield
-    # convert to RE for bfield lib - SM is okay here
-    startpoint = [position[0]/R_E, position[1]/R_E, position[2]/R_E]
-    print('startpoint is', startpoint)
-    Bx, By, Bz = B_direasy(rayt, startpoint)
+    SMcar_dsxpos = coord.Coords(position, 'SM', 'car', units=['m', 'm', 'm'])
+    SMcar_dsxpos.ticks = Ticktock(rayt)
+    GEOcar_dsx = SMcar_dsxpos.convert('GEO', 'car')
+    GEOsph_dsx = SMcar_dsxpos.convert('GEO', 'sph')
+
+    # check with hemi we are in
+    if GEOsph_dsx.lati > 0:
+        dir = 1   # north
+    else:
+        dir = -1  # south
+
+    Bstart = [float(GEOcar_dsx.x) / R_E, float(GEOcar_dsx.y) / R_E, float(GEOcar_dsx.z) / R_E]
+    Bx, By, Bz = B_direasy(rayt, Bstart, dir)
+
+    # convert to SM coordinates for raytracer
     dirB = np.reshape(np.array([Bx, By, Bz]), (1, 3))
+    dirB = coord.Coords(dirB[0], 'GEO', 'car', units=['Re', 'Re', 'Re'])
+    dirB.ticks = Ticktock(rayt, 'UTC') # add ticks
+    SMsph_dirB = dirB.convert('SM', 'sph')
 
-    # rotate around direction of field line around x axis
+    # fill for raytracer call
+    positions = []
+    directions = []
+
+    # rotate directions
     for theta in thetalist:
-        R = [ [1, 0, 0], [0, np.cos(D2R * theta), - np.sin(D2R * theta)],
-            [0, np.sin(D2R * theta), np.cos(D2R * theta)] ]
-        direction = np.matmul(dirB, np.reshape(np.array(R), (3, 3)))
-        direction = direction/np.linalg.norm(direction)
-        # add that normalized direction
-        directions.append(np.squeeze(direction))
-        # make sure same position for EACH direction
-        finalpos.append(position)
 
+        # increase (or decrease) polar angle
+        newth = float(SMsph_dirB.lati) + theta
+        Rot_dirB = [float(SMsph_dirB.radi), newth, float(SMsph_dirB.long)] 
+        Rot_dirB = coord.Coords(Rot_dirB, 'SM', 'sph')
+        Rot_dirB.ticks = Ticktock(rayt, 'UTC') # add ticks
+        SMcar_dirB = Rot_dirB.convert('SM', 'car')
+
+        direction = [float(SMcar_dirB.x), float(SMcar_dirB.y), float(SMcar_dirB.z)]
+        
+        # add the normalized direction (or zeros)
+        directions.append(np.squeeze(direction))
+
+        # make sure position list matches direction list
+        positions.append(position)
+   
     # -------------------------------- RUN RAYS --------------------------------
     # convert for raytracer settings
     days_in_the_year = rayt.timetuple().tm_yday
@@ -114,9 +123,9 @@ def launchmanyrays(position, rayt):
     yearday = str(year)+ str(days_in_the_year)   # YYYYDDD
     milliseconds_day = rayt.hour*3.6e6 + rayt.minute*6e4 + rayt.second*1e3
 
-    # position is in GEO meters - is that correct?
+    # run it!
     tmpdir = tempfile.mkdtemp() 
-    run_rays(freq, finalpos, directions, yearday, milliseconds_day, tmpdir)
+    run_rays(freq, positions, directions, yearday, milliseconds_day, tmpdir)
 
     # -------------------------------- LOAD OUTPUT --------------------------------
     # Load all the rayfiles in the output directory
@@ -154,18 +163,17 @@ def launchmanyrays(position, rayt):
         tmp_coords.sim_time = r['time']
         new_coords = tmp_coords.convert('MAG', 'sph')
         rays.append(new_coords)
-        #rays.append(tmp_coords)
 
     #initialize
+    rrad = []
     rlat = []
     rlong = []
-    rrad = []
 
     for r in rays:
+        rrad.append(r.radi)
         rlat.append(r.lati)
         rlong.append(r.long)
-        rrad.append(r.radi)
-    
+        
     dlist = []
     for d in damplist:
         damp = d["damping"]
@@ -173,77 +181,58 @@ def launchmanyrays(position, rayt):
         dlist.append(damp)
 
     # -------------------------------- GET FOOTPRINT --------------------------------
-    # footprint needs GEO car
-    dsxstart = coord.Coords([[position[0], position[1], position[2]]], 'SM', 'car', units=['m', 'm', 'm'])
-    dsxstart.ticks = Ticktock(rayt, 'UTC') # add ticks
-    GEO_dsx = dsxstart.convert('GEO', 'car')
-    bstart = [float(GEO_dsx.x/R_E), float(GEO_dsx.y/R_E), float(GEO_dsx.z/R_E)]
+    # also in GEO car, so need to use bstart 
+    GDZsph_foot = findFootprints(rayt, Bstart, 'same')
+    GDZsph_foot.units = ['km', 'deg', 'deg']
+    GDZsph_foot.ticks = Ticktock(rayt, 'UTC')
+    MAGsph_foot = GDZsph_foot.convert('MAG', 'sph')
 
-    footprint = findFootprints(rayt, bstart, 'same')
-    footprint.ticks = Ticktock(rayt, 'UTC')
-    footprint = footprint.convert('MAG', 'sph')
-    
     # -------------------------------- FIND DISTANCE --------------------------------
-    # save a list for EACH?
-    # or get average? let's try avg fist 
-    foot = (footprint.lati, footprint.long)
-    vpm = (MAG_vpm.lati[-1], MAG_vpm.long[-1])
+    foot = (MAGsph_foot.lati, MAGsph_foot.long)
+    vpm = (vpmpos[1], vpmpos[2])
 
     df = haversine(foot, vpm) # in km
     df = np.abs(df)
-    #dfoot.append(df)
 
+    df = foot
     # find ray distance
     dravg = []
     for raylat, raylong in zip(rlat, rlong):
         rayend = (raylat[-1], raylong[-1])
         dr = haversine(rayend, vpm) # in km
         dr = np.abs(dr)
+        dr = rayend
         dravg.append(dr)
 
     # get average and save
-    averageraydist = sum(dravg) / len(dravg)
-    #dray.append(averageraydist)
+    # averageraydist = sum(dravg) / len(dravg)
 
-    #print('dr is', dray)
-    #print('df is', dfoot)
-    
     # clear temp directories
     shutil.rmtree(tmpdir)
 
-    return averageraydist, df, rayt
+    # format the time
+    if rayt.microsecond > 5e5:
+        rayt = rayt.replace(second=rayt.second + 1)
+    rayt = rayt.strftime("%Y-%m-%d %H:%M:%S")
+    
+    return dravg, df, rayt
 
-    #print(' \n \n \n  \n \n \n  \n \n \n  TIME IS:       \n \n \n', rayt, ' \n \n \n \n \n \n')
+# -------------------------------- RUN --------------------------------
 
-# parallelization
+# parallel
 nmbrcores = cpu_count()
-#nmbrcores = nmbrcores//2
-lstarg = zip(positions, tvec)
+lstarg = zip(dsxpositions, vpmpositions, tvec)
 
 start = time.time()
 with Pool(nmbrcores) as p:
     results = p.starmap(launchmanyrays, lstarg)
-    #print(results)
 
 end = time.time()
-print(f'time is with 2 cores {end-start}')
+# print(f'time is with 2 cores {end-start}')
 
-"""
-# easy
-fig, ax = plt.subplots(1, 1)
-ax.plot(tvec, dray, label='field-aligned ray')
-ax.plot(tvec, dfoot, label='fieldline footprint')
+myroot = '/Users/rileyannereid/workspace/Stanford_Raytracer/example_scripts/plots/'
+fname = myroot + str(freq[0]/1e3) + 'kray' + str(ray_datenum.year) + str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.hour) + str(ray_datenum.minute) + '.txt'
+with open(fname, "w") as outfile:
+    outfile.write("\n".join(str(item) for item in results))
 
-# formatting
-for label in ax.get_xticklabels():
-    label.set_rotation(40)
-    label.set_horizontalalignment('right')
-
-#ax.set_ylim([0,6000])
-ax.set_xlabel('UTC Time')
-ax.set_ylabel('Distance in km')
-plt.legend()
-ax.set_title('Distance from Launched Rays on DSX to VPM  \n for 8.2kHz field-aligned ray')
-plt.savefig('distvstime.png')
-plt.show()
-"""
+outfile.close()

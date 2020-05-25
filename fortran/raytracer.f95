@@ -442,13 +442,14 @@ subroutine solve_dispersion_relation(k, w, x, k1, k2, &
   real(kind=DP) :: phi
 
   call funcPlasmaParams(x, qs, Ns, ms, nus, B0, funcPlasmaParamsData)
-  print *, 'The B0 right now is: ', B0
+  ! print *, 'The B0 right now is: ', B0
   ! Find the angle the k vector makes with B0
   ! cos^2(phi)
   cos2phi = (dot_product(k, B0)*dot_product(k, B0)) / &
             (dot_product(k, k)*dot_product(B0, B0))
   sin2phi = 1.0_DP - cos2phi
   phi = acos(sqrt(cos2phi))
+  ! print *, 'phi is: ', phi
 
   ! Magnitude of B0
   B0mag = sqrt(dot_product(B0,B0))
@@ -664,14 +665,14 @@ subroutine raytracer_run( pos,time,vprel,vgrel,n,&
     p = cartesian_to_spherical(pos0)  ! Spherical starting direction
 
     B0tmp = cartesian_to_spherical_vec(B0tmp, p(2), p(3))
-    print *, 'sph_p: ',p
-    print *, 'sph_B: ',B0tmp
+    ! print *, 'sph_p: ',p
+    ! print *, 'sph_B: ',B0tmp
     b0tmp(1) = abs(b0tmp(1))
     B0tmp = spherical_to_cartesian_vec(B0tmp, p(2), p(3))
 
     dir0 = B0tmp/sqrt(dot_product(B0tmp,B0tmp))
 
-    print *,'Field-aligned starting direction: ', dir0
+    ! print *,'Field-aligned starting direction: ', dir0
   end if
 
 
@@ -742,8 +743,8 @@ subroutine raytracer_run( pos,time,vprel,vgrel,n,&
   nus(:,1) = nustmp
   stopcond = 0
 
-  print *,'Starting position: ',x(1:3)
-  print *,'Starting kay: ',x(4:6)
+  ! print *,'Starting position: ',x(1:3)
+  ! print *,'Starting kay: ',x(4:6)
 
   nstep = 1
   do

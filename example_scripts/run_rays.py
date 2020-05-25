@@ -30,7 +30,8 @@ def run_rays(freq, positions, directions, yearday, milliseconds_day, tmpdir):
 
     # Set input file path
     ray_inpfile = os.path.join(tempdirectory, radstr)
-    print(f'tempfile is {ray_inpfile}')
+    # uncomment this if you want to be able to traceback the input and output files
+    # print(f'tempfile is {ray_inpfile}')
 
     # Set config file for Ngo Model (Mode 1)
     configfile = os.path.join(project_root, "newray_default.in")
@@ -136,21 +137,21 @@ def run_rays(freq, positions, directions, yearday, milliseconds_day, tmpdir):
 
         # Run it!
 
-        print("------- Running mode %d -------" % mode)
-        print("Command is:")
-        print(ray_cmd)
-        print()
+        #print("------- Running mode %d -------" % mode)
+        #print("Command is:")
+        #print(ray_cmd)
+        #print()
 
         os.system(ray_cmd)
 
-        print("------- Running damping, mode %d -------" % damp_mode)
+        #print("------- Running damping, mode %d -------" % damp_mode)
 
-        print(damp_cmd)
+        #print(damp_cmd)
         os.system(damp_cmd)
 
     # Move back to the working directory
     os.chdir(cwd)
 
-    print('raytracer done')
+    # print('raytracer done')
 
 #  ------------------------------- END THE RAYTRACER  --------------------------------
