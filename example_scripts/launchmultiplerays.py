@@ -24,9 +24,9 @@ import tempfile, shutil, time, pickle
 # change time information here - use UTC -
 year = 2020
 month = 5
-day = 20
-hours = 1
-minutes = 30
+day = 28
+hours = 0
+minutes = 0
 seconds = 0
 
 ray_datenum = dt.datetime(year, month, day, hours, minutes, seconds)
@@ -45,7 +45,7 @@ lines2 = [l21, l22]
 satnames = ['DSX', 'VPM']
 
 # get DSX and VPM positions for... 
-plen = 1  # second
+plen = 10  # second
 r, tvec = TLE2pos(lines1, lines2, satnames, plen, ray_datenum)
 
 # convert to meters
@@ -145,13 +145,7 @@ def launchmanyrays(position, vpmpos, rayt):
             damplist += read_damp(os.path.join(ray_out_dir, filename))
 
     # quick check: did the rays propagate?
-    raylist = [checkray for checkray in raylist if not len(checkray["time"]) < 2]
-
-    # abandon if not
-    if raylist == []:
-        dray.append(np.nan)
-        dfoot.append(np.nan)
-        return
+    # raylist = [checkray for checkray in raylist if not len(checkray["time"]) < 2]
 
     # -------------------------------- CONVERT COORDINATES --------------------------------
     # convert to desired coordinate system into vector list rays
@@ -194,25 +188,26 @@ def launchmanyrays(position, vpmpos, rayt):
     df = haversine(foot, vpm) # in km
     df = np.abs(df)
 
-    df = foot
     # find ray distance
     dravg = []
     for raylat, raylong in zip(rlat, rlong):
         rayend = (raylat[-1], raylong[-1])
         dr = haversine(rayend, vpm) # in km
         dr = np.abs(dr)
-        dr = rayend
+        # dr = rayend
         dravg.append(dr)
 
     # get average and save
-    # averageraydist = sum(dravg) / len(dravg)
+    averageraydist = sum(dravg) / len(dravg)
 
     # clear temp directories
     shutil.rmtree(tmpdir)
 
     # format the time
-    if rayt.microsecond > 5e5:
-        rayt = rayt.replace(second=rayt.second + 1)
+
+    if int(rayt.microsecond) > 5e5:
+        rayt = rayt.replace(second = int(rayt.second + 1))
+         
     rayt = rayt.strftime("%Y-%m-%d %H:%M:%S")
     
     return dravg, df, rayt
@@ -236,3 +231,5 @@ with open(fname, "w") as outfile:
     outfile.write("\n".join(str(item) for item in results))
 
 outfile.close()
+
+# -------------------------------- END --------------------------------
