@@ -23,8 +23,8 @@ import tempfile, shutil, time, pickle
 # -------------------------------- SET TIME --------------------------------
 # change time information here - use UTC -
 year = 2020
-month = 5
-day = 20
+month = 6
+day = 11
 hours = 0
 minutes = 0
 seconds = 0
@@ -34,18 +34,18 @@ ray_datenum = dt.datetime(year, month, day, hours, minutes, seconds)
 # -------------------------------- GET POSITIONS --------------------------------
 # these will be in ECI coordinates (GEI) in km
 # DSX TLE
-l11 = '1 44344U 19036F   20130.24435661 -.00000027 +00000-0 +00000+0 0  9994'
-l21 = '2 44344 042.2583 086.8979 1974641 137.2296 239.9665 04.54371389014496'
+l11 = '1 44344U 19036F   20152.46517754 -.00000027  00000-0  00000-0 0  9997'
+l21 = '2 44344 042.2662 078.7586 1974025 146.7522 227.3839 04.54370969 15501'
 # VPM TLE
-l12 = '1 45120U 19071K   20132.49935632  .00001453  00000-0  55129-4 0  9998'
-l22 = '2 45120  51.6416 181.7127 0011592 280.5137  79.4539 15.33820525015342'
+l12 = '1 45120U 19071K   20153.15274580  .00003602  00000-0  11934-3 0  9995'
+l22 = '2 45120  51.6427  81.8638 0012101 357.8092   2.2835 15.33909680 18511'
 
 lines1 = [l11, l12]
 lines2 = [l21, l22]
 satnames = ['DSX', 'VPM']
 
 # get DSX and VPM positions for... 
-plen = 12 * 3600  # second
+plen = 3600 * 24  # second
 r, tvec = TLE2pos(lines1, lines2, satnames, plen, ray_datenum)
 
 # convert to meters
@@ -66,7 +66,7 @@ MAGsph_vpm = GEIcar_vpm.convert('MAG', 'sph')
 dsxpositions = np.column_stack((SMcar_dsx.x, SMcar_dsx.y, SMcar_dsx.z))
 vpmpositions = np.column_stack((MAGsph_vpm.radi, MAGsph_vpm.lati, MAGsph_vpm.long))
 
-freq = [26e3] # Hz
+freq = [8.2e3] # Hz
 thetalist = [45, 60, 75, 90, -75, -60, -45]  # in deg -- what angles to launch at? 
 
 def launchmanyrays(position, vpmpos, rayt):
@@ -155,6 +155,7 @@ def launchmanyrays(position, vpmpos, rayt):
     # -------------------------------- CONVERT COORDINATES --------------------------------
     # convert to desired coordinate system into vector list rays
     rays = []
+
     for r in raylist:
         tmp_coords = coord.Coords(list(zip(r['pos'].x, r['pos'].y, r['pos'].z)), 'SM', 'car', units=['m', 'm', 'm'])
         tvec_datetime = [rayt + dt.timedelta(seconds=s) for s in r['time']]
@@ -178,7 +179,6 @@ def launchmanyrays(position, vpmpos, rayt):
         damp = d["damping"]
         damp = np.squeeze(np.array(damp))
         dlist.append(damp)
-        # print(damp)
 
     # -------------------------------- GET FOOTPRINT --------------------------------
     # also in GEO car, so need to use bstart 
@@ -188,35 +188,25 @@ def launchmanyrays(position, vpmpos, rayt):
     MAGsph_foot = GDZsph_foot.convert('MAG', 'sph')
 
     # -------------------------------- FIND DISTANCE --------------------------------
-    foot = (MAGsph_foot.lati, MAGsph_foot.long)
+    foot = (float(MAGsph_foot.lati), float(MAGsph_foot.long))
     vpmf = (vpmpos[1], vpmpos[2])
 
-    #df = haversine(foot, vpmf) # in km
-    #df = np.abs(df)
-    df = foot
-
-    # find ray distance
-    dravg = []
+    # find rayend points
+    rayendls = []
     for raylat, raylong in zip(rlat, rlong):
         if len(raylat) > 2:
             rayend = (raylat[-1], raylong[-1])
-            #dr = haversine(rayend, vpmf) # in km
-            #dr = np.abs(dr)
-            dr = rayend
-            dravg.append(dr)
+            rayendls.append(rayend)
         else:
             zeros = (0,0)
-            dravg.append(zeros)
-
-    # get average and save
-    # averageraydist = sum(dravg) / len(dravg)
+            rayendls.append(zeros)
 
     # clear temp directories
     shutil.rmtree(tmpdir)
 
     rayt = rayt.strftime("%Y-%m-%d %H:%M:%S")
-    # need to actually save lat lon and then plot dist over time...
-    return dravg, df, rayt, vpmf
+
+    return rayendls, vpmf, foot, rayt
 
 # -------------------------------- RUN --------------------------------
 

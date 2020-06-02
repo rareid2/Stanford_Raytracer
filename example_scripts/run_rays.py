@@ -23,9 +23,9 @@ def run_rays(freq, positions, directions, yearday, milliseconds_day, tmpdir):
 
     #  ---------------------------- SET UP FILE SETTINGS  ------------------------------
     project_root = os.getcwd()  # grabs current full path
-    #tempdirectory = tmpdir
-    tempdirectory = os.getcwd() 
-    #radstr = ''.join(random.choices(string.ascii_lowercase, k=16))
+    tempdirectory = tmpdir
+    # tempdirectory = os.getcwd() 
+    radstr = ''.join(random.choices(string.ascii_lowercase, k=16))
     radstr = 'ray_inpfile.txt'
 
     # Set input file path

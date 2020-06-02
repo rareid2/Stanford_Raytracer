@@ -73,13 +73,14 @@ SMcar_dsx = GEIcar_dsx.convert('SM', 'car')
 GEIcar_vpm = coord.Coords(vpm, 'GEI', 'car', units=['m', 'm', 'm'])
 GEIcar_vpm.ticks = Ticktock(ray_datenum, 'UTC') # add ticks
 MAGsph_vpm = GEIcar_vpm.convert('MAG', 'sph')
-
+print(MAGsph_vpm)
 # -------------------------------- DEFINE RAY DIRECTIONS --------------------------------
 # start position of raytracer
 position = [float(SMcar_dsx.x), float(SMcar_dsx.y), float(SMcar_dsx.z)]
 
 freq = [8.2e3] # Hz
-thetalist = [0, 5, 10, 15, 25, 30, 35, 40, 45, -45, -40, -35, -30, -25, -20, -15, -10, -5]
+thetalist = [45, 60, 75, 90, -75, -60, -45]  # in deg -- what angles to launch at? 
+#thetalist = [0, 5, 10, 15, 25, 30, 35, 40, 45, -45, -40, -35, -30, -25, -20, -15, -10, -5]
 #[45, 50, 55, 60, 65, 70, 75, 80, 85, 90, -45, -50, -55, -60, -65, -70, -75, -80, -85]
 #[45, 50, 55, 60, 65, 70, 75, 80, 85, 90, -45, -50, -55, -60, -65, -70, -75, -80, -85]
 
@@ -172,7 +173,7 @@ for d in damplist:
     damp = d["damping"]
     damp = np.squeeze(np.array(damp))
     dlist.append(damp)
-    print(damp)
+    #print(damp)
     
 # -------------------------------- PLOTTING --------------------------------
 fig, ax = plt.subplots(1,1, sharex=True, sharey=True)
