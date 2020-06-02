@@ -22,9 +22,9 @@ from raytracer_settings import *
 def run_rays(freq, positions, directions, yearday, milliseconds_day, tmpdir):
 
     #  ---------------------------- SET UP FILE SETTINGS  ------------------------------
-    project_root = os.getcwd() + '/example_scripts'  # grabs current full path
-    tempdirectory = tmpdir
-
+    project_root = os.getcwd()  # grabs current full path
+    #tempdirectory = tmpdir
+    tempdirectory = os.getcwd() 
     #radstr = ''.join(random.choices(string.ascii_lowercase, k=16))
     radstr = 'ray_inpfile.txt'
 
@@ -69,7 +69,7 @@ def run_rays(freq, positions, directions, yearday, milliseconds_day, tmpdir):
     # GCPM model and damping code needs to be run in the same directory
     # as the binary file (and all the misc data files)
     cwd = os.getcwd()
-    os.chdir('example_scripts')
+    # os.chdir('example_scripts')
     os.chdir('../bin')
 
     for mode in modes_to_do:
@@ -139,14 +139,14 @@ def run_rays(freq, positions, directions, yearday, milliseconds_day, tmpdir):
 
         #print("------- Running mode %d -------" % mode)
         #print("Command is:")
-        #print(ray_cmd)
+        print(ray_cmd)
         #print()
 
         os.system(ray_cmd)
 
         #print("------- Running damping, mode %d -------" % damp_mode)
 
-        #print(damp_cmd)
+        print(damp_cmd)
         os.system(damp_cmd)
 
     # Move back to the working directory

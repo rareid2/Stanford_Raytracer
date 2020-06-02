@@ -24,7 +24,7 @@ import tempfile, shutil, time, pickle
 # change time information here - use UTC -
 year = 2020
 month = 5
-day = 28
+day = 20
 hours = 0
 minutes = 0
 seconds = 0
@@ -45,7 +45,7 @@ lines2 = [l21, l22]
 satnames = ['DSX', 'VPM']
 
 # get DSX and VPM positions for... 
-plen = 10  # second
+plen = 12 * 3600  # second
 r, tvec = TLE2pos(lines1, lines2, satnames, plen, ray_datenum)
 
 # convert to meters
@@ -67,7 +67,7 @@ dsxpositions = np.column_stack((SMcar_dsx.x, SMcar_dsx.y, SMcar_dsx.z))
 vpmpositions = np.column_stack((MAGsph_vpm.radi, MAGsph_vpm.lati, MAGsph_vpm.long))
 
 freq = [26e3] # Hz
-thetalist = [45, 50, 55, 60, 65, 70, 75, 80, 85, 90, -45, -50, -55, -60, -65, -70, -75, -80, -85]  # in deg -- what angles to launch at? 
+thetalist = [45, 60, 75, 90, -75, -60, -45]  # in deg -- what angles to launch at? 
 
 def launchmanyrays(position, vpmpos, rayt):
 
@@ -146,6 +146,11 @@ def launchmanyrays(position, vpmpos, rayt):
 
     # quick check: did the rays propagate?
     # raylist = [checkray for checkray in raylist if not len(checkray["time"]) < 2]
+    #for r in raylist:
+    #    if len(r['time']) < 2:
+    #        dravg = 'nan'
+    #        df = 'nan'
+    #        #return dravg, df, rayt
 
     # -------------------------------- CONVERT COORDINATES --------------------------------
     # convert to desired coordinate system into vector list rays
@@ -173,6 +178,7 @@ def launchmanyrays(position, vpmpos, rayt):
         damp = d["damping"]
         damp = np.squeeze(np.array(damp))
         dlist.append(damp)
+        # print(damp)
 
     # -------------------------------- GET FOOTPRINT --------------------------------
     # also in GEO car, so need to use bstart 
@@ -183,34 +189,34 @@ def launchmanyrays(position, vpmpos, rayt):
 
     # -------------------------------- FIND DISTANCE --------------------------------
     foot = (MAGsph_foot.lati, MAGsph_foot.long)
-    vpm = (vpmpos[1], vpmpos[2])
+    vpmf = (vpmpos[1], vpmpos[2])
 
-    df = haversine(foot, vpm) # in km
-    df = np.abs(df)
+    #df = haversine(foot, vpmf) # in km
+    #df = np.abs(df)
+    df = foot
 
     # find ray distance
     dravg = []
     for raylat, raylong in zip(rlat, rlong):
-        rayend = (raylat[-1], raylong[-1])
-        dr = haversine(rayend, vpm) # in km
-        dr = np.abs(dr)
-        # dr = rayend
-        dravg.append(dr)
+        if len(raylat) > 2:
+            rayend = (raylat[-1], raylong[-1])
+            #dr = haversine(rayend, vpmf) # in km
+            #dr = np.abs(dr)
+            dr = rayend
+            dravg.append(dr)
+        else:
+            zeros = (0,0)
+            dravg.append(zeros)
 
     # get average and save
-    averageraydist = sum(dravg) / len(dravg)
+    # averageraydist = sum(dravg) / len(dravg)
 
     # clear temp directories
     shutil.rmtree(tmpdir)
 
-    # format the time
-
-    if int(rayt.microsecond) > 5e5:
-        rayt = rayt.replace(second = int(rayt.second + 1))
-         
     rayt = rayt.strftime("%Y-%m-%d %H:%M:%S")
-    
-    return dravg, df, rayt
+    # need to actually save lat lon and then plot dist over time...
+    return dravg, df, rayt, vpmf
 
 # -------------------------------- RUN --------------------------------
 
@@ -225,8 +231,7 @@ with Pool(nmbrcores) as p:
 end = time.time()
 # print(f'time is with 2 cores {end-start}')
 
-myroot = '/Users/rileyannereid/workspace/Stanford_Raytracer/example_scripts/plots/'
-fname = myroot + str(freq[0]/1e3) + 'kray' + str(ray_datenum.year) + str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.hour) + str(ray_datenum.minute) + '.txt'
+fname = './plots/' + str(freq[0]/1e3) + 'kray' + str(ray_datenum.year) + str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.hour) + str(ray_datenum.minute) + '.txt'
 with open(fname, "w") as outfile:
     outfile.write("\n".join(str(item) for item in results))
 

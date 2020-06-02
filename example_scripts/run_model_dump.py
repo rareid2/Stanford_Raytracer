@@ -27,8 +27,8 @@ from raytracer_settings import *
 # change time information here - use UTC -
 year = 2020
 month = 5
-day = 17
-hours = 0
+day = 20
+hours = 1
 minutes = 0
 seconds = 0
 
@@ -52,7 +52,6 @@ milliseconds_day = hours*3.6e6 + minutes*6e4 + seconds*1e3
 
 # had to add this in to fix issues with current directory
 cwd = os.getcwd()
-os.chdir('example_scripts')
 os.chdir('../bin')
 
 mag_dump = False  # True for mag dipole coords, false for SM
@@ -60,6 +59,8 @@ mag_dump = False  # True for mag dipole coords, false for SM
 # generate config file for set Kp
 
 gen_ngo_defaults(Kp, configfile)
+
+ray_out_dir = cwd + '/test_outputs'
 
 # Dump plasmasphere models
 

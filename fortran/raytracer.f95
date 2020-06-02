@@ -449,7 +449,7 @@ subroutine solve_dispersion_relation(k, w, x, k1, k2, &
             (dot_product(k, k)*dot_product(B0, B0))
   sin2phi = 1.0_DP - cos2phi
   phi = acos(sqrt(cos2phi))
-  ! print *, 'phi is: ', phi
+  print *, 'phi is: ', phi
 
   ! Magnitude of B0
   B0mag = sqrt(dot_product(B0,B0))
