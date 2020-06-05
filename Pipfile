@@ -17,6 +17,7 @@ ffmpeg-python = "*"
 sgp4 = "*"
 julian = "*"
 haversine = "*"
+seaborn = "*"
 
 [requires]
 python_version = "3.7"

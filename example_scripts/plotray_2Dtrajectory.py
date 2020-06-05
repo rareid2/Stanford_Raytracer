@@ -29,10 +29,10 @@ import tempfile
 # -------------------------------- SET TIME --------------------------------
 # change time information here - use UTC -
 year = 2020
-month = 5
-day = 20
-hours = 1
-minutes = 0
+month = 6
+day = 11
+hours = 21
+minutes = 58
 seconds = 0
 
 ray_datenum = dt.datetime(year, month, day, hours, minutes, seconds)
@@ -79,7 +79,7 @@ print(MAGsph_vpm)
 position = [float(SMcar_dsx.x), float(SMcar_dsx.y), float(SMcar_dsx.z)]
 
 freq = [8.2e3] # Hz
-thetalist = [45, 60, 75, 90, -75, -60, -45]  # in deg -- what angles to launch at? 
+thetalist = [45, 60, 75, 90, -45, -60, -75, -90]  # in deg -- what angles to launch at? 
 #thetalist = [0, 5, 10, 15, 25, 30, 35, 40, 45, -45, -40, -35, -30, -25, -20, -15, -10, -5]
 #[45, 50, 55, 60, 65, 70, 75, 80, 85, 90, -45, -50, -55, -60, -65, -70, -75, -80, -85]
 #[45, 50, 55, 60, 65, 70, 75, 80, 85, 90, -45, -50, -55, -60, -65, -70, -75, -80, -85]
@@ -190,8 +190,8 @@ MAGcar_dsx = Rot_dsx.convert('MAG', 'car')
 MAGcar_vpm = Rot_vpm.convert('MAG', 'car')
 
 # plot sat locations
-plt.plot(MAGcar_dsx.x / R_E, MAGcar_dsx.z / R_E, '-go', zorder=104, label='DSX')
-plt.plot(MAGcar_vpm.x / R_E, MAGcar_vpm.z / R_E, '-yo', zorder=102, label='VPM')
+plt.plot(MAGcar_dsx.x / R_E, MAGcar_dsx.z / R_E, '-go', zorder=105, label='DSX')
+plt.plot(MAGcar_vpm.x / R_E, MAGcar_vpm.z / R_E, '-yo', zorder=104, label='VPM')
 
 # rotate rays to be at prime merid also and plot
 for r, d in zip(rays, dlist):
@@ -209,10 +209,10 @@ for r, d in zip(rays, dlist):
     MAGcar_ray = Rot_ray.convert('MAG', 'car')
 
     if len(MAGcar_ray.x) > 1:
-        plotp = ax.scatter(MAGcar_ray.x / R_E, MAGcar_ray.z / R_E, c=d, s = 1, cmap = 'Reds', vmin = 0, vmax = 1.5, zorder = 103)
-    
+        #plotp = ax.scatter(MAGcar_ray.x / R_E, MAGcar_ray.z / R_E, c=d, s = 1, cmap = 'Reds', vmin = 0, vmax = 1.5, zorder = 103)
+        plotp = ax.scatter(MAGcar_ray.x / R_E, MAGcar_ray.z / R_E, c = 'Red', s = 1, zorder = 103)
 # add in color bar - will be just for the last ray, but bounds are set
-plt.colorbar(plotp, label = 'Normalized wave power')
+# plt.colorbar(plotp, label = 'Normalized wave power')
 
 # -------------------------------- EARTH AND IONO --------------------------------
 earth = plt.Circle((0, 0), 1, color='b', alpha=0.5, zorder=100)
@@ -312,11 +312,11 @@ plt.ylabel('L (R$_E$)')
 plt.xlim([-max_lim, max_lim])
 plt.ylim([-2.5, 2.5])
 
-mytitle = str(freq[0]/1e3) + 'kHz rays at ' + str(ray_datenum)
+mytitle = str(freq[0]/1e3) + 'kHz rays at ' + '2020 06-11 21:58:00'
 plt.title(mytitle)
 ax.legend(loc = 'lower center', fontsize =  'x-small')
 
-savename = 'plots/' + str(freq[0]/1e3) + 'kray' + str(ray_datenum.year) + str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.hour) + str(ray_datenum.minute) + '.png'
+savename = '/Users/rileyannereid/Desktop' + str(freq[0]/1e3) + 'kray' + str(ray_datenum.year) + str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.hour) + str(ray_datenum.minute) + '.png'
 fig.savefig(savename, format='png')
 #plt.close()
 plt.show()
