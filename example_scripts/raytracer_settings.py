@@ -62,6 +62,7 @@ scattered_interp_order = 2
 scattered_interp_exact = 0  # Try 0 if there's weirdness at discontinuities
 scattered_interp_local_window_scale = 5
 
-configfile = 'newray_default.in'
+# change this someday
+configfile = 'ngoconfig.in'
 
 #  --------------------------- END CHANGE ENV SETTINGS HERE  --------------------------

@@ -29,22 +29,24 @@ import tempfile
 # -------------------------------- SET TIME --------------------------------
 # change time information here - use UTC -
 year = 2020
-month = 6
-day = 11
-hours = 21
-minutes = 58
+month = 5
+day = 20
+hours = 1
+minutes = 0
 seconds = 0
 
 ray_datenum = dt.datetime(year, month, day, hours, minutes, seconds)
 
 # -------------------------------- GET POSITIONS --------------------------------
 # these will be in ECI coordinates (GEI) in km
+# last updated 6/8
+
 # DSX TLE
-l11 = '1 44344U 19036F   20130.24435661 -.00000027 +00000-0 +00000+0 0  9994'
-l21 = '2 44344 042.2583 086.8979 1974641 137.2296 239.9665 04.54371389014496'
+l11 = '1 44344U 19036F   20159.06535339 -.00000040  00000-0  00000-0 0  9994'
+l21 = '2 44344 042.2684 076.3406 1973825 149.5843 223.5230 04.54370887015809'
 # VPM TLE
-l12 = '1 45120U 19071K   20132.49935632  .00001453  00000-0  55129-4 0  9998'
-l22 = '2 45120  51.6416 181.7127 0011592 280.5137  79.4539 15.33820525015342'
+l12 = '1 45120U 19071K   20160.05856933  .00002378  00000-0  82577-4 0  9991'
+l22 = '2 45120  51.6439  48.4744 0012296  22.9438 337.2091 15.33961651 19578'
 
 lines1 = [l11, l12]
 lines2 = [l21, l22]
@@ -73,12 +75,12 @@ SMcar_dsx = GEIcar_dsx.convert('SM', 'car')
 GEIcar_vpm = coord.Coords(vpm, 'GEI', 'car', units=['m', 'm', 'm'])
 GEIcar_vpm.ticks = Ticktock(ray_datenum, 'UTC') # add ticks
 MAGsph_vpm = GEIcar_vpm.convert('MAG', 'sph')
-print(MAGsph_vpm)
+
 # -------------------------------- DEFINE RAY DIRECTIONS --------------------------------
 # start position of raytracer
 position = [float(SMcar_dsx.x), float(SMcar_dsx.y), float(SMcar_dsx.z)]
 
-freq = [8.2e3] # Hz
+freq = [1e3] # Hz
 thetalist = [45, 60, 75, 90, -45, -60, -75, -90]  # in deg -- what angles to launch at? 
 #thetalist = [0, 5, 10, 15, 25, 30, 35, 40, 45, -45, -40, -35, -30, -25, -20, -15, -10, -5]
 #[45, 50, 55, 60, 65, 70, 75, 80, 85, 90, -45, -50, -55, -60, -65, -70, -75, -80, -85]
@@ -95,7 +97,7 @@ if GEOsph_dsx.lati > 0:
     dir = 1   # north
 else:
     dir = -1  # south
-
+dir = -1
 Bstart = [float(GEOcar_dsx.x)/R_E, float(GEOcar_dsx.y)/R_E, float(GEOcar_dsx.z)/R_E]
 Bx, By, Bz = B_direasy(ray_datenum, Bstart, dir)
 
@@ -222,7 +224,7 @@ ax.add_artist(iono)
 
 # -------------------------------- PLASMASPHERE --------------------------------
 # bad pls change this
-path2plasma = '/Users/rileyannereid/workspace/Stanford_Raytracer/example_scripts/test_outputs/'
+path2plasma = '/Users/rileyannereid/workspace/Stanford_Raytracer/example_scripts/modeldumps/'
 plasma_model_dump = os.path.join(path2plasma, 'model_dump_mode_1_XZ.dat')
 d_xz = readdump(plasma_model_dump)
 Ne_xz = d_xz['Ns'][0, :, :, :].squeeze().T * 1e-6
@@ -312,12 +314,12 @@ plt.ylabel('L (R$_E$)')
 plt.xlim([-max_lim, max_lim])
 plt.ylim([-2.5, 2.5])
 
-mytitle = str(freq[0]/1e3) + 'kHz rays at ' + '2020 06-11 21:58:00'
+mytitle = str(freq[0]/1e3) + 'kHz rays at ' + str(ray_datenum)
 plt.title(mytitle)
 ax.legend(loc = 'lower center', fontsize =  'x-small')
 
-savename = '/Users/rileyannereid/Desktop' + str(freq[0]/1e3) + 'kray' + str(ray_datenum.year) + str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.hour) + str(ray_datenum.minute) + '.png'
-fig.savefig(savename, format='png')
+savename = '/Users/rileyannereid/Desktop/' + str(freq[0]/1e3) + 'kray' + str(ray_datenum.year) + str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.hour) + str(ray_datenum.minute) + '.svg'
+plt.savefig(savename, format='svg')
 #plt.close()
 plt.show()
 

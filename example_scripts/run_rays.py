@@ -33,8 +33,7 @@ def run_rays(freq, positions, directions, yearday, milliseconds_day, tmpdir):
     # uncomment this if you want to be able to traceback the input and output files
     print(f'tempfile is {ray_inpfile}')
 
-    # Set config file for Ngo Model (Mode 1)
-    configfile = os.path.join(project_root, "newray_default.in")
+    # Set config file for Ngo Model (Mode 1) -- see raytracer settings
 
     # Set config file for mode 3
     mode3_interpfile = os.path.join(project_root, 'precomputed_grids',
