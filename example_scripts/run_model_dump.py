@@ -29,7 +29,7 @@ year = 2020
 month = 5
 day = 20
 hours = 1
-minutes = 0
+minutes = 30
 seconds = 0
 
 # used for plotting the ray

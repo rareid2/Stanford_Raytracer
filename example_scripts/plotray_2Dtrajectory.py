@@ -31,7 +31,7 @@ import tempfile
 year = 2020
 month = 5
 day = 20
-hours = 1
+hours = 0
 minutes = 0
 seconds = 0
 
@@ -56,7 +56,7 @@ satnames = ['DSX', 'VPM']
 r, tvec = TLE2pos(lines1, lines2, satnames, 1, ray_datenum)
 
 # redefine time here -- more accurate
-ray_datenum = tvec[0]
+# ray_datenum = tvec[0]
 
 # convert to meters
 dsx = [rpos*1e3 for rpos in r[0]]
@@ -80,13 +80,10 @@ MAGsph_vpm = GEIcar_vpm.convert('MAG', 'sph')
 # start position of raytracer
 position = [float(SMcar_dsx.x), float(SMcar_dsx.y), float(SMcar_dsx.z)]
 
-freq = [1e3] # Hz
-thetalist = [45, 60, 75, 90, -45, -60, -75, -90]  # in deg -- what angles to launch at? 
+freq = [26e3] # Hz
+thetalist = [45, 50, 55, 60, 65, 70, 75, 80, 85, 90, -45, -50, -55, -60, -65, -70, -75, -80, -85, -90] # in deg -- what angles to launch at? 
 #thetalist = [0, 5, 10, 15, 25, 30, 35, 40, 45, -45, -40, -35, -30, -25, -20, -15, -10, -5]
 #[45, 50, 55, 60, 65, 70, 75, 80, 85, 90, -45, -50, -55, -60, -65, -70, -75, -80, -85]
-#[45, 50, 55, 60, 65, 70, 75, 80, 85, 90, -45, -50, -55, -60, -65, -70, -75, -80, -85]
-
-#[0, 5, 10, 15, 25, 30, 35, 40, 45, -45, -40, -35, -30, -25, -20, -15, -10, -5]  # in deg -- what angles to launch at? 
 
 # grab position and find direction of local bfield
 GEOcar_dsx = GEIcar_dsx.convert('GEO', 'car')
@@ -97,7 +94,7 @@ if GEOsph_dsx.lati > 0:
     dir = 1   # north
 else:
     dir = -1  # south
-dir = -1
+
 Bstart = [float(GEOcar_dsx.x)/R_E, float(GEOcar_dsx.y)/R_E, float(GEOcar_dsx.z)/R_E]
 Bx, By, Bz = B_direasy(ray_datenum, Bstart, dir)
 
@@ -175,7 +172,7 @@ for d in damplist:
     damp = d["damping"]
     damp = np.squeeze(np.array(damp))
     dlist.append(damp)
-    #print(damp)
+    print(damp)
     
 # -------------------------------- PLOTTING --------------------------------
 fig, ax = plt.subplots(1,1, sharex=True, sharey=True)
@@ -211,10 +208,10 @@ for r, d in zip(rays, dlist):
     MAGcar_ray = Rot_ray.convert('MAG', 'car')
 
     if len(MAGcar_ray.x) > 1:
-        #plotp = ax.scatter(MAGcar_ray.x / R_E, MAGcar_ray.z / R_E, c=d, s = 1, cmap = 'Reds', vmin = 0, vmax = 1.5, zorder = 103)
-        plotp = ax.scatter(MAGcar_ray.x / R_E, MAGcar_ray.z / R_E, c = 'Red', s = 1, zorder = 103)
+        plotp = ax.scatter(MAGcar_ray.x / R_E, MAGcar_ray.z / R_E, c=d, s = 1, cmap = 'Reds', vmin = 0, vmax = 1.5, zorder = 103)
+        # plotp = ax.scatter(MAGcar_ray.x / R_E, MAGcar_ray.z / R_E, c = 'Red', s = 1, zorder = 103)
 # add in color bar - will be just for the last ray, but bounds are set
-# plt.colorbar(plotp, label = 'Normalized wave power')
+plt.colorbar(plotp, label = 'Normalized wave power')
 
 # -------------------------------- EARTH AND IONO --------------------------------
 earth = plt.Circle((0, 0), 1, color='b', alpha=0.5, zorder=100)

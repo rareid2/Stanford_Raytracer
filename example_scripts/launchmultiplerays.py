@@ -45,7 +45,7 @@ lines2 = [l21, l22]
 satnames = ['DSX', 'VPM']
 
 # get DSX and VPM positions for... 
-plen = 3600 * 24  # second
+plen = 3600 * 24  # seconds
 r, tvec = TLE2pos(lines1, lines2, satnames, plen, ray_datenum)
 
 # convert to meters
