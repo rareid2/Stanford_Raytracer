@@ -68,8 +68,8 @@ def getLshell(ray, t, ray_datenum):
 
 # ---------------------------------------------------------------------------------------------
 
-# Read in a rayfile -- just to get the plasma density parameters from within
-rf = read_rayfile('/var/folders/51/h992wgvj4kld4w4yhw1vx5600000gn/T/tmp8tsysb8v/example_ray_mode1.ray')
+# Read in a rayfile -- get the plasma density parameters from within
+rf = read_rayfile('/var/folders/51/h992wgvj4kld4w4yhw1vx5600000gn/T/tmppv9fxqqu/example_ray_mode1.ray')
 
 # get an entire ray lets just try one for now
 ray = rf[0]
@@ -109,8 +109,9 @@ for phi_ind, phi  in enumerate(phi_vec):
     n1sq = (B + np.sqrt(discriminant))/(2.0*A)
     n2sq = (B - np.sqrt(discriminant))/(2.0*A)
 
-    #n1 = np.sqrt(n1sq)
+    n1 = np.sqrt(n1sq)
     n2 = np.sqrt(n2sq)
+    print(n1, n2)
 
     # Order the roots
     """

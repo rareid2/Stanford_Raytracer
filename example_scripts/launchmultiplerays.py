@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 import os
 import sys
 import datetime as dt
+from random import random
 from raytracer_utils import readdump, read_rayfile, read_rayfiles, read_damp
 from run_rays import run_rays
 from raytracer_settings import *
@@ -25,27 +26,29 @@ import tempfile, shutil, time, pickle
 year = 2020
 month = 6
 day = 11
-hours = 0
-minutes = 0
+hours = 21
+minutes = 58
 seconds = 0
 
 ray_datenum = dt.datetime(year, month, day, hours, minutes, seconds)
 
 # -------------------------------- GET POSITIONS --------------------------------
 # these will be in ECI coordinates (GEI) in km
+# last updated 6/8
+
 # DSX TLE
-l11 = '1 44344U 19036F   20152.46517754 -.00000027  00000-0  00000-0 0  9997'
-l21 = '2 44344 042.2662 078.7586 1974025 146.7522 227.3839 04.54370969 15501'
+l11 = '1 44344U 19036F   20159.06535339 -.00000040  00000-0  00000-0 0  9994'
+l21 = '2 44344 042.2684 076.3406 1973825 149.5843 223.5230 04.54370887015809'
 # VPM TLE
-l12 = '1 45120U 19071K   20153.15274580  .00003602  00000-0  11934-3 0  9995'
-l22 = '2 45120  51.6427  81.8638 0012101 357.8092   2.2835 15.33909680 18511'
+l12 = '1 45120U 19071K   20160.05856933  .00002378  00000-0  82577-4 0  9991'
+l22 = '2 45120  51.6439  48.4744 0012296  22.9438 337.2091 15.33961651 19578'
 
 lines1 = [l11, l12]
 lines2 = [l21, l22]
 satnames = ['DSX', 'VPM']
 
 # get DSX and VPM positions for... 
-plen = 3600 * 24  # seconds
+plen = 1  # seconds
 r, tvec = TLE2pos(lines1, lines2, satnames, plen, ray_datenum)
 
 # convert to meters
@@ -67,7 +70,29 @@ dsxpositions = np.column_stack((SMcar_dsx.x, SMcar_dsx.y, SMcar_dsx.z))
 vpmpositions = np.column_stack((MAGsph_vpm.radi, MAGsph_vpm.lati, MAGsph_vpm.long))
 
 freq = [8.2e3] # Hz
-thetalist = [45, 60, 75, 90, -75, -60, -45]  # in deg -- what angles to launch at? 
+
+# how many rays? 
+rayn = 1e4
+thetalist = []
+
+# generate random angles from a sin theta distribution
+for i in range(int(rayn)):
+    xi = random.random()
+    th = np.arccos(1-2*xi)
+    pxi = random.random()
+    if pxi < 0.5: 
+        thetalist.append(R2D*(th + np.pi))
+    else: 
+        thetalist.append(R2D*th)
+
+# save those angles to parse later
+fname = str(freq[0]/1e3) + 'kray' + str(ray_datenum) + 'thetalist.txt'
+with open(fname, "w") as outfile:
+    outfile.write("\n".join(str(item) for item in thetalist))
+
+outfile.close()
+
+# start running rays!
 
 def launchmanyrays(position, vpmpos, rayt):
 
@@ -221,7 +246,7 @@ with Pool(nmbrcores) as p:
 end = time.time()
 # print(f'time is with 2 cores {end-start}')
 
-fname = './plots/' + str(freq[0]/1e3) + 'kray' + str(ray_datenum.year) + str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.hour) + str(ray_datenum.minute) + '.txt'
+fname = str(freq[0]/1e3) + 'kray' + str(ray_datenum.year) + str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.hour) + str(ray_datenum.minute) + 'MCsim.txt'
 with open(fname, "w") as outfile:
     outfile.write("\n".join(str(item) for item in results))
 
