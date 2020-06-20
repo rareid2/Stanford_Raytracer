@@ -26,10 +26,10 @@ R_E = 6371e3  # m
 
 # change time information here - use UTC -
 year = 2020
-month = 5
-day = 20
-hours = 0
-minutes = 0
+month = 6
+day = 11
+hours = 21
+minutes = 58
 seconds = 0
 
 ray_datenum = dt.datetime(year, month, day, hours, minutes, seconds)
@@ -50,8 +50,8 @@ def stix_parameters(ray, t, w):
     R = 1.0 - np.sum(Wps2/(w*(w + Wcs)))
     L = 1.0 - np.sum(Wps2/(w*(w - Wcs)))
     P = 1.0 - np.sum(Wps2/(w*w))
-    S = 1.0/(2.0*(R+L))
-    D = 1.0/(2.0*(R-L))
+    S = (R+L)/2.0
+    D = (R-L)/2.0
 
     return R, L, P, S, D
 # ---------------------------------------------------------------------------------------------
@@ -69,7 +69,7 @@ def getLshell(ray, t, ray_datenum):
 # ---------------------------------------------------------------------------------------------
 
 # Read in a rayfile -- get the plasma density parameters from within
-rf = read_rayfile('/var/folders/51/h992wgvj4kld4w4yhw1vx5600000gn/T/tmppv9fxqqu/example_ray_mode1.ray')
+rf = read_rayfile('/var/folders/51/h992wgvj4kld4w4yhw1vx5600000gn/T/tmpj12h6awy/example_ray_mode1.ray')
 
 # get an entire ray lets just try one for now
 ray = rf[0]
@@ -79,7 +79,7 @@ f = w/(2*np.pi)
 print('frequency of ray is:', w/(2*np.pi), ' Hz')
 
 # set up phi vec
-phi_vec = np.linspace(0,360,int(1e4))*D2R
+phi_vec = np.linspace(0,360,int(1e5))*D2R
 
 # grab only t = 0
 t = 0
@@ -94,6 +94,8 @@ root = 1 # why ??
 
 k_vec = np.zeros_like(phi_vec)
 eta_vec=np.zeros_like(phi_vec)
+
+cone = []
 
 for phi_ind, phi  in enumerate(phi_vec):
 
@@ -110,9 +112,9 @@ for phi_ind, phi  in enumerate(phi_vec):
     n2sq = (B - np.sqrt(discriminant))/(2.0*A)
 
     n1 = np.sqrt(n1sq)
+    if n2sq < 0:
+        cone.append(phi)
     n2 = np.sqrt(n2sq)
-    print(n1, n2)
-
     # Order the roots
     """
     if abs(n1) > abs(n2):
@@ -143,7 +145,7 @@ Bmag = np.linalg.norm(B)
 
 # makes it easier to square here
 w2 = w*w
-wp2 = Ns*pow(Q,2)/eo/M
+wp2 = Ns*pow(Q,2)/(eo*M)
 wh = Q*Bmag/M
 wh2 = wh*wh
 
@@ -152,25 +154,26 @@ root = 1
 # solve appleton-hartree eq
 numerator = wp2/w2
 denom1 = (wh2*pow(np.sin(phi_vec),2))/(2*(w2 - wp2))
-denom2 = np.sqrt(pow(denom1,2) + wh2*pow(np.cos(phi_vec), 2)/w2)
+denom2 = np.sqrt(pow(denom1, 2) + wh2*pow(np.cos(phi_vec), 2)/w2)
 eta2_AH   = 1 - (numerator/(1 - denom1 + root*denom2))
 eta_AH = np.sqrt(-eta2_AH)
 
 # plot it 
 fig, ax = plt.subplots(1,1)
 
-# ax.plot(eta_AH*np.sin(phi_vec), eta_AH*np.cos(phi_vec), LineWidth = 1, label = 'e only')
+#ax.plot(eta_AH*np.sin(phi_vec), eta_AH*np.cos(phi_vec), LineWidth = 1, label = 'e only')
 ax.plot(eta_vec*np.sin(phi_vec), eta_vec*np.cos(phi_vec), LineWidth = 1, label = 'e + ions')
 
-findcone = eta_vec*np.sin(phi_vec)
-for cone in findcone:
-    if cone > 100:
-        wherecone = np.where(findcone == cone)
-        conetheta = phi_vec[wherecone]
-        conetheta = conetheta * R2D
-        break
+# lol dont do this
+#findcone = eta_vec*np.sin(phi_vec)
+#for cone in findcone:
+    #if cone > 100:
+    #    wherecone = np.where(findcone == cone)
+    #    conetheta = phi_vec[wherecone]
+    #    conetheta = conetheta * R2D
+    #    break
 
-archeight = float(eta_vec[wherecone])
+#archeight = float(eta_vec[wherecone])
 
 # formatting
 xlim1 = -100
@@ -189,12 +192,12 @@ ax.annotate('B0', xy=(scale*10,ylim2-(scale*50)))
 
 ax.annotate('fp = ' + str(float(round((np.sqrt(wp2)/(2*np.pi))/1e3, 1))) + ' kHz', xy=(xlim1+(scale*100),ylim2-(scale*200)))
 
-resonanceangle = float(90 - conetheta)
+resonanceangle = float(R2D*cone[0])
 
-pac = Patch.Arc([0, 0], archeight, archeight, angle=0, theta1=0, theta2=float(resonanceangle), edgecolor = 'r')
+#pac = Patch.Arc([0, 0], archeight, archeight, angle=0, theta1=0, theta2=float(resonanceangle), edgecolor = 'r')
 #ax.add_patch(pac)
 
-ax.annotate('${\Theta}$ < ' + str(round(float(conetheta), 2)) + 'deg', xy=(xlim2 - (scale*200), scale*50))
+ax.annotate('${\Theta}$ < ' + str(round(float(R2D*cone[0]), 2)) + 'deg', xy=(xlim2 - (scale*200), scale*50))
 
 ax.set_title(str(round(f/1e3, 2)) + ' kHz Refractive Surface at ' + str(ray_datenum))
 plt.legend()
