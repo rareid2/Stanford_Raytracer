@@ -72,7 +72,7 @@ vpmpositions = np.column_stack((MAGsph_vpm.radi, MAGsph_vpm.lati, MAGsph_vpm.lon
 freq = [8.2e3] # Hz
 
 # how many rays? 
-rayn = 1e4
+rayn = 1e5
 thetalist = []
 
 # generate random angles from a sin theta distribution
@@ -80,10 +80,10 @@ for i in range(int(rayn)):
     xi = random.random()
     th = np.arccos(1-2*xi)
     pxi = random.random()
-    if pxi < 0.5: 
-        thetalist.append(R2D*(th + np.pi))
-    else: 
-        thetalist.append(R2D*th)
+    thetalist.append(R2D*th)
+
+# rotate to be defined w respect to B0
+thetalist = [th - 90 for th in thetalist]
 
 # save those angles to parse later
 fname = str(freq[0]/1e3) + 'kray' + str(ray_datenum) + 'thetalist.txt'
