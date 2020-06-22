@@ -34,7 +34,7 @@ ray_datenum = dt.datetime(year, month, day, hours, minutes, seconds)
 
 # -------------------------------- GET POSITIONS --------------------------------
 # these will be in ECI coordinates (GEI) in km
-# last updated 6/8
+# last updated 6/22
 
 # DSX TLE
 l11 = '1 44344U 19036F   20173.14565688 -.00000031  00000-0  00000-0 0  9999'
