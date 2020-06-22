@@ -38,9 +38,9 @@ ray_datenum = dt.datetime(year, month, day, hours, minutes, seconds)
 
 # DSX TLE
 l11 = '1 44344U 19036F   20173.14565688 -.00000031  00000-0  00000-0 0  9999'
-l21 = '2 44344 042.2760 071.1855 1973524 155.6114 215.1832 04.54371095016448'
+l21 = '2 44344  42.2760  71.1855 1973524 155.6114 215.1832  4.54371095 16448'
 # VPM TLE
-l21 = '1 45120U 19071K   20173.93473231  .00003239  00000-0  10800-3 0  9994'
+l12 = '1 45120U 19071K   20173.93473231  .00003239  00000-0  10800-3 0  9994'
 l22 = '2 45120  51.6437 341.3758 0012446  71.4995 288.7339 15.34053724 21707'
 
 lines1 = [l11, l12]
@@ -72,7 +72,7 @@ vpmpositions = np.column_stack((MAGsph_vpm.radi, MAGsph_vpm.lati, MAGsph_vpm.lon
 freq = [8.2e3] # Hz
 
 # how many rays? 
-rayn = 1e5
+rayn = 10
 thetalist = []
 
 # generate random angles from a sin theta distribution
@@ -84,7 +84,7 @@ for i in range(int(rayn)):
 
 # rotate to be defined w respect to B0
 thetalist = [th - 90 for th in thetalist]
-thetalist = [0]
+
 # save those angles to parse later
 fname = str(freq[0]/1e3) + 'kray' + str(ray_datenum) + 'thetalist.txt'
 with open(fname, "w") as outfile:

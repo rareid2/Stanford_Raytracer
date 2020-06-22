@@ -73,30 +73,42 @@ def TLE2pos(lines1, lines2, satnames, plen, ray_datenum):
 
 # change time information here - use UTC -
 year = 2020
-month = 5
-day = 17
-hours = 3
-minutes = 0
+month = 6
+day = 11
+hours = 21
+minutes = 58
 seconds = 0
 
 ray_datenum = dt.datetime(year, month, day, hours, minutes, seconds)
 
-# DSX TLE
-l11 = '1 44344U 19036F   20130.24435661 -.00000027 +00000-0 +00000+0 0  9994'
-l21 = '2 44344 042.2583 086.8979 1974641 137.2296 239.9665 04.54371389014496'
+# last updated 6/21
 
+# DSX TLE
+l11 = '1 44344U 19036F   20173.14565688 -.00000031  00000-0  00000-0 0  9999'
+l21 = '2 44344  42.2760  71.1855 1973524 155.6114 215.1832  4.54371095 16448'
 # VPM TLE
-l12 = '1 45120U 19071K   20132.49935632  .00001453  00000-0  55129-4 0  9998'
-l22 = '2 45120  51.6416 181.7127 0011592 280.5137  79.4539 15.33820525015342'
+l12 = '1 45120U 19071K   20173.93473231  .00003239  00000-0  10800-3 0  9994'
+l22 = '2 45120  51.6437 341.3758 0012446  71.4995 288.7339 15.34053724 21707'
+
 
 lines1 = [l11, l12]
 lines2 = [l21, l22]
 satnames = ['DSX', 'VPM']
-r, tvec = TLE2posfast(lines1, lines2, satnames, 3*3600, ray_datenum)
 
-rx = [r[0][i][0] for i in range(int(len(r[0])))]
-rz = [r[0][i][2] for i in range(int(len(r[0])))]
-plt.plot(rx, rz)
+r, tvec = TLE2pos(lines1, lines2, satnames, 6*3600, ray_datenum)
+
+# convert to meters
+dsx = [rpos*1e3 for rpos in r[0]]
+vpm = [rpos*1e3 for rpos in r[1]]
+
+rx_d = [r[0][i][0] for i in range(int(len(r[0])))]
+rz_d = [r[0][i][2] for i in range(int(len(r[0])))]
+
+rx_v = [r[1][i][0] for i in range(int(len(r[1])))]
+rz_v = [r[1][i][2] for i in range(int(len(r[1])))]
+
+plt.plot(rx_d, rz_d)
+plt.plot(rx_v, rz_v)
 plt.show()
-print(tvec[0])
+#print(tvec[0])
 """

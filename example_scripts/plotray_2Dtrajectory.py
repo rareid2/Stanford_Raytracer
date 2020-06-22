@@ -30,23 +30,23 @@ import tempfile
 # change time information here - use UTC -
 year = 2020
 month = 6
-day = 11
-hours = 21
-minutes = 58
+day = 24
+hours = 0
+minutes = 0
 seconds = 0
 
 ray_datenum = dt.datetime(year, month, day, hours, minutes, seconds)
 
 # -------------------------------- GET POSITIONS --------------------------------
 # these will be in ECI coordinates (GEI) in km
-# last updated 6/8
+# last updated 6/22
 
 # DSX TLE
-l11 = '1 44344U 19036F   20159.06535339 -.00000040  00000-0  00000-0 0  9994'
-l21 = '2 44344 042.2684 076.3406 1973825 149.5843 223.5230 04.54370887015809'
+l11 = '1 44344U 19036F   20173.14565688 -.00000031  00000-0  00000-0 0  9999'
+l21 = '2 44344  42.2760  71.1855 1973524 155.6114 215.1832  4.54371095 16448'
 # VPM TLE
-l12 = '1 45120U 19071K   20160.05856933  .00002378  00000-0  82577-4 0  9991'
-l22 = '2 45120  51.6439  48.4744 0012296  22.9438 337.2091 15.33961651 19578'
+l12 = '1 45120U 19071K   20173.93473231  .00003239  00000-0  10800-3 0  9994'
+l22 = '2 45120  51.6437 341.3758 0012446  71.4995 288.7339 15.34053724 21707'
 
 lines1 = [l11, l12]
 lines2 = [l21, l22]
@@ -193,7 +193,8 @@ plt.plot(MAGcar_dsx.x / R_E, MAGcar_dsx.z / R_E, '-go', zorder=105, label='DSX')
 plt.plot(MAGcar_vpm.x / R_E, MAGcar_vpm.z / R_E, '-yo', zorder=104, label='VPM')
 
 # rotate rays to be at prime merid also and plot
-for r, d in zip(rays, dlist):
+#for r, d in zip(rays, dlist):
+for r in rays:
     rrad = []
     rlat = []
     rlon = []
@@ -208,10 +209,10 @@ for r, d in zip(rays, dlist):
     MAGcar_ray = Rot_ray.convert('MAG', 'car')
 
     if len(MAGcar_ray.x) > 1:
-        plotp = ax.scatter(MAGcar_ray.x / R_E, MAGcar_ray.z / R_E, c=d, s = 1, cmap = 'Reds', vmin = 0, vmax = 1.5, zorder = 103)
-        # plotp = ax.scatter(MAGcar_ray.x / R_E, MAGcar_ray.z / R_E, c = 'Red', s = 1, zorder = 103)
+        # plotp = ax.scatter(MAGcar_ray.x / R_E, MAGcar_ray.z / R_E, c=d, s = 1, cmap = 'Reds', vmin = 0, vmax = 1.5, zorder = 103)
+        plotp = ax.scatter(MAGcar_ray.x / R_E, MAGcar_ray.z / R_E, c = 'Red', s = 1, zorder = 103)
 # add in color bar - will be just for the last ray, but bounds are set
-plt.colorbar(plotp, label = 'Normalized wave power')
+# plt.colorbar(plotp, label = 'Normalized wave power')
 
 # -------------------------------- EARTH AND IONO --------------------------------
 earth = plt.Circle((0, 0), 1, color='b', alpha=0.5, zorder=100)
