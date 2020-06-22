@@ -25,9 +25,9 @@ import tempfile, shutil, time, pickle
 # change time information here - use UTC -
 year = 2020
 month = 6
-day = 11
-hours = 21
-minutes = 58
+day = 25
+hours = 0
+minutes = 0
 seconds = 0
 
 ray_datenum = dt.datetime(year, month, day, hours, minutes, seconds)
@@ -84,7 +84,7 @@ for i in range(int(rayn)):
 
 # rotate to be defined w respect to B0
 thetalist = [th - 90 for th in thetalist]
-
+thetalist = [0]
 # save those angles to parse later
 fname = str(freq[0]/1e3) + 'kray' + str(ray_datenum) + 'thetalist.txt'
 with open(fname, "w") as outfile:

@@ -75,7 +75,7 @@ def run_rays(freq, positions, directions, yearday, milliseconds_day, tmpdir):
 
         # Set output file path
         ray_outfile = os.path.join(ray_out_dir, 'example_ray_mode%d.ray' % mode)
-        damp_outfile = os.path.join(ray_out_dir, 'example_ray_mode%d.damp' % mode)
+        # damp_outfile = os.path.join(ray_out_dir, 'example_ray_mode%d.damp' % mode)
 
         # The base command -- with parameters common for all modes
         base_cmd = './raytracer --outputper=%d --dt0=%g --dtmax=%g' % (1, dt0, dtmax) + \
@@ -88,17 +88,19 @@ def run_rays(freq, positions, directions, yearday, milliseconds_day, tmpdir):
                    ' --tsyganenko_W1=%g --tsyganenko_W2=%g --tsyganenko_W3=%g' % (W[0], W[1], W[2]) + \
                    ' --tsyganenko_W4=%g --tsyganenko_W5=%g --tsyganenko_W6=%g' % (W[3], W[4], W[5])
 
+        """
         base_damp_cmd = './damping --inp_file "%s" --out_file "%s" ' % (ray_outfile, damp_outfile) + \
                         ' --Kp %g --AE %g' % (Kp, AE) + \
                         ' --yearday %s --msec %d' % (yearday, milliseconds_day) + \
                         ' --geom_factor=%d' % include_geom_factor
+        """
 
         if mode == 1:
             # Test the Ngo model
-            damp_mode = 0
+            # damp_mode = 0
 
             ray_cmd = base_cmd + ' --ngo_configfile="%s"' % (configfile)
-            damp_cmd = base_damp_cmd + ' --mode %d' % damp_mode
+            # damp_cmd = base_damp_cmd + ' --mode %d' % damp_mode
 
         if mode == 2:
             # Test the full GCPM model
@@ -145,8 +147,8 @@ def run_rays(freq, positions, directions, yearday, milliseconds_day, tmpdir):
 
         #print("------- Running damping, mode %d -------" % damp_mode)
 
-        print(damp_cmd)
-        os.system(damp_cmd)
+        #print(damp_cmd)
+        #os.system(damp_cmd)
 
     # Move back to the working directory
     os.chdir(cwd)

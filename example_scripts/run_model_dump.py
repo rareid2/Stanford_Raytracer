@@ -26,10 +26,10 @@ from raytracer_settings import *
 
 # change time information here - use UTC -
 year = 2020
-month = 5
-day = 20
-hours = 1
-minutes = 30
+month = 6
+day = 25
+hours = 0
+minutes = 0
 seconds = 0
 
 # used for plotting the ray
