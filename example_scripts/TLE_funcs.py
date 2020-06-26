@@ -67,8 +67,8 @@ def TLE2pos(lines1, lines2, satnames, plen, ray_datenum):
 
 # --------------------------------- END FUNCTION -------------------------------------
 
-
 """
+
 # example call
 
 # change time information here - use UTC -
@@ -76,12 +76,12 @@ year = 2020
 month = 6
 day = 11
 hours = 21
-minutes = 58
+minutes = 55
 seconds = 0
 
 ray_datenum = dt.datetime(year, month, day, hours, minutes, seconds)
 
-# last updated 6/21
+# last updated 6/23
 
 # DSX TLE
 l11 = '1 44344U 19036F   20173.14565688 -.00000031  00000-0  00000-0 0  9999'
@@ -95,20 +95,16 @@ lines1 = [l11, l12]
 lines2 = [l21, l22]
 satnames = ['DSX', 'VPM']
 
-r, tvec = TLE2pos(lines1, lines2, satnames, 6*3600, ray_datenum)
-
-# convert to meters
-dsx = [rpos*1e3 for rpos in r[0]]
-vpm = [rpos*1e3 for rpos in r[1]]
+r, tvec = TLE2pos(lines1, lines2, satnames, 60*10, ray_datenum)
 
 rx_d = [r[0][i][0] for i in range(int(len(r[0])))]
 rz_d = [r[0][i][2] for i in range(int(len(r[0])))]
 
 rx_v = [r[1][i][0] for i in range(int(len(r[1])))]
+ry_v = [r[1][i][1] for i in range(int(len(r[1])))]
 rz_v = [r[1][i][2] for i in range(int(len(r[1])))]
 
-plt.plot(rx_d, rz_d)
-plt.plot(rx_v, rz_v)
-plt.show()
+
 #print(tvec[0])
+
 """

@@ -24,10 +24,10 @@ import tempfile, shutil, time, pickle
 # -------------------------------- SET TIME --------------------------------
 # change time information here - use UTC -
 year = 2020
-month = 6
-day = 25
-hours = 0
-minutes = 0
+month = 4
+day = 6
+hours = 21
+minutes = 45
 seconds = 0
 
 ray_datenum = dt.datetime(year, month, day, hours, minutes, seconds)
@@ -72,7 +72,7 @@ vpmpositions = np.column_stack((MAGsph_vpm.radi, MAGsph_vpm.lati, MAGsph_vpm.lon
 freq = [8.2e3] # Hz
 
 # how many rays? 
-rayn = 10
+rayn = 1000
 thetalist = []
 
 # generate random angles from a sin theta distribution
@@ -103,7 +103,10 @@ def launchmanyrays(position, vpmpos, rayt):
     GEOsph_dsx = SMcar_dsxpos.convert('GEO', 'sph')
 
     # check with hemi we are in
-    if GEOsph_dsx.lati > 0:
+    # lets just go to whichever hemisphere VPM is
+    #if GEOsph_dsx.lati > 0:
+
+    if MAGsph_vpm > 0:
         dir = 1   # north
     else:
         dir = -1  # south

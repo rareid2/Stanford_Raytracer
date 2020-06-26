@@ -24,12 +24,13 @@ M_EL = 9.1e-31     # kg
 M_P = 1.67e-27     # kg
 R_E = 6371e3  # m
 
+# -------------------------------- SET TIME --------------------------------
 # change time information here - use UTC -
 year = 2020
 month = 6
-day = 11
-hours = 21
-minutes = 58
+day = 24
+hours = 0
+minutes = 0
 seconds = 0
 
 ray_datenum = dt.datetime(year, month, day, hours, minutes, seconds)
@@ -69,7 +70,7 @@ def getLshell(ray, t, ray_datenum):
 # ---------------------------------------------------------------------------------------------
 
 # Read in a rayfile -- get the plasma density parameters from within
-rf = read_rayfile('/var/folders/51/h992wgvj4kld4w4yhw1vx5600000gn/T/tmpj12h6awy/example_ray_mode1.ray')
+rf = read_rayfile('/var/folders/51/h992wgvj4kld4w4yhw1vx5600000gn/T/tmph1dt10n7/example_ray_mode1.ray')
 
 # get an entire ray lets just try one for now
 ray = rf[0]
@@ -90,12 +91,15 @@ Lshell = getLshell(ray, t, ray_datenum)
 # get stix param
 R, L, P, S, D = stix_parameters(ray, t, w)
 
-root = 1 # why ??
+root = -1 # why ??
 
 k_vec = np.zeros_like(phi_vec)
 eta_vec=np.zeros_like(phi_vec)
 
-cone = []
+# solution from antenna white paper!
+resangle = np.arctan(np.sqrt(-P/S))
+
+# cone = []
 
 for phi_ind, phi  in enumerate(phi_vec):
 
@@ -111,11 +115,14 @@ for phi_ind, phi  in enumerate(phi_vec):
     n1sq = (B + np.sqrt(discriminant))/(2.0*A)
     n2sq = (B - np.sqrt(discriminant))/(2.0*A)
 
+    # negative refers to the fact that ^^^ B - sqrt
     n1 = np.sqrt(n1sq)
-    if n2sq < 0:
-        cone.append(phi)
+    #if n2sq < 0:
+    #    cone.append(phi)
+    # only get whistler solution from minus root ( i think)
+    # important to call these plus and minus roots! NOT POS AND NEG
     n2 = np.sqrt(n2sq)
-    # Order the roots
+    # Order the roots -- ?
     """
     if abs(n1) > abs(n2):
         k2 = w*n1/c
@@ -136,7 +143,7 @@ for phi_ind, phi  in enumerate(phi_vec):
 
 # repeat for only AH solution
 
-# grab for ONLY electrons
+# grab for ONLY electrons -- should I assume electron fill ENTIRE population...?
 Ns = float(ray['Ns'].iloc[t,0])
 Q = float(ray['qs'].iloc[t,0])
 M = float(ray['ms'].iloc[t,0])
@@ -192,12 +199,12 @@ ax.annotate('B0', xy=(scale*10,ylim2-(scale*50)))
 
 ax.annotate('fp = ' + str(float(round((np.sqrt(wp2)/(2*np.pi))/1e3, 1))) + ' kHz', xy=(xlim1+(scale*100),ylim2-(scale*200)))
 
-resonanceangle = float(R2D*cone[0])
+resonanceangle = float(R2D*resangle)
 
 #pac = Patch.Arc([0, 0], archeight, archeight, angle=0, theta1=0, theta2=float(resonanceangle), edgecolor = 'r')
 #ax.add_patch(pac)
 
-ax.annotate('${\Theta}$ < ' + str(round(float(R2D*cone[0]), 2)) + 'deg', xy=(xlim2 - (scale*200), scale*50))
+ax.annotate('${\Theta}$ < ' + str(round(resonanceangle, 2)) + 'deg', xy=(xlim2 - (scale*200), scale*50))
 
 ax.set_title(str(round(f/1e3, 2)) + ' kHz Refractive Surface at ' + str(ray_datenum))
 plt.legend()
