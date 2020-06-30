@@ -185,6 +185,7 @@ Rot_dsx = coord.Coords([float(MAGsph_dsx.radi), float(MAGsph_dsx.lati), float(MA
 Rot_vpm = coord.Coords([float(MAGsph_vpm.radi), float(MAGsph_vpm.lati), float(MAGsph_vpm.long + th)], 'MAG', 'sph', units=['m', 'deg', 'deg'])
 MAGcar_dsx = Rot_dsx.convert('MAG', 'car')
 MAGcar_vpm = Rot_vpm.convert('MAG', 'car')
+print(MAGsph_vpm)
 
 # plot sat locations
 plt.plot(MAGcar_dsx.x / R_E, MAGcar_dsx.z / R_E, '-go', zorder=105, label='DSX')
