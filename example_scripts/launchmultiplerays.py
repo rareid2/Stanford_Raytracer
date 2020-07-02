@@ -24,10 +24,10 @@ import tempfile, shutil, time, pickle
 # -------------------------------- SET TIME --------------------------------
 # change time information here - use UTC -
 year = 2020
-month = 4
-day = 6
-hours = 21
-minutes = 45
+month = 5
+day = 21
+hours = 3
+minutes = 20
 seconds = 0
 
 ray_datenum = dt.datetime(year, month, day, hours, minutes, seconds)
@@ -48,7 +48,7 @@ lines2 = [l21, l22]
 satnames = ['DSX', 'VPM']
 
 # get DSX and VPM positions for... 
-plen = 1  # seconds
+plen = 30*60  # seconds
 r, tvec = TLE2pos(lines1, lines2, satnames, plen, ray_datenum)
 
 # convert to meters
@@ -69,10 +69,14 @@ MAGsph_vpm = GEIcar_vpm.convert('MAG', 'sph')
 dsxpositions = np.column_stack((SMcar_dsx.x, SMcar_dsx.y, SMcar_dsx.z))
 vpmpositions = np.column_stack((MAGsph_vpm.radi, MAGsph_vpm.lati, MAGsph_vpm.long))
 
+dsxpositions = dsxpositions[0::100]
+vpmpositions = vpmpositions[0::100]
+tvec = tvec[0::100]
+
 freq = [8.2e3] # Hz
 
 # how many rays? 
-rayn = 1000
+rayn = 5
 thetalist = []
 
 # generate random angles from a sin theta distribution
@@ -104,12 +108,13 @@ def launchmanyrays(position, vpmpos, rayt):
 
     # check with hemi we are in
     # lets just go to whichever hemisphere VPM is
-    #if GEOsph_dsx.lati > 0:
 
-    if MAGsph_vpm > 0:
+    if vpmpos[1] > 0:
         dir = 1   # north
+        dirstr = 'north'
     else:
         dir = -1  # south
+        dirstr = 'south'
 
     Bstart = [float(GEOcar_dsx.x) / R_E, float(GEOcar_dsx.y) / R_E, float(GEOcar_dsx.z) / R_E]
     Bx, By, Bz = B_direasy(rayt, Bstart, dir)
@@ -210,7 +215,7 @@ def launchmanyrays(position, vpmpos, rayt):
 
     # -------------------------------- GET FOOTPRINT --------------------------------
     # also in GEO car, so need to use bstart 
-    GDZsph_foot = findFootprints(rayt, Bstart, 'same')
+    GDZsph_foot = findFootprints(rayt, Bstart, dirstr)
     GDZsph_foot.units = ['km', 'deg', 'deg']
     GDZsph_foot.ticks = Ticktock(rayt, 'UTC')
     MAGsph_foot = GDZsph_foot.convert('MAG', 'sph')

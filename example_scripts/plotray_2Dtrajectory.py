@@ -29,11 +29,11 @@ import tempfile
 # -------------------------------- SET TIME --------------------------------
 # change time information here - use UTC -
 year = 2020
-month = 6
-day = 25
-hours = 10
-minutes = 33
-seconds = 0
+month = 5
+day = 21
+hours = 2
+minutes = 49
+seconds = 59
 
 ray_datenum = dt.datetime(year, month, day, hours, minutes, seconds)
 
@@ -80,18 +80,20 @@ MAGsph_vpm = GEIcar_vpm.convert('MAG', 'sph')
 # start position of raytracer
 position = [float(SMcar_dsx.x), float(SMcar_dsx.y), float(SMcar_dsx.z)]
 
-freq = [5e3] # Hz
-thetalist = [17.20750952325976, 7.554744210070751, -68.22610131040653, 58.97965291644908, -30.351027199688275, 54.0861695894848, 45.54405750434913, -23.853724752671923, 69.85916824663974, -35.89709020810369] # in deg -- what angles to launch at? 
+freq = [28e3] # Hz
+thetalist = [-2] # in deg -- what angles to launch at? 
 #thetalist = [0]
 # grab position and find direction of local bfield
 GEOcar_dsx = GEIcar_dsx.convert('GEO', 'car')
 
 # check with hemi we are in
 GEOsph_dsx = GEIcar_dsx.convert('GEO', 'sph')
-if GEOsph_dsx.lati > 0:
+if MAGsph_vpm.lati > 0:
     dir = 1   # north
+    dirstr = 'north'
 else:
     dir = -1  # south
+    dirstr = 'south'
 
 Bstart = [float(GEOcar_dsx.x)/R_E, float(GEOcar_dsx.y)/R_E, float(GEOcar_dsx.z)/R_E]
 Bx, By, Bz = B_direasy(ray_datenum, Bstart, dir)
@@ -101,7 +103,7 @@ dirB = np.reshape(np.array([Bx, By, Bz]), (1, 3))
 dirB = coord.Coords(dirB[0], 'GEO', 'car', units=['Re', 'Re', 'Re'])
 dirB.ticks = Ticktock(ray_datenum, 'UTC') # add ticks
 SMsph_dirB = dirB.convert('SM', 'sph')
-
+SMcardirB = dirB.convert('SM', 'car')
 # fill for raytracer call
 positions = []
 directions = []
@@ -115,6 +117,13 @@ for theta in thetalist:
     Rot_dirB = coord.Coords(Rot_dirB, 'SM', 'sph')
     Rot_dirB.ticks = Ticktock(ray_datenum, 'UTC') # add ticks
     SMcar_dirB = Rot_dirB.convert('SM', 'car')
+    fig = plt.figure()
+    ax = fig.gca(projection='3d')
+    # Make the direction data for the arrows
+    ax.quiver(0, 0, 0, SMcar_dirB.x, SMcar_dirB.y, SMcar_dirB.z, length=0.1, normalize=True, label='th', color = 'r')
+    ax.quiver(0, 0, 0, SMcardirB.x, SMcardirB.y, SMcardirB.z, length=0.1, normalize=True, label='B0', color = 'b')
+    plt.legend()
+    plt.show()
 
     direction = [float(SMcar_dirB.x), float(SMcar_dirB.y), float(SMcar_dirB.z)]
     
@@ -290,7 +299,7 @@ for blinex, bliney, blinez in Blines:
 
 # -------------------------------- GET FOOTPRINT --------------------------------
 # also in GEO car, so need to use bstart 
-GDZsph_foot = findFootprints(ray_datenum, Bstart, 'same')
+GDZsph_foot = findFootprints(ray_datenum, Bstart, dirstr)
 GDZsph_foot.units = ['km', 'deg', 'deg']
 GDZsph_foot.ticks = Ticktock(ray_datenum, 'UTC')
 MAGsph_foot = GDZsph_foot.convert('MAG', 'sph')
@@ -315,9 +324,10 @@ mytitle = str(freq[0]/1e3) + 'kHz rays at ' + str(ray_datenum)
 plt.title(mytitle)
 ax.legend(loc = 'lower center', fontsize =  'x-small')
 
-savename = '/Users/rileyannereid/Desktop/' + str(freq[0]/1e3) + 'kray' + str(ray_datenum.year) + str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.hour) + str(ray_datenum.minute) + '.svg'
+savename = '/Users/rileyannereid/Desktop/' + str(freq[0]/1e3) + 'kray' + str(ray_datenum.year) + str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.hour) + str(ray_datenum.minute) + '.png'
 #plt.savefig(savename, format='svg')
+plt.savefig(savename, format='png')
 #plt.close()
-plt.show()
+#plt.show()
 
 # -------------------------------- END --------------------------------
