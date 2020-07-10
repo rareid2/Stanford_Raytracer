@@ -32,8 +32,8 @@ year = 2020
 month = 5
 day = 21
 hours = 2
-minutes = 49
-seconds = 59
+minutes = 50
+seconds = 0
 
 ray_datenum = dt.datetime(year, month, day, hours, minutes, seconds)
 
@@ -81,7 +81,7 @@ MAGsph_vpm = GEIcar_vpm.convert('MAG', 'sph')
 position = [float(SMcar_dsx.x), float(SMcar_dsx.y), float(SMcar_dsx.z)]
 
 freq = [28e3] # Hz
-thetalist = [-2] # in deg -- what angles to launch at? 
+thetalist = [0] # in deg -- what angles to launch at? 
 #thetalist = [0]
 # grab position and find direction of local bfield
 GEOcar_dsx = GEIcar_dsx.convert('GEO', 'car')
@@ -103,7 +103,7 @@ dirB = np.reshape(np.array([Bx, By, Bz]), (1, 3))
 dirB = coord.Coords(dirB[0], 'GEO', 'car', units=['Re', 'Re', 'Re'])
 dirB.ticks = Ticktock(ray_datenum, 'UTC') # add ticks
 SMsph_dirB = dirB.convert('SM', 'sph')
-SMcardirB = dirB.convert('SM', 'car')
+MAGcardirB = dirB.convert('MAG', 'car')
 # fill for raytracer call
 positions = []
 directions = []
@@ -117,13 +117,16 @@ for theta in thetalist:
     Rot_dirB = coord.Coords(Rot_dirB, 'SM', 'sph')
     Rot_dirB.ticks = Ticktock(ray_datenum, 'UTC') # add ticks
     SMcar_dirB = Rot_dirB.convert('SM', 'car')
-    fig = plt.figure()
-    ax = fig.gca(projection='3d')
+
+    MAGcar_dirB = Rot_dirB.convert('MAG', 'car')
+    fig, ax = plt.subplots(1,1, sharex=True, sharey=True)
     # Make the direction data for the arrows
-    ax.quiver(0, 0, 0, SMcar_dirB.x, SMcar_dirB.y, SMcar_dirB.z, length=0.1, normalize=True, label='th', color = 'r')
-    ax.quiver(0, 0, 0, SMcardirB.x, SMcardirB.y, SMcardirB.z, length=0.1, normalize=True, label='B0', color = 'b')
+    ax.quiver(0, 0, MAGcar_dirB.x, MAGcar_dirB.z, label='th', color = 'r')
+    ax.quiver(0, 0, MAGcardirB.x, MAGcardirB.z, label='B0', color = 'b')
     plt.legend()
+    plt.title(str(theta) + ' deg from B0')
     plt.show()
+    plt.close()
 
     direction = [float(SMcar_dirB.x), float(SMcar_dirB.y), float(SMcar_dirB.z)]
     
@@ -327,7 +330,24 @@ ax.legend(loc = 'lower center', fontsize =  'x-small')
 savename = '/Users/rileyannereid/Desktop/' + str(freq[0]/1e3) + 'kray' + str(ray_datenum.year) + str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.hour) + str(ray_datenum.minute) + '.png'
 #plt.savefig(savename, format='svg')
 plt.savefig(savename, format='png')
-#plt.close()
+plt.close()
 #plt.show()
+
+fig, ax = plt.subplots(1,1, sharex=True, sharey=True)
+
+MAGcarray = [pos for pos in MAGcar_ray]
+
+loopstop = len(MAGcarray) - 2
+
+for posind, pos in enumerate(MAGcarray):
+    if posind > loopstop:
+        break
+    plt.quiver(pos.x/R_E, pos.z/R_E, (MAGcarray[posind+1].x - pos.x) / R_E, (MAGcarray[posind+1].z - pos.z) / R_E)
+
+plt.plot(MAGcar_bline.x, MAGcar_bline.z, color='r', linewidth=1, linestyle='dashed', label='bfieldline')
+earth = plt.Circle((0, 0), 1, color='b')
+ax.add_artist(earth)
+plt.title('ray launched at ' + str(ray_datenum) + ' at ' + str(thetalist[0]) + ' deg from B0')
+plt.show()
 
 # -------------------------------- END --------------------------------
