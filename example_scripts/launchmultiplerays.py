@@ -26,8 +26,8 @@ import tempfile, shutil, time, pickle
 year = 2020
 month = 5
 day = 21
-hours = 3
-minutes = 20
+hours = 2
+minutes = 50
 seconds = 0
 
 ray_datenum = dt.datetime(year, month, day, hours, minutes, seconds)
@@ -73,10 +73,10 @@ dsxpositions = dsxpositions[0::100]
 vpmpositions = vpmpositions[0::100]
 tvec = tvec[0::100]
 
-freq = [8.2e3] # Hz
+freq = [28e3] # Hz
 
 # how many rays? 
-rayn = 5
+rayn = 1000
 thetalist = []
 
 # generate random angles from a sin theta distribution
@@ -86,13 +86,29 @@ for i in range(int(rayn)):
     pxi = random.random()
     thetalist.append(R2D*th)
 
+philist = []
+
+# generate random angles from a sin theta distribution
+for i in range(int(rayn)):
+    xi = random.random()
+    ph = np.arccos(1-2*xi)
+    philist.append(R2D*ph)
+
 # rotate to be defined w respect to B0
 thetalist = [th - 90 for th in thetalist]
+philist = [ph - 90 for ph in philist]
 
 # save those angles to parse later
 fname = str(freq[0]/1e3) + 'kray' + str(ray_datenum) + 'thetalist.txt'
 with open(fname, "w") as outfile:
     outfile.write("\n".join(str(item) for item in thetalist))
+
+outfile.close()
+
+# save those angles to parse later
+fname = str(freq[0]/1e3) + 'kray' + str(ray_datenum) + 'philist.txt'
+with open(fname, "w") as outfile:
+    outfile.write("\n".join(str(item) for item in philist))
 
 outfile.close()
 
@@ -130,11 +146,12 @@ def launchmanyrays(position, vpmpos, rayt):
     directions = []
 
     # rotate directions
-    for theta in thetalist:
+    for theta, phi in zip(thetalist, philist):
 
         # increase (or decrease) polar angle
         newth = float(SMsph_dirB.lati) + theta
-        Rot_dirB = [float(SMsph_dirB.radi), newth, float(SMsph_dirB.long)] 
+        newphi = float(SMsph_dirB.long) + phi
+        Rot_dirB = [float(SMsph_dirB.radi), newth, newphi] 
         Rot_dirB = coord.Coords(Rot_dirB, 'SM', 'sph')
         Rot_dirB.ticks = Ticktock(rayt, 'UTC') # add ticks
         SMcar_dirB = Rot_dirB.convert('SM', 'car')
