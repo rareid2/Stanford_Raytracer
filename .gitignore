@@ -7,9 +7,10 @@
 
 # Exclude all files in the bin and env and idea folder
 bin/*
-SR-env/*
+env-SR/*
 docs/*
 .idea/*
+/home/rileyannereid/workspace/Stanford_Raytracer/example_scripts/__pycache__/*
 
 # Make sure we include the folder itself tho
 !bin/.gitkeep
