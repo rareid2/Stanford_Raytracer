@@ -27,11 +27,11 @@ R_E = 6371e3  # m
 # -------------------------------- SET TIME --------------------------------
 # change time information here - use UTC -
 year = 2020
-month = 6
-day = 24
-hours = 0
-minutes = 0
-seconds = 0
+month = 5
+day = 21
+hours = 3
+minutes = 6
+seconds = 40
 
 ray_datenum = dt.datetime(year, month, day, hours, minutes, seconds)
 # --------------- CONSTANTS --------------------------
@@ -70,7 +70,7 @@ def getLshell(ray, t, ray_datenum):
 # ---------------------------------------------------------------------------------------------
 
 # Read in a rayfile -- get the plasma density parameters from within
-rf = read_rayfile('/var/folders/51/h992wgvj4kld4w4yhw1vx5600000gn/T/tmph1dt10n7/example_ray_mode1.ray')
+rf = read_rayfile('/var/folders/51/h992wgvj4kld4w4yhw1vx5600000gn/T/tmpxxlbu1g8/example_ray_mode1.ray')
 
 # get an entire ray lets just try one for now
 ray = rf[0]
