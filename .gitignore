@@ -10,7 +10,7 @@ bin/*
 env-SR/*
 docs/*
 .idea/*
-/home/rileyannereid/workspace/Stanford_Raytracer/example_scripts/__pycache__/*
+example_scripts/__pycache__/*
 
 # Make sure we include the folder itself tho
 !bin/.gitkeep
