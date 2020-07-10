@@ -1,0 +1,1470 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>spacepy.plot.utils &mdash; SpacePy v0.2.1 Manual</title>
+    
+    <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="../../../_static/spacepy_favicon.ico"/>
+    <link rel="top" title="SpacePy v0.2.1 Manual" href="../../../index.html" />
+    <link rel="up" title="spacepy.plot" href="../plot.html" /> 
+  </head>
+  <body role="document">
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../../../index.html"><img src="../../../_static/spacepy_logo.jpg" border="0" alt="spacepy_logo"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../../../search.html">search</a>|&nbsp;</li>
+       <li><a href="../../../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../plot.html" accesskey="U">spacepy.plot</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../index.html">
+              <img class="logo" src="../../../_static/logo.png" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for spacepy.plot.utils</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Utility routines for plotting and related activities</span>
+
+<span class="sd">Authors: Jonathan Niehof, Steven Morley, Daniel Welling</span>
+
+<span class="sd">Institution: Los Alamos National Laboratory</span>
+
+<span class="sd">Contact: jniehof@lanl.gov</span>
+
+<span class="sd">Copyright 2012-2014 Los Alamos National Security, LLC.</span>
+
+<span class="sd">.. currentmodule:: spacepy.plot.utils</span>
+
+<span class="sd">Classes</span>
+<span class="sd">-------</span>
+
+<span class="sd">.. autosummary::</span>
+<span class="sd">    :template: clean_class.rst</span>
+<span class="sd">    :toctree:</span>
+
+<span class="sd">    EventClicker</span>
+
+<span class="sd">Functions</span>
+<span class="sd">---------</span>
+
+<span class="sd">.. autosummary::</span>
+<span class="sd">    :toctree:</span>
+
+<span class="sd">    add_logo</span>
+<span class="sd">    annotate_xaxis</span>
+<span class="sd">    applySmartTimeTicks</span>
+<span class="sd">    collapse_vertical</span>
+<span class="sd">    printfig</span>
+<span class="sd">    set_target</span>
+<span class="sd">    shared_ylabel</span>
+<span class="sd">    show_used</span>
+<span class="sd">    smartTimeTicks</span>
+<span class="sd">    timestamp</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">__contact__</span> <span class="o">=</span> <span class="s1">&#39;Jonathan Niehof: jniehof@lanl.gov&#39;</span>
+
+<span class="kn">import</span> <span class="nn">bisect</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="kn">import</span> <span class="nn">matplotlib.axis</span>
+<span class="kn">import</span> <span class="nn">matplotlib.dates</span>
+<span class="kn">import</span> <span class="nn">matplotlib.image</span>
+<span class="kn">import</span> <span class="nn">matplotlib.patches</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="k">except</span> <span class="ne">RuntimeError</span><span class="p">:</span>
+    <span class="k">pass</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;add_logo&#39;</span><span class="p">,</span> <span class="s1">&#39;annotate_xaxis&#39;</span><span class="p">,</span> <span class="s1">&#39;applySmartTimeTicks&#39;</span><span class="p">,</span> <span class="s1">&#39;collapse_vertical&#39;</span><span class="p">,</span> <span class="s1">&#39;filter_boxes&#39;</span><span class="p">,</span> 
+           <span class="s1">&#39;smartTimeTicks&#39;</span><span class="p">,</span> <span class="s1">&#39;get_biggest_clear&#39;</span><span class="p">,</span> <span class="s1">&#39;get_clear&#39;</span><span class="p">,</span> <span class="s1">&#39;get_used_boxes&#39;</span><span class="p">,</span> <span class="s1">&#39;EventClicker&#39;</span><span class="p">,</span> 
+           <span class="s1">&#39;set_target&#39;</span><span class="p">,</span> <span class="s1">&#39;shared_ylabel&#39;</span><span class="p">,</span> <span class="s1">&#39;show_used&#39;</span><span class="p">,</span> <span class="s1">&#39;timestamp&#39;</span><span class="p">]</span>
+
+<span class="k">class</span> <span class="nc">EventClicker</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Presents a provided figure (normally a time series) and provides</span>
+<span class="sd">    an interface to mark events shown in the plot. The user interface</span>
+<span class="sd">    is explained in :meth:`analyze` and results are returned</span>
+<span class="sd">    by :meth:`get_events`</span>
+
+<span class="sd">    Other Parameters</span>
+<span class="sd">    ================</span>
+<span class="sd">    ax : maplotlib.axes.AxesSubplot</span>
+<span class="sd">        The subplot to display and grab data from. If not provided, the</span>
+<span class="sd">        current subplot is grabbed from gca() (Lookup of the current</span>
+<span class="sd">        subplot is done when :meth:`analyze` is called.)</span>
+<span class="sd">        </span>
+<span class="sd">    n_phases : int (optional, default 1)</span>
+<span class="sd">        number of phases to an event, i.e. number of subevents to mark.</span>
+<span class="sd">        E.g. for a storm where one wants the onset and the minimum, set</span>
+<span class="sd">        n_phases to 2 and double click on the onset, then minimum, and</span>
+<span class="sd">        then the next double-click will be onset of the next storm.</span>
+
+<span class="sd">    interval : (optional)</span>
+<span class="sd">        Size of the X window to show. This should be in units that can</span>
+<span class="sd">        be added to/subtracted from individual elements of x (e.g.</span>
+<span class="sd">        timedelta if x is a series of datetime.) Defaults to showing</span>
+<span class="sd">        the entire plot.</span>
+
+<span class="sd">    auto_interval : boolean (optional)</span>
+<span class="sd">        Automatically adjust interval based on the average distance</span>
+<span class="sd">        between selected events. Default is True if interval is not</span>
+<span class="sd">        specified; False if interval is specified.</span>
+
+<span class="sd">    auto_scale : boolean (optional, default True):</span>
+<span class="sd">        Automatically adjust the Y axis to match the data as the X</span>
+<span class="sd">        axis is panned.</span>
+
+<span class="sd">    ymin : (optional, default None)</span>
+<span class="sd">        If auto_scale is True, the bottom of the autoscaled Y axis will</span>
+<span class="sd">        never be above ymin (i.e. ymin will always be shown on the plot).</span>
+<span class="sd">        This prevents the autoscaling from blowing up very small features</span>
+<span class="sd">        in mostly flat portions of the plot. The user can still manually</span>
+<span class="sd">        zoom in past this point. The autoscaler will always zoom out to</span>
+<span class="sd">        show the data.</span>
+
+<span class="sd">    ymax : (optional, default None)</span>
+<span class="sd">        Similar to ymin, but the top of the Y axis will never be below ymax.</span>
+
+<span class="sd">    line : matplotlib.lines.Line2D (optional)</span>
+<span class="sd">        Specify the matplotlib line object to use for autoscaling the</span>
+<span class="sd">        Y axis. If this is not specified, the first line object on the</span>
+<span class="sd">        provided subplot will be used. This should usually be correct.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    ========</span>
+<span class="sd">    &gt;&gt;&gt; import spacepy.plot.utils</span>
+<span class="sd">    &gt;&gt;&gt; import numpy</span>
+<span class="sd">    &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
+<span class="sd">    &gt;&gt;&gt; x = numpy.arange(630) / 100.0 * numpy.pi</span>
+<span class="sd">    &gt;&gt;&gt; y = numpy.sin(x)</span>
+<span class="sd">    &gt;&gt;&gt; clicker = spacepy.plot.utils.EventClicker(</span>
+<span class="sd">    ... n_phases=2, #Two picks per event</span>
+<span class="sd">    ... interval=numpy.pi * 2) #Display one cycle at a time</span>
+<span class="sd">    &gt;&gt;&gt; plt.plot(x, y)</span>
+<span class="sd">    &gt;&gt;&gt; clicker.analyze() #Double-click on max and min of each cycle; close</span>
+<span class="sd">    &gt;&gt;&gt; e = clicker.get_events()</span>
+<span class="sd">    &gt;&gt;&gt; peaks = e[:, 0, 0] #x value of event starts</span>
+<span class="sd">    &gt;&gt;&gt; peaks -= 2 * numpy.pi * numpy.floor(peaks / (2 * numpy.pi)) #mod 2pi</span>
+<span class="sd">    &gt;&gt;&gt; max(numpy.abs(peaks - numpy.pi / 2)) &lt; 0.2 #Peaks should be near pi/2</span>
+<span class="sd">    True</span>
+<span class="sd">    &gt;&gt;&gt; troughs = e[:, 1, 0] #x value of event ends</span>
+<span class="sd">    &gt;&gt;&gt; troughs -= 2 * numpy.pi * numpy.floor(troughs / (2 * numpy.pi))</span>
+<span class="sd">    &gt;&gt;&gt; max(numpy.abs(troughs - 3 * numpy.pi / 2)) &lt; 0.2 #troughs near 3pi/2</span>
+<span class="sd">    True</span>
+<span class="sd">    &gt;&gt;&gt; d = clicker.get_events_data() #snap-to-data of events</span>
+<span class="sd">    &gt;&gt;&gt; peakvals = d[:, 0, 1] #y value, snapped near peaks</span>
+<span class="sd">    &gt;&gt;&gt; max(peakvals) &lt;= 1.0 #should peak at 1</span>
+<span class="sd">    True</span>
+<span class="sd">    &gt;&gt;&gt; min(peakvals) &gt; 0.9 #should click near 1</span>
+<span class="sd">    True</span>
+<span class="sd">    &gt;&gt;&gt; troughvals = d[:, 1, 1] #y value, snapped near peaks</span>
+<span class="sd">    &gt;&gt;&gt; max(troughvals) &lt;= -0.9 #should click near -1</span>
+<span class="sd">    True</span>
+<span class="sd">    &gt;&gt;&gt; min(troughvals) &lt;= -1.0 #should bottom-out at -1</span>
+<span class="sd">    True</span>
+
+<span class="sd">    .. autosummary::</span>
+<span class="sd">         ~EventClicker.analyze</span>
+<span class="sd">         ~EventClicker.get_events</span>
+<span class="sd">         ~EventClicker.get_events_data</span>
+
+<span class="sd">    .. codeauthor:: Jon Niehof &lt;jniehof@lanl.gov&gt;</span>
+<span class="sd">    .. automethod:: analyze</span>
+<span class="sd">    .. automethod:: get_events</span>
+<span class="sd">    .. automethod:: get_events_data</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">]</span>
+    <span class="n">_styles</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;solid&#39;</span><span class="p">,</span> <span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="s1">&#39;dotted&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">n_phases</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">auto_interval</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">auto_scale</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize EventClicker</span>
+
+<span class="sd">        Other Parameters</span>
+<span class="sd">        ================</span>
+<span class="sd">        ax : maplotlib.axes.AxesSubplot</span>
+<span class="sd">            The subplot to display and grab data from. If not provided, the</span>
+<span class="sd">            current subplot is grabbed from gca() (Lookup of the current</span>
+<span class="sd">            subplot is done when :meth:`analyze` is called.)</span>
+<span class="sd">        </span>
+<span class="sd">        n_phases : int (optional, default 1)</span>
+<span class="sd">            number of phases to an event, i.e. number of subevents to mark.</span>
+<span class="sd">            E.g. for a storm where one wants the onset and the minimum, set</span>
+<span class="sd">            n_phases to 2 and double click on the onset, then minimum, and</span>
+<span class="sd">            then the next double-click will be onset of the next storm.</span>
+
+<span class="sd">        interval : (optional)</span>
+<span class="sd">            Size of the X window to show. This should be in units that can</span>
+<span class="sd">            be added to/subtracted from individual elements of x (e.g.</span>
+<span class="sd">            timedelta if x is a series of datetime.) Defaults to showing</span>
+<span class="sd">            the entire plot.</span>
+
+<span class="sd">        auto_interval : boolean (optional)</span>
+<span class="sd">            Automatically adjust interval based on the average distance</span>
+<span class="sd">            between selected events. Default is True if interval is not</span>
+<span class="sd">            specified; False if interval is specified.</span>
+
+<span class="sd">        auto_scale : boolean (optional, default True):</span>
+<span class="sd">            Automatically adjust the Y axis to match the data as the X</span>
+<span class="sd">            axis is panned.</span>
+
+<span class="sd">        ymin : (optional, default None)</span>
+<span class="sd">            If auto_scale is True, the bottom of the autoscaled Y axis will</span>
+<span class="sd">            never be above ymin (i.e. ymin will always be shown on the plot).</span>
+<span class="sd">            This prevents the autoscaling from blowing up very small features</span>
+<span class="sd">            in mostly flat portions of the plot. The user can still manually</span>
+<span class="sd">            zoom in past this point. The autoscaler will always zoom out to</span>
+<span class="sd">            show the data.</span>
+
+<span class="sd">        ymax : (optional, default None)</span>
+<span class="sd">            Similar to ymin, but the top of the Y axis will never be below ymax.</span>
+
+<span class="sd">        line : matplotlib.lines.Line2D (optional)</span>
+<span class="sd">            Specify the matplotlib line object to use for autoscaling the</span>
+<span class="sd">            Y axis. If this is not specified, the first line object on the</span>
+<span class="sd">            provided subplot will be used. This should usually be correct.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_phases</span> <span class="o">=</span> <span class="n">n_phases</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">interval</span> <span class="o">=</span> <span class="n">interval</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_autointerval</span> <span class="o">=</span> <span class="n">auto_interval</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_autoscale</span> <span class="o">=</span> <span class="n">auto_scale</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_intervalcount</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_intervaltotal</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_events</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data_events</span> <span class="o">=</span> <span class="bp">None</span> <span class="c1">#snap-to-data version of events</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ymax</span> <span class="o">=</span> <span class="n">ymax</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ymin</span> <span class="o">=</span> <span class="n">ymin</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_line</span> <span class="o">=</span> <span class="n">line</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ax</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="k">def</span> <span class="nf">analyze</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Displays the figure provided and allows the user to select events.</span>
+
+<span class="sd">        All matplot lib controls for zooming, panning, etc. the figure</span>
+<span class="sd">        remain active.</span>
+
+<span class="sd">        Double left click</span>
+<span class="sd">            Mark this point as an event phase. One-phase events are the</span>
+<span class="sd">            simplest: they occur at a particular time. Two-phase events</span>
+<span class="sd">            have two times associated with them; an example is any event</span>
+<span class="sd">            with a distinct start and stop time. In that case, the first</span>
+<span class="sd">            double-click would mark the beginning, the second one, the end;</span>
+<span class="sd">            the next double-click would mark the beginning of the next event.</span>
+<span class="sd">            Each phase of an event is annotated with a vertical line on the</span>
+<span class="sd">            plot; the color and line style is the same for all events, but</span>
+<span class="sd">            different for each phase.</span>
+
+<span class="sd">            After marking the final phase of an event, the X axis will scroll</span>
+<span class="sd">            and zoom to place that phase near the left of the screeen and</span>
+<span class="sd">            include one full interval of data (as defined in the constructor).</span>
+<span class="sd">            The Y axis will be scaled to cover the data in that X range.</span>
+<span class="sd">            </span>
+<span class="sd">        Double right click or delete button</span>
+<span class="sd">            Remove the last marked event phase. If an entire event (i.e., the</span>
+<span class="sd">            first phase of an event) is removed, the X axis will be scrolled</span>
+<span class="sd">            left to the previous event and the Y axis will be scaled to cover</span>
+<span class="sd">            the data in the new range.</span>
+<span class="sd">            </span>
+<span class="sd">        Space bar</span>
+<span class="sd">            Scroll the X axis by one interval. Y axis will be scaled to cover</span>
+<span class="sd">            the data.</span>
+
+<span class="sd">        When finished, close the figure window (if necessary) and call</span>
+<span class="sd">        :meth:`get_events` to get the list of events.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lastclick_x</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lastclick_y</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lastclick_button</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_curr_phase</span> <span class="o">=</span> <span class="mi">0</span>
+        
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ax</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fig</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">get_figure</span><span class="p">()</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">get_lines</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_line</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_line</span> <span class="o">=</span> <span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_line</span> <span class="o">=</span> <span class="bp">None</span>
+                
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_line</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_xdata</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_ydata</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_autoscale</span> <span class="o">=</span> <span class="bp">False</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_x_is_datetime</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_xdata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_line</span><span class="o">.</span><span class="n">get_xdata</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_ydata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_line</span><span class="o">.</span><span class="n">get_ydata</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_x_is_datetime</span> <span class="o">=</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_xdata</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                                             <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_x_is_datetime</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_xydata</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">column_stack</span><span class="p">(</span>
+                    <span class="p">(</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">dates</span><span class="o">.</span><span class="n">date2num</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_xdata</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ydata</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_xydata</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_xdata</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ydata</span><span class="p">))</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ymin</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span> <span class="c1">#Make the clipping comparison always fail</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_ymin</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ydata</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ymax</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_ymax</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">nanmin</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ydata</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_autointerval</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_autointerval</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">interval</span> <span class="ow">is</span> <span class="bp">None</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">interval</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xaxis</span><span class="p">()</span><span class="o">.</span><span class="n">get_view_interval</span><span class="p">()</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_x_is_datetime</span><span class="p">:</span>
+                <span class="n">right</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">dates</span><span class="o">.</span><span class="n">num2date</span><span class="p">(</span><span class="n">right</span><span class="p">)</span>
+                <span class="n">left</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">dates</span><span class="o">.</span><span class="n">num2date</span><span class="p">(</span><span class="n">left</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">interval</span> <span class="o">=</span> <span class="n">right</span> <span class="o">-</span> <span class="n">left</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_xdata</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_relim</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_xdata</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_relim</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xaxis</span><span class="p">()</span><span class="o">.</span><span class="n">get_view_interval</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_cids</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_cids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">mpl_connect</span><span class="p">(</span><span class="s1">&#39;button_press_event&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_onclick</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_cids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">mpl_connect</span><span class="p">(</span><span class="s1">&#39;close_event&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_onclose</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_cids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">mpl_connect</span><span class="p">(</span><span class="s1">&#39;key_press_event&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_onkeypress</span><span class="p">))</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">get_events</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get back the list of events.</span>
+
+<span class="sd">        Call after :meth:`analyze`.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        =======</span>
+<span class="sd">        out : array</span>
+<span class="sd">            3-D array of (x, y) values clicked on.</span>
+<span class="sd">            Shape is (n_events, n_phases, 2), i.e. indexed by event</span>
+<span class="sd">            number, then phase of the event, then (x, y).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_events</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_events</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">get_events_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get a list of events, &quot;snapped&quot; to the data.</span>
+
+<span class="sd">        For each point selected as a phase of an event, selects the point</span>
+<span class="sd">        from the original data which is closest to the clicked point. Distance</span>
+<span class="sd">        from point to data is calculated based on the screen distance, not</span>
+<span class="sd">        in data coordinates.</span>
+
+<span class="sd">        Note that this snaps to data points, not to the closest point on the</span>
+<span class="sd">        line between points.</span>
+
+<span class="sd">        Call after :meth:`analyze`.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        =======        </span>
+<span class="sd">        out : array</span>
+<span class="sd">            3-D array of (x, y) values in the data which are closest to each</span>
+<span class="sd">            point clicked on. Shape is (n_events, n_phases, 2), i.e. indexed</span>
+<span class="sd">            by event number, then phase of the event, then (x, y).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_events</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_events</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_add_event_phase</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xval</span><span class="p">,</span> <span class="n">yval</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add a phase of the event&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
+            <span class="n">xval</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_colors</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_curr_phase</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_colors</span><span class="p">)],</span>
+            <span class="n">ls</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_styles</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_curr_phase</span> <span class="o">//</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_colors</span><span class="p">)</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_styles</span><span class="p">)])</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_xydata</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">point_disp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">transData</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span>
+                <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">xval</span><span class="p">,</span> <span class="n">yval</span><span class="p">]])</span>
+                <span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">data_disp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">transData</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_xydata</span><span class="p">)</span>
+            <span class="n">idx</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span>
+                <span class="p">(</span><span class="n">data_disp</span> <span class="o">-</span> <span class="n">point_disp</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
+                <span class="p">))</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_events</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_data_events</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+                    <span class="p">[[[</span><span class="bp">self</span><span class="o">.</span><span class="n">_xdata</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ydata</span><span class="p">[</span><span class="mi">0</span><span class="p">]]]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_phases</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_data_events</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_curr_phase</span><span class="p">]</span> <span class="o">=</span> \
+                                  <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_xdata</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ydata</span><span class="p">[</span><span class="n">idx</span><span class="p">]]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_x_is_datetime</span><span class="p">:</span>
+            <span class="n">xval</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">dates</span><span class="o">.</span><span class="n">num2date</span><span class="p">(</span><span class="n">xval</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_events</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_events</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([[[</span><span class="n">xval</span><span class="p">,</span> <span class="n">yval</span><span class="p">]]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_phases</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_events</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_curr_phase</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">xval</span><span class="p">,</span> <span class="n">yval</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_curr_phase</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_curr_phase</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_phases</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_curr_phase</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_autointerval</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_events</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_intervalcount</span> <span class="o">+=</span> <span class="mi">1</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_intervaltotal</span> <span class="o">+=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_events</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_events</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">interval</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_intervaltotal</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">_intervalcount</span>
+                <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_events</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_intervalcount</span> <span class="o">=</span> <span class="mi">1</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_intervaltotal</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_events</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_events</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">interval</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_intervaltotal</span>
+                
+            <span class="bp">self</span><span class="o">.</span><span class="n">_events</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_events</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+                                 <span class="bp">self</span><span class="o">.</span><span class="n">n_phases</span><span class="p">,</span> <span class="mi">2</span>
+                                 <span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_data_events</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_data_events</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+                                      <span class="bp">self</span><span class="o">.</span><span class="n">n_phases</span><span class="p">,</span> <span class="mi">2</span>
+                                      <span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_relim</span><span class="p">(</span><span class="n">xval</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_delete_event_phase</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Delete the most recent phase of the event&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_curr_phase</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_events</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">lines</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_events</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_events</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span>
+                                     <span class="bp">self</span><span class="o">.</span><span class="n">n_phases</span><span class="p">,</span> <span class="mi">2</span>
+                                     <span class="p">))</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_events</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_data_events</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_data_events</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span>
+                                              <span class="bp">self</span><span class="o">.</span><span class="n">n_phases</span><span class="p">,</span> <span class="mi">2</span>
+                                              <span class="p">))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_curr_phase</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_phases</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">lines</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_curr_phase</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_curr_phase</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_events</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_relim</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_events</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_onclick</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Handle a click&quot;&quot;&quot;</span>
+        <span class="c1"># a doubleclick gives us two IDENTICAL click events, same X and Y</span>
+        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">xdata</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lastclick_x</span> <span class="ow">and</span> \
+               <span class="n">event</span><span class="o">.</span><span class="n">ydata</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lastclick_y</span> <span class="ow">and</span> \
+               <span class="n">event</span><span class="o">.</span><span class="n">button</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lastclick_button</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">button</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_add_event_phase</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">xdata</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">ydata</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_delete_event_phase</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_lastclick_x</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_lastclick_y</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_lastclick_button</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_lastclick_x</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">xdata</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_lastclick_y</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">ydata</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_lastclick_button</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">button</span>
+
+    <span class="k">def</span> <span class="nf">_onclose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Handle the window closing&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">cid</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cids</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">mpl_disconnect</span><span class="p">(</span><span class="n">cid</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_onkeypress</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Handle a keypress&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="s1">&#39; &#39;</span><span class="p">:</span>
+            <span class="n">rightside</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">get_view_interval</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_x_is_datetime</span><span class="p">:</span>
+                <span class="n">rightside</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">dates</span><span class="o">.</span><span class="n">num2date</span><span class="p">(</span><span class="n">rightside</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_relim</span><span class="p">(</span><span class="n">rightside</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="s1">&#39;delete&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_delete_event_phase</span><span class="p">()</span>
+        
+    <span class="k">def</span> <span class="nf">_relim</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">left_x</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Reset the limits based on a particular X value&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_x_is_datetime</span><span class="p">:</span>
+            <span class="n">xmin</span> <span class="o">=</span> <span class="n">left_x</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">interval</span><span class="o">/</span><span class="mi">10</span>
+            <span class="n">xmax</span> <span class="o">=</span> <span class="n">left_x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">interval</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">interval</span><span class="o">/</span><span class="mi">10</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">xmin</span> <span class="o">=</span> <span class="n">left_x</span> <span class="o">-</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">interval</span>
+            <span class="n">xmax</span> <span class="o">=</span> <span class="n">left_x</span> <span class="o">+</span> <span class="mf">1.1</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">interval</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_autoscale</span><span class="p">:</span>
+            <span class="n">idx_l</span> <span class="o">=</span> <span class="n">bisect</span><span class="o">.</span><span class="n">bisect_left</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_xdata</span><span class="p">,</span> <span class="n">xmin</span><span class="p">)</span>
+            <span class="n">idx_r</span> <span class="o">=</span> <span class="n">bisect</span><span class="o">.</span><span class="n">bisect_right</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_xdata</span><span class="p">,</span> <span class="n">xmax</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">idx_l</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ydata</span><span class="p">):</span>
+                <span class="n">idx_l</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ydata</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+            <span class="n">ymin</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">nanmin</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ydata</span><span class="p">[</span><span class="n">idx_l</span><span class="p">:</span><span class="n">idx_r</span><span class="p">])</span>
+            <span class="n">ymax</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ydata</span><span class="p">[</span><span class="n">idx_l</span><span class="p">:</span><span class="n">idx_r</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">ymin</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ymin</span><span class="p">:</span>
+                <span class="n">ymin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ymin</span>
+            <span class="k">if</span> <span class="n">ymax</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ymax</span><span class="p">:</span>
+                <span class="n">ymax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ymax</span>
+            <span class="n">ydiff</span> <span class="o">=</span> <span class="p">(</span><span class="n">ymax</span> <span class="o">-</span> <span class="n">ymin</span><span class="p">)</span> <span class="o">/</span> <span class="mi">10</span>
+            <span class="n">ymin</span> <span class="o">-=</span> <span class="n">ydiff</span>
+            <span class="n">ymax</span> <span class="o">+=</span> <span class="n">ydiff</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">autoscale_view</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">autoscale_view</span><span class="p">(</span><span class="n">scalex</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">scaley</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="annotate_xaxis"><a class="viewcode-back" href="../../../autosummary/spacepy.plot.annotate_xaxis.html#spacepy.plot.annotate_xaxis">[docs]</a><span class="k">def</span> <span class="nf">annotate_xaxis</span><span class="p">(</span><span class="n">txt</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Write text in-line and to the right of the x-axis tick labels</span>
+
+<span class="sd">    Annotates the x axis of an :class:`~matplotlib.axes.Axes` object with text</span>
+<span class="sd">    placed in-line with the tick labels and immediately to the right of the</span>
+<span class="sd">    last label. This is formatted to match the existing tick marks.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+<span class="sd">    txt : str</span>
+<span class="sd">        The annotation text.</span>
+
+<span class="sd">    Other Parameters</span>
+<span class="sd">    ================</span>
+<span class="sd">    ax : matplotlib.axes.Axes</span>
+<span class="sd">        The axes to annotate; if not specified, the</span>
+<span class="sd">        :func:`~matplotlib.pyplot.gca` function will be used.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    =======</span>
+<span class="sd">    out : matplotlib.text.Text</span>
+<span class="sd">        The :class:`~matplotlib.text.Text` object for the annotation.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    =====</span>
+<span class="sd">    The annotation is placed *immediately* to the right of the last tick label.</span>
+<span class="sd">    Generally the first character of ``txt`` should be a space to allow some</span>
+<span class="sd">    room.</span>
+
+<span class="sd">    Calls :func:`~matplotlib.pyplot.draw` to ensure tick marker locations are</span>
+<span class="sd">    up to date.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    ========</span>
+<span class="sd">    .. plot::</span>
+<span class="sd">        :include-source:</span>
+
+<span class="sd">        &gt;&gt;&gt; import spacepy.plot.utils</span>
+<span class="sd">        &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
+<span class="sd">        &gt;&gt;&gt; import datetime</span>
+<span class="sd">        &gt;&gt;&gt; times = [datetime.datetime(2010, 1, 1) + datetime.timedelta(hours=i)</span>
+<span class="sd">        ...     for i in range(0, 48, 3)]</span>
+<span class="sd">        &gt;&gt;&gt; plt.plot(times, range(16))</span>
+<span class="sd">        [&lt;matplotlib.lines.Line2D object at 0x0000000&gt;]</span>
+<span class="sd">        &gt;&gt;&gt; spacepy.plot.utils.annotate_xaxis(&#39; UT&#39;) #mark that times are UT</span>
+<span class="sd">        &lt;matplotlib.text.Text object at 0x0000000&gt;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+    <span class="c1">#For some reason the last one is sometimes null, so search for non-null</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="nb">next</span><span class="p">((</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">t</span><span class="o">.</span><span class="n">get_text</span><span class="p">()),</span> <span class="bp">None</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">t</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span> <span class="c1">#force a redraw, try again</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="nb">next</span><span class="p">((</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">t</span><span class="o">.</span><span class="n">get_text</span><span class="p">()),</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">t</span><span class="p">:</span>
+            <span class="k">return</span>
+    <span class="n">transform</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">get_transform</span><span class="p">()</span>
+    <span class="n">pos</span> <span class="o">=</span> <span class="n">transform</span><span class="o">.</span><span class="n">inverted</span><span class="p">()</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">get_window_extent</span><span class="p">())</span>
+    <span class="n">left</span> <span class="o">=</span> <span class="n">pos</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="c1">#line up the left of annotation with right of existing</span>
+    <span class="n">bottom</span> <span class="o">=</span> <span class="n">pos</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="c1">#for some reason bottom matches better than top</span>
+    <span class="n">props</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">((</span><span class="n">p</span><span class="p">,</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="s1">&#39;get_&#39;</span> <span class="o">+</span> <span class="n">p</span><span class="p">)())</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span>
+         <span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">,</span> <span class="s1">&#39;family&#39;</span><span class="p">,</span> <span class="s1">&#39;size&#39;</span><span class="p">,</span> <span class="s1">&#39;style&#39;</span><span class="p">,</span> <span class="s1">&#39;variant&#39;</span><span class="p">,</span> <span class="s1">&#39;weight&#39;</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">bottom</span><span class="p">,</span> <span class="n">txt</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">,</span>
+                   <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">props</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="applySmartTimeTicks"><a class="viewcode-back" href="../../../autosummary/spacepy.plot.applySmartTimeTicks.html#spacepy.plot.applySmartTimeTicks">[docs]</a><span class="k">def</span> <span class="nf">applySmartTimeTicks</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">dolimit</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">dolabel</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given an axis *ax* and a list/array of datetime objects, *time*,</span>
+<span class="sd">    use the smartTimeTicks function to build smart time ticks and</span>
+<span class="sd">    then immediately apply them to the given axis.  The first and</span>
+<span class="sd">    last elements of the time list will be used as bounds for the</span>
+<span class="sd">    x-axis range.</span>
+
+<span class="sd">    The range of the *time* input value will be used to set the limits</span>
+<span class="sd">    of the x-axis as well.  Set kwarg &#39;dolimit&#39; to False to override</span>
+<span class="sd">    this behavior.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+<span class="sd">    ax : matplotlib.pyplot.Axes</span>
+<span class="sd">        A matplotlib Axis object.</span>
+<span class="sd">    time : list</span>
+<span class="sd">        list of datetime objects</span>
+<span class="sd">    dolimit : boolean (optional)</span>
+<span class="sd">        The range of the *time* input value will be used to set the limits</span>
+<span class="sd">        of the x-axis as well. Setting this overrides this behavior.</span>
+<span class="sd">    dolabel : boolean (optional)</span>
+<span class="sd">        Sets autolabeling of the time axis with &quot;Time from&quot; time[0]</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    ========</span>
+<span class="sd">    smartTimeTicks</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">Mtick</span><span class="p">,</span> <span class="n">mtick</span><span class="p">,</span> <span class="n">fmt</span> <span class="o">=</span> <span class="n">smartTimeTicks</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">Mtick</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_minor_locator</span><span class="p">(</span><span class="n">mtick</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">fmt</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">dolimit</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="n">time</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">time</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+    <span class="k">if</span> <span class="n">dolabel</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time from {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">time</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()))</span>
+    <span class="k">return</span> <span class="bp">True</span></div>
+
+<span class="k">def</span> <span class="nf">smartTimeTicks</span><span class="p">(</span><span class="n">time</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns major ticks, minor ticks and format for time-based plots</span>
+
+<span class="sd">    smartTimeTicks takes a list of datetime objects and uses the range</span>
+<span class="sd">    to calculate the best tick spacing and format.  Returned to the user</span>
+<span class="sd">    is a tuple containing the major tick locator, minor tick locator, and</span>
+<span class="sd">    a format string -- all necessary to apply the ticks to an axis.</span>
+
+<span class="sd">    It is suggested that, unless the user explicitly needs this info,</span>
+<span class="sd">    to use the convenience function applySmartTimeTicks to place the</span>
+<span class="sd">    ticks directly on a given axis.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+<span class="sd">    time : list</span>
+<span class="sd">        list of datetime objects</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    =======</span>
+<span class="sd">    out : tuple</span>
+<span class="sd">        tuple of Mtick - major ticks, mtick - minor ticks, fmt - format</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    ========</span>
+<span class="sd">    applySmartTimeTicks</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">matplotlib.dates</span> <span class="kn">import</span> <span class="p">(</span><span class="n">MinuteLocator</span><span class="p">,</span> <span class="n">HourLocator</span><span class="p">,</span>
+                                  <span class="n">DayLocator</span><span class="p">,</span> <span class="n">MonthLocator</span><span class="p">,</span> <span class="n">YearLocator</span><span class="p">,</span>
+                                  <span class="n">DateFormatter</span><span class="p">)</span>
+    <span class="n">deltaT</span> <span class="o">=</span> <span class="n">time</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">time</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">nHours</span> <span class="o">=</span> <span class="n">deltaT</span><span class="o">.</span><span class="n">days</span> <span class="o">*</span> <span class="mf">24.0</span> <span class="o">+</span> <span class="n">deltaT</span><span class="o">.</span><span class="n">seconds</span><span class="o">/</span><span class="mf">3600.0</span>
+    <span class="k">if</span> <span class="n">deltaT</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span><span class="o">&lt;</span><span class="mi">600</span><span class="p">:</span>
+        <span class="n">Mtick</span> <span class="o">=</span> <span class="n">MinuteLocator</span><span class="p">(</span><span class="n">byminute</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">60</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span> <span class="p">)</span>
+        <span class="n">mtick</span> <span class="o">=</span> <span class="n">MinuteLocator</span><span class="p">(</span><span class="n">byminute</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">60</span><span class="p">)),</span> <span class="n">interval</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">fmt</span> <span class="o">=</span> <span class="n">DateFormatter</span><span class="p">(</span><span class="s1">&#39;%H:%M UT&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">nHours</span> <span class="o">&lt;</span> <span class="o">.</span><span class="mi">5</span><span class="p">:</span>
+        <span class="n">Mtick</span> <span class="o">=</span> <span class="n">MinuteLocator</span><span class="p">(</span><span class="n">byminute</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">60</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span> <span class="p">)</span>
+        <span class="n">mtick</span> <span class="o">=</span> <span class="n">MinuteLocator</span><span class="p">(</span><span class="n">byminute</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">60</span><span class="p">)),</span> <span class="n">interval</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+        <span class="n">fmt</span> <span class="o">=</span> <span class="n">DateFormatter</span><span class="p">(</span><span class="s1">&#39;%H:%M UT&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">nHours</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">Mtick</span> <span class="o">=</span> <span class="n">MinuteLocator</span><span class="p">(</span><span class="n">byminute</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">45</span><span class="p">])</span>
+        <span class="n">mtick</span> <span class="o">=</span> <span class="n">MinuteLocator</span><span class="p">(</span><span class="n">byminute</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">60</span><span class="p">)),</span> <span class="n">interval</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span>
+        <span class="n">fmt</span> <span class="o">=</span> <span class="n">DateFormatter</span><span class="p">(</span><span class="s1">&#39;%H:%M UT&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">nHours</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">Mtick</span> <span class="o">=</span> <span class="n">MinuteLocator</span><span class="p">(</span><span class="n">byminute</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">45</span><span class="p">])</span>
+        <span class="n">mtick</span> <span class="o">=</span> <span class="n">MinuteLocator</span><span class="p">(</span><span class="n">byminute</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">60</span><span class="p">)),</span> <span class="n">interval</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+        <span class="n">fmt</span> <span class="o">=</span>  <span class="n">DateFormatter</span><span class="p">(</span><span class="s1">&#39;%H:%M UT&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">nHours</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">:</span>
+        <span class="n">Mtick</span> <span class="o">=</span> <span class="n">MinuteLocator</span><span class="p">(</span><span class="n">byminute</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">30</span><span class="p">])</span>
+        <span class="n">mtick</span> <span class="o">=</span> <span class="n">MinuteLocator</span><span class="p">(</span><span class="n">byminute</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">60</span><span class="p">)),</span> <span class="n">interval</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
+        <span class="n">fmt</span> <span class="o">=</span> <span class="n">DateFormatter</span><span class="p">(</span><span class="s1">&#39;%H:%M UT&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">nHours</span> <span class="o">&lt;</span> <span class="mi">12</span><span class="p">:</span>
+        <span class="n">Mtick</span> <span class="o">=</span> <span class="n">HourLocator</span><span class="p">(</span><span class="n">byhour</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">24</span><span class="p">)),</span> <span class="n">interval</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">mtick</span> <span class="o">=</span> <span class="n">MinuteLocator</span><span class="p">(</span><span class="n">byminute</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">45</span><span class="p">])</span>
+        <span class="n">fmt</span> <span class="o">=</span> <span class="n">DateFormatter</span><span class="p">(</span><span class="s1">&#39;%H:%M UT&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">nHours</span> <span class="o">&lt;</span> <span class="mi">24</span><span class="p">:</span>
+        <span class="n">Mtick</span> <span class="o">=</span> <span class="n">HourLocator</span><span class="p">(</span><span class="n">byhour</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="mi">21</span><span class="p">])</span>
+        <span class="n">mtick</span> <span class="o">=</span> <span class="n">HourLocator</span><span class="p">(</span><span class="n">byhour</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">24</span><span class="p">)))</span>
+        <span class="n">fmt</span> <span class="o">=</span> <span class="n">DateFormatter</span><span class="p">(</span><span class="s1">&#39;%H:%M UT&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">nHours</span> <span class="o">&lt;</span> <span class="mi">48</span><span class="p">:</span>
+        <span class="n">Mtick</span> <span class="o">=</span> <span class="n">HourLocator</span><span class="p">(</span><span class="n">byhour</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">18</span><span class="p">])</span>
+        <span class="n">mtick</span> <span class="o">=</span> <span class="n">HourLocator</span><span class="p">(</span><span class="n">byhour</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">24</span><span class="p">)))</span>
+        <span class="n">fmt</span> <span class="o">=</span> <span class="n">DateFormatter</span><span class="p">(</span><span class="s1">&#39;%H:%M UT&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">deltaT</span><span class="o">.</span><span class="n">days</span> <span class="o">&lt;</span> <span class="mi">8</span><span class="p">:</span>
+        <span class="n">Mtick</span> <span class="o">=</span> <span class="n">DayLocator</span><span class="p">(</span><span class="n">bymonthday</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">32</span><span class="p">)))</span>
+        <span class="n">mtick</span> <span class="o">=</span> <span class="n">HourLocator</span><span class="p">(</span><span class="n">byhour</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">24</span><span class="p">,</span><span class="mi">2</span><span class="p">)))</span>
+        <span class="n">fmt</span> <span class="o">=</span>  <span class="n">DateFormatter</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1"> %b&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">deltaT</span><span class="o">.</span><span class="n">days</span> <span class="o">&lt;</span> <span class="mi">15</span><span class="p">:</span>
+        <span class="n">Mtick</span> <span class="o">=</span> <span class="n">DayLocator</span><span class="p">(</span><span class="n">bymonthday</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">32</span><span class="p">,</span><span class="mi">2</span><span class="p">)))</span>
+        <span class="n">mtick</span> <span class="o">=</span> <span class="n">HourLocator</span><span class="p">(</span><span class="n">byhour</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">18</span><span class="p">])</span>
+        <span class="n">fmt</span> <span class="o">=</span>  <span class="n">DateFormatter</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1"> %b&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">deltaT</span><span class="o">.</span><span class="n">days</span> <span class="o">&lt;</span> <span class="mi">32</span><span class="p">:</span>
+        <span class="n">Mtick</span> <span class="o">=</span> <span class="n">DayLocator</span><span class="p">(</span><span class="n">bymonthday</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">35</span><span class="p">,</span><span class="mi">5</span><span class="p">)))</span>
+        <span class="n">mtick</span> <span class="o">=</span> <span class="n">HourLocator</span><span class="p">(</span><span class="n">byhour</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">18</span><span class="p">])</span>
+        <span class="n">fmt</span> <span class="o">=</span>  <span class="n">DateFormatter</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1"> %b&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">deltaT</span><span class="o">.</span><span class="n">days</span> <span class="o">&lt;</span> <span class="mi">60</span><span class="p">:</span>
+        <span class="n">Mtick</span> <span class="o">=</span> <span class="n">MonthLocator</span><span class="p">()</span>
+        <span class="n">mtick</span> <span class="o">=</span> <span class="n">DayLocator</span><span class="p">(</span><span class="n">bymonthday</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">35</span><span class="p">,</span><span class="mi">5</span><span class="p">)))</span>
+        <span class="n">fmt</span> <span class="o">=</span>  <span class="n">DateFormatter</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1"> %b&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">deltaT</span><span class="o">.</span><span class="n">days</span> <span class="o">&lt;</span> <span class="mi">731</span><span class="p">:</span>
+        <span class="n">Mtick</span> <span class="o">=</span> <span class="n">MonthLocator</span><span class="p">()</span>
+        <span class="n">mtick</span> <span class="o">=</span> <span class="n">DayLocator</span><span class="p">(</span><span class="n">bymonthday</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+        <span class="n">fmt</span> <span class="o">=</span>  <span class="n">DateFormatter</span><span class="p">(</span><span class="s1">&#39;%b %Y&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">Mtick</span> <span class="o">=</span> <span class="n">YearLocator</span><span class="p">()</span>
+        <span class="n">mtick</span> <span class="o">=</span> <span class="n">MonthLocator</span><span class="p">(</span><span class="n">bymonth</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+        <span class="n">fmt</span> <span class="o">=</span>  <span class="n">DateFormatter</span><span class="p">(</span><span class="s1">&#39;%Y&#39;</span><span class="p">)</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">Mtick</span><span class="p">,</span> <span class="n">mtick</span><span class="p">,</span> <span class="n">fmt</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="set_target"><a class="viewcode-back" href="../../../autosummary/spacepy.plot.set_target.html#spacepy.plot.set_target">[docs]</a><span class="k">def</span> <span class="nf">set_target</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">polar</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Given a *target* on which to plot a figure, determine if that *target*</span>
+<span class="sd">    is **None** or a matplotlib figure or axes object.  Based on the type</span>
+<span class="sd">    of *target*, a figure and/or axes will be either located or generated.</span>
+<span class="sd">    Both the figure and axes objects are returned to the caller for further</span>
+<span class="sd">    manipulation.  This is used in nearly all *add_plot*-type methods.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+<span class="sd">    target : object</span>
+<span class="sd">        The object on which plotting will happen.</span>
+
+<span class="sd">    Other Parameters</span>
+<span class="sd">    ================</span>
+<span class="sd">    figsize : tuple</span>
+<span class="sd">        A two-item tuple/list giving the dimensions of the figure, in inches.  </span>
+<span class="sd">        Defaults to Matplotlib defaults.</span>
+<span class="sd">    loc : integer </span>
+<span class="sd">        The subplot triple that specifies the location of the axes object.  </span>
+<span class="sd">        Defaults to matplotlib default (111).</span>
+<span class="sd">    polar : bool</span>
+<span class="sd">        Set the axes object to polar coodinates.  Defaults to **False**.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    =======</span>
+<span class="sd">    fig : object</span>
+<span class="sd">      A matplotlib figure object on which to plot.</span>
+
+<span class="sd">    ax : object</span>
+<span class="sd">      A matplotlib subplot object on which to plot.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    ========</span>
+<span class="sd">    &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
+<span class="sd">    &gt;&gt;&gt; from spacepy.pybats import set_target</span>
+<span class="sd">    &gt;&gt;&gt; fig = plt.figure()</span>
+<span class="sd">    &gt;&gt;&gt; fig, ax = set_target(target=fig, loc=211)</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="c1"># Is target an axes?  Make no new items.</span>
+    <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">target</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">Axes</span><span class="p">):</span>
+        <span class="n">ax</span>  <span class="o">=</span> <span class="n">target</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">figure</span>
+    <span class="k">else</span><span class="p">:</span> <span class="c1"># Make a new axis</span>
+        <span class="c1"># Make a new figure if target isn&#39;t one</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">target</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">plt</span><span class="o">.</span><span class="n">Figure</span><span class="p">)</span> \
+              <span class="k">else</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">loc</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">polar</span><span class="o">=</span><span class="n">polar</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span> <span class="c1"># matplotlib &lt;3.1, no default subplot position</span>
+                <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">polar</span><span class="o">=</span><span class="n">polar</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">loc</span><span class="p">,</span> <span class="n">polar</span><span class="o">=</span><span class="n">polar</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span></div>
+
+
+<div class="viewcode-block" id="collapse_vertical"><a class="viewcode-back" href="../../../autosummary/spacepy.plot.collapse_vertical.html#spacepy.plot.collapse_vertical">[docs]</a><span class="k">def</span> <span class="nf">collapse_vertical</span><span class="p">(</span><span class="n">combine</span><span class="p">,</span> <span class="n">others</span><span class="o">=</span><span class="p">(),</span> <span class="n">leave_axis</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Collapse the vertical spacing between two or more subplots.</span>
+
+<span class="sd">    Useful for a multi-panel plot where most subplots should have</span>
+<span class="sd">    space between them but several adjacent ones should not (i.e.,</span>
+<span class="sd">    appear as a single plot.) This function will remove all the</span>
+<span class="sd">    vertical space between the subplots listed in ``combine`` and</span>
+<span class="sd">    redistribute the space between all of the subplots in both</span>
+<span class="sd">    ``combine`` and ``others`` in proportion to their current size,</span>
+<span class="sd">    so that the relative size of the subplots does not change.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+<span class="sd">    combine : sequence</span>
+<span class="sd">        The :class:`~matplotlib.axes.Axes` objects (i.e. subplots)</span>
+<span class="sd">        which should be placed together with no vertical space.</span>
+
+<span class="sd">    Other Parameters</span>
+<span class="sd">    ================</span>
+<span class="sd">    others : sequence</span>
+<span class="sd">        The :class:`~matplotlib.axes.Axes` objects (i.e. subplots)</span>
+<span class="sd">        which will keep their vertical spacing, but will be expanded</span>
+<span class="sd">        with the space taken away from between the elements of ``combine``.</span>
+<span class="sd">    leave_axis : bool</span>
+<span class="sd">        If set to true, will leave the axis lines and tick marks between</span>
+<span class="sd">        the collapsed subplots. By default, the axis line (&quot;spine&quot;) is</span>
+<span class="sd">        removed so the two subplots appear as one.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    =====</span>
+<span class="sd">    This function can be fairly fragile and should only be used for fairly</span>
+<span class="sd">    simple layouts, e.g., a one-column multi-row plot stack.</span>
+
+<span class="sd">    This may require some clean-up of the y axis labels, as they are likely</span>
+<span class="sd">    to overlap.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    ========</span>
+<span class="sd">    .. plot::</span>
+<span class="sd">        :include-source:</span>
+<span class="sd">    </span>
+<span class="sd">        &gt;&gt;&gt; import spacepy.plot.utils</span>
+<span class="sd">        &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
+<span class="sd">        &gt;&gt;&gt; fig = plt.figure()</span>
+<span class="sd">        &gt;&gt;&gt; #Make three stacked subplots</span>
+<span class="sd">        &gt;&gt;&gt; ax0 = fig.add_subplot(311)</span>
+<span class="sd">        &gt;&gt;&gt; ax1 = fig.add_subplot(312)</span>
+<span class="sd">        &gt;&gt;&gt; ax2 = fig.add_subplot(313)</span>
+<span class="sd">        &gt;&gt;&gt; ax0.plot([1, 2, 3], [1, 2, 1]) #just make some lines</span>
+<span class="sd">        [&lt;matplotlib.lines.Line2D object at 0x0000000&gt;]</span>
+<span class="sd">        &gt;&gt;&gt; ax1.plot([1, 2, 3], [1, 2, 1])</span>
+<span class="sd">        [&lt;matplotlib.lines.Line2D object at 0x0000000&gt;]</span>
+<span class="sd">        &gt;&gt;&gt; ax2.plot([1, 2, 3], [1, 2, 1])</span>
+<span class="sd">        [&lt;matplotlib.lines.Line2D object at 0x0000000&gt;]</span>
+<span class="sd">        &gt;&gt;&gt; #Collapse space between top two plots, leave bottom one alone</span>
+<span class="sd">        &gt;&gt;&gt; spacepy.plot.utils.collapse_vertical([ax0, ax1], [ax2])</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">combine</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">combine</span><span class="p">)</span>
+    <span class="n">others</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">others</span><span class="p">)</span>
+    <span class="c1">#bounding box for ALL subplots/axes</span>
+    <span class="n">boxes</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(((</span><span class="n">ax</span><span class="p">,</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_position</span><span class="p">())</span> <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">combine</span> <span class="o">+</span> <span class="n">others</span><span class="p">))</span>
+    <span class="c1">#vertical sizes</span>
+    <span class="n">sizes</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(((</span><span class="n">ax</span><span class="p">,</span> <span class="n">boxes</span><span class="p">[</span><span class="n">ax</span><span class="p">]</span><span class="o">.</span><span class="n">ymax</span> <span class="o">-</span> <span class="n">boxes</span><span class="p">[</span><span class="n">ax</span><span class="p">]</span><span class="o">.</span><span class="n">ymin</span><span class="p">)</span> <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">boxes</span><span class="p">))</span>
+    <span class="c1">#Fraction of vertical for each?</span>
+    <span class="n">vtotal</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">sizes</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">sizes</span><span class="p">:</span>
+        <span class="n">sizes</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">/=</span> <span class="n">vtotal</span>
+    <span class="c1">#get the ones to combine in top-to-bottom order</span>
+    <span class="n">c_sort</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">combine</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">boxes</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">ymax</span><span class="p">),</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="c1">#and figure out how much space we&#39;re going to take away</span>
+    <span class="n">v_additional</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">c_sort</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">v_additional</span> <span class="o">+=</span> <span class="p">(</span><span class="n">boxes</span><span class="p">[</span><span class="n">c_sort</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="o">.</span><span class="n">ymin</span> <span class="o">-</span> <span class="n">boxes</span><span class="p">[</span><span class="n">c_sort</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]]</span><span class="o">.</span><span class="n">ymax</span><span class="p">)</span>
+    <span class="c1">#get EVERYTHING in top-to-bottom order</span>
+    <span class="n">all_sort</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">combine</span> <span class="o">+</span> <span class="n">others</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">boxes</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">ymax</span><span class="p">),</span>
+                      <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">shift</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="c1">#how far UP to move each plot</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">all_sort</span><span class="p">):</span>
+        <span class="n">bb</span> <span class="o">=</span> <span class="n">boxes</span><span class="p">[</span><span class="n">ax</span><span class="p">]</span>
+        <span class="n">pos</span> <span class="o">=</span> <span class="p">[</span><span class="n">bb</span><span class="o">.</span><span class="n">xmin</span><span class="p">,</span> <span class="n">bb</span><span class="o">.</span><span class="n">ymin</span><span class="p">,</span> <span class="n">bb</span><span class="o">.</span><span class="n">xmax</span> <span class="o">-</span> <span class="n">bb</span><span class="o">.</span><span class="n">xmin</span><span class="p">,</span> <span class="n">bb</span><span class="o">.</span><span class="n">ymax</span> <span class="o">-</span> <span class="n">bb</span><span class="o">.</span><span class="n">ymin</span><span class="p">]</span>
+        <span class="n">pos</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span><span class="n">sizes</span><span class="p">[</span><span class="n">ax</span><span class="p">]</span> <span class="o">*</span> <span class="n">v_additional</span><span class="p">)</span> <span class="c1">#expand vertically</span>
+        <span class="n">shift</span> <span class="o">-=</span> <span class="n">sizes</span><span class="p">[</span><span class="n">ax</span><span class="p">]</span> <span class="o">*</span> <span class="n">v_additional</span> <span class="c1">#everything shifted down by expansion</span>
+        <span class="n">pos</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="n">shift</span>  <span class="c1">#slide the bottom by total shift</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_position</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">combine</span><span class="p">:</span> <span class="c1">#This subplot is participating in combination</span>
+            <span class="c1">#Combining with one below?</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">all_sort</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">all_sort</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="ow">in</span> <span class="n">combine</span><span class="p">:</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">(),</span> <span class="n">visible</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span> <span class="c1">#no labels</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">leave_axis</span><span class="p">:</span>
+                    <span class="c1">#no bottom ticks</span>
+                    <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+                    <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;bottom&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span> <span class="c1">#no axis line</span>
+                <span class="c1">#ALSO slide everything up by difference between these two</span>
+                <span class="n">shift</span> <span class="o">+=</span> <span class="p">(</span><span class="n">bb</span><span class="o">.</span><span class="n">ymin</span> <span class="o">-</span> <span class="n">boxes</span><span class="p">[</span><span class="n">all_sort</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]]</span><span class="o">.</span><span class="n">ymax</span><span class="p">)</span>
+            <span class="c1">#combining with one above?</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">all_sort</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="ow">in</span> <span class="n">combine</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">leave_axis</span><span class="p">:</span>
+                    <span class="c1">#no top ticks</span>
+                    <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+                    <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;top&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span> <span class="c1">#no axis line</span></div>
+
+
+<span class="k">def</span> <span class="nf">printfig</span><span class="p">(</span><span class="n">fignum</span><span class="p">,</span> <span class="n">saveonly</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">pngonly</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">clean</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;save current figure to file and call lpr (print).</span>
+
+<span class="sd">    This routine will create a total of 3 files (png, ps and c.png) in the</span>
+<span class="sd">    current working directory with a sequence number attached. Also, a time</span>
+<span class="sd">    stamp and the location of the file will be imprinted on the figure. The</span>
+<span class="sd">    file ending with c.png is clean and no directory or time stamp are</span>
+<span class="sd">    attached (good for PowerPoint presentations).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    fignum : integer</span>
+<span class="sd">        matplotlib figure number</span>
+<span class="sd">    saveonly : boolean (optional)</span>
+<span class="sd">        True (don&#39;t print and save only to file)  False (print and save)</span>
+<span class="sd">    pngolny : boolean (optional)</span>
+<span class="sd">        True (only save png files and print png directly) False (print ps file, and generate png, ps; can be slow)</span>
+<span class="sd">    clean : boolean (optional)</span>
+<span class="sd">        True (print and save only clean files without directory info) False (print and save directory location as well)</span>
+<span class="sd">    filename : string (optional)</span>
+<span class="sd">        None (If specified then the filename is set and code does not use the sequence number)</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    ========</span>
+<span class="sd">    &gt;&gt;&gt; import spacepy.plot.utils</span>
+<span class="sd">    &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
+<span class="sd">    &gt;&gt;&gt; p = plt.plot([1,2,3],[2,3,2])</span>
+<span class="sd">    &gt;&gt;&gt; spacepy.plot.utils.printfig(1, pngonly=True, saveonly=True)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">nfigs</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">fignum</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">nfigs</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">fignum</span> <span class="o">=</span> <span class="p">[</span><span class="n">fignum</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">ifig</span> <span class="ow">in</span> <span class="n">fignum</span><span class="p">:</span>
+        <span class="c1"># active this figure</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">ifig</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">filename</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="c1"># create a filename for the figure</span>
+            <span class="n">cwd</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+            <span class="n">num</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;*.png&#39;</span><span class="p">))</span>
+            <span class="n">fln</span> <span class="o">=</span> <span class="n">cwd</span><span class="o">+</span><span class="s1">&#39;/figure_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">fln</span> <span class="o">=</span> <span class="n">filename</span>
+        <span class="c1"># truncate fln if too long</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">fln</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">60</span><span class="p">:</span>
+            <span class="n">flnstamp</span> <span class="o">=</span> <span class="s1">&#39;[...]&#39;</span><span class="o">+</span><span class="n">fln</span><span class="p">[</span><span class="o">-</span><span class="mi">60</span><span class="p">:]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">flnstamp</span> <span class="o">=</span> <span class="n">fln</span>
+
+        <span class="c1"># save a clean figure without timestamps</span>
+        <span class="k">if</span> <span class="n">clean</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">fln</span><span class="o">+</span><span class="s1">&#39;_clean.png&#39;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">fln</span><span class="o">+</span><span class="s1">&#39;_clena.ps&#39;</span><span class="p">)</span>
+
+        <span class="n">timestamp</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S  &quot;</span><span class="p">)</span>
+        <span class="c1"># add the filename to the figure for reference</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">figtext</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="n">timestamp</span><span class="o">+</span><span class="n">flnstamp</span><span class="o">+</span><span class="s1">&#39;.png&#39;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="s1">&#39;vertical&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+
+        <span class="c1"># now save the figure to this filename</span>
+        <span class="k">if</span> <span class="n">pngonly</span> <span class="o">==</span> <span class="bp">False</span><span class="p">:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">fln</span><span class="o">+</span><span class="s1">&#39;.ps&#39;</span><span class="p">)</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">fln</span><span class="o">+</span><span class="s1">&#39;.png&#39;</span><span class="p">)</span>
+
+        <span class="c1"># send it to the printer</span>
+        <span class="k">if</span> <span class="n">saveonly</span> <span class="o">!=</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">pngonly</span> <span class="o">==</span> <span class="bp">False</span><span class="p">:</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="s1">&#39;lpr &#39;</span><span class="o">+</span><span class="n">fln</span><span class="o">+</span><span class="s1">&#39;.ps&#39;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="s1">&#39;lpr &#39;</span><span class="o">+</span><span class="n">fln</span><span class="o">+</span><span class="s1">&#39;.png&#39;</span><span class="p">)</span>
+    <span class="k">return</span>
+
+
+<div class="viewcode-block" id="shared_ylabel"><a class="viewcode-back" href="../../../autosummary/spacepy.plot.shared_ylabel.html#spacepy.plot.shared_ylabel">[docs]</a><span class="k">def</span> <span class="nf">shared_ylabel</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">txt</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create a ylabel that spans several subplots</span>
+
+<span class="sd">    Useful for a multi-panel plot where several subplots have the</span>
+<span class="sd">    same units/quantities on the y axis.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+<span class="sd">    axes : list</span>
+<span class="sd">        The :class:`~matplotlib.axes.Axes` objects (i.e. subplots)</span>
+<span class="sd">        which should share a single label</span>
+<span class="sd">    txt : str</span>
+<span class="sd">        The label to place in the middle of all the `axes` objects.</span>
+
+<span class="sd">    Other Parameters</span>
+<span class="sd">    ================</span>
+<span class="sd">    Additional arguments and keywords are passed through to</span>
+<span class="sd">    :meth:`~matplotlib.axes.Axes.set_ylabel`</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    =======</span>
+<span class="sd">    out : matplotlib.text.Text</span>
+<span class="sd">        The :class:`~matplotlib.text.Text` object for the label.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    =====</span>
+<span class="sd">    This function can be fairly fragile and should only be used for fairly</span>
+<span class="sd">    simple layouts, e.g., a one-column multi-row plot stack.</span>
+
+<span class="sd">    The label is associated with the bottommost subplot in ``axes``.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    ========</span>
+<span class="sd">    &gt;&gt;&gt; import spacepy.plot.utils</span>
+<span class="sd">    &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
+<span class="sd">    &gt;&gt;&gt; fig = plt.figure()</span>
+<span class="sd">    &gt;&gt;&gt; #Make three stacked subplots</span>
+<span class="sd">    &gt;&gt;&gt; ax0 = fig.add_subplot(311)</span>
+<span class="sd">    &gt;&gt;&gt; ax1 = fig.add_subplot(312)</span>
+<span class="sd">    &gt;&gt;&gt; ax2 = fig.add_subplot(313)</span>
+<span class="sd">    &gt;&gt;&gt; ax0.plot([1, 2, 3], [1, 2, 1]) #just make some lines</span>
+<span class="sd">    [&lt;matplotlib.lines.Line2D object at 0x0000000&gt;]</span>
+<span class="sd">    &gt;&gt;&gt; ax1.plot([1, 2, 3], [1, 2, 1])</span>
+<span class="sd">    [&lt;matplotlib.lines.Line2D object at 0x0000000&gt;]</span>
+<span class="sd">    &gt;&gt;&gt; ax2.plot([1, 2, 3], [1, 2, 1])</span>
+<span class="sd">    [&lt;matplotlib.lines.Line2D object at 0x0000000&gt;]</span>
+<span class="sd">    &gt;&gt;&gt; #Create a green label across all three axes</span>
+<span class="sd">    &gt;&gt;&gt; spacepy.plot.utils.shared_ylabel([ax0, ax1, ax2],</span>
+<span class="sd">    ... &#39;this is a very long label that spans all three axes&#39;, color=&#39;g&#39;)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_figure</span><span class="p">()</span> <span class="c1">#better all be the same!</span>
+    <span class="c1">#these are in Figure coordinate space</span>
+    <span class="c1">#transform to display coords for sorting</span>
+    <span class="n">boxes</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(((</span><span class="n">ax</span><span class="p">,</span> <span class="n">fig</span><span class="o">.</span><span class="n">transFigure</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_position</span><span class="p">()))</span>
+                  <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axes</span><span class="p">))</span>
+    <span class="c1">#top-to-bottom by upper edge</span>
+    <span class="n">top</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">boxes</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="c1">#bottom-to-top by lower edge</span>
+    <span class="n">bottom</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">boxes</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="c1">#get the TOP of the TOP subplot in axes coordinates of BOTTOM subplot</span>
+    <span class="n">top_in_bottom</span> <span class="o">=</span> <span class="n">bottom</span><span class="o">.</span><span class="n">transAxes</span><span class="o">.</span><span class="n">inverted</span><span class="p">()</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span> <span class="c1">#into bottom coords</span>
+        <span class="n">boxes</span><span class="p">[</span><span class="n">top</span><span class="p">])</span> <span class="c1">#into display coords from fig</span>
+    <span class="n">bottom_in_bottom</span> <span class="o">=</span> <span class="n">bottom</span><span class="o">.</span><span class="n">transAxes</span><span class="o">.</span><span class="n">inverted</span><span class="p">()</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span> <span class="c1">#into bottom</span>
+        <span class="n">boxes</span><span class="p">[</span><span class="n">bottom</span><span class="p">])</span> <span class="c1">#into display coords from fig</span>
+    <span class="c1">#The mean of bottom-of-bottom and top-of-top, in bottom coords</span>
+    <span class="n">middle</span> <span class="o">=</span> <span class="p">(</span><span class="n">top_in_bottom</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">bottom_in_bottom</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>
+    <span class="n">bottom</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">txt</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">lbl</span> <span class="o">=</span> <span class="n">bottom</span><span class="o">.</span><span class="n">get_yaxis</span><span class="p">()</span><span class="o">.</span><span class="n">get_label</span><span class="p">()</span>
+    <span class="n">lbl</span><span class="o">.</span><span class="n">set_verticalalignment</span><span class="p">(</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+    <span class="n">lbl</span><span class="o">.</span><span class="n">set_y</span><span class="p">(</span><span class="n">middle</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">lbl</span></div>
+
+
+<div class="viewcode-block" id="timestamp"><a class="viewcode-back" href="../../../autosummary/spacepy.plot.timestamp.html#spacepy.plot.timestamp">[docs]</a><span class="k">def</span> <span class="nf">timestamp</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="p">(</span><span class="mf">1.003</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="s1">&#39;xx-small&#39;</span><span class="p">,</span> <span class="n">draw</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">strnow</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+              <span class="n">rotation</span><span class="o">=</span><span class="s1">&#39;vertical&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    print a timestamp on the current plot, vertical lower right</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+<span class="sd">    position : list</span>
+<span class="sd">        position for the timestamp</span>
+<span class="sd">    size : string (optional)</span>
+<span class="sd">        text size</span>
+<span class="sd">    draw : Boolean (optional)</span>
+<span class="sd">        call draw to make sure it appears</span>
+<span class="sd">    kwargs : keywords</span>
+<span class="sd">        other keywords to axis.annotate</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    ========</span>
+<span class="sd">    &gt;&gt;&gt; import spacepy.plot.utils</span>
+<span class="sd">    &gt;&gt;&gt; from pylab import plot, arange</span>
+<span class="sd">    &gt;&gt;&gt; plot(arange(11))</span>
+<span class="sd">    [&lt;matplotlib.lines.Line2D object at 0x49072b0&gt;]</span>
+<span class="sd">    &gt;&gt;&gt; spacepy.plot.utils.timestamp()</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">strnow</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+            <span class="n">strnow</span> <span class="o">=</span> <span class="n">now</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2">%b%Y %H:%M&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+    <span class="n">ann</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">strnow</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span>
+                    <span class="n">xycoords</span><span class="o">=</span><span class="s1">&#39;axes fraction&#39;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="n">rotation</span><span class="p">,</span>
+                    <span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span>  <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">draw</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">ann</span></div>
+
+<span class="k">def</span> <span class="nf">_used_boxes_helper</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">renderer</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Recursively-called helper function for get_used_boxes. Internal.&quot;&quot;&quot;</span>
+    <span class="n">boxes</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s1">&#39;get_renderer_cache&#39;</span><span class="p">):</span> <span class="c1">#I know how to render myself</span>
+        <span class="n">renderer</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">get_renderer_cache</span><span class="p">()</span>
+    <span class="c1">#Axis objects are weird, go for the tick/axis labels directly</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">axis</span><span class="o">.</span><span class="n">Axis</span><span class="p">):</span>
+        <span class="n">boxes</span> <span class="o">=</span> <span class="p">[</span><span class="n">tl</span><span class="o">.</span><span class="n">get_window_extent</span><span class="p">()</span> <span class="k">for</span> <span class="n">tl</span> <span class="ow">in</span> <span class="n">obj</span><span class="o">.</span><span class="n">get_ticklabels</span><span class="p">()</span>
+                 <span class="k">if</span> <span class="n">tl</span><span class="o">.</span><span class="n">get_text</span><span class="p">()]</span>
+        <span class="k">if</span> <span class="n">obj</span><span class="o">.</span><span class="n">get_label</span><span class="p">()</span><span class="o">.</span><span class="n">get_text</span><span class="p">():</span>
+            <span class="n">boxes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">get_label</span><span class="p">()</span><span class="o">.</span><span class="n">get_window_extent</span><span class="p">())</span>
+    <span class="c1">#Base size on children, *unless* there are none</span>
+    <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s1">&#39;get_children&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">obj</span><span class="o">.</span><span class="n">get_children</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">obj</span><span class="o">.</span><span class="n">get_children</span><span class="p">():</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="n">_used_boxes_helper</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">renderer</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">res</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span> <span class="c1">#Child can&#39;t find its size, just use own bounds</span>
+                <span class="n">boxes</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">break</span>
+            <span class="n">boxes</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">boxes</span><span class="p">:</span> <span class="c1">#found details from children</span>
+        <span class="k">return</span> <span class="n">boxes</span>
+    <span class="c1">#Nothing from children, try own bounds</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">obj</span><span class="o">.</span><span class="n">get_window_extent</span><span class="p">()]</span>
+    <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">RuntimeError</span><span class="p">):</span> <span class="c1">#need a renderer</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">renderer</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">obj</span><span class="o">.</span><span class="n">get_window_extent</span><span class="p">(</span><span class="n">renderer</span><span class="p">)]</span>
+        <span class="k">else</span><span class="p">:</span> <span class="c1">#I can&#39;t figure out my size!</span>
+            <span class="k">return</span> <span class="bp">None</span>
+
+<span class="k">def</span> <span class="nf">get_used_boxes</span><span class="p">(</span><span class="n">fig</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Go through all elements of a figure and find the &quot;boxes&quot; they occupy,</span>
+<span class="sd">    in figure coordinates. Mostly helper for add_logo</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span> <span class="c1">#invoke the renderer to figure everything out</span>
+    <span class="k">if</span> <span class="n">fig</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span>
+    <span class="c1">#Get rid of double-nesting, and don&#39;t include top-level z-order 1</span>
+    <span class="c1">#(background rectangle) OR anything completely degenerate (point only)</span>
+    <span class="n">boxes</span> <span class="o">=</span> <span class="p">[</span><span class="n">box</span> <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">fig</span><span class="o">.</span><span class="n">get_children</span><span class="p">()</span>
+             <span class="k">if</span> <span class="p">(</span><span class="n">child</span><span class="o">.</span><span class="n">get_zorder</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">child</span><span class="o">.</span><span class="n">get_zorder</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span>
+             <span class="k">for</span> <span class="n">box</span> <span class="ow">in</span> <span class="n">_used_boxes_helper</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+             <span class="k">if</span> <span class="p">(</span><span class="n">box</span><span class="o">.</span><span class="n">xmin</span> <span class="o">!=</span> <span class="n">box</span><span class="o">.</span><span class="n">xmax</span> <span class="ow">or</span> <span class="n">box</span><span class="o">.</span><span class="n">ymin</span> <span class="o">!=</span> <span class="n">box</span><span class="o">.</span><span class="n">ymax</span><span class="p">)</span>
+             <span class="p">]</span>
+    <span class="c1">#Transform to figure</span>
+    <span class="n">boxes</span> <span class="o">=</span> <span class="p">[</span><span class="n">fig</span><span class="o">.</span><span class="n">transFigure</span><span class="o">.</span><span class="n">inverted</span><span class="p">()</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">boxes</span><span class="p">]</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">b</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">boxes</span> <span class="k">if</span> <span class="n">numpy</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()]</span>
+
+
+<span class="k">def</span> <span class="nf">filter_boxes</span><span class="p">(</span><span class="n">boxes</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;From a list of boxes, exclude those that are completely contained by another&quot;&quot;&quot;</span>
+    <span class="c1">#Filter exact overlap (any box before this one have same bounds?)</span>
+    <span class="n">boxes</span><span class="o">=</span> <span class="p">[</span><span class="n">b</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">boxes</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span><span class="o">==</span><span class="mi">0</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">max</span><span class="p">(</span>
+        <span class="p">[(</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">other</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="ow">and</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">other</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="ow">and</span>
+          <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">other</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="ow">and</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">other</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+         <span class="k">for</span> <span class="n">other</span> <span class="ow">in</span> <span class="n">boxes</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">i</span><span class="p">]])]</span>
+    <span class="c1">#and filter &quot;completely enclosed&quot;</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">b</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">boxes</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">max</span><span class="p">(</span> <span class="c1">#Is this contained in ANY other box? If so, drop it.</span>
+                <span class="p">[(</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">other</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="ow">and</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">other</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="ow">and</span>
+                    <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">other</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="ow">and</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">other</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+                <span class="k">for</span> <span class="n">other</span> <span class="ow">in</span> <span class="n">boxes</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">other</span> <span class="ow">is</span> <span class="n">b</span><span class="p">]</span> <span class="c1">#don&#39;t compare to self</span>
+                <span class="p">)]</span>
+
+
+<span class="k">def</span> <span class="nf">get_clear</span><span class="p">(</span><span class="n">boxes</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="s1">&#39;br&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Take a list of boxes which *obstruct* the plot, i.e., don&#39;t overplot</span>
+
+<span class="sd">    Return a list of boxes which are &quot;clear&quot;.</span>
+
+<span class="sd">    Mostly a helper for add_logo</span>
+
+<span class="sd">    pos is where to look for the clear area:</span>
+<span class="sd">    br: bottom right</span>
+<span class="sd">    bl: bottom left</span>
+<span class="sd">    tl: top left</span>
+<span class="sd">    tr: top right</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pos</span> <span class="o">=</span> <span class="n">pos</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="k">assert</span><span class="p">(</span><span class="n">pos</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;br&#39;</span><span class="p">,</span> <span class="s1">&#39;bl&#39;</span><span class="p">,</span> <span class="s1">&#39;tl&#39;</span><span class="p">,</span> <span class="s1">&#39;tr&#39;</span><span class="p">))</span>
+    <span class="n">clear</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="n">pos</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;l&#39;</span><span class="p">:</span> <span class="c1">#sort obstructing boxes on left edge</span>
+        <span class="n">sboxes</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">boxes</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">b</span><span class="p">:</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span> <span class="c1">#sort on right edge, descending (work in from right edge)</span>
+        <span class="n">sboxes</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">boxes</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">b</span><span class="p">:</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">pos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;t&#39;</span><span class="p">:</span>  <span class="c1">#There&#39;s a clear space across the top of everything</span>
+        <span class="n">top</span> <span class="o">=</span> <span class="nb">max</span><span class="p">([</span><span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">sboxes</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">top</span> <span class="o">&lt;</span> <span class="mf">1.0</span><span class="p">:</span> <span class="c1"># there is space at the top</span>
+            <span class="n">clear</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">top</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]]))</span>
+    <span class="k">else</span><span class="p">:</span> <span class="c1">#clear space across bottom of everything</span>
+        <span class="n">bottom</span> <span class="o">=</span> <span class="nb">min</span><span class="p">([</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">sboxes</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">bottom</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">:</span> <span class="c1"># there is space at the bottom</span>
+            <span class="n">clear</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">bottom</span><span class="p">]]))</span>
+    <span class="c1">#default corners</span>
+    <span class="n">left</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">right</span> <span class="o">=</span> <span class="mf">1.0</span>
+    <span class="n">bottom</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">top</span> <span class="o">=</span> <span class="mf">1.0</span>
+    <span class="c1">#Work in from left or right edge, and avoid all boxes that we&#39;ve</span>
+    <span class="c1">#reached so far</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">box</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sboxes</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">pos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;t&#39;</span><span class="p">:</span>
+            <span class="c1">#bottom of clear zone is top of every box from here to edge</span>
+            <span class="n">bottom</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="nb">max</span><span class="p">([</span><span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">sboxes</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">i</span><span class="p">]])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1">#top of clear zone is bottom of every box from here to edge</span>
+            <span class="n">top</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="nb">min</span><span class="p">([</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">sboxes</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">i</span><span class="p">]])</span>
+        <span class="k">if</span> <span class="n">pos</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;l&#39;</span><span class="p">:</span>
+            <span class="n">right</span> <span class="o">=</span> <span class="n">box</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="c1">#right edge of clear zone is the left of this box</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">left</span> <span class="o">=</span> <span class="n">box</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="c1">#left of clear zone is right of this obstructing box</span>
+        <span class="n">clearbox</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">left</span><span class="p">,</span> <span class="n">bottom</span><span class="p">],</span> <span class="p">[</span><span class="n">right</span><span class="p">,</span> <span class="n">top</span><span class="p">]])</span>
+        <span class="n">clearbox</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">clearbox</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">clear</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">clearbox</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">filter_boxes</span><span class="p">(</span><span class="n">clear</span><span class="p">)</span> <span class="c1">#and remove overlaps</span>
+
+
+<span class="k">def</span> <span class="nf">get_biggest_clear</span><span class="p">(</span><span class="n">boxes</span><span class="p">,</span> <span class="n">fig_aspect</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">img_aspect</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Given a list of boxes with clear space, figure aspect ratio (width/height),</span>
+<span class="sd">    and image aspect ratio (width/height), return the largest clear space</span>
+<span class="sd">    that maintains the aspect ratio of the image</span>
+
+<span class="sd">    Mostly a helper for add_logo</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">effective_width</span><span class="p">(</span><span class="n">box</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns &quot;effective&quot; width of the box&quot;&quot;&quot;</span>
+        <span class="n">width</span> <span class="o">=</span> <span class="n">box</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">box</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">height</span> <span class="o">=</span> <span class="n">box</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">box</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+        <span class="c1">#If figure is wide, each unit of height is smaller than unit of width</span>
+        <span class="n">real_height</span> <span class="o">=</span> <span class="n">height</span> <span class="o">/</span> <span class="n">fig_aspect</span> <span class="c1">#in width units</span>
+        <span class="c1">#Box aspect ratio, corrected for figure. Is it &quot;taller&quot; than image?</span>
+        <span class="k">if</span> <span class="n">width</span> <span class="o">/</span> <span class="n">real_height</span> <span class="o">&lt;=</span> <span class="n">img_aspect</span><span class="p">:</span>
+            <span class="c1">#yes, so the width is the limiter</span>
+            <span class="k">return</span> <span class="n">width</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1">#no, take the height, correct for figure aspect, and find the</span>
+            <span class="c1">#width the image would have at this height and its aspect ratio.</span>
+            <span class="k">return</span> <span class="n">real_height</span> <span class="o">*</span> <span class="n">img_aspect</span>
+    <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">boxes</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">effective_width</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="add_logo"><a class="viewcode-back" href="../../../autosummary/spacepy.plot.add_logo.html#spacepy.plot.add_logo">[docs]</a><span class="k">def</span> <span class="nf">add_logo</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="s1">&#39;br&#39;</span><span class="p">,</span> <span class="n">margin</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Add an image (logo) to one corner of a plot.</span>
+
+<span class="sd">    The provided image will be placed in a corner of the plot and sized</span>
+<span class="sd">    to maintain its aspect ratio and be as large as possible without</span>
+<span class="sd">    overlapping any existing elements of the figure. Thus this should</span>
+<span class="sd">    be the last call in constructing a figure.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+<span class="sd">    img : str or numpy.ndarray</span>
+<span class="sd">        The image to place on the figure. If a string, assumed to be a</span>
+<span class="sd">        filename to be read with :func:`~matplotlib.image.imread`; if</span>
+<span class="sd">        a numpy array, assumed to be the image itself</span>
+<span class="sd">        (in a simliar format).</span>
+
+<span class="sd">    Other Parameters</span>
+<span class="sd">    ================</span>
+<span class="sd">    fig : matplotlib.figure.Figure</span>
+<span class="sd">        The figure on which to place the logo; if not specified, the</span>
+<span class="sd">        :func:`~matplotlib.pyplot.gcf` function will be used.</span>
+
+<span class="sd">    pos : str</span>
+<span class="sd">        The position to place the logo.</span>
+<span class="sd">        br: bottom right;</span>
+<span class="sd">        bl: bottom left;</span>
+<span class="sd">        tl: top left;</span>
+<span class="sd">        tr: top right</span>
+
+<span class="sd">    margin : float</span>
+<span class="sd">        Margin to include on each side of figure, as a fraction of the larger</span>
+<span class="sd">        dimension of the figure (width or height). Default is 0.05 (5%).</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    =======</span>
+<span class="sd">    (axes, axesimg) : tuple of Axes and AxesImage</span>
+<span class="sd">        The :class:`~matplotlib.axes.Axes` object created to hold the iamge,</span>
+<span class="sd">        and the :class:`~matplotlib.image.AxesImage` object for the image</span>
+<span class="sd">        itself.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    =====</span>
+<span class="sd">    Calls :func:`~matplotlib.pyplot.draw` to ensure locations are</span>
+<span class="sd">    up to date.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    ========</span>
+<span class="sd">    &gt;&gt;&gt; import spacepy.plot.utils</span>
+<span class="sd">    &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
+<span class="sd">    &gt;&gt;&gt; fig = plt.figure()</span>
+<span class="sd">    &gt;&gt;&gt; ax0 = fig.add_subplot(211)</span>
+<span class="sd">    &gt;&gt;&gt; ax0.plot([1, 2, 3], [1, 2, 1])</span>
+<span class="sd">    [&lt;matplotlib.lines.Line2D at 0x00000000&gt;]</span>
+<span class="sd">    &gt;&gt;&gt; ax1 = fig.add_subplot(212)</span>
+<span class="sd">    &gt;&gt;&gt; ax1.plot([1, 2, 3], [2, 1, 2])</span>
+<span class="sd">    [&lt;matplotlib.lines.Line2D at 0x00000000&gt;]</span>
+<span class="sd">    &gt;&gt;&gt; spacepy.plot.utils.add_logo(&#39;logo.png&#39;, fig)</span>
+<span class="sd">    (&lt;matplotlib.axes.Axes at 0x00000000&gt;,</span>
+<span class="sd">     &lt;matplotlib.image.AxesImage at 0x00000000&gt;)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1">#Consider an alpha keyword (for watermarking)</span>
+    <span class="c1">#Do something about margin/padding</span>
+    <span class="n">pos</span> <span class="o">=</span> <span class="n">pos</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="k">assert</span><span class="p">(</span><span class="n">pos</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;br&#39;</span><span class="p">,</span> <span class="s1">&#39;bl&#39;</span><span class="p">,</span> <span class="s1">&#39;tl&#39;</span><span class="p">,</span> <span class="s1">&#39;tr&#39;</span><span class="p">))</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="s1">&#39;size&#39;</span><span class="p">):</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">fig</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span>
+    <span class="n">width</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">height</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="c1">#Margin can change effective aspect ratio of figure</span>
+    <span class="n">margin_px</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">margin</span> <span class="o">*</span> <span class="p">(</span><span class="n">width</span> <span class="k">if</span> <span class="n">width</span> <span class="o">&gt;</span> <span class="n">height</span> <span class="k">else</span> <span class="n">height</span><span class="p">))</span>
+    <span class="n">img_aspect</span> <span class="o">=</span> <span class="p">(</span><span class="n">width</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">margin_px</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">height</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">margin_px</span><span class="p">)</span>
+    <span class="n">fig_aspect</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">fig</span><span class="o">.</span><span class="n">get_figwidth</span><span class="p">())</span> <span class="o">/</span> <span class="n">fig</span><span class="o">.</span><span class="n">get_figheight</span><span class="p">()</span>
+    <span class="n">clear_boxes</span> <span class="o">=</span> <span class="n">get_clear</span><span class="p">(</span><span class="n">filter_boxes</span><span class="p">(</span><span class="n">get_used_boxes</span><span class="p">(</span><span class="n">fig</span><span class="p">)),</span> <span class="n">pos</span><span class="p">)</span>
+    <span class="n">clear_box</span> <span class="o">=</span> <span class="n">get_biggest_clear</span><span class="p">(</span><span class="n">clear_boxes</span><span class="p">,</span> <span class="n">fig_aspect</span><span class="p">,</span> <span class="n">img_aspect</span><span class="p">)</span>
+    <span class="n">box_width</span> <span class="o">=</span> <span class="n">clear_box</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">clear_box</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">box_height</span> <span class="o">=</span> <span class="n">clear_box</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">clear_box</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">box_width</span> <span class="o">/</span> <span class="n">box_height</span> <span class="o">*</span> <span class="n">fig_aspect</span> <span class="o">&gt;</span> <span class="n">img_aspect</span><span class="p">:</span> <span class="c1">#img uses full height</span>
+        <span class="n">box_width</span> <span class="o">=</span> <span class="n">box_height</span> <span class="o">/</span> <span class="n">fig_aspect</span> <span class="o">*</span> <span class="n">img_aspect</span>
+    <span class="k">else</span><span class="p">:</span> <span class="c1">#img uses full width, correct the height</span>
+        <span class="n">box_height</span> <span class="o">=</span> <span class="n">box_width</span> <span class="o">/</span> <span class="n">img_aspect</span> <span class="o">*</span> <span class="n">fig_aspect</span>
+    <span class="c1">#default corners</span>
+    <span class="n">left</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">bottom</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">if</span> <span class="n">pos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;t&#39;</span><span class="p">:</span>
+        <span class="n">bottom</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">box_height</span>
+    <span class="k">if</span> <span class="n">pos</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;r&#39;</span><span class="p">:</span>
+        <span class="n">left</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">box_width</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="n">left</span><span class="p">,</span> <span class="n">bottom</span><span class="p">,</span> <span class="n">box_width</span><span class="p">,</span> <span class="n">box_height</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+    <span class="n">axesimg</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+    <span class="c1">#Resize to include the margin</span>
+    <span class="k">for</span> <span class="n">getter</span><span class="p">,</span> <span class="n">setter</span> <span class="ow">in</span> <span class="p">((</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xlim</span><span class="p">,</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">),</span>
+                           <span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">,</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">)):</span>
+        <span class="n">limits</span> <span class="o">=</span> <span class="n">getter</span><span class="p">()</span>
+        <span class="n">orientation</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">limits</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">limits</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span> <span class="c1">#upside-down?</span>
+        <span class="n">setter</span><span class="p">((</span><span class="n">limits</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">margin_px</span> <span class="o">*</span> <span class="n">orientation</span><span class="p">,</span>
+                <span class="n">limits</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">margin_px</span> <span class="o">*</span> <span class="n">orientation</span><span class="p">))</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">axesimg</span><span class="p">)</span></div>
+
+
+<span class="k">def</span> <span class="nf">show_used</span><span class="p">(</span><span class="n">fig</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Show the areas of a figure which are used/occupied by plot elements.</span>
+
+<span class="sd">    This function will overplot each element of a plot with a rectangle</span>
+<span class="sd">    showing the full bounds of that element, to see for example</span>
+<span class="sd">    the margins and such used by a text label.</span>
+
+<span class="sd">    Other Parameters</span>
+<span class="sd">    ================</span>
+<span class="sd">    fig : matplotlib.figure.Figure</span>
+<span class="sd">        The figure to mark up; if not specified, the</span>
+<span class="sd">        :func:`~matplotlib.pyplot.gcf` function will be used.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    =====</span>
+<span class="sd">    Calls :func:`~matplotlib.pyplot.draw` to ensure locations are</span>
+<span class="sd">    up to date.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    =======</span>
+<span class="sd">    boxes : list of Rectangle</span>
+<span class="sd">        The :class:`~matplotlib.patches.Rectangle` objects used for the overplot.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    ========</span>
+<span class="sd">    &gt;&gt;&gt; import spacepy.plot.utils</span>
+<span class="sd">    &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
+<span class="sd">    &gt;&gt;&gt; fig = plt.figure()</span>
+<span class="sd">    &gt;&gt;&gt; ax0 = fig.add_subplot(211)</span>
+<span class="sd">    &gt;&gt;&gt; ax0.plot([1, 2, 3], [1, 2, 1])</span>
+<span class="sd">    [&lt;matplotlib.lines.Line2D at 0x00000000&gt;]</span>
+<span class="sd">    &gt;&gt;&gt; ax1 = fig.add_subplot(212)</span>
+<span class="sd">    &gt;&gt;&gt; ax1.plot([1, 2, 3], [2, 1, 2])</span>
+<span class="sd">    [&lt;matplotlib.lines.Line2D at 0x00000000&gt;]</span>
+<span class="sd">    &gt;&gt;&gt; spacepy.plot.utils.show_used(fig)</span>
+<span class="sd">    [&lt;matplotlib.patches.Rectangle at 0x0000000&gt;,</span>
+<span class="sd">     &lt;matplotlib.patches.Rectangle at 0x0000000&gt;,</span>
+<span class="sd">     &lt;matplotlib.patches.Rectangle at 0x0000000&gt;,</span>
+<span class="sd">     &lt;matplotlib.patches.Rectangle at 0x0000000&gt;,</span>
+<span class="sd">     &lt;matplotlib.patches.Rectangle at 0x0000000&gt;,</span>
+<span class="sd">     &lt;matplotlib.patches.Rectangle at 0x0000000&gt;,</span>
+<span class="sd">     &lt;matplotlib.patches.Rectangle at 0x0000000&gt;,</span>
+<span class="sd">     &lt;matplotlib.patches.Rectangle at 0x0000000&gt;,</span>
+<span class="sd">     &lt;matplotlib.patches.Rectangle at 0x0000000&gt;,</span>
+<span class="sd">     &lt;matplotlib.patches.Rectangle at 0x0000000&gt;,</span>
+<span class="sd">     &lt;matplotlib.patches.Rectangle at 0x0000000&gt;,</span>
+<span class="sd">     &lt;matplotlib.patches.Rectangle at 0x0000000&gt;,</span>
+<span class="sd">     &lt;matplotlib.patches.Rectangle at 0x0000000&gt;,</span>
+<span class="sd">     &lt;matplotlib.patches.Rectangle at 0x0000000&gt;,</span>
+<span class="sd">     &lt;matplotlib.patches.Rectangle at 0x0000000&gt;,</span>
+<span class="sd">     &lt;matplotlib.patches.Rectangle at 0x0000000&gt;,</span>
+<span class="sd">     &lt;matplotlib.patches.Rectangle at 0x0000000&gt;,</span>
+<span class="sd">     &lt;matplotlib.patches.Rectangle at 0x0000000&gt;,</span>
+<span class="sd">     &lt;matplotlib.patches.Rectangle at 0x0000000&gt;,</span>
+<span class="sd">     &lt;matplotlib.patches.Rectangle at 0x0000000&gt;,</span>
+<span class="sd">     &lt;matplotlib.patches.Rectangle at 0x0000000&gt;,</span>
+<span class="sd">     &lt;matplotlib.patches.Rectangle at 0x0000000&gt;,</span>
+<span class="sd">     &lt;matplotlib.patches.Rectangle at 0x0000000&gt;,</span>
+<span class="sd">     &lt;matplotlib.patches.Rectangle at 0x0000000&gt;,</span>
+<span class="sd">     &lt;matplotlib.patches.Rectangle at 0x0000000&gt;,</span>
+<span class="sd">     &lt;matplotlib.patches.Rectangle at 0x0000000&gt;,</span>
+<span class="sd">     &lt;matplotlib.patches.Rectangle at 0x0000000&gt;,</span>
+<span class="sd">     &lt;matplotlib.patches.Rectangle at 0x0000000&gt;,</span>
+<span class="sd">     &lt;matplotlib.patches.Rectangle at 0x0000000&gt;,</span>
+<span class="sd">     &lt;matplotlib.patches.Rectangle at 0x0000000&gt;,</span>
+<span class="sd">     &lt;matplotlib.patches.Rectangle at 0x0000000&gt;,</span>
+<span class="sd">     &lt;matplotlib.patches.Rectangle at 0x0000000&gt;,</span>
+<span class="sd">     &lt;matplotlib.patches.Rectangle at 0x0000000&gt;,</span>
+<span class="sd">     &lt;matplotlib.patches.Rectangle at 0x0000000&gt;,</span>
+<span class="sd">     &lt;matplotlib.patches.Rectangle at 0x0000000&gt;,</span>
+<span class="sd">     &lt;matplotlib.patches.Rectangle at 0x0000000&gt;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">colors</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">cycle</span><span class="p">([</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;k&#39;</span><span class="p">])</span>
+    <span class="n">rects</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="n">fig</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span>
+    <span class="n">boxes</span> <span class="o">=</span> <span class="n">get_used_boxes</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+<span class="c1">#    boxes = [b for b in get_used_boxes(fig)</span>
+<span class="c1">#             if b[0, 0] != b[1, 0] and b[0, 1] != b[1, 1]]</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">boxes</span><span class="p">,</span> <span class="n">colors</span><span class="p">):</span>
+        <span class="n">rects</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">patches</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span>
+            <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                     <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">figure</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="nb">next</span><span class="p">(</span><span class="n">colors</span><span class="p">),</span>
+                     <span class="n">fill</span><span class="o">=</span><span class="bp">True</span><span class="p">)))</span>
+    <span class="k">return</span> <span class="n">rects</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../../../search.html">search</a>|&nbsp;</li>
+       <li><a href="../../../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../plot.html" >spacepy.plot</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2019, The SpacePy Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

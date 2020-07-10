@@ -1,0 +1,224 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>spacepy.toolbox.windowMean &mdash; SpacePy v0.2.1 Manual</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="../_static/spacepy_favicon.ico"/>
+    <link rel="top" title="SpacePy v0.2.1 Manual" href="../index.html" />
+    <link rel="up" title="toolbox - Toolbox of various functions and generic utilities" href="../toolbox.html" />
+    <link rel="next" title="spacepy.toolbox.thread_job" href="spacepy.toolbox.thread_job.html" />
+    <link rel="prev" title="spacepy.toolbox.rad2mlt" href="spacepy.toolbox.rad2mlt.html" /> 
+  </head>
+  <body role="document">
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../index.html"><img src="../_static/spacepy_logo.jpg" border="0" alt="spacepy_logo"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="spacepy.toolbox.thread_job.html" title="spacepy.toolbox.thread_job"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="spacepy.toolbox.rad2mlt.html" title="spacepy.toolbox.rad2mlt"
+             accesskey="P">previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+       <li><a href="../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../toolbox.html" accesskey="U">toolbox - Toolbox of various functions and generic utilities</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="spacepy.toolbox.rad2mlt.html"
+                        title="previous chapter">spacepy.toolbox.rad2mlt</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="spacepy.toolbox.thread_job.html"
+                        title="next chapter">spacepy.toolbox.thread_job</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/autosummary/spacepy.toolbox.windowMean.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="spacepy-toolbox-windowmean">
+<h1>spacepy.toolbox.windowMean<a class="headerlink" href="#spacepy-toolbox-windowmean" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="spacepy.toolbox.windowMean">
+<code class="descclassname">spacepy.toolbox.</code><code class="descname">windowMean</code><span class="sig-paren">(</span><em>data</em>, <em>time=[]</em>, <em>winsize=0</em>, <em>overlap=0</em>, <em>st_time=None</em>, <em>op=&lt;function mean&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/toolbox.html#windowMean"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.toolbox.windowMean" title="Permalink to this definition">¶</a></dt>
+<dd><p>Windowing mean function, window overlap is user defined</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>data</strong> : array_like</p>
+<blockquote>
+<div><p>1D series of points</p>
+</div></blockquote>
+<p><strong>time</strong> : list (optional)</p>
+<blockquote>
+<div><p>series of timestamps, optional (format as numeric or datetime)
+For non-overlapping windows set overlap to zero.</p>
+</div></blockquote>
+<p><strong>winsize</strong> : integer or datetime.timedelta (optional)</p>
+<blockquote>
+<div><p>window size</p>
+</div></blockquote>
+<p><strong>overlap</strong> : integer or datetime.timedelta (optional)</p>
+<blockquote>
+<div><p>amount of window overlap</p>
+</div></blockquote>
+<p><strong>st_time</strong> : datetime.datetime (optional)</p>
+<blockquote>
+<div><p>for time-based averaging, a start-time other than the first
+point can be specified</p>
+</div></blockquote>
+<p><strong>op</strong> : callable (optional)</p>
+<blockquote>
+<div><p>the operator to be called, default numpy.mean</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>out</strong> : tuple</p>
+<blockquote class="last">
+<div><p>the windowed mean of the data, and an associated reference time vector</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<p>For non-overlapping windows set overlap to zero.
+e.g. (time-based averaging)
+Given a data set of 100 points at hourly resolution (with the time tick in
+the middle of the sample), the daily average of this, with half-overlapping
+windows is calculated:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">spacepy.toolbox</span> <span class="kn">as</span> <span class="nn">tb</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wsize</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">olap</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span><span class="o">*</span><span class="mi">50</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">time</span> <span class="o">=</span> <span class="p">[</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2001</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">minutes</span> <span class="o">=</span> <span class="mi">30</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">outdata</span><span class="p">,</span> <span class="n">outtime</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">windowMean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">winsize</span><span class="o">=</span><span class="n">wsize</span><span class="p">,</span> <span class="n">overlap</span><span class="o">=</span><span class="n">olap</span><span class="p">,</span> <span class="n">st_time</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2001</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">outdata</span><span class="p">,</span> <span class="n">outtime</span>
+<span class="go">([15.0, 15.0, 15.0, 15.0, 15.0, 15.0, 15.0],</span>
+<span class="go"> [datetime.datetime(2001, 1, 1, 12, 0),</span>
+<span class="go">  datetime.datetime(2001, 1, 2, 0, 0),</span>
+<span class="go">  datetime.datetime(2001, 1, 2, 12, 0),</span>
+<span class="go">  datetime.datetime(2001, 1, 3, 0, 0),</span>
+<span class="go">  datetime.datetime(2001, 1, 3, 12, 0),</span>
+<span class="go">  datetime.datetime(2001, 1, 4, 0, 0),</span>
+<span class="go">  datetime.datetime(2001, 1, 4, 12, 0)])</span>
+</pre></div>
+</div>
+<p>When using time-based averaging, ensure that the time tick corresponds to
+the middle of the time-bin to which the data apply. That is, if the data
+are hourly, say for 00:00-01:00, then the time applied should be 00:30.
+If this is not done, unexpected behaviour can result.</p>
+<p>e.g. (pointwise averaging),</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">outdata</span><span class="p">,</span> <span class="n">outtime</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">windowMean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">winsize</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span> <span class="n">overlap</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">outdata</span><span class="p">,</span> <span class="n">outtime</span>
+<span class="go">([15.0, 15.0, 15.0, 15.0, 15.0, 15.0, 15.0], [12.0, 24.0, 36.0, 48.0, 60.0, 72.0, 84.0])</span>
+</pre></div>
+</div>
+<p>where winsize and overlap are numeric,
+in this example the window size is 24 points (as the data are hourly) and
+the overlap is 12 points (a half day). The output vectors start at
+winsize/2 and end at N-(winsize/2), the output time vector
+is basically a reference to the nth point in the original series.</p>
+<p><strong>note</strong> This is a quick and dirty function - it is NOT optimized, at all.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="spacepy.toolbox.thread_job.html" title="spacepy.toolbox.thread_job"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="spacepy.toolbox.rad2mlt.html" title="spacepy.toolbox.rad2mlt"
+             >previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+       <li><a href="../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../toolbox.html" >toolbox - Toolbox of various functions and generic utilities</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2019, The SpacePy Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

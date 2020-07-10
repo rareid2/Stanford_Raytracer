@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>spacepy.toolbox.tOverlap &mdash; SpacePy v0.2.1 Manual</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="../_static/spacepy_favicon.ico"/>
+    <link rel="top" title="SpacePy v0.2.1 Manual" href="../index.html" />
+    <link rel="up" title="toolbox - Toolbox of various functions and generic utilities" href="../toolbox.html" />
+    <link rel="next" title="spacepy.toolbox.tOverlapHalf" href="spacepy.toolbox.tOverlapHalf.html" />
+    <link rel="prev" title="spacepy.toolbox.tCommon" href="spacepy.toolbox.tCommon.html" /> 
+  </head>
+  <body role="document">
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../index.html"><img src="../_static/spacepy_logo.jpg" border="0" alt="spacepy_logo"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="spacepy.toolbox.tOverlapHalf.html" title="spacepy.toolbox.tOverlapHalf"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="spacepy.toolbox.tCommon.html" title="spacepy.toolbox.tCommon"
+             accesskey="P">previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+       <li><a href="../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../toolbox.html" accesskey="U">toolbox - Toolbox of various functions and generic utilities</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="spacepy.toolbox.tCommon.html"
+                        title="previous chapter">spacepy.toolbox.tCommon</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="spacepy.toolbox.tOverlapHalf.html"
+                        title="next chapter">spacepy.toolbox.tOverlapHalf</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/autosummary/spacepy.toolbox.tOverlap.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="spacepy-toolbox-toverlap">
+<h1>spacepy.toolbox.tOverlap<a class="headerlink" href="#spacepy-toolbox-toverlap" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="spacepy.toolbox.tOverlap">
+<code class="descclassname">spacepy.toolbox.</code><code class="descname">tOverlap</code><span class="sig-paren">(</span><em>ts1</em>, <em>ts2</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/toolbox.html#tOverlap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.toolbox.tOverlap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds the overlapping elements in two lists of datetime objects</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>ts1</strong> : datetime</p>
+<blockquote>
+<div><p>first set of datetime object</p>
+</div></blockquote>
+<p><strong>ts2</strong> : datetime</p>
+<blockquote>
+<div><p>datatime object</p>
+</div></blockquote>
+<p><strong>args :</strong></p>
+<blockquote>
+<div><p>additional arguments passed to tOverlapHalf</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>out</strong> : list</p>
+<blockquote class="last">
+<div><p>indices of ts1 within interval of ts2, &amp; vice versa</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="spacepy.toolbox.tOverlapHalf.html#spacepy.toolbox.tOverlapHalf" title="spacepy.toolbox.tOverlapHalf"><code class="xref py py-obj docutils literal"><span class="pre">tOverlapHalf</span></code></a>, <a class="reference internal" href="spacepy.toolbox.tCommon.html#spacepy.toolbox.tCommon" title="spacepy.toolbox.tCommon"><code class="xref py py-obj docutils literal"><span class="pre">tCommon</span></code></a></p>
+</div>
+<p class="rubric">Examples</p>
+<p>Given two series of datetime objects, event_dates and omni[&#8216;Time&#8217;]:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">spacepy.toolbox</span> <span class="kn">as</span> <span class="nn">tb</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">spacepy</span> <span class="kn">import</span> <span class="n">omni</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">datetime</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">event_dates</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">tickrange</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">deltadays</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">onni_dates</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">tickrange</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">deltadays</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">omni</span> <span class="o">=</span> <span class="n">omni</span><span class="o">.</span><span class="n">get_omni</span><span class="p">(</span><span class="n">onni_dates</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">einds</span><span class="p">,</span><span class="n">oinds</span><span class="p">]</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">tOverlap</span><span class="p">(</span><span class="n">event_dates</span><span class="p">,</span> <span class="n">omni</span><span class="p">[</span><span class="s1">&#39;ticks&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">omni_time</span> <span class="o">=</span> <span class="n">omni</span><span class="p">[</span><span class="s1">&#39;ticks&#39;</span><span class="p">][</span><span class="n">oinds</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="n">oinds</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">omni_time</span>
+<span class="go">[datetime.datetime(2000, 1, 1, 0, 0), datetime.datetime(2000, 1, 1, 12, 0),</span>
+<span class="gp">... </span><span class="p">,</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="spacepy.toolbox.tOverlapHalf.html" title="spacepy.toolbox.tOverlapHalf"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="spacepy.toolbox.tCommon.html" title="spacepy.toolbox.tCommon"
+             >previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+       <li><a href="../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../toolbox.html" >toolbox - Toolbox of various functions and generic utilities</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2019, The SpacePy Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

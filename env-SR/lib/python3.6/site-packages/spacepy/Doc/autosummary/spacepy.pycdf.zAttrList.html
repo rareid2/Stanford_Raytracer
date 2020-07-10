@@ -1,0 +1,185 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>spacepy.pycdf.zAttrList &mdash; SpacePy v0.2.1 Manual</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="../_static/spacepy_favicon.ico"/>
+    <link rel="top" title="SpacePy v0.2.1 Manual" href="../index.html" />
+    <link rel="up" title="pycdf - Python interface to CDF files" href="../pycdf.html" />
+    <link rel="next" title="spacepy.pycdf.zAttr" href="spacepy.pycdf.zAttr.html" />
+    <link rel="prev" title="spacepy.pycdf.gAttrList" href="spacepy.pycdf.gAttrList.html" /> 
+  </head>
+  <body role="document">
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../index.html"><img src="../_static/spacepy_logo.jpg" border="0" alt="spacepy_logo"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="spacepy.pycdf.zAttr.html" title="spacepy.pycdf.zAttr"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="spacepy.pycdf.gAttrList.html" title="spacepy.pycdf.gAttrList"
+             accesskey="P">previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+       <li><a href="../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../pycdf.html" accesskey="U">pycdf - Python interface to CDF files</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="spacepy.pycdf.gAttrList.html"
+                        title="previous chapter">spacepy.pycdf.gAttrList</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="spacepy.pycdf.zAttr.html"
+                        title="next chapter">spacepy.pycdf.zAttr</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/autosummary/spacepy.pycdf.zAttrList.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="spacepy-pycdf-zattrlist">
+<h1>spacepy.pycdf.zAttrList<a class="headerlink" href="#spacepy-pycdf-zattrlist" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="spacepy.pycdf.zAttrList">
+<em class="property">class </em><code class="descclassname">spacepy.pycdf.</code><code class="descname">zAttrList</code><span class="sig-paren">(</span><em>zvar</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/pycdf.html#zAttrList"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.pycdf.zAttrList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Object representing <em>all</em> the zAttributes in a zVariable.</p>
+<p>Normally accessed as an attribute of a <a class="reference internal" href="spacepy.pycdf.Var.html#spacepy.pycdf.Var" title="spacepy.pycdf.Var"><code class="xref py py-class docutils literal"><span class="pre">Var</span></code></a> in an open
+CDF:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">epoch_attribs</span> <span class="o">=</span> <span class="n">cdffile</span><span class="p">[</span><span class="s1">&#39;Epoch&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span>
+</pre></div>
+</div>
+<p>Appears as a dictionary: keys are attribute names, values are
+the value of the zEntry associated with the appropriate zVariable.
+Each vAttribute in a CDF may only have a <em>single</em> entry associated
+with each variable. The entry may be a string, a single numerical value,
+or a series of numerical values. Entries with multiple values are returned
+as an entire list; direct access to the individual elements is not
+possible.</p>
+<p>Example: finding the first dependency of (ISTP-compliant) variable
+<code class="docutils literal"><span class="pre">Flux</span></code>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">cdffile</span><span class="p">[</span><span class="s1">&#39;Flux&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;DEPEND_0&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>zAttributes are shared among zVariables, one zEntry allowed per zVariable.
+(pyCDF hides this detail.) Deleting the last zEntry for a zAttribute will
+delete the underlying zAttribute.</p>
+<p>zEntries are created and destroyed by the usual dict methods on the
+zAttrlist:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">epoch_attribs</span><span class="p">[</span><span class="s1">&#39;new_entry&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span> <span class="c1">#assign a list to new zEntry</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">del</span> <span class="n">epoch_attribs</span><span class="p">[</span><span class="s1">&#39;new_entry&#39;</span><span class="p">]</span> <span class="c1">#delete the zEntry</span>
+</pre></div>
+</div>
+<p>The type of the zEntry is guessed from data provided. The type is chosen to
+match the data; subject to that constraint, it will try to match
+(in order):</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>existing zEntry corresponding to this zVar</li>
+<li>other zEntries in this zAttribute</li>
+<li>the type of this zVar</li>
+<li>data-matching constraints described in <a class="reference internal" href="spacepy.pycdf.CDF.html#spacepy.pycdf.CDF.new" title="spacepy.pycdf.CDF.new"><code class="xref py py-meth docutils literal"><span class="pre">CDF.new()</span></code></a></li>
+</ol>
+</div></blockquote>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="spacepy.pycdf.AttrList.html#spacepy.pycdf.AttrList" title="spacepy.pycdf.AttrList"><code class="xref py py-class docutils literal"><span class="pre">AttrList</span></code></a></p>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="spacepy.pycdf.zAttr.html" title="spacepy.pycdf.zAttr"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="spacepy.pycdf.gAttrList.html" title="spacepy.pycdf.gAttrList"
+             >previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+       <li><a href="../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../pycdf.html" >pycdf - Python interface to CDF files</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2019, The SpacePy Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

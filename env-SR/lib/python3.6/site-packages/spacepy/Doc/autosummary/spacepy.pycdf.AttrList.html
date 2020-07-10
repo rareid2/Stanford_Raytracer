@@ -1,0 +1,300 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>spacepy.pycdf.AttrList &mdash; SpacePy v0.2.1 Manual</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="../_static/spacepy_favicon.ico"/>
+    <link rel="top" title="SpacePy v0.2.1 Manual" href="../index.html" />
+    <link rel="up" title="pycdf - Python interface to CDF files" href="../pycdf.html" />
+    <link rel="next" title="spacepy.pycdf.Attr" href="spacepy.pycdf.Attr.html" />
+    <link rel="prev" title="spacepy.pycdf.gAttr" href="spacepy.pycdf.gAttr.html" /> 
+  </head>
+  <body role="document">
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../index.html"><img src="../_static/spacepy_logo.jpg" border="0" alt="spacepy_logo"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="spacepy.pycdf.Attr.html" title="spacepy.pycdf.Attr"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="spacepy.pycdf.gAttr.html" title="spacepy.pycdf.gAttr"
+             accesskey="P">previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+       <li><a href="../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../pycdf.html" accesskey="U">pycdf - Python interface to CDF files</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="spacepy.pycdf.gAttr.html"
+                        title="previous chapter">spacepy.pycdf.gAttr</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="spacepy.pycdf.Attr.html"
+                        title="next chapter">spacepy.pycdf.Attr</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/autosummary/spacepy.pycdf.AttrList.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="spacepy-pycdf-attrlist">
+<h1>spacepy.pycdf.AttrList<a class="headerlink" href="#spacepy-pycdf-attrlist" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="spacepy.pycdf.AttrList">
+<em class="property">class </em><code class="descclassname">spacepy.pycdf.</code><code class="descname">AttrList</code><span class="sig-paren">(</span><em>cdf_file</em>, <em>special_entry=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/pycdf.html#AttrList"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.pycdf.AttrList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Object representing a list of attributes.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This class should not be used directly, but only via its
+subclasses, <a class="reference internal" href="spacepy.pycdf.gAttrList.html#spacepy.pycdf.gAttrList" title="spacepy.pycdf.gAttrList"><code class="xref py py-class docutils literal"><span class="pre">gAttrList</span></code></a> and <a class="reference internal" href="spacepy.pycdf.zAttrList.html#spacepy.pycdf.zAttrList" title="spacepy.pycdf.zAttrList"><code class="xref py py-class docutils literal"><span class="pre">zAttrList</span></code></a>.
+Methods listed here are safe to use from the subclasses.</p>
+</div>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#spacepy.pycdf.AttrList.clone" title="spacepy.pycdf.AttrList.clone"><code class="xref py py-obj docutils literal"><span class="pre">clone</span></code></a>(master[,&nbsp;name,&nbsp;new_name])</td>
+<td>Clones another attribute list, or one attribute from it, into this list.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#spacepy.pycdf.AttrList.copy" title="spacepy.pycdf.AttrList.copy"><code class="xref py py-obj docutils literal"><span class="pre">copy</span></code></a>()</td>
+<td>Create a copy of this attribute list</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#spacepy.pycdf.AttrList.from_dict" title="spacepy.pycdf.AttrList.from_dict"><code class="xref py py-obj docutils literal"><span class="pre">from_dict</span></code></a>(in_dict)</td>
+<td>Fill this list of attributes from a dictionary</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#spacepy.pycdf.AttrList.new" title="spacepy.pycdf.AttrList.new"><code class="xref py py-obj docutils literal"><span class="pre">new</span></code></a>(name[,&nbsp;data,&nbsp;type])</td>
+<td>Create a new Attr in this AttrList</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#spacepy.pycdf.AttrList.rename" title="spacepy.pycdf.AttrList.rename"><code class="xref py py-obj docutils literal"><span class="pre">rename</span></code></a>(old_name,&nbsp;new_name)</td>
+<td>Rename an attribute in this list</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="spacepy.pycdf.AttrList.clone">
+<code class="descname">clone</code><span class="sig-paren">(</span><em>master</em>, <em>name=None</em>, <em>new_name=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/pycdf.html#AttrList.clone"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.pycdf.AttrList.clone" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clones another attribute list, or one attribute from it, into this
+list.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>master</strong> : AttrList</p>
+<blockquote>
+<div><p>the attribute list to copy from. This can be any dict-like object.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Other Parameters:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><p class="first"><strong>name</strong> : str (optional)</p>
+<blockquote>
+<div><p>name of attribute to clone (default: clone entire list)</p>
+</div></blockquote>
+<p><strong>new_name</strong> : str (optional)</p>
+<blockquote class="last">
+<div><p>name of the new attribute, default <code class="docutils literal"><span class="pre">name</span></code></p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="spacepy.pycdf.AttrList.copy">
+<code class="descname">copy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/pycdf.html#AttrList.copy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.pycdf.AttrList.copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a copy of this attribute list</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>out</strong> : dict</p>
+<blockquote class="last">
+<div><p>copy of the entries for all attributes in this list</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="spacepy.pycdf.AttrList.from_dict">
+<code class="descname">from_dict</code><span class="sig-paren">(</span><em>in_dict</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/pycdf.html#AttrList.from_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.pycdf.AttrList.from_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fill this list of attributes from a dictionary</p>
+<div class="deprecated">
+<p><span class="versionmodified">Deprecated since version 0.1.5: </span>Use <a class="reference internal" href="#spacepy.pycdf.AttrList.clone" title="spacepy.pycdf.AttrList.clone"><code class="xref py py-meth docutils literal"><span class="pre">clone()</span></code></a> instead; it supports
+cloning from dictionaries.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>in_dict</strong> : dict</p>
+<blockquote class="last">
+<div><p>Attribute list is populated entirely from this dictionary;
+all existing attributes are deleted.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="spacepy.pycdf.AttrList.new">
+<code class="descname">new</code><span class="sig-paren">(</span><em>name</em>, <em>data=None</em>, <em>type=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/pycdf.html#AttrList.new"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.pycdf.AttrList.new" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new Attr in this AttrList</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>name</strong> : str</p>
+<blockquote>
+<div><p>name of the new Attribute</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Other Parameters:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><p class="first"><strong>data</strong></p>
+<blockquote>
+<div><p>data to put into the first entry in the new Attribute</p>
+</div></blockquote>
+<p><strong>type</strong></p>
+<blockquote>
+<div><p>CDF type of the first entry from <a class="reference internal" href="spacepy.pycdf.const.html#module-spacepy.pycdf.const" title="spacepy.pycdf.const"><code class="xref py py-mod docutils literal"><span class="pre">const</span></code></a>.
+Only used if data are specified.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><strong>KeyError</strong> : if the name already exists in this list</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="spacepy.pycdf.AttrList.rename">
+<code class="descname">rename</code><span class="sig-paren">(</span><em>old_name</em>, <em>new_name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/pycdf.html#AttrList.rename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.pycdf.AttrList.rename" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rename an attribute in this list</p>
+<p>Renaming a zAttribute renames it for <em>all</em> zVariables in this CDF!</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>old_name</strong> : str</p>
+<blockquote>
+<div><p>the current name of the attribute</p>
+</div></blockquote>
+<p><strong>new_name</strong> : str</p>
+<blockquote class="last">
+<div><p>the new name of the attribute</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="spacepy.pycdf.Attr.html" title="spacepy.pycdf.Attr"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="spacepy.pycdf.gAttr.html" title="spacepy.pycdf.gAttr"
+             >previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+       <li><a href="../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../pycdf.html" >pycdf - Python interface to CDF files</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2019, The SpacePy Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>spacepy.toolbox.thread_map &mdash; SpacePy v0.2.1 Manual</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="../_static/spacepy_favicon.ico"/>
+    <link rel="top" title="SpacePy v0.2.1 Manual" href="../index.html" />
+    <link rel="up" title="toolbox - Toolbox of various functions and generic utilities" href="../toolbox.html" />
+    <link rel="next" title="spacepy.toolbox.do_with_timeout" href="spacepy.toolbox.do_with_timeout.html" />
+    <link rel="prev" title="spacepy.toolbox.thread_job" href="spacepy.toolbox.thread_job.html" /> 
+  </head>
+  <body role="document">
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../index.html"><img src="../_static/spacepy_logo.jpg" border="0" alt="spacepy_logo"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="spacepy.toolbox.do_with_timeout.html" title="spacepy.toolbox.do_with_timeout"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="spacepy.toolbox.thread_job.html" title="spacepy.toolbox.thread_job"
+             accesskey="P">previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+       <li><a href="../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../toolbox.html" accesskey="U">toolbox - Toolbox of various functions and generic utilities</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="spacepy.toolbox.thread_job.html"
+                        title="previous chapter">spacepy.toolbox.thread_job</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="spacepy.toolbox.do_with_timeout.html"
+                        title="next chapter">spacepy.toolbox.do_with_timeout</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/autosummary/spacepy.toolbox.thread_map.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="spacepy-toolbox-thread-map">
+<h1>spacepy.toolbox.thread_map<a class="headerlink" href="#spacepy-toolbox-thread-map" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="spacepy.toolbox.thread_map">
+<code class="descclassname">spacepy.toolbox.</code><code class="descname">thread_map</code><span class="sig-paren">(</span><em>target</em>, <em>iterable</em>, <em>thread_count=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/toolbox.html#thread_map"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.toolbox.thread_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply a function to every element of a list, in separate threads</p>
+<p>Interface is similar to multiprocessing.map, except it runs in threads</p>
+<p>This is made largely obsolete in python3 by from concurrent import futures</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>target</strong> : callable</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>Python callable to run on each element of iterable.</dt>
+<dd><p class="first last">For each call, an element of iterable is appended to
+args and both args and kwargs are passed through.
+Note that this means the iterable element is always the
+<em>last</em> positional argument; this allows the specification
+of self as the first argument for method calls.</p>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>iterable</strong> : iterable</p>
+<blockquote>
+<div><p>elements to pass to each call of L{target}</p>
+</div></blockquote>
+<p><strong>args</strong> : sequence</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>arguments to pass to target before each element of</dt>
+<dd><p class="first last">iterable</p>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>thread_count</strong> : integer</p>
+<blockquote>
+<div><p>Number of threads to spawn; see L{thread_job}.</p>
+</div></blockquote>
+<p><strong>kwargs</strong> : dict</p>
+<blockquote>
+<div><p>keyword arguments to pass to L{target}.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>out</strong> : list</p>
+<blockquote class="last">
+<div><p>return values of L{target} for each item from L{iterable}</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<p>find totals of several arrays</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">spacepy</span> <span class="kn">import</span> <span class="n">toolbox</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">inputs</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">totals</span> <span class="o">=</span> <span class="n">toolbox</span><span class="o">.</span><span class="n">thread_map</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">sum</span><span class="p">,</span> <span class="n">inputs</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">totals</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">totals</span><span class="p">[</span><span class="mi">50</span><span class="p">],</span> <span class="n">totals</span><span class="p">[</span><span class="mi">99</span><span class="p">])</span>
+<span class="go">(0, 50, 99)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="c1"># in python3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">concurrent</span> <span class="kn">import</span> <span class="n">futures</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">futures</span><span class="o">.</span><span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
+<span class="go">...:     for ans in executor.map(numpy.sum, [0,50,99]):</span>
+<span class="go">...:         print ans</span>
+<span class="go">#0</span>
+<span class="go">#50</span>
+<span class="go">#99</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="spacepy.toolbox.do_with_timeout.html" title="spacepy.toolbox.do_with_timeout"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="spacepy.toolbox.thread_job.html" title="spacepy.toolbox.thread_job"
+             >previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+       <li><a href="../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../toolbox.html" >toolbox - Toolbox of various functions and generic utilities</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2019, The SpacePy Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

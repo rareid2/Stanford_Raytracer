@@ -1,0 +1,1427 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>spacepy.radbelt &mdash; SpacePy v0.2.1 Manual</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="../../_static/spacepy_favicon.ico"/>
+    <link rel="top" title="SpacePy v0.2.1 Manual" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+  </head>
+  <body role="document">
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../../index.html"><img src="../../_static/spacepy_logo.jpg" border="0" alt="spacepy_logo"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../../search.html">search</a>|&nbsp;</li>
+       <li><a href="../../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/logo.png" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for spacepy.radbelt</h1><div class="highlight"><pre>
+<span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Functions supporting radiation belt diffusion codes</span>
+
+<span class="sd">Authors: Josef Koller</span>
+<span class="sd">Institution: Los Alamos National Laboratory</span>
+<span class="sd">Contact: jkoller@lanl.gov</span>
+
+<span class="sd">Copyright 2010 Los Alamos National Security, LLC.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">ctypes</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+
+<span class="kn">from</span> <span class="nn">spacepy</span> <span class="kn">import</span> <span class="n">help</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">spacepy.time</span> <span class="kn">as</span> <span class="nn">st</span>
+<span class="kn">import</span> <span class="nn">pdb</span>
+<span class="kn">import</span> <span class="nn">spacepy.toolbox</span> <span class="kn">as</span> <span class="nn">tb</span>
+
+<span class="n">__contact__</span> <span class="o">=</span> <span class="s1">&#39;Josef Koller, jkoller@lanl.gov&#39;</span>
+
+
+<span class="c1"># -----------------------------------------------</span>
+<span class="c1"># RBmodel class</span>
+<span class="c1"># -----------------------------------------------</span>
+<div class="viewcode-block" id="RBmodel"><a class="viewcode-back" href="../../autosummary/spacepy.radbelt.RBmodel.html#spacepy.radbelt.RBmodel">[docs]</a><span class="k">class</span> <span class="nc">RBmodel</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;1-D Radial diffusion class</span>
+
+<span class="sd">    This module contains a class for performing and visualizing 1-D radial</span>
+<span class="sd">    diffusion simulations of the radiation belts.</span>
+
+<span class="sd">    Here is an example using the default settings of the model.</span>
+<span class="sd">    Each instance must be initialized with (assuming import radbelt as rb):</span>
+
+<span class="sd">    &gt;&gt;&gt; rmod = rb.RBmodel()</span>
+
+<span class="sd">    Next, set the start time, end time, and the size of the timestep:</span>
+
+<span class="sd">    &gt;&gt;&gt; import datetime</span>
+<span class="sd">    &gt;&gt;&gt; start = datetime.datetime(2003,10,14)</span>
+<span class="sd">    &gt;&gt;&gt; end = datetime.datetime(2003,12,26)</span>
+<span class="sd">    &gt;&gt;&gt; delta = datetime.timedelta(hours=1)</span>
+<span class="sd">    &gt;&gt;&gt; rmod.setup_ticks(start, end, delta, dtype=&#39;UTC&#39;)</span>
+
+<span class="sd">    Now, run the model over the entire time range using the evolve method:</span>
+
+<span class="sd">    &gt;&gt;&gt; rmod.evolve()</span>
+
+<span class="sd">    Finally, visualize the results:</span>
+
+<span class="sd">    &gt;&gt;&gt; rmod.plot_summary()</span>
+
+<span class="sd">    .. currentmodule:: spacepy.radbelt</span>
+<span class="sd">    .. autosummary::</span>
+<span class="sd">        ~RBmodel.Gaussian_source</span>
+<span class="sd">        ~RBmodel.add_Lmax</span>
+<span class="sd">        ~RBmodel.add_Lpp</span>
+<span class="sd">        ~RBmodel.add_PSD_obs</span>
+<span class="sd">        ~RBmodel.add_PSD_twin</span>
+<span class="sd">        ~RBmodel.add_omni</span>
+<span class="sd">        ~RBmodel.add_source</span>
+<span class="sd">        ~RBmodel.assimilate</span>
+<span class="sd">        ~RBmodel.evolve</span>
+<span class="sd">        ~RBmodel.get_DLL</span>
+<span class="sd">        ~RBmodel.plot</span>
+<span class="sd">        ~RBmodel.plot_obs</span>
+<span class="sd">        ~RBmodel.set_lgrid</span>
+<span class="sd">        ~RBmodel.setup_ticks</span>
+<span class="sd">    .. automethod:: Gaussian_source</span>
+<span class="sd">    .. automethod:: add_Lmax</span>
+<span class="sd">    .. automethod:: add_Lpp</span>
+<span class="sd">    .. automethod:: add_PSD_obs</span>
+<span class="sd">    .. automethod:: add_PSD_twin</span>
+<span class="sd">    .. automethod:: add_omni</span>
+<span class="sd">    .. automethod:: add_source</span>
+<span class="sd">    .. automethod:: assimilate</span>
+<span class="sd">    .. automethod:: evolve</span>
+<span class="sd">    .. automethod:: get_DLL</span>
+<span class="sd">    .. automethod:: plot</span>
+<span class="sd">    .. automethod:: plot_obs</span>
+<span class="sd">    .. automethod:: set_lgrid</span>
+<span class="sd">    .. automethod:: setup_ticks</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="n">NL</span><span class="o">=</span><span class="mi">91</span><span class="p">,</span> <span class="n">const_kp</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        format for grid e.g., L-PA-E</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">import</span> <span class="nn">spacepy.lib</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">const_kp</span><span class="o">=</span><span class="n">const_kp</span>
+
+        <span class="c1"># Initialize the code to use to advance the solutionp.</span>
+        <span class="k">if</span> <span class="n">spacepy</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">have_libspacepy</span> <span class="ow">and</span> <span class="n">spacepy</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">solve_cn</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">advance</span><span class="o">=</span><span class="n">spacepy</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">solve_cn</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">advance</span><span class="o">=</span><span class="n">get_modelop_L</span>
+
+        <span class="n">grid</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+        <span class="k">for</span> <span class="nb">type</span> <span class="ow">in</span> <span class="n">grid</span><span class="o">.</span><span class="n">split</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">type</span> <span class="o">==</span> <span class="s1">&#39;L&#39;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">MU</span> <span class="o">=</span> <span class="mi">2083</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">K</span> <span class="o">=</span> <span class="mf">0.03</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">DLL_model</span> <span class="o">=</span> <span class="s1">&#39;BA2000&#39;</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">Lmax_model</span> <span class="o">=</span> <span class="s1">&#39;JKemp&#39;</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">Lpp_model</span> <span class="o">=</span> <span class="s1">&#39;CA1992&#39;</span>
+                <span class="c1">#self.SRC_model = &#39;JK1&#39;</span>
+                <span class="c1">#self.SRCmagn = datetime.timedelta(days=1e-1) # relative acceleration per day</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">MPloss</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">minutes</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span> <span class="c1"># minutes time scale</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">PPloss</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mf">10.</span><span class="p">)</span> <span class="c1"># days time scale</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">set_lgrid</span><span class="p">(</span><span class="n">NL</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">MODerr</span> <span class="o">=</span> <span class="mf">5.</span> <span class="c1"># relative factor * PSD</span>
+                <span class="c1">#self.PSDerr = 0.3 # relative observational error</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">PSDerr</span> <span class="o">=</span> <span class="mf">0.25</span> <span class="c1"># relative observational error</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">MIN_PSD</span> <span class="o">=</span> <span class="mf">1e-99</span>
+
+        <span class="c1"># source term flag set to false</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="bp">False</span>
+
+    <span class="c1"># -----------------------------------------------</span>
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;&lt;RB Model; mu=</span><span class="si">%f</span><span class="s1">, k=</span><span class="si">%f</span><span class="s1">, DLL_model=</span><span class="si">%s</span><span class="s1"> &gt;&#39;</span> <span class="o">%</span> \
+            <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">MU</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">K</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">DLL_model</span><span class="p">)</span>
+
+    <span class="n">__repr__</span> <span class="o">=</span> <span class="n">__str__</span>
+
+    <span class="c1"># -----------------------------------------------</span>
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">PSD</span><span class="p">[:,</span><span class="n">idx</span><span class="p">]</span>
+
+    <span class="c1"># -----------------------------------------------</span>
+<div class="viewcode-block" id="RBmodel.set_lgrid"><a class="viewcode-back" href="../../autosummary/spacepy.radbelt.RBmodel.html#spacepy.radbelt.RBmodel.set_lgrid">[docs]</a>    <span class="k">def</span> <span class="nf">set_lgrid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">NL</span><span class="o">=</span><span class="mi">91</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Using NL grid points, create grid in L.</span>
+<span class="sd">        Default number of points is 91 (dL=0.1).</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">linspace</span><span class="p">,</span> <span class="n">zeros</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">NL</span> <span class="o">=</span> <span class="n">NL</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Lgrid</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">NL</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">PSDinit</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">NL</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_double</span><span class="p">)</span></div>
+
+    <span class="c1"># -----------------------------------------------</span>
+<div class="viewcode-block" id="RBmodel.setup_ticks"><a class="viewcode-back" href="../../autosummary/spacepy.radbelt.RBmodel.html#spacepy.radbelt.RBmodel.setup_ticks">[docs]</a>    <span class="k">def</span> <span class="nf">setup_ticks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;ISO&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add time information to the simulation by specifying</span>
+<span class="sd">        a start and end time, timestep, and time type (optional).</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        ========</span>
+<span class="sd">        &gt;&gt;&gt; start = datetime.datetime(2003,10,14)</span>
+<span class="sd">        &gt;&gt;&gt; end = datetime.datetime(2003,12,26)</span>
+<span class="sd">        &gt;&gt;&gt; delta = datetime.timedelta(hours=1)</span>
+<span class="sd">        &gt;&gt;&gt; rmod.setup_ticks(start, end, delta, dtype=&#39;UTC&#39;)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ticks</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">tickrange</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">dtype</span><span class="p">)</span></div>
+
+    <span class="c1"># -----------------------------------------------</span>
+<div class="viewcode-block" id="RBmodel.add_omni"><a class="viewcode-back" href="../../autosummary/spacepy.radbelt.RBmodel.html#spacepy.radbelt.RBmodel.add_omni">[docs]</a>    <span class="k">def</span> <span class="nf">add_omni</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">keylist</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        add omni data to instance according to the tickrange in ticks</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">import</span> <span class="nn">spacepy.omni</span> <span class="kn">as</span> <span class="nn">om</span>
+
+        <span class="k">assert</span> <span class="s1">&#39;ticks&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span> <span class="p">,</span> \
+            <span class="s2">&quot;Provide tick range with &#39;setup_ticks&#39;&quot;</span>
+        <span class="n">omni</span> <span class="o">=</span> <span class="n">om</span><span class="o">.</span><span class="n">get_omni</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ticks</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="s1">&#39;params&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">params</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">if</span> <span class="n">keylist</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="c1"># add all keys</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">params</span> <span class="o">=</span> <span class="n">omni</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># just add requested keys</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">keylist</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">omni</span><span class="p">[</span><span class="n">key</span><span class="p">]</span></div>
+
+    <span class="c1"># -----------------------------------------------</span>
+<div class="viewcode-block" id="RBmodel.add_Lmax"><a class="viewcode-back" href="../../autosummary/spacepy.radbelt.RBmodel.html#spacepy.radbelt.RBmodel.add_Lmax">[docs]</a>    <span class="k">def</span> <span class="nf">add_Lmax</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Lmax_model</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        add last closed drift shell Lmax</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">import</span> <span class="nn">spacepy.empiricals</span> <span class="kn">as</span> <span class="nn">em</span>
+
+        <span class="k">if</span> <span class="s1">&#39;params&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">params</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">ticks</span><span class="p">,</span> <span class="s2">&quot;Provide tick range with &#39;setup_ticks&#39;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;Lmax&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="n">get_Lmax</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ticks</span><span class="p">,</span> <span class="n">Lmax_model</span><span class="p">)</span></div>
+
+    <span class="c1"># -----------------------------------------------</span>
+<div class="viewcode-block" id="RBmodel.add_Lpp"><a class="viewcode-back" href="../../autosummary/spacepy.radbelt.RBmodel.html#spacepy.radbelt.RBmodel.add_Lpp">[docs]</a>    <span class="k">def</span> <span class="nf">add_Lpp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Lpp_model</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        add last closed drift shell Lmax</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">import</span> <span class="nn">spacepy.empiricals</span> <span class="kn">as</span> <span class="nn">em</span>
+
+        <span class="k">if</span> <span class="s1">&#39;params&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">params</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">ticks</span><span class="p">,</span> <span class="s2">&quot;Provide tick range with &#39;setup_ticks&#39;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;Lpp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="n">get_plasma_pause</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ticks</span><span class="p">,</span> <span class="n">Lpp_model</span><span class="p">)</span></div>
+
+    <span class="c1"># -----------------------------------------------</span>
+<div class="viewcode-block" id="RBmodel.add_PSD_obs"><a class="viewcode-back" href="../../autosummary/spacepy.radbelt.RBmodel.html#spacepy.radbelt.RBmodel.add_PSD_obs">[docs]</a>    <span class="k">def</span> <span class="nf">add_PSD_obs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">PSD</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">Lstar</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">satlist</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        add PSD observations</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+
+<span class="sd">        time : Ticktock datetime array</span>
+<span class="sd">            array of observation times</span>
+
+<span class="sd">        PSD : list of numpy arrays</span>
+<span class="sd">            PSD observational data for each time. Each entry in the list is a</span>
+<span class="sd">            numpy array with the observations for the corresponding time</span>
+
+<span class="sd">        Lstar : list of numpy arrays</span>
+<span class="sd">            Lstar location of each PSD observations. Each entry in the list is</span>
+<span class="sd">            a numpy array with the location of the observations for the</span>
+<span class="sd">            corresponding time</span>
+
+<span class="sd">        satlist : list of satellite names</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        out : list of dicts</span>
+<span class="sd">            Information of the observational data, where each entry</span>
+<span class="sd">            contains the observations and locations of observations for each</span>
+<span class="sd">            time specified in the time array. Each list entry is a dictionary</span>
+<span class="sd">            with the following information:</span>
+
+<span class="sd">        Ticks : Ticktock array</span>
+<span class="sd">            time of observations</span>
+<span class="sd">        Lstar : numpy array</span>
+<span class="sd">            location of observations</span>
+<span class="sd">        PSD   : numpy array</span>
+<span class="sd">            PSD observation values</span>
+<span class="sd">        sat   : list of strings</span>
+<span class="sd">            satellite names</span>
+<span class="sd">        MU    : scalar value</span>
+<span class="sd">            Mu value for the observations</span>
+<span class="sd">        K     : scalar value</span>
+<span class="sd">            K value for the observations</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="kn">import</span> <span class="nn">pdb</span>
+
+        <span class="k">assert</span> <span class="s1">&#39;ticks&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span> <span class="p">,</span> \
+            <span class="s2">&quot;Provide tick range with &#39;setup_ticks&#39;&quot;</span>
+        <span class="n">Tgrid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ticks</span>
+        <span class="n">nTAI</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">Tgrid</span><span class="p">)</span>
+
+        <span class="c1"># initialize PSDdata list</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">PSDdata</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">nTAI</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">PSD</span> <span class="o">==</span> <span class="bp">None</span><span class="p">):</span>
+        <span class="c1"># PSD data not provided,</span>
+        <span class="c1"># extract from database</span>
+            <span class="kn">import</span> <span class="nn">spacepy.sandbox.PSDdata</span> <span class="kn">as</span> <span class="nn">PD</span>
+
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">Tnow</span><span class="p">,</span> <span class="n">Tfut</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nTAI</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">Tgrid</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">Tgrid</span><span class="p">[</span><span class="mi">1</span><span class="p">:]):</span>
+                <span class="n">start_end</span> <span class="o">=</span> <span class="n">spacepy</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">Ticktock</span><span class="p">([</span><span class="n">Tnow</span><span class="o">.</span><span class="n">UTC</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Tfut</span><span class="o">.</span><span class="n">UTC</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="s1">&#39;UTC&#39;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">PSDdata</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">PD</span><span class="o">.</span><span class="n">get_PSD</span><span class="p">(</span><span class="n">start_end</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">MU</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">K</span><span class="p">,</span> <span class="n">satlist</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># PSD data arrays provided</span>
+
+            <span class="c1"># model grid</span>
+            <span class="n">Lgrid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Lgrid</span>
+
+            <span class="n">itime</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="c1"># loop over time defined for the model integration</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">Tnow</span><span class="p">,</span> <span class="n">Tfut</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nTAI</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">Tgrid</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">Tgrid</span><span class="p">[</span><span class="mi">1</span><span class="p">:]):</span>
+
+                <span class="c1"># empty array</span>
+                <span class="n">lstar</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([],</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+                <span class="n">time_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([],</span><span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+
+                <span class="c1"># loop over observation time</span>
+                <span class="k">for</span> <span class="n">itime</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">time</span><span class="p">)):</span>
+
+                    <span class="k">if</span> <span class="p">(</span><span class="n">Tnow</span> <span class="o">&lt;=</span> <span class="n">time</span><span class="p">[</span><span class="n">itime</span><span class="p">]</span> <span class="ow">and</span> <span class="n">time</span><span class="p">[</span><span class="n">itime</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">Tfut</span><span class="p">):</span>
+                        <span class="c1">#print &#39;match!! &#39;</span>
+                        <span class="c1">#print itime</span>
+                        <span class="c1">#print i</span>
+                        <span class="c1">#print time[itime]</span>
+                        <span class="c1">#print Tnow</span>
+                        <span class="c1">#print Tfut</span>
+
+                        <span class="c1"># concatenate to lstar</span>
+                        <span class="n">lstar</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">lstar</span><span class="p">,</span><span class="n">Lstar</span><span class="p">[</span><span class="n">itime</span><span class="p">]))</span>
+                        <span class="n">lstar</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">lstar</span><span class="p">)</span>
+                        <span class="c1">#idx = lstar.argsort()</span>
+
+                        <span class="c1">#pdb.set_trace()</span>
+                        <span class="c1"># add time index</span>
+                        <span class="n">time_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">time_idx</span><span class="p">,</span><span class="n">itime</span><span class="p">)</span>
+                <span class="c1">#end loop</span>
+
+                <span class="c1">#pdb.set_trace()</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">time_idx</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
+                    <span class="c1"># initialize PSD array</span>
+                    <span class="n">psd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">lstar</span><span class="p">)</span>
+
+                    <span class="c1"># initialize number of obs array</span>
+                    <span class="n">num_obs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">lstar</span><span class="p">)</span>
+
+                    <span class="c1"># sort time index</span>
+                    <span class="n">time_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">time_idx</span><span class="p">)</span>
+
+                    <span class="c1"># loop over time index</span>
+                    <span class="k">for</span> <span class="n">itime</span> <span class="ow">in</span> <span class="n">time_idx</span><span class="p">:</span>
+                        <span class="c1"># sort observations</span>
+                        <span class="n">idx</span> <span class="o">=</span> <span class="n">Lstar</span><span class="p">[</span><span class="n">itime</span><span class="p">]</span><span class="o">.</span><span class="n">argsort</span><span class="p">()</span>
+                        <span class="n">tmplstar</span> <span class="o">=</span> <span class="n">Lstar</span><span class="p">[</span><span class="n">itime</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span>
+                        <span class="n">tmppsd</span> <span class="o">=</span> <span class="n">PSD</span><span class="p">[</span><span class="n">itime</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span>
+
+                        <span class="c1"># run through all unique grid-points and compute</span>
+                        <span class="c1"># average observation</span>
+                        <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">iL</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lstar</span><span class="p">):</span>
+                            <span class="c1"># identify idex of grid-point</span>
+                            <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">tb</span><span class="o">.</span><span class="n">feq</span><span class="p">(</span><span class="n">iL</span><span class="p">,</span><span class="n">tmplstar</span><span class="p">))</span>
+                            <span class="c1"># assign observation for grid-point</span>
+                            <span class="n">psd</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">psd</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">tmppsd</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+                            <span class="c1"># add for number of observations</span>
+                            <span class="n">num_obs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">num_obs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="mf">1.0</span>
+
+                    <span class="n">psd</span> <span class="o">=</span> <span class="n">psd</span><span class="o">/</span><span class="n">num_obs</span>
+
+                    <span class="c1"># assign time for observations</span>
+                    <span class="c1">#Ticks = time[itime]</span>
+                    <span class="n">Ticks</span> <span class="o">=</span> <span class="n">Tfut</span>
+                    <span class="c1"># determine position of observations</span>
+                    <span class="c1">#lstar = Lstar[itime]</span>
+                    <span class="c1"># determine observations PSD</span>
+                    <span class="c1">#psd = PSD[itime]</span>
+                    <span class="c1"># provide MU</span>
+                    <span class="n">MU</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">MU</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">lstar</span><span class="p">)</span>
+                    <span class="c1"># provide K</span>
+                    <span class="n">K</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">K</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">lstar</span><span class="p">)</span>
+                    <span class="c1"># empy satellite</span>
+                    <span class="n">sat</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">]</span>
+
+                    <span class="c1"># add to dictionary</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">PSDdata</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Ticks&#39;</span><span class="p">:</span><span class="n">Ticks</span><span class="p">,</span> <span class="s1">&#39;Lstar&#39;</span><span class="p">:</span><span class="n">lstar</span><span class="p">,</span> \
+                                       <span class="s1">&#39;PSD&#39;</span><span class="p">:</span><span class="n">psd</span><span class="p">,</span> <span class="s1">&#39;sat&#39;</span><span class="p">:</span><span class="n">sat</span><span class="p">,</span> \
+                                       <span class="s1">&#39;MU&#39;</span><span class="p">:</span><span class="n">MU</span><span class="p">,</span> <span class="s1">&#39;K&#39;</span><span class="p">:</span><span class="n">K</span><span class="p">}</span>
+
+        <span class="c1"># adjust initial conditions to these PSD values</span>
+        <span class="n">mval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">PSDdata</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;PSD&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">PSDinit</span> <span class="o">=</span> <span class="n">mval</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Lgrid</span> <span class="o">-</span> <span class="mf">5.5</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mf">0.8</span><span class="p">)</span>
+
+        <span class="k">return</span></div>
+    <span class="c1"># -----------------------------------------------</span>
+<span class="c1">###    def add_PSD(self, satlist=None):</span>
+<span class="c1">###</span>
+<span class="c1">###        &quot;&quot;&quot;</span>
+<span class="c1">###        add observations from PSD database using the ticks list</span>
+<span class="c1">###        &quot;&quot;&quot;</span>
+<span class="c1">###</span>
+<span class="c1">###        import spacepy.sandbox.PSDdata as PD</span>
+<span class="c1">###        import spacepy.time</span>
+<span class="c1">###</span>
+<span class="c1">###        assert &#39;ticks&#39; in self.__dict__ , \</span>
+<span class="c1">###            &quot;Provide tick range with &#39;setup_ticks&#39;&quot;</span>
+<span class="c1">###        Tgrid = self.ticks</span>
+<span class="c1">###        nTAI = len(Tgrid)</span>
+<span class="c1">###</span>
+<span class="c1">###        self.PSDdata = [&#39;&#39;]*(nTAI-1)</span>
+<span class="c1">###        for i, Tnow, Tfut in zip(np.arange(nTAI-1), Tgrid[:-1], Tgrid[1:]):</span>
+<span class="c1">###            start_end = spacepy.time.Ticktock([Tnow.UTC[0], Tfut.UTC[0]], &#39;UTC&#39;)</span>
+<span class="c1">###            self.PSDdata[i] = PD.get_PSD(start_end, self.MU, self.K, satlist)</span>
+<span class="c1">###</span>
+<span class="c1">###        # adjust initial conditions to these PSD values</span>
+<span class="c1">###        mval = np.mean(self.PSDdata[0][&#39;PSD&#39;])</span>
+<span class="c1">###        #self.PSDinit = mval*np.exp(-(self.Lgrid - 5.5)**2/0.2)</span>
+<span class="c1">###        self.PSDinit = mval*np.exp(-(self.Lgrid - 5.5)**2/0.8)</span>
+<span class="c1">###</span>
+<span class="c1">###        return</span>
+<span class="c1">###    # -----------------------------------------------</span>
+<div class="viewcode-block" id="RBmodel.add_PSD_twin"><a class="viewcode-back" href="../../autosummary/spacepy.radbelt.RBmodel.html#spacepy.radbelt.RBmodel.add_PSD_twin">[docs]</a>    <span class="k">def</span> <span class="nf">add_PSD_twin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">dt</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">Lt</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        add observations from PSD database using the ticks list</span>
+<span class="sd">        the arguments are the following:</span>
+
+<span class="sd">            dt = observation time delta in seconds</span>
+<span class="sd">            Lt = observation space delta</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="s1">&#39;ticks&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span> <span class="p">,</span> \
+            <span class="s2">&quot;Provide tick range with &#39;setup_ticks&#39;&quot;</span>
+        <span class="n">Tgrid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ticks</span>
+        <span class="n">nTAI</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">Tgrid</span><span class="p">)</span>
+
+        <span class="c1"># compute time delta</span>
+        <span class="n">delta</span> <span class="o">=</span> <span class="n">Tgrid</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">UTC</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">Tgrid</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">UTC</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">delta</span> <span class="o">=</span> <span class="n">delta</span><span class="o">.</span><span class="n">seconds</span>
+
+        <span class="c1"># compute observations time delta</span>
+        <span class="c1">#dt = 2*60*60</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">PSDdata</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">nTAI</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">Tnow</span><span class="p">,</span> <span class="n">Tfut</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nTAI</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">Tgrid</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">Tgrid</span><span class="p">[</span><span class="mi">1</span><span class="p">:]):</span>
+            <span class="c1"># get observations every dt</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="n">delta</span><span class="p">,</span><span class="n">dt</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+                <span class="c1"># assign time for observations</span>
+                <span class="n">Ticks</span> <span class="o">=</span> <span class="n">Tnow</span>
+                <span class="c1"># determine position of observations</span>
+                <span class="n">lstar</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Lgrid</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Lgrid</span><span class="p">):</span><span class="n">Lt</span><span class="p">]</span>
+                <span class="c1"># determine observations PSD</span>
+                <span class="n">psd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">PSD</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Lgrid</span><span class="p">):</span><span class="n">Lt</span><span class="p">,</span><span class="n">i</span><span class="p">]</span>
+                <span class="c1"># provide MU</span>
+                <span class="n">MU</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">MU</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">lstar</span><span class="p">)</span>
+                <span class="c1"># provide K</span>
+                <span class="n">K</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">K</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">lstar</span><span class="p">)</span>
+                <span class="c1"># empy satellite</span>
+                <span class="n">sat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">lstar</span><span class="p">)</span>
+                <span class="c1"># add to dictionary</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">PSDdata</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Ticks&#39;</span><span class="p">:</span><span class="n">Ticks</span><span class="p">,</span> <span class="s1">&#39;Lstar&#39;</span><span class="p">:</span><span class="n">lstar</span><span class="p">,</span> \
+                                   <span class="s1">&#39;PSD&#39;</span><span class="p">:</span><span class="n">psd</span><span class="p">,</span> <span class="s1">&#39;sat&#39;</span><span class="p">:</span><span class="n">sat</span><span class="p">,</span> \
+                                   <span class="s1">&#39;MU&#39;</span><span class="p">:</span><span class="n">MU</span><span class="p">,</span> <span class="s1">&#39;K&#39;</span><span class="p">:</span><span class="n">K</span><span class="p">}</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">PSDdata</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="c1"># adjust initial conditions to these PSD values</span>
+        <span class="n">mval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">PSDdata</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;PSD&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">PSDinit</span> <span class="o">=</span> <span class="n">mval</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Lgrid</span> <span class="o">-</span> <span class="mf">5.5</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mf">0.2</span><span class="p">)</span>
+
+        <span class="k">return</span></div>
+    <span class="c1"># -----------------------------------------------</span>
+<div class="viewcode-block" id="RBmodel.add_source"><a class="viewcode-back" href="../../autosummary/spacepy.radbelt.RBmodel.html#spacepy.radbelt.RBmodel.add_source">[docs]</a>    <span class="k">def</span> <span class="nf">add_source</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">source</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">A</span><span class="o">=</span><span class="mf">1.0e-8</span><span class="p">,</span><span class="n">mu</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span><span class="n">sigma</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        add source parameters A, mu, and sigma for the Gaussian source function</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># set source term flag</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">source</span>
+
+        <span class="c1"># define height of Gaussian function</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">source_A</span> <span class="o">=</span> <span class="n">A</span>
+
+        <span class="c1"># define center of Gaussian function</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">source_mu</span> <span class="o">=</span> <span class="n">mu</span>
+
+        <span class="c1"># define amplitude</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">source_sigma</span> <span class="o">=</span> <span class="n">sigma</span>
+
+        <span class="k">return</span></div>
+    <span class="c1"># -----------------------------------------------</span>
+<div class="viewcode-block" id="RBmodel.Gaussian_source"><a class="viewcode-back" href="../../autosummary/spacepy.radbelt.RBmodel.html#spacepy.radbelt.RBmodel.Gaussian_source">[docs]</a>    <span class="k">def</span> <span class="nf">Gaussian_source</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gaussian source term added to radiation belt model. The source term is</span>
+<span class="sd">        given by the equation:</span>
+
+<span class="sd">        S = A exp{-(L-mu)^2/(2*sigma^2)}</span>
+
+<span class="sd">        with A=10^(-8), mu=5.0, and sigma=0.5 as default values</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">Lgrid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Lgrid</span>
+
+        <span class="c1"># determine whether to include source or not</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">:</span>
+            <span class="c1"># define height of Gaussian function</span>
+            <span class="n">A</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">source_A</span>
+
+            <span class="c1"># define center of Gaussian function</span>
+            <span class="n">mu</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">source_mu</span>
+
+            <span class="c1"># define amplitude</span>
+            <span class="n">sigma</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">source_sigma</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">A</span> <span class="o">=</span> <span class="mf">0.0</span>
+            <span class="n">mu</span> <span class="o">=</span> <span class="mf">1.0</span>
+            <span class="n">sigma</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+        <span class="c1"># Gaussian function</span>
+        <span class="n">S</span> <span class="o">=</span> <span class="n">A</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">Lgrid</span><span class="o">-</span><span class="n">mu</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">S</span></div>
+
+    <span class="c1"># -----------------------------------------------</span>
+<div class="viewcode-block" id="RBmodel.evolve"><a class="viewcode-back" href="../../autosummary/spacepy.radbelt.RBmodel.html#spacepy.radbelt.RBmodel.evolve">[docs]</a>    <span class="k">def</span> <span class="nf">evolve</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        calculate the diffusion in L at constant mu,K coordinates</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">radbelt</span> <span class="k">as</span> <span class="n">rb</span>
+
+        <span class="k">assert</span> <span class="s1">&#39;ticks&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span> <span class="p">,</span> \
+            <span class="s2">&quot;Provide tick range with &#39;setup_ticks&#39;&quot;</span>
+
+        <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">PSDinit</span>
+        <span class="n">Tgrid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ticks</span><span class="o">.</span><span class="n">TAI</span>
+        <span class="n">nTAI</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">Tgrid</span><span class="p">)</span>
+        <span class="n">Lgrid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Lgrid</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">PSD</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">f</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">Tgrid</span><span class="p">)),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_double</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">PSD</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+        <span class="c1"># add omni if not already given</span>
+        <span class="k">if</span> <span class="s1">&#39;omni&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_omni</span><span class="p">(</span><span class="n">keylist</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Kp&#39;</span><span class="p">,</span> <span class="s1">&#39;Dst&#39;</span><span class="p">])</span>
+
+        <span class="c1"># run Lmax model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_Lmax</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Lmax_model</span><span class="p">)</span>
+        <span class="c1"># run plasma pause model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_Lpp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Lpp_model</span><span class="p">)</span>
+
+        <span class="c1"># setup params dictionary</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">params</span><span class="p">[</span><span class="s1">&#39;DLL_model&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">DLL_model</span>
+        <span class="c1">#params[&#39;SRC_model&#39;] = self.SRC_model</span>
+        <span class="c1">#params[&#39;SRCmagn&#39;] = self.SRCmagn</span>
+        <span class="n">params</span><span class="p">[</span><span class="s1">&#39;MPloss&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">MPloss</span>
+        <span class="n">params</span><span class="p">[</span><span class="s1">&#39;PPloss&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">PPloss</span>
+        <span class="k">if</span> <span class="s1">&#39;SRCartif&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s1">&#39;SRCartif&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">SRCartif</span>
+        <span class="n">keylist</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Kp&#39;</span><span class="p">,</span> <span class="s1">&#39;Dst&#39;</span><span class="p">,</span> <span class="s1">&#39;Lmax&#39;</span><span class="p">,</span> <span class="s1">&#39;Lpp&#39;</span><span class="p">]</span>
+
+        <span class="c1"># start with the first one since 0 is the initial condition</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">Tnow</span><span class="p">,</span> <span class="n">Tfut</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nTAI</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">Tgrid</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">Tgrid</span><span class="p">[</span><span class="mi">1</span><span class="p">:]):</span>
+            <span class="n">Tdelta</span> <span class="o">=</span> <span class="n">Tfut</span> <span class="o">-</span> <span class="n">Tnow</span>
+            <span class="n">Telapse</span><span class="o">=</span> <span class="n">Tnow</span> <span class="o">-</span> <span class="n">Tgrid</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="c1"># copy over parameter list</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">keylist</span><span class="p">:</span>
+                <span class="n">params</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
+            <span class="c1"># now integrate from Tnow to Tfut</span>
+            <span class="n">f</span> <span class="o">=</span> <span class="n">diff_LL</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Lgrid</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">Tdelta</span><span class="p">,</span> <span class="n">Telapse</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+
+            <span class="c1"># add Gaussian source term</span>
+            <span class="n">f</span> <span class="o">=</span> <span class="n">f</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">Gaussian_source</span><span class="p">()</span>
+
+            <span class="c1"># copy to PSD</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">PSD</span><span class="p">[:,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span></div>
+
+    <span class="c1"># -----------------------------------------------</span>
+<div class="viewcode-block" id="RBmodel.assimilate"><a class="viewcode-back" href="../../autosummary/spacepy.radbelt.RBmodel.html#spacepy.radbelt.RBmodel.assimilate">[docs]</a>    <span class="k">def</span> <span class="nf">assimilate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;EnKF&#39;</span><span class="p">,</span><span class="n">inflation</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Assimilates data for the radiation belt model using the Ensemble</span>
+<span class="sd">        Kalman Filter. The algorithm used is the SVD method presented by</span>
+<span class="sd">        Evensen in 2003 (Evensen, G., Ocean dynamics, 53, pp.343--367, 2003).</span>
+<span class="sd">        To compensate for model errors, three inflation algorithms are</span>
+<span class="sd">        implemented. The inflation methodology is specified by the</span>
+<span class="sd">        &#39;inflation&#39; argument, and the options are the following:</span>
+
+<span class="sd">            inflation == 0: Add model error (perturbation for the ensemble)</span>
+<span class="sd">            around model state values only where observations are available</span>
+<span class="sd">            (DEFAULT).</span>
+
+<span class="sd">            inflation == 1: Add model error (perturbation for the ensemble)</span>
+<span class="sd">            around observation values only where observations are available.</span>
+
+<span class="sd">            inflation == 2: Inflate around ensemble average for EnKF.</span>
+
+<span class="sd">        Prior to assimilation, a set of data values has to be speficied by</span>
+<span class="sd">        setting the start and end dates, and time step, using the setup_ticks</span>
+<span class="sd">        funcion of the radiation belt model:</span>
+
+<span class="sd">        &gt;&gt;&gt; import spacepy</span>
+<span class="sd">        &gt;&gt;&gt; import datetime</span>
+<span class="sd">        &gt;&gt;&gt; from spacepy import radbelt</span>
+
+<span class="sd">        &gt;&gt;&gt; start = datetime.datetime(2002,10,23)</span>
+<span class="sd">        &gt;&gt;&gt; end = datetime.datetime(2002,11,4)</span>
+<span class="sd">        &gt;&gt;&gt; delta = datetime.timedelta(hours=0.5)</span>
+<span class="sd">        &gt;&gt;&gt; rmod.setup_ticks(start, end, delta, dtype=&#39;UTC&#39;)</span>
+
+<span class="sd">        Once the dates and time step are specified, the data is added using the</span>
+<span class="sd">        add_PSD function:</span>
+
+<span class="sd">        &gt;&gt;&gt; rmod.add_PSD()</span>
+
+<span class="sd">        The observations are averaged over the time windows, whose interval is</span>
+<span class="sd">        give by the time step.</span>
+
+<span class="sd">        Once the dates and data are set, the assimiation is performed using the</span>
+<span class="sd">        &#39;assimilate&#39; function:</span>
+
+<span class="sd">        &gt;&gt;&gt; rmod.assimilate(inflation=1)</span>
+
+<span class="sd">        This function will add the PSDa values, which are the analysis state of</span>
+<span class="sd">        the radiation belt using the observations within the dates. To plot the</span>
+<span class="sd">        analysis simply use the plot funtion:</span>
+
+<span class="sd">        &gt;&gt;&gt; rmod.plot(values=rmod.PSDa,clims=[-10,-6],Lmax=False,Kp=False,Dst=False)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">import</span> <span class="nn">spacepy.data_assimilation</span>
+        <span class="kn">import</span> <span class="nn">spacepy.sandbox.PSDdata</span> <span class="kn">as</span> <span class="nn">PD</span>
+        <span class="kn">import</span> <span class="nn">copy</span> <span class="kn">as</span> <span class="nn">c</span>
+
+        <span class="c1"># add PSD observations with add_PSD,</span>
+        <span class="c1"># this has to be done to the class</span>
+        <span class="c1"># module when running the RBmodel.</span>
+        <span class="c1"># add_PSD will add the PSDdata to the class</span>
+        <span class="c1"># which is a dictionary for the data that has been added</span>
+
+        <span class="c1"># debugging command</span>
+        <span class="c1">#pdb.set_trace()</span>
+
+        <span class="c1"># setup method</span>
+        <span class="k">assert</span> <span class="n">method</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;EnKF&#39;</span><span class="p">,</span><span class="s1">&#39;insert&#39;</span><span class="p">],</span> <span class="s1">&#39;data assimilation method=&#39;</span><span class="o">+</span><span class="n">method</span><span class="o">+</span><span class="s1">&#39; not implemented&#39;</span>
+
+        <span class="n">nTAI</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ticks</span><span class="p">)</span>
+
+        <span class="c1"># enKF method</span>
+        <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;EnKF&#39;</span><span class="p">:</span>
+            <span class="n">da</span> <span class="o">=</span> <span class="n">spacepy</span><span class="o">.</span><span class="n">data_assimilation</span><span class="o">.</span><span class="n">ensemble</span><span class="p">()</span>
+
+            <span class="c1"># initialize A with initial condition</span>
+            <span class="c1"># the initial condition is ones, have to change this to initialize</span>
+            <span class="c1"># the ensemble with perturbed reference state</span>
+            <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">NL</span><span class="p">,</span> <span class="n">da</span><span class="o">.</span><span class="n">Nens</span><span class="p">)</span> <span class="p">)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">PSDinit</span><span class="p">[:,</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">PSDf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">PSDinit</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">nTAI</span><span class="p">)</span> <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">PSDa</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">PSDinit</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">nTAI</span><span class="p">)</span> <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">PSDa</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">PSDinit</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">PSDf</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">PSDinit</span>
+
+            <span class="c1"># diagnostic tools:</span>
+            <span class="c1"># observations-minus-background</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">PSD_omb</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">nTAI</span><span class="p">)</span>
+            <span class="c1"># observations-minus-analysis</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">PSD_oma</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">nTAI</span><span class="p">)</span>
+            <span class="c1"># analysis-minus-background</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">PSD_amb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">PSDinit</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">nTAI</span><span class="p">)</span> <span class="p">)</span>
+
+            <span class="c1"># add model error (perturbation) in the ensemble initial conditionp.</span>
+            <span class="c1">#A = da.add_model_error(self, A, self.PSDdata[0])</span>
+            <span class="n">std</span> <span class="o">=</span> <span class="mf">0.35</span>
+            <span class="n">normal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span> <span class="n">da</span><span class="o">.</span><span class="n">Nens</span> <span class="p">)</span>
+            <span class="k">for</span> <span class="n">iens</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">da</span><span class="o">.</span><span class="n">Nens</span><span class="p">):</span>
+                <span class="n">A</span><span class="p">[:,</span><span class="n">iens</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[:,</span><span class="n">iens</span><span class="p">]</span> <span class="o">+</span> <span class="n">std</span><span class="o">*</span><span class="n">normal</span><span class="p">[</span><span class="n">iens</span><span class="p">]</span><span class="o">*</span><span class="n">A</span><span class="p">[:,</span><span class="n">iens</span><span class="p">]</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">A</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">MIN_PSD</span><span class="p">)]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">MIN_PSD</span>
+
+            <span class="c1"># ==========================================</span>
+            <span class="c1"># DEBUG</span>
+            <span class="c1">#np.savetxt(&#39;ensemble_IC.dat&#39;,A)</span>
+            <span class="c1">#np.savetxt(&#39;model_IC.dat&#39;,self.PSDinit)</span>
+            <span class="c1">#np.savetxt(&#39;model_grid_IC.dat&#39;,self.Lgrid)</span>
+            <span class="c1"># ==========================================</span>
+
+            <span class="c1"># create temporary RB class instance</span>
+            <span class="n">rbtemp</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+            <span class="c1"># time loop</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">Tnow</span><span class="p">,</span> <span class="n">Tfut</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nTAI</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ticks</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">ticks</span><span class="p">[</span><span class="mi">1</span><span class="p">:]):</span>
+
+                <span class="c1"># make forcast and add model error</span>
+                <span class="c1"># make forecast using all ensembles in A</span>
+                <span class="n">iens</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="p">:</span>
+                    <span class="n">rbtemp</span><span class="o">.</span><span class="n">ticks</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">Ticktock</span><span class="p">([</span><span class="n">Tnow</span><span class="o">.</span><span class="n">UTC</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Tfut</span><span class="o">.</span><span class="n">UTC</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="s1">&#39;UTC&#39;</span><span class="p">)</span>
+                    <span class="n">rbtemp</span><span class="o">.</span><span class="n">PSDinit</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                    <span class="n">rbtemp</span><span class="o">.</span><span class="n">evolve</span><span class="p">()</span>
+                    <span class="c1">#rbtemp.PSDdata = self.PSDdata[i-1]</span>
+                    <span class="n">A</span><span class="p">[:,</span><span class="n">iens</span><span class="p">]</span> <span class="o">=</span> <span class="n">rbtemp</span><span class="o">.</span><span class="n">PSD</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                    <span class="n">iens</span> <span class="o">+=</span> <span class="mi">1</span>
+
+                <span class="c1"># save result in ff</span>
+                <span class="n">Tnow</span> <span class="o">=</span> <span class="n">Tfut</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">PSDf</span><span class="p">[:,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+                <span class="c1"># verify that there are data points within the interval, if</span>
+                <span class="c1"># there are data points then extract average observations</span>
+                <span class="c1"># within the window, if not return empty observation array y</span>
+                <span class="c1"># and Lobs.</span>
+
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">PSDdata</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="c1"># get observations for time window ]Tnow-Twindow,Tnow]</span>
+                    <span class="n">Lobs</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">spacepy</span><span class="o">.</span><span class="n">data_assimilation</span><span class="o">.</span><span class="n">average_window</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">PSDdata</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">Lgrid</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([])</span>
+                    <span class="n">Lobs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([])</span>
+
+                <span class="k">print</span><span class="p">(</span><span class="n">Lobs</span><span class="p">)</span>
+                <span class="k">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+                <span class="c1"># ==========================================</span>
+                <span class="c1"># DEBUG</span>
+                <span class="c1">#np.savetxt(&#39;obs_location_IC.dat&#39;,Lobs)</span>
+                <span class="c1">#np.savetxt(&#39;obs_IC.dat&#39;,y)</span>
+                <span class="c1">#pdb.set_trace()</span>
+                <span class="c1"># ==========================================</span>
+
+                <span class="c1"># then assimilate otherwise do another forcast</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+
+                    <span class="c1">### check for minimum PSD values</span>
+                    <span class="c1">### A[np.where(A&lt;self.MIN_PSD)] = self.MIN_PSD</span>
+                    <span class="c1">### # insert observations directly</span>
+                    <span class="c1">### A = da.add_model_error_obs(self, A, Lobs, y)</span>
+                    <span class="c1">### # dictionary</span>
+                    <span class="c1">### self.PSDa[:,i] = np.mean(A, axis=1)</span>
+
+                    <span class="c1"># INFLATION SCHEMES</span>
+                    <span class="k">if</span> <span class="n">inflation</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;inflation around model state values at observation locations&#39;</span><span class="p">)</span>
+                        <span class="c1"># Add model error (perturbation for the ensemble) around model</span>
+                        <span class="c1"># state values.  This acts as an inflation scheme for EnKF</span>
+                        <span class="n">A</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">add_model_error</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">PSDdata</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+                    <span class="k">elif</span> <span class="n">inflation</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;inflation around observation values at observation locations&#39;</span><span class="p">)</span>
+                        <span class="c1"># Add model error (perturbation for the ensemble) around</span>
+                        <span class="c1"># observation values. This acts as an inflation scheme for EnKF</span>
+                        <span class="n">A</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">add_model_error_obs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">Lobs</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+                    <span class="k">elif</span> <span class="n">inflation</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;inflation around ensemble average&#39;</span><span class="p">)</span>
+                        <span class="c1"># Inflate around ensemble average for EnKF</span>
+                        <span class="c1"># ensemble average</span>
+                        <span class="n">ens_avg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+                        <span class="c1"># inflation factor</span>
+                        <span class="n">inflation_factor</span> <span class="o">=</span> <span class="mf">1.8</span>
+
+                        <span class="c1"># loop over ensemble members and inflate</span>
+                        <span class="n">iens</span> <span class="o">=</span> <span class="mi">0</span>
+                        <span class="k">for</span> <span class="n">ens</span> <span class="ow">in</span> <span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="p">:</span>
+                            <span class="c1"># inflate ensemble</span>
+                            <span class="n">A</span><span class="p">[:,</span><span class="n">iens</span><span class="p">]</span> <span class="o">=</span> <span class="n">inflation_factor</span><span class="o">*</span><span class="p">(</span><span class="n">ens</span> <span class="o">-</span> <span class="n">ens_avg</span><span class="p">)</span> <span class="o">+</span> <span class="n">ens_avg</span>
+                            <span class="n">iens</span> <span class="o">+=</span> <span class="mi">1</span>
+                    <span class="n">A</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">A</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">MIN_PSD</span><span class="p">)]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">MIN_PSD</span>
+
+                    <span class="c1"># prepare assimilation analysis</span>
+                    <span class="c1"># project ensemble states to obs. grid</span>
+                    <span class="n">HA</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">getHA</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Lobs</span><span class="p">,</span> <span class="n">A</span><span class="p">)</span>
+
+                    <span class="c1"># measurement perturbations ensemble</span>
+                    <span class="n">Psi</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">getperturb</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+                    <span class="c1"># ensemble of innovation vectors</span>
+                    <span class="n">Inn</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">getInnovation</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">Psi</span><span class="p">,</span> <span class="n">HA</span><span class="p">)</span>
+
+                    <span class="c1"># calculate ensemble perturbation HA&#39; = HA-HA_mean</span>
+                    <span class="n">HAp</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">getHAprime</span><span class="p">(</span><span class="n">HA</span><span class="p">)</span>
+
+                    <span class="c1"># calculate prior diagnostics</span>
+                    <span class="c1"># observation minus background</span>
+                    <span class="n">omb</span> <span class="o">=</span> <span class="n">y</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">HA</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">PSD_omb</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                            <span class="s1">&#39;Lobs&#39;</span><span class="p">:</span><span class="n">Lobs</span><span class="p">,</span>
+                            <span class="s1">&#39;y&#39;</span><span class="p">:</span><span class="n">y</span><span class="p">,</span>
+                            <span class="s1">&#39;omb&#39;</span><span class="p">:</span><span class="n">omb</span><span class="p">,</span>
+                            <span class="p">}</span>
+                    <span class="n">xf_avg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+                    <span class="c1"># now call the main analysis routine</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                        <span class="n">A</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">EnKF_oneobs</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">Psi</span><span class="p">,</span> <span class="n">Inn</span><span class="p">,</span> <span class="n">HAp</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">A</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">EnKF</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">Psi</span><span class="p">,</span> <span class="n">Inn</span><span class="p">,</span> <span class="n">HAp</span><span class="p">)</span>
+
+                    <span class="c1"># check for minimum PSD values</span>
+                    <span class="n">A</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">A</span><span class="o">&lt;</span><span class="bp">self</span><span class="o">.</span><span class="n">MIN_PSD</span><span class="p">)]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">MIN_PSD</span>
+
+                    <span class="c1"># average A from analysis step and save in results</span>
+                    <span class="c1"># dictionary</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">PSDa</span><span class="p">[:,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+                    <span class="c1"># calculate posterior diagnostics</span>
+                    <span class="c1"># observation minus analysis</span>
+                    <span class="n">Hanalysis</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">getHA</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Lobs</span><span class="p">,</span> <span class="n">A</span><span class="p">)</span>
+                    <span class="n">oma</span> <span class="o">=</span> <span class="n">y</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">Hanalysis</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">PSD_oma</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                            <span class="s1">&#39;Lobs&#39;</span><span class="p">:</span><span class="n">Lobs</span><span class="p">,</span>
+                            <span class="s1">&#39;y&#39;</span><span class="p">:</span><span class="n">y</span><span class="p">,</span>
+                            <span class="s1">&#39;omb&#39;</span><span class="p">:</span><span class="n">oma</span><span class="p">,</span>
+                            <span class="p">}</span>
+                    <span class="c1"># analysis minus background</span>
+                    <span class="n">xa_avg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">PSD_amb</span><span class="p">[:,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">xa_avg</span> <span class="o">-</span> <span class="n">xf_avg</span>
+                    <span class="c1">#pdb.set_trace()</span>
+
+                    <span class="c1"># print assimilated result</span>
+                    <span class="n">Hx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">iL</span><span class="p">,</span><span class="n">Lstar</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">Lobs</span><span class="p">):</span>
+                        <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">tb</span><span class="o">.</span><span class="n">feq</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Lgrid</span><span class="p">,</span><span class="n">Lstar</span><span class="p">))</span>
+                        <span class="n">Hx</span><span class="p">[</span><span class="n">iL</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">PSDa</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span><span class="n">i</span><span class="p">]</span>
+                    <span class="k">print</span><span class="p">(</span><span class="n">Hx</span><span class="p">)</span>
+                    <span class="k">print</span><span class="p">(</span><span class="n">HA</span><span class="p">)</span>
+
+                <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;no observations within this window&#39;</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">PSDa</span><span class="p">[:,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">PSDf</span><span class="p">[:,</span><span class="n">i</span><span class="p">]</span>
+                    <span class="k">continue</span> <span class="c1">#</span>
+
+                <span class="c1"># print message</span>
+                <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Tnow: &#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ticks</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">ISO</span><span class="p">)</span>
+        <span class="c1"># insert obsrvations for data assimilation</span>
+        <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;insert&#39;</span><span class="p">:</span>
+            <span class="n">da</span> <span class="o">=</span> <span class="n">spacepy</span><span class="o">.</span><span class="n">data_assimilation</span><span class="o">.</span><span class="n">ensemble</span><span class="p">()</span>
+
+            <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">NL</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="p">)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">PSDinit</span><span class="p">[:,</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">PSDf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">PSDinit</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">nTAI</span><span class="p">)</span> <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">PSDa</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">PSDinit</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">nTAI</span><span class="p">)</span> <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">PSDa</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">PSDinit</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">PSDf</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">PSDinit</span>
+
+            <span class="c1"># add model error (perturbation) in the ensemble initial condition.</span>
+            <span class="n">std</span> <span class="o">=</span> <span class="mf">0.15</span>
+            <span class="n">normal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">NL</span> <span class="p">)</span>
+            <span class="n">A</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">std</span><span class="o">*</span><span class="n">normal</span><span class="p">)</span><span class="o">*</span><span class="n">A</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">A</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">MIN_PSD</span><span class="p">)]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">MIN_PSD</span>
+
+            <span class="n">rbtemp</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+            <span class="c1"># time loop</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">Tnow</span><span class="p">,</span> <span class="n">Tfut</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nTAI</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ticks</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">ticks</span><span class="p">[</span><span class="mi">1</span><span class="p">:]):</span>
+                <span class="c1"># evolve solution</span>
+                <span class="n">rbtemp</span><span class="o">.</span><span class="n">ticks</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">Ticktock</span><span class="p">([</span><span class="n">Tnow</span><span class="o">.</span><span class="n">UTC</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Tfut</span><span class="o">.</span><span class="n">UTC</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="s1">&#39;UTC&#39;</span><span class="p">)</span>
+                <span class="n">rbtemp</span><span class="o">.</span><span class="n">PSDinit</span> <span class="o">=</span> <span class="n">A</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">rbtemp</span><span class="o">.</span><span class="n">evolve</span><span class="p">()</span>
+                <span class="n">A</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">rbtemp</span><span class="o">.</span><span class="n">PSD</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+
+                <span class="c1"># save result in ff</span>
+                <span class="n">Tnow</span> <span class="o">=</span> <span class="n">Tfut</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">PSDf</span><span class="p">[:,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+
+                <span class="c1"># verify that there are data points within the interval, if</span>
+                <span class="c1"># there are data points then extract average observations</span>
+                <span class="c1"># within the window, if not return empty observation array y</span>
+                <span class="c1"># and Lobs.</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">PSDdata</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">Lobs</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">spacepy</span><span class="o">.</span><span class="n">data_assimilation</span><span class="o">.</span><span class="n">average_window</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">PSDdata</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">Lgrid</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([])</span>
+                    <span class="n">Lobs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([])</span>
+
+                <span class="k">print</span><span class="p">(</span><span class="n">Lobs</span><span class="p">)</span>
+                <span class="k">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+                <span class="c1">#pdb.set_trace()</span>
+                <span class="c1"># then assimilate otherwise do another forcast</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="c1"># check for minimum PSD values</span>
+                    <span class="n">A</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">A</span><span class="o">&lt;</span><span class="bp">self</span><span class="o">.</span><span class="n">MIN_PSD</span><span class="p">)]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">MIN_PSD</span>
+
+                    <span class="c1"># create index of obs location</span>
+                    <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([],</span><span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">Lval</span> <span class="ow">in</span> <span class="n">Lobs</span><span class="p">:</span>
+                        <span class="n">Lidx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span> <span class="n">fp_equality</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="n">Lval</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">Lgrid</span><span class="p">)</span> <span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                        <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">Lidx</span><span class="p">)]))</span>
+
+                    <span class="c1"># insert observations directly</span>
+                    <span class="n">A</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span>
+
+                    <span class="c1">#A = da.add_model_error_obs(self, A, Lobs, y)</span>
+                    <span class="c1"># dictionary</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">PSDa</span><span class="p">[:,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+
+                <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;no observations within this window&#39;</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">PSDa</span><span class="p">[:,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">PSDf</span><span class="p">[:,</span><span class="n">i</span><span class="p">]</span>
+                    <span class="k">continue</span> <span class="c1">#</span>
+
+                <span class="c1"># print message</span>
+                <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Tnow: &#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ticks</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">ISO</span><span class="p">)</span></div>
+
+    <span class="c1"># -----------------------------------------------</span>
+<div class="viewcode-block" id="RBmodel.plot"><a class="viewcode-back" href="../../autosummary/spacepy.radbelt.RBmodel.html#spacepy.radbelt.RBmodel.plot">[docs]</a>    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Lmax</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">Lpp</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">Kp</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">Dst</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+             <span class="n">clims</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a summary plot of the RadBelt object distribution function.</span>
+<span class="sd">        For reference, the last closed drift shell, Dst, and Kp are all</span>
+<span class="sd">        included.  These can be disabled individually using the corresponding</span>
+<span class="sd">        Boolean kwargs.</span>
+
+<span class="sd">        The clims kwarg can be used to manually set the color bar range.</span>
+<span class="sd">        To use, set it equal to a two-element list containing minimum and</span>
+<span class="sd">        maximum Log_10 value to plot.  Default action is to use [0,10] as</span>
+<span class="sd">        the log_10 of the color range.  This is good enough for most</span>
+<span class="sd">        applications.</span>
+
+<span class="sd">        The title of the top most plot defaults to &#39;Summary Plot&#39; but can be</span>
+<span class="sd">        customized using the title kwarg.</span>
+
+<span class="sd">        The figure object and all three axis objects (PSD axis, Dst axis,</span>
+<span class="sd">        and Kp axis) are all returned to allow the user to further customize</span>
+<span class="sd">        the plots as necessary.  If any of the plots are excluded, None is</span>
+<span class="sd">        returned in their stead.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        ========</span>
+
+<span class="sd">        &gt;&gt;&gt; rb.plot(Lmax=False, Kp=False, clims=[2,10], title=&#39;Good work!&#39;)</span>
+
+<span class="sd">        This command would create the summary plot with a color bar range</span>
+<span class="sd">        of 100 to 10^10.  The Lmax line and Kp values would be excluded.</span>
+<span class="sd">        The title of the topmost plot (phase space density) would be set to</span>
+<span class="sd">        &#39;Good work!&#39;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">p</span>
+        <span class="kn">from</span> <span class="nn">matplotlib.colors</span>  <span class="kn">import</span> <span class="n">LogNorm</span>
+        <span class="kn">from</span> <span class="nn">matplotlib.ticker</span>  <span class="kn">import</span> <span class="p">(</span><span class="n">LogLocator</span><span class="p">,</span> <span class="n">LogFormatter</span><span class="p">,</span>
+                                        <span class="n">LogFormatterMathtext</span><span class="p">)</span>
+        <span class="kn">import</span> <span class="nn">pdb</span>
+
+        <span class="c1"># debugging command</span>
+        <span class="c1">#pdb.set_trace()</span>
+
+        <span class="c1"># test for default values</span>
+        <span class="k">if</span> <span class="n">values</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">PSD</span>
+
+        <span class="c1"># Initialize axis variables so that they can be returned,</span>
+        <span class="c1"># even if not used.</span>
+        <span class="n">ax1</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="n">ax2</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="n">ax3</span> <span class="o">=</span> <span class="bp">None</span>
+
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.10</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.999</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.92</span><span class="p">)</span>
+
+        <span class="c1"># PLOT PSD</span>
+        <span class="k">if</span> <span class="n">Kp</span> <span class="ow">or</span> <span class="n">Dst</span><span class="p">:</span>
+            <span class="n">ax1</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ax1</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># Plot phase space density, masking out values of 0.</span>
+        <span class="nb">map</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">pcolorfast</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ticks</span><span class="o">.</span><span class="n">eDOY</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Lgrid</span><span class="p">,</span>
+                             <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">values</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">PSD</span><span class="p">,</span> <span class="mf">10.0</span><span class="o">**-</span><span class="mi">39</span><span class="p">),</span>
+                             <span class="n">vmin</span><span class="o">=</span><span class="mf">10.0</span><span class="o">**</span><span class="n">clims</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">10.0</span><span class="o">**</span><span class="n">clims</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                             <span class="n">norm</span><span class="o">=</span><span class="n">LogNorm</span><span class="p">())</span>
+        <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;L*&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">title</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+        <span class="c1"># Add color bar.</span>
+        <span class="n">cbar</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="nb">map</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">shrink</span><span class="o">=.</span><span class="mi">85</span><span class="p">,</span> <span class="n">ticks</span><span class="o">=</span><span class="n">LogLocator</span><span class="p">(),</span>
+                          <span class="n">format</span><span class="o">=</span><span class="n">LogFormatterMathtext</span><span class="p">())</span>
+        <span class="n">cbar</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s1">&#39;Phase Space Density&#39;</span><span class="p">)</span>
+        <span class="c1"># add Lmax line</span>
+        <span class="k">if</span> <span class="n">Lmax</span><span class="p">:</span>
+            <span class="n">p</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ticks</span><span class="o">.</span><span class="n">eDOY</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;Lmax&#39;</span><span class="p">],</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+        <span class="c1"># Minimize time range.</span>
+        <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">ticks</span><span class="o">.</span><span class="n">eDOY</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">ticks</span><span class="o">.</span><span class="n">eDOY</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+        <span class="c1"># Finally, save the position of the plot to make next plot match.</span>
+        <span class="n">pos</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">get_position</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">Dst</span> <span class="ow">is</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="n">ax2</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+            <span class="n">pos2</span> <span class="o">=</span> <span class="n">ax2</span><span class="o">.</span><span class="n">get_position</span><span class="p">()</span>
+            <span class="n">pos2</span><span class="o">.</span><span class="n">x1</span> <span class="o">=</span> <span class="n">pos</span><span class="o">.</span><span class="n">x1</span>
+            <span class="n">ax2</span><span class="o">.</span><span class="n">set_position</span><span class="p">(</span><span class="n">pos2</span><span class="p">)</span>
+            <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ticks</span><span class="o">.</span><span class="n">eDOY</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;Dst&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+            <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;DOY in &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ticks</span><span class="o">.</span><span class="n">UTC</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">year</span><span class="p">))</span>
+            <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Dst&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">tl</span> <span class="ow">in</span> <span class="n">ax2</span><span class="o">.</span><span class="n">get_yticklabels</span><span class="p">():</span>
+                <span class="n">tl</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+            <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">ticks</span><span class="o">.</span><span class="n">eDOY</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">ticks</span><span class="o">.</span><span class="n">eDOY</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+
+        <span class="k">if</span> <span class="n">Kp</span> <span class="ow">is</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">Dst</span> <span class="ow">is</span> <span class="bp">True</span><span class="p">:</span>
+                <span class="n">p</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+                <span class="n">ax3</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">ax3</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+                <span class="n">pos3</span> <span class="o">=</span> <span class="n">ax3</span><span class="o">.</span><span class="n">get_position</span><span class="p">()</span>
+                <span class="n">pos3</span><span class="o">.</span><span class="n">x1</span> <span class="o">=</span> <span class="n">pos</span><span class="o">.</span><span class="n">x1</span>
+                <span class="n">ax3</span><span class="o">.</span><span class="n">set_position</span><span class="p">(</span><span class="n">pos3</span><span class="p">)</span>
+            <span class="n">ax3</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ticks</span><span class="o">.</span><span class="n">eDOY</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;Kp&#39;</span><span class="p">],</span> <span class="s1">&#39;k:&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">Dst</span> <span class="ow">is</span> <span class="bp">True</span><span class="p">:</span>
+                <span class="n">ax3</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">tick_right</span><span class="p">()</span>
+            <span class="n">ax3</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;DOY in &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ticks</span><span class="o">.</span><span class="n">UTC</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">year</span><span class="p">))</span>
+            <span class="n">ax3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Kp&#39;</span><span class="p">)</span>
+            <span class="n">ax3</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">ticks</span><span class="o">.</span><span class="n">eDOY</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">ticks</span><span class="o">.</span><span class="n">eDOY</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+
+        <span class="c1">#p.show()</span>
+
+        <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">,</span> <span class="n">ax3</span></div>
+
+    <span class="c1"># -----------------------------------------------</span>
+<div class="viewcode-block" id="RBmodel.plot_obs"><a class="viewcode-back" href="../../autosummary/spacepy.radbelt.RBmodel.html#spacepy.radbelt.RBmodel.plot_obs">[docs]</a>    <span class="k">def</span> <span class="nf">plot_obs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Lmax</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">Lpp</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">Kp</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">Dst</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+             <span class="n">clims</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a summary plot of the observations.  For reference, the last</span>
+<span class="sd">        closed drift shell, Dst, and Kp are all included.  These can be</span>
+<span class="sd">        disabled individually using the corresponding boolean kwargs.</span>
+
+<span class="sd">        The clims kwarg can be used to manually set the color bar range.</span>
+<span class="sd">        To use, set it equal to a two-element list containing minimum and</span>
+<span class="sd">        maximum Log_10 value to plot.  Default action is to use [0,10] as</span>
+<span class="sd">        the log_10 of the color range.  This is good enough for most</span>
+<span class="sd">        applications.</span>
+
+<span class="sd">        The title of the top most plot defaults to &#39;Summary Plot&#39; but can be</span>
+<span class="sd">        customized using the title kwarg.</span>
+
+<span class="sd">        The figure object and all three axis objects (PSD axis, Dst axis,</span>
+<span class="sd">        and Kp axis) are all returned to allow the user to further customize</span>
+<span class="sd">        the plots as necessary.  If any of the plots are excluded, None is</span>
+<span class="sd">        returned in their stead.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        ========</span>
+
+<span class="sd">        &gt;&gt;&gt; rb.plot_obs(Lmax=False, Kp=False, clims=[2,10], title=&#39;Observations Plot&#39;)</span>
+
+<span class="sd">        This command would create the summary plot with a color bar range</span>
+<span class="sd">        of 100 to 10^10.  The Lmax line and Kp values would be excluded.</span>
+<span class="sd">        The title of the topmost plot (phase space density) would be set to</span>
+<span class="sd">        &#39;Good work!&#39;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">import</span> <span class="nn">spacepy.data_assimilation</span>
+        <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">p</span>
+        <span class="kn">from</span> <span class="nn">matplotlib.colors</span>  <span class="kn">import</span> <span class="n">LogNorm</span>
+        <span class="kn">from</span> <span class="nn">matplotlib.ticker</span>  <span class="kn">import</span> <span class="p">(</span><span class="n">LogLocator</span><span class="p">,</span> <span class="n">LogFormatter</span><span class="p">,</span>
+                                        <span class="n">LogFormatterMathtext</span><span class="p">)</span>
+        <span class="kn">import</span> <span class="nn">pdb</span>
+
+        <span class="c1"># debugging command</span>
+        <span class="c1">#pdb.set_trace()</span>
+
+        <span class="c1"># test for default values</span>
+        <span class="k">if</span> <span class="n">values</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">PSDdata</span>
+
+        <span class="c1"># Initialize axis variables so that they can be returned,</span>
+        <span class="c1"># even if not used.</span>
+        <span class="n">ax1</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="n">ax2</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="n">ax3</span> <span class="o">=</span> <span class="bp">None</span>
+
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.10</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.999</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.92</span><span class="p">)</span>
+
+        <span class="c1"># compute time-window average observation value</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([],</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="n">Lobs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([],</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="n">eDOYobs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([],</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="n">nTAI</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ticks</span><span class="p">)</span>
+        <span class="c1"># time loop</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">Tnow</span><span class="p">,</span> <span class="n">Tfut</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nTAI</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ticks</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">ticks</span><span class="p">[</span><span class="mi">1</span><span class="p">:]):</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="c1"># get observations for time window ]Tnow-Twindow,Tnow]</span>
+                <span class="n">Lobs_tmp</span><span class="p">,</span> <span class="n">y_tmp</span> <span class="o">=</span> <span class="n">spacepy</span><span class="o">.</span><span class="n">data_assimilation</span><span class="o">.</span><span class="n">average_window</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">Lgrid</span><span class="p">)</span>
+                <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">y_tmp</span><span class="p">)</span>
+                <span class="n">Lobs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Lobs</span><span class="p">,</span><span class="n">Lobs_tmp</span><span class="p">)</span>
+                <span class="n">eDOYobs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">eDOYobs</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y_tmp</span><span class="p">))</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">ticks</span><span class="o">.</span><span class="n">eDOY</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+        <span class="c1"># PLOT PSDdata</span>
+        <span class="k">if</span> <span class="n">Kp</span> <span class="ow">or</span> <span class="n">Dst</span><span class="p">:</span>
+            <span class="n">ax1</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ax1</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># Plot phase space density observations.</span>
+        <span class="nb">map</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">eDOYobs</span><span class="p">,</span><span class="n">Lobs</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">,</span><span class="n">norm</span><span class="o">=</span><span class="n">LogNorm</span><span class="p">(),</span>
+                          <span class="n">vmin</span><span class="o">=</span><span class="mf">10.0</span><span class="o">**</span><span class="n">clims</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">10.0</span><span class="o">**</span><span class="n">clims</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                          <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+        <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;L*&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">title</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+
+        <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Lgrid</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="bp">self</span><span class="o">.</span><span class="n">Lgrid</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Lgrid</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="c1"># Add color bar.</span>
+        <span class="n">cbar</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="nb">map</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">shrink</span><span class="o">=.</span><span class="mi">85</span><span class="p">,</span> <span class="n">ticks</span><span class="o">=</span><span class="n">LogLocator</span><span class="p">(),</span>
+                          <span class="n">format</span><span class="o">=</span><span class="n">LogFormatterMathtext</span><span class="p">())</span>
+        <span class="n">cbar</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s1">&#39;Phase Space Density&#39;</span><span class="p">)</span>
+        <span class="c1"># add Lmax line</span>
+        <span class="k">if</span> <span class="n">Lmax</span><span class="p">:</span>
+            <span class="n">p</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ticks</span><span class="o">.</span><span class="n">eDOY</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;Lmax&#39;</span><span class="p">],</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+        <span class="c1"># Minimize time range.</span>
+        <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">ticks</span><span class="o">.</span><span class="n">eDOY</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">ticks</span><span class="o">.</span><span class="n">eDOY</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+        <span class="c1"># Finally, save the position of the plot to make next plot match.</span>
+        <span class="n">pos</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">get_position</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">Dst</span> <span class="ow">is</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="n">ax2</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+            <span class="n">pos2</span> <span class="o">=</span> <span class="n">ax2</span><span class="o">.</span><span class="n">get_position</span><span class="p">()</span>
+            <span class="n">pos2</span><span class="o">.</span><span class="n">x1</span> <span class="o">=</span> <span class="n">pos</span><span class="o">.</span><span class="n">x1</span>
+            <span class="n">ax2</span><span class="o">.</span><span class="n">set_position</span><span class="p">(</span><span class="n">pos2</span><span class="p">)</span>
+            <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ticks</span><span class="o">.</span><span class="n">eDOY</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;Dst&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+            <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;DOY in &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ticks</span><span class="o">.</span><span class="n">UTC</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">year</span><span class="p">))</span>
+            <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Dst&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">tl</span> <span class="ow">in</span> <span class="n">ax2</span><span class="o">.</span><span class="n">get_yticklabels</span><span class="p">():</span>
+                <span class="n">tl</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+            <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">ticks</span><span class="o">.</span><span class="n">eDOY</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">ticks</span><span class="o">.</span><span class="n">eDOY</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+
+        <span class="k">if</span> <span class="n">Kp</span> <span class="ow">is</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">Dst</span> <span class="ow">is</span> <span class="bp">True</span><span class="p">:</span>
+                <span class="n">p</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+                <span class="n">ax3</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">ax3</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+                <span class="n">pos3</span> <span class="o">=</span> <span class="n">ax3</span><span class="o">.</span><span class="n">get_position</span><span class="p">()</span>
+                <span class="n">pos3</span><span class="o">.</span><span class="n">x1</span> <span class="o">=</span> <span class="n">pos</span><span class="o">.</span><span class="n">x1</span>
+                <span class="n">ax3</span><span class="o">.</span><span class="n">set_position</span><span class="p">(</span><span class="n">pos3</span><span class="p">)</span>
+            <span class="n">ax3</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ticks</span><span class="o">.</span><span class="n">eDOY</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;Kp&#39;</span><span class="p">],</span> <span class="s1">&#39;k:&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">Dst</span> <span class="ow">is</span> <span class="bp">True</span><span class="p">:</span>
+                <span class="n">ax3</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">tick_right</span><span class="p">()</span>
+            <span class="n">ax3</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;DOY in &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ticks</span><span class="o">.</span><span class="n">UTC</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">year</span><span class="p">))</span>
+            <span class="n">ax3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Kp&#39;</span><span class="p">)</span>
+            <span class="n">ax3</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">ticks</span><span class="o">.</span><span class="n">eDOY</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">ticks</span><span class="o">.</span><span class="n">eDOY</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+
+        <span class="c1">#p.show()</span>
+
+        <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">,</span> <span class="n">ax3</span></div>
+
+
+<div class="viewcode-block" id="RBmodel.get_DLL"><a class="viewcode-back" href="../../autosummary/spacepy.radbelt.RBmodel.html#spacepy.radbelt.RBmodel.get_DLL">[docs]</a>    <span class="k">def</span> <span class="nf">get_DLL</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Lgrid</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">DLL_model</span><span class="o">=</span><span class="s1">&#39;BA2000&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculate DLL as a simple power law function (alpha*L**Bbta)</span>
+<span class="sd">        using alpha/beta values from popular models found in the</span>
+<span class="sd">        literature and chosen with the kwarg &quot;DLL_model&quot;.</span>
+
+<span class="sd">        The calculated DLL is returned, as is the alpha and beta</span>
+<span class="sd">        values used in the calculationp.</span>
+
+<span class="sd">        The output DLL is in units of units/day.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+
+        <span class="k">if</span> <span class="n">DLL_model</span> <span class="ow">is</span> <span class="s1">&#39;BA2000&#39;</span><span class="p">:</span> <span class="c1"># Brautigam and Albert (2000)</span>
+            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">const_kp</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="mf">0.0</span><span class="p">):</span>
+                <span class="n">Kp</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">const_kp</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">Kp</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s1">&#39;Kp&#39;</span><span class="p">]</span>
+            <span class="n">alpha</span> <span class="o">=</span> <span class="mf">10.0</span><span class="o">**</span><span class="p">(</span><span class="mf">0.506</span><span class="o">*</span><span class="n">Kp</span><span class="o">-</span><span class="mf">9.325</span><span class="p">)</span>
+            <span class="n">beta</span> <span class="o">=</span> <span class="mf">10.0</span>
+
+        <span class="k">elif</span> <span class="n">DLL_model</span> <span class="ow">is</span> <span class="s1">&#39;FC2006&#39;</span><span class="p">:</span> <span class="c1"># Fei and Chan (2006)</span>
+            <span class="n">alpha</span> <span class="o">=</span> <span class="mf">1.5e-6</span>
+            <span class="n">beta</span>  <span class="o">=</span> <span class="mf">8.5</span>
+
+        <span class="k">elif</span> <span class="n">DLL_model</span> <span class="ow">is</span> <span class="s1">&#39;U2008&#39;</span><span class="p">:</span> <span class="c1"># Ukhorskiy (2008)</span>
+            <span class="n">alpha</span> <span class="o">=</span> <span class="mf">7.7e-6</span>
+            <span class="n">beta</span>  <span class="o">=</span> <span class="mf">6.0</span>
+
+        <span class="k">elif</span> <span class="n">DLL_model</span> <span class="ow">is</span> <span class="s1">&#39;S1997&#39;</span><span class="p">:</span> <span class="c1"># Selesnick (1997)</span>
+            <span class="n">alpha</span> <span class="o">=</span> <span class="mf">1.9e-10</span>
+            <span class="n">beta</span>  <span class="o">=</span> <span class="mf">11.7</span>
+        <span class="k">elif</span> <span class="n">DLL_model</span> <span class="ow">is</span> <span class="s1">&#39;const&#39;</span><span class="p">:</span> <span class="c1"># Constant DLL.</span>
+            <span class="n">alpha</span><span class="o">=</span> <span class="mf">1.0</span>
+            <span class="n">beta</span> <span class="o">=</span> <span class="mf">1.0</span>
+            <span class="n">DLL</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">Lgrid</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_double</span><span class="p">)</span><span class="o">+</span><span class="mf">10.</span>
+            <span class="c1"># approximately BA2000 for Kp=1, L=1.</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Radial diffusion model </span><span class="si">%s</span><span class="s2"> not implemented&quot;</span> <span class="o">%</span> <span class="n">DLL_model</span><span class="p">)</span>
+
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">DLL_model</span><span class="o">!=</span><span class="s1">&#39;const&#39;</span><span class="p">):</span> <span class="n">DLL</span> <span class="o">=</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">Lgrid</span> <span class="o">**</span> <span class="n">beta</span>
+
+        <span class="k">return</span> <span class="n">DLL</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span></div></div>
+<span class="c1"># -----------------------------------------------</span>
+<div class="viewcode-block" id="get_modelop_L"><a class="viewcode-back" href="../../autosummary/spacepy.radbelt.get_modelop_L.html#spacepy.radbelt.get_modelop_L">[docs]</a><span class="k">def</span> <span class="nf">get_modelop_L</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">Dm_old</span><span class="p">,</span> <span class="n">Dm_new</span><span class="p">,</span> <span class="n">Dp_old</span><span class="p">,</span> <span class="n">Dp_new</span><span class="p">,</span> <span class="n">Tdelta</span><span class="p">,</span> <span class="n">NL</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Advance the distribution function, f, discretized into the Lgrid, L, forward</span>
+<span class="sd">    in time by a timestep, Tdelta.  The off-grid current and next diffusion</span>
+<span class="sd">    coefficients, D[m,p]_[old,new] will be used.  The number of grid points is set</span>
+<span class="sd">    by NL.</span>
+
+<span class="sd">    This function performs the same calculation as the C-based code,</span>
+<span class="sd">    spacepy.lib.solve_cnp.  This code is very slow and should only be used when</span>
+<span class="sd">    the C code fails to compile.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="kn">import</span> <span class="nn">numpy.linalg</span> <span class="kn">as</span> <span class="nn">nlin</span>
+
+    <span class="c1"># get grid and setup centered grid Lm=L_i-1/2, Lp=L_i+1/2</span>
+    <span class="n">Lmin</span> <span class="o">=</span> <span class="n">L</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">Lmax</span> <span class="o">=</span> <span class="n">L</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">dL</span> <span class="o">=</span> <span class="n">L</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">L</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">Lp</span> <span class="o">=</span> <span class="n">L</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">dL</span>
+    <span class="n">Lm</span> <span class="o">=</span> <span class="n">L</span> <span class="o">-</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">dL</span>
+
+    <span class="c1"># setup the diffusion coefficient on each grid and center grid</span>
+    <span class="c1">#Dllm = np.zeros(NL); Dllp = np.zeros(NL)</span>
+    <span class="n">betam</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">NL</span><span class="p">);</span> <span class="n">betap</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">NL</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">int</span><span class="p">(</span><span class="n">NL</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">Dllp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">DLL</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="n">DLL</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">Dllm</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">DLL</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="n">DLL</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">betam</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">Dllm</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">dt</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">dL</span><span class="o">*</span><span class="n">dL</span><span class="o">*</span><span class="n">Lm</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">Lm</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">betap</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">Dllp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">dt</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">dL</span><span class="o">*</span><span class="n">dL</span><span class="o">*</span><span class="n">Lp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">Lp</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+    <span class="c1"># initialize some arrays</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span> <span class="p">(</span><span class="n">NL</span><span class="p">,</span><span class="n">NL</span><span class="p">)</span> <span class="p">)</span>
+    <span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span> <span class="p">(</span><span class="n">NL</span><span class="p">,</span><span class="n">NL</span><span class="p">)</span> <span class="p">)</span>
+    <span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span> <span class="p">(</span><span class="n">NL</span><span class="p">,</span><span class="n">NL</span><span class="p">)</span> <span class="p">)</span>
+
+    <span class="c1"># off diagonal elements</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">int</span><span class="p">(</span><span class="n">NL</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">):</span>
+        <span class="c1"># diagonal elements</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">betam</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">betap</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">betam</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">betap</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="c1"># off diagonal elements</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">betap</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">betam</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span>  <span class="n">betap</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span>  <span class="n">betam</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+
+    <span class="c1"># boundary condition</span>
+    <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.</span>
+    <span class="n">A</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.</span>
+    <span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.</span>
+    <span class="n">B</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.</span>
+
+    <span class="c1"># get inverse and multipy</span>
+    <span class="n">Ai</span> <span class="o">=</span> <span class="n">nlinp</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Ai</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span></div>
+
+<span class="c1"># -----------------------------------------------</span>
+<div class="viewcode-block" id="diff_LL"><a class="viewcode-back" href="../../autosummary/spacepy.radbelt.diff_LL.html#spacepy.radbelt.diff_LL">[docs]</a><span class="k">def</span> <span class="nf">diff_LL</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">grid</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">Tdelta</span><span class="p">,</span> <span class="n">Telapsed</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    calculate the diffusion in L at constant mu,K coordinates</span>
+<span class="sd">    time units</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="kn">import</span> <span class="nn">ctypes</span> <span class="kn">as</span> <span class="nn">ct</span>
+
+    <span class="c1"># prepare some parameter variables</span>
+    <span class="k">if</span> <span class="n">params</span><span class="p">:</span>
+        <span class="n">DLL_model</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s1">&#39;DLL_model&#39;</span><span class="p">]</span>
+        <span class="n">Kp</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s1">&#39;Kp&#39;</span><span class="p">]</span>
+        <span class="n">Dst</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s1">&#39;Dst&#39;</span><span class="p">]</span>
+        <span class="n">Lmax</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s1">&#39;Lmax&#39;</span><span class="p">]</span>
+        <span class="n">Lpp</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s1">&#39;Lpp&#39;</span><span class="p">]</span>
+    <span class="c1">#else: # use standard config</span>
+        <span class="c1"># but which one?</span>
+
+    <span class="n">Lgrid</span> <span class="o">=</span> <span class="n">grid</span>
+    <span class="n">NL</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">Lgrid</span><span class="p">)</span>
+    <span class="n">dL</span> <span class="o">=</span> <span class="n">Lgrid</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">Lgrid</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1"># get DLL and model operator</span>
+    <span class="p">(</span><span class="n">DLL</span><span class="p">,</span>  <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">get_DLL</span><span class="p">(</span><span class="n">Lgrid</span><span class="p">,</span>          <span class="n">params</span><span class="p">,</span> <span class="n">DLL_model</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">DLLp</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">get_DLL</span><span class="p">(</span><span class="n">Lgrid</span> <span class="o">+</span> <span class="n">dL</span><span class="o">/</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">DLL_model</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">DLLm</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">get_DLL</span><span class="p">(</span><span class="n">Lgrid</span> <span class="o">-</span> <span class="n">dL</span><span class="o">/</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">DLL_model</span><span class="p">)</span>
+    <span class="n">DLL</span> <span class="o">=</span> <span class="n">DLL</span><span class="o">/</span><span class="mf">86400.</span><span class="p">;</span> <span class="n">DLLp</span> <span class="o">=</span> <span class="n">DLLp</span><span class="o">/</span><span class="mf">86400.</span><span class="p">;</span> <span class="n">DLLm</span> <span class="o">=</span> <span class="n">DLLm</span><span class="o">/</span><span class="mf">86400.</span>
+
+    <span class="c1"># Set default of NO sources:</span>
+    <span class="n">src</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">NL</span><span class="p">)</span>
+
+    <span class="c1"># Create source operators (source splitting) using implicit</span>
+    <span class="c1"># trapezoidal method to solve source ODE.</span>
+    <span class="c1"># Add artificial sources</span>
+    <span class="k">if</span> <span class="s1">&#39;SRCartif&#39;</span> <span class="ow">in</span> <span class="n">params</span><span class="p">:</span>
+        <span class="c1"># Call the artificial source function, sending info as</span>
+        <span class="c1"># key word arguments.  Note that such functions should be</span>
+        <span class="c1"># able to handle extra kwargs through the use of **kwargs!</span>
+        <span class="n">sfunc</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s1">&#39;SRCartif&#39;</span><span class="p">]</span>
+
+        <span class="c1"># Apply using correct CN-method.</span>
+        <span class="n">src</span><span class="o">=</span><span class="mf">0.5</span><span class="o">*</span><span class="n">Tdelta</span><span class="o">*</span><span class="p">(</span>
+            <span class="n">sfunc</span><span class="p">(</span><span class="n">Telapsed</span><span class="p">,</span> <span class="n">Lgrid</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">DLL</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span> <span class="o">+</span>
+            <span class="n">sfunc</span><span class="p">(</span><span class="n">Telapsed</span><span class="o">+</span><span class="n">Tdelta</span><span class="p">,</span> <span class="n">Lgrid</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">DLL</span><span class="p">,</span> <span class="n">beta</span><span class="p">))</span>
+        <span class="n">src</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">src</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">src1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">NL</span><span class="p">)</span>
+        <span class="n">src2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">NL</span><span class="p">)</span>
+
+    <span class="c1"># Apply solution operators to f.</span>
+    <span class="n">dptr</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">POINTER</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_double</span><span class="p">)</span>
+    <span class="n">r</span><span class="o">.</span><span class="n">advance</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">ctypes</span><span class="o">.</span><span class="n">data_as</span><span class="p">(</span><span class="n">dptr</span><span class="p">),</span>
+              <span class="n">Lgrid</span><span class="o">.</span><span class="n">ctypes</span><span class="o">.</span><span class="n">data_as</span><span class="p">(</span><span class="n">dptr</span><span class="p">),</span>
+              <span class="n">DLLm</span><span class="o">.</span><span class="n">ctypes</span><span class="o">.</span><span class="n">data_as</span><span class="p">(</span><span class="n">dptr</span><span class="p">),</span>
+              <span class="n">DLLm</span><span class="o">.</span><span class="n">ctypes</span><span class="o">.</span><span class="n">data_as</span><span class="p">(</span><span class="n">dptr</span><span class="p">),</span>
+              <span class="n">DLLp</span><span class="o">.</span><span class="n">ctypes</span><span class="o">.</span><span class="n">data_as</span><span class="p">(</span><span class="n">dptr</span><span class="p">),</span>
+              <span class="n">DLLp</span><span class="o">.</span><span class="n">ctypes</span><span class="o">.</span><span class="n">data_as</span><span class="p">(</span><span class="n">dptr</span><span class="p">),</span>
+              <span class="n">ct</span><span class="o">.</span><span class="n">c_double</span><span class="p">(</span><span class="n">Tdelta</span><span class="p">),</span> <span class="n">NL</span><span class="p">,</span>
+              <span class="n">src</span><span class="o">.</span><span class="n">ctypes</span><span class="o">.</span><span class="n">data_as</span><span class="p">(</span><span class="n">dptr</span><span class="p">))</span>
+
+   <span class="c1"># add source according to values in SRC...</span>
+<span class="c1">#    if params[&#39;SRC_model&#39;]:</span>
+<span class="c1">#        # setup source vector</span>
+<span class="c1">#        S = get_local_accel(Lgrid, params, SRC_model=&#39;JK1&#39;)</span>
+<span class="c1">#        f = f + S*Tdelta</span>
+
+    <span class="c1"># add losses through magnetopause shadowing, time scale taken from MPloss</span>
+    <span class="n">mp_sec</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s1">&#39;MPloss&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">days</span> <span class="o">*</span> <span class="mf">86400.0</span> <span class="o">+</span> <span class="n">params</span><span class="p">[</span><span class="s1">&#39;MPloss&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">seconds</span> <span class="o">+</span> \
+             <span class="n">params</span><span class="p">[</span><span class="s1">&#39;MPloss&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">microseconds</span> <span class="o">/</span> <span class="mf">1000000.0</span>
+    <span class="k">if</span> <span class="n">mp_sec</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">:</span>
+        <span class="c1"># setup loss vector</span>
+        <span class="n">LSS</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">NL</span><span class="p">)</span>
+        <span class="n">LSS</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">Lgrid</span><span class="o">&gt;</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;Lmax&#39;</span><span class="p">])]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.</span><span class="o">/</span><span class="n">mp_sec</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">f</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">LSS</span><span class="o">*</span><span class="n">Tdelta</span><span class="p">)</span>
+
+    <span class="c1"># add losses inside plasma pause, time scale taken from PPloss</span>
+    <span class="n">pp_sec</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s1">&#39;PPloss&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">days</span> <span class="o">*</span> <span class="mf">86400.0</span> <span class="o">+</span> <span class="n">params</span><span class="p">[</span><span class="s1">&#39;PPloss&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">seconds</span> <span class="o">+</span> \
+             <span class="n">params</span><span class="p">[</span><span class="s1">&#39;PPloss&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">microseconds</span> <span class="o">/</span> <span class="mf">1000000.0</span>
+    <span class="k">if</span> <span class="n">pp_sec</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">:</span>
+        <span class="c1"># calculate plasma pause location after Carpenter &amp; Anderson 1992</span>
+        <span class="n">LSS</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">NL</span><span class="p">)</span>
+        <span class="n">LSS</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">Lgrid</span><span class="o">&lt;</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;Lpp&#39;</span><span class="p">])]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.</span><span class="o">/</span><span class="n">pp_sec</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">f</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">LSS</span><span class="o">*</span><span class="n">Tdelta</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">f</span></div>
+
+<span class="c1"># -----------------------------------------------</span>
+<div class="viewcode-block" id="get_local_accel"><a class="viewcode-back" href="../../autosummary/spacepy.radbelt.get_local_accel.html#spacepy.radbelt.get_local_accel">[docs]</a><span class="k">def</span> <span class="nf">get_local_accel</span><span class="p">(</span><span class="n">Lgrid</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">SRC_model</span><span class="o">=</span><span class="s1">&#39;JK1&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    calculate the diffusion coefficient D_LL</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">SRC_model</span> <span class="ow">is</span> <span class="s1">&#39;JK1&#39;</span><span class="p">:</span>
+        <span class="n">magn</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s1">&#39;SRCmagn&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">seconds</span>
+        <span class="n">Lcenter</span> <span class="o">=</span> <span class="mf">5.6</span>
+        <span class="n">Lwidth</span> <span class="o">=</span> <span class="mf">0.3</span>
+        <span class="n">Kp</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s1">&#39;Kp&#39;</span><span class="p">]</span>
+        <span class="n">S</span> <span class="o">=</span> <span class="n">magn</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">Lgrid</span><span class="o">-</span><span class="n">Lcenter</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">Lwidth</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span><span class="o">*</span><span class="n">Kp</span><span class="o">*</span><span class="n">Kp</span>
+
+    <span class="k">return</span> <span class="n">S</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../../search.html">search</a>|&nbsp;</li>
+       <li><a href="../../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2019, The SpacePy Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

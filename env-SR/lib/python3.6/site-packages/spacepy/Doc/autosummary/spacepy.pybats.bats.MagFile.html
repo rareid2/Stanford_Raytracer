@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>spacepy.pybats.bats.MagFile &mdash; SpacePy v0.2.1 Manual</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="../_static/spacepy_favicon.ico"/>
+    <link rel="top" title="SpacePy v0.2.1 Manual" href="../index.html" />
+    <link rel="up" title="spacepy.pybats.bats" href="spacepy.pybats.bats.html" />
+    <link rel="next" title="spacepy.pybats.bats.GeoIndexFile" href="spacepy.pybats.bats.GeoIndexFile.html" />
+    <link rel="prev" title="spacepy.pybats.bats.Mag" href="spacepy.pybats.bats.Mag.html" /> 
+  </head>
+  <body role="document">
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../index.html"><img src="../_static/spacepy_logo.jpg" border="0" alt="spacepy_logo"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="spacepy.pybats.bats.GeoIndexFile.html" title="spacepy.pybats.bats.GeoIndexFile"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="spacepy.pybats.bats.Mag.html" title="spacepy.pybats.bats.Mag"
+             accesskey="P">previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+       <li><a href="../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../pybats.html" >PyBats - SWMF &amp; BATS-R-US Analysis Tools</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="spacepy.pybats.bats.html" accesskey="U">spacepy.pybats.bats</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="spacepy.pybats.bats.Mag.html"
+                        title="previous chapter">spacepy.pybats.bats.Mag</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="spacepy.pybats.bats.GeoIndexFile.html"
+                        title="next chapter">spacepy.pybats.bats.GeoIndexFile</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/autosummary/spacepy.pybats.bats.MagFile.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="spacepy-pybats-bats-magfile">
+<h1>spacepy.pybats.bats.MagFile<a class="headerlink" href="#spacepy-pybats-bats-magfile" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="spacepy.pybats.bats.MagFile">
+<em class="property">class </em><code class="descclassname">spacepy.pybats.bats.</code><code class="descname">MagFile</code><span class="sig-paren">(</span><em>filename</em>, <em>ie_name=None</em>, <em>find_ie=False</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/pybats/bats.html#MagFile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.pybats.bats.MagFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>BATS-R-US magnetometer files are powerful tools for both research and
+operations.  <a class="reference internal" href="#spacepy.pybats.bats.MagFile" title="spacepy.pybats.bats.MagFile"><code class="xref py py-class docutils literal"><span class="pre">MagFile</span></code></a> objects open, parse, 
+and visualize such output.</p>
+<p>The $delta B$ calculated by the SWMF requires two components: GM (BATSRUS)
+and IE (Ridley_serial).  The data is spread across two files: GM_mag*.dat
+and IE_mag*.dat.  The former contains $delta B$ caused by gap-region 
+(i.e., inside the inner boundary) FACs and the changing global field.  
+The latter contains the $delta B$ caused by Pederson and Hall 
+currents in the ionosphere.  <a class="reference internal" href="#spacepy.pybats.bats.MagFile" title="spacepy.pybats.bats.MagFile"><code class="xref py py-class docutils literal"><span class="pre">MagFile</span></code></a> objects
+can open one or both of these files at a time; when both are opened, the
+total $delta B$ is calculated and made available to the user.</p>
+<p>Usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Open up the GM magnetometer file only.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span> <span class="o">=</span> <span class="n">spacepy</span><span class="o">.</span><span class="n">pybats</span><span class="o">.</span><span class="n">bats</span><span class="o">.</span><span class="n">MagFile</span><span class="p">(</span><span class="s1">&#39;GM_file.mag&#39;</span><span class="p">)</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Open up both the GM and IE file [LEGACY SWMF ONLY]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span> <span class="o">=</span> <span class="n">spacepy</span><span class="o">.</span><span class="n">pybats</span><span class="o">.</span><span class="n">bats</span><span class="o">.</span><span class="n">MagFile</span><span class="p">(</span><span class="s1">&#39;GM_file.mag&#39;</span><span class="p">,</span> <span class="s1">&#39;IE_file.mag&#39;</span><span class="p">)</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Open up the GM magnetometer file; search for the IE file.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span> <span class="o">=</span> <span class="n">spacepy</span><span class="o">.</span><span class="n">pybats</span><span class="o">.</span><span class="n">bats</span><span class="o">.</span><span class="n">MagFile</span><span class="p">(</span><span class="s1">&#39;GM_file.mag&#39;</span><span class="p">,</span> <span class="n">find_ie</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Note that the <strong>find_ie</strong> kwarg uses a simple search assuming the data 
+remain in a typical SWMF-output organizational tree (i.e., if the results
+of a simulation are in folder <em>results</em>, the GM magnetometer file can be 
+found in <em>results/GM/</em> or <em>results/GM/IO2/</em> while the IE file can be found
+in <em>results/IE/</em> or <em>results/IE/ionosphere/</em>).  It will also search the
+present working directory.  This method is not robust; the user must take
+care to ensure that the two files correspond to each other.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="spacepy.pybats.bats.GeoIndexFile.html" title="spacepy.pybats.bats.GeoIndexFile"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="spacepy.pybats.bats.Mag.html" title="spacepy.pybats.bats.Mag"
+             >previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+       <li><a href="../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../pybats.html" >PyBats - SWMF &amp; BATS-R-US Analysis Tools</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="spacepy.pybats.bats.html" >spacepy.pybats.bats</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2019, The SpacePy Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

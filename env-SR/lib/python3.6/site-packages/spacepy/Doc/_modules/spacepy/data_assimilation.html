@@ -1,0 +1,983 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>spacepy.data_assimilation &mdash; SpacePy v0.2.1 Manual</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="../../_static/spacepy_favicon.ico"/>
+    <link rel="top" title="SpacePy v0.2.1 Manual" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+  </head>
+  <body role="document">
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../../index.html"><img src="../../_static/spacepy_logo.jpg" border="0" alt="spacepy_logo"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../../search.html">search</a>|&nbsp;</li>
+       <li><a href="../../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/logo.png" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for spacepy.data_assimilation</h1><div class="highlight"><pre>
+<span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">shape</span><span class="p">,</span> <span class="n">dot</span><span class="p">,</span> <span class="n">eye</span><span class="p">,</span> <span class="n">set_printoptions</span><span class="p">,</span> <span class="n">diag</span><span class="p">,</span> <span class="nb">sum</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">svd</span>
+<span class="kn">import</span> <span class="nn">pdb</span>
+<span class="kn">from</span> <span class="nn">spacepy.toolbox</span> <span class="kn">import</span> <span class="n">feq</span>
+
+<span class="n">__contact__</span> <span class="o">=</span> <span class="s1">&#39;Josef Koller, jkoller@lanl.gov&#39;</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Data assimilation functions used for several projects</span>
+
+<span class="sd">Authors: Josef Koller, Humberto Godinez</span>
+<span class="sd">nstitution: Los Alamos National Laboratory</span>
+<span class="sd">Contact: jkoller@lanl.gov</span>
+
+<span class="sd">Copyright 2010 Los Alamos National Security, LLC.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># -----------------------------------------------</span>
+<span class="c1"># Data Assimilation class: enKF</span>
+<span class="c1"># -----------------------------------------------</span>
+<div class="viewcode-block" id="ensemble"><a class="viewcode-back" href="../../autosummary/spacepy.data_assimilation.ensemble.html#spacepy.data_assimilation.ensemble">[docs]</a><span class="k">class</span> <span class="nc">ensemble</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Ensemble-based data assimilation subroutines for the Radiation Belt Model</span>
+<span class="sd">    </span>
+<span class="sd">    .. currentmodule:: spacepy.data_assimilation</span>
+<span class="sd">    .. autosummary::</span>
+<span class="sd">        ~ensemble.EnKF</span>
+<span class="sd">        ~ensemble.EnKF_oneobs</span>
+<span class="sd">        ~ensemble.add_model_error</span>
+<span class="sd">        ~ensemble.add_model_error_obs</span>
+<span class="sd">        ~ensemble.getHA</span>
+<span class="sd">        ~ensemble.getHAprime</span>
+<span class="sd">        ~ensemble.getHPH</span>
+<span class="sd">        ~ensemble.getInnovation</span>
+<span class="sd">        ~ensemble.getperturb</span>
+<span class="sd">    .. automethod:: EnKF</span>
+<span class="sd">    .. automethod:: EnKF_oneobs</span>
+<span class="sd">    .. automethod:: add_model_error</span>
+<span class="sd">    .. automethod:: add_model_error_obs</span>
+<span class="sd">    .. automethod:: getHA</span>
+<span class="sd">    .. automethod:: getHAprime</span>
+<span class="sd">    .. automethod:: getHPH</span>
+<span class="sd">    .. automethod:: getInnovation</span>
+<span class="sd">    .. automethod:: getperturb</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ensembles</span> <span class="o">=</span> <span class="mi">50</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Nens</span> <span class="o">=</span> <span class="n">ensembles</span> <span class="c1"># number of ensemble members</span>
+        
+        <span class="k">return</span> <span class="bp">None</span>
+
+    <span class="c1"># -----------------------------------------------</span>
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;&lt;enKF instance, Nens=&#39;</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">Nens</span><span class="o">+</span><span class="s1">&#39;&gt;&#39;</span>
+
+    <span class="n">__repr__</span> <span class="o">=</span> <span class="n">__str__</span>
+
+    <span class="c1"># -----------------------------------------------</span>
+<div class="viewcode-block" id="ensemble.EnKF"><a class="viewcode-back" href="../../autosummary/spacepy.data_assimilation.ensemble.html#spacepy.data_assimilation.ensemble.EnKF">[docs]</a>    <span class="k">def</span> <span class="nf">EnKF</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">Psi</span><span class="p">,</span> <span class="n">Inn</span><span class="p">,</span> <span class="n">HAp</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        analysis subroutine after code example in</span>
+<span class="sd">        Evensen 2003 this will take the prepared</span>
+<span class="sd">        matrices and calculate the analysis most</span>
+<span class="sd">        efficiently, A will be returned</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ==========</span>
+<span class="sd">        A :</span>
+<span class="sd">        </span>
+<span class="sd">        Psi :</span>
+<span class="sd">        </span>
+<span class="sd">        Inn :</span>
+<span class="sd">        </span>
+<span class="sd">        HAp :</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        =======</span>
+<span class="sd">        out :</span>
+<span class="sd">        </span>
+<span class="sd">        Examples</span>
+<span class="sd">        ========</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># A   = ensemble of model states</span>
+        <span class="c1"># Psi = E = observation perturbations</span>
+        <span class="c1"># Inn = D = innovations</span>
+        <span class="c1"># HAp = S = HA&#39;</span>
+
+        <span class="c1"># debugging command </span>
+        <span class="c1">#pdb.set_trace()</span>
+    
+        <span class="n">nobs</span><span class="p">,</span> <span class="n">nens</span> <span class="o">=</span> <span class="n">HAp</span><span class="o">.</span><span class="n">shape</span>
+        <span class="n">nrmin</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">nobs</span><span class="p">,</span><span class="n">nens</span><span class="p">)</span>
+        <span class="n">NL</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="c1"># compute HAp + Psi</span>
+        <span class="n">ES</span> <span class="o">=</span> <span class="n">HAp</span> <span class="o">+</span> <span class="n">Psi</span>
+
+        <span class="c1"># Compute SVD of HAp + Psi  -&gt;  U and sig,</span>
+        <span class="c1"># using Eispack</span>
+        <span class="p">[</span><span class="n">U</span><span class="p">,</span><span class="n">sig</span><span class="p">,</span><span class="n">V</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">ES</span><span class="p">)</span>
+        <span class="n">U</span> <span class="o">=</span> <span class="n">U</span><span class="p">[:,</span><span class="mi">0</span><span class="p">:</span><span class="n">nrmin</span><span class="p">]</span>
+
+        <span class="c1"># convert eigenvalues</span>
+        <span class="n">sig</span> <span class="o">=</span> <span class="n">sig</span><span class="o">**</span><span class="mi">2</span>
+
+        <span class="c1"># Compute number of significant eigenvalues</span>
+        <span class="n">sigsum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">sig</span><span class="p">)</span>
+        <span class="n">sigsum1</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="n">nrsigma</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nrmin</span><span class="p">):</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">sigsum1</span><span class="o">/</span><span class="n">sigsum</span> <span class="o">&lt;</span> <span class="mf">0.999</span><span class="p">):</span>
+                <span class="n">nrsigma</span> <span class="o">=</span> <span class="n">nrsigma</span><span class="o">+</span><span class="mi">1</span>
+                <span class="n">sigsum1</span><span class="o">=</span><span class="n">sigsum1</span><span class="o">+</span><span class="n">sig</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                <span class="n">sig</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="mf">1.0</span><span class="o">/</span><span class="n">sig</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">sig</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">nrmin</span><span class="p">]</span><span class="o">=</span><span class="mf">0.0</span>
+                <span class="k">break</span>
+        <span class="c1">#pdb.set_trace()</span>
+
+        <span class="c1"># Compute X1</span>
+        <span class="n">X1</span> <span class="o">=</span> <span class="p">(</span><span class="n">sig</span><span class="o">*</span><span class="n">U</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+
+        <span class="c1"># Compute X2=X1*D</span>
+        <span class="n">X2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span><span class="n">Inn</span><span class="p">)</span>
+
+        <span class="c1"># Compute X3=U*X2</span>
+        <span class="n">X3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">U</span><span class="p">,</span><span class="n">X2</span><span class="p">)</span>
+
+        <span class="c1"># Compute representers Reps=A&#39;*S^T</span>
+        <span class="n">Reps</span> <span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">HAp</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+
+        <span class="c1"># Compute A=A+Reps*X3</span>
+        <span class="n">C</span> <span class="o">=</span> <span class="n">A</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Reps</span><span class="p">,</span><span class="n">X3</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">C</span></div>
+
+    <span class="c1"># -----------------------------------------------</span>
+<div class="viewcode-block" id="ensemble.EnKF_oneobs"><a class="viewcode-back" href="../../autosummary/spacepy.data_assimilation.ensemble.html#spacepy.data_assimilation.ensemble.EnKF_oneobs">[docs]</a>    <span class="k">def</span> <span class="nf">EnKF_oneobs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">Psi</span><span class="p">,</span> <span class="n">Inn</span><span class="p">,</span> <span class="n">HAp</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        analysis subroutine for a single observations</span>
+<span class="sd">        with the EnKF. This is a special case.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ==========</span>
+<span class="sd">        A :</span>
+<span class="sd">        </span>
+<span class="sd">        Psi :</span>
+<span class="sd">        </span>
+<span class="sd">        Inn :</span>
+<span class="sd">        </span>
+<span class="sd">        HAp :</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        =======</span>
+<span class="sd">        out :</span>
+<span class="sd">        </span>
+<span class="sd">        Examples</span>
+<span class="sd">        ========</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># A   = ensemble of model states</span>
+        <span class="c1"># Psi = E = observation perturbations</span>
+        <span class="c1"># Inn = D = innovations</span>
+        <span class="c1"># HAp = S = HA&#39;</span>
+
+        <span class="c1"># debugging command </span>
+        <span class="c1">#pdb.set_trace()</span>
+
+        <span class="n">nobs</span><span class="p">,</span> <span class="n">nens</span> <span class="o">=</span> <span class="n">HAp</span><span class="o">.</span><span class="n">shape</span>
+        <span class="n">nrmin</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">nobs</span><span class="p">,</span><span class="n">nens</span><span class="p">)</span>
+        <span class="n">NL</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="c1"># compute HPH^t</span>
+        <span class="n">HPHt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">HAp</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+        <span class="c1"># compute R</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">Psi</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+        <span class="c1"># get A&#39;</span>
+        <span class="n">N1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span> <span class="p">(</span><span class="n">nens</span><span class="p">,</span><span class="n">nens</span><span class="p">)</span> <span class="p">)</span><span class="o">/</span><span class="n">nens</span>
+        <span class="n">I</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">nens</span><span class="p">)</span>
+        <span class="n">Ap</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">I</span><span class="o">-</span><span class="n">N1</span><span class="p">)</span>
+
+        <span class="c1"># compute PHt</span>
+        <span class="n">PHt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Ap</span><span class="p">,</span><span class="n">HAp</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+
+        <span class="c1"># compute K</span>
+        <span class="n">K</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">HPHt</span> <span class="o">+</span> <span class="n">R</span><span class="p">)</span><span class="o">*</span><span class="n">PHt</span>
+
+        <span class="c1"># Compute A=A+K*Inn</span>
+        <span class="n">C</span> <span class="o">=</span> <span class="n">A</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="n">Inn</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">C</span></div>
+
+    <span class="c1"># -----------------------------------------------</span>
+<div class="viewcode-block" id="ensemble.getHAprime"><a class="viewcode-back" href="../../autosummary/spacepy.data_assimilation.ensemble.html#spacepy.data_assimilation.ensemble.getHAprime">[docs]</a>    <span class="k">def</span> <span class="nf">getHAprime</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">HA</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        calculate ensemble perturbation of HA</span>
+<span class="sd">        HA&#39; = HA-HA_mean</span>
+
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ==========</span>
+<span class="sd">        HA :</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        =======</span>
+<span class="sd">        out :</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        ========</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">m</span><span class="p">,</span> <span class="n">nens</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">HA</span><span class="p">)</span>
+        <span class="n">N1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span> <span class="p">(</span><span class="n">nens</span><span class="p">,</span><span class="n">nens</span><span class="p">)</span> <span class="p">)</span><span class="o">/</span><span class="n">nens</span>
+        <span class="n">I</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">nens</span><span class="p">)</span>
+        <span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">HA</span><span class="p">,</span><span class="n">I</span><span class="o">-</span><span class="n">N1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">S</span></div>
+
+    <span class="c1"># -----------------------------------------------</span>
+<div class="viewcode-block" id="ensemble.getInnovation"><a class="viewcode-back" href="../../autosummary/spacepy.data_assimilation.ensemble.html#spacepy.data_assimilation.ensemble.getInnovation">[docs]</a>    <span class="k">def</span> <span class="nf">getInnovation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">Psi</span><span class="p">,</span> <span class="n">HA</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        compute innovation ensemble D&#39;</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ==========</span>
+<span class="sd">        y :</span>
+
+<span class="sd">        Psi :</span>
+
+<span class="sd">        HA :</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        =======</span>
+<span class="sd">        out :</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        ========</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        <span class="n">nens</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Nens</span>
+        <span class="c1"># broadcoast y over ensembles to get Y</span>
+        <span class="n">Yens</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span> <span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">nens</span><span class="p">)</span> <span class="p">)</span> <span class="o">*</span> <span class="n">y</span><span class="p">[:,</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+        <span class="n">D</span> <span class="o">=</span> <span class="n">Yens</span> <span class="o">+</span> <span class="n">Psi</span> <span class="o">-</span> <span class="n">HA</span>
+        <span class="k">return</span> <span class="n">D</span></div>
+
+    <span class="c1"># -----------------------------------------------</span>
+<div class="viewcode-block" id="ensemble.getperturb"><a class="viewcode-back" href="../../autosummary/spacepy.data_assimilation.ensemble.html#spacepy.data_assimilation.ensemble.getperturb">[docs]</a>    <span class="k">def</span> <span class="nf">getperturb</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        compute perturbations of observational vector</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ==========</span>
+<span class="sd">        model :</span>
+<span class="sd">        </span>
+<span class="sd">        y :</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        =======</span>
+<span class="sd">        out :</span>
+<span class="sd">        </span>
+<span class="sd">        Examples</span>
+<span class="sd">        ========</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        <span class="n">nens</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Nens</span>
+        <span class="n">relstd</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">PSDerr</span>
+        <span class="n">Psi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">standard_normal</span><span class="p">((</span><span class="n">m</span><span class="p">,</span><span class="n">nens</span><span class="p">))</span> <span class="o">*</span> <span class="n">y</span><span class="p">[:,</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">*</span> <span class="n">relstd</span>
+        <span class="c1">#Psi = np.random.standard_normal((m,nens)) * np.mean(y)*relstd</span>
+        <span class="c1">#Psi = np.zeros((m,nens))</span>
+        <span class="k">return</span> <span class="n">Psi</span></div>
+
+    <span class="c1"># -----------------------------------------------</span>
+<div class="viewcode-block" id="ensemble.getHA"><a class="viewcode-back" href="../../autosummary/spacepy.data_assimilation.ensemble.html#spacepy.data_assimilation.ensemble.getHA">[docs]</a>    <span class="k">def</span> <span class="nf">getHA</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">Lobs</span><span class="p">,</span> <span class="n">A</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        compute HA provided L vector of observations</span>
+<span class="sd">        and ensemble matrix A</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ==========</span>
+<span class="sd">        model :</span>
+<span class="sd">        </span>
+<span class="sd">        Lobs :</span>
+<span class="sd">        </span>
+<span class="sd">        A :</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        =======</span>
+<span class="sd">        out :</span>
+<span class="sd">        </span>
+<span class="sd">        Examples</span>
+<span class="sd">        ========</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># number of observations</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">Lobs</span><span class="p">)</span>
+        <span class="c1"># number of gridpoint and ensembles</span>
+        <span class="n">NL</span><span class="p">,</span> <span class="n">nens</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+        <span class="c1"># extract the grid</span>
+        <span class="n">Lgrid</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">Lgrid</span>
+        
+        <span class="c1"># dimension of HA will be (m x NL)(NL x nens) = m x nens</span>
+        <span class="n">HA</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span> <span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">nens</span><span class="p">)</span> <span class="p">)</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">Lpos</span> <span class="ow">in</span> <span class="n">Lobs</span><span class="p">:</span>
+            <span class="c1"># closest grid point</span>
+            <span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">Lpos</span> <span class="o">-</span> <span class="n">Lgrid</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">index</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">ERROR in getHA</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">HA</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">index</span><span class="p">,:]</span>
+                <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">HA</span></div>
+
+    <span class="c1"># -----------------------------------------------</span>
+<div class="viewcode-block" id="ensemble.getHPH"><a class="viewcode-back" href="../../autosummary/spacepy.data_assimilation.ensemble.html#spacepy.data_assimilation.ensemble.getHPH">[docs]</a>    <span class="k">def</span> <span class="nf">getHPH</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">Lobs</span><span class="p">,</span><span class="n">Pfxx</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        compute HPH</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ==========</span>
+<span class="sd">        Lobs</span>
+
+<span class="sd">        Pfxx</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        =======</span>
+<span class="sd">        out</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        ========</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># dimension(L) = nobs(t_i)</span>
+        <span class="c1"># dimension(Pfxx) = (NL,NL)</span>
+
+        <span class="n">Lgrid</span> <span class="o">=</span> <span class="n">dd</span><span class="p">[</span><span class="s1">&#39;model&#39;</span><span class="p">][</span><span class="s1">&#39;Lgrid&#39;</span><span class="p">]</span>
+        <span class="n">NL</span> <span class="o">=</span> <span class="n">dd</span><span class="p">[</span><span class="s1">&#39;model&#39;</span><span class="p">][</span><span class="s1">&#39;ngrid&#39;</span><span class="p">]</span>
+
+        <span class="n">HP</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">Lobs</span><span class="p">),</span><span class="n">NL</span><span class="p">))</span>
+        <span class="n">PH</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">NL</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">Lobs</span><span class="p">)))</span>
+        <span class="n">HPH</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">NL</span><span class="p">,</span><span class="n">NL</span><span class="p">))</span>
+
+        <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">Lobs</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">Lval</span><span class="p">,</span><span class="n">iL</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">Lobs</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">Lobs</span><span class="p">))):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">idx</span><span class="p">[</span><span class="n">iL</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">Lval</span> <span class="o">-</span> <span class="n">Lgrid</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">ERROR in getHPH</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">HP</span><span class="p">[</span><span class="n">iL</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">Pfxx</span><span class="p">[:,</span><span class="n">idx</span><span class="p">[</span><span class="n">iL</span><span class="p">]]</span>
+
+        <span class="n">HPH</span> <span class="o">=</span> <span class="n">HP</span><span class="p">[:,</span><span class="n">idx</span><span class="p">]</span>
+        <span class="n">PH</span> <span class="o">=</span> <span class="n">Pfxx</span><span class="p">[:,</span><span class="n">idx</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">PH</span><span class="p">,</span> <span class="n">HPH</span></div>
+
+    <span class="c1"># -----------------------------------------------</span>
+<div class="viewcode-block" id="ensemble.add_model_error"><a class="viewcode-back" href="../../autosummary/spacepy.data_assimilation.ensemble.html#spacepy.data_assimilation.ensemble.add_model_error">[docs]</a>    <span class="k">def</span> <span class="nf">add_model_error</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">PSDdata</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        this routine will add a standard error to the ensemble states</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ==========</span>
+<span class="sd">        model :</span>
+
+<span class="sd">        A :</span>
+
+<span class="sd">        PSDdata :</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        =======</span>
+<span class="sd">        out :</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        ========</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">Lgrid</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">Lgrid</span>
+        <span class="n">dL</span> <span class="o">=</span> <span class="n">Lgrid</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">Lgrid</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">nens</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Nens</span><span class="p">)</span>
+        <span class="c1">#print y, L</span>
+                <span class="c1"># in units of L (should not be smaller than dL)</span>
+        <span class="n">radius</span> <span class="o">=</span> <span class="n">dL</span><span class="o">*</span><span class="mf">0.9</span>
+        <span class="n">radius</span> <span class="o">=</span> <span class="mi">1</span>
+
+        <span class="c1"># create L vector where random noise will be added</span>
+<span class="c1">#       erridx = np.array([False]*len(Lgrid))</span>
+<span class="c1">#       for Lval in PSDdata[&#39;Lstar&#39;]:</span>
+<span class="c1">#           L1 = np.max((Lval-radius, Lgrid[0]))</span>
+<span class="c1">#           L2 = np.min((Lval+radius, Lgrid[-1]))</span>
+<span class="c1">#           Lidx = np.where( (Lgrid &gt; L1) &amp; (L2 &gt; Lgrid) )[0]</span>
+<span class="c1">#           erridx[Lidx] = True</span>
+
+                <span class="c1"># calculate the rel. average uncertainty based on (obs -</span>
+                <span class="c1"># modelfcst)/obs</span>
+<span class="c1">#       fcst = np.mean(A, axis=1)</span>
+<span class="c1">#       rst = np.zeros( len(PSDdata[&#39;Lstar&#39;]) )</span>
+<span class="c1">#       for Lval, yval, i in zip(PSDdata[&#39;Lstar&#39;], PSDdata[&#39;PSD&#39;], range(len(PSDdata[&#39;Lstar&#39;])) ):</span>
+<span class="c1">#           idx = np.argmin(np.abs(Lval - Lgrid))</span>
+<span class="c1">#           rst[i] = np.abs( yval - fcst[idx] )</span>
+
+<span class="c1">#       stdev = np.mean(rst)</span>
+<span class="c1">#       for iens in range(nens):</span>
+<span class="c1">#           f = A[erridx, iens]</span>
+<span class="c1">#           A[erridx, iens] = np.random.normal( f, scale = stdev )</span>
+
+<span class="c1">##TODO: Check why above code was commented... this block was unindented for consistency, but should it be here?</span>
+        <span class="c1"># create L vector where random noise will be added</span>
+        <span class="n">erridx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([],</span><span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">Lval</span> <span class="ow">in</span> <span class="n">PSDdata</span><span class="p">[</span><span class="s1">&#39;Lstar&#39;</span><span class="p">]:</span>
+            <span class="n">Lidx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span> <span class="n">feq</span><span class="p">(</span><span class="n">Lval</span><span class="p">,</span><span class="n">Lgrid</span><span class="p">)</span> <span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">erridx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">erridx</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">Lidx</span><span class="p">)]))</span>
+
+        <span class="c1"># calculate the rel. average uncertainty based on (obs -</span>
+        <span class="c1"># modelfcst)/obs</span>
+        <span class="n">fcst</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">rst</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">PSDdata</span><span class="p">[</span><span class="s1">&#39;Lstar&#39;</span><span class="p">]),</span><span class="n">nens</span><span class="p">)</span> <span class="p">)</span>
+        <span class="k">for</span> <span class="n">iens</span><span class="p">,</span> <span class="n">member</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="p">):</span>
+            <span class="n">rst</span><span class="p">[:,</span><span class="n">iens</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span> <span class="n">PSDdata</span><span class="p">[</span><span class="s1">&#39;PSD&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">member</span><span class="p">[</span><span class="n">erridx</span><span class="p">]</span> <span class="p">)</span>
+
+        <span class="n">stdev</span> <span class="o">=</span> <span class="mf">2.0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">rst</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># debug output files</span>
+        <span class="c1">#np.savetxt(&#39;Lobs_init.dat&#39;,PSDdata[&#39;Lstar&#39;])</span>
+        <span class="c1">#np.savetxt(&#39;y_init.dat&#39;,PSDdata[&#39;PSD&#39;])</span>
+        <span class="c1">#np.savetxt(&#39;Lgrid_init.dat&#39;,Lgrid)</span>
+        <span class="c1">#np.savetxt(&#39;A_init.dat&#39;,A)</span>
+        <span class="c1">#np.savetxt(&#39;erridx_init.dat&#39;,erridx)</span>
+        <span class="c1">#np.savetxt(&#39;rst_init.dat&#39;,rst)</span>
+        <span class="c1">#np.savetxt(&#39;stdev_init.dat&#39;,stdev)</span>
+
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">erridx</span><span class="p">):</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">stdev</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">):</span>
+                <span class="n">A</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span> <span class="n">fcst</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">stdev</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">nens</span> <span class="p">)</span>
+        <span class="k">return</span> <span class="n">A</span></div>
+
+    <span class="c1"># -----------------------------------------------</span>
+<div class="viewcode-block" id="ensemble.add_model_error_obs"><a class="viewcode-back" href="../../autosummary/spacepy.data_assimilation.ensemble.html#spacepy.data_assimilation.ensemble.add_model_error_obs">[docs]</a>    <span class="k">def</span> <span class="nf">add_model_error_obs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">Lobs</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        this routine will add a standard error to the ensemble states</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ==========</span>
+<span class="sd">        model :</span>
+
+<span class="sd">        A :</span>
+
+<span class="sd">        Lobs :</span>
+
+<span class="sd">        y :</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        =======</span>
+<span class="sd">        out :</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        ========</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># debugging command </span>
+        <span class="c1">#pdb.set_trace()</span>
+
+        <span class="n">Lgrid</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">Lgrid</span>
+        <span class="n">dL</span> <span class="o">=</span> <span class="n">Lgrid</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">Lgrid</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">nens</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="c1">#nens = int(self.Nens)</span>
+        <span class="c1">#print y, L</span>
+    
+        <span class="c1"># in units of L (should not be smaller than dL)</span>
+        <span class="n">radius</span> <span class="o">=</span> <span class="n">dL</span><span class="o">*</span><span class="mf">0.9</span>
+        <span class="n">radius</span> <span class="o">=</span> <span class="mi">1</span>
+        
+        <span class="c1"># create L vector where random noise will be added</span>
+        <span class="c1">#erridx = np.array([False]*len(Lgrid))</span>
+        <span class="n">erridx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([],</span><span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">Lval</span> <span class="ow">in</span> <span class="n">Lobs</span><span class="p">:</span>
+            <span class="n">Lidx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span> <span class="n">feq</span><span class="p">(</span><span class="n">Lval</span><span class="p">,</span><span class="n">Lgrid</span><span class="p">)</span> <span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">erridx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">erridx</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">Lidx</span><span class="p">)]))</span>
+
+        <span class="c1"># compute residual</span>
+        <span class="c1"># calculate the rel. average uncertainty based on (obs -</span>
+        <span class="c1"># ensemble)/obs</span>
+        <span class="n">rst</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">Lobs</span><span class="p">),</span><span class="n">nens</span><span class="p">)</span> <span class="p">)</span>
+        <span class="k">for</span> <span class="n">iens</span><span class="p">,</span> <span class="n">member</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="p">):</span>
+            <span class="n">rst</span><span class="p">[:,</span><span class="n">iens</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span> <span class="n">y</span> <span class="o">-</span> <span class="n">A</span><span class="p">[</span><span class="n">erridx</span><span class="p">,</span><span class="n">iens</span><span class="p">]</span> <span class="p">)</span>
+
+        <span class="c1"># perturb with normal distribution </span>
+        <span class="c1"># around observation values</span>
+        <span class="n">stdev</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">rst</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># debug output files</span>
+        <span class="c1">#np.savetxt(&#39;Lobs.dat&#39;,Lobs)</span>
+        <span class="c1">#np.savetxt(&#39;y.dat&#39;,y)</span>
+        <span class="c1">#np.savetxt(&#39;Lgrid.dat&#39;,Lgrid)</span>
+        <span class="c1">#np.savetxt(&#39;A.dat&#39;,A)</span>
+        <span class="c1">#np.savetxt(&#39;erridx.dat&#39;,erridx)</span>
+        <span class="c1">#np.savetxt(&#39;rst.dat&#39;,rst)</span>
+        <span class="c1">#np.savetxt(&#39;stdev.dat&#39;,stdev)</span>
+
+        <span class="n">pert_obs</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="mf">0.30</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span><span class="o">*</span><span class="n">y</span>
+
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">erridx</span><span class="p">):</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">stdev</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">):</span>
+                <span class="n">A</span><span class="p">[</span><span class="n">idx</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">stdev</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">nens</span> <span class="p">)</span>
+                <span class="c1">#A[idx,:] = np.random.normal( pert_obs[i], stdev[i], nens )</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;done&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">A</span></div></div>
+
+<span class="c1"># -----------------------------------------------</span>
+<div class="viewcode-block" id="average_window"><a class="viewcode-back" href="../../autosummary/spacepy.data_assimilation.average_window.html#spacepy.data_assimilation.average_window">[docs]</a><span class="k">def</span> <span class="nf">average_window</span><span class="p">(</span><span class="n">PSDdata</span><span class="p">,</span> <span class="n">Lgrid</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    combine observations on same L shell in</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+<span class="sd">    model :</span>
+
+<span class="sd">    PSDdata :</span>
+
+<span class="sd">    HAp :</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    =======</span>
+<span class="sd">    out :</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    ========</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># sort observations first in L</span>
+    <span class="n">idx</span> <span class="o">=</span> <span class="n">PSDdata</span><span class="p">[</span><span class="s1">&#39;Lstar&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">argsort</span><span class="p">()</span>
+    <span class="n">Lobs</span> <span class="o">=</span> <span class="n">PSDdata</span><span class="p">[</span><span class="s1">&#39;Lstar&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">PSDdata</span><span class="p">[</span><span class="s1">&#39;PSD&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span>
+
+    <span class="c1"># map Lobs onto closest grid point</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">obs</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
+       <span class="n">Lobs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">Lgrid</span><span class="p">[</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">Lobs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">Lgrid</span><span class="p">))</span> <span class="p">]</span>
+
+    <span class="c1"># identify unique grid-points of Lobs</span>
+    <span class="n">tmpLobs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">Lobs</span><span class="p">)</span>
+
+    <span class="c1"># declare average observation array</span>
+    <span class="n">tmpy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">tmpLobs</span><span class="p">)</span>
+
+    <span class="c1"># run through all unique grid-points and compute average observation</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">iL</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tmpLobs</span><span class="p">):</span>
+        <span class="c1"># identify idex of each unique grid-point</span>
+        <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">feq</span><span class="p">(</span><span class="n">iL</span><span class="p">,</span><span class="n">Lobs</span><span class="p">))</span>
+        <span class="c1"># compute average observation for each unique grid-point</span>
+        <span class="n">tmpy</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span>
+
+    <span class="c1"># walk through all grid points and find how many obs available</span>
+    <span class="c1">#for i, iL in enumerate(Lgrid):</span>
+    <span class="c1">#   idx = np.where( iL == Lobs[:])[0]</span>
+
+    <span class="c1"># assign Lobs and y</span>
+    <span class="n">Lobs</span> <span class="o">=</span> <span class="n">tmpLobs</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">tmpy</span>
+    <span class="k">return</span> <span class="n">Lobs</span><span class="p">,</span> <span class="n">y</span></div>
+
+<span class="c1"># -----------------------------------------------</span>
+<span class="c1"># -----------------------------------------------</span>
+<span class="c1"># -----------------------------------------------</span>
+<div class="viewcode-block" id="getobs4window"><a class="viewcode-back" href="../../autosummary/spacepy.data_assimilation.getobs4window.html#spacepy.data_assimilation.getobs4window">[docs]</a><span class="k">def</span> <span class="nf">getobs4window</span><span class="p">(</span><span class="n">dd</span><span class="p">,</span> <span class="n">Tnow</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    get observations in time window [Tnow - Twindow, Tnow]</span>
+<span class="sd">    from all satellites lumped together into one y vector</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+<span class="sd">    model :</span>
+
+<span class="sd">    PSDdata :</span>
+
+<span class="sd">    HAp :</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    =======</span>
+<span class="sd">    out :</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    ========</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">Tstart</span> <span class="o">=</span> <span class="n">Tnow</span> <span class="o">-</span> <span class="n">dd</span><span class="p">[</span><span class="s1">&#39;model&#39;</span><span class="p">][</span><span class="s1">&#39;Twindow&#39;</span><span class="p">]</span>
+    <span class="n">Tend</span> <span class="o">=</span> <span class="n">Tnow</span>
+
+    <span class="c1"># read all PSD observation and append into y,L</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="p">[];</span> <span class="n">L</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">satkey</span> <span class="ow">in</span> <span class="n">dd</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;satids&#39;</span><span class="p">]:</span> <span class="c1"># for every s/c</span>
+        <span class="n">PSD</span> <span class="o">=</span> <span class="n">dd</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="n">satkey</span><span class="p">][</span><span class="s1">&#39;PSD&#39;</span><span class="p">]</span>
+        <span class="n">TAI</span> <span class="o">=</span> <span class="n">dd</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="n">satkey</span><span class="p">][</span><span class="s1">&#39;TAI&#39;</span><span class="p">]</span>
+        <span class="n">Lvals</span> <span class="o">=</span> <span class="n">dd</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="n">satkey</span><span class="p">][</span><span class="s1">&#39;L&#39;</span><span class="p">]</span>
+        <span class="n">indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span> <span class="p">(</span><span class="n">Tstart</span> <span class="o">&lt;</span> <span class="n">TAI</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">TAI</span> <span class="o">&lt;=</span> <span class="n">Tend</span><span class="p">)</span> <span class="p">)</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">PSD</span><span class="p">[</span><span class="n">indices</span><span class="p">])</span>
+        <span class="n">L</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">Lvals</span><span class="p">[</span><span class="n">indices</span><span class="p">])</span>
+
+    <span class="c1"># sort them and average if they fall into same L range</span>
+    <span class="n">ind</span> <span class="o">=</span> <span class="n">L</span><span class="o">.</span><span class="n">argsort</span><span class="p">()</span> <span class="c1"># return indices to a sorted y</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
+    <span class="n">L</span> <span class="o">=</span> <span class="n">L</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
+
+    <span class="c1">#check if observation available</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="n">dd</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([]),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([])</span>
+
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">Lmean</span> <span class="o">=</span> <span class="p">[];</span> <span class="n">ymean</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">Lgrid</span> <span class="o">=</span> <span class="n">dd</span><span class="p">[</span><span class="s1">&#39;model&#39;</span><span class="p">][</span><span class="s1">&#39;Lgrid&#39;</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">iL</span> <span class="ow">in</span> <span class="n">Lgrid</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">L_lower</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span> <span class="n">Lgrid</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">Lgrid</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="p">])</span>
+        <span class="n">L_upper</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span> <span class="n">Lgrid</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">Lgrid</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">])</span>
+        <span class="n">indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span> <span class="p">(</span><span class="n">L_lower</span> <span class="o">&lt;</span> <span class="n">L</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">L</span> <span class="o">&lt;=</span> <span class="n">L_upper</span><span class="p">)</span> <span class="p">)</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">indices</span><span class="p">)</span> <span class="ow">is</span> <span class="mi">0</span><span class="p">:</span> <span class="k">continue</span>
+
+        <span class="n">Lmean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Lmean</span><span class="p">,</span> <span class="n">iL</span><span class="p">)</span>
+        <span class="n">ymean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ymean</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">indices</span><span class="p">]))</span>
+
+    <span class="c1"># add Lmean, ymean to dd</span>
+    <span class="k">try</span><span class="p">:</span> <span class="c1"># first time executing this</span>
+        <span class="n">dd</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;dwindow&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="p">(</span><span class="n">Tnow</span><span class="p">,</span> <span class="n">Lmean</span><span class="p">,</span> <span class="n">ymean</span><span class="p">)</span> <span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">dd</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;dwindow&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">dd</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;dwindow&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="p">(</span><span class="n">Tnow</span><span class="p">,</span> <span class="n">Lmean</span><span class="p">,</span> <span class="n">ymean</span><span class="p">)</span> <span class="p">)</span>
+
+    <span class="c1"># these line are only for averaging over L* as well!</span>
+
+    <span class="n">Lmean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">Lmean</span><span class="p">)</span>
+    <span class="c1"># move to actual grid point</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">Lmean</span><span class="p">)</span>
+    <span class="n">idx</span><span class="p">,</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">Lgrid</span><span class="o">&gt;</span><span class="n">Lmean</span><span class="p">)</span>
+
+    <span class="n">Lmean</span> <span class="o">=</span> <span class="n">Lgrid</span><span class="p">[</span><span class="n">idx</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+    <span class="n">ymean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">ymean</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">dd</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">Lmean</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">ymean</span><span class="p">])</span></div>
+
+<span class="c1"># -----------------------------------------------</span>
+<div class="viewcode-block" id="output"><a class="viewcode-back" href="../../autosummary/spacepy.data_assimilation.output.html#spacepy.data_assimilation.output">[docs]</a><span class="k">def</span> <span class="nf">output</span><span class="p">(</span><span class="n">init</span><span class="p">,</span><span class="n">result</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    write results to file and be done</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+<span class="sd">    model :</span>
+
+<span class="sd">    PSDdata :</span>
+
+<span class="sd">    HAp :</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    =======</span>
+<span class="sd">    out :</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    ========</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span></div>
+
+<span class="c1"># -----------------------------------------------</span>
+<span class="c1"># ----- older stuff (not used) ------------------</span>
+<span class="c1"># -----------------------------------------------</span>
+<div class="viewcode-block" id="assimilate_JK"><a class="viewcode-back" href="../../autosummary/spacepy.data_assimilation.assimilate_JK.html#spacepy.data_assimilation.assimilate_JK">[docs]</a><span class="k">def</span> <span class="nf">assimilate_JK</span><span class="p">(</span><span class="n">dd</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    this version is currently not working</span>
+<span class="sd">    main function to assimilate all data provided in init</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+<span class="sd">    model :</span>
+
+<span class="sd">    PSDdata :</span>
+
+<span class="sd">    HAp :</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    =======</span>
+<span class="sd">    out :</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    ========</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+
+    <span class="n">Lgrid</span> <span class="o">=</span> <span class="n">dd</span><span class="p">[</span><span class="s1">&#39;model&#39;</span><span class="p">][</span><span class="s1">&#39;Lgrid&#39;</span><span class="p">]</span>
+    <span class="n">dd</span><span class="p">[</span><span class="s1">&#39;model&#39;</span><span class="p">][</span><span class="s1">&#39;initPSD&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span> <span class="mf">4e-7</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span> <span class="o">-</span><span class="p">(</span><span class="n">Lgrid</span><span class="o">-</span><span class="mi">5</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="p">)</span>
+
+    <span class="n">nens</span> <span class="o">=</span> <span class="n">dd</span><span class="p">[</span><span class="s1">&#39;kalman&#39;</span><span class="p">][</span><span class="s1">&#39;nens&#39;</span><span class="p">]</span>
+    <span class="n">NL</span> <span class="o">=</span> <span class="n">dd</span><span class="p">[</span><span class="s1">&#39;model&#39;</span><span class="p">][</span><span class="s1">&#39;ngrid&#39;</span><span class="p">]</span>
+    <span class="n">f0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dd</span><span class="p">[</span><span class="s1">&#39;model&#39;</span><span class="p">][</span><span class="s1">&#39;initPSD&#39;</span><span class="p">])</span>
+    <span class="n">Tgrid</span> <span class="o">=</span> <span class="n">dd</span><span class="p">[</span><span class="s1">&#39;model&#39;</span><span class="p">][</span><span class="s1">&#39;Tgrid&#39;</span><span class="p">]</span>
+
+    <span class="n">dd</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">dd</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="s1">&#39;fa&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">dd</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="s1">&#39;ff&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="c1"># --- initialize some stuff</span>
+    <span class="c1"># broadcast all f0 into A and randomize</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span> <span class="p">(</span><span class="n">NL</span><span class="p">,</span><span class="n">nens</span><span class="p">)</span> <span class="p">)</span><span class="o">*</span><span class="n">f0</span><span class="p">[:,</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+    <span class="c1">#A = 10**np.random.normal(np.log10(A),0.3)  # watch out for negative values</span>
+
+    <span class="n">dd</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="s1">&#39;fa&#39;</span><span class="p">][</span><span class="s1">&#39;Tgrid&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">Tgrid</span><span class="p">))</span>
+    <span class="n">dd</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="s1">&#39;ff&#39;</span><span class="p">][</span><span class="s1">&#39;Tgrid&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">Tgrid</span><span class="p">))</span>
+    <span class="n">dd</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="s1">&#39;fa&#39;</span><span class="p">][</span><span class="s1">&#39;PSD&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span> <span class="p">(</span><span class="n">f0</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">Tgrid</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="p">)</span>
+    <span class="n">dd</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="s1">&#39;fa&#39;</span><span class="p">][</span><span class="s1">&#39;PSD&#39;</span><span class="p">][:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">f0</span>
+    <span class="n">dd</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="s1">&#39;fa&#39;</span><span class="p">][</span><span class="s1">&#39;Tgrid&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">Tgrid</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">dd</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="s1">&#39;ff&#39;</span><span class="p">][</span><span class="s1">&#39;PSD&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span> <span class="p">(</span><span class="n">f0</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">Tgrid</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="p">)</span>
+    <span class="n">dd</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="s1">&#39;ff&#39;</span><span class="p">][</span><span class="s1">&#39;PSD&#39;</span><span class="p">][:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">f0</span>
+    <span class="n">dd</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="s1">&#39;ff&#39;</span><span class="p">][</span><span class="s1">&#39;Tgrid&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">Tgrid</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">minPSD</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">/</span><span class="mi">100</span>
+
+    <span class="c1"># time loop to assimilate everything</span>
+    <span class="k">for</span> <span class="n">Tnow</span><span class="p">,</span> <span class="n">tcnt</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">Tgrid</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">Tgrid</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)):</span>
+
+        <span class="c1"># make forecast using all ensembles in A</span>
+        <span class="n">icnt</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="p">:</span>
+            <span class="n">fnew</span> <span class="o">=</span> <span class="n">forecast</span><span class="p">(</span><span class="n">dd</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">Tnow</span><span class="p">)</span>
+            <span class="n">A</span><span class="p">[:,</span><span class="n">icnt</span><span class="p">]</span> <span class="o">=</span> <span class="n">fnew</span><span class="p">[:]</span>
+            <span class="n">icnt</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="c1">#print(np.log10(np.mean(A,axis=1)))</span>
+        <span class="n">Tnow</span> <span class="o">=</span> <span class="n">Tnow</span> <span class="o">+</span> <span class="n">dd</span><span class="p">[</span><span class="s1">&#39;model&#39;</span><span class="p">][</span><span class="s1">&#39;Twindow&#39;</span><span class="p">]</span>
+        <span class="n">tcnt</span> <span class="o">=</span> <span class="n">tcnt</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">dd</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="s1">&#39;ff&#39;</span><span class="p">][</span><span class="s1">&#39;PSD&#39;</span><span class="p">][:,</span><span class="n">tcnt</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">dd</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="s1">&#39;ff&#39;</span><span class="p">][</span><span class="s1">&#39;Tgrid&#39;</span><span class="p">][</span><span class="n">tcnt</span><span class="p">]</span> <span class="o">=</span> <span class="n">Tnow</span>
+
+        <span class="c1"># get observations for time window ]Tnow-Twindow,Tnow]</span>
+        <span class="n">dd</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">getobs4window</span><span class="p">(</span><span class="n">dd</span><span class="p">,</span> <span class="n">Tnow</span><span class="p">)</span>
+
+        <span class="c1"># check if len(y) ==0</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+            <span class="n">dd</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="s1">&#39;fa&#39;</span><span class="p">][</span><span class="s1">&#39;PSD&#39;</span><span class="p">][:,</span><span class="n">tcnt</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">dd</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="s1">&#39;fa&#39;</span><span class="p">][</span><span class="s1">&#39;Tgrid&#39;</span><span class="p">][</span><span class="n">tcnt</span><span class="p">]</span> <span class="o">=</span> <span class="n">Tnow</span>
+            <span class="k">continue</span>
+
+        <span class="c1"># perturb observations so that ensemble get sufficient spread</span>
+        <span class="n">HA</span> <span class="o">=</span> <span class="n">getHA</span><span class="p">(</span><span class="n">dd</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">A</span><span class="p">)</span> <span class="c1"># project ensemble states to obs. grid: HA(nobs,nens)</span>
+        <span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">),</span><span class="n">nens</span><span class="p">)</span> <span class="p">)</span>  <span class="c1"># this is Psi in Evensen 2003</span>
+        <span class="n">D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">),</span><span class="n">nens</span><span class="p">)</span> <span class="p">)</span>
+        <span class="n">err_z</span> <span class="o">=</span> <span class="mf">0.3</span>
+        <span class="k">for</span> <span class="n">yval</span><span class="p">,</span> <span class="n">iobs</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">))):</span>
+            <span class="n">relstd</span> <span class="o">=</span> <span class="n">yval</span><span class="o">*</span><span class="n">err_z</span>
+            <span class="n">rnd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span> <span class="n">yval</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">nens</span><span class="p">),</span> <span class="n">relstd</span><span class="p">)</span>
+            <span class="n">rnd</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">rnd</span><span class="o">&lt;</span><span class="n">minPSD</span><span class="p">)]</span> <span class="o">=</span> <span class="n">minPSD</span>
+            <span class="n">e</span><span class="p">[</span><span class="n">iobs</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">rnd</span> <span class="o">-</span> <span class="n">yval</span>
+            <span class="n">D</span><span class="p">[</span><span class="n">iobs</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">yval</span> <span class="o">+</span> <span class="n">e</span><span class="p">[</span><span class="n">iobs</span><span class="p">,:]</span>
+
+        <span class="c1"># add model error</span>
+        <span class="n">relstd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nens</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">yval</span><span class="p">,</span> <span class="n">iobs</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">))):</span>
+            <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span> <span class="n">feq</span><span class="p">(</span><span class="n">L</span><span class="p">[</span><span class="n">iobs</span><span class="p">],</span><span class="n">Lgrid</span><span class="p">)</span> <span class="p">)</span>
+            <span class="n">relstd</span><span class="p">[:]</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span> <span class="n">yval</span> <span class="o">-</span> <span class="n">HA</span><span class="p">[</span><span class="n">iobs</span><span class="p">,:]</span> <span class="p">)</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">idx</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span> <span class="n">HA</span><span class="p">[</span><span class="n">iobs</span><span class="p">,:],</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">relstd</span><span class="p">))</span>
+            <span class="n">idx2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">idx</span><span class="p">,:]</span> <span class="o">&lt;</span> <span class="n">minPSD</span><span class="p">);</span> <span class="n">A</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span><span class="n">idx2</span><span class="p">]</span> <span class="o">=</span> <span class="n">minPSD</span> <span class="c1"># add min flux here</span>
+
+        <span class="c1"># get residual or innovation in the classical sense</span>
+        <span class="n">Res</span> <span class="o">=</span> <span class="n">D</span> <span class="o">-</span> <span class="n">HA</span> <span class="c1"># dim = (nobs,nens)</span>
+
+        <span class="c1"># error of covariant matrix</span>
+        <span class="n">ffmean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">NL</span><span class="p">,</span><span class="n">nens</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">iens</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nens</span><span class="p">):</span>
+            <span class="n">V</span><span class="p">[:,</span><span class="n">iens</span><span class="p">]</span>  <span class="o">=</span> <span class="n">A</span><span class="p">[:,</span><span class="n">iens</span><span class="p">]</span> <span class="o">-</span> <span class="n">ffmean</span>
+
+        <span class="n">Pfxx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">V</span><span class="p">,</span><span class="n">V</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="n">nens</span><span class="p">)</span>
+        <span class="n">Pfyy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">e</span><span class="p">,</span><span class="n">e</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="n">nens</span><span class="p">)</span>
+
+        <span class="c1"># get Kalman denominator (H*Pfxx*HT + Pfyy)^-1 by inversion</span>
+        <span class="n">PH</span><span class="p">,</span> <span class="n">HPH</span> <span class="o">=</span> <span class="n">getHPH</span><span class="p">(</span><span class="n">dd</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">Pfxx</span><span class="p">)</span>
+        <span class="n">Rinv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">HPH</span><span class="o">+</span><span class="n">Pfyy</span><span class="p">)</span>
+        <span class="n">Adj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">PH</span><span class="p">,</span><span class="n">Rinv</span><span class="p">),</span> <span class="n">Res</span><span class="p">)</span>
+
+        <span class="c1"># update all ensemble members</span>
+        <span class="n">A</span> <span class="o">=</span> <span class="n">A</span> <span class="o">+</span> <span class="n">Adj</span>
+
+        <span class="c1"># check for negative fluxes</span>
+        <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">A</span><span class="o">&lt;</span><span class="n">minPSD</span><span class="p">)</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">minPSD</span>
+
+        <span class="c1">#</span>
+        <span class="c1"># average A from analysis step and save in results dictionary</span>
+        <span class="c1">#print y, np.mean(HA,axis=1), np.mean(getHA(init,L,A),axis=1)</span>
+        <span class="n">dd</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="s1">&#39;fa&#39;</span><span class="p">][</span><span class="s1">&#39;PSD&#39;</span><span class="p">][:,</span><span class="n">tcnt</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">dd</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="s1">&#39;fa&#39;</span><span class="p">][</span><span class="s1">&#39;Tgrid&#39;</span><span class="p">][</span><span class="n">tcnt</span><span class="p">]</span> <span class="o">=</span> <span class="n">Tnow</span>
+
+        <span class="c1"># print message</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Tnow: &#39;</span><span class="p">,</span> <span class="n">rbtools</span><span class="o">.</span><span class="n">TAInum2ISOdate</span><span class="p">(</span><span class="n">Tnow</span><span class="p">))</span>
+
+        <span class="c1">#print np.log10(np.mean(A,axis=1))[30]</span>
+
+    <span class="c1"># copy some results into [&#39;kalman&#39;] key</span>
+    <span class="n">dd</span><span class="p">[</span><span class="s1">&#39;kalman&#39;</span><span class="p">][</span><span class="s1">&#39;fa&#39;</span><span class="p">]</span> <span class="o">=</span>  <span class="n">dd</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="s1">&#39;fa&#39;</span><span class="p">]</span>
+    <span class="n">dd</span><span class="p">[</span><span class="s1">&#39;kalman&#39;</span><span class="p">][</span><span class="s1">&#39;ff&#39;</span><span class="p">]</span> <span class="o">=</span>  <span class="n">dd</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="s1">&#39;ff&#39;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">dd</span></div>
+
+<span class="c1"># -----------------------------------------------</span>
+<div class="viewcode-block" id="addmodelerror_old2"><a class="viewcode-back" href="../../autosummary/spacepy.data_assimilation.addmodelerror_old2.html#spacepy.data_assimilation.addmodelerror_old2">[docs]</a><span class="k">def</span> <span class="nf">addmodelerror_old2</span><span class="p">(</span><span class="n">dd</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">L</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    this routine will add a standard error to the ensemble states</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">where</span><span class="p">,</span> <span class="n">random</span><span class="p">,</span> <span class="n">log10</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">reshape</span><span class="p">,</span> <span class="nb">abs</span><span class="p">,</span> <span class="nb">max</span><span class="p">,</span> <span class="n">arange</span>
+    <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">linspace</span><span class="p">,</span> <span class="nb">min</span>
+
+    <span class="n">Lgrid</span> <span class="o">=</span> <span class="n">dd</span><span class="p">[</span><span class="s1">&#39;model&#39;</span><span class="p">][</span><span class="s1">&#39;Lgrid&#39;</span><span class="p">]</span>
+    <span class="n">dL</span> <span class="o">=</span> <span class="n">Lgrid</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">Lgrid</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">nens</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">dd</span><span class="p">[</span><span class="s1">&#39;kalman&#39;</span><span class="p">][</span><span class="s1">&#39;nens&#39;</span><span class="p">])</span>
+    <span class="c1">#print y, L</span>
+
+    <span class="n">radius</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="k">for</span> <span class="n">Lcenter</span><span class="p">,</span> <span class="n">yval</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="n">L1</span> <span class="o">=</span> <span class="nb">max</span><span class="p">((</span><span class="n">Lcenter</span><span class="o">-</span><span class="n">radius</span><span class="p">,</span> <span class="n">Lgrid</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+        <span class="n">L2</span> <span class="o">=</span> <span class="nb">min</span><span class="p">((</span><span class="n">Lcenter</span><span class="o">+</span><span class="n">radius</span><span class="p">,</span> <span class="n">Lgrid</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+        <span class="c1">#print Lcenter, Lcenter+radius, Lgrid[-1], min((Lcenter+radius,Lgrid[-1])), (L2-L1)/dL</span>
+        <span class="n">NLs</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span> <span class="p">(</span><span class="n">L2</span><span class="o">-</span><span class="n">L1</span><span class="p">)</span><span class="o">/</span><span class="n">dL</span> <span class="p">)</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">)</span>
+        <span class="k">for</span> <span class="n">Lpos</span> <span class="ow">in</span> <span class="n">linspace</span><span class="p">(</span><span class="n">L1</span><span class="p">,</span> <span class="n">L2</span><span class="p">,</span> <span class="n">NLs</span><span class="p">):</span>
+            <span class="c1">#print dL, L1, L2, NLs</span>
+            <span class="n">index</span> <span class="o">=</span> <span class="n">where</span><span class="p">(</span> <span class="n">feq</span><span class="p">(</span><span class="n">Lpos</span><span class="p">,</span><span class="n">Lgrid</span><span class="p">)</span> <span class="p">)</span> <span class="c1"># use float point comparison</span>
+            <span class="n">stdev</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="nb">abs</span><span class="p">(</span> <span class="n">yval</span> <span class="o">-</span> <span class="n">mean</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">index</span><span class="p">,:])</span> <span class="p">)</span>
+            <span class="c1">#print Lpos</span>
+            <span class="n">center</span> <span class="o">=</span> <span class="n">reshape</span><span class="p">(</span> <span class="n">A</span><span class="p">[</span><span class="n">index</span><span class="p">,:],</span> <span class="p">(</span><span class="n">nens</span><span class="p">)</span> <span class="p">)</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">index</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span> <span class="n">center</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">stdev</span><span class="p">)</span>
+            <span class="c1"># now check if any below 1e-99 and repeat</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nens</span><span class="p">):</span>
+                <span class="n">icnt</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="k">while</span> <span class="n">A</span><span class="p">[</span><span class="n">index</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mf">1e-99</span><span class="p">:</span>
+                    <span class="n">A</span><span class="p">[</span><span class="n">index</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span> <span class="n">center</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">scale</span><span class="o">=</span><span class="n">stdev</span><span class="p">)</span>
+                    <span class="n">icnt</span> <span class="o">+=</span> <span class="mi">1</span>
+                    <span class="k">if</span> <span class="n">icnt</span> <span class="o">&gt;</span> <span class="mi">1000</span><span class="p">:</span> <span class="k">print</span><span class="p">(</span><span class="s1">&#39;too many iterations&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">A</span></div>
+
+<span class="c1"># -----------------------------------------------</span>
+<div class="viewcode-block" id="addmodelerror_old"><a class="viewcode-back" href="../../autosummary/spacepy.data_assimilation.addmodelerror_old.html#spacepy.data_assimilation.addmodelerror_old">[docs]</a><span class="k">def</span> <span class="nf">addmodelerror_old</span><span class="p">(</span><span class="n">dd</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">L</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    this routine will add a standard error to the ensemble states</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">Lgrid</span> <span class="o">=</span> <span class="n">dd</span><span class="p">[</span><span class="s1">&#39;model&#39;</span><span class="p">][</span><span class="s1">&#39;Lgrid&#39;</span><span class="p">]</span>
+    <span class="n">dL</span> <span class="o">=</span> <span class="n">Lgrid</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">Lgrid</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">nens</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">dd</span><span class="p">[</span><span class="s1">&#39;kalman&#39;</span><span class="p">][</span><span class="s1">&#39;nens&#39;</span><span class="p">])</span>
+    <span class="c1">#print(y, L)</span>
+
+    <span class="n">radius</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="k">for</span> <span class="n">Lcenter</span><span class="p">,</span> <span class="n">yval</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="n">L1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">((</span><span class="n">Lcenter</span><span class="o">-</span><span class="n">radius</span><span class="p">,</span> <span class="n">Lgrid</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+        <span class="n">L2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">((</span><span class="n">Lcenter</span><span class="o">+</span><span class="n">radius</span><span class="p">,</span> <span class="n">Lgrid</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+        <span class="c1">#print Lcenter, Lcenter+radius, Lgrid[-1], min((Lcenter+radius,Lgrid[-1])), (L2-L1)/dL</span>
+        <span class="n">NLs</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span> <span class="p">(</span><span class="n">L2</span><span class="o">-</span><span class="n">L1</span><span class="p">)</span><span class="o">/</span><span class="n">dL</span> <span class="p">)</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">)</span>
+        <span class="k">for</span> <span class="n">Lpos</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">L1</span><span class="p">,</span> <span class="n">L2</span><span class="p">,</span> <span class="n">NLs</span><span class="p">):</span>
+            <span class="c1">#print dL, L1, L2, NLs</span>
+            <span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span> <span class="n">feq</span><span class="p">(</span><span class="n">Lpos</span><span class="p">,</span><span class="n">Lgrid</span><span class="p">)</span> <span class="p">)</span> <span class="c1"># use float point comparison</span>
+            <span class="n">stdev</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span> <span class="n">yval</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">index</span><span class="p">,:])</span> <span class="p">)</span>
+            <span class="c1">#print Lpos</span>
+            <span class="n">center</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span> <span class="n">A</span><span class="p">[</span><span class="n">index</span><span class="p">,:],</span> <span class="p">(</span><span class="n">nens</span><span class="p">)</span> <span class="p">)</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">index</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span> <span class="n">center</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">stdev</span><span class="p">)</span>
+            <span class="c1"># now check if any below 1e-99 and repeat</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nens</span><span class="p">):</span>
+                <span class="n">icnt</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="k">while</span> <span class="n">A</span><span class="p">[</span><span class="n">index</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mf">1e-99</span><span class="p">:</span>
+                    <span class="c1">#A[index,i] = np.random.normal( center[i], scale=stdev)</span>
+                    <span class="n">A</span><span class="p">[</span><span class="n">index</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">center</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>
+                    <span class="n">icnt</span> <span class="o">+=</span> <span class="mi">1</span>
+                    <span class="k">if</span> <span class="n">icnt</span> <span class="o">&gt;</span> <span class="mi">1000</span><span class="p">:</span> <span class="k">print</span><span class="p">(</span><span class="s1">&#39;too many iterations&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">A</span></div>
+
+<span class="c1"># -----------------------------------------------</span>
+<div class="viewcode-block" id="forecast"><a class="viewcode-back" href="../../autosummary/spacepy.data_assimilation.forecast.html#spacepy.data_assimilation.forecast">[docs]</a><span class="k">def</span> <span class="nf">forecast</span><span class="p">(</span><span class="n">dd</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">Tnow</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    call the model to calculate update and return result</span>
+<span class="sd">    fnew = f(Tnow+Twindow)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">diff1d</span>
+    <span class="n">fnew</span> <span class="o">=</span> <span class="n">diff1d</span><span class="o">.</span><span class="n">diff_LL</span><span class="p">(</span><span class="n">dd</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">Tnow</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">fnew</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../../search.html">search</a>|&nbsp;</li>
+       <li><a href="../../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2019, The SpacePy Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

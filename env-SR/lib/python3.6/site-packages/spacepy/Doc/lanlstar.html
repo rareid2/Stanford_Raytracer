@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>lanlstar - module to calculate Lstar or Lmax using artificial neural network &mdash; SpacePy v0.2.1 Manual</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="_static/spacepy_favicon.ico"/>
+    <link rel="top" title="SpacePy v0.2.1 Manual" href="index.html" />
+    <link rel="next" title="spacepy.LANLstar.LANLstar" href="autosummary/spacepy.LANLstar.LANLstar.html" />
+    <link rel="prev" title="spacepy.irbempy.prep_irbem" href="autosummary/spacepy.irbempy.prep_irbem.html" /> 
+  </head>
+  <body role="document">
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="index.html"><img src="_static/spacepy_logo.jpg" border="0" alt="spacepy_logo"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="autosummary/spacepy.LANLstar.LANLstar.html" title="spacepy.LANLstar.LANLstar"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="autosummary/spacepy.irbempy.prep_irbem.html" title="spacepy.irbempy.prep_irbem"
+             accesskey="P">previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+       <li><a href="index.html">documentation </a> &raquo;</li>
+ 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="autosummary/spacepy.irbempy.prep_irbem.html"
+                        title="previous chapter">spacepy.irbempy.prep_irbem</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="autosummary/spacepy.LANLstar.LANLstar.html"
+                        title="next chapter">spacepy.LANLstar.LANLstar</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/lanlstar.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-spacepy.LANLstar">
+<span id="lanlstar-module-to-calculate-lstar-or-lmax-using-artificial-neural-network"></span><h1>lanlstar - module to calculate Lstar or Lmax using artificial neural network<a class="headerlink" href="#module-spacepy.LANLstar" title="Permalink to this headline">¶</a></h1>
+<p>Lstar and Lmax calculation using artificial neural network (ANN) technique.</p>
+<p>This module requires the <a class="reference external" href="http://ffnet.sourceforge.net/">ffnet</a> package.</p>
+<p>Authors: Josef Koller, Yiqun Yu
+Institution: Los Alamos National Laboratory
+Contact: <a class="reference external" href="mailto:jkoller&#37;&#52;&#48;lanl&#46;gov">jkoller<span>&#64;</span>lanl<span>&#46;</span>gov</a>, <a class="reference external" href="mailto:yiqun&#37;&#52;&#48;lanl&#46;gov">yiqun<span>&#64;</span>lanl<span>&#46;</span>gov</a></p>
+<p>Copyright 2012 Los Alamos National Security, LLC.</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="autosummary/spacepy.LANLstar.LANLstar.html#spacepy.LANLstar.LANLstar" title="spacepy.LANLstar.LANLstar"><code class="xref py py-obj docutils literal"><span class="pre">LANLstar</span></code></a>(inputdict,&nbsp;extMag)</td>
+<td>Calculate Lstar</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="autosummary/spacepy.LANLstar.LANLmax.html#spacepy.LANLstar.LANLmax" title="spacepy.LANLstar.LANLmax"><code class="xref py py-obj docutils literal"><span class="pre">LANLmax</span></code></a>(inputdict,&nbsp;extMag)</td>
+<td>Calculate last closed drift shell (Lmax)</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="autosummary/spacepy.LANLstar.LANLstar.html" title="spacepy.LANLstar.LANLstar"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="autosummary/spacepy.irbempy.prep_irbem.html" title="spacepy.irbempy.prep_irbem"
+             >previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+       <li><a href="index.html">documentation </a> &raquo;</li>
+ 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2019, The SpacePy Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

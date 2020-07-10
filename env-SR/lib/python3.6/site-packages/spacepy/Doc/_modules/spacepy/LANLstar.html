@@ -1,0 +1,479 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>spacepy.LANLstar &mdash; SpacePy v0.2.1 Manual</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="../../_static/spacepy_favicon.ico"/>
+    <link rel="top" title="SpacePy v0.2.1 Manual" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+  </head>
+  <body role="document">
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../../index.html"><img src="../../_static/spacepy_logo.jpg" border="0" alt="spacepy_logo"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../../search.html">search</a>|&nbsp;</li>
+       <li><a href="../../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/logo.png" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for spacepy.LANLstar</h1><div class="highlight"><pre>
+<span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Lstar and Lmax calculation using artificial neural network (ANN) technique.</span>
+
+<span class="sd">This module requires the `ffnet &lt;http://ffnet.sourceforge.net/&gt;`_ package.</span>
+
+<span class="sd">Authors: Josef Koller, Yiqun Yu</span>
+<span class="sd">Institution: Los Alamos National Laboratory</span>
+<span class="sd">Contact: jkoller@lanl.gov, yiqun@lanl.gov</span>
+
+<span class="sd">Copyright 2012 Los Alamos National Security, LLC.</span>
+
+<span class="sd">.. autosummary::</span>
+<span class="sd">    :toctree: autosummary</span>
+
+<span class="sd">    LANLstar</span>
+<span class="sd">    LANLmax</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">os.path</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">ffnet</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="k">if</span> <span class="s1">&#39;sphinx&#39;</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;LANLstar requires ffnet. &#39;</span>
+                      <span class="s1">&#39;You appear to be building docs, so ignoring this error.&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+            <span class="s1">&#39;LANLstar requires ffnet (http://ffnet.sourceforge.net/)&#39;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">toolbox</span>
+
+
+<span class="k">def</span> <span class="nf">_get_net_path</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Gets the full path for a network file given the filename&quot;&quot;&quot;</span>
+    <span class="n">fspec</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">__file__</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;LANLstar&#39;</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">fspec</span><span class="p">)</span> <span class="ow">or</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">fspec</span> <span class="o">+</span> <span class="s1">&#39;.gz&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">fspec</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Could not find neural network file &quot;</span> <span class="o">+</span> <span class="n">filename</span><span class="p">)</span>
+
+<span class="c1"># ------------------------------------------------</span>
+<span class="k">def</span> <span class="nf">_LANLcommon</span><span class="p">(</span><span class="n">indict</span><span class="p">,</span> <span class="n">extMag</span><span class="p">,</span> <span class="n">domax</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Shared code between LANLstar and LANLmax</span>
+
+<span class="sd">    domax is True for LANLmax, False for LANLstar</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">lstar_keylists</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;OPDYN&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="s1">&#39;DOY&#39;</span><span class="p">,</span> <span class="s1">&#39;Hr&#39;</span><span class="p">,</span> <span class="s1">&#39;Dst&#39;</span><span class="p">,</span> <span class="s1">&#39;dens&#39;</span><span class="p">,</span> <span class="s1">&#39;velo&#39;</span><span class="p">,</span> <span class="s1">&#39;BzIMF&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;Lm&#39;</span><span class="p">,</span> <span class="s1">&#39;Bmirr&#39;</span><span class="p">,</span> <span class="s1">&#39;PA&#39;</span><span class="p">,</span> <span class="s1">&#39;rGSM&#39;</span><span class="p">,</span> <span class="s1">&#39;latGSM&#39;</span><span class="p">,</span> <span class="s1">&#39;lonGSM&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;OPQUIET&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="s1">&#39;DOY&#39;</span><span class="p">,</span> <span class="s1">&#39;Hr&#39;</span><span class="p">,</span> <span class="s1">&#39;Dst&#39;</span><span class="p">,</span> <span class="s1">&#39;dens&#39;</span><span class="p">,</span> <span class="s1">&#39;velo&#39;</span><span class="p">,</span><span class="s1">&#39;BzIMF&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;Lm&#39;</span><span class="p">,</span> <span class="s1">&#39;Bmirr&#39;</span><span class="p">,</span> <span class="s1">&#39;PA&#39;</span><span class="p">,</span> <span class="s1">&#39;rGSM&#39;</span><span class="p">,</span> <span class="s1">&#39;latGSM&#39;</span><span class="p">,</span> <span class="s1">&#39;lonGSM&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;T01QUIET&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="s1">&#39;DOY&#39;</span><span class="p">,</span> <span class="s1">&#39;Hr&#39;</span><span class="p">,</span> <span class="s1">&#39;Dst&#39;</span><span class="p">,</span> <span class="s1">&#39;Pdyn&#39;</span><span class="p">,</span> <span class="s1">&#39;ByIMF&#39;</span><span class="p">,</span> <span class="s1">&#39;BzIMF&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;G1&#39;</span><span class="p">,</span> <span class="s1">&#39;G2&#39;</span><span class="p">,</span><span class="s1">&#39;Lm&#39;</span><span class="p">,</span> <span class="s1">&#39;Bmirr&#39;</span><span class="p">,</span> <span class="s1">&#39;PA&#39;</span><span class="p">,</span> <span class="s1">&#39;rGSM&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;latGSM&#39;</span><span class="p">,</span> <span class="s1">&#39;lonGSM&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;T01STORM&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="s1">&#39;DOY&#39;</span><span class="p">,</span> <span class="s1">&#39;Hr&#39;</span><span class="p">,</span> <span class="s1">&#39;Dst&#39;</span><span class="p">,</span> <span class="s1">&#39;Pdyn&#39;</span><span class="p">,</span> <span class="s1">&#39;ByIMF&#39;</span><span class="p">,</span> <span class="s1">&#39;BzIMF&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;G2&#39;</span><span class="p">,</span> <span class="s1">&#39;G3&#39;</span><span class="p">,</span> <span class="s1">&#39;Lm&#39;</span><span class="p">,</span> <span class="s1">&#39;Bmirr&#39;</span><span class="p">,</span> <span class="s1">&#39;PA&#39;</span><span class="p">,</span> <span class="s1">&#39;rGSM&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;latGSM&#39;</span><span class="p">,</span> <span class="s1">&#39;lonGSM&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;T05&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="s1">&#39;DOY&#39;</span><span class="p">,</span> <span class="s1">&#39;Hr&#39;</span><span class="p">,</span> <span class="s1">&#39;Dst&#39;</span><span class="p">,</span> <span class="s1">&#39;Pdyn&#39;</span><span class="p">,</span> <span class="s1">&#39;ByIMF&#39;</span><span class="p">,</span><span class="s1">&#39;BzIMF&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;W1&#39;</span><span class="p">,</span><span class="s1">&#39;W2&#39;</span><span class="p">,</span><span class="s1">&#39;W3&#39;</span><span class="p">,</span><span class="s1">&#39;W4&#39;</span><span class="p">,</span><span class="s1">&#39;W5&#39;</span><span class="p">,</span><span class="s1">&#39;W6&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;Lm&#39;</span><span class="p">,</span> <span class="s1">&#39;Bmirr&#39;</span><span class="p">,</span> <span class="s1">&#39;PA&#39;</span><span class="p">,</span> <span class="s1">&#39;rGSM&#39;</span><span class="p">,</span> <span class="s1">&#39;latGSM&#39;</span><span class="p">,</span> <span class="s1">&#39;lonGSM&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;T89&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="s1">&#39;DOY&#39;</span><span class="p">,</span> <span class="s1">&#39;Hr&#39;</span><span class="p">,</span> <span class="s1">&#39;Kp&#39;</span><span class="p">,</span> <span class="s1">&#39;Pdyn&#39;</span><span class="p">,</span> <span class="s1">&#39;ByIMF&#39;</span><span class="p">,</span><span class="s1">&#39;BzIMF&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;Lm&#39;</span><span class="p">,</span> <span class="s1">&#39;Bmirr&#39;</span><span class="p">,</span> <span class="s1">&#39;PA&#39;</span><span class="p">,</span> <span class="s1">&#39;rGSM&#39;</span><span class="p">,</span> <span class="s1">&#39;latGSM&#39;</span><span class="p">,</span> <span class="s1">&#39;lonGSM&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;T96&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="s1">&#39;DOY&#39;</span><span class="p">,</span> <span class="s1">&#39;Hr&#39;</span><span class="p">,</span> <span class="s1">&#39;Dst&#39;</span><span class="p">,</span> <span class="s1">&#39;Pdyn&#39;</span><span class="p">,</span> <span class="s1">&#39;ByIMF&#39;</span><span class="p">,</span><span class="s1">&#39;BzIMF&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;Lm&#39;</span><span class="p">,</span> <span class="s1">&#39;Bmirr&#39;</span><span class="p">,</span> <span class="s1">&#39;PA&#39;</span><span class="p">,</span> <span class="s1">&#39;rGSM&#39;</span><span class="p">,</span> <span class="s1">&#39;latGSM&#39;</span><span class="p">,</span> <span class="s1">&#39;lonGSM&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;RAMSCB&#39;</span><span class="p">:[</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span><span class="s1">&#39;DOY&#39;</span><span class="p">,</span><span class="s1">&#39;Hr&#39;</span><span class="p">,</span> <span class="s1">&#39;Dst&#39;</span><span class="p">,</span> <span class="s1">&#39;Pdyn&#39;</span><span class="p">,</span> <span class="s1">&#39;ByIMF&#39;</span><span class="p">,</span> <span class="s1">&#39;BzIMF&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;PA&#39;</span><span class="p">,</span><span class="s1">&#39;SMx&#39;</span><span class="p">,</span> <span class="s1">&#39;SMy&#39;</span><span class="p">,</span> <span class="s1">&#39;SMz&#39;</span><span class="p">],</span>
+         <span class="p">}</span>
+    <span class="n">lmax_keylists</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;OPDYN&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="s1">&#39;DOY&#39;</span><span class="p">,</span> <span class="s1">&#39;Hr&#39;</span><span class="p">,</span> <span class="s1">&#39;Dst&#39;</span><span class="p">,</span> <span class="s1">&#39;dens&#39;</span><span class="p">,</span> <span class="s1">&#39;velo&#39;</span><span class="p">,</span> <span class="s1">&#39;BzIMF&#39;</span><span class="p">,</span> <span class="s1">&#39;PA&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;OPQUIET&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="s1">&#39;DOY&#39;</span><span class="p">,</span> <span class="s1">&#39;Hr&#39;</span><span class="p">,</span> <span class="s1">&#39;Dst&#39;</span><span class="p">,</span> <span class="s1">&#39;dens&#39;</span><span class="p">,</span> <span class="s1">&#39;velo&#39;</span><span class="p">,</span> <span class="s1">&#39;BzIMF&#39;</span><span class="p">,</span><span class="s1">&#39;PA&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;T01QUIET&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="s1">&#39;DOY&#39;</span><span class="p">,</span> <span class="s1">&#39;Hr&#39;</span><span class="p">,</span> <span class="s1">&#39;Dst&#39;</span><span class="p">,</span> <span class="s1">&#39;Pdyn&#39;</span><span class="p">,</span> <span class="s1">&#39;ByIMF&#39;</span><span class="p">,</span> <span class="s1">&#39;BzIMF&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;G1&#39;</span><span class="p">,</span><span class="s1">&#39;G2&#39;</span><span class="p">,</span><span class="s1">&#39;PA&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;T01STORM&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="s1">&#39;DOY&#39;</span><span class="p">,</span> <span class="s1">&#39;Hr&#39;</span><span class="p">,</span> <span class="s1">&#39;Dst&#39;</span><span class="p">,</span> <span class="s1">&#39;Pdyn&#39;</span><span class="p">,</span> <span class="s1">&#39;ByIMF&#39;</span><span class="p">,</span> <span class="s1">&#39;BzIMF&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;G2&#39;</span><span class="p">,</span><span class="s1">&#39;G3&#39;</span><span class="p">,</span><span class="s1">&#39;PA&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;T05&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="s1">&#39;DOY&#39;</span><span class="p">,</span> <span class="s1">&#39;Hr&#39;</span><span class="p">,</span> <span class="s1">&#39;Dst&#39;</span><span class="p">,</span> <span class="s1">&#39;Pdyn&#39;</span><span class="p">,</span> <span class="s1">&#39;ByIMF&#39;</span><span class="p">,</span> <span class="s1">&#39;BzIMF&#39;</span><span class="p">,</span> 
+                <span class="s1">&#39;W1&#39;</span><span class="p">,</span><span class="s1">&#39;W2&#39;</span><span class="p">,</span><span class="s1">&#39;W3&#39;</span><span class="p">,</span><span class="s1">&#39;W4&#39;</span><span class="p">,</span><span class="s1">&#39;W5&#39;</span><span class="p">,</span><span class="s1">&#39;W6&#39;</span><span class="p">,</span><span class="s1">&#39;PA&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;T89&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="s1">&#39;DOY&#39;</span><span class="p">,</span> <span class="s1">&#39;Hr&#39;</span><span class="p">,</span> <span class="s1">&#39;Kp&#39;</span><span class="p">,</span> <span class="s1">&#39;Pdyn&#39;</span><span class="p">,</span> <span class="s1">&#39;ByIMF&#39;</span><span class="p">,</span> <span class="s1">&#39;BzIMF&#39;</span><span class="p">,</span> <span class="s1">&#39;PA&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;T96&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="s1">&#39;DOY&#39;</span><span class="p">,</span> <span class="s1">&#39;Hr&#39;</span><span class="p">,</span> <span class="s1">&#39;Dst&#39;</span><span class="p">,</span> <span class="s1">&#39;Pdyn&#39;</span><span class="p">,</span> <span class="s1">&#39;ByIMF&#39;</span><span class="p">,</span> <span class="s1">&#39;BzIMF&#39;</span><span class="p">,</span> <span class="s1">&#39;PA&#39;</span><span class="p">],</span>
+                 <span class="p">}</span>
+    <span class="n">lstar_nets</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;OPDYN&#39;</span>   <span class="p">:</span> <span class="s1">&#39;LANLstar_OPDyn.net&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;OPQUIET&#39;</span> <span class="p">:</span> <span class="s1">&#39;LANLstar_OPQuiet.net&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;T01QUIET&#39;</span><span class="p">:</span> <span class="s1">&#39;LANLstar_T01QUIET.net&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;T01STORM&#39;</span><span class="p">:</span> <span class="s1">&#39;LANLstar_T01STORM.net&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;RAMSCB&#39;</span><span class="p">:</span> <span class="s1">&#39;LANLstar_RAMSCB.net&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;T05&#39;</span><span class="p">:</span> <span class="s1">&#39;LANLstar_T05.net&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;T89&#39;</span><span class="p">:</span> <span class="s1">&#39;LANLstar_T89.net&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;T96&#39;</span><span class="p">:</span> <span class="s1">&#39;LANLstar_T96.net&#39;</span><span class="p">,</span>
+                    <span class="p">}</span>
+    <span class="n">lmax_nets</span> <span class="o">=</span> <span class="p">{</span>  <span class="s1">&#39;OPDYN&#39;</span>   <span class="p">:</span> <span class="s1">&#39;Lmax_OPDyn.net&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;OPQUIET&#39;</span> <span class="p">:</span> <span class="s1">&#39;Lmax_OPQuiet.net&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;T01QUIET&#39;</span><span class="p">:</span> <span class="s1">&#39;Lmax_T01QUIET.net&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;T01STORM&#39;</span><span class="p">:</span> <span class="s1">&#39;Lmax_T01STORM.net&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;T05&#39;</span><span class="p">:</span> <span class="s1">&#39;Lmax_T05.net&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;T89&#39;</span><span class="p">:</span> <span class="s1">&#39;Lmax_T89.net&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;T96&#39;</span><span class="p">:</span> <span class="s1">&#39;Lmax_T96.net&#39;</span><span class="p">,</span>
+                    <span class="p">}</span>
+    <span class="n">inputdict</span> <span class="o">=</span> <span class="n">indict</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">npt</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">inputdict</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">])</span>
+    <span class="n">Lstar_out</span> <span class="o">=</span> <span class="p">{}</span> 
+    <span class="k">if</span> <span class="s1">&#39;G&#39;</span> <span class="ow">in</span> <span class="n">inputdict</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">):</span>
+            <span class="n">dum</span> <span class="o">=</span> <span class="n">inputdict</span><span class="p">[</span><span class="s1">&#39;G&#39;</span><span class="p">][</span><span class="o">...</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">dum</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="n">dum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">dum</span><span class="p">])</span>
+            <span class="n">inputdict</span><span class="p">[</span><span class="s1">&#39;G{0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span> <span class="o">=</span> <span class="n">dum</span>
+        <span class="k">del</span> <span class="n">inputdict</span><span class="p">[</span><span class="s1">&#39;G&#39;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="s1">&#39;W&#39;</span> <span class="ow">in</span> <span class="n">inputdict</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">7</span><span class="p">):</span>
+            <span class="n">dum</span> <span class="o">=</span> <span class="n">inputdict</span><span class="p">[</span><span class="s1">&#39;W&#39;</span><span class="p">][</span><span class="o">...</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">dum</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="n">dum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">dum</span><span class="p">])</span>
+            <span class="n">inputdict</span><span class="p">[</span><span class="s1">&#39;W{0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span> <span class="o">=</span> <span class="n">dum</span>
+        <span class="k">del</span> <span class="n">inputdict</span><span class="p">[</span><span class="s1">&#39;W&#39;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">extMag</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span> <span class="n">extMag</span> <span class="o">=</span> <span class="p">[</span><span class="n">extMag</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">modelkey</span> <span class="ow">in</span> <span class="n">extMag</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">domax</span><span class="p">:</span>
+            <span class="n">keylist</span> <span class="o">=</span> <span class="n">lmax_keylists</span><span class="p">[</span><span class="n">modelkey</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">keylist</span> <span class="o">=</span> <span class="n">lstar_keylists</span><span class="p">[</span><span class="n">modelkey</span><span class="p">]</span>
+        <span class="c1">#T89 checks Kp, everything else Dst</span>
+        <span class="n">specialkey</span> <span class="o">=</span> <span class="s1">&#39;Dst&#39;</span> <span class="k">if</span> <span class="s1">&#39;Dst&#39;</span> <span class="ow">in</span> <span class="n">keylist</span> <span class="k">else</span> <span class="s1">&#39;Kp&#39;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">inputdict</span><span class="p">[</span><span class="n">specialkey</span><span class="p">],</span> <span class="nb">float</span><span class="p">):</span>
+            <span class="n">arrayflag</span> <span class="o">=</span> <span class="bp">False</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">inputdict</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+                <span class="n">inputdict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">inputdict</span><span class="p">[</span><span class="n">key</span><span class="p">]]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">arrayflag</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="n">ncalc</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">inputdict</span><span class="p">[</span><span class="s1">&#39;Dst&#39;</span><span class="p">])</span>
+	
+        <span class="n">ncalc</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">inputdict</span><span class="p">[</span><span class="n">specialkey</span><span class="p">])</span>
+        <span class="n">Lstar</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">ncalc</span><span class="p">)</span>
+        <span class="n">inpar</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">keylist</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">domax</span><span class="p">:</span>
+            <span class="n">netfile</span> <span class="o">=</span> <span class="n">lmax_nets</span><span class="p">[</span><span class="n">modelkey</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">netfile</span> <span class="o">=</span> <span class="n">lstar_nets</span><span class="p">[</span><span class="n">modelkey</span><span class="p">]</span>
+        <span class="n">network</span> <span class="o">=</span> <span class="n">toolbox</span><span class="o">.</span><span class="n">loadpickle</span><span class="p">(</span><span class="n">_get_net_path</span><span class="p">(</span><span class="n">netfile</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ncalc</span><span class="p">):</span>	
+            <span class="c1"># copy over keylist into inpar</span>
+            <span class="k">for</span> <span class="n">ikey</span><span class="p">,</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">keylist</span><span class="p">):</span>
+                <span class="n">inpar</span><span class="p">[</span><span class="n">ikey</span><span class="p">]</span> <span class="o">=</span> <span class="n">inputdict</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">Lstar</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">network</span><span class="p">(</span><span class="n">inpar</span><span class="p">)</span>
+            
+        <span class="k">if</span> <span class="n">arrayflag</span> <span class="ow">is</span> <span class="bp">False</span><span class="p">:</span>
+            <span class="n">Lstar_out</span><span class="p">[</span><span class="n">modelkey</span><span class="p">]</span> <span class="o">=</span> <span class="n">Lstar</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">Lstar_out</span><span class="p">[</span><span class="n">modelkey</span><span class="p">]</span> <span class="o">=</span> <span class="n">Lstar</span>
+
+    <span class="k">return</span> <span class="n">Lstar_out</span>
+
+<span class="c1"># ------------------------------------------------</span>
+<div class="viewcode-block" id="LANLstar"><a class="viewcode-back" href="../../autosummary/spacepy.LANLstar.LANLstar.html#spacepy.LANLstar.LANLstar">[docs]</a><span class="k">def</span> <span class="nf">LANLstar</span><span class="p">(</span><span class="n">inputdict</span><span class="p">,</span> <span class="n">extMag</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate Lstar</span>
+
+<span class="sd">    Based on the L* artificial neural network (ANN) trained from </span>
+<span class="sd">    different magnetospheric field models.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+<span class="sd">    extMag : list of string(s)</span>
+<span class="sd">        containing one or more of the following external magnetic field models: </span>
+<span class="sd">        &#39;OPDYN&#39;, &#39;OPQUIET&#39;, &#39;T89&#39;, &#39;T96&#39;, &#39;T01QUIET&#39;, &#39;T01STORM&#39;, &#39;T05&#39;</span>
+<span class="sd">    </span>
+<span class="sd">    inputdict : dictionary</span>
+<span class="sd">        containing the following keys, each entry is a list or array. Note the keys for the above models are different.</span>
+
+<span class="sd">        -- For OPDYN:  </span>
+<span class="sd">          [&#39;Year&#39;, &#39;DOY&#39;, &#39;Hr&#39;, &#39;Dst&#39;, &#39;dens&#39;, &#39;velo&#39;, &#39;BzIMF&#39;, </span>
+<span class="sd">          &#39;Lm&#39;, &#39;Bmirr&#39;, &#39;PA&#39;, &#39;rGSM&#39;, &#39;latGSM&#39;, &#39;lonGSM&#39;]</span>
+
+<span class="sd">        -- For OPQUIET:</span>
+<span class="sd">          [&#39;Year&#39;, &#39;DOY&#39;, &#39;Hr&#39;, &#39;Dst&#39;, &#39;dens&#39;, &#39;velo&#39;, &#39;BzIMF&#39;, </span>
+<span class="sd">          &#39;Lm&#39;, &#39;Bmirr&#39;, &#39;PA&#39;, &#39;rGSM&#39;, &#39;latGSM&#39;, &#39;lonGSM&#39;]       </span>
+<span class="sd">        </span>
+<span class="sd">        -- For T89:</span>
+<span class="sd">          [&#39;Year&#39;, &#39;DOY&#39;, &#39;Hr&#39;, &#39;Kp&#39;, &#39;Pdyn&#39;, &#39;ByIMF&#39;, &#39;BzIMF&#39;, </span>
+<span class="sd">          &#39;Lm&#39;, &#39;Bmirr&#39;, &#39;PA&#39;, &#39;rGSM&#39;, &#39;latGSM&#39;, &#39;lonGSM&#39;]       </span>
+<span class="sd">       </span>
+<span class="sd">        -- For T96:</span>
+<span class="sd">          [&#39;Year&#39;, &#39;DOY&#39;, &#39;Hr&#39;, &#39;Dst&#39;, &#39;Pdyn&#39;, &#39;ByIMF&#39;, &#39;BzIMF&#39;, </span>
+<span class="sd">          &#39;Lm&#39;, &#39;Bmirr&#39;, &#39;PA&#39;, &#39;rGSM&#39;, &#39;latGSM&#39;, &#39;lonGSM&#39;]</span>
+<span class="sd">       </span>
+<span class="sd">        -- For T01QUIET:</span>
+<span class="sd">          [&#39;Year&#39;, &#39;DOY&#39;, &#39;Hr&#39;, &#39;Dst&#39;, &#39;Pdyn&#39;, &#39;ByIMF&#39;, &#39;BzIMF&#39;, &#39;G1&#39;, &#39;G2&#39;, </span>
+<span class="sd">          &#39;Lm&#39;, &#39;Bmirr&#39;, &#39;PA&#39;, &#39;rGSM&#39;, &#39;latGSM&#39;, &#39;lonGSM&#39;]</span>
+
+<span class="sd">        -- For T01STORM:</span>
+<span class="sd">          [&#39;Year&#39;, &#39;DOY&#39;, &#39;Hr&#39;, &#39;Dst&#39;, &#39;Pdyn&#39;, &#39;ByIMF&#39;, &#39;BzIMF&#39;, &#39;G2&#39;, &#39;G3&#39;, </span>
+<span class="sd">          &#39;Lm&#39;, &#39;Bmirr&#39;, &#39;PA&#39;, &#39;rGSM&#39;, &#39;latGSM&#39;, &#39;lonGSM&#39;]</span>
+
+<span class="sd">        -- For T05:</span>
+<span class="sd">          [&#39;Year&#39;, &#39;DOY&#39;, &#39;Hr&#39;, &#39;Dst&#39;, &#39;Pdyn&#39;, &#39;ByIMF&#39;, &#39;BzIMF&#39;, &#39;W1&#39;,&#39;W2&#39;,&#39;W3&#39;,&#39;W4&#39;,&#39;W5&#39;,&#39;W6&#39;,</span>
+<span class="sd">          &#39;Lm&#39;, &#39;Bmirr&#39;, &#39;PA&#39;, &#39;rGSM&#39;, &#39;latGSM&#39;, &#39;lonGSM&#39;]</span>
+
+<span class="sd">        -- For RAMSCB:</span>
+<span class="sd">          [&#39;Year&#39;, &#39;DOY&#39;, &#39;Hr&#39;, &#39;Dst&#39;, &#39;Pdyn&#39;, &#39;ByIMF&#39;, &#39;BzIMF&#39;, </span>
+<span class="sd">          &#39;PA&#39;, &#39;SMx&#39;,&#39;SMy&#39;,&#39;SMz&#39;]</span>
+<span class="sd">       </span>
+<span class="sd">       Dictionaries with numpy vectors are allowed.</span>
+<span class="sd">            </span>
+<span class="sd">    Returns</span>
+<span class="sd">    =======</span>
+<span class="sd">    out : dictionary</span>
+<span class="sd">        Lstar array for each key which corresponds to the specified magnetic field model.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    ========</span>
+<span class="sd">    &gt;&gt;&gt; import spacepy.LANLstar as LS</span>
+<span class="sd">    &gt;&gt;&gt;</span>
+<span class="sd">    &gt;&gt;&gt; inputdict = {}</span>
+<span class="sd">    &gt;&gt;&gt; inputdict[&#39;Kp&#39;]     = [2.7      ]            # Kp index</span>
+<span class="sd">    &gt;&gt;&gt; inputdict[&#39;Dst&#39;]    = [7.7777   ]            # Dst index (nT)</span>
+<span class="sd">    &gt;&gt;&gt; inputdict[&#39;dens&#39;]   = [4.1011   ]            # solar wind density (/cc)</span>
+<span class="sd">    &gt;&gt;&gt; inputdict[&#39;velo&#39;]   = [400.1011 ]            # solar wind velocity (km/s)</span>
+<span class="sd">    &gt;&gt;&gt; inputdict[&#39;Pdyn&#39;]   = [4.1011   ]            # solar wind dynamic pressure (nPa)</span>
+<span class="sd">    &gt;&gt;&gt; inputdict[&#39;ByIMF&#39;]  = [3.7244   ]            # GSM y component of IMF magnetic field (nT)  </span>
+<span class="sd">    &gt;&gt;&gt; inputdict[&#39;BzIMF&#39;]  = [-0.1266  ]            # GSM z component of IMF magnetic field (nT)</span>
+<span class="sd">    &gt;&gt;&gt; inputdict[&#39;G1&#39;]     = [1.029666 ]            # as defined in Tsganenko 2003 </span>
+<span class="sd">    &gt;&gt;&gt; inputdict[&#39;G2&#39;]     = [0.549334 ]</span>
+<span class="sd">    &gt;&gt;&gt; inputdict[&#39;G3&#39;]     = [0.813999 ]                </span>
+<span class="sd">    &gt;&gt;&gt; inputdict[&#39;W1&#39;]     = [0.122444 ]            # as defined in Tsyganenko and Sitnov 2005</span>
+<span class="sd">    &gt;&gt;&gt; inputdict[&#39;W2&#39;]     = [0.2514   ]                                                                                      </span>
+<span class="sd">    &gt;&gt;&gt; inputdict[&#39;W3&#39;]     = [0.0892   ]</span>
+<span class="sd">    &gt;&gt;&gt; inputdict[&#39;W4&#39;]     = [0.0478   ]</span>
+<span class="sd">    &gt;&gt;&gt; inputdict[&#39;W5&#39;]     = [0.2258   ]</span>
+<span class="sd">    &gt;&gt;&gt; inputdict[&#39;W6&#39;]     = [1.0461   ]</span>
+<span class="sd">    &gt;&gt;&gt;</span>
+<span class="sd">    &gt;&gt;&gt; inputdict[&#39;Year&#39;]   = [1996     ]</span>
+<span class="sd">    &gt;&gt;&gt; inputdict[&#39;DOY&#39;]    = [6        ]</span>
+<span class="sd">    &gt;&gt;&gt; inputdict[&#39;Hr&#39;]     = [1.2444   ]</span>
+<span class="sd">    &gt;&gt;&gt;</span>
+<span class="sd">    &gt;&gt;&gt; inputdict[&#39;Lm&#39;]     = [4.9360   ]             # McIllwain L</span>
+<span class="sd">    &gt;&gt;&gt; inputdict[&#39;Bmirr&#39;]  = [315.6202 ]             # magnetic field strength at the mirror point</span>
+<span class="sd">    &gt;&gt;&gt; inputdict[&#39;rGSM&#39;]   = [4.8341   ]             # radial coordinate in GSM [Re]</span>
+<span class="sd">    &gt;&gt;&gt; inputdict[&#39;lonGSM&#39;] = [-40.2663 ]             # longitude coodrinate in GSM [deg]</span>
+<span class="sd">    &gt;&gt;&gt; inputdict[&#39;latGSM&#39;] = [36.44696 ]             # latitude coordiante in GSM [deg]</span>
+<span class="sd">    &gt;&gt;&gt; inputdict[&#39;PA&#39;]     = [57.3874  ]             # pitch angle [deg]</span>
+<span class="sd">    &gt;&gt;&gt; inputdict[&#39;SMx&#39;]    = [3.9783   ]</span>
+<span class="sd">    &gt;&gt;&gt; inputdict[&#39;SMy&#39;]    = [-2.51335 ]</span>
+<span class="sd">    &gt;&gt;&gt; inputdict[&#39;SMz&#39;]    = [1.106617 ]</span>
+<span class="sd">    &gt;&gt;&gt; </span>
+<span class="sd">    &gt;&gt;&gt; LS.LANLstar(inputdict, [&#39;OPDYN&#39;,&#39;OPQUIET&#39;,&#39;T01QUIET&#39;,&#39;T01STORM&#39;,&#39;T89&#39;,&#39;T96&#39;,&#39;T05&#39;,&#39;RAMSCB&#39;])</span>
+<span class="sd">    {&#39;OPDYN&#39;: array([4.7171]),</span>
+<span class="sd">     &#39;OPQUIET&#39;: array([4.6673]),</span>
+<span class="sd">     &#39;T01QUIET&#39;: array([4.8427]),</span>
+<span class="sd">     &#39;T01STORM&#39;: array([4.8669]), </span>
+<span class="sd">     &#39;T89&#39;: array([4.5187]),</span>
+<span class="sd">     &#39;T96&#39;: array([4.6439]),</span>
+<span class="sd">     &#39;TS05&#39;: array([4.7174]),</span>
+<span class="sd">     &#39;RAMSCB&#39;,&#39;array([5.9609])}</span>
+<span class="sd">     &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">_LANLcommon</span><span class="p">(</span><span class="n">inputdict</span><span class="p">,</span> <span class="n">extMag</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LANLmax"><a class="viewcode-back" href="../../autosummary/spacepy.LANLstar.LANLmax.html#spacepy.LANLstar.LANLmax">[docs]</a><span class="k">def</span> <span class="nf">LANLmax</span><span class="p">(</span><span class="n">inputdict</span><span class="p">,</span> <span class="n">extMag</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate last closed drift shell (Lmax)</span>
+
+<span class="sd">    Based on the L* artificial neural network (ANN) trained from </span>
+<span class="sd">    different magnetospheric field models.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+<span class="sd">    extMag : list of string(s)</span>
+<span class="sd">        containing one or more of the following external Magnetic field models: </span>
+<span class="sd">        &#39;OPDYN&#39;, &#39;OPQUIET&#39;, &#39;T89&#39;, &#39;T96&#39;, &#39;T01QUIET&#39;, &#39;T01STORM&#39;, &#39;T05&#39;</span>
+<span class="sd">    </span>
+<span class="sd">    inputdict : dictionary</span>
+<span class="sd">        containing the following keys, each entry is a list or array. Note the keys for the above models are different.</span>
+
+<span class="sd">        -- For OPDYN:  </span>
+<span class="sd">          [&#39;Year&#39;, &#39;DOY&#39;, &#39;Hr&#39;, &#39;Dst&#39;, &#39;dens&#39;, &#39;velo&#39;, &#39;BzIMF&#39;, &#39;PA&#39;]</span>
+
+<span class="sd">        -- For OPQUIET:</span>
+<span class="sd">          [&#39;Year&#39;, &#39;DOY&#39;, &#39;Hr&#39;, &#39;Dst&#39;, &#39;dens&#39;, &#39;velo&#39;, &#39;BzIMF&#39;, &#39;PA&#39;]</span>
+
+<span class="sd">        -- For T89:</span>
+<span class="sd">          [&#39;Year&#39;, &#39;DOY&#39;, &#39;Hr&#39;, &#39;Kp&#39;, &#39;Pdyn&#39;, &#39;ByIMF&#39;, &#39;BzIMF&#39;, &#39;PA&#39;]</span>
+<span class="sd">       </span>
+<span class="sd">        -- For T96:</span>
+<span class="sd">          [&#39;Year&#39;, &#39;DOY&#39;, &#39;Hr&#39;, &#39;Dst&#39;, &#39;Pdyn&#39;, &#39;ByIMF&#39;, &#39;BzIMF&#39;,&#39;PA&#39;]</span>
+<span class="sd">       </span>
+<span class="sd">        -- For T01QUIET:</span>
+<span class="sd">          [&#39;Year&#39;, &#39;DOY&#39;, &#39;Hr&#39;, &#39;Dst&#39;, &#39;Pdyn&#39;, &#39;ByIMF&#39;, &#39;BzIMF&#39;, &#39;G1&#39;, &#39;G2&#39;,&#39;PA&#39;]</span>
+
+<span class="sd">        -- For T01STORM:</span>
+<span class="sd">          [&#39;Year&#39;, &#39;DOY&#39;, &#39;Hr&#39;, &#39;Dst&#39;, &#39;Pdyn&#39;, &#39;ByIMF&#39;, &#39;BzIMF&#39;, &#39;G2&#39;, &#39;G3&#39;, &#39;PA&#39;]</span>
+
+<span class="sd">        -- For T05:</span>
+<span class="sd">          [&#39;Year&#39;, &#39;DOY&#39;, &#39;Hr&#39;, &#39;Dst&#39;, &#39;Pdyn&#39;, &#39;ByIMF&#39;, &#39;BzIMF&#39;, &#39;W1&#39;,&#39;W2&#39;,&#39;W3&#39;,&#39;W4&#39;,&#39;W5&#39;,&#39;W6&#39;, &#39;PA&#39;]</span>
+
+<span class="sd">        Dictionaries with numpy vectors are allowed.</span>
+<span class="sd">            </span>
+<span class="sd">    Returns</span>
+<span class="sd">    =======</span>
+<span class="sd">    out : dictionary</span>
+<span class="sd">        Lmax array for each key which corresponds to the specified magnetic field model.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    ========</span>
+<span class="sd">    &gt;&gt;&gt; import spacepy.LANLstar as LS</span>
+<span class="sd">    &gt;&gt;&gt;</span>
+<span class="sd">    &gt;&gt;&gt; inputdict = {}</span>
+<span class="sd">    &gt;&gt;&gt; inputdict[&#39;Kp&#39;]     = [2.7      ]            # Kp index</span>
+<span class="sd">    &gt;&gt;&gt; inputdict[&#39;Dst&#39;]    = [7.7777   ]            # Dst index (nT)</span>
+<span class="sd">    &gt;&gt;&gt; inputdict[&#39;dens&#39;]   = [4.1011   ]            # solar wind density (/cc)</span>
+<span class="sd">    &gt;&gt;&gt; inputdict[&#39;velo&#39;]   = [400.1011 ]            # solar wind velocity (km/s)</span>
+<span class="sd">    &gt;&gt;&gt; inputdict[&#39;Pdyn&#39;]   = [4.1011   ]            # solar wind dynamic pressure (nPa)</span>
+<span class="sd">    &gt;&gt;&gt; inputdict[&#39;ByIMF&#39;]  = [3.7244   ]            # GSM y component of IMF magnetic field (nT)  </span>
+<span class="sd">    &gt;&gt;&gt; inputdict[&#39;BzIMF&#39;]  = [-0.1266  ]            # GSM z component of IMF magnetic field (nT)</span>
+<span class="sd">    &gt;&gt;&gt; inputdict[&#39;G1&#39;]     = [1.029666 ]            # as defined in Tsganenko 2003 </span>
+<span class="sd">    &gt;&gt;&gt; inputdict[&#39;G2&#39;]     = [0.549334 ]</span>
+<span class="sd">    &gt;&gt;&gt; inputdict[&#39;G3&#39;]     = [0.813999 ]                </span>
+<span class="sd">    &gt;&gt;&gt; inputdict[&#39;W1&#39;]     = [0.122444 ]            # as defined in Tsyganenko and Sitnov 2005</span>
+<span class="sd">    &gt;&gt;&gt; inputdict[&#39;W2&#39;]     = [0.2514   ]                                                                                      </span>
+<span class="sd">    &gt;&gt;&gt; inputdict[&#39;W3&#39;]     = [0.0892   ]</span>
+<span class="sd">    &gt;&gt;&gt; inputdict[&#39;W4&#39;]     = [0.0478   ]</span>
+<span class="sd">    &gt;&gt;&gt; inputdict[&#39;W5&#39;]     = [0.2258   ]</span>
+<span class="sd">    &gt;&gt;&gt; inputdict[&#39;W6&#39;]     = [1.0461   ]</span>
+<span class="sd">    &gt;&gt;&gt;</span>
+<span class="sd">    &gt;&gt;&gt; inputdict[&#39;Year&#39;]   = [1996     ]</span>
+<span class="sd">    &gt;&gt;&gt; inputdict[&#39;DOY&#39;]    = [6        ]</span>
+<span class="sd">    &gt;&gt;&gt; inputdict[&#39;Hr&#39;]     = [1.2444   ]</span>
+<span class="sd">    &gt;&gt;&gt;</span>
+<span class="sd">    &gt;&gt;&gt; inputdict[&#39;PA&#39;]     = [57.3874  ]             # pitch angle [deg]</span>
+<span class="sd">    &gt;&gt;&gt; </span>
+<span class="sd">    &gt;&gt;&gt; LS.LANLmax(inputdict, [&#39;OPDYN&#39;,&#39;OPQUIET&#39;,&#39;T01QUIET&#39;,&#39;T01STORM&#39;,&#39;T89&#39;,&#39;T96&#39;,&#39;T05&#39;])</span>
+<span class="sd">    {&#39;OPDYN&#39;: array([10.6278]),</span>
+<span class="sd">     &#39;OPQUIET&#39;: array([9.3352]),</span>
+<span class="sd">     &#39;T01QUIET&#39;: array([10.0538]),</span>
+<span class="sd">     &#39;T01STORM&#39;: array([9.9300]), </span>
+<span class="sd">     &#39;T89&#39;: array([8.2888]),</span>
+<span class="sd">     &#39;T96&#39;: array([9.2410]),</span>
+<span class="sd">     &#39;T05&#39;: array([9.9295])}</span>
+<span class="sd">     &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">_LANLcommon</span><span class="p">(</span><span class="n">inputdict</span><span class="p">,</span> <span class="n">extMag</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span></div>
+
+<span class="k">def</span> <span class="nf">addPA</span><span class="p">(</span><span class="n">indict</span><span class="p">,</span> <span class="n">PA</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Function to add pitch angle to input dictionary from, e.g., omni module</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+<span class="sd">    indict : dictionary-like</span>
+<span class="sd">        containing keys required for LANLstar and LANLmax</span>
+<span class="sd">    </span>
+<span class="sd">    PA : float</span>
+<span class="sd">        pitch angle</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    =======</span>
+<span class="sd">    out : dictionary</span>
+<span class="sd">        input dictionary with input pitch angle added as &#39;PA&#39; key having the length of other inputs</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    ========</span>
+<span class="sd">    &gt;&gt;&gt; import spacepy.LANLstar as LS</span>
+<span class="sd">    &gt;&gt;&gt;</span>
+<span class="sd">    &gt;&gt;&gt; inputdict = {}</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">ll</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">indict</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">])</span>
+    <span class="n">indict</span><span class="p">[</span><span class="s1">&#39;PA&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">PA</span><span class="p">]</span><span class="o">*</span><span class="n">ll</span>
+    <span class="k">return</span> <span class="n">indict</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../../search.html">search</a>|&nbsp;</li>
+       <li><a href="../../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2019, The SpacePy Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

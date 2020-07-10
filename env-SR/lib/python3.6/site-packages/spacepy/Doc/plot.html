@@ -1,0 +1,240 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>plot - Plot, various specialized plotting functions and associated utilities &mdash; SpacePy v0.2.1 Manual</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="_static/spacepy_favicon.ico"/>
+    <link rel="top" title="SpacePy v0.2.1 Manual" href="index.html" />
+    <link rel="next" title="spacepy.plot.add_logo" href="autosummary/spacepy.plot.add_logo.html" />
+    <link rel="prev" title="spacepy.omni.omnirange" href="autosummary/spacepy.omni.omnirange.html" /> 
+  </head>
+  <body role="document">
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="index.html"><img src="_static/spacepy_logo.jpg" border="0" alt="spacepy_logo"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="autosummary/spacepy.plot.add_logo.html" title="spacepy.plot.add_logo"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="autosummary/spacepy.omni.omnirange.html" title="spacepy.omni.omnirange"
+             accesskey="P">previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+       <li><a href="index.html">documentation </a> &raquo;</li>
+ 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="autosummary/spacepy.omni.omnirange.html"
+                        title="previous chapter">spacepy.omni.omnirange</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="autosummary/spacepy.plot.add_logo.html"
+                        title="next chapter">spacepy.plot.add_logo</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/plot.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-spacepy.plot">
+<span id="plot-plot-various-specialized-plotting-functions-and-associated-utilities"></span><h1>plot - Plot, various specialized plotting functions and associated utilities<a class="headerlink" href="#module-spacepy.plot" title="Permalink to this headline">¶</a></h1>
+<p>plot: SpacePy plotting routines</p>
+<p>This package aims to make getting publication ready plots easier.
+It provides classes and functions for different types of plot 
+(e.g. Spectrogram, levelPlot), for helping make plots more cleanly 
+(e.g. set_target, dual_half_circle), and for making plots convey 
+information more cleanly, with less effort 
+(e.g. applySmartTimeTicks, style).</p>
+<p>This plot module now provides style sheets. For most standard plotting 
+we recommend the <em>default</em> style sheet (aka <em>spacepy</em>). To auto-apply the
+default plot style the following should be added to your spacepy.rc file:</p>
+<div class="highlight-python"><div class="highlight"><pre>apply_plot_styles: True
+</pre></div>
+</div>
+<p>Different plot types may not work well with this style, so we have provided
+alternatives. For polar plots, spectrograms, or anything with larger blocks 
+of color, it may be better to use one of the alternatives:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">spacepy.plot</span> <span class="kn">as</span> <span class="nn">splot</span>
+<span class="n">splot</span><span class="o">.</span><span class="n">style</span><span class="p">(</span><span class="s1">&#39;altgrid&#39;</span><span class="p">)</span> <span class="c1"># inverts background from default so it&#39;s white</span>
+<span class="n">splot</span><span class="o">.</span><span class="n">style</span><span class="p">(</span><span class="s1">&#39;polar&#39;</span><span class="p">)</span> <span class="c1"># designed for filled polar plots</span>
+<span class="n">splot</span><span class="o">.</span><span class="n">revert_style</span><span class="p">()</span> <span class="c1"># put the style back to matplotlib defaults</span>
+</pre></div>
+</div>
+<p>For those constrained by institutional computing, we also provide the
+new colormaps developed for matplotlib v2. These colormaps are designed 
+to be perceptually uniform, and hence colorblind-friendly.</p>
+<p>Authors: Brian Larsen and Steve Morley
+Institution: Los Alamos National Laboratory
+Contact: <a class="reference external" href="mailto:balarsen&#37;&#52;&#48;lanl&#46;gov">balarsen<span>&#64;</span>lanl<span>&#46;</span>gov</a></p>
+<p>Copyright 2011-2016 Los Alamos National Security, LLC.</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="autosummary/spacepy.plot.add_logo.html#spacepy.plot.add_logo" title="spacepy.plot.add_logo"><code class="xref py py-obj docutils literal"><span class="pre">add_logo</span></code></a>(img[,&nbsp;fig,&nbsp;pos,&nbsp;margin])</td>
+<td>Add an image (logo) to one corner of a plot.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="autosummary/spacepy.plot.annotate_xaxis.html#spacepy.plot.annotate_xaxis" title="spacepy.plot.annotate_xaxis"><code class="xref py py-obj docutils literal"><span class="pre">annotate_xaxis</span></code></a>(txt[,&nbsp;ax])</td>
+<td>Write text in-line and to the right of the x-axis tick labels</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="autosummary/spacepy.plot.applySmartTimeTicks.html#spacepy.plot.applySmartTimeTicks" title="spacepy.plot.applySmartTimeTicks"><code class="xref py py-obj docutils literal"><span class="pre">applySmartTimeTicks</span></code></a>(ax,&nbsp;time[,&nbsp;dolimit,&nbsp;dolabel])</td>
+<td>Given an axis <em>ax</em> and a list/array of datetime objects, <em>time</em>, use the smartTimeTicks function to build smart time ticks and then immediately apply them to the given axis.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="autosummary/spacepy.plot.available.html#spacepy.plot.available" title="spacepy.plot.available"><code class="xref py py-obj docutils literal"><span class="pre">available</span></code></a>([returnvals])</td>
+<td>List the available plot styles provided by spacepy.plot</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="autosummary/spacepy.plot.collapse_vertical.html#spacepy.plot.collapse_vertical" title="spacepy.plot.collapse_vertical"><code class="xref py py-obj docutils literal"><span class="pre">collapse_vertical</span></code></a>(combine[,&nbsp;others,&nbsp;leave_axis])</td>
+<td>Collapse the vertical spacing between two or more subplots.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="autosummary/spacepy.plot.dual_half_circle.html#spacepy.plot.dual_half_circle" title="spacepy.plot.dual_half_circle"><code class="xref py py-obj docutils literal"><span class="pre">dual_half_circle</span></code></a>([center,&nbsp;radius,&nbsp;...])</td>
+<td>Plot two half circles to a plot with the specified face colors and rotation.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="autosummary/spacepy.plot.levelPlot.html#spacepy.plot.levelPlot" title="spacepy.plot.levelPlot"><code class="xref py py-obj docutils literal"><span class="pre">levelPlot</span></code></a>(data[,&nbsp;var,&nbsp;time,&nbsp;levels,&nbsp;target,&nbsp;...])</td>
+<td>Draw a step-plot with up to 5 levels following a color cycle (e.g.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="autosummary/spacepy.plot.plot.html#spacepy.plot.plot" title="spacepy.plot.plot"><code class="xref py py-obj docutils literal"><span class="pre">plot</span></code></a>(*args,&nbsp;**kwargs)</td>
+<td>Convenience wrapper for matplotlib&#8217;s plot function</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="autosummary/spacepy.plot.revert_style.html#spacepy.plot.revert_style" title="spacepy.plot.revert_style"><code class="xref py py-obj docutils literal"><span class="pre">revert_style</span></code></a>()</td>
+<td>Revert plot style settings to those in use prior to importing spacepy.plot</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="autosummary/spacepy.plot.set_target.html#spacepy.plot.set_target" title="spacepy.plot.set_target"><code class="xref py py-obj docutils literal"><span class="pre">set_target</span></code></a>(target[,&nbsp;figsize,&nbsp;loc,&nbsp;polar])</td>
+<td>Given a <em>target</em> on which to plot a figure, determine if that <em>target</em> is <strong>None</strong> or a matplotlib figure or axes object.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="autosummary/spacepy.plot.shared_ylabel.html#spacepy.plot.shared_ylabel" title="spacepy.plot.shared_ylabel"><code class="xref py py-obj docutils literal"><span class="pre">shared_ylabel</span></code></a>(axes,&nbsp;txt,&nbsp;*args,&nbsp;**kwargs)</td>
+<td>Create a ylabel that spans several subplots</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="autosummary/spacepy.plot.solarRotationPlot.html#spacepy.plot.solarRotationPlot" title="spacepy.plot.solarRotationPlot"><code class="xref py py-obj docutils literal"><span class="pre">solarRotationPlot</span></code></a>(ticks,&nbsp;data[,&nbsp;targ_ax,&nbsp;...])</td>
+<td>Plots a 1-D time series as a Carrington or Bartels plot</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="spectrogram.html#module-spacepy.plot.spectrogram" title="spacepy.plot.spectrogram"><code class="xref py py-obj docutils literal"><span class="pre">spectrogram</span></code></a>(data,&nbsp;**kwargs)</td>
+<td>This class rebins data to produce a 2D data map that can be plotted as a spectrogram</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="autosummary/spacepy.plot.style.html#spacepy.plot.style" title="spacepy.plot.style"><code class="xref py py-obj docutils literal"><span class="pre">style</span></code></a>([look,&nbsp;cmap])</td>
+<td>Apply SpacePy&#8217;s matplotlib style settings from a known style sheet.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="autosummary/spacepy.plot.timestamp.html#spacepy.plot.timestamp" title="spacepy.plot.timestamp"><code class="xref py py-obj docutils literal"><span class="pre">timestamp</span></code></a>([position,&nbsp;size,&nbsp;draw,&nbsp;strnow,&nbsp;...])</td>
+<td>print a timestamp on the current plot, vertical lower right</td>
+</tr>
+</tbody>
+</table>
+<p>Most of the functionality in the plot module is made available directly 
+through the <em>plot</em> namespace. However, the plot module does contain
+several submodules listed below</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">carrington</span></code></td>
+<td>Module for plotting data by Carrington or Bartels rotation</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">colourmaps</span></code></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="spectrogram.html#module-spacepy.plot.spectrogram" title="spacepy.plot.spectrogram"><code class="xref py py-obj docutils literal"><span class="pre">spectrogram</span></code></a>(data,&nbsp;**kwargs)</td>
+<td>This class rebins data to produce a 2D data map that can be plotted as a spectrogram</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">utils</span></code></td>
+<td>Utility routines for plotting and related activities</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="autosummary/spacepy.plot.add_logo.html" title="spacepy.plot.add_logo"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="autosummary/spacepy.omni.omnirange.html" title="spacepy.omni.omnirange"
+             >previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+       <li><a href="index.html">documentation </a> &raquo;</li>
+ 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2019, The SpacePy Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

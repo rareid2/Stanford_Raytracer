@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>spacepy.datamodel.resample &mdash; SpacePy v0.2.1 Manual</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="../_static/spacepy_favicon.ico"/>
+    <link rel="top" title="SpacePy v0.2.1 Manual" href="../index.html" />
+    <link rel="up" title="datamodel - easy to use general data model" href="../datamodel.html" />
+    <link rel="next" title="spacepy.datamodel.writeJSONMetadata" href="spacepy.datamodel.writeJSONMetadata.html" />
+    <link rel="prev" title="spacepy.datamodel.readJSONheadedASCII" href="spacepy.datamodel.readJSONheadedASCII.html" /> 
+  </head>
+  <body role="document">
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../index.html"><img src="../_static/spacepy_logo.jpg" border="0" alt="spacepy_logo"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="spacepy.datamodel.writeJSONMetadata.html" title="spacepy.datamodel.writeJSONMetadata"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="spacepy.datamodel.readJSONheadedASCII.html" title="spacepy.datamodel.readJSONheadedASCII"
+             accesskey="P">previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+       <li><a href="../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../datamodel.html" accesskey="U">datamodel - easy to use general data model</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="spacepy.datamodel.readJSONheadedASCII.html"
+                        title="previous chapter">spacepy.datamodel.readJSONheadedASCII</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="spacepy.datamodel.writeJSONMetadata.html"
+                        title="next chapter">spacepy.datamodel.writeJSONMetadata</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/autosummary/spacepy.datamodel.resample.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="spacepy-datamodel-resample">
+<h1>spacepy.datamodel.resample<a class="headerlink" href="#spacepy-datamodel-resample" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="spacepy.datamodel.resample">
+<code class="descclassname">spacepy.datamodel.</code><code class="descname">resample</code><span class="sig-paren">(</span><em>data</em>, <em>time=[]</em>, <em>winsize=0</em>, <em>overlap=0</em>, <em>st_time=None</em>, <em>outtimename='Epoch'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/datamodel.html#resample"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.datamodel.resample" title="Permalink to this definition">¶</a></dt>
+<dd><p>resample a SpaceData to a new time interval</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>data</strong> : SpaceData or dmarray</p>
+<blockquote>
+<div><p>SpaceData with data to resample or dmarray with data to resample,
+variables can only be 1d or 2d, if time is specified only variables
+the same length as time are resampled, otherwise only variables
+with length equal to the longest length are resampled</p>
+</div></blockquote>
+<p><strong>time</strong> : array-like</p>
+<blockquote>
+<div><p>dmarray of times the correspond to the data</p>
+</div></blockquote>
+<p><strong>winsize</strong> : datetime.timedelta</p>
+<blockquote>
+<div><p>Time frame to average the data over</p>
+</div></blockquote>
+<p><strong>overlap</strong> : datetime.timedelta</p>
+<blockquote>
+<div><p>Overlap in the moving average</p>
+</div></blockquote>
+<p><strong>st_time</strong> : datetime.datetime</p>
+<blockquote>
+<div><p>Starting time for the resample, if not specified the time of the first
+data point is used (see spacepy.toolbox.windowMean)</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>ans</strong> : SpaceData</p>
+<blockquote class="last">
+<div><p>Resampled data, included keys are in the input keys (with the data caveats above)
+and Epoch which contains the output time</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">datetime</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">spacepy.datamodel</span> <span class="kn">as</span> <span class="nn">dm</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">SpaceData</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;foo&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;bar&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">dmarray</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">dmarray</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span> <span class="o">+</span> <span class="mi">4</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">dmarray</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span> <span class="o">+</span> <span class="mi">10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">times</span> <span class="o">=</span> <span class="p">[</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2010</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">out</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">times</span><span class="p">,</span> <span class="n">winsize</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span> <span class="n">overlap</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">out</span><span class="o">.</span><span class="n">tree</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="go"># +</span>
+<span class="go"># :|____foo (str [3])</span>
+<span class="go"># |____Epoch (spacepy.datamodel.dmarray (4,))</span>
+<span class="go"># |____a (spacepy.datamodel.dmarray (4, 2))</span>
+<span class="go"># :|____DEPEND_0 (str [5])</span>
+<span class="go">#</span>
+<span class="go"># Things to note:</span>
+<span class="go">#    - attributes are preserved</span>
+<span class="go">#    - the output variables have their DEPEND_0 changed to Epoch (or outtimename)</span>
+<span class="go">#    - each dimension of a 2d array is resampled individually </span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="spacepy.datamodel.writeJSONMetadata.html" title="spacepy.datamodel.writeJSONMetadata"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="spacepy.datamodel.readJSONheadedASCII.html" title="spacepy.datamodel.readJSONheadedASCII"
+             >previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+       <li><a href="../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../datamodel.html" >datamodel - easy to use general data model</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2019, The SpacePy Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>spacepy.toolbox.bootHisto &mdash; SpacePy v0.2.1 Manual</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="../_static/spacepy_favicon.ico"/>
+    <link rel="top" title="SpacePy v0.2.1 Manual" href="../index.html" />
+    <link rel="up" title="toolbox - Toolbox of various functions and generic utilities" href="../toolbox.html" />
+    <link rel="next" title="spacepy.toolbox.dictree" href="spacepy.toolbox.dictree.html" />
+    <link rel="prev" title="spacepy.toolbox.assemble" href="spacepy.toolbox.assemble.html" /> 
+  </head>
+  <body role="document">
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../index.html"><img src="../_static/spacepy_logo.jpg" border="0" alt="spacepy_logo"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="spacepy.toolbox.dictree.html" title="spacepy.toolbox.dictree"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="spacepy.toolbox.assemble.html" title="spacepy.toolbox.assemble"
+             accesskey="P">previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+       <li><a href="../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../toolbox.html" accesskey="U">toolbox - Toolbox of various functions and generic utilities</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="spacepy.toolbox.assemble.html"
+                        title="previous chapter">spacepy.toolbox.assemble</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="spacepy.toolbox.dictree.html"
+                        title="next chapter">spacepy.toolbox.dictree</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/autosummary/spacepy.toolbox.bootHisto.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="spacepy-toolbox-boothisto">
+<h1>spacepy.toolbox.bootHisto<a class="headerlink" href="#spacepy-toolbox-boothisto" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="spacepy.toolbox.bootHisto">
+<code class="descclassname">spacepy.toolbox.</code><code class="descname">bootHisto</code><span class="sig-paren">(</span><em>data</em>, <em>inter=90.0</em>, <em>n=1000</em>, <em>seed=None</em>, <em>plot=False</em>, <em>target=None</em>, <em>figsize=None</em>, <em>loc=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/toolbox.html#bootHisto"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.toolbox.bootHisto" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bootstrap confidence intervals for a histogram.</p>
+<p>All other keyword arguments are passed to <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.histogram.html#numpy.histogram" title="(in NumPy v1.17)"><code class="xref py py-func docutils literal"><span class="pre">numpy.histogram()</span></code></a>
+or <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.bar.html#matplotlib.pyplot.bar" title="(in Matplotlib v3.1.1)"><code class="xref py py-func docutils literal"><span class="pre">matplotlib.pyplot.bar()</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>data</strong> : array_like</p>
+<blockquote>
+<div><p>list/array of data values</p>
+</div></blockquote>
+<p><strong>inter</strong> : float (optional; default 90)</p>
+<blockquote>
+<div><p>percentage confidence interval to return. Default 90% (i.e.
+lower CI will be 5% and upper will be 95%)</p>
+</div></blockquote>
+<p><strong>n</strong> : int (optional; default 100)</p>
+<blockquote>
+<div><p>number of bootstrap iterations</p>
+</div></blockquote>
+<p><strong>seed</strong> : int (optional)</p>
+<blockquote>
+<div><p>Optional seed for the random number generator. If not
+specified; numpy generator will not be reseeded.</p>
+</div></blockquote>
+<p><strong>plot</strong> : bool (optional)</p>
+<blockquote>
+<div><p>Plot the result. Plots if True or <code class="docutils literal"><span class="pre">target</span></code>, <code class="docutils literal"><span class="pre">figsize</span></code>,
+or <code class="docutils literal"><span class="pre">loc</span></code> specified.</p>
+</div></blockquote>
+<p><strong>target</strong> : (optional)</p>
+<blockquote>
+<div><p>Target on which to plot the figure (figure or axes). See
+<code class="xref py py-func docutils literal"><span class="pre">spacepy.plot.utils.set_target()</span></code> for details.</p>
+</div></blockquote>
+<p><strong>figsize</strong> : tuple (optional)</p>
+<blockquote>
+<div><p>Passed to <code class="xref py py-func docutils literal"><span class="pre">spacepy.plot.utils.set_target()</span></code>.</p>
+</div></blockquote>
+<p><strong>loc</strong> : int (optional)</p>
+<blockquote>
+<div><p>Passed to <code class="xref py py-func docutils literal"><span class="pre">spacepy.plot.utils.set_target()</span></code>.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>out</strong> : tuple</p>
+<blockquote class="last">
+<div><p>tuple of bin_edges, low, high, sample[, bars]. Where
+<code class="docutils literal"><span class="pre">bin_edges</span></code> is the edges of the bins used; <code class="docutils literal"><span class="pre">low</span></code> is the
+histogram with the value for each bin from the bottom of that
+bin&#8217;s confidence interval; <code class="docutils literal"><span class="pre">high</span></code> similarly for the top;
+<code class="docutils literal"><span class="pre">sample</span></code> is the histogram of the input sample without
+resampling. If plotting, also returned is <code class="docutils literal"><span class="pre">bars</span></code>, the
+container object returned from matplotlib.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="spacepy.toolbox.binHisto.html#spacepy.toolbox.binHisto" title="spacepy.toolbox.binHisto"><code class="xref py py-obj docutils literal"><span class="pre">binHisto</span></code></a>, <code class="xref py py-obj docutils literal"><span class="pre">plot.utils.set_target</span></code>, <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.histogram.html#numpy.histogram" title="(in NumPy v1.17)"><code class="xref py py-obj docutils literal"><span class="pre">numpy.histogram</span></code></a>, <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.hist.html#matplotlib.pyplot.hist" title="(in Matplotlib v3.1.1)"><code class="xref py py-obj docutils literal"><span class="pre">matplotlib.pyplot.hist</span></code></a></p>
+</div>
+<p class="rubric">Notes</p>
+<p>The confidence intervals are calculated for each bin individually and thus
+the resulting low/high histograms may not have actually occurred in the
+calculation from the surrogates. If using a probability density histogram,
+this can have &#8220;interesting&#8221; implications for interpretation.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy.random</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">spacepy.toolbox</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bin_edges</span><span class="p">,</span> <span class="n">ci_low</span><span class="p">,</span> <span class="n">ci_high</span><span class="p">,</span> <span class="n">sample</span><span class="p">,</span> <span class="n">bars</span> <span class="o">=</span> <span class="n">spacepy</span><span class="o">.</span><span class="n">toolbox</span><span class="o">.</span><span class="n">bootHisto</span><span class="p">(</span>
+<span class="go">        data, plot=True)</span>
+</pre></div>
+</div>
+<p>(<a class="reference external" href="../autosummary/spacepy-toolbox-bootHisto-1.py">Source code</a>, <a class="reference external" href="../autosummary/spacepy-toolbox-bootHisto-1.png">png</a>, <a class="reference external" href="../autosummary/spacepy-toolbox-bootHisto-1.hires.png">hires.png</a>, <a class="reference external" href="../autosummary/spacepy-toolbox-bootHisto-1.pdf">pdf</a>)</p>
+<div class="figure">
+<img alt="../_images/spacepy-toolbox-bootHisto-1.png" src="../_images/spacepy-toolbox-bootHisto-1.png" />
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="spacepy.toolbox.dictree.html" title="spacepy.toolbox.dictree"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="spacepy.toolbox.assemble.html" title="spacepy.toolbox.assemble"
+             >previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+       <li><a href="../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../toolbox.html" >toolbox - Toolbox of various functions and generic utilities</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2019, The SpacePy Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

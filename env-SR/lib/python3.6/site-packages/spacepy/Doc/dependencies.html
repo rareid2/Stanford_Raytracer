@@ -1,0 +1,284 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>SpacePy Dependencies &mdash; SpacePy v0.2.1 Manual</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="_static/spacepy_favicon.ico"/>
+    <link rel="top" title="SpacePy v0.2.1 Manual" href="index.html" />
+    <link rel="up" title="Installing SpacePy" href="install.html" />
+    <link rel="next" title="Linux Installation" href="install_linux.html" />
+    <link rel="prev" title="Installing SpacePy" href="install.html" /> 
+  </head>
+  <body role="document">
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="index.html"><img src="_static/spacepy_logo.jpg" border="0" alt="spacepy_logo"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="install_linux.html" title="Linux Installation"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="install.html" title="Installing SpacePy"
+             accesskey="P">previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+       <li><a href="index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="install.html" accesskey="U">Installing SpacePy</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">SpacePy Dependencies</a><ul>
+<li><a class="reference internal" href="#hard-dependencies">Hard Dependencies</a><ul>
+<li><a class="reference internal" href="#python-2-6">Python 2.6+</a></li>
+<li><a class="reference internal" href="#numpy-1-4">NumPy 1.4+</a></li>
+<li><a class="reference internal" href="#dateutil">dateutil</a></li>
+<li><a class="reference internal" href="#c-compiler">C compiler</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#soft-dependencies">Soft Dependencies</a><ul>
+<li><a class="reference internal" href="#scipy">SciPy</a></li>
+<li><a class="reference internal" href="#matplotlib">matplotlib</a></li>
+<li><a class="reference internal" href="#ffnet">ffnet</a></li>
+<li><a class="reference internal" href="#networkx">networkx</a></li>
+<li><a class="reference internal" href="#h5py">h5py</a></li>
+<li><a class="reference internal" href="#cdf">CDF</a></li>
+<li><a class="reference internal" href="#fortran-compiler">Fortran compiler</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="install.html"
+                        title="previous chapter">Installing SpacePy</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="install_linux.html"
+                        title="next chapter">Linux Installation</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/dependencies.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="spacepy-dependencies">
+<h1>SpacePy Dependencies<a class="headerlink" href="#spacepy-dependencies" title="Permalink to this headline">¶</a></h1>
+<p>SpacePy relies on several other pieces of software for complete
+functionality.  <a class="reference internal" href="install.html"><em>Installing SpacePy</em></a> links to details on
+installing the required software for each platform.</p>
+<p>Unless otherwise noted, a dependency may be installed <em>after</em>
+SpacePy, and the new functionality will be available the next
+time SpacePy is imported.</p>
+<div class="section" id="hard-dependencies">
+<h2>Hard Dependencies<a class="headerlink" href="#hard-dependencies" title="Permalink to this headline">¶</a></h2>
+<p>Without these packages installed, SpacePy will not function.</p>
+<div class="section" id="python-2-6">
+<h3>Python 2.6+<a class="headerlink" href="#python-2-6" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://www.python.org/">Python</a> is the core language for SpacePy.
+Python 2.6 or later is required. SpacePy works under Python 3, but
+Python 2 is still recommended for most users.  <em>Python 3 is not simply
+a &#8220;newer&#8221; Python 2; there are substantial differences in the
+language</em>. See <a class="reference external" href="http://wiki.python.org/moin/Python2orPython3">Should I use Python 2 or Python 3?</a>.</p>
+<p>Required to install SpacePy.</p>
+</div>
+<div class="section" id="numpy-1-4">
+<h3>NumPy 1.4+<a class="headerlink" href="#numpy-1-4" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://numpy.scipy.org/">NumPy</a> provides the
+high-performance array data structure used throughout SpacePy. Version
+1.4 or later is required; 1.6 or later recommended.</p>
+<p>Required to install SpacePy. f2py is part of NumPy, but is sometimes
+packaged separately; it is required (at installation time) if
+<a class="reference internal" href="irbempy.html#module-spacepy.irbempy" title="spacepy.irbempy"><code class="xref py py-mod docutils literal"><span class="pre">irbempy</span></code></a> is to be used.</p>
+</div>
+<div class="section" id="dateutil">
+<h3>dateutil<a class="headerlink" href="#dateutil" title="Permalink to this headline">¶</a></h3>
+<p>If you choose not to install <a class="reference internal" href="#dependencies-mpl"><span>matplotlib</span></a>,
+<a class="reference external" href="http://labix.org/python-dateutil">dateutil</a> is required.
+(Installing matplotlib will fulfill this dependency.)</p>
+</div>
+<div class="section" id="c-compiler">
+<h3>C compiler<a class="headerlink" href="#c-compiler" title="Permalink to this headline">¶</a></h3>
+<p>If you are installing SpacePy from source, a working C compiler
+is required. (Not necessary for the Windows binary installer.)</p>
+</div>
+</div>
+<div class="section" id="soft-dependencies">
+<h2>Soft Dependencies<a class="headerlink" href="#soft-dependencies" title="Permalink to this headline">¶</a></h2>
+<p>Without these packages, SpacePy will install, but certain features may
+not be available. Usually an ImportError means a dependency is missing.</p>
+<p>These are simply marked as dependencies in SpacePy metadata and thus
+will be automatically installed when using dependency-resolving
+methods such as pip.</p>
+<div class="section" id="scipy">
+<h3>SciPy<a class="headerlink" href="#scipy" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://www.scipy.org/">SciPy</a> provides several useful scientific
+and numerical functions build on top of NumPy.  It is highly
+recommended. Version 0.7.0 or later should suffice. The following
+modules may have limited functionality without SciPy:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="empiricals.html#module-spacepy.empiricals" title="spacepy.empiricals"><code class="xref py py-mod docutils literal"><span class="pre">empiricals</span></code></a></li>
+<li><a class="reference internal" href="seapy.html#module-spacepy.seapy" title="spacepy.seapy"><code class="xref py py-mod docutils literal"><span class="pre">seapy</span></code></a></li>
+<li><a class="reference internal" href="toolbox.html#module-spacepy.toolbox" title="spacepy.toolbox"><code class="xref py py-mod docutils literal"><span class="pre">toolbox</span></code></a></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="matplotlib">
+<span id="dependencies-mpl"></span><h3>matplotlib<a class="headerlink" href="#matplotlib" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://matplotlib.sourceforge.net/">matplotlib</a> is the preferred
+plotting package for Python. It is highly recommended. Without it, you
+will not be able to effectively visualize data, and the following
+modules may have limited functionality:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="data_assimilation.html#module-spacepy.data_assimilation" title="spacepy.data_assimilation"><code class="xref py py-mod docutils literal"><span class="pre">data_assimilation</span></code></a></li>
+<li><a class="reference internal" href="plot.html#module-spacepy.plot" title="spacepy.plot"><code class="xref py py-mod docutils literal"><span class="pre">plot</span></code></a></li>
+<li><a class="reference internal" href="poppy.html#module-spacepy.poppy" title="spacepy.poppy"><code class="xref py py-mod docutils literal"><span class="pre">poppy</span></code></a></li>
+<li><a class="reference internal" href="pybats.html#module-spacepy.pybats" title="spacepy.pybats"><code class="xref py py-mod docutils literal"><span class="pre">pybats</span></code></a></li>
+<li><a class="reference internal" href="radbelt.html#module-spacepy.radbelt" title="spacepy.radbelt"><code class="xref py py-mod docutils literal"><span class="pre">radbelt</span></code></a></li>
+<li><a class="reference internal" href="time.html#module-spacepy.time" title="spacepy.time"><code class="xref py py-mod docutils literal"><span class="pre">time</span></code></a></li>
+<li><a class="reference internal" href="toolbox.html#module-spacepy.toolbox" title="spacepy.toolbox"><code class="xref py py-mod docutils literal"><span class="pre">toolbox</span></code></a></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="ffnet">
+<h3>ffnet<a class="headerlink" href="#ffnet" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://ffnet.sourceforge.net/">ffnet</a> is a neural network package,
+required for <a class="reference internal" href="lanlstar.html#module-spacepy.LANLstar" title="spacepy.LANLstar"><code class="xref py py-mod docutils literal"><span class="pre">LANLstar</span></code></a>. The latest release of ffnet
+at this writing, 0.7.1, does not support Python 3. We have submitted
+patches for Python 3 support and they have been integrated into SVN
+as of r364, so they should be in the next version. In the meantime,
+users who require Python 3 support will need to install ffnet from
+a <a class="reference external" href="http://sourceforge.net/p/ffnet/code/HEAD/tree/">subversion checkout</a>.</p>
+</div>
+<div class="section" id="networkx">
+<h3>networkx<a class="headerlink" href="#networkx" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://networkx.lanl.gov/">networkx</a> is a requirement for ffnet,
+and thus <a class="reference internal" href="lanlstar.html#module-spacepy.LANLstar" title="spacepy.LANLstar"><code class="xref py py-mod docutils literal"><span class="pre">LANLstar</span></code></a>.</p>
+</div>
+<div class="section" id="h5py">
+<h3>h5py<a class="headerlink" href="#h5py" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://code.google.com/p/h5py/">h5py</a> provides a Python interface to
+HDF5 files. It is required for the HDF import/export capability of
+<a class="reference internal" href="datamodel.html#module-spacepy.datamodel" title="spacepy.datamodel"><code class="xref py py-mod docutils literal"><span class="pre">datamodel</span></code></a> and for use of the <a class="reference internal" href="omni.html#module-spacepy.omni" title="spacepy.omni"><code class="xref py py-mod docutils literal"><span class="pre">omni</span></code></a> module.</p>
+</div>
+<div class="section" id="cdf">
+<h3>CDF<a class="headerlink" href="#cdf" title="Permalink to this headline">¶</a></h3>
+<p>NASA&#8217;s <a class="reference external" href="http://cdf.gsfc.nasa.gov/">CDF</a> library provides access to
+Common Data Format files. It is required for <a class="reference internal" href="pycdf.html#module-spacepy.pycdf" title="spacepy.pycdf"><code class="xref py py-mod docutils literal"><span class="pre">pycdf</span></code></a>,
+and thus for the CDF import/export capability of
+<a class="reference internal" href="datamodel.html#module-spacepy.datamodel" title="spacepy.datamodel"><code class="xref py py-mod docutils literal"><span class="pre">datamodel</span></code></a>.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Unlike the Python-based dependencies, the CDF library must be
+installed if pycdf support is needed; it will not be automatically
+installed.</p>
+</div>
+</div>
+<div class="section" id="fortran-compiler">
+<h3>Fortran compiler<a class="headerlink" href="#fortran-compiler" title="Permalink to this headline">¶</a></h3>
+<p>If installing from source, <a class="reference internal" href="irbempy.html#module-spacepy.irbempy" title="spacepy.irbempy"><code class="xref py py-mod docutils literal"><span class="pre">irbempy</span></code></a> requires a Fortran
+compiler. (This is not required for the Windows binary installer).
+Supported compilers are the GNU compiler <code class="docutils literal"><span class="pre">gfortran</span></code>, the older GNU
+compiler <code class="docutils literal"><span class="pre">g77</span></code>, and the Portland Group PGI compiler.</p>
+<p>If <a class="reference internal" href="irbempy.html#module-spacepy.irbempy" title="spacepy.irbempy"><code class="xref py py-mod docutils literal"><span class="pre">irbempy</span></code></a> is to be used, the Fortran compiler (and
+f2py) must be installed before SpacePy.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="install_linux.html" title="Linux Installation"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="install.html" title="Installing SpacePy"
+             >previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+       <li><a href="index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="install.html" >Installing SpacePy</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2019, The SpacePy Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

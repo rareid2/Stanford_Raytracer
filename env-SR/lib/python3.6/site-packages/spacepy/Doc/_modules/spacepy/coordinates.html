@@ -1,0 +1,499 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>spacepy.coordinates &mdash; SpacePy v0.2.1 Manual</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="../../_static/spacepy_favicon.ico"/>
+    <link rel="top" title="SpacePy v0.2.1 Manual" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+  </head>
+  <body role="document">
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../../index.html"><img src="../../_static/spacepy_logo.jpg" border="0" alt="spacepy_logo"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../../search.html">search</a>|&nbsp;</li>
+       <li><a href="../../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/logo.png" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for spacepy.coordinates</h1><div class="highlight"><pre>
+<span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Implementation of Coords class functions for coordinate transformations</span>
+
+<span class="sd">Authors: Josef Koller and Steven Morley</span>
+<span class="sd">Institution: Los ALamos National Laboratory</span>
+<span class="sd">Contact: smorley@lanl.gov</span>
+
+<span class="sd">Copyright 2010 Los Alamos National Security, LLC.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">spacepy</span> <span class="kn">import</span> <span class="n">help</span>
+<span class="kn">import</span> <span class="nn">spacepy</span>
+
+<span class="n">__contact__</span> <span class="o">=</span> <span class="s1">&#39;Steven Morley, smorley@lanl.gov&#39;</span>
+
+<span class="c1"># -----------------------------------------------</span>
+<span class="c1"># space coordinate class</span>
+<span class="c1"># -----------------------------------------------</span>
+<div class="viewcode-block" id="Coords"><a class="viewcode-back" href="../../autosummary/spacepy.coordinates.Coords.html#spacepy.coordinates.Coords">[docs]</a><span class="k">class</span> <span class="nc">Coords</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    a = Coords( data, dtype, carsph, [units, ticks] )</span>
+
+<span class="sd">    A class holding spatial coordinates in Cartesian/spherical</span>
+<span class="sd">    in units of Re and degrees</span>
+
+<span class="sd">    Coordinate transforms are based on the IRBEM library; `its manual</span>
+<span class="sd">    &lt;http://svn.code.sf.net/p/irbem/code/trunk/manual/user_guide.html&gt;`_</span>
+<span class="sd">    may prove useful. For a good reference on heliospheric and magnetospheric</span>
+<span class="sd">    coordinate systems, see Franz &amp; Harper, &quot;Heliospheric Coordinate Systems&quot;,</span>
+<span class="sd">    Planet. Space Sci., 50, pp 217-233, 2002</span>
+<span class="sd">    (https://doi.org/10.1016/S0032-0633(01)00119-2).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+<span class="sd">    data : list or ndarray, dim = (n,3)</span>
+<span class="sd">        coordinate points [X,Y,Z] or [rad, lat, lon]</span>
+<span class="sd">    dtype : string</span>
+<span class="sd">        coordinate system; possible values are:</span>
+
+<span class="sd">        * **GDZ** (Geodetic; WGS84),</span>
+<span class="sd">        * **GEO** (Geographic Coordinate System),</span>
+<span class="sd">        * **GSM** (Geocentric Solar Magnetospheric),</span>
+<span class="sd">        * **GSE** (Geocentric Solar Ecliptic),</span>
+<span class="sd">        * **SM** (Solar Magnetic),</span>
+<span class="sd">        * **GEI** (Geocentric Equatorial Inertial; True-of-Date),</span>
+<span class="sd">        * **MAG** (Geomagnetic Coordinate System),</span>
+<span class="sd">        * **SPH** (Spherical Coordinate System),</span>
+<span class="sd">        * **RLL** (Radius, Latitude, Longitude; Geodetic)</span>
+
+<span class="sd">    carsph : string</span>
+<span class="sd">        Cartesian or spherical, &#39;car&#39; or &#39;sph&#39;</span>
+<span class="sd">    units : list of strings, optional</span>
+<span class="sd">        standard are  [&#39;Re&#39;, &#39;Re&#39;, &#39;Re&#39;] or [&#39;Re&#39;, &#39;deg&#39;, &#39;deg&#39;] depending on the carsph content</span>
+<span class="sd">    ticks : Ticktock instance, optional</span>
+<span class="sd">        used for coordinate transformations (see a.convert)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    =======</span>
+<span class="sd">    out : Coords instance</span>
+<span class="sd">        instance with a.data, a.carsph, etc.</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    ========</span>
+<span class="sd">    spacepy.time.Ticktock</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    ========</span>
+<span class="sd">    &gt;&gt;&gt; from spacepy import coordinates as coord</span>
+<span class="sd">    &gt;&gt;&gt; cvals = coord.Coords([[1,2,4],[1,2,2]], &#39;GEO&#39;, &#39;car&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; cvals.x  # returns all x coordinates</span>
+<span class="sd">    array([1, 1])</span>
+<span class="sd">    &gt;&gt;&gt; from spacepy.time import Ticktock</span>
+<span class="sd">    &gt;&gt;&gt; cvals.ticks = Ticktock([&#39;2002-02-02T12:00:00&#39;, &#39;2002-02-02T12:00:00&#39;], &#39;ISO&#39;) # add ticks</span>
+<span class="sd">    &gt;&gt;&gt; newcoord = cvals.convert(&#39;GSM&#39;, &#39;sph&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; newcoord</span>
+
+<span class="sd">    .. currentmodule:: spacepy.coordinates</span>
+<span class="sd">    .. autosummary::</span>
+<span class="sd">        ~Coords.append</span>
+<span class="sd">        ~Coords.convert</span>
+<span class="sd">    .. automethod:: append</span>
+<span class="sd">    .. automethod:: convert</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">carsph</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">ticks</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+
+        <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">irbempy</span> <span class="k">as</span> <span class="n">op</span>
+        <span class="kn">from</span> <span class="nn">spacepy.irbempy</span> <span class="kn">import</span> <span class="n">SYSAXES_TYPES</span> <span class="k">as</span> <span class="n">typedict</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">)):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">data</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+        <span class="k">assert</span> <span class="n">dtype</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">typedict</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="s1">&#39;This dtype=&#39;</span><span class="o">+</span><span class="n">dtype</span><span class="o">+</span><span class="s1">&#39; is not supported. Only &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">typedict</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+        <span class="k">assert</span> <span class="n">carsph</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;car&#39;</span><span class="p">,</span><span class="s1">&#39;sph&#39;</span><span class="p">],</span> <span class="s1">&#39;This carsph=&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">carsph</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39; is not supported. Only &quot;car&quot; or &quot;sph&quot;&#39;</span>
+        <span class="n">onerawarn</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Coordinate conversion to an ONERA-compatible system is required for any ONERA calls.&quot;&quot;&quot;</span>
+
+        <span class="c1"># add ticks</span>
+        <span class="k">if</span> <span class="n">ticks</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">ticks</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">),</span> <span class="s1">&#39;Ticktock dimensions seem off&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ticks</span> <span class="o">=</span> <span class="n">ticks</span>
+
+        <span class="c1"># GEO,sph and SPH,sph are the same</span>
+        <span class="k">if</span> <span class="n">dtype</span> <span class="o">==</span> <span class="s1">&#39;GEO&#39;</span> <span class="ow">and</span> <span class="n">carsph</span> <span class="o">==</span> <span class="s1">&#39;sph&#39;</span><span class="p">:</span>
+            <span class="n">dtype</span> <span class="o">=</span> <span class="s1">&#39;SPH&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sysaxes</span> <span class="o">=</span> <span class="n">typedict</span><span class="p">[</span><span class="n">dtype</span><span class="p">][</span><span class="n">carsph</span><span class="p">]</span>
+
+        <span class="c1">#if self.sysaxes &gt;= 10 and self.sysaxes &lt; 20: #need sph2car</span>
+        <span class="c1">#    try:</span>
+        <span class="c1">#        self.data = op.sph2car(self.data)</span>
+        <span class="c1">#        self.sysaxes -= 10</span>
+        <span class="c1">#    except:</span>
+        <span class="c1">#        print onerawarn</span>
+        <span class="c1">#        self.sysaxes = None</span>
+        <span class="c1">#if self.sysaxes &gt;= 20: #need car2sph</span>
+        <span class="c1">#    try:</span>
+        <span class="c1">#        self.data = op.car2sph(self.data)</span>
+        <span class="c1">#        self.sysaxes -= 20</span>
+        <span class="c1">#    except:</span>
+        <span class="c1">#        print onerawarn</span>
+        <span class="c1">#        self.sysaxes = None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">dtype</span> <span class="o">=</span> <span class="n">dtype</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">carsph</span> <span class="o">=</span> <span class="n">carsph</span>
+        <span class="c1"># setup units</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Re</span> <span class="o">=</span> <span class="mf">6371000.0</span> <span class="c1">#metres</span>
+        <span class="k">if</span> <span class="n">units</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">carsph</span> <span class="o">==</span> <span class="s1">&#39;car&#39;</span><span class="p">:</span>
+            <span class="c1"># use standard units</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Re&#39;</span><span class="p">,</span> <span class="s1">&#39;Re&#39;</span><span class="p">,</span> <span class="s1">&#39;Re&#39;</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="n">units</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">carsph</span> <span class="o">==</span> <span class="s1">&#39;sph&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Re&#39;</span><span class="p">,</span> <span class="s1">&#39;deg&#39;</span><span class="p">,</span> <span class="s1">&#39;deg&#39;</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="n">units</span>
+        <span class="k">if</span> <span class="n">dtype</span> <span class="o">==</span> <span class="s1">&#39;GDZ&#39;</span> <span class="ow">and</span> <span class="n">carsph</span> <span class="o">==</span> <span class="s1">&#39;sph&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;km&#39;</span><span class="p">,</span> <span class="s1">&#39;deg&#39;</span><span class="p">,</span> <span class="s1">&#39;deg&#39;</span><span class="p">]</span>
+        <span class="c1"># setup x,y,z etc</span>
+        <span class="k">if</span> <span class="n">carsph</span> <span class="o">==</span> <span class="s1">&#39;car&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">spacepy</span><span class="o">.</span><span class="n">datamodel</span><span class="o">.</span><span class="n">dmcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">spacepy</span><span class="o">.</span><span class="n">datamodel</span><span class="o">.</span><span class="n">dmcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">=</span> <span class="n">spacepy</span><span class="o">.</span><span class="n">datamodel</span><span class="o">.</span><span class="n">dmcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">radi</span> <span class="o">=</span> <span class="n">spacepy</span><span class="o">.</span><span class="n">datamodel</span><span class="o">.</span><span class="n">dmcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">lati</span> <span class="o">=</span> <span class="n">spacepy</span><span class="o">.</span><span class="n">datamodel</span><span class="o">.</span><span class="n">dmcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">long</span> <span class="o">=</span> <span class="n">spacepy</span><span class="o">.</span><span class="n">datamodel</span><span class="o">.</span><span class="n">dmcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">])</span>
+        <span class="c1">## setup list for onera compatibility</span>
+        <span class="c1">#self.sysaxes = op.get_sysaxes(dtype, carsph)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">None</span>
+
+    <span class="c1"># -----------------------------------------------</span>
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        a.__str__() or a</span>
+
+<span class="sd">        Will be called when printing Coords instance a</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        ========</span>
+<span class="sd">        out : string</span>
+<span class="sd">            string represenation of the instance</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        ========</span>
+<span class="sd">        &gt;&gt;&gt; from spacepy.coordinates import Coords</span>
+<span class="sd">        &gt;&gt;&gt; y = Coords([[1,2,4],[1,2,2]], &#39;GEO&#39;, &#39;car&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; y</span>
+<span class="sd">        Coords( [[1 2 4]</span>
+<span class="sd">         [1 2 2]] ), dtype=GEO,car, units=[&#39;Re&#39;, &#39;Re&#39;, &#39;Re&#39;]</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">rstr</span> <span class="o">=</span> <span class="s2">&quot;Coords( {0} , &#39;{1}&#39;, &#39;{2}&#39;)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">carsph</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">rstr</span>
+    <span class="n">__repr__</span> <span class="o">=</span> <span class="n">__str__</span>
+
+    <span class="c1"># -----------------------------------------------</span>
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        a.__getitem__(idx) or a[idx]</span>
+
+<span class="sd">        Will be called when requesting items in this instance</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ==========</span>
+<span class="sd">        idx : int</span>
+<span class="sd">            integer numbers as index</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        =======</span>
+<span class="sd">        out : numpy array</span>
+<span class="sd">            new values</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        ========</span>
+<span class="sd">        &gt;&gt;&gt; from spacepy.coordinates import Coords</span>
+<span class="sd">        &gt;&gt;&gt; y = Coords([[1,2,4],[1,2,2]], &#39;GEO&#39;, &#39;car&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; y[0]</span>
+<span class="sd">        Coords( [[1 2 4]] ), dtype=GEO,car, units=[&#39;Re&#39;, &#39;Re&#39;, &#39;Re&#39;]</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">t_select</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ticks</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ticks</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">ticks</span>
+
+        <span class="k">return</span> <span class="n">Coords</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">carsph</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">units</span><span class="p">,</span> <span class="n">t_select</span><span class="p">)</span>
+
+    <span class="c1"># -----------------------------------------------</span>
+    <span class="k">def</span> <span class="nf">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">,</span> <span class="n">vals</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        a.__setitem__(idx, vals) or a[idx] = vals</span>
+
+<span class="sd">        Will be called setting items in this instance</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ==========</span>
+<span class="sd">        idx : int</span>
+<span class="sd">            integer numbers as index</span>
+<span class="sd">        vals : numpy array or list</span>
+<span class="sd">            new values</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        ========</span>
+<span class="sd">        &gt;&gt;&gt; from spacepy.coordinates import Coords</span>
+<span class="sd">        &gt;&gt;&gt; y = Coords([[1,2,4],[1,2,2]], &#39;GEO&#39;, &#39;car&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; y[1] = [9,9,9]</span>
+<span class="sd">        &gt;&gt;&gt; y</span>
+<span class="sd">        Coords( [[1 2 4]</span>
+<span class="sd">            [9 9 9]] ), dtype=GEO,car, units=[&#39;Re&#39;, &#39;Re&#39;, &#39;Re&#39;]</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">vals</span>
+        <span class="k">return</span>
+
+    <span class="c1"># -----------------------------------------------</span>
+    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        a.__len__() or len(a)</span>
+
+<span class="sd">        Will be called when requesting the length, i.e. number of items</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        ========</span>
+<span class="sd">        out : int</span>
+<span class="sd">            length</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        ========</span>
+<span class="sd">        &gt;&gt;&gt; from spacepy.coordinates import Coords</span>
+<span class="sd">        &gt;&gt;&gt; y = Coords([[1,2,4],[1,2,2]], &#39;GEO&#39;, &#39;car&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; len(y)</span>
+<span class="sd">        2</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)):</span>
+            <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">1</span>
+        <span class="k">return</span>
+
+    <span class="c1"># -----------------------------------------------</span>
+<div class="viewcode-block" id="Coords.convert"><a class="viewcode-back" href="../../autosummary/spacepy.coordinates.Coords.html#spacepy.coordinates.Coords.convert">[docs]</a>    <span class="k">def</span> <span class="nf">convert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">returntype</span><span class="p">,</span> <span class="n">returncarsph</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Create a new Coords instance with new coordinate types</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ==========</span>
+<span class="sd">        returntype : string</span>
+<span class="sd">            coordinate system, possible are GDZ, GEO, GSM, GSE, SM, GEI, MAG, SPH, RLL</span>
+<span class="sd">        returncarsph : string</span>
+<span class="sd">            coordinate type, possible &#39;car&#39; for Cartesian and &#39;sph&#39; for spherical</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        =======</span>
+<span class="sd">        out : Coords object</span>
+<span class="sd">            Coords object in the new coordinate system</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        ========</span>
+<span class="sd">        &gt;&gt;&gt; from spacepy.coordinates import Coords</span>
+<span class="sd">        &gt;&gt;&gt; y = Coords([[1,2,4],[1,2,2]], &#39;GEO&#39;, &#39;car&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; from spacepy.time import Ticktock</span>
+<span class="sd">        &gt;&gt;&gt; y.ticks = Ticktock([&#39;2002-02-02T12:00:00&#39;, &#39;2002-02-02T12:00:00&#39;], &#39;ISO&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; x = y.convert(&#39;SM&#39;,&#39;car&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; x</span>
+<span class="sd">        Coords( [[ 0.81134097  2.6493305   3.6500375 ]</span>
+<span class="sd">         [ 0.92060408  2.30678864  1.68262126]] ), dtype=SM,car, units=[&#39;Re&#39;, &#39;Re&#39;, &#39;Re&#39;]</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">irbempy</span> <span class="k">as</span> <span class="n">op</span>
+        <span class="kn">from</span> <span class="nn">spacepy.irbempy</span> <span class="kn">import</span> <span class="n">SYSAXES_TYPES</span> <span class="k">as</span> <span class="n">typedict</span>
+
+        <span class="c1">#check return type/system is supported</span>
+        <span class="c1">#if not (typedict[returntype][returncarsph]):</span>
+        <span class="c1">#    raise NotImplementedError(&#39;System {0} is not supported in {1} coordinates&#39;.format(returntype, returncarsph))</span>
+
+        <span class="c1"># no change necessary</span>
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="n">returntype</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">carsph</span> <span class="o">==</span> <span class="n">returncarsph</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span>
+
+        <span class="c1"># only car2sph or sph2car is needed</span>
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="n">returntype</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">carsph</span> <span class="o">!=</span> <span class="n">returncarsph</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">returncarsph</span> <span class="o">==</span> <span class="s1">&#39;car&#39;</span><span class="p">:</span>
+                <span class="n">carsph</span> <span class="o">=</span> <span class="s1">&#39;car&#39;</span>
+                <span class="n">units</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">units</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">*</span><span class="mi">3</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">sph2car</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">carsph</span> <span class="o">=</span> <span class="s1">&#39;sph&#39;</span>
+                <span class="n">units</span> <span class="o">=</span>  <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">units</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;deg&#39;</span><span class="p">,</span><span class="s1">&#39;deg&#39;</span><span class="p">]</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">car2sph</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">Coords</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">carsph</span><span class="p">,</span> <span class="n">units</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ticks</span><span class="p">)</span>
+
+        <span class="c1"># check the length of ticks and do the more complex conversions</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ticks</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ticks</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">),</span> <span class="s1">&#39;Ticktock dimension does not match Coords dimensions&#39;</span>
+
+        <span class="c1"># check if car2sph is needed first for oneralib compatibility</span>
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sysaxes</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">)</span> <span class="p">:</span> <span class="c1"># a car2sph or sph2car is needed</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">carsph</span> <span class="o">==</span> <span class="s1">&#39;sph&#39;</span><span class="p">:</span>
+                <span class="n">carsph</span> <span class="o">=</span> <span class="s1">&#39;car&#39;</span>
+                <span class="n">units</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">units</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">*</span><span class="mi">3</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">sph2car</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">carsph</span> <span class="o">=</span> <span class="s1">&#39;sph&#39;</span>
+                <span class="n">units</span> <span class="o">=</span>  <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">units</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;deg&#39;</span><span class="p">,</span><span class="s1">&#39;deg&#39;</span><span class="p">]</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">car2sph</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span>
+            <span class="n">units</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">units</span>
+            <span class="n">carsph</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">carsph</span>
+
+        <span class="n">NewCoords</span> <span class="o">=</span> <span class="n">Coords</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">carsph</span><span class="p">,</span> <span class="n">units</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ticks</span><span class="p">)</span>
+
+        <span class="c1"># now convert to other coordinate system</span>
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dtype</span> <span class="o">!=</span> <span class="n">returntype</span><span class="p">)</span> <span class="p">:</span>
+            <span class="k">assert</span> <span class="n">NewCoords</span><span class="o">.</span><span class="n">ticks</span><span class="p">,</span> <span class="s2">&quot;Time information required; add a.ticks attribute&quot;</span>
+            <span class="n">NewCoords</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">coord_trans</span><span class="p">(</span> <span class="n">NewCoords</span><span class="p">,</span> <span class="n">returntype</span><span class="p">,</span> <span class="n">returncarsph</span><span class="p">)</span>
+            <span class="n">NewCoords</span><span class="o">.</span><span class="n">dtype</span> <span class="o">=</span> <span class="n">returntype</span>
+            <span class="n">NewCoords</span><span class="o">.</span><span class="n">carsph</span> <span class="o">=</span> <span class="n">returncarsph</span>
+            <span class="n">NewCoords</span><span class="o">.</span><span class="n">sysaxes</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">get_sysaxes</span><span class="p">(</span><span class="n">returntype</span><span class="p">,</span> <span class="n">returncarsph</span><span class="p">)</span>
+
+        <span class="c1"># fix corresponding attributes</span>
+        <span class="k">if</span> <span class="n">returncarsph</span> <span class="o">==</span> <span class="s1">&#39;sph&#39;</span><span class="p">:</span>
+            <span class="n">NewCoords</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="p">[</span><span class="n">units</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;deg&#39;</span><span class="p">,</span><span class="s1">&#39;deg&#39;</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">):</span>
+                <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">NewCoords</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+                    <span class="nb">delattr</span><span class="p">(</span><span class="n">NewCoords</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+            <span class="n">NewCoords</span><span class="o">.</span><span class="n">radi</span> <span class="o">=</span> <span class="n">NewCoords</span><span class="o">.</span><span class="n">data</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">NewCoords</span><span class="o">.</span><span class="n">lati</span> <span class="o">=</span> <span class="n">NewCoords</span><span class="o">.</span><span class="n">data</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">NewCoords</span><span class="o">.</span><span class="n">long</span> <span class="o">=</span> <span class="n">NewCoords</span><span class="o">.</span><span class="n">data</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span> <span class="c1"># &#39;car&#39;</span>
+            <span class="n">NewCoords</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span>  <span class="p">[</span><span class="n">units</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">*</span><span class="mi">3</span>
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;radi&#39;</span><span class="p">,</span> <span class="s1">&#39;lati&#39;</span><span class="p">,</span> <span class="s1">&#39;long&#39;</span><span class="p">):</span>
+                <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">NewCoords</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+                    <span class="nb">delattr</span><span class="p">(</span><span class="n">NewCoords</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+            <span class="n">NewCoords</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">NewCoords</span><span class="o">.</span><span class="n">data</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">NewCoords</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">NewCoords</span><span class="o">.</span><span class="n">data</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">NewCoords</span><span class="o">.</span><span class="n">z</span> <span class="o">=</span> <span class="n">NewCoords</span><span class="o">.</span><span class="n">data</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">NewCoords</span></div>
+
+    <span class="c1"># -----------------------------------------------</span>
+    <span class="k">def</span> <span class="nf">__getstate__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Is called when pickling</span>
+<span class="sd">        See Also http://docs.python.org/library/pickle.html</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">odict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="c1"># copy the dict since we change it</span>
+        <span class="k">return</span> <span class="n">odict</span>
+
+    <span class="k">def</span> <span class="nf">__setstate__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Is called when unpickling</span>
+<span class="sd">        See Also http://docs.python.org/library/pickle.html</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">dict</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="c1"># -----------------------------------------------</span>
+<div class="viewcode-block" id="Coords.append"><a class="viewcode-back" href="../../autosummary/spacepy.coordinates.Coords.html#spacepy.coordinates.Coords.append">[docs]</a>    <span class="k">def</span> <span class="nf">append</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Append another Coords instance to the current one</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ==========</span>
+<span class="sd">        other : Coords instance</span>
+<span class="sd">            Coords instance to append</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        ========</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">otherdata</span> <span class="o">=</span> <span class="n">other</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">carsph</span><span class="p">)</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">otherdata</span><span class="o">.</span><span class="n">data</span><span class="p">))</span>
+        <span class="n">newobj</span> <span class="o">=</span> <span class="n">Coords</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">carsph</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">carsph</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">newobj</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../../search.html">search</a>|&nbsp;</li>
+       <li><a href="../../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2019, The SpacePy Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

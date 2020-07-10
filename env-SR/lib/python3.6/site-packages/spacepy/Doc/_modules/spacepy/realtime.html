@@ -1,0 +1,259 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>spacepy.realtime &mdash; SpacePy v0.2.1 Manual</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="../../_static/spacepy_favicon.ico"/>
+    <link rel="top" title="SpacePy v0.2.1 Manual" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+  </head>
+  <body role="document">
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../../index.html"><img src="../../_static/spacepy_logo.jpg" border="0" alt="spacepy_logo"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../../search.html">search</a>|&nbsp;</li>
+       <li><a href="../../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/logo.png" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for spacepy.realtime</h1><div class="highlight"><pre>
+<span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">The realtime module fetches realtime data and forecasts from other sites</span>
+
+<span class="sd">Authors: Josef Koller</span>
+
+<span class="sd">Institution: Los Alamos National Laboratory</span>
+
+<span class="sd">Contact: jkoller@lanl.gov</span>
+
+<span class="sd">Copyright 2012 Los Alamos National Security, LLC.</span>
+
+
+<span class="sd">About realtime</span>
+<span class="sd">--------------</span>
+
+<span class="sd">bla bla</span>
+
+<span class="sd">Examples</span>
+<span class="sd">--------</span>
+
+<span class="sd">badf asdfasdf asdf</span>
+
+<span class="sd">    &gt;&gt;&gt; import spacepy.realtime as rt</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">__contact__</span> <span class="o">=</span> <span class="s1">&#39;Josef Koller, jkoller@lanl.gov&#39;</span>
+
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">urllib2</span> <span class="kn">as</span> <span class="nn">u</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">urllib.request</span> <span class="kn">as</span> <span class="nn">u</span>
+
+<span class="kn">import</span> <span class="nn">spacepy.datamodel</span> <span class="kn">as</span> <span class="nn">dm</span>
+<span class="kn">import</span> <span class="nn">dateutil.parser</span> <span class="kn">as</span> <span class="nn">dup</span>
+
+
+
+<span class="c1"># -------------------------------------</span>
+<div class="viewcode-block" id="now"><a class="viewcode-back" href="../../autosummary/spacepy.realtime.now.html#spacepy.realtime.now">[docs]</a><span class="k">def</span> <span class="nf">now</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return the current values for the parameters</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    out : datamodel.SpaceData</span>
+<span class="sd">        A SpaceData containing the current values of the indices</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">raise</span><span class="p">(</span><span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;Not yet implemented (nudge nudge)&#39;</span><span class="p">))</span></div>
+
+
+<span class="c1"># -------------------------------------	</span>
+<div class="viewcode-block" id="nextForecast"><a class="viewcode-back" href="../../autosummary/spacepy.realtime.nextForecast.html#spacepy.realtime.nextForecast">[docs]</a><span class="k">def</span> <span class="nf">nextForecast</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return only the next value</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    out : datamodel.SpaceData</span>
+<span class="sd">        A SpaceData containing the next forcast for the indices</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">dd</span> <span class="o">=</span> <span class="n">forecast</span><span class="p">()</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">SpaceData</span><span class="p">()</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">attrs</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">attrs</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;forecast_hours&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;AE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">dd</span><span class="p">[</span><span class="s1">&#39;AE_1hr&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">dd</span><span class="p">[</span><span class="s1">&#39;AE_3hr&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Kp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">dd</span><span class="p">[</span><span class="s1">&#39;Kp_1hr&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">dd</span><span class="p">[</span><span class="s1">&#39;Kp_3hr&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Dst&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">dd</span><span class="p">[</span><span class="s1">&#39;Dst_1hr&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">dd</span><span class="p">[</span><span class="s1">&#39;Dst_3hr&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Calc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">dd</span><span class="p">[</span><span class="s1">&#39;Calc_1hr&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">dd</span><span class="p">[</span><span class="s1">&#39;Calc_3hr&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Epoch&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">dd</span><span class="p">[</span><span class="s1">&#39;Epoch_1hr&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">dd</span><span class="p">[</span><span class="s1">&#39;Epoch_3hr&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+    <span class="k">return</span> <span class="n">data</span></div>
+
+
+<span class="k">def</span> <span class="nf">_parseRICE</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">hours</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    parse the data read form the Rice website</span>
+<span class="sd">    </span>
+<span class="sd">    .. warning: This is an internal function do not call directly</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : list</span>
+<span class="sd">        data from the Rice website</span>
+<span class="sd">    hours : str</span>
+<span class="sd">        the forecast hours, used int h dict keys</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    out : datamodel.SpaceData</span>
+<span class="sd">        datemnodel object of the parsed data</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">dd</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">SpaceData</span><span class="p">()</span>
+    <span class="c1"># strip the newlines</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">val</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">data</span><span class="p">]</span>
+    <span class="n">header</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># grab the header</span>
+    <span class="n">header</span> <span class="o">=</span> <span class="n">header</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">4</span><span class="p">:]</span>
+    <span class="n">units</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">header</span><span class="p">):</span>
+        <span class="k">if</span> <span class="s1">&#39;(&#39;</span> <span class="ow">in</span> <span class="n">val</span><span class="p">:</span>
+            <span class="n">val</span> <span class="o">=</span> <span class="n">val</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;(&#39;</span><span class="p">)</span>
+            <span class="n">units</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">val</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;)&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">header</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">units</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">dmarray</span><span class="p">([</span><span class="n">val</span><span class="o">.</span><span class="n">split</span><span class="p">()</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
+    <span class="n">times</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">dmarray</span><span class="p">([</span><span class="n">dup</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s1">&#39;{0}{1:02d}{2:02d}T{3:04d}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">val</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">int</span><span class="p">(</span><span class="n">val</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">val</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">val</span><span class="p">[</span><span class="mi">3</span><span class="p">])))</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">]])</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">dmarray</span><span class="p">(</span><span class="n">data</span><span class="p">[:,</span><span class="mi">4</span><span class="p">:],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">unit</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">header</span><span class="p">,</span> <span class="n">units</span><span class="p">)):</span>
+        <span class="n">dd</span><span class="p">[</span><span class="n">key</span><span class="o">+</span><span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="n">hours</span> <span class="o">+</span> <span class="s1">&#39;hr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">dmarray</span><span class="p">(</span><span class="n">data</span><span class="p">[:,</span><span class="n">i</span><span class="p">],</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;units&#39;</span><span class="p">:</span><span class="n">unit</span><span class="p">})</span>
+    <span class="n">dd</span><span class="p">[</span><span class="s1">&#39;Calc_&#39;</span> <span class="o">+</span> <span class="n">hours</span> <span class="o">+</span> <span class="s1">&#39;hr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">times</span>
+    <span class="n">dd</span><span class="p">[</span><span class="s1">&#39;Epoch_&#39;</span> <span class="o">+</span> <span class="n">hours</span> <span class="o">+</span> <span class="s1">&#39;hr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dd</span><span class="p">[</span><span class="s1">&#39;Calc_&#39;</span> <span class="o">+</span> <span class="n">hours</span> <span class="o">+</span> <span class="s1">&#39;hr&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">hours</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">dd</span>
+
+
+<div class="viewcode-block" id="forecast"><a class="viewcode-back" href="../../autosummary/spacepy.realtime.forecast.html#spacepy.realtime.forecast">[docs]</a><span class="k">def</span> <span class="nf">forecast</span><span class="p">():</span>
+    <span class="n">RICE_URL_1_last</span> <span class="o">=</span> <span class="s1">&#39;http://mms.rice.edu/realtime/Predictions_1.last&#39;</span>
+    <span class="n">RICE_URL_3_last</span> <span class="o">=</span> <span class="s1">&#39;http://mms.rice.edu/realtime/Predictions_3.last&#39;</span>
+    <span class="n">RICE_Boyle_all</span> <span class="o">=</span> <span class="s1">&#39;http://mms.rice.edu/realtime/File1.txt&#39;</span>
+    <span class="n">RICE_1hr_Kp_Dst</span> <span class="o">=</span> <span class="s1">&#39;http://mms.rice.edu/realtime/File2.txt&#39;</span>
+    <span class="n">RICE_3hr_Kp_Dst</span> <span class="o">=</span> <span class="s1">&#39;http://mms.rice.edu/realtime/File3.txt&#39;</span>
+
+    <span class="c1"># grab all the 1 hour data</span>
+    <span class="n">hr1</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">RICE_1hr_Kp_Dst</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">hr1</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+    <span class="n">hr1</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">dd1</span> <span class="o">=</span> <span class="n">_parseRICE</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">)</span>
+
+    <span class="c1"># grab all the 3 hour data</span>
+    <span class="n">hr3</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">RICE_3hr_Kp_Dst</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">hr3</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+    <span class="n">hr3</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">dd3</span> <span class="o">=</span> <span class="n">_parseRICE</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">)</span>
+
+    <span class="n">dd</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">SpaceData</span><span class="p">()</span>
+    <span class="n">dd</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;URL_1hr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">RICE_1hr_Kp_Dst</span>
+    <span class="n">dd</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;URL_3hr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">RICE_3hr_Kp_Dst</span>
+    <span class="n">dd</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;retrive_time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+    
+    <span class="k">for</span> <span class="n">key1</span><span class="p">,</span> <span class="n">key3</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">dd1</span><span class="p">,</span> <span class="n">dd3</span><span class="p">):</span>
+        <span class="n">dd</span><span class="p">[</span><span class="n">key1</span><span class="p">]</span> <span class="o">=</span> <span class="n">dd1</span><span class="p">[</span><span class="n">key1</span><span class="p">]</span>
+        <span class="n">dd</span><span class="p">[</span><span class="n">key3</span><span class="p">]</span> <span class="o">=</span> <span class="n">dd3</span><span class="p">[</span><span class="n">key3</span><span class="p">]</span>
+            
+    <span class="k">return</span> <span class="n">dd</span></div>
+  
+
+
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../../search.html">search</a>|&nbsp;</li>
+       <li><a href="../../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2019, The SpacePy Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

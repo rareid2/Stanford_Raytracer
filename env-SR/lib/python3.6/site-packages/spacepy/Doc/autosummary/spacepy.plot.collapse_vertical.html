@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>spacepy.plot.collapse_vertical &mdash; SpacePy v0.2.1 Manual</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="../_static/spacepy_favicon.ico"/>
+    <link rel="top" title="SpacePy v0.2.1 Manual" href="../index.html" />
+    <link rel="up" title="plot - Plot, various specialized plotting functions and associated utilities" href="../plot.html" />
+    <link rel="next" title="spacepy.plot.dual_half_circle" href="spacepy.plot.dual_half_circle.html" />
+    <link rel="prev" title="spacepy.plot.available" href="spacepy.plot.available.html" /> 
+  </head>
+  <body role="document">
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../index.html"><img src="../_static/spacepy_logo.jpg" border="0" alt="spacepy_logo"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="spacepy.plot.dual_half_circle.html" title="spacepy.plot.dual_half_circle"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="spacepy.plot.available.html" title="spacepy.plot.available"
+             accesskey="P">previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+       <li><a href="../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../plot.html" accesskey="U">plot - Plot, various specialized plotting functions and associated utilities</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="spacepy.plot.available.html"
+                        title="previous chapter">spacepy.plot.available</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="spacepy.plot.dual_half_circle.html"
+                        title="next chapter">spacepy.plot.dual_half_circle</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/autosummary/spacepy.plot.collapse_vertical.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="spacepy-plot-collapse-vertical">
+<h1>spacepy.plot.collapse_vertical<a class="headerlink" href="#spacepy-plot-collapse-vertical" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="spacepy.plot.collapse_vertical">
+<code class="descclassname">spacepy.plot.</code><code class="descname">collapse_vertical</code><span class="sig-paren">(</span><em>combine</em>, <em>others=()</em>, <em>leave_axis=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/plot/utils.html#collapse_vertical"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.plot.collapse_vertical" title="Permalink to this definition">¶</a></dt>
+<dd><p>Collapse the vertical spacing between two or more subplots.</p>
+<p>Useful for a multi-panel plot where most subplots should have
+space between them but several adjacent ones should not (i.e.,
+appear as a single plot.) This function will remove all the
+vertical space between the subplots listed in <code class="docutils literal"><span class="pre">combine</span></code> and
+redistribute the space between all of the subplots in both
+<code class="docutils literal"><span class="pre">combine</span></code> and <code class="docutils literal"><span class="pre">others</span></code> in proportion to their current size,
+so that the relative size of the subplots does not change.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>combine</strong> : sequence</p>
+<blockquote>
+<div><p>The <a class="reference external" href="https://matplotlib.org/api/axes_api.html#matplotlib.axes.Axes" title="(in Matplotlib v3.1.1)"><code class="xref py py-class docutils literal"><span class="pre">Axes</span></code></a> objects (i.e. subplots)
+which should be placed together with no vertical space.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Other Parameters:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><p class="first"><strong>others</strong> : sequence</p>
+<blockquote>
+<div><p>The <a class="reference external" href="https://matplotlib.org/api/axes_api.html#matplotlib.axes.Axes" title="(in Matplotlib v3.1.1)"><code class="xref py py-class docutils literal"><span class="pre">Axes</span></code></a> objects (i.e. subplots)
+which will keep their vertical spacing, but will be expanded
+with the space taken away from between the elements of <code class="docutils literal"><span class="pre">combine</span></code>.</p>
+</div></blockquote>
+<p><strong>leave_axis</strong> : bool</p>
+<blockquote class="last">
+<div><p>If set to true, will leave the axis lines and tick marks between
+the collapsed subplots. By default, the axis line (&#8220;spine&#8221;) is
+removed so the two subplots appear as one.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>This function can be fairly fragile and should only be used for fairly
+simple layouts, e.g., a one-column multi-row plot stack.</p>
+<p>This may require some clean-up of the y axis labels, as they are likely
+to overlap.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">spacepy.plot.utils</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#Make three stacked subplots</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ax0</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">311</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">312</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">313</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ax0</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span> <span class="c1">#just make some lines</span>
+<span class="go">[&lt;matplotlib.lines.Line2D object at 0x0000000&gt;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="go">[&lt;matplotlib.lines.Line2D object at 0x0000000&gt;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="go">[&lt;matplotlib.lines.Line2D object at 0x0000000&gt;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#Collapse space between top two plots, leave bottom one alone</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">spacepy</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">collapse_vertical</span><span class="p">([</span><span class="n">ax0</span><span class="p">,</span> <span class="n">ax1</span><span class="p">],</span> <span class="p">[</span><span class="n">ax2</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>(<a class="reference external" href="../autosummary/spacepy-plot-collapse_vertical-1.py">Source code</a>, <a class="reference external" href="../autosummary/spacepy-plot-collapse_vertical-1.png">png</a>, <a class="reference external" href="../autosummary/spacepy-plot-collapse_vertical-1.hires.png">hires.png</a>, <a class="reference external" href="../autosummary/spacepy-plot-collapse_vertical-1.pdf">pdf</a>)</p>
+<div class="figure">
+<img alt="../_images/spacepy-plot-collapse_vertical-1.png" src="../_images/spacepy-plot-collapse_vertical-1.png" />
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="spacepy.plot.dual_half_circle.html" title="spacepy.plot.dual_half_circle"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="spacepy.plot.available.html" title="spacepy.plot.available"
+             >previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+       <li><a href="../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../plot.html" >plot - Plot, various specialized plotting functions and associated utilities</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2019, The SpacePy Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

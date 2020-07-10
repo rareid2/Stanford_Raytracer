@@ -1,0 +1,290 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>PyBats - SWMF &amp; BATS-R-US Analysis Tools &mdash; SpacePy v0.2.1 Manual</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="_static/spacepy_favicon.ico"/>
+    <link rel="top" title="SpacePy v0.2.1 Manual" href="index.html" />
+    <link rel="next" title="spacepy.pybats.bats" href="autosummary/spacepy.pybats.bats.html" />
+    <link rel="prev" title="spacepy.poppy.value_percentile" href="autosummary/spacepy.poppy.value_percentile.html" /> 
+  </head>
+  <body role="document">
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="index.html"><img src="_static/spacepy_logo.jpg" border="0" alt="spacepy_logo"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="autosummary/spacepy.pybats.bats.html" title="spacepy.pybats.bats"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="autosummary/spacepy.poppy.value_percentile.html" title="spacepy.poppy.value_percentile"
+             accesskey="P">previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+       <li><a href="index.html">documentation </a> &raquo;</li>
+ 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">PyBats - SWMF &amp; BATS-R-US Analysis Tools</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#organization">Organization</a></li>
+<li><a class="reference internal" href="#conventions-and-prefixes">Conventions and Prefixes</a></li>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#top-level-classes-functions">Top-Level Classes &amp; Functions</a><ul>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="autosummary/spacepy.poppy.value_percentile.html"
+                        title="previous chapter">spacepy.poppy.value_percentile</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="autosummary/spacepy.pybats.bats.html"
+                        title="next chapter">spacepy.pybats.bats</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/pybats.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-spacepy.pybats">
+<span id="pybats-swmf-bats-r-us-analysis-tools"></span><h1>PyBats - SWMF &amp; BATS-R-US Analysis Tools<a class="headerlink" href="#module-spacepy.pybats" title="Permalink to this headline">¶</a></h1>
+<p>PyBats!  An open source Python-based interface for reading, manipulating,
+and visualizing BATS-R-US and SWMF output.
+For more information on the SWMF, please visit the
+<a class="reference external" href="http://csem.engin.umich.edu">Center for Space Environment Modeling</a>.</p>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>At its most fundamental level, PyBats provides access to output files written
+by the Space Weather Modeling Framework and the codes contained within.  
+The key task performed by PyBats is loading simulation data into a Spacepy
+data model object so that the user can move on to the important tasks of 
+analyzing and visualizing the values.  The secondary goal of PyBats is to make
+common tasks performed with these data as easy as possible.  The result is that
+most SWMF output can be opened and visualized using only a few lines of code.
+Many complicated tasks, such as field line integration, is included as well.</p>
+</div>
+<div class="section" id="organization">
+<h2>Organization<a class="headerlink" href="#organization" title="Permalink to this headline">¶</a></h2>
+<p>Many output files in the SWMF share a common format.  Objects to handle broad
+formats like these are found in the base module.  The base module has classes
+to handle SWMF <em>input</em> files, as well.</p>
+<p>The rest of the classes are organized by code, i.e. classes and functions 
+specifically relevant to BATS-R-US can be found in 
+<a class="reference internal" href="autosummary/spacepy.pybats.bats.html#module-spacepy.pybats.bats" title="spacepy.pybats.bats"><code class="xref py py-mod docutils literal"><span class="pre">spacepy.pybats.bats</span></code></a>.  Whenever a certain code included in the SWMF
+requires a independent class or a subclass from the PyBats base module, it
+will receive its own submodule.</p>
+</div>
+<div class="section" id="conventions-and-prefixes">
+<h2>Conventions and Prefixes<a class="headerlink" href="#conventions-and-prefixes" title="Permalink to this headline">¶</a></h2>
+<p>Nearly every class in PyBats inherits from <a class="reference internal" href="autosummary/spacepy.datamodel.SpaceData.html#spacepy.datamodel.SpaceData" title="spacepy.datamodel.SpaceData"><code class="xref py py-class docutils literal"><span class="pre">spacepy.datamodel.SpaceData</span></code></a>,
+so it is important for users to understand how to employ and explore SpaceData
+objects.  There are a few exceptions, so always pay close attention to the
+docstrings and examples.  Legacy code that does not adhere to this pattern is
+slowly being brought up-to-date with each release.</p>
+<p>Visualization methods have two prefixes: <em>plot_</em> and <em>add_</em>.  Whenever a method
+begins with <em>plot_</em>, a quick-look product will be created that is not highly-
+configurable.  These methods are meant to yeild either simple
+diagnostic plots or static, often-used products.  There are few methods that use
+this prefix.  The prefix <em>add_</em> is always followed by <em>plot_type</em>; it indicates
+a plotting method that is highly configurable and meant to be combined with
+other <em>add_</em>-like methods and matplotlib commands.</p>
+<p>Common calculations, such as calculating Alfven wave speeds of MHD results,
+are strewn about PyBats&#8217; classes.  They are always given the method prefix
+<em>calc_</em>, i.e. <em>calc_alfven</em>.  Methods called <em>calc_all</em> will search for all
+class methods with the <em>calc_</em> prefix and call them.</p>
+<p>Copyright ©2010 Los Alamos National Security, LLC.</p>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+<p>There are submodules for most models included within the SWMF.  The classes
+and methods contained within are code-specific, yielding power and
+convenience at the cost of flexibility.  A few of the submodules are helper
+modules- they are not code specific, but rather provide functionality not
+related to an SWMF-included code.</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="autosummary/spacepy.pybats.bats.html#module-spacepy.pybats.bats" title="spacepy.pybats.bats"><code class="xref py py-obj docutils literal"><span class="pre">bats</span></code></a></td>
+<td>A PyBats module for handling input, output, and visualization of  binary SWMF output files taylored to BATS-R-US-type data.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="autosummary/spacepy.pybats.dgcpm.html#module-spacepy.pybats.dgcpm" title="spacepy.pybats.dgcpm"><code class="xref py py-obj docutils literal"><span class="pre">dgcpm</span></code></a></td>
+<td>The PyBats submodule for handling input and output for the Dynamic Global Core Plasma Model (DGCPM), a plasmasphere module of the SWMF.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="autosummary/spacepy.pybats.dipole.html#module-spacepy.pybats.dipole" title="spacepy.pybats.dipole"><code class="xref py py-obj docutils literal"><span class="pre">dipole</span></code></a></td>
+<td>Some functions for the generation of a dipole field.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="autosummary/spacepy.pybats.gitm.html#module-spacepy.pybats.gitm" title="spacepy.pybats.gitm"><code class="xref py py-obj docutils literal"><span class="pre">gitm</span></code></a></td>
+<td>PyBats submodule for handling input/output for the Global  Ionosphere-Thermosphere Model (GITM), one of the choices for the UA module in the SWMF.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="autosummary/spacepy.pybats.kyoto.html#module-spacepy.pybats.kyoto" title="spacepy.pybats.kyoto"><code class="xref py py-obj docutils literal"><span class="pre">kyoto</span></code></a></td>
+<td>kyoto is a tool set for obtaining and handling geomagnetic indices stored at the</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="autosummary/spacepy.pybats.pwom.html#module-spacepy.pybats.pwom" title="spacepy.pybats.pwom"><code class="xref py py-obj docutils literal"><span class="pre">pwom</span></code></a></td>
+<td>PyBats submodule for handling input/output for the Polar Wind Outflow Model (PWOM), one of the choices for the PW module in the SWMF.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="autosummary/spacepy.pybats.ram.html#module-spacepy.pybats.ram" title="spacepy.pybats.ram"><code class="xref py py-obj docutils literal"><span class="pre">ram</span></code></a></td>
+<td>A module for reading, handling, and plotting RAM-SCB output.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="autosummary/spacepy.pybats.rim.html#module-spacepy.pybats.rim" title="spacepy.pybats.rim"><code class="xref py py-obj docutils literal"><span class="pre">rim</span></code></a></td>
+<td>Classes, functions, and methods for reading, writing, and plotting output from the Ridley Ionosphere Model (RIM) and the similar legacy code,  Ridley Serial.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="autosummary/spacepy.pybats.trace2d.html#module-spacepy.pybats.trace2d" title="spacepy.pybats.trace2d"><code class="xref py py-obj docutils literal"><span class="pre">trace2d</span></code></a></td>
+<td>A set of routines for fast field line tracing.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="top-level-classes-functions">
+<h2>Top-Level Classes &amp; Functions<a class="headerlink" href="#top-level-classes-functions" title="Permalink to this headline">¶</a></h2>
+<p>Top-level PyBats classes handle common-format input and output from the SWMF
+and are very flexible.  However, they do little beyond open files for the user.</p>
+<p>There are several functions found in the top-level module.  These are mostly
+convenience functions for customizing plots.</p>
+<p class="rubric">Classes</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="autosummary/spacepy.pybats.IdlFile.html#spacepy.pybats.IdlFile" title="spacepy.pybats.IdlFile"><code class="xref py py-obj docutils literal"><span class="pre">IdlFile</span></code></a>(filename[,&nbsp;format,&nbsp;header,&nbsp;keep_case])</td>
+<td>An object class that reads/parses an IDL-formatted output file from the  SWMF and places it into a <a class="reference internal" href="autosummary/spacepy.pybats.PbData.html#spacepy.pybats.PbData" title="spacepy.pybats.PbData"><code class="xref py py-class docutils literal"><span class="pre">spacepy.pybats.PbData</span></code></a> object.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="autosummary/spacepy.pybats.ImfInput.html#spacepy.pybats.ImfInput" title="spacepy.pybats.ImfInput"><code class="xref py py-obj docutils literal"><span class="pre">ImfInput</span></code></a>([filename,&nbsp;load,&nbsp;npoints])</td>
+<td>A class to read, write, manipulate, and visualize solar wind upstream input files for SWMF simulations.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="autosummary/spacepy.pybats.LogFile.html#spacepy.pybats.LogFile" title="spacepy.pybats.LogFile"><code class="xref py py-obj docutils literal"><span class="pre">LogFile</span></code></a>(filename[,&nbsp;starttime,&nbsp;keep_case])</td>
+<td>An object to read and handle SWMF-type logfiles.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="autosummary/spacepy.pybats.NgdcIndex.html#spacepy.pybats.NgdcIndex" title="spacepy.pybats.NgdcIndex"><code class="xref py py-obj docutils literal"><span class="pre">NgdcIndex</span></code></a>([filename,&nbsp;load])</td>
+<td>Many models incorporated into the SWMF rely on National Geophysical Data Center (NGDC) provided index files (especially F10.7 and Kp).</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="autosummary/spacepy.pybats.PbData.html#spacepy.pybats.PbData" title="spacepy.pybats.PbData"><code class="xref py py-obj docutils literal"><span class="pre">PbData</span></code></a>(*args,&nbsp;**kwargs)</td>
+<td>The base class for all PyBats data container classes.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="autosummary/spacepy.pybats.SatOrbit.html#spacepy.pybats.SatOrbit" title="spacepy.pybats.SatOrbit"><code class="xref py py-obj docutils literal"><span class="pre">SatOrbit</span></code></a>([filename])</td>
+<td>An class to load, read, write, and handle BATS-R-US satellite orbit input files.</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Functions</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="autosummary/spacepy.pybats.add_body.html#spacepy.pybats.add_body" title="spacepy.pybats.add_body"><code class="xref py py-obj docutils literal"><span class="pre">add_body</span></code></a>(ax[,&nbsp;rad,&nbsp;facecolor,&nbsp;show_planet,&nbsp;...])</td>
+<td>Creates a circle of radius=self.attrs[&#8216;rbody&#8217;] and returns the MatPlotLib Ellipse patch object for plotting.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="autosummary/spacepy.pybats.add_planet.html#spacepy.pybats.add_planet" title="spacepy.pybats.add_planet"><code class="xref py py-obj docutils literal"><span class="pre">add_planet</span></code></a>(ax[,&nbsp;rad,&nbsp;ang,&nbsp;add_night,&nbsp;zorder])</td>
+<td>Creates a circle of <code class="docutils literal"><span class="pre">radius=self.para['rbody']</span></code> and returns the MatPlotLib Ellipse patch object for plotting.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="autosummary/spacepy.pybats.parse_tecvars.html#spacepy.pybats.parse_tecvars" title="spacepy.pybats.parse_tecvars"><code class="xref py py-obj docutils literal"><span class="pre">parse_tecvars</span></code></a>(line)</td>
+<td>Parse the VARIABLES line from a TecPlot-formatted ascii data file.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="autosummary/spacepy.pybats.bats.html" title="spacepy.pybats.bats"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="autosummary/spacepy.poppy.value_percentile.html" title="spacepy.poppy.value_percentile"
+             >previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+       <li><a href="index.html">documentation </a> &raquo;</li>
+ 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2019, The SpacePy Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

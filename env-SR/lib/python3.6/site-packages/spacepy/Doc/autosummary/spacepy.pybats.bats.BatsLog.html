@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>spacepy.pybats.bats.BatsLog &mdash; SpacePy v0.2.1 Manual</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="../_static/spacepy_favicon.ico"/>
+    <link rel="top" title="SpacePy v0.2.1 Manual" href="../index.html" />
+    <link rel="up" title="spacepy.pybats.bats" href="spacepy.pybats.bats.html" />
+    <link rel="next" title="spacepy.pybats.bats.Stream" href="spacepy.pybats.bats.Stream.html" />
+    <link rel="prev" title="spacepy.pybats.bats" href="spacepy.pybats.bats.html" /> 
+  </head>
+  <body role="document">
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../index.html"><img src="../_static/spacepy_logo.jpg" border="0" alt="spacepy_logo"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="spacepy.pybats.bats.Stream.html" title="spacepy.pybats.bats.Stream"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="spacepy.pybats.bats.html" title="spacepy.pybats.bats"
+             accesskey="P">previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+       <li><a href="../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../pybats.html" >PyBats - SWMF &amp; BATS-R-US Analysis Tools</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="spacepy.pybats.bats.html" accesskey="U">spacepy.pybats.bats</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="spacepy.pybats.bats.html"
+                        title="previous chapter">spacepy.pybats.bats</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="spacepy.pybats.bats.Stream.html"
+                        title="next chapter">spacepy.pybats.bats.Stream</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/autosummary/spacepy.pybats.bats.BatsLog.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="spacepy-pybats-bats-batslog">
+<h1>spacepy.pybats.bats.BatsLog<a class="headerlink" href="#spacepy-pybats-bats-batslog" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="spacepy.pybats.bats.BatsLog">
+<em class="property">class </em><code class="descclassname">spacepy.pybats.bats.</code><code class="descname">BatsLog</code><span class="sig-paren">(</span><em>filename</em>, <em>starttime=(2000</em>, <em>1</em>, <em>1</em>, <em>0</em>, <em>0</em>, <em>0)</em>, <em>keep_case=True</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/pybats/bats.html#BatsLog"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.pybats.bats.BatsLog" title="Permalink to this definition">¶</a></dt>
+<dd><p>A specialized version of <a class="reference internal" href="spacepy.pybats.LogFile.html#spacepy.pybats.LogFile" title="spacepy.pybats.LogFile"><code class="xref py py-class docutils literal"><span class="pre">LogFile</span></code></a> that includes
+special methods for plotting common BATS-R-US log file values, such as
+D$_{ST}$.</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#spacepy.pybats.bats.BatsLog.add_dst_quicklook" title="spacepy.pybats.bats.BatsLog.add_dst_quicklook"><code class="xref py py-obj docutils literal"><span class="pre">add_dst_quicklook</span></code></a>([target,&nbsp;loc,&nbsp;plot_obs,&nbsp;...])</td>
+<td>Create a quick-look plot of Dst (if variable present in file)  and compare against observations.</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="spacepy.pybats.bats.BatsLog.add_dst_quicklook">
+<code class="descname">add_dst_quicklook</code><span class="sig-paren">(</span><em>target=None</em>, <em>loc=111</em>, <em>plot_obs=False</em>, <em>epoch=None</em>, <em>add_legend=True</em>, <em>plot_sym=False</em>, <em>dstvar=None</em>, <em>obs_kwargs={'c': 'k'</em>, <em>'ls': '--'}</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/pybats/bats.html#BatsLog.add_dst_quicklook"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.pybats.bats.BatsLog.add_dst_quicklook" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a quick-look plot of Dst (if variable present in file) 
+and compare against observations.</p>
+<p>Like all <em>add_* * methods in Pybats, the *target</em> kwarg determines
+where to place the plot.
+If kwarg <em>target</em> is <strong>None</strong> (default), a new figure is 
+generated from scratch.  If <em>target</em> is a matplotlib Figure
+object, a new axis is created to fill that figure at subplot location
+<em>loc</em> (defaults to 111).  If target is a matplotlib Axes object, 
+the plot is placed into that axis at subplot location <em>loc</em>.</p>
+<p>With newer versions of BATS-R-US, new dst-like variables are included,
+named &#8216;dst&#8217;, &#8216;dst-sm&#8217;, &#8216;dstflx&#8217;, etc.  This subroutine will attempt
+to first use &#8216;dst-sm&#8217; as it is calculated consistently with 
+observations.  If not found, &#8216;dst&#8217; is used.  Users may choose which
+value to use via the <em>dstvar</em> kwarg.</p>
+<p>Observed Dst and SYM-H is automatically fetched from the Kyoto World 
+Data Center via the <a class="reference internal" href="spacepy.pybats.kyoto.html#module-spacepy.pybats.kyoto" title="spacepy.pybats.kyoto"><code class="xref py py-mod docutils literal"><span class="pre">spacepy.pybats.kyoto</span></code></a> module.  The associated 
+<code class="xref py py-class docutils literal"><span class="pre">spacepy.pybats.kyoto.KyotoDst</span></code> or 
+<code class="xref py py-class docutils literal"><span class="pre">spacepy.pybats.kyoto.KyotoSym</span></code> object, which holds the observed
+Dst/SYM-H, is stored as <em>self.obs_dst</em> for future use.
+The observed line can be customized via the <em>obs_kwargs</em> kwarg, which
+is a dictionary of plotting keyword arguments.</p>
+<p>If kwarg <em>epoch</em> is set to a datetime object, a vertical dashed line
+will be placed at that time.</p>
+<p>The figure and axes objects are returned to the user.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="spacepy.pybats.bats.Stream.html" title="spacepy.pybats.bats.Stream"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="spacepy.pybats.bats.html" title="spacepy.pybats.bats"
+             >previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+       <li><a href="../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../pybats.html" >PyBats - SWMF &amp; BATS-R-US Analysis Tools</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="spacepy.pybats.bats.html" >spacepy.pybats.bats</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2019, The SpacePy Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

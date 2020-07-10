@@ -1,0 +1,230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Writing Pythonic Code &mdash; SpacePy v0.2.1 Manual</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="_static/spacepy_favicon.ico"/>
+    <link rel="top" title="SpacePy v0.2.1 Manual" href="index.html" />
+    <link rel="next" title="SpacePy Scripts" href="scripts.html" />
+    <link rel="prev" title="Publication List" href="publications.html" /> 
+  </head>
+  <body role="document">
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="index.html"><img src="_static/spacepy_logo.jpg" border="0" alt="spacepy_logo"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="scripts.html" title="SpacePy Scripts"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="publications.html" title="Publication List"
+             accesskey="P">previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+       <li><a href="index.html">documentation </a> &raquo;</li>
+ 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Writing Pythonic Code</a><ul>
+<li><a class="reference internal" href="#good-coding-practice">Good coding practice</a></li>
+<li><a class="reference internal" href="#using-language-features">Using language features</a></li>
+<li><a class="reference internal" href="#idiom-and-communication">Idiom and communication</a></li>
+<li><a class="reference internal" href="#further-reading">Further Reading</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="publications.html"
+                        title="previous chapter">Publication List</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="scripts.html"
+                        title="next chapter">SpacePy Scripts</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/pythonic.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="writing-pythonic-code">
+<h1>Writing Pythonic Code<a class="headerlink" href="#writing-pythonic-code" title="Permalink to this headline">¶</a></h1>
+<p>Code is often described as &#8220;Pythonic&#8221; or &#8220;not Pythonic&#8221; (with the
+implication that &#8220;Pythonic&#8221; is better.) The description is often
+applied to refer to code that reflects best practices which have
+emerged from the Python community and have become almost second nature
+to experienced programmers.</p>
+<p>Reading lots of Python code (particularly from well-respected long
+maintained community projects) is the best way to develop this sense,
+but some principles are described here.</p>
+<div class="section" id="good-coding-practice">
+<h2>Good coding practice<a class="headerlink" href="#good-coding-practice" title="Permalink to this headline">¶</a></h2>
+<p>Familiarity with modern coding practices that apply across most
+languages is a good start:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Compact but descriptive names for variables, functions, etc.</li>
+<li>Succinct comments where necessary</li>
+<li>Encapsulation of data and abstraction through functions and classes</li>
+<li>Use of existing libraries rather than reimplementing</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="using-language-features">
+<h2>Using language features<a class="headerlink" href="#using-language-features" title="Permalink to this headline">¶</a></h2>
+<p>Where Python or its standard library provides a means of accomplishing
+a task, it is generally preferred to use that means rather than
+reimplementing the wheel. The canonical example is using list
+comprehensions rather than for loops to transform a list:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">newlist</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">oldlist</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>not:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">newlist</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">oldlist</span><span class="p">)):</span>
+<span class="gp">... </span>    <span class="n">newlist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">oldlist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Note there are several non-Pythonic ways to perform this task.</p>
+<p>For those not familiar with the features of the lanaguage and the
+standard library, this does represent a barrier to entry. However once
+that knowledge is built, using the features of the language makes
+one&#8217;s intention much more clear. It often also results in shorter code
+that is easier to comprehend.</p>
+<p>See several examples in <a class="reference internal" href="tips.html"><em>SpacePy Python Programming Tips</em></a>.</p>
+</div>
+<div class="section" id="idiom-and-communication">
+<h2>Idiom and communication<a class="headerlink" href="#idiom-and-communication" title="Permalink to this headline">¶</a></h2>
+<p>Because &#8220;code is more often read than written,&#8221; anything that improves
+clarity is beneficial. A list comprehension and a for loop may have
+the same result, but the use of a list comprehension immediately makes
+it apparent to the reader that the code is intended to create a new
+list based on some element-by-element translation of the input
+list. It is a pattern with a common solution, and sticking to the
+common solution helps make the pattern apparent so the reader of the
+code understands the underlying problem.</p>
+<p>Generally this choice of the common way is referred to as &#8220;idiomatic
+Python.&#8221; This can be expanded to conventions such as the use of &#8220;self&#8221;
+as the first argument in instance methods, even though such choice is
+generally free.</p>
+</div>
+<div class="section" id="further-reading">
+<h2>Further Reading<a class="headerlink" href="#further-reading" title="Permalink to this headline">¶</a></h2>
+<p>A web search for &#8220;pythonic&#8221; will give a wealth of opinions. These references are a good starting point.</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">Python Style Guide (PEP 8)</a></li>
+<li><a class="reference external" href="https://www.python.org/dev/peps/pep-0020/">Zen of Python (PEP 20)</a></li>
+<li><a class="reference external" href="https://blog.startifact.com/posts/older/what-is-pythonic.html">What is Pythonic?</a></li>
+<li><a class="reference external" href="https://medium.com/the-andela-way/idiomatic-python-coding-the-smart-way-cc560fa5f1d6">Examples of idiomatic and nonidiomatic Python</a></li>
+<li><a class="reference external" href="https://en.wikibooks.org/wiki/Python_Programming/Idioms">Idomatic Python from Wikibooks</a></li>
+</ul>
+</div></blockquote>
+<hr class="docutils" />
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Release:</th><td class="field-body">0.2.1</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Doc generation date:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">October 02, 2019</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="scripts.html" title="SpacePy Scripts"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="publications.html" title="Publication List"
+             >previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+       <li><a href="index.html">documentation </a> &raquo;</li>
+ 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2019, The SpacePy Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

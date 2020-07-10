@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>spacepy.empiricals.getDststar &mdash; SpacePy v0.2.1 Manual</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="../_static/spacepy_favicon.ico"/>
+    <link rel="top" title="SpacePy v0.2.1 Manual" href="../index.html" />
+    <link rel="up" title="empiricals - module with heliospheric empirical modules" href="../empiricals.html" />
+    <link rel="next" title="spacepy.empiricals.getExpectedSWTemp" href="spacepy.empiricals.getExpectedSWTemp.html" />
+    <link rel="prev" title="empiricals - module with heliospheric empirical modules" href="../empiricals.html" /> 
+  </head>
+  <body role="document">
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../index.html"><img src="../_static/spacepy_logo.jpg" border="0" alt="spacepy_logo"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="spacepy.empiricals.getExpectedSWTemp.html" title="spacepy.empiricals.getExpectedSWTemp"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../empiricals.html" title="empiricals - module with heliospheric empirical modules"
+             accesskey="P">previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+       <li><a href="../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../empiricals.html" accesskey="U">empiricals - module with heliospheric empirical modules</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../empiricals.html"
+                        title="previous chapter">empiricals - module with heliospheric empirical modules</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="spacepy.empiricals.getExpectedSWTemp.html"
+                        title="next chapter">spacepy.empiricals.getExpectedSWTemp</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/autosummary/spacepy.empiricals.getDststar.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="spacepy-empiricals-getdststar">
+<h1>spacepy.empiricals.getDststar<a class="headerlink" href="#spacepy-empiricals-getdststar" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="spacepy.empiricals.getDststar">
+<code class="descclassname">spacepy.empiricals.</code><code class="descname">getDststar</code><span class="sig-paren">(</span><em>ticks</em>, <em>model='OBrien'</em>, <em>dbase='QDhourly'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/empiricals.html#getDststar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.empiricals.getDststar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the pressure-corrected Dst index, Dst*</p>
+<p>We need to add in the references to the models here!</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>ticks</strong> : spacepy.time.Ticktock</p>
+<blockquote>
+<div><p>TickTock object of desired times (will be interpolated from hourly OMNI data)
+OR dictionary including &#8216;Pdyn&#8217; and &#8216;Dst&#8217; keys where data are lists or arrays
+and Dst is in [nT], and Pdyn is in [nPa]</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>out</strong> : float</p>
+<blockquote class="last">
+<div><p>Dst* - the pressure corrected Dst index from OMNI [nT]</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<p>Coefficients are applied to the standard formulation e.g. Burton et al., 1975
+of Dst* = Dst - b*sqrt(Pdyn) + c
+The default is the O&#8217;Brien and McPherron model (2002).
+Other options are Burton et al. (1975) and Borovsky and Denton (2010)</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">spacepy.time</span> <span class="kn">as</span> <span class="nn">spt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">spacepy.omni</span> <span class="kn">as</span> <span class="nn">om</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">spacepy.empiricals</span> <span class="kn">as</span> <span class="nn">emp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ticks</span> <span class="o">=</span> <span class="n">spt</span><span class="o">.</span><span class="n">tickrange</span><span class="p">(</span><span class="s1">&#39;2000-10-16T00:00:00&#39;</span><span class="p">,</span> <span class="s1">&#39;2000-10-31T12:00:00&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mf">24.</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dststar</span> <span class="o">=</span> <span class="n">emp</span><span class="o">.</span><span class="n">getDststar</span><span class="p">(</span><span class="n">ticks</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dststar</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">-21.317220132108943</span>
+</pre></div>
+</div>
+<p>User-determined coefficients can also be supplied as a two-element list
+or tuple of the form (b,c), e.g.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">dststar</span> <span class="o">=</span> <span class="n">emp</span><span class="o">.</span><span class="n">getDststar</span><span class="p">(</span><span class="n">ticks</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">11</span><span class="p">))</span> <span class="c1">#b is extreme driving from O&#39;Brien</span>
+</pre></div>
+</div>
+<p>We have chosen the OBrien model as the default here as this was rigorously
+determined from a very long data set and is pertinent to most conditions.
+It is, however, the most conservative correction. Additionally, Siscoe,
+McPherron and Jordanova (2005) argue that the pressure contribution to Dst diminishes
+during magnetic storms.</p>
+<p>To show the relative differences, run the following example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">params</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;Burton&#39;</span><span class="p">,</span><span class="s1">&#39;k-&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;OBrien&#39;</span><span class="p">,</span><span class="s1">&#39;r-&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Borovsky&#39;</span><span class="p">,</span><span class="s1">&#39;b-&#39;</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">model</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">params</span><span class="p">:</span>
+<span class="go">        dststar = getDststar(ticks, model=model)</span>
+<span class="go">        plt.plot(ticks.UTC, dststar, col)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="spacepy.empiricals.getExpectedSWTemp.html" title="spacepy.empiricals.getExpectedSWTemp"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../empiricals.html" title="empiricals - module with heliospheric empirical modules"
+             >previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+       <li><a href="../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../empiricals.html" >empiricals - module with heliospheric empirical modules</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2019, The SpacePy Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

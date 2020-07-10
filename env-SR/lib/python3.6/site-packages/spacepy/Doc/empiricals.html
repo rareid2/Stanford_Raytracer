@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>empiricals - module with heliospheric empirical modules &mdash; SpacePy v0.2.1 Manual</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="_static/spacepy_favicon.ico"/>
+    <link rel="top" title="SpacePy v0.2.1 Manual" href="index.html" />
+    <link rel="next" title="spacepy.empiricals.getDststar" href="autosummary/spacepy.empiricals.getDststar.html" />
+    <link rel="prev" title="spacepy.data_assimilation.addmodelerror_old" href="autosummary/spacepy.data_assimilation.addmodelerror_old.html" /> 
+  </head>
+  <body role="document">
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="index.html"><img src="_static/spacepy_logo.jpg" border="0" alt="spacepy_logo"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="autosummary/spacepy.empiricals.getDststar.html" title="spacepy.empiricals.getDststar"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="autosummary/spacepy.data_assimilation.addmodelerror_old.html" title="spacepy.data_assimilation.addmodelerror_old"
+             accesskey="P">previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+       <li><a href="index.html">documentation </a> &raquo;</li>
+ 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="autosummary/spacepy.data_assimilation.addmodelerror_old.html"
+                        title="previous chapter">spacepy.data_assimilation.addmodelerror_old</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="autosummary/spacepy.empiricals.getDststar.html"
+                        title="next chapter">spacepy.empiricals.getDststar</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/empiricals.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-spacepy.empiricals">
+<span id="empiricals-module-with-heliospheric-empirical-modules"></span><h1>empiricals - module with heliospheric empirical modules<a class="headerlink" href="#module-spacepy.empiricals" title="Permalink to this headline">¶</a></h1>
+<p>Module with some useful empirical models (plasmapause, magnetopause, Lmax)</p>
+<p>Authors: Steve Morley, Josef Koller
+Institution: Los Alamos National Laboratory
+Contact: <a class="reference external" href="mailto:smorley&#37;&#52;&#48;lanl&#46;gov">smorley<span>&#64;</span>lanl<span>&#46;</span>gov</a></p>
+<p>Copyright 2010 Los Alamos National Security, LLC.</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="autosummary/spacepy.empiricals.getDststar.html#spacepy.empiricals.getDststar" title="spacepy.empiricals.getDststar"><code class="xref py py-obj docutils literal"><span class="pre">getDststar</span></code></a>(ticks[,&nbsp;model,&nbsp;dbase])</td>
+<td>Calculate the pressure-corrected Dst index, Dst*</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="autosummary/spacepy.empiricals.getExpectedSWTemp.html#spacepy.empiricals.getExpectedSWTemp" title="spacepy.empiricals.getExpectedSWTemp"><code class="xref py py-obj docutils literal"><span class="pre">getExpectedSWTemp</span></code></a>(velo[,&nbsp;model,&nbsp;units])</td>
+<td>Return the expected solar wind temperature based on the bulk velocity</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="autosummary/spacepy.empiricals.getLmax.html#spacepy.empiricals.getLmax" title="spacepy.empiricals.getLmax"><code class="xref py py-obj docutils literal"><span class="pre">getLmax</span></code></a>(ticks[,&nbsp;model,&nbsp;dbase])</td>
+<td>calculate a simple empirical model for Lmax - last closed drift-shell</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="autosummary/spacepy.empiricals.getMPstandoff.html#spacepy.empiricals.getMPstandoff" title="spacepy.empiricals.getMPstandoff"><code class="xref py py-obj docutils literal"><span class="pre">getMPstandoff</span></code></a>(ticks[,&nbsp;dbase,&nbsp;alpha])</td>
+<td>Calculates the Shue et al.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="autosummary/spacepy.empiricals.getPlasmaPause.html#spacepy.empiricals.getPlasmaPause" title="spacepy.empiricals.getPlasmaPause"><code class="xref py py-obj docutils literal"><span class="pre">getPlasmaPause</span></code></a>(ticks[,&nbsp;model,&nbsp;LT,&nbsp;omnivals])</td>
+<td>Plasmapause location model(s)</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="autosummary/spacepy.empiricals.getSolarProtonSpectra.html#spacepy.empiricals.getSolarProtonSpectra" title="spacepy.empiricals.getSolarProtonSpectra"><code class="xref py py-obj docutils literal"><span class="pre">getSolarProtonSpectra</span></code></a>([norm,&nbsp;gamma,&nbsp;E0,&nbsp;...])</td>
+<td>Returns a SpaceData with energy and fluence spectra of solar particle events</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="autosummary/spacepy.empiricals.getSolarRotation.html#spacepy.empiricals.getSolarRotation" title="spacepy.empiricals.getSolarRotation"><code class="xref py py-obj docutils literal"><span class="pre">getSolarRotation</span></code></a>(ticks[,&nbsp;rtype,&nbsp;fp,&nbsp;reverse])</td>
+<td>Calculates solar rotation number (Carrington or Bartels) for a given date/time</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="autosummary/spacepy.empiricals.getVampolaOrder.html#spacepy.empiricals.getVampolaOrder" title="spacepy.empiricals.getVampolaOrder"><code class="xref py py-obj docutils literal"><span class="pre">getVampolaOrder</span></code></a>(L)</td>
+<td>Empirical lookup of power for sin^n pitch angle model from Vampola (1996)</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="autosummary/spacepy.empiricals.omniFromDirectionalFlux.html#spacepy.empiricals.omniFromDirectionalFlux" title="spacepy.empiricals.omniFromDirectionalFlux"><code class="xref py py-obj docutils literal"><span class="pre">omniFromDirectionalFlux</span></code></a>(fluxarr,&nbsp;alphas[,&nbsp;norm])</td>
+<td>Calculate omnidirectional flux [(s cm^2 kev)^-1] from directional flux [(s sr cm^2 keV)^-1] array</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="autosummary/spacepy.empiricals.vampolaPA.html#spacepy.empiricals.vampolaPA" title="spacepy.empiricals.vampolaPA"><code class="xref py py-obj docutils literal"><span class="pre">vampolaPA</span></code></a>(omniflux,&nbsp;**kwargs)</td>
+<td>Pitch angle model of sin^n form</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="autosummary/spacepy.empiricals.getDststar.html" title="spacepy.empiricals.getDststar"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="autosummary/spacepy.data_assimilation.addmodelerror_old.html" title="spacepy.data_assimilation.addmodelerror_old"
+             >previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+       <li><a href="index.html">documentation </a> &raquo;</li>
+ 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2019, The SpacePy Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

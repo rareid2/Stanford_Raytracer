@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>spacepy.poppy.plot_two_ppro &mdash; SpacePy v0.2.1 Manual</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="../_static/spacepy_favicon.ico"/>
+    <link rel="top" title="SpacePy v0.2.1 Manual" href="../index.html" />
+    <link rel="up" title="PoPPy - Point Processes in Python" href="../poppy.html" />
+    <link rel="next" title="spacepy.poppy.boots_ci" href="spacepy.poppy.boots_ci.html" />
+    <link rel="prev" title="spacepy.poppy.PPro" href="spacepy.poppy.PPro.html" /> 
+  </head>
+  <body role="document">
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../index.html"><img src="../_static/spacepy_logo.jpg" border="0" alt="spacepy_logo"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="spacepy.poppy.boots_ci.html" title="spacepy.poppy.boots_ci"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="spacepy.poppy.PPro.html" title="spacepy.poppy.PPro"
+             accesskey="P">previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+       <li><a href="../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../poppy.html" accesskey="U">PoPPy - Point Processes in Python</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="spacepy.poppy.PPro.html"
+                        title="previous chapter">spacepy.poppy.PPro</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="spacepy.poppy.boots_ci.html"
+                        title="next chapter">spacepy.poppy.boots_ci</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/autosummary/spacepy.poppy.plot_two_ppro.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="spacepy-poppy-plot-two-ppro">
+<h1>spacepy.poppy.plot_two_ppro<a class="headerlink" href="#spacepy-poppy-plot-two-ppro" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="spacepy.poppy.plot_two_ppro">
+<code class="descclassname">spacepy.poppy.</code><code class="descname">plot_two_ppro</code><span class="sig-paren">(</span><em>pprodata, pproref, ratio=None, norm=False, title=None, xscale=None, figsize=None, dpi=80, ylim=[None, None], log=False, xticks=None, yticks=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/poppy.html#plot_two_ppro"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.poppy.plot_two_ppro" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overplots two PPro objects</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>pprodata</strong> : PPro</p>
+<blockquote>
+<div><p>first point process to plot (in blue)</p>
+</div></blockquote>
+<p><strong>pproref</strong> : PPro</p>
+<blockquote>
+<div><p>second process to plot (in red)</p>
+</div></blockquote>
+<p><strong>ratio</strong> : float</p>
+<blockquote>
+<div><p>multiply L{pprodata} by this ratio before plotting,
+useful for comparing processes of different magnitude</p>
+</div></blockquote>
+<p><strong>norm</strong> : boolean</p>
+<blockquote>
+<div><p>normalize everything to L{pproref}, i.e. the association
+number for L{pproref} will always plot as 1.</p>
+</div></blockquote>
+<p><strong>title</strong> : string</p>
+<blockquote>
+<div><p>title to put on the plot</p>
+</div></blockquote>
+<p><strong>xscale</strong> : float</p>
+<blockquote>
+<div><p>scale x-axis by this factor (e.g. 60.0 to convert
+seconds to minutes)</p>
+</div></blockquote>
+<p><strong>figsize :</strong></p>
+<blockquote>
+<div><p>passed through to matplotlib.pyplot.figure</p>
+</div></blockquote>
+<p><strong>dpi</strong> : int</p>
+<blockquote>
+<div><p>passed through to matplotlib.pyplot.figure</p>
+</div></blockquote>
+<p><strong>ylim</strong> : list</p>
+<blockquote>
+<div><p>[minimum, maximum] values of y for the axis</p>
+</div></blockquote>
+<p><strong>log</strong> : bollean</p>
+<blockquote>
+<div><p>True for a log plot</p>
+</div></blockquote>
+<p><strong>xticks</strong> : sequence or float</p>
+<blockquote>
+<div><p>if provided, a list of tickmarks for the X axis</p>
+</div></blockquote>
+<p><strong>yticks</strong> : sequance or float</p>
+<blockquote class="last">
+<div><p>if provided, a list of tickmarks for the Y axis</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="spacepy.poppy.boots_ci.html" title="spacepy.poppy.boots_ci"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="spacepy.poppy.PPro.html" title="spacepy.poppy.PPro"
+             >previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+       <li><a href="../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../poppy.html" >PoPPy - Point Processes in Python</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2019, The SpacePy Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

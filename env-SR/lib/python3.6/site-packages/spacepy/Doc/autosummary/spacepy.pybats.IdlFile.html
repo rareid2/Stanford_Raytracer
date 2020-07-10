@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>spacepy.pybats.IdlFile &mdash; SpacePy v0.2.1 Manual</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="../_static/spacepy_favicon.ico"/>
+    <link rel="top" title="SpacePy v0.2.1 Manual" href="../index.html" />
+    <link rel="up" title="PyBats - SWMF &amp; BATS-R-US Analysis Tools" href="../pybats.html" />
+    <link rel="next" title="spacepy.pybats.ImfInput" href="spacepy.pybats.ImfInput.html" />
+    <link rel="prev" title="spacepy.pybats.trace2d" href="spacepy.pybats.trace2d.html" /> 
+  </head>
+  <body role="document">
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../index.html"><img src="../_static/spacepy_logo.jpg" border="0" alt="spacepy_logo"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="spacepy.pybats.ImfInput.html" title="spacepy.pybats.ImfInput"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="spacepy.pybats.trace2d.html" title="spacepy.pybats.trace2d"
+             accesskey="P">previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+       <li><a href="../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../pybats.html" accesskey="U">PyBats - SWMF &amp; BATS-R-US Analysis Tools</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="spacepy.pybats.trace2d.html"
+                        title="previous chapter">spacepy.pybats.trace2d</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="spacepy.pybats.ImfInput.html"
+                        title="next chapter">spacepy.pybats.ImfInput</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/autosummary/spacepy.pybats.IdlFile.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="spacepy-pybats-idlfile">
+<h1>spacepy.pybats.IdlFile<a class="headerlink" href="#spacepy-pybats-idlfile" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="spacepy.pybats.IdlFile">
+<em class="property">class </em><code class="descclassname">spacepy.pybats.</code><code class="descname">IdlFile</code><span class="sig-paren">(</span><em>filename</em>, <em>format=None</em>, <em>header='units'</em>, <em>keep_case=True</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/pybats.html#IdlFile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.pybats.IdlFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>An object class that reads/parses an IDL-formatted output file from the 
+SWMF and places it into a <a class="reference internal" href="spacepy.pybats.PbData.html#spacepy.pybats.PbData" title="spacepy.pybats.PbData"><code class="xref py py-class docutils literal"><span class="pre">spacepy.pybats.PbData</span></code></a> object.</p>
+<p>Usage:
+&gt;&gt;&gt;data = spacepy.pybats.IdlFile(&#8216;binary_file.out&#8217;)</p>
+<p>See <a class="reference internal" href="spacepy.pybats.PbData.html#spacepy.pybats.PbData" title="spacepy.pybats.PbData"><code class="xref py py-class docutils literal"><span class="pre">spacepy.pybats.PbData</span></code></a> for information on how to explore
+data contained within the returned object.</p>
+<p>This class serves as a parent class to SWMF component-specific derivative
+classes that do more preprocessing of the data before returning the 
+object.  Hence, using this class to read binary files is typically not
+the most efficient way to proceed.  Look for a PyBats sub module that suits
+your specific needs, or use this base object to write your own.</p>
+<p>A note on byte-swapping: PyBats assumes little endian byte ordering because
+this is what most machines use.  However, there is an autodetect feature
+such that, if PyBats doesn&#8217;t make sense of the first read (a record length
+entry, or RecLen), it will proceed using big endian ordering.  If this
+doesn&#8217;t work, the error will manifest itself through the &#8220;struct&#8221; package
+as an &#8220;unpack requires a string of argument length &#8216;X&#8217;&#8221;.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="spacepy.pybats.ImfInput.html" title="spacepy.pybats.ImfInput"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="spacepy.pybats.trace2d.html" title="spacepy.pybats.trace2d"
+             >previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+       <li><a href="../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../pybats.html" >PyBats - SWMF &amp; BATS-R-US Analysis Tools</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2019, The SpacePy Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

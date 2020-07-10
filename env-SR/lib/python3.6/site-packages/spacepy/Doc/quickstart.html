@@ -1,0 +1,804 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>SpacePy - A Quick Start Documentation &mdash; SpacePy v0.2.1 Manual</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="_static/spacepy_favicon.ico"/>
+    <link rel="top" title="SpacePy v0.2.1 Manual" href="index.html" />
+    <link rel="next" title="Documentation Standard" href="doc_standard.html" />
+    <link rel="prev" title="Windows Installation" href="install_windows.html" /> 
+  </head>
+  <body role="document">
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="index.html"><img src="_static/spacepy_logo.jpg" border="0" alt="spacepy_logo"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="doc_standard.html" title="Documentation Standard"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="install_windows.html" title="Windows Installation"
+             accesskey="P">previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+       <li><a href="index.html">documentation </a> &raquo;</li>
+ 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">SpacePy - A Quick Start Documentation</a><ul>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#toolbox-a-box-full-of-tools">Toolbox - A Box Full of Tools</a></li>
+<li><a class="reference internal" href="#time-and-coordinate-transformations">Time and Coordinate Transformations</a><ul>
+<li><a class="reference internal" href="#ticktock-class">Ticktock Class</a></li>
+<li><a class="reference internal" href="#timedelta-class">Timedelta Class</a></li>
+<li><a class="reference internal" href="#coords-class">Coords Class</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#the-radbelt-module">The radbelt Module</a></li>
+<li><a class="reference internal" href="#the-data-assimilation-module">The Data Assimilation Module</a></li>
+<li><a class="reference internal" href="#omni-module">OMNI Module</a></li>
+<li><a class="reference internal" href="#the-irbempy-module">The irbempy Module</a></li>
+<li><a class="reference internal" href="#pycdf-python-access-to-nasa-cdf-library">pyCDF - Python Access to NASA CDF Library</a></li>
+<li><a class="reference internal" href="#the-datamodel-module">The datamodel Module</a><ul>
+<li><a class="reference internal" href="#guide-for-nasa-cdf-users">Guide for NASA CDF users</a></li>
+<li><a class="reference internal" href="#converters-to-from-datamodel">Converters to/from datamodel</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#empiricals-module">Empiricals Module</a></li>
+<li><a class="reference internal" href="#seapy-superposed-epoch-analysis-in-python">SeaPy - Superposed Epoch Analysis in Python</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="install_windows.html"
+                        title="previous chapter">Windows Installation</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="doc_standard.html"
+                        title="next chapter">Documentation Standard</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/quickstart.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <span class="target" id="module-spacepy"></span><p>SpacePy: Space Science Tools for Python</p>
+<p>SpacePy is a package of tools primarily aimed at the space science community.
+This __init__.py file sets the parameters for import statements.</p>
+<p>If running the ipython shell, simply type &#8216;?&#8217; after any command for help.
+ipython also offers tab completion, so hitting tab after &#8216;&lt;module name&gt;.&#8217;
+will list all available functions, classes and variables.</p>
+<p>Detailed HTML documentation is available locally in the spacepy/doc directory
+and can be launched by typing:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">spacepy</span><span class="o">.</span><span class="n">help</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Most functionality is in spacepy&#8217;s submodules. Each module has specific
+help available:</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="coordinates.html#module-spacepy.coordinates" title="spacepy.coordinates"><code class="xref py py-obj docutils literal"><span class="pre">coordinates</span></code></a></td>
+<td>Implementation of Coords class functions for coordinate transformations</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="data_assimilation.html#module-spacepy.data_assimilation" title="spacepy.data_assimilation"><code class="xref py py-obj docutils literal"><span class="pre">data_assimilation</span></code></a></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="datamodel.html#module-spacepy.datamodel" title="spacepy.datamodel"><code class="xref py py-obj docutils literal"><span class="pre">datamodel</span></code></a></td>
+<td>The datamodel classes constitute a data model implementation meant to mirror the functionality of the data model output from pycdf, though implemented slightly differently.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="empiricals.html#module-spacepy.empiricals" title="spacepy.empiricals"><code class="xref py py-obj docutils literal"><span class="pre">empiricals</span></code></a></td>
+<td>Module with some useful empirical models (plasmapause, magnetopause, Lmax)</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="irbempy.html#module-spacepy.irbempy" title="spacepy.irbempy"><code class="xref py py-obj docutils literal"><span class="pre">irbempy</span></code></a></td>
+<td>module wrapper for irbem_lib</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="lanlstar.html#module-spacepy.LANLstar" title="spacepy.LANLstar"><code class="xref py py-obj docutils literal"><span class="pre">LANLstar</span></code></a></td>
+<td>Lstar and Lmax calculation using artificial neural network (ANN) technique.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="omni.html#module-spacepy.omni" title="spacepy.omni"><code class="xref py py-obj docutils literal"><span class="pre">omni</span></code></a></td>
+<td>Tools to read and process omni data (Qin-Denton, etc.)</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="poppy.html#module-spacepy.poppy" title="spacepy.poppy"><code class="xref py py-obj docutils literal"><span class="pre">poppy</span></code></a></td>
+<td>PoPPy &#8211; Point Processes in Python.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="pybats.html#module-spacepy.pybats" title="spacepy.pybats"><code class="xref py py-obj docutils literal"><span class="pre">pybats</span></code></a></td>
+<td>PyBats!  An open source Python-based interface for reading, manipulating, and visualizing BATS-R-US and SWMF output.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="pycdf.html#module-spacepy.pycdf" title="spacepy.pycdf"><code class="xref py py-obj docutils literal"><span class="pre">pycdf</span></code></a></td>
+<td>This package provides a Python interface to the Common Data Format (CDF) library used for many NASA missions, available at <a class="reference external" href="http://cdf.gsfc.nasa.gov/">http://cdf.gsfc.nasa.gov/</a>.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="radbelt.html#module-spacepy.radbelt" title="spacepy.radbelt"><code class="xref py py-obj docutils literal"><span class="pre">radbelt</span></code></a></td>
+<td>Functions supporting radiation belt diffusion codes</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="seapy.html#module-spacepy.seapy" title="spacepy.seapy"><code class="xref py py-obj docutils literal"><span class="pre">seapy</span></code></a></td>
+<td>SeaPy &#8211; Superposed Epoch in Python.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="time.html#module-spacepy.time" title="spacepy.time"><code class="xref py py-obj docutils literal"><span class="pre">time</span></code></a></td>
+<td>Time conversion, manipulation and implementation of Ticktock class</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="toolbox.html#module-spacepy.toolbox" title="spacepy.toolbox"><code class="xref py py-obj docutils literal"><span class="pre">toolbox</span></code></a></td>
+<td>Toolbox of various functions and generic utilities.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="ae9ap9.html#module-spacepy.ae9ap9" title="spacepy.ae9ap9"><code class="xref py py-obj docutils literal"><span class="pre">ae9ap9</span></code></a></td>
+<td>Module for reading and dealing with AE9AP9 data files.</td>
+</tr>
+</tbody>
+</table>
+<p>Copyright 2010-2016 Los Alamos National Security, LLC.</p>
+<div class="section" id="spacepy-a-quick-start-documentation">
+<h1>SpacePy - A Quick Start Documentation<a class="headerlink" href="#spacepy-a-quick-start-documentation" title="Permalink to this headline">¶</a></h1>
+<p>The SpacePy Team
+(Steve Morley, Josef Koller, Dan Welling, Brian Larsen, Jon Niehof,
+Mike Henderson)</p>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>See <a class="reference internal" href="install.html"><em>Installing SpacePy</em></a>.</p>
+</div>
+<div class="section" id="toolbox-a-box-full-of-tools">
+<h2>Toolbox - A Box Full of Tools<a class="headerlink" href="#toolbox-a-box-full-of-tools" title="Permalink to this headline">¶</a></h2>
+<p>Contains tools that don&#8217;t fit anywhere else but are, in general, quite
+useful. The following functions are a selection of those implemented:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="autosummary/spacepy.toolbox.windowMean.html#spacepy.toolbox.windowMean" title="spacepy.toolbox.windowMean"><code class="xref py py-func docutils literal"><span class="pre">windowMean()</span></code></a>: windowing mean with variable window size and overlap</li>
+<li><a class="reference internal" href="autosummary/spacepy.toolbox.dictree.html#spacepy.toolbox.dictree" title="spacepy.toolbox.dictree"><code class="xref py py-func docutils literal"><span class="pre">dictree()</span></code></a>: pretty prints the contents of dictionaries (recursively)</li>
+<li><a class="reference internal" href="autosummary/spacepy.toolbox.loadpickle.html#spacepy.toolbox.loadpickle" title="spacepy.toolbox.loadpickle"><code class="xref py py-func docutils literal"><span class="pre">loadpickle()</span></code></a>: single line convenience routine for loading Python pickles</li>
+<li><a class="reference internal" href="autosummary/spacepy.toolbox.savepickle.html#spacepy.toolbox.savepickle" title="spacepy.toolbox.savepickle"><code class="xref py py-func docutils literal"><span class="pre">savepickle()</span></code></a>: same as loadpickle, but for saving</li>
+<li><a class="reference internal" href="autosummary/spacepy.toolbox.update.html#spacepy.toolbox.update" title="spacepy.toolbox.update"><code class="xref py py-func docutils literal"><span class="pre">update()</span></code></a>: updates the OMNI database and the leap seconds database (internet connection required)</li>
+<li><a class="reference internal" href="autosummary/spacepy.toolbox.tOverlap.html#spacepy.toolbox.tOverlap" title="spacepy.toolbox.tOverlap"><code class="xref py py-func docutils literal"><span class="pre">tOverlap()</span></code></a>: find interval of overlap between two time series</li>
+<li><a class="reference internal" href="autosummary/spacepy.toolbox.tCommon.html#spacepy.toolbox.tCommon" title="spacepy.toolbox.tCommon"><code class="xref py py-func docutils literal"><span class="pre">tCommon()</span></code></a>: find times common to two time series</li>
+<li><a class="reference internal" href="autosummary/spacepy.toolbox.binHisto.html#spacepy.toolbox.binHisto" title="spacepy.toolbox.binHisto"><code class="xref py py-func docutils literal"><span class="pre">binHisto()</span></code></a>: calculate number of bins for a histogram</li>
+<li><a class="reference internal" href="autosummary/spacepy.toolbox.medAbsDev.html#spacepy.toolbox.medAbsDev" title="spacepy.toolbox.medAbsDev"><code class="xref py py-func docutils literal"><span class="pre">medAbsDev()</span></code></a>: find the median absolute deviation of a data series</li>
+<li><a class="reference internal" href="autosummary/spacepy.toolbox.normalize.html#spacepy.toolbox.normalize" title="spacepy.toolbox.normalize"><code class="xref py py-func docutils literal"><span class="pre">normalize()</span></code></a>: normalize a data series</li>
+<li><a class="reference internal" href="autosummary/spacepy.toolbox.feq.html#spacepy.toolbox.feq" title="spacepy.toolbox.feq"><code class="xref py py-func docutils literal"><span class="pre">feq()</span></code></a>: floating point equals</li>
+</ul>
+</div></blockquote>
+<p>Import this module as:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">spacepy.toolbox</span> <span class="kn">as</span> <span class="nn">tb</span>
+</pre></div>
+</div>
+<p>Examples:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">spacepy.toolbox</span> <span class="kn">as</span> <span class="nn">tb</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;entry1&#39;</span><span class="p">:</span><span class="s1">&#39;val1&#39;</span><span class="p">,</span> <span class="s1">&#39;entry2&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;recurse1&#39;</span><span class="p">:{</span><span class="s1">&#39;one&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tb</span><span class="o">.</span><span class="n">dictree</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="go">+</span>
+<span class="go">|____entry1</span>
+<span class="go">|____entry2</span>
+<span class="go">|____recurse1</span>
+<span class="go">     |____one</span>
+<span class="go">     |____two</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random_sample</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tb</span><span class="o">.</span><span class="n">binHisto</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span>
+<span class="go">(0.19151723370512266, 5.0)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="time-and-coordinate-transformations">
+<h2>Time and Coordinate Transformations<a class="headerlink" href="#time-and-coordinate-transformations" title="Permalink to this headline">¶</a></h2>
+<p>Import the modules as:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">spacepy.time</span> <span class="kn">as</span> <span class="nn">spt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">spacepy.coords</span> <span class="kn">as</span> <span class="nn">spc</span>
+</pre></div>
+</div>
+<div class="section" id="ticktock-class">
+<h3>Ticktock Class<a class="headerlink" href="#ticktock-class" title="Permalink to this headline">¶</a></h3>
+<p>The Ticktock class provides a number of time conversion routines and is
+implemented as a container class built on the functionality of the Python
+datetime module. The following time coordinates are provided</p>
+<blockquote>
+<div><ul class="simple">
+<li>UTC: Coordinated Universal Time implemented as a <a class="reference external" href="https://docs.python.org/library/datetime.html#datetime.datetime" title="(in Python v3.7)"><code class="xref py py-class docutils literal"><span class="pre">datetime.datetime</span></code></a></li>
+<li>ISO: standard ISO 8601 format like <code class="docutils literal"><span class="pre">2002-10-25T14:33:59</span></code></li>
+<li>TAI: International Atomic Time in units of seconds since Jan 1, 1958 (midnight) and includes leap seconds, i.e. every second has the same length</li>
+<li>JD:  Julian Day</li>
+<li>MJD: Modified Julian Day</li>
+<li>UNX: UNIX time in seconds since Jan 1, 1970</li>
+<li>RDT: Rata Die Time (Gregorian Ordinal Time) in days since Jan 1, 1 AD midnight</li>
+<li>CDF: CDF Epoch time in milliseconds since Jan 1, year 0</li>
+<li>DOY: Day of Year including fractions</li>
+<li>leaps: Leap seconds according to <a class="reference external" href="ftp://maia.usno.navy.mil/ser7/tai-utc.dat">ftp://maia.usno.navy.mil/ser7/tai-utc.dat</a></li>
+</ul>
+</div></blockquote>
+<p>To access these time coordinates, you&#8217;ll create an instance of a
+Ticktock class, e.g.:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">spt</span><span class="o">.</span><span class="n">Ticktock</span><span class="p">(</span><span class="s1">&#39;2002-10-25T12:30:00&#39;</span><span class="p">,</span> <span class="s1">&#39;ISO&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Instead of ISO you may use any of the formats listed above. You can also
+use numpy arrays or lists of time points. <code class="docutils literal"><span class="pre">t</span></code> has now the class
+attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">dtype</span> <span class="o">=</span> <span class="s1">&#39;ISO&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="s1">&#39;2002-10-25T12:30:00&#39;</span>
+</pre></div>
+</div>
+<p>FYI <code class="docutils literal"><span class="pre">t.UTC</span></code> is added automatically.</p>
+<p>If you want to convert/add a class attribute from the list above,
+simply type e.g.:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">RTD</span>
+</pre></div>
+</div>
+<p>You can replace RTD with any from the list above.</p>
+<p>You can find out how many leap seconds were used by issuing the command:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">getleapsecs</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="timedelta-class">
+<h3>Timedelta Class<a class="headerlink" href="#timedelta-class" title="Permalink to this headline">¶</a></h3>
+<p>You can add/subtract time from a Ticktock class instance by using an
+instance of <a class="reference external" href="https://docs.python.org/library/datetime.html#datetime.timedelta" title="(in Python v3.7)"><code class="xref py py-class docutils literal"><span class="pre">datetime.timedelta</span></code></a>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">dt</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mf">2.3</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Then you can add by e.g.:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">+</span><span class="n">dt</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="coords-class">
+<h3>Coords Class<a class="headerlink" href="#coords-class" title="Permalink to this headline">¶</a></h3>
+<p>The spatial coordinate class includes the following coordinate systems in
+Cartesian and spherical forms.</p>
+<blockquote>
+<div><ul class="simple">
+<li>GZD:  (altitude, latitude, longitude) in km, deg, deg</li>
+<li>GEO: cartesian, Re</li>
+<li>GSM: cartesian, Re</li>
+<li>GSE: cartesian, Re</li>
+<li>SM: cartesian, Re</li>
+<li>GEI: cartesian, Re</li>
+<li>MAG: cartesian, Re</li>
+<li>SPH: same as GEO but in spherical</li>
+<li>RLL: radial distance, latitude, longitude, Re, deg, deg.</li>
+</ul>
+</div></blockquote>
+<p>Create a Coords instance with spherical=&#8217;sph&#8217; or cartesian=&#8217;car&#8217;
+coordinates:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">spaco</span> <span class="o">=</span> <span class="n">spc</span><span class="o">.</span><span class="n">Coords</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">]],</span> <span class="s1">&#39;GEO&#39;</span><span class="p">,</span> <span class="s1">&#39;car&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This will let you request, for example, all y-coordinates by <code class="docutils literal"><span class="pre">spaco.y</span></code>
+or if given in spherical coordinates by <code class="docutils literal"><span class="pre">spaco.lati</span></code>. One can transform
+the coordinates by <code class="docutils literal"><span class="pre">newcoord</span> <span class="pre">=</span> <span class="pre">spaco.convert('GSM',</span> <span class="pre">'sph')</span></code>.
+This will return GSM coordinates in a spherical system. Since GSM
+coordinates depend on time, you&#8217;ll have to add first a Ticktock
+vector with the name <code class="docutils literal"><span class="pre">ticks</span></code> like <code class="docutils literal"><span class="pre">spaco.ticks</span> <span class="pre">=</span> <span class="pre">spt.Ticktock(['2002-02-02T12:00:00',</span>
+<span class="pre">'2002-02-02T12:00:00'],</span> <span class="pre">'ISO')</span></code></p>
+<p>Unit conversion will be implemented in the future.</p>
+</div>
+</div>
+<div class="section" id="the-radbelt-module">
+<h2>The radbelt Module<a class="headerlink" href="#the-radbelt-module" title="Permalink to this headline">¶</a></h2>
+<p>The radiation belt module currently includes a simple radial
+diffusion code as a class. Import the module and instatiate a radbelt object:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">spacepy.radbelt</span> <span class="kn">as</span> <span class="nn">sprb</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rb</span> <span class="o">=</span> <span class="n">sprb</span><span class="o">.</span><span class="n">RBmodel</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Add a time grid for a particular period that you are interested in:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">rb</span><span class="o">.</span><span class="n">setup_ticks</span><span class="p">(</span><span class="s1">&#39;2002-02-01T00:00:00&#39;</span><span class="p">,</span> <span class="s1">&#39;2002-02-10T00:00:00&#39;</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This will automatically lookup required geomagnetic/solar wind conditions
+for that period. Run the diffusion solver for that setup and plot the
+results:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">rb</span><span class="o">.</span><span class="n">evolve</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rb</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-data-assimilation-module">
+<h2>The Data Assimilation Module<a class="headerlink" href="#the-data-assimilation-module" title="Permalink to this headline">¶</a></h2>
+<p>This module includes data assimilation capabilities, through the
+assimilation class. The class assimilates data for the radiation belt model
+using the Ensemble Kalman Filter. The algorithm used is the SVD method
+presented by Evensen in 2003 (Evensen, G., Ocean dynamics, 53, pp.343&#8211;367,
+2003). To compensate for model errors, three inflation algorithms are
+implemented. The inflation methodology is specified by the inflation
+argument, where the options are the following:</p>
+<blockquote>
+<div><ul class="simple">
+<li>inflation = 0: Add model error (perturbation for the ensemble) around
+model state values only where observations are available (DEFAULT).</li>
+<li>inflation = 1: Add model error (perturbation for the ensemble) around
+observation values only where observations are available.</li>
+<li>inflation = 2: Inflate around ensemble average for EnKF.</li>
+</ul>
+</div></blockquote>
+<p>Prior to assimilation, a set of data values has to be specified by setting the
+start and end dates, and time step, using the <code class="docutils literal"><span class="pre">setup_ticks</span></code> function of the
+radiation belt model:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">spacepy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">datetime</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">spacepy</span> <span class="kn">import</span> <span class="n">radbelt</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">start</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2002</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">23</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">end</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2002</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">delta</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rmod</span><span class="o">.</span><span class="n">setup_ticks</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;UTC&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Once the dates and time step are specified, the data is added using the
+<code class="docutils literal"><span class="pre">add_PSD</span></code> function (NOTE: This requires a database available from the SpacePy team):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">rmod</span><span class="o">.</span><span class="n">add_PSD</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The observations are averaged over the time windows, whose interval is give by
+the time step. Once the dates and data are set, the assimilation is performed
+using the <code class="docutils literal"><span class="pre">assimilate</span></code> function:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">rmod</span><span class="o">.</span><span class="n">assimilate</span><span class="p">(</span><span class="n">inflation</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This function will add the PSDa values, which are the analysis state of
+the radiation belt using the observations within the dates. To plot the
+analysis simply use the <code class="docutils literal"><span class="pre">plot</span></code> function:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">rmod</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="n">rmod</span><span class="o">.</span><span class="n">PSDa</span><span class="p">,</span><span class="n">clims</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="o">-</span><span class="mi">6</span><span class="p">],</span><span class="n">Lmax</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span><span class="n">Kp</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span><span class="n">Dst</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Additionally, to create a summary plot of the observations use the <code class="docutils literal"><span class="pre">plot_obs</span></code>
+function within the radbelt module. For reference, the last closed drift shell,
+Dst, and Kp are all included. These can be disabled individually using the
+corresponding Boolean kwargs.</p>
+<p>The clims kwarg can be used to manually set the color bar range.  To use, set
+it equal to a two-element list containing minimum and maximum log <sub>10</sub> value to
+plot.  Default action is to use [0,10] as the log <sub>10</sub> of the color range.  This
+is good enough for most applications. The title of the top most plot defaults
+to &#8216;Summary Plot&#8217; but can be customized using the title kwarg.</p>
+<p>The figure object and all three axis objects (PSD axis, Dst axis, and Kp axis)
+are all returned to allow the user to further customize the plots as necessary.
+If any of the plots are excluded, None is returned in their stead.</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">rmod</span><span class="o">.</span><span class="n">plot_obs</span><span class="p">(</span><span class="n">clims</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="o">-</span><span class="mi">6</span><span class="p">],</span><span class="n">Lmax</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span><span class="n">Kp</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span><span class="n">Dst</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Observations Plot&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This command would create the summary plot with a color bar range of 10 <sup>-10</sup>
+to 10 <sup>-6</sup>.  The Lmax line, Kp and Dst values would be excluded.  The title of
+the topmost plot (phase space density) would be set to &#8216;Observations Plot&#8217;.</p>
+</div>
+<div class="section" id="omni-module">
+<h2>OMNI Module<a class="headerlink" href="#omni-module" title="Permalink to this headline">¶</a></h2>
+<p>The OMNI database is an hourly resolution, multi-source data set
+with coverage from November 1963; higher temporal resolution versions of
+the OMNI database exist, but with coverage from 1995. The primary data are
+near-Earth solar wind, magnetic field and plasma parameters. However, a
+number of modern magnetic field models require derived input parameters,
+and Qin and Denton (2007) have used the publicly-available OMNI database to provide
+a modified version of this database containing all parameters necessary
+for these magnetic field models. These data are available through ViRBO  - the Virtual
+Radiation Belt Observatory.</p>
+<p>In SpacePy this data is made available, at 1-hourly resolution, on request
+on first import; if not downloaded when SpacePy is first used then any
+attempt to import the omni module will
+ask the user whether they wish to download the data. Should the user
+require the latest data, the toolbox.update function can
+be used to fetch the latest files from ViRBO.</p>
+<p>The following example fetches the OMNI data for the storms of
+October and November, 2003.:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">spacepy.time</span> <span class="kn">as</span> <span class="nn">spt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">spacepy.omni</span> <span class="kn">as</span> <span class="nn">om</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">datetime</span> <span class="kn">as</span> <span class="nn">dt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2003</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">en</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2003</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">delta</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ticks</span> <span class="o">=</span> <span class="n">spt</span><span class="o">.</span><span class="n">tickrange</span><span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">en</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="s1">&#39;UTC&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">om</span><span class="o">.</span><span class="n">get_omni</span><span class="p">(</span><span class="n">ticks</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><em>data</em> is a dictionary containing all the OMNI data, by variable, for the timestamps
+contained within the <code class="docutils literal"><span class="pre">Ticktock</span></code> object <em>ticks</em>. Now it is simple to plot Dst values
+for instance:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyplot</span> <span class="kn">as</span> <span class="nn">p</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ticks</span><span class="o">.</span><span class="n">eDOY</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Dst&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-irbempy-module">
+<h2>The irbempy Module<a class="headerlink" href="#the-irbempy-module" title="Permalink to this headline">¶</a></h2>
+<p>ONERA (Office National d&#8217;Etudes et Recherches Aerospatiales) initiated a
+well-known FORTRAN library that provides routines to compute magnetic
+coordinates for any location in the Earth&#8217;s magnetic field, to perform
+coordinate conversions, to compute magnetic field vectors in geospace for
+a number of external field models, and to propagate satellite orbits in
+time. Older versions of this library were called ONERA-DESP-LIB. Recently
+the library has changed its name to IRBEM-LIB and is maintained by a number
+of different institutions.</p>
+<p>A number of key routines in IRBEM-LIB have been made available through the
+module <a class="reference internal" href="irbempy.html#module-spacepy.irbempy" title="spacepy.irbempy"><code class="xref py py-mod docutils literal"><span class="pre">irbempy</span></code></a>. Current functionality includes calls to calculate the local
+magnetic field vectors at any point in geospace, calculation of the magnetic
+mirror point for a particle of a given pitch angle (the angle between a
+particle&#8217;s velocity vector and the magnetic field line that it immediately
+orbits such that a pitch angle of 90 degrees signifies gyration perpendicular
+to the local field) anywhere in geospace, and calculation of electron drift
+shells in the inner magnetosphere.:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">spacepy.time</span> <span class="kn">as</span> <span class="nn">spt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">spacepy.coordinates</span> <span class="kn">as</span> <span class="nn">spc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">spacepy.irbempy</span> <span class="kn">as</span> <span class="nn">ib</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">spt</span><span class="o">.</span><span class="n">Ticktock</span><span class="p">([</span><span class="s1">&#39;2002-02-02T12:00:00&#39;</span><span class="p">,</span> <span class="s1">&#39;2002-02-02T12:10:00&#39;</span><span class="p">],</span> <span class="s1">&#39;ISO&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">spc</span><span class="o">.</span><span class="n">Coords</span><span class="p">([[</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]],</span> <span class="s1">&#39;GEO&#39;</span><span class="p">,</span> <span class="s1">&#39;car&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ib</span><span class="o">.</span><span class="n">get_Bfield</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># {&#39;Blocal&#39;: array([  976.42565251,  3396.25991675]),</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#    &#39;Bvec&#39;: array([[ -5.01738885e-01,  -1.65104338e+02,   9.62365503e+02], [  3.33497974e+02,  -5.42111173e+02,   3.33608693e+03]])}</span>
+</pre></div>
+</div>
+<p>One can also calculate the drift shell L* for a 90 degree pitch angle value by using:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">ib</span><span class="o">.</span><span class="n">get_Lstar</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">,</span> <span class="p">[</span><span class="mi">90</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># {&#39;Bmin&#39;: array([  975.59122652,  3388.2476667 ]),</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#  &#39;Bmirr&#39;: array([[  976.42565251], [ 3396.25991675]]),</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#  &#39;Lm&#39;: array([[ 3.13508015], [ 2.07013638]]),</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#  &#39;Lstar&#39;: array([[ 2.86958324], [ 1.95259007]]),</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#  &#39;MLT&#39;: array([ 11.97222034,  12.13378624]),</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#  &#39;Xj&#39;: array([[ 0.00081949], [ 0.00270321]])}</span>
+</pre></div>
+</div>
+<p>Other function wrapped with the IRBEM library include:</p>
+<ul class="simple">
+<li><a class="reference internal" href="autosummary/spacepy.irbempy.find_Bmirror.html#spacepy.irbempy.find_Bmirror" title="spacepy.irbempy.find_Bmirror"><code class="xref py py-func docutils literal"><span class="pre">find_Bmirror()</span></code></a></li>
+<li><a class="reference internal" href="autosummary/spacepy.irbempy.find_magequator.html#spacepy.irbempy.find_magequator" title="spacepy.irbempy.find_magequator"><code class="xref py py-func docutils literal"><span class="pre">find_magequator()</span></code></a></li>
+<li><a class="reference internal" href="autosummary/spacepy.irbempy.coord_trans.html#spacepy.irbempy.coord_trans" title="spacepy.irbempy.coord_trans"><code class="xref py py-func docutils literal"><span class="pre">coord_trans()</span></code></a></li>
+</ul>
+</div>
+<div class="section" id="pycdf-python-access-to-nasa-cdf-library">
+<h2>pyCDF - Python Access to NASA CDF Library<a class="headerlink" href="#pycdf-python-access-to-nasa-cdf-library" title="Permalink to this headline">¶</a></h2>
+<p>pycdf provides a &#8220;pythonic&#8221; interface to the NASA CDF library. It requires
+that the NASA CDF C-library is properly installed.
+The module can then be imported, e.g.:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">spacepy.pycdf</span> <span class="kn">as</span> <span class="nn">cdf</span>
+</pre></div>
+</div>
+<p>To open and close a CDF file, we use the <a class="reference internal" href="autosummary/spacepy.pycdf.CDF.html#spacepy.pycdf.CDF" title="spacepy.pycdf.CDF"><code class="xref py py-class docutils literal"><span class="pre">CDF</span></code></a> class:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">cdf_file</span> <span class="o">=</span> <span class="n">cdf</span><span class="o">.</span><span class="n">CDF</span><span class="p">(</span><span class="s1">&#39;filename.cdf&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cdf_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>CDF files, like standard Python files, act as context managers:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">cdf</span><span class="o">.</span><span class="n">CDF</span><span class="p">(</span><span class="s1">&#39;filename.cdf&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">cdf_file</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="c1">#do brilliant things with cdf_file</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#cdf_file is automatically closed here</span>
+</pre></div>
+</div>
+<p>CDF files act as Python dictionaries, holding CDF variables keyed
+by the variable name:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">var_names</span> <span class="o">=</span> <span class="n">keys</span><span class="p">(</span><span class="n">cdf_file</span><span class="p">)</span> <span class="c1">#list of all variables</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">var_name</span> <span class="ow">in</span> <span class="n">cdf_file</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="k">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cdf_file</span><span class="p">[</span><span class="n">var_name</span><span class="p">]))</span> <span class="c1">#number of records in each variable</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#list comprehensions work, too</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lengths</span> <span class="o">=</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">cdf_file</span><span class="p">[</span><span class="n">var_name</span><span class="p">])</span> <span class="k">for</span> <span class="n">var_name</span> <span class="ow">in</span> <span class="n">cdf_file</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Each CDF variable acts like a numpy array, where the first dimension is the
+record number. Multidimensional CDF variables can be subscripted using
+numpy&#8217;s multidimensional slice notation. Many common list operations are also
+implemented, where each record acts as one element of the list and can be
+independently deleted, inserted, etc. Creating a Python <a class="reference internal" href="autosummary/spacepy.pycdf.Var.html#spacepy.pycdf.Var" title="spacepy.pycdf.Var"><code class="xref py py-class docutils literal"><span class="pre">Var</span></code></a>
+object does not read the data from disc; data are only read as they are
+accessed:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">epoch</span> <span class="o">=</span> <span class="n">cdf_file</span><span class="p">[</span><span class="s1">&#39;Epoch&#39;</span><span class="p">]</span> <span class="c1">#Python object created, nothing read from disc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">epoch</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1">#time of first record in CDF (datetime object)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">epoch</span><span class="p">[</span><span class="o">...</span><span class="p">]</span> <span class="c1">#copy all times to list a</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">epoch</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">:]</span> <span class="c1">#copy last five times to list a</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b_gse</span> <span class="o">=</span> <span class="n">cdf_file</span><span class="p">[</span><span class="s1">&#39;B_GSE&#39;</span><span class="p">]</span> <span class="c1">#B_GSE is a 1D, three-element array</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bz</span> <span class="o">=</span> <span class="n">b_gse</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> <span class="c1">#Z component of first record</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bx</span> <span class="o">=</span> <span class="n">b_gse</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="c1">#copy X component of all records to bx</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bx</span> <span class="o">=</span> <span class="n">cdf_file</span><span class="p">[</span><span class="s1">&#39;B_GSE&#39;</span><span class="p">][:,</span><span class="mi">0</span><span class="p">]</span> <span class="c1">#same as above</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-datamodel-module">
+<h2>The datamodel Module<a class="headerlink" href="#the-datamodel-module" title="Permalink to this headline">¶</a></h2>
+<p>The SpacePy datamodel module implements classes that are designed to make implementing a standard
+data model easy. The concepts are very similar to those used in standards like HDF5, netCDF and
+NASA CDF.</p>
+<p>The basic container type is analogous to a folder (on a filesystem; HDF5 calls this a
+group): Here we implement this as a dictionary-like object, a <a class="reference internal" href="autosummary/spacepy.datamodel.SpaceData.html#spacepy.datamodel.SpaceData" title="spacepy.datamodel.SpaceData"><code class="xref py py-class docutils literal"><span class="pre">datamodel.SpaceData</span></code></a> object, which
+also carries attributes. These attributes can be considered to be global, i.e. relevant for the
+entire folder. The next container type is for storing data and is based on a numpy array, this
+class is <a class="reference internal" href="autosummary/spacepy.datamodel.dmarray.html#spacepy.datamodel.dmarray" title="spacepy.datamodel.dmarray"><code class="xref py py-class docutils literal"><span class="pre">datamodel.dmarray</span></code></a> and also carries attributes. The dmarray class is analogous to an
+HDF5 dataset.</p>
+<div class="section" id="guide-for-nasa-cdf-users">
+<h3>Guide for NASA CDF users<a class="headerlink" href="#guide-for-nasa-cdf-users" title="Permalink to this headline">¶</a></h3>
+<p>By definition, a NASA CDF only has a single &#8216;layer&#8217;. That is, a CDF contains a series of records
+(stored variables of various types) and a set of attributes that are either global or local in
+scope. Thus to use SpacePy&#8217;s datamodel to capture the functionality of CDF the two basic data types
+are all that is required, and the main constraint is that datamodel.SpaceData objects cannot be
+nested (more on this later, if conversion from a nested datamodel to a flat datamodel is required).</p>
+<p>This is best illustrated with an example. Imagine representing some satellite data within a CDF &#8211;
+the global attributes might be the mission name and the instrument PI, the variables might be the
+instrument counts [n-dimensional array], timestamps[1-dimensional array and an orbit number [scalar].
+Each variable will have one attribute (for this example).</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">spacepy.datamodel</span> <span class="kn">as</span> <span class="nn">dm</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mydata</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">SpaceData</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;MissionName&#39;</span><span class="p">:</span> <span class="s1">&#39;BigSat1&#39;</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mydata</span><span class="p">[</span><span class="s1">&#39;Counts&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">dmarray</span><span class="p">([[</span><span class="mi">42</span><span class="p">,</span> <span class="mi">69</span><span class="p">,</span> <span class="mi">77</span><span class="p">],</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">250</span><span class="p">]],</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Units&#39;</span><span class="p">:</span> <span class="s1">&#39;cnts/s&#39;</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mydata</span><span class="p">[</span><span class="s1">&#39;Epoch&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">dmarray</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;units&#39;</span><span class="p">:</span> <span class="s1">&#39;minutes&#39;</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mydata</span><span class="p">[</span><span class="s1">&#39;OrbitNumber&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">dmarray</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;StartsFrom&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mydata</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;PI&#39;</span><span class="p">]</span> <span class="s1">&#39;Prof. Big Shot&#39;</span>
+</pre></div>
+</div>
+<p>This has now populated a structure that can map directly to a NASA CDF. To visualize our datamodel,
+we can use the <a class="reference internal" href="autosummary/spacepy.datamodel.SpaceData.html#spacepy.datamodel.SpaceData.tree" title="spacepy.datamodel.SpaceData.tree"><code class="xref py py-meth docutils literal"><span class="pre">tree()</span></code></a> method, which is equivalent to <a class="reference internal" href="autosummary/spacepy.toolbox.dictree.html#spacepy.toolbox.dictree" title="spacepy.toolbox.dictree"><code class="xref py py-func docutils literal"><span class="pre">toolbox.dictree()</span></code></a>
+(which works for any dictionary-like object, including PyCDF file objects).</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">mydata</span><span class="o">.</span><span class="n">tree</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="go">+</span>
+<span class="go">:|____MissionName</span>
+<span class="go">:|____PI</span>
+<span class="go">|____Counts</span>
+<span class="go">    :|____Units</span>
+<span class="go">|____Epoch</span>
+<span class="go">    :|____units</span>
+<span class="go">|____OrbitNumber</span>
+<span class="go">    :|____StartsFrom</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">spacepy.toolbox</span> <span class="kn">as</span> <span class="nn">tb</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tb</span><span class="o">.</span><span class="n">dictree</span><span class="p">(</span><span class="n">mydata</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="go">+</span>
+<span class="go">:|____MissionName</span>
+<span class="go">:|____PI</span>
+<span class="go">|____Counts</span>
+<span class="go">    :|____Units</span>
+<span class="go">|____Epoch</span>
+<span class="go">    :|____units</span>
+<span class="go">|____OrbitNumber</span>
+<span class="go">    :|____StartsFrom</span>
+</pre></div>
+</div>
+<p>Attributes are denoted by a leading colon. The global attributes are those in the base level,
+and the local attributes are attached to each variable.</p>
+<p>If we have data that has nested &#8216;folders&#8217;, allowed by HDF5 but not by NASA CDF, then how can this be
+represented such that the data structure can be mapped directly to a NASA CDF? The data will need to
+be flattened so that it is single layered. Let us now store some ephemerides in our data structure:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">mydata</span><span class="p">[</span><span class="s1">&#39;Ephemeris&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">SpaceData</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mydata</span><span class="p">[</span><span class="s1">&#39;Ephemeris&#39;</span><span class="p">][</span><span class="s1">&#39;GSM&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">dmarray</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mf">2.5</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mf">1.9</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tb</span><span class="o">.</span><span class="n">dictree</span><span class="p">(</span><span class="n">mydata</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="go">+</span>
+<span class="go">:|____MissionName</span>
+<span class="go">:|____PI</span>
+<span class="go">|____Counts</span>
+<span class="go">    :|____Units</span>
+<span class="go">|____Ephemeris</span>
+<span class="go">    |____GSM</span>
+<span class="go">|____Epoch</span>
+<span class="go">    :|____units</span>
+<span class="go">|____OrbitNumber</span>
+<span class="go">    :|____StartsFrom</span>
+</pre></div>
+</div>
+<p>Nested dictionary-like objects is not uncommon in Python (and can be exceptionally useful for representing
+data, so to make this compatible with NASA CDF we call the <a class="reference internal" href="autosummary/spacepy.datamodel.SpaceData.html#spacepy.datamodel.SpaceData.flatten" title="spacepy.datamodel.SpaceData.flatten"><code class="xref py py-meth docutils literal"><span class="pre">flatten()</span></code></a> method .</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">mydata</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tb</span><span class="o">.</span><span class="n">dictree</span><span class="p">(</span><span class="n">mydata</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="go">+</span>
+<span class="go">:|____MissionName</span>
+<span class="go">:|____PI</span>
+<span class="go">|____Counts</span>
+<span class="go">    :|____Units</span>
+<span class="go">|____Ephemeris&lt;--GSM</span>
+<span class="go">|____Epoch</span>
+<span class="go">    :|____units</span>
+<span class="go">|____OrbitNumber</span>
+<span class="go">    :|____StartsFrom</span>
+</pre></div>
+</div>
+<p>Note that the nested SpaceData has been moved to a variable with a new name reflecting its origin. The
+data structure is now flat again and can be mapped directly to NASA CDF.</p>
+</div>
+<div class="section" id="converters-to-from-datamodel">
+<h3>Converters to/from datamodel<a class="headerlink" href="#converters-to-from-datamodel" title="Permalink to this headline">¶</a></h3>
+<p>Currently converters exist to read HDF5 and NASA CDF files directly to a SpacePy datamodel. This capability
+also exists for JSON-headed ASCII files (RBSP/AutoPlot-compatible). A converter from the datamodel to HDF5
+is now available and a converter to NASA CDF is under development. Also under development is the reverse of
+the SpaceData.flatten method, so that flattened objects can be restored to their former glory.</p>
+</div>
+</div>
+<div class="section" id="empiricals-module">
+<h2>Empiricals Module<a class="headerlink" href="#empiricals-module" title="Permalink to this headline">¶</a></h2>
+<p>The empiricals module provides access to some useful empirical models.
+As of SpacePy 0.1.2, the models available are:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="autosummary/spacepy.empiricals.getLmax.html#spacepy.empiricals.getLmax" title="spacepy.empiricals.getLmax"><code class="xref py py-func docutils literal"><span class="pre">getLmax()</span></code></a> An empirical parametrization of the L* of the last closed drift shell
+(Lmax)</li>
+<li><a class="reference internal" href="autosummary/spacepy.empiricals.getPlasmaPause.html#spacepy.empiricals.getPlasmaPause" title="spacepy.empiricals.getPlasmaPause"><code class="xref py py-func docutils literal"><span class="pre">getPlasmaPause()</span></code></a> The plasmapause location, following either Carpenter and Anderson
+(1992) or Moldwin et al. (2002)</li>
+<li><a class="reference internal" href="autosummary/spacepy.empiricals.getMPstandoff.html#spacepy.empiricals.getMPstandoff" title="spacepy.empiricals.getMPstandoff"><code class="xref py py-func docutils literal"><span class="pre">getMPstandoff()</span></code></a> The magnetopause standoff location (i.e. the sub-solar point), using
+the Shue et al. (1997) model</li>
+<li><a class="reference internal" href="autosummary/spacepy.empiricals.vampolaPA.html#spacepy.empiricals.vampolaPA" title="spacepy.empiricals.vampolaPA"><code class="xref py py-func docutils literal"><span class="pre">vampolaPA()</span></code></a> A conversion of omnidirectional electron flux to pitch-angle dependent
+flux, using the sin <sup>n</sup> model of Vampola (1996)</li>
+</ul>
+</div></blockquote>
+<p>Each of the first three models is called by passing it a Ticktock object (see above) which then
+calculates the model output using the 1-hour Qin-Denton OMNI data (from the
+OMNI module; see above). For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">spacepy.time</span> <span class="kn">as</span> <span class="nn">spt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">spacepy.empiricals</span> <span class="kn">as</span> <span class="nn">emp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ticks</span> <span class="o">=</span> <span class="n">spt</span><span class="o">.</span><span class="n">tickrange</span><span class="p">(</span><span class="s1">&#39;2002-01-01T12:00:00&#39;</span><span class="p">,</span><span class="s1">&#39;2002-01-04T00:00:00&#39;</span><span class="p">,</span><span class="o">.</span><span class="mi">25</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>calls <a class="reference internal" href="autosummary/spacepy.time.tickrange.html#spacepy.time.tickrange" title="spacepy.time.tickrange"><code class="xref py py-func docutils literal"><span class="pre">tickrange()</span></code></a> and makes a Ticktock object
+with times from midday on January 1st 2002 to midnight January 4th 2002,
+incremented 6-hourly:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Lpp</span> <span class="o">=</span> <span class="n">emp</span><span class="o">.</span><span class="n">getPlasmaPause</span><span class="p">(</span><span class="n">ticks</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>then returns the model plasmapause location using the default setting of the
+Moldwin et al. (2002) model. The Carpenter and Anderson model can be used by
+setting the Lpp_model keyword to &#8216;CA1992&#8217;.</p>
+<p>The magnetopause standoff location can be called using this syntax, or can be
+called for specific solar wind parameters (ram pressure, P, and IMF Bz) passed
+through in a Python dictionary:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;P&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span> <span class="s1">&#39;Bz&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mf">2.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.4</span><span class="p">]}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">emp</span><span class="o">.</span><span class="n">getMPstandoff</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span>  <span class="c1"># array([ 10.29156018,   8.96790412])</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="seapy-superposed-epoch-analysis-in-python">
+<h2>SeaPy - Superposed Epoch Analysis in Python<a class="headerlink" href="#seapy-superposed-epoch-analysis-in-python" title="Permalink to this headline">¶</a></h2>
+<p>Superposed epoch analysis is a technique used to reveal consistent responses,
+relative to some repeatable phenomenon, in noisy data . Time series of the variables
+under investigation are extracted from a window around the epoch and all data
+at a given time relative to epoch forms the sample of events at that lag. The
+data at each time lag are then averaged so that fluctuations not
+consistent about the epoch cancel. In many superposed epoch analyses the mean of
+the data at each time <em>u</em> relative to epoch, is used to
+represent the central tendency. In SeaPy we calculate both the mean and the median,
+since the median is a more robust measure of central tendency and is less affected
+by departures from normality. SeaPy also calculates a measure of spread at each time
+relative to epoch when performing the superposed epoch analysis; the interquartile
+range is the default, but the median absolute deviation and bootstrapped confidence
+intervals of the median (or mean) are also available.</p>
+<p>As an example we fetch OMNI data for 4 years and perform a superposed epoch analysis
+of the solar wind radial velocity, with a set of epoch times read from a text file:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">datetime</span> <span class="kn">as</span> <span class="nn">dt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">spacepy.seapy</span> <span class="kn">as</span> <span class="nn">sea</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">spacepy.omni</span> <span class="kn">as</span> <span class="nn">om</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">spacepy.toolbox</span> <span class="kn">as</span> <span class="nn">tb</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">spacepy.time</span> <span class="kn">as</span> <span class="nn">spt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># now read the epochs for the analysis (the path specified is the default</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># install location on linux, different OS will have this elsewhere)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">epochs</span> <span class="o">=</span> <span class="n">sea</span><span class="o">.</span><span class="n">readepochs</span><span class="p">(</span><span class="s1">&#39;~/.local/lib/python2.7/site-packages/spacepy/data/SEA_epochs_OMNI.txt&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The readepochs function can handle multiple formats by a user-specified format code.
+ISO 8601 format is directly supported though it is not used here. The the readepochs docstring
+for more information. As above, we use the get_omni function to retrieve the hourly data
+from the OMNI module:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">ticks</span> <span class="o">=</span> <span class="n">spt</span><span class="o">.</span><span class="n">tickrange</span><span class="p">(</span><span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2005</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2009</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">dt</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">omni1hr</span> <span class="o">=</span> <span class="n">om</span><span class="o">.</span><span class="n">get_omni</span><span class="p">(</span><span class="n">ticks</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">omni1hr</span><span class="o">.</span><span class="n">tree</span><span class="p">(</span><span class="n">levels</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>+
+|____ByIMF (spacepy.datamodel.dmarray (35065,))
+|____Bz1 (spacepy.datamodel.dmarray (35065,))
+|____Bz2 (spacepy.datamodel.dmarray (35065,))
+|____Bz3 (spacepy.datamodel.dmarray (35065,))
+|____Bz4 (spacepy.datamodel.dmarray (35065,))
+|____Bz5 (spacepy.datamodel.dmarray (35065,))
+|____Bz6 (spacepy.datamodel.dmarray (35065,))
+|____BzIMF (spacepy.datamodel.dmarray (35065,))
+|____DOY (spacepy.datamodel.dmarray (35065,))
+|____Dst (spacepy.datamodel.dmarray (35065,))
+|____G (spacepy.datamodel.dmarray (35065, 3))
+|____Hr (spacepy.datamodel.dmarray (35065,))
+|____Kp (spacepy.datamodel.dmarray (35065,))
+|____Pdyn (spacepy.datamodel.dmarray (35065,))
+|____Qbits (spacepy.datamodel.SpaceData [7])
+|____RDT (spacepy.datamodel.dmarray (35065,))
+|____UTC (spacepy.datamodel.dmarray (35065,))
+|____W (spacepy.datamodel.dmarray (35065, 6))
+|____Year (spacepy.datamodel.dmarray (35065,))
+|____akp3 (spacepy.datamodel.dmarray (35065,))
+|____dens (spacepy.datamodel.dmarray (35065,))
+</pre></div>
+</div>
+<p>and these data are used for the superposed epoch analysis.
+the temporal resolution is 1 hr and the window is +/- 3 days</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">delta</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">window</span><span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sevx</span> <span class="o">=</span> <span class="n">sea</span><span class="o">.</span><span class="n">Sea</span><span class="p">(</span><span class="n">omni1hr</span><span class="p">[</span><span class="s1">&#39;velo&#39;</span><span class="p">],</span> <span class="n">omni1hr</span><span class="p">[</span><span class="s1">&#39;UTC&#39;</span><span class="p">],</span> <span class="n">epochs</span><span class="p">,</span> <span class="n">window</span><span class="p">,</span> <span class="n">delta</span><span class="p">)</span>
+<span class="go">    #rather than quartiles, we calculate the 95% confidence interval on the median</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sevx</span><span class="o">.</span><span class="n">sea</span><span class="p">(</span><span class="n">ci</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sevx</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="doc_standard.html" title="Documentation Standard"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="install_windows.html" title="Windows Installation"
+             >previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+       <li><a href="index.html">documentation </a> &raquo;</li>
+ 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2019, The SpacePy Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

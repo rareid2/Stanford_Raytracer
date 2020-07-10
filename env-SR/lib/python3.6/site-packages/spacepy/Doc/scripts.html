@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>SpacePy Scripts &mdash; SpacePy v0.2.1 Manual</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="_static/spacepy_favicon.ico"/>
+    <link rel="top" title="SpacePy v0.2.1 Manual" href="index.html" />
+    <link rel="next" title="ae9ap9 - Handle AE9/AP9 data files" href="ae9ap9.html" />
+    <link rel="prev" title="Writing Pythonic Code" href="pythonic.html" /> 
+  </head>
+  <body role="document">
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="index.html"><img src="_static/spacepy_logo.jpg" border="0" alt="spacepy_logo"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="ae9ap9.html" title="ae9ap9 - Handle AE9/AP9 data files"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pythonic.html" title="Writing Pythonic Code"
+             accesskey="P">previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+       <li><a href="index.html">documentation </a> &raquo;</li>
+ 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">SpacePy Scripts</a><ul>
+<li><a class="reference internal" href="#istp-checks-py">istp_checks.py</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pythonic.html"
+                        title="previous chapter">Writing Pythonic Code</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="ae9ap9.html"
+                        title="next chapter">ae9ap9 - Handle AE9/AP9 data files</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/scripts.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="spacepy-scripts">
+<h1>SpacePy Scripts<a class="headerlink" href="#spacepy-scripts" title="Permalink to this headline">¶</a></h1>
+<p>Some scripts using SpacePy are included in the <code class="docutils literal"><span class="pre">scripts</span></code> directory
+of the source distribution. At the moment they are not installed by
+the installer.</p>
+<div class="section" id="istp-checks-py">
+<h2>istp_checks.py<a class="headerlink" href="#istp-checks-py" title="Permalink to this headline">¶</a></h2>
+<p>Checks for various ISTP compliance issues in a file and prints any
+issues found. This script is supplemental to the checker included with
+the <a class="reference external" href="https://spdf.gsfc.nasa.gov/skteditor/">ISTP skeleton editor</a>;
+it primarily checks for errors that the skeleton editor does not.</p>
+<p>Badly noncompliant files generally result in the error &#8220;Test x did not
+complete&#8221;. This means the test crashed due to some failure in the
+assumptions about the CDF structure. Please run the individual test to
+get a traceback and <a class="reference external" href="https://github.com/spacepy/spacepy/issues">open an issue</a>.</p>
+<p>This is just a thin wrapper to
+<a class="reference internal" href="autosummary/autosummary/spacepy.pycdf.istp.FileChecks.html#spacepy.pycdf.istp.FileChecks.all" title="spacepy.pycdf.istp.FileChecks.all"><code class="xref py py-meth docutils literal"><span class="pre">spacepy.pycdf.istp.FileChecks.all()</span></code></a>; that documentation (plus
+other methods in the class) describes the actual checks.</p>
+<dl class="option">
+<dt id="cmdoption-istp_checks.py-arg-cdffile">
+<code class="descname">cdffile</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-istp_checks.py-arg-cdffile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of the CDF file to check (required)</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="ae9ap9.html" title="ae9ap9 - Handle AE9/AP9 data files"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pythonic.html" title="Writing Pythonic Code"
+             >previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+       <li><a href="index.html">documentation </a> &raquo;</li>
+ 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2019, The SpacePy Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

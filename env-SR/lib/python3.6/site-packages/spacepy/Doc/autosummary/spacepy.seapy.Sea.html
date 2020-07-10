@@ -1,0 +1,286 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>spacepy.seapy.Sea &mdash; SpacePy v0.2.1 Manual</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="../_static/spacepy_favicon.ico"/>
+    <link rel="top" title="SpacePy v0.2.1 Manual" href="../index.html" />
+    <link rel="up" title="SeaPy - Superposed Epoch in Python" href="../seapy.html" />
+    <link rel="next" title="spacepy.seapy.Sea2d" href="spacepy.seapy.Sea2d.html" />
+    <link rel="prev" title="SeaPy - Superposed Epoch in Python" href="../seapy.html" /> 
+  </head>
+  <body role="document">
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../index.html"><img src="../_static/spacepy_logo.jpg" border="0" alt="spacepy_logo"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="spacepy.seapy.Sea2d.html" title="spacepy.seapy.Sea2d"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../seapy.html" title="SeaPy - Superposed Epoch in Python"
+             accesskey="P">previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+       <li><a href="../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../seapy.html" accesskey="U">SeaPy - Superposed Epoch in Python</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../seapy.html"
+                        title="previous chapter">SeaPy - Superposed Epoch in Python</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="spacepy.seapy.Sea2d.html"
+                        title="next chapter">spacepy.seapy.Sea2d</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/autosummary/spacepy.seapy.Sea.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="spacepy-seapy-sea">
+<h1>spacepy.seapy.Sea<a class="headerlink" href="#spacepy-seapy-sea" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="spacepy.seapy.Sea">
+<em class="property">class </em><code class="descclassname">spacepy.seapy.</code><code class="descname">Sea</code><span class="sig-paren">(</span><em>data</em>, <em>times</em>, <em>epochs</em>, <em>window=3.0</em>, <em>delta=1.0</em>, <em>verbose=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/seapy.html#Sea"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.seapy.Sea" title="Permalink to this definition">¶</a></dt>
+<dd><p>SeaPy Superposed epoch analysis object</p>
+<p>Initialize object with data, times, epochs, window (half-width) and delta (optional).
+&#8216;times&#8217; and epochs should be in some useful format
+Includes method to perform superposed epoch analysis of input data series</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>data</strong> : array_like</p>
+<blockquote>
+<div><p>list or array of data</p>
+</div></blockquote>
+<p><strong>times</strong> : array_like</p>
+<blockquote>
+<div><p>list of datetime objects (or list of serial times)</p>
+</div></blockquote>
+<p><strong>epochs</strong> : array_like</p>
+<blockquote>
+<div><p>list of datetime objects (or serial times) for zero epochs in SEA</p>
+</div></blockquote>
+<p><strong>window</strong> : datetime.timedelta</p>
+<blockquote>
+<div><p>size of the half-window for the SEA (can also be given as serial time)</p>
+</div></blockquote>
+<p><strong>delta</strong> : datetime.timedelta</p>
+<blockquote class="last">
+<div><p>resolution of the input data series, which must be uniform (can also be
+given as serial time)</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>Output can be nicely plotted with <a class="reference internal" href="#spacepy.seapy.Sea.plot" title="spacepy.seapy.Sea.plot"><code class="xref py py-meth docutils literal"><span class="pre">plot()</span></code></a>, or for multiple objects
+use the <a class="reference internal" href="spacepy.seapy.multisea.html#spacepy.seapy.multisea" title="spacepy.seapy.multisea"><code class="xref py py-func docutils literal"><span class="pre">multisea()</span></code></a> function</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#spacepy.seapy.Sea.sea" title="spacepy.seapy.Sea.sea"><code class="xref py py-obj docutils literal"><span class="pre">sea</span></code></a>(**kwargs)</td>
+<td>Method called to perform superposed epoch analysis on data in object.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#spacepy.seapy.Sea.plot" title="spacepy.seapy.Sea.plot"><code class="xref py py-obj docutils literal"><span class="pre">plot</span></code></a>([xquan,&nbsp;yquan,&nbsp;xunits,&nbsp;yunits,&nbsp;...])</td>
+<td>Method called to create basic plot of superposed epoch analysis.</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="spacepy.seapy.Sea.sea">
+<code class="descname">sea</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/seapy.html#Sea.sea"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.seapy.Sea.sea" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method called to perform superposed epoch analysis on data in object.</p>
+<p>Uses object attributes obj.data, obj.times, obj.epochs, obj.delta,
+obj.window, all of which must be available on instantiation.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Other Parameters:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><p class="first"><strong>storedata</strong> : boolean</p>
+<blockquote>
+<div><p>saves matrix of epoch windows as obj.datacube (default = False)</p>
+</div></blockquote>
+<p><strong>quartiles</strong> : list</p>
+<blockquote>
+<div><p>calculates the quartiles as the upper and lower bounds (and is default);</p>
+</div></blockquote>
+<p><strong>ci</strong> : float</p>
+<blockquote>
+<div><p>will find the bootstrapped confidence intervals of ci_quan at the ci percent level (default=95)</p>
+</div></blockquote>
+<p><strong>mad</strong> : float</p>
+<blockquote>
+<div><p>will use +/- the median absolute deviation for the bounds;</p>
+</div></blockquote>
+<p><strong>ci_quan</strong> : string</p>
+<blockquote class="last">
+<div><p>can be set to &#8216;median&#8217; (default) or &#8216;mean&#8217;</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>A basic plot can be raised with <a class="reference internal" href="#spacepy.seapy.Sea.plot" title="spacepy.seapy.Sea.plot"><code class="xref py py-meth docutils literal"><span class="pre">plot()</span></code></a></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spacepy.seapy.Sea.plot">
+<code class="descname">plot</code><span class="sig-paren">(</span><em>xquan='Time Since Epoch'</em>, <em>yquan=''</em>, <em>xunits=''</em>, <em>yunits=''</em>, <em>epochline=True</em>, <em>usrlimy=[]</em>, <em>show=True</em>, <em>target=None</em>, <em>loc=111</em>, <em>figsize=None</em>, <em>dpi=None</em>, <em>transparent=True</em>, <em>color='#7F7FFF'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/seapy.html#Sea.plot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.seapy.Sea.plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method called to create basic plot of superposed epoch analysis.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>Uses object attributes created by the obj.sea() method.</strong></p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Other Parameters:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><p class="first"><strong>xquan</strong> : str</p>
+<blockquote>
+<div><p>(default = &#8216;Time since epoch&#8217; ) - x-axis label.</p>
+</div></blockquote>
+<p><strong>yquan</strong> : str</p>
+<blockquote>
+<div><p>default None - yaxus label</p>
+</div></blockquote>
+<p><strong>xunits</strong> : str</p>
+<blockquote>
+<div><p>(default = None) - x-axis units.</p>
+</div></blockquote>
+<p><strong>yunits</strong> : str</p>
+<blockquote>
+<div><p>(default = None) - y-axis units.</p>
+</div></blockquote>
+<p><strong>epochline</strong> : boolean</p>
+<blockquote>
+<div><p>(default = True) - put vertical line at zero epoch.</p>
+</div></blockquote>
+<p><strong>usrlimy</strong> : list</p>
+<blockquote>
+<div><p>(default = []) - override automatic y-limits on plot.</p>
+</div></blockquote>
+<p><strong>transparent</strong> : boolean</p>
+<blockquote>
+<div><p>(default True): make patch for low/high bounds transparent</p>
+</div></blockquote>
+<p><strong>color</strong> : str</p>
+<blockquote class="last">
+<div><p>Color to use for the patch if not transparent.
+(default #7F7FFF, a medium blue)</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>If both quan and units are supplied, axis label will read
+&#8216;Quantity Entered By User [Units]&#8217;</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="spacepy.seapy.Sea2d.html" title="spacepy.seapy.Sea2d"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../seapy.html" title="SeaPy - Superposed Epoch in Python"
+             >previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+       <li><a href="../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../seapy.html" >SeaPy - Superposed Epoch in Python</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2019, The SpacePy Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

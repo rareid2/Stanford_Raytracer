@@ -1,0 +1,834 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>spacepy.ae9ap9 &mdash; SpacePy v0.2.1 Manual</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="../../_static/spacepy_favicon.ico"/>
+    <link rel="top" title="SpacePy v0.2.1 Manual" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+  </head>
+  <body role="document">
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../../index.html"><img src="../../_static/spacepy_logo.jpg" border="0" alt="spacepy_logo"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../../search.html">search</a>|&nbsp;</li>
+       <li><a href="../../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/logo.png" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for spacepy.ae9ap9</h1><div class="highlight"><pre>
+<span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Module for reading and dealing with AE9AP9 data files.</span>
+
+<span class="sd">See https://www.vdl.afrl.af.mil/programs/ae9ap9/ to download the model.</span>
+<span class="sd">This is not a AE9AP9 runner.</span>
+
+<span class="sd">Authors: Brian Larsen, Steve Morley</span>
+<span class="sd">Institution: Los Alamos National Laboratory</span>
+<span class="sd">Contact: balarsen@lanl.gov</span>
+
+<span class="sd">Copyright 2015 Los Alamos National Security, LLC.</span>
+
+<span class="sd">This module provides a convenient class for handling data from</span>
+<span class="sd">AE9/AP9 (and legacy models provided by the software).</span>
+
+<span class="sd">.. rubric:: Class</span>
+<span class="sd">.. autosummary::</span>
+<span class="sd">    :template: clean_class.rst</span>
+<span class="sd">    :toctree: autosummary</span>
+
+<span class="sd">    Ae9Data</span>
+
+<span class="sd">Though the class is derived from SpacePy&#39;s SpaceData, the class also provides several methods</span>
+<span class="sd">targeted at the AE9/AP9 output. Additional functions for working with the data are provided.</span>
+
+<span class="sd">.. rubric:: Functions</span>
+<span class="sd">.. autosummary::</span>
+<span class="sd">    :template: clean_function.rst</span>
+<span class="sd">    :toctree: autosummary</span>
+
+<span class="sd">    readFile</span>
+<span class="sd">    parseHeader</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">datetime</span> <span class="kn">as</span> <span class="nn">dt</span>
+<span class="kn">import</span> <span class="nn">gzip</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="kn">from</span> <span class="nn">dateutil</span> <span class="kn">import</span> <span class="n">relativedelta</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">spacepy.coordinates</span> <span class="kn">as</span> <span class="nn">spc</span>
+<span class="kn">import</span> <span class="nn">spacepy.datamodel</span> <span class="kn">as</span> <span class="nn">dm</span>
+<span class="kn">import</span> <span class="nn">spacepy.plot</span> <span class="kn">as</span> <span class="nn">splot</span>
+<span class="kn">import</span> <span class="nn">spacepy.time</span> <span class="kn">as</span> <span class="nn">spt</span>
+<span class="kn">import</span> <span class="nn">spacepy.toolbox</span> <span class="kn">as</span> <span class="nn">tb</span>
+
+<span class="n">__contact__</span> <span class="o">=</span> <span class="s1">&#39;Brian Larsen, balarsen@lanl.gov&#39;</span>
+
+
+<div class="viewcode-block" id="Ae9Data"><a class="viewcode-back" href="../../autosummary/spacepy.ae9ap9.Ae9Data.html#spacepy.ae9ap9.Ae9Data">[docs]</a><span class="k">class</span> <span class="nc">Ae9Data</span><span class="p">(</span><span class="n">dm</span><span class="o">.</span><span class="n">SpaceData</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Dictionary-like container for AE9/AP9/SPM data, derived from SpacePy&#39;s datamodel</span>
+
+<span class="sd">    To inspect the variables within this class, use the tree method.</span>
+<span class="sd">    To export the data to a CDF, HDF5 or JSON-headed ASCII file use the relevant &quot;to&quot; method</span>
+<span class="sd">    (toCDF, toHDF5, toJSONheadedASCII).</span>
+
+<span class="sd">    .. autosummary::</span>
+
+<span class="sd">        ~Ae9Data.getLm</span>
+<span class="sd">        ~Ae9Data.plotOrbit</span>
+<span class="sd">        ~Ae9Data.plotSummary</span>
+<span class="sd">        ~Ae9Data.plotSpectrogram</span>
+<span class="sd">        ~Ae9Data.setUnits</span>
+
+<span class="sd">    .. automethod:: getLm</span>
+<span class="sd">    .. automethod:: plotOrbit</span>
+<span class="sd">    .. automethod:: plotSummary</span>
+<span class="sd">    .. automethod:: plotSpectrogram</span>
+<span class="sd">    .. automethod:: setUnits</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Ae9Data.setUnits"><a class="viewcode-back" href="../../autosummary/spacepy.ae9ap9.Ae9Data.html#spacepy.ae9ap9.Ae9Data.setUnits">[docs]</a>    <span class="k">def</span> <span class="nf">setUnits</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">per</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set units of energy and flux/fluence</span>
+
+<span class="sd">        If keyword &#39;per&#39; is set to None, this method reports the units currently set.</span>
+<span class="sd">        To set energy in MeV and flux/fluence in &#39;per MeV&#39;, set &#39;per=MeV&#39;. Valid options are</span>
+<span class="sd">        &#39;eV&#39;, &#39;keV&#39;, &#39;Mev&#39; and &#39;GeV&#39;.</span>
+
+<span class="sd">        Other Parameters</span>
+<span class="sd">        ----------------</span>
+<span class="sd">        per : string (optional)</span>
+<span class="sd">            Energy units for both energy and flux/fluence</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">curr</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;Energy&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;UNITS&#39;</span><span class="p">]</span>
+        <span class="n">particle_var</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;varname&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">per</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Energy units: {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">curr</span><span class="p">))</span>
+            <span class="k">print</span><span class="p">(</span><span class="s1">&#39;{0} units: {1}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">particle_var</span><span class="p">,</span> <span class="bp">self</span><span class="p">[</span><span class="n">particle_var</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;UNITS&#39;</span><span class="p">]))</span>
+            <span class="k">return</span>
+        <span class="n">unitlist</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;eV&#39;</span><span class="p">,</span> <span class="s1">&#39;keV&#39;</span><span class="p">,</span> <span class="s1">&#39;MeV&#39;</span><span class="p">,</span> <span class="s1">&#39;GeV&#39;</span><span class="p">]</span>
+        <span class="n">faclist</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1e3</span><span class="p">,</span> <span class="mf">1e6</span><span class="p">,</span> <span class="mf">1e9</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">per</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">unitlist</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Units of {0} are not supported: Valid options are {1}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">per</span><span class="p">,</span> <span class="n">unitlist</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">per</span> <span class="o">==</span> <span class="n">curr</span><span class="p">:</span> <span class="k">return</span>
+            <span class="n">unitidx_from</span> <span class="o">=</span> <span class="n">unitlist</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">curr</span><span class="p">)</span>
+            <span class="n">unitidx_to</span> <span class="o">=</span> <span class="n">unitlist</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">per</span><span class="p">)</span>
+            <span class="bp">self</span><span class="p">[</span><span class="n">particle_var</span><span class="p">]</span> <span class="o">/=</span> <span class="n">faclist</span><span class="p">[</span><span class="n">unitidx_from</span><span class="p">]</span>  <span class="c1"># convert to eV</span>
+            <span class="bp">self</span><span class="p">[</span><span class="n">particle_var</span><span class="p">]</span> <span class="o">*=</span> <span class="n">faclist</span><span class="p">[</span><span class="n">unitidx_to</span><span class="p">]</span>  <span class="c1"># convert to target units</span>
+            <span class="bp">self</span><span class="p">[</span><span class="n">particle_var</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;UNITS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="n">particle_var</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;UNITS&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">curr</span><span class="p">,</span> <span class="n">per</span><span class="p">)</span>
+            <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;Energy&#39;</span><span class="p">]</span> <span class="o">*=</span> <span class="n">faclist</span><span class="p">[</span><span class="n">unitidx_from</span><span class="p">]</span>  <span class="c1"># convert to eV</span>
+            <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;Energy&#39;</span><span class="p">]</span> <span class="o">/=</span> <span class="n">faclist</span><span class="p">[</span><span class="n">unitidx_to</span><span class="p">]</span>  <span class="c1"># convert to target units</span>
+            <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;Energy&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;UNITS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;Energy&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;UNITS&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">curr</span><span class="p">,</span> <span class="n">per</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Ae9Data.getLm"><a class="viewcode-back" href="../../autosummary/spacepy.ae9ap9.Ae9Data.html#spacepy.ae9ap9.Ae9Data.getLm">[docs]</a>    <span class="k">def</span> <span class="nf">getLm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="p">[</span><span class="mi">90</span><span class="p">],</span> <span class="n">model</span><span class="o">=</span><span class="s1">&#39;T89&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Calculate McIlwain L for the imported AE9/AP9 run and add to object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">import</span> <span class="nn">spacepy.irbempy</span> <span class="kn">as</span> <span class="nn">ib</span>
+        <span class="n">ticks</span> <span class="o">=</span> <span class="n">spt</span><span class="o">.</span><span class="n">Ticktock</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="s1">&#39;Epoch&#39;</span><span class="p">])</span>
+        <span class="n">loci</span> <span class="o">=</span> <span class="n">spc</span><span class="o">.</span><span class="n">Coords</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="s1">&#39;Coords&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;Coords&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;COORD_SYS&#39;</span><span class="p">],</span> <span class="s1">&#39;car&#39;</span><span class="p">)</span>
+        <span class="n">loci</span><span class="o">.</span><span class="n">ticks</span> <span class="o">=</span> <span class="n">ticks</span>
+        <span class="n">retvals</span> <span class="o">=</span> <span class="n">ib</span><span class="o">.</span><span class="n">get_Lm</span><span class="p">(</span><span class="n">ticks</span><span class="p">,</span> <span class="n">loci</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">extMag</span><span class="o">=</span><span class="n">model</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;Lm&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">dmarray</span><span class="p">(</span><span class="n">retvals</span><span class="p">[</span><span class="s1">&#39;Lm&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{</span> <span class="s1">&#39;MODEL&#39;</span><span class="p">:</span> <span class="n">model</span> <span class="p">})</span></div>
+
+    <span class="k">def</span> <span class="nf">_makeOrbitAxis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ser1</span><span class="p">,</span> <span class="n">ser2</span><span class="p">,</span> <span class="n">ax_target</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Helper function. Not intended for direct use.</span>
+<span class="sd">        </span>
+<span class="sd">        cx is the set of coordinates for plotting, ax_target is an axes object&quot;&quot;&quot;</span>
+        <span class="n">l1</span> <span class="o">=</span> <span class="n">ax_target</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ser1</span><span class="p">,</span> <span class="n">ser2</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">((</span><span class="n">ax_target</span><span class="o">.</span><span class="n">get_xlim</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">ax_target</span><span class="o">.</span><span class="n">get_xlim</span><span class="p">()[</span><span class="mi">0</span><span class="p">]))</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">refpt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">ax_target</span><span class="o">.</span><span class="n">get_xlim</span><span class="p">()))</span>
+            <span class="n">ax_target</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="mf">1.25</span> <span class="o">*</span> <span class="n">refpt</span><span class="p">,</span> <span class="mf">1.25</span> <span class="o">*</span> <span class="n">refpt</span><span class="p">])</span>
+            <span class="n">ax_target</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ax_target</span><span class="o">.</span><span class="n">get_xlim</span><span class="p">())</span>
+            <span class="n">l1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_marker</span><span class="p">(</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+            <span class="n">c1</span> <span class="o">=</span> <span class="n">splot</span><span class="o">.</span><span class="n">plt</span><span class="o">.</span><span class="n">Circle</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">radius</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+            <span class="n">ax_target</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span><span class="n">c1</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">splot</span><span class="o">.</span><span class="n">dual_half_circle</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax_target</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ax_target</span>
+
+<div class="viewcode-block" id="Ae9Data.plotSummary"><a class="viewcode-back" href="../../autosummary/spacepy.ae9ap9.Ae9Data.html#spacepy.ae9ap9.Ae9Data.plotSummary">[docs]</a>    <span class="k">def</span> <span class="nf">plotSummary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timerange</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">coord_sys</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">fig_target</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">spec</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">orbit_params</span><span class="o">=</span><span class="p">(</span><span class="bp">False</span><span class="p">,</span> <span class="bp">True</span><span class="p">),</span>
+                    <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Generate summary plot of AE9/AP9/SPM data loaded</span>
+<span class="sd">        </span>
+<span class="sd">        spec : if True, plot spectrogram instead of flux/fluence lineplot, requires &#39;ecol&#39; keyword</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">timerange</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">timerange</span><span class="p">,</span> <span class="n">spt</span><span class="o">.</span><span class="n">Ticktock</span><span class="p">):</span>
+                <span class="n">t1</span> <span class="o">=</span> <span class="n">timerange</span><span class="o">.</span><span class="n">UTC</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">t2</span> <span class="o">=</span> <span class="n">timerange</span><span class="o">.</span><span class="n">UTC</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">timerange</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">):</span>
+                <span class="n">t1</span> <span class="o">=</span> <span class="n">timerange</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">t2</span> <span class="o">=</span> <span class="n">timerange</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;Incorrect data type provided for timerange&#39;</span><span class="p">)</span>
+            <span class="c1"># now select subset</span>
+            <span class="n">i_use</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">tOverlapHalf</span><span class="p">([</span><span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">],</span> <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;Epoch&#39;</span><span class="p">])</span>
+            <span class="n">t_use</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;Epoch&#39;</span><span class="p">][</span><span class="n">i_use</span><span class="p">]</span>
+            <span class="n">c_use</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;Coords&#39;</span><span class="p">][</span><span class="n">i_use</span><span class="p">]</span>
+            <span class="n">f_use</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;varname&#39;</span><span class="p">]][</span><span class="n">i_use</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">t_use</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;Epoch&#39;</span><span class="p">]</span>
+            <span class="n">c_use</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;Coords&#39;</span><span class="p">]</span>
+            <span class="n">f_use</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;varname&#39;</span><span class="p">]]</span>
+
+        <span class="k">if</span> <span class="n">coord_sys</span> <span class="ow">and</span> <span class="p">(</span><span class="n">coord_sys</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">!=</span> <span class="n">c_use</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;COORD_SYS&#39;</span><span class="p">]):</span>
+            <span class="c1"># TODO: We assume cartesian, make flexible so can take spherical</span>
+            <span class="n">cx</span> <span class="o">=</span> <span class="n">spc</span><span class="o">.</span><span class="n">Coords</span><span class="p">(</span><span class="n">c_use</span><span class="p">,</span> <span class="n">c_use</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;COORD_SYS&#39;</span><span class="p">],</span> <span class="s1">&#39;car&#39;</span><span class="p">)</span>
+            <span class="n">cx</span><span class="o">.</span><span class="n">ticks</span> <span class="o">=</span> <span class="n">spt</span><span class="o">.</span><span class="n">Ticktock</span><span class="p">(</span><span class="n">t_use</span><span class="p">)</span>
+            <span class="n">cx</span> <span class="o">=</span> <span class="n">cx</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">coord_sys</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span> <span class="s1">&#39;car&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">coord_sys</span> <span class="o">=</span> <span class="n">c_use</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;COORD_SYS&#39;</span><span class="p">]</span>
+            <span class="n">cx</span> <span class="o">=</span> <span class="n">c_use</span>
+        <span class="n">sys_subs</span> <span class="o">=</span> <span class="s1">r&#39;$_{&#39;</span> <span class="o">+</span> <span class="n">coord_sys</span> <span class="o">+</span> <span class="s1">r&#39;}$&#39;</span>
+
+        <span class="n">splot</span><span class="o">.</span><span class="n">style</span><span class="p">(</span><span class="s1">&#39;spacepy&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">orbit_params</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="n">landscape</span> <span class="o">=</span> <span class="n">orbit_params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">locs</span> <span class="o">=</span> <span class="p">[</span><span class="mi">121</span><span class="p">,</span> <span class="mi">122</span><span class="p">]</span> <span class="k">if</span> <span class="n">landscape</span> <span class="k">else</span> <span class="p">[</span><span class="mi">211</span><span class="p">,</span> <span class="mi">212</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">locs</span> <span class="o">=</span> <span class="p">[</span><span class="mi">223</span><span class="p">,</span> <span class="mi">224</span><span class="p">]</span>
+            <span class="n">landscape</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">if</span> <span class="n">fig_target</span><span class="p">:</span>
+            <span class="n">fig</span><span class="p">,</span> <span class="n">ax1</span> <span class="o">=</span> <span class="n">splot</span><span class="o">.</span><span class="n">set_target</span><span class="p">(</span><span class="n">fig_target</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="n">locs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">fig</span><span class="p">,</span> <span class="n">ax1</span> <span class="o">=</span> <span class="n">splot</span><span class="o">.</span><span class="n">set_target</span><span class="p">(</span><span class="n">fig_target</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="n">locs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">fig</span><span class="p">,</span> <span class="n">ax2</span> <span class="o">=</span> <span class="n">splot</span><span class="o">.</span><span class="n">set_target</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="n">locs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+        <span class="n">ax1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_makeOrbitAxis</span><span class="p">(</span><span class="n">cx</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">cx</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">ax1</span><span class="p">)</span>
+        <span class="n">ax2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_makeOrbitAxis</span><span class="p">(</span><span class="n">cx</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">cx</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">ax2</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">landscape</span><span class="p">:</span> <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;X{0} [{1}]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sys_subs</span><span class="p">,</span> <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;Coords&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;UNITS&#39;</span><span class="p">]))</span>
+        <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;X{0} [{1}]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sys_subs</span><span class="p">,</span> <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;Coords&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;UNITS&#39;</span><span class="p">]))</span>
+        <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Y{0} [{1}]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sys_subs</span><span class="p">,</span> <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;Coords&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;UNITS&#39;</span><span class="p">]))</span>
+        <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Z{0} [{1}]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sys_subs</span><span class="p">,</span> <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;Coords&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;UNITS&#39;</span><span class="p">]))</span>
+        <span class="n">ax1xl</span><span class="p">,</span> <span class="n">ax1yl</span><span class="p">,</span> <span class="n">ax2xl</span><span class="p">,</span> <span class="n">ax2yl</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">get_xlim</span><span class="p">(),</span> <span class="n">ax1</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">(),</span> <span class="n">ax2</span><span class="o">.</span><span class="n">get_xlim</span><span class="p">(),</span> <span class="n">ax2</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()</span>
+        <span class="n">maxabslim</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">([</span><span class="n">ax1xl</span><span class="p">,</span> <span class="n">ax1yl</span><span class="p">,</span> <span class="n">ax2xl</span><span class="p">,</span> <span class="n">ax2yl</span><span class="p">]))</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">((</span><span class="n">ax1</span><span class="o">.</span><span class="n">get_xlim</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">ax1</span><span class="o">.</span><span class="n">get_xlim</span><span class="p">()[</span><span class="mi">0</span><span class="p">]))</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">refpt</span> <span class="o">=</span> <span class="n">maxabslim</span>
+            <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="mf">1.25</span> <span class="o">*</span> <span class="n">refpt</span><span class="p">,</span> <span class="mf">1.25</span> <span class="o">*</span> <span class="n">refpt</span><span class="p">])</span>
+            <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ax1</span><span class="o">.</span><span class="n">get_xlim</span><span class="p">())</span>
+            <span class="n">refpt</span> <span class="o">=</span> <span class="n">ax2</span><span class="o">.</span><span class="n">get_xlim</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="mf">1.25</span> <span class="o">*</span> <span class="n">refpt</span><span class="p">,</span> <span class="mf">1.25</span> <span class="o">*</span> <span class="n">refpt</span><span class="p">])</span>
+            <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ax1</span><span class="o">.</span><span class="n">get_xlim</span><span class="p">())</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="n">maxabslim</span><span class="p">,</span> <span class="n">maxabslim</span><span class="p">])</span>
+            <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="o">-</span><span class="n">maxabslim</span><span class="p">,</span> <span class="n">maxabslim</span><span class="p">])</span>
+            <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="n">maxabslim</span><span class="p">,</span> <span class="n">maxabslim</span><span class="p">])</span>
+        <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ax2</span><span class="o">.</span><span class="n">get_xlim</span><span class="p">())</span>
+        <span class="n">ax1</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">()</span>
+        <span class="n">ax1</span><span class="o">.</span><span class="n">invert_xaxis</span><span class="p">()</span>
+        <span class="n">ax2</span><span class="o">.</span><span class="n">invert_xaxis</span><span class="p">()</span>
+        <span class="n">ax1</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+        <span class="n">ax2</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">orbit_params</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="n">ax3</span> <span class="o">=</span> <span class="n">splot</span><span class="o">.</span><span class="n">plt</span><span class="o">.</span><span class="n">subplot2grid</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">colspan</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">spec</span><span class="p">:</span>
+                <span class="n">l3</span> <span class="o">=</span> <span class="n">ax3</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">t_use</span><span class="p">,</span> <span class="n">f_use</span><span class="p">)</span>
+                <span class="n">ylab</span> <span class="o">=</span> <span class="s1">&#39;{0} [&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;varname&#39;</span><span class="p">])</span> <span class="o">+</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;(\^[\d|-]*)+&#39;</span><span class="p">,</span> <span class="n">_grp2mathmode</span><span class="p">,</span>
+                                                                      <span class="bp">self</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;varname&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;UNITS&#39;</span><span class="p">])</span> <span class="o">+</span> <span class="s1">&#39;]&#39;</span>
+                <span class="n">ax3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">ylab</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">ll</span><span class="p">,</span> <span class="n">nn</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">l3</span><span class="p">,</span> <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;Energy&#39;</span><span class="p">]):</span>
+                    <span class="n">ll</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s1">&#39;{0} {1}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nn</span><span class="p">,</span> <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;Energy&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;UNITS&#39;</span><span class="p">]))</span>
+                <span class="n">ncol</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="s1">&#39;Energy&#39;</span><span class="p">])</span> <span class="o">//</span> <span class="mi">2</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="s1">&#39;Energy&#39;</span><span class="p">])</span> <span class="o">&lt;=</span> <span class="mi">6</span> <span class="k">else</span> <span class="mi">3</span>
+                <span class="n">leg</span> <span class="o">=</span> <span class="n">ax3</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">ncol</span><span class="o">=</span><span class="n">ncol</span><span class="p">,</span>
+                                 <span class="n">frameon</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">framealpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+                <span class="n">lims3</span> <span class="o">=</span> <span class="n">ax3</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()</span>
+                <span class="n">newupper</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">**</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">lims3</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">lims3</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">lims3</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="mf">1.125</span><span class="p">))</span>
+                <span class="n">ax3</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="n">lims3</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">newupper</span><span class="p">])</span>
+                <span class="n">splot</span><span class="o">.</span><span class="n">applySmartTimeTicks</span><span class="p">(</span><span class="n">ax3</span><span class="p">,</span> <span class="n">t_use</span><span class="p">)</span>
+                <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+                <span class="n">pos3</span> <span class="o">=</span> <span class="n">ax3</span><span class="o">.</span><span class="n">get_position</span><span class="p">()</span>
+                <span class="n">ax3</span><span class="o">.</span><span class="n">set_position</span><span class="p">([</span><span class="n">pos3</span><span class="o">.</span><span class="n">x0</span><span class="p">,</span> <span class="n">pos3</span><span class="o">.</span><span class="n">y0</span><span class="p">,</span> <span class="n">pos3</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="n">pos3</span><span class="o">.</span><span class="n">height</span> <span class="o">*</span> <span class="mf">0.8</span><span class="p">])</span>
+                <span class="c1"># fig.suptitle(&#39;{model_type}\n&#39;.format(**self.attrs) +</span>
+                <span class="c1">#             &#39;{0} - {1}&#39;.format(t_use[0].isoformat()[:19], t_use[-1].isoformat()[:19]))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">timerange</span><span class="p">:</span> <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;Time range selection not yet implemented for spectrograms&#39;</span><span class="p">)</span>
+                <span class="n">pos3</span> <span class="o">=</span> <span class="n">ax3</span><span class="o">.</span><span class="n">get_position</span><span class="p">()</span>
+                <span class="n">ax3</span><span class="o">.</span><span class="n">set_position</span><span class="p">([</span><span class="n">pos3</span><span class="o">.</span><span class="n">x0</span><span class="p">,</span> <span class="n">pos3</span><span class="o">.</span><span class="n">y0</span><span class="p">,</span> <span class="n">pos3</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="n">pos3</span><span class="o">.</span><span class="n">height</span> <span class="o">*</span> <span class="mf">0.9</span><span class="p">])</span>
+                <span class="n">ecol</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;ecol&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;ecol&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="k">else</span> <span class="mi">0</span>
+                <span class="n">ax3</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">plotSpectrogram</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">ax3</span><span class="p">,</span> <span class="n">ecol</span><span class="o">=</span><span class="n">ecol</span><span class="p">)</span>
+                <span class="n">splot</span><span class="o">.</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+                <span class="n">pos1</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">get_position</span><span class="p">()</span>
+                <span class="n">ax1</span><span class="o">.</span><span class="n">set_position</span><span class="p">([</span><span class="n">pos3</span><span class="o">.</span><span class="n">x0</span><span class="p">,</span> <span class="n">pos1</span><span class="o">.</span><span class="n">y0</span><span class="p">,</span> <span class="n">pos1</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="n">pos1</span><span class="o">.</span><span class="n">height</span><span class="p">])</span>
+
+        <span class="n">splot</span><span class="o">.</span><span class="n">revert_style</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">fig</span></div>
+
+<div class="viewcode-block" id="Ae9Data.plotOrbit"><a class="viewcode-back" href="../../autosummary/spacepy.ae9ap9.Ae9Data.html#spacepy.ae9ap9.Ae9Data.plotOrbit">[docs]</a>    <span class="k">def</span> <span class="nf">plotOrbit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timerange</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">coord_sys</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">landscape</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">fig_target</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Plot X-Y and X-Z projections of satellite orbit in requested coordinate system</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">plotSummary</span><span class="p">(</span><span class="n">timerange</span><span class="o">=</span><span class="n">timerange</span><span class="p">,</span> <span class="n">coord_sys</span><span class="o">=</span><span class="n">coord_sys</span><span class="p">,</span>
+                               <span class="n">fig_target</span><span class="o">=</span><span class="n">fig_target</span><span class="p">,</span> <span class="n">orbit_params</span><span class="o">=</span><span class="p">(</span><span class="bp">True</span><span class="p">,</span> <span class="n">landscape</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">fig</span></div>
+
+<div class="viewcode-block" id="Ae9Data.plotSpectrogram"><a class="viewcode-back" href="../../autosummary/spacepy.ae9ap9.Ae9Data.html#spacepy.ae9ap9.Ae9Data.plotSpectrogram">[docs]</a>    <span class="k">def</span> <span class="nf">plotSpectrogram</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ecol</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">pvars</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Plot a spectrogram of the flux along the requested orbit, as a function of Lm and time</span>
+
+<span class="sd">        Other Parameters</span>
+<span class="sd">        ----------------</span>
+<span class="sd">        zlim : list</span>
+<span class="sd">            2-element list with upper and lower bounds for color scale</span>
+<span class="sd">        colorbar_label : string</span>
+<span class="sd">            text to appear next to colorbar (default is &#39;Flux&#39; plus the units)</span>
+<span class="sd">        ylabel : string</span>
+<span class="sd">            text to label y-axis (default is &#39;Lm&#39; plus the field model name)</span>
+<span class="sd">        title : string</span>
+<span class="sd">            text to appear above spectrogram (default is climatology model name, data type and energy)</span>
+<span class="sd">        pvars : list</span>
+<span class="sd">            list of plotting variable names in order [Epoch-like (X axis), Flux-like (Z axis), Energy (Index var for Flux-like)]</span>
+<span class="sd">        ylim : list</span>
+<span class="sd">            2-element list with upper and lower bounds for y axis</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="kn">import</span> <span class="nn">spacepy.plot</span> <span class="kn">as</span> <span class="nn">splot</span>
+        <span class="k">if</span> <span class="s1">&#39;Lm&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">getLm</span><span class="p">()</span>
+        <span class="n">sd</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">SpaceData</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">pvars</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">varname</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;varname&#39;</span><span class="p">]</span>
+            <span class="n">enname</span> <span class="o">=</span> <span class="s1">&#39;Energy&#39;</span>
+            <span class="n">epvar</span> <span class="o">=</span> <span class="s1">&#39;Epoch&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">epvar</span> <span class="o">=</span> <span class="n">pvars</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">varname</span> <span class="o">=</span> <span class="n">pvars</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">enname</span> <span class="o">=</span> <span class="n">pvars</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="s1">&#39;Lm&#39;</span><span class="p">])</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="n">epvar</span><span class="p">]):</span> <span class="c1">#Lm needs interpolating to new timebase</span>
+            <span class="kn">import</span> <span class="nn">matplotlib.dates</span> <span class="kn">as</span> <span class="nn">mpd</span>
+            <span class="n">tmptimetarg</span><span class="p">,</span> <span class="n">tmptimesrc</span> <span class="o">=</span> <span class="n">mpd</span><span class="o">.</span><span class="n">date2num</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="n">epvar</span><span class="p">]),</span> <span class="n">mpd</span><span class="o">.</span><span class="n">date2num</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="s1">&#39;Epoch&#39;</span><span class="p">])</span>
+            <span class="n">sd</span><span class="p">[</span><span class="s1">&#39;Lm&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">dmarray</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">tmptimetarg</span><span class="p">,</span> <span class="n">tmptimesrc</span><span class="p">,</span> <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;Lm&#39;</span><span class="p">],</span> <span class="n">left</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">sd</span><span class="p">[</span><span class="s1">&#39;Lm&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;Lm&#39;</span><span class="p">]</span>
+        <span class="c1">#filter any bad Lm</span>
+        <span class="n">goodidx</span> <span class="o">=</span> <span class="n">sd</span><span class="p">[</span><span class="s1">&#39;Lm&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">1</span>
+        <span class="n">sd</span><span class="p">[</span><span class="s1">&#39;Lm&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sd</span><span class="p">[</span><span class="s1">&#39;Lm&#39;</span><span class="p">][</span><span class="n">goodidx</span><span class="p">]</span>
+        <span class="k">if</span> <span class="s1">&#39;ylim&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="n">Lm_lim</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;ylim&#39;</span><span class="p">]</span>
+            <span class="k">del</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;ylim&#39;</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">Lm_lim</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">8.0</span><span class="p">]</span>
+        <span class="c1">#TODO: allow user-definition of bins in time and Lm</span>
+        <span class="n">sd</span><span class="p">[</span><span class="s1">&#39;Epoch&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">dmcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="n">epvar</span><span class="p">])[</span><span class="n">goodidx</span><span class="p">]</span> <span class="c1">#TODO: assumes 1 pitch angle, generalize</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">sd</span><span class="p">[</span><span class="s1">&#39;1D_dataset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="n">varname</span><span class="p">][</span><span class="n">goodidx</span><span class="p">,</span><span class="n">ecol</span><span class="p">]</span> <span class="c1">#TODO: assumes 1 pitch angle, generalize</span>
+        <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span> <span class="c1">#1-D</span>
+            <span class="n">sd</span><span class="p">[</span><span class="s1">&#39;1D_dataset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="n">varname</span><span class="p">][</span><span class="n">goodidx</span><span class="p">]</span>
+        <span class="n">bins</span> <span class="o">=</span> <span class="p">[[],[]]</span>
+        <span class="k">if</span> <span class="s1">&#39;tbins&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="n">bins</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">spt</span><span class="o">.</span><span class="n">tickrange</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="n">epvar</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="p">[</span><span class="n">epvar</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="mi">3</span><span class="o">/</span><span class="mf">24.</span><span class="p">)</span><span class="o">.</span><span class="n">UTC</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">bins</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;tbins&#39;</span><span class="p">]</span>
+            <span class="k">del</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;tbins&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="s1">&#39;Lbins&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="n">bins</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">Lm_lim</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Lm_lim</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mf">1.</span><span class="o">/</span><span class="mf">4.</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">bins</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;Lbins&#39;</span><span class="p">]</span>
+            <span class="k">del</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;Lbins&#39;</span><span class="p">]</span>
+        <span class="n">spec</span> <span class="o">=</span> <span class="n">splot</span><span class="o">.</span><span class="n">spectrogram</span><span class="p">(</span><span class="n">sd</span><span class="p">,</span> <span class="n">variables</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Epoch&#39;</span><span class="p">,</span> <span class="s1">&#39;Lm&#39;</span><span class="p">,</span> <span class="s1">&#39;1D_dataset&#39;</span><span class="p">],</span> <span class="n">ylim</span><span class="o">=</span><span class="n">Lm_lim</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="s1">&#39;zlim&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="n">zmax</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">**</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">sd</span><span class="p">[</span><span class="s1">&#39;1D_dataset&#39;</span><span class="p">])))</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">sd</span><span class="p">[</span><span class="s1">&#39;1D_dataset&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">sd</span><span class="p">[</span><span class="s1">&#39;Lm&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">Lm_lim</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">sd</span><span class="p">[</span><span class="s1">&#39;Lm&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">Lm_lim</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">zmin</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">**</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">sd</span><span class="p">[</span><span class="s1">&#39;1D_dataset&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">])))</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;zlim&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">zmin</span><span class="p">,</span> <span class="n">zmax</span><span class="p">]</span>
+        <span class="k">if</span> <span class="s1">&#39;colorbar_label&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="n">flux_units</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="n">varname</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;UNITS&#39;</span><span class="p">]</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;colorbar_label&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;{0} [&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">varname</span><span class="p">)</span> <span class="o">+</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;(\^[\d|-]*)+&#39;</span><span class="p">,</span> <span class="n">_grp2mathmode</span><span class="p">,</span> <span class="n">flux_units</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;]&#39;</span>
+        <span class="k">if</span> <span class="s1">&#39;ylabel&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;ylabel&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;L$_M$&#39;</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="s1">&#39;[{0}]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="s1">&#39;Lm&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;MODEL&#39;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="s1">&#39;title&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;{model_type} {varname}: &#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">attrs</span><span class="p">)</span> <span class="o">+</span> \
+                              <span class="s1">&#39;{0:5.2f} {1}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="n">enname</span><span class="p">][</span><span class="n">ecol</span><span class="p">],</span> <span class="bp">self</span><span class="p">[</span><span class="n">enname</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;UNITS&#39;</span><span class="p">])</span>
+        <span class="n">reset_shrink</span> <span class="o">=</span> <span class="n">splot</span><span class="o">.</span><span class="n">mpl</span><span class="o">.</span><span class="n">mathtext</span><span class="o">.</span><span class="n">SHRINK_FACTOR</span>
+        <span class="n">splot</span><span class="o">.</span><span class="n">mpl</span><span class="o">.</span><span class="n">mathtext</span><span class="o">.</span><span class="n">SHRINK_FACTOR</span> <span class="o">=</span> <span class="mf">0.85</span>
+        <span class="n">splot</span><span class="o">.</span><span class="n">mpl</span><span class="o">.</span><span class="n">mathtext</span><span class="o">.</span><span class="n">GROW_FACTOR</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="mf">0.85</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">spec</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;plasma&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">splot</span><span class="o">.</span><span class="n">mpl</span><span class="o">.</span><span class="n">mathtext</span><span class="o">.</span><span class="n">SHRINK_FACTOR</span> <span class="o">=</span> <span class="n">reset_shrink</span>
+        <span class="n">splot</span><span class="o">.</span><span class="n">mpl</span><span class="o">.</span><span class="n">mathtext</span><span class="o">.</span><span class="n">GROW_FACTOR</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">reset_shrink</span>
+        <span class="k">return</span> <span class="n">ax</span></div></div>
+
+
+<div class="viewcode-block" id="readFile"><a class="viewcode-back" href="../../autosummary/spacepy.ae9ap9.readFile.html#spacepy.ae9ap9.readFile">[docs]</a><span class="k">def</span> <span class="nf">readFile</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">comments</span><span class="o">=</span><span class="s1">&#39;#&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    read a model generated file into a datamodel.SpaceData object</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+<span class="sd">    fname : str</span>
+<span class="sd">        filename of the file</span>
+
+<span class="sd">    Other Parameters</span>
+<span class="sd">    ================</span>
+<span class="sd">    comments : str (optional)</span>
+<span class="sd">        String that is the comments in the data file</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    =======</span>
+<span class="sd">    out : :mod:`~spacepy.datamodel.SpaceData`</span>
+<span class="sd">        Data contained in the  file</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    ========</span>
+<span class="sd">    &gt;&gt;&gt; from spacepy import ae9ap9</span>
+<span class="sd">    &gt;&gt;&gt; ae9ap9.readFile(&#39;ephem_sat.dat&#39;).tree(verbose=1)</span>
+<span class="sd">    +</span>
+<span class="sd">    |____Epoch (spacepy.datamodel.dmarray (121,))</span>
+<span class="sd">    |____Coords (spacepy.datamodel.dmarray (121, 3))</span>
+<span class="sd">    |____MJD (spacepy.datamodel.dmarray (121,))</span>
+<span class="sd">    |____posComp (spacepy.datamodel.dmarray (3,))</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">fname</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="p">(</span><span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;File {0} not found&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fname</span><span class="p">)))</span>
+    <span class="c1"># get the header information first</span>
+    <span class="n">header</span> <span class="o">=</span> <span class="n">parseHeader</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+    <span class="c1"># and read in all the data</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;delimiter&#39;</span><span class="p">],</span> <span class="n">comments</span><span class="o">=</span><span class="n">comments</span><span class="p">)</span>
+    <span class="c1"># now parse the data    </span>
+    <span class="n">ans</span> <span class="o">=</span> <span class="n">Ae9Data</span><span class="p">()</span>
+    <span class="c1"># parse the datetime if it is there (it is always first)</span>
+    <span class="k">if</span> <span class="s1">&#39;datetime&#39;</span> <span class="ow">in</span> <span class="n">header</span><span class="p">[</span><span class="s1">&#39;columns&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">header</span><span class="p">[</span><span class="s1">&#39;time_format&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;eDOY&#39;</span><span class="p">:</span>  <span class="c1"># have to massage the data first</span>
+            <span class="n">year</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+            <span class="n">frac</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="n">time</span> <span class="o">=</span> <span class="n">spt</span><span class="o">.</span><span class="n">Ticktock</span><span class="p">([</span><span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">relativedelta</span><span class="o">.</span><span class="n">relativedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">v</span><span class="p">)</span>
+                                 <span class="k">for</span> <span class="n">y</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">frac</span><span class="p">)],</span> <span class="s1">&#39;UTC&#39;</span><span class="p">)</span>
+            <span class="n">ans</span><span class="p">[</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;time_format&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">dmarray</span><span class="p">(</span><span class="n">data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>
+            <span class="n">ans</span><span class="p">[</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;time_format&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;VAR_TYPE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;support_data&#39;</span>
+            <span class="n">ans</span><span class="p">[</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;time_format&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;LABL_PTR_1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;timeComp&#39;</span>
+            <span class="n">ans</span><span class="p">[</span><span class="s1">&#39;timeComp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">dmarray</span><span class="p">([</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="s1">&#39;eDOY&#39;</span><span class="p">])</span>
+            <span class="n">ans</span><span class="p">[</span><span class="s1">&#39;timeComp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;VAR_TYPE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;metadata&#39;</span>
+            <span class="k">del</span> <span class="n">header</span><span class="p">[</span><span class="s1">&#39;columns&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:]</span>
+        <span class="k">elif</span> <span class="n">header</span><span class="p">[</span><span class="s1">&#39;time_format&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;UTC&#39;</span><span class="p">:</span>  <span class="c1"># have to massage the data first</span>
+            <span class="n">tm</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+            <span class="n">time</span> <span class="o">=</span> <span class="n">spt</span><span class="o">.</span><span class="n">Ticktock</span><span class="p">([</span><span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="o">*</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">tm</span><span class="p">],</span> <span class="s1">&#39;UTC&#39;</span><span class="p">)</span>
+            <span class="n">ans</span><span class="p">[</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;time_format&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">dmarray</span><span class="p">(</span><span class="n">data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">6</span><span class="p">])</span>
+            <span class="n">ans</span><span class="p">[</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;time_format&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;VAR_TYPE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;support_data&#39;</span>
+            <span class="n">ans</span><span class="p">[</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;time_format&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;LABL_PTR_1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;timeComp&#39;</span>
+            <span class="n">ans</span><span class="p">[</span><span class="s1">&#39;timeComp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">dmarray</span><span class="p">([</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="s1">&#39;Month&#39;</span><span class="p">,</span> <span class="s1">&#39;Day&#39;</span><span class="p">,</span> <span class="s1">&#39;Hour&#39;</span><span class="p">,</span> <span class="s1">&#39;Minute&#39;</span><span class="p">,</span> <span class="s1">&#39;Second&#39;</span><span class="p">])</span>
+            <span class="n">ans</span><span class="p">[</span><span class="s1">&#39;timeComp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;VAR_TYPE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;metadata&#39;</span>
+            <span class="k">del</span> <span class="n">header</span><span class="p">[</span><span class="s1">&#39;columns&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="mi">6</span><span class="p">:]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">time</span> <span class="o">=</span> <span class="n">spt</span><span class="o">.</span><span class="n">Ticktock</span><span class="p">(</span><span class="n">data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">header</span><span class="p">[</span><span class="s1">&#39;time_format&#39;</span><span class="p">])</span>
+            <span class="n">ans</span><span class="p">[</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;time_format&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">dmarray</span><span class="p">(</span><span class="n">data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
+            <span class="n">ans</span><span class="p">[</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;time_format&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;VAR_TYPE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;support_data&#39;</span>
+            <span class="k">del</span> <span class="n">header</span><span class="p">[</span><span class="s1">&#39;columns&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:]</span>
+
+        <span class="n">ans</span><span class="p">[</span><span class="s1">&#39;Epoch&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">dmarray</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">UTC</span><span class="p">)</span>
+        <span class="n">ans</span><span class="p">[</span><span class="s1">&#39;Epoch&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;VAR_TYPE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;support_data&#39;</span>
+    <span class="c1"># parse the position, it is always next</span>
+    <span class="k">if</span> <span class="s1">&#39;posx&#39;</span> <span class="ow">in</span> <span class="n">header</span><span class="p">[</span><span class="s1">&#39;columns&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]:</span>
+        <span class="n">varname</span> <span class="o">=</span> <span class="s1">&#39;Coords&#39;</span>
+        <span class="n">pos</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">dmarray</span><span class="p">(</span><span class="n">data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">])</span>
+        <span class="n">ans</span><span class="p">[</span><span class="n">varname</span><span class="p">]</span> <span class="o">=</span> <span class="n">pos</span>
+        <span class="n">ans</span><span class="p">[</span><span class="n">varname</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;UNITS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">header</span><span class="p">[</span><span class="s1">&#39;coord_system&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">ans</span><span class="p">[</span><span class="n">varname</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;FIELDNAM&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">varname</span>
+        <span class="n">ans</span><span class="p">[</span><span class="n">varname</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;LABLAXIS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Position&#39;</span>
+        <span class="n">ans</span><span class="p">[</span><span class="n">varname</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;DEPEND_0&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Epoch&#39;</span>
+        <span class="n">ans</span><span class="p">[</span><span class="n">varname</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;LABL_PTR_1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;posComp&#39;</span>
+        <span class="n">ans</span><span class="p">[</span><span class="n">varname</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;VAR_TYPE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;data&#39;</span>
+        <span class="n">ans</span><span class="p">[</span><span class="n">varname</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;COORD_SYS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">header</span><span class="p">[</span><span class="s1">&#39;coord_system&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">ans</span><span class="p">[</span><span class="s1">&#39;posComp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">dmarray</span><span class="p">([</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="s1">&#39;Z&#39;</span><span class="p">])</span>
+        <span class="n">ans</span><span class="p">[</span><span class="s1">&#39;posComp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;VAR_TYPE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;metadata&#39;</span>
+        <span class="k">del</span> <span class="n">header</span><span class="p">[</span><span class="s1">&#39;columns&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">:]</span>
+
+    <span class="c1"># if there are PA they are now</span>
+    <span class="k">if</span> <span class="n">header</span><span class="p">[</span><span class="s1">&#39;columns&#39;</span><span class="p">]</span> <span class="ow">and</span> <span class="p">(</span><span class="s1">&#39;pitch&#39;</span> <span class="ow">in</span> <span class="n">header</span><span class="p">[</span><span class="s1">&#39;columns&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="k">raise</span> <span class="p">(</span><span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Sorry have not implemented pitch angle resolved files yet&quot;</span><span class="p">))</span>
+    <span class="c1">## This is an issue and the files have repeadedlines at the same time for each pitch</span>
+    <span class="c1">##  angle. They would all need to be read in them combines into a multi-d array</span>
+
+    <span class="c1"># now parse fluence, flux, or doserate</span>
+    <span class="c1"># do all the rest of the column headers match?</span>
+    <span class="n">col_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;columns&#39;</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">header</span><span class="p">[</span><span class="s1">&#39;columns&#39;</span><span class="p">]</span> <span class="ow">and</span> <span class="p">(</span><span class="n">col_arr</span> <span class="o">==</span> <span class="n">col_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+        <span class="n">varname</span> <span class="o">=</span> <span class="n">col_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">title</span><span class="p">()</span>
+        <span class="n">ans</span><span class="p">[</span><span class="n">varname</span><span class="p">]</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">dmarray</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">ans</span><span class="p">[</span><span class="n">varname</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;UNITS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">col_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">ans</span><span class="p">[</span><span class="n">varname</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;FIELDNAM&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">varname</span>
+        <span class="n">ans</span><span class="p">[</span><span class="n">varname</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;LABLAXIS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">varname</span>
+        <span class="n">ans</span><span class="p">[</span><span class="n">varname</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;VAR_TYPE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;data&#39;</span>
+        <span class="n">ans</span><span class="p">[</span><span class="n">varname</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;SCALETYP&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;log&#39;</span>
+        <span class="n">header</span><span class="p">[</span><span class="s1">&#39;varname&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">varname</span>
+        <span class="n">ans</span><span class="p">[</span><span class="n">varname</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span>
+            <span class="s1">&#39;Description&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;{flux_direction} {varname} based on {flux_type} from the {model_type} model&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="o">**</span><span class="n">header</span><span class="p">)</span>
+        <span class="n">ans</span><span class="p">[</span><span class="n">varname</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;DEPEND_0&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Epoch&#39;</span>
+        <span class="k">if</span> <span class="n">ans</span><span class="p">[</span><span class="n">varname</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">header</span><span class="p">[</span><span class="s1">&#39;energy&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="n">ans</span><span class="p">[</span><span class="n">varname</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;DEPEND_1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Energy&#39;</span>
+        <span class="k">if</span> <span class="s1">&#39;percentile&#39;</span> <span class="ow">in</span> <span class="n">header</span><span class="p">:</span>
+            <span class="n">ans</span><span class="p">[</span><span class="n">varname</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;TITLE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;{0} percentile&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;percentile&#39;</span><span class="p">])</span>
+
+    <span class="c1"># create the energy variable</span>
+    <span class="k">if</span> <span class="s1">&#39;energy&#39;</span> <span class="ow">in</span> <span class="n">header</span><span class="p">:</span>
+        <span class="n">ans</span><span class="p">[</span><span class="s1">&#39;Energy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">dmarray</span><span class="p">(</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;energy&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">ans</span><span class="p">[</span><span class="s1">&#39;Energy&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;UNITS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">header</span><span class="p">[</span><span class="s1">&#39;energy&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">ans</span><span class="p">[</span><span class="s1">&#39;Energy&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;FIELDNAM&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Energy&#39;</span>
+        <span class="n">ans</span><span class="p">[</span><span class="s1">&#39;Energy&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;LABLAXIS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Energy&#39;</span>
+        <span class="n">ans</span><span class="p">[</span><span class="s1">&#39;Energy&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;VAR_TYPE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;data&#39;</span>
+        <span class="n">ans</span><span class="p">[</span><span class="s1">&#39;Energy&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;SCALETYP&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;log&#39;</span>
+        <span class="n">ans</span><span class="p">[</span><span class="s1">&#39;Energy&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;VAR_TYPE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;support_data&#39;</span>
+
+    <span class="n">skip_header</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;columns&#39;</span><span class="p">,</span> <span class="s1">&#39;coord_system&#39;</span><span class="p">,</span> <span class="s1">&#39;delimiter&#39;</span><span class="p">,</span> <span class="s1">&#39;energy&#39;</span><span class="p">,</span> <span class="s1">&#39;flux_direction&#39;</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">header</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">skip_header</span><span class="p">:</span>
+            <span class="n">ans</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">header</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">ans</span></div>
+
+
+<span class="k">def</span> <span class="nf">_parseInfo</span><span class="p">(</span><span class="n">header</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    given a header parse and return the common information in all headers</span>
+
+<span class="sd">    </span>
+<span class="sd">    # Time format:              Modified Julian Date</span>
+<span class="sd">    # Coordinate system:        GEI (Geocentric Equatorial Inertial) Cartesian in Earth radii</span>
+<span class="sd">    # Data Delimiter:           comma</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># get the time format, it is in all the files</span>
+    <span class="n">ans</span> <span class="o">=</span> <span class="p">{</span> <span class="p">}</span>
+    <span class="k">for</span> <span class="n">ind</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">header</span><span class="p">):</span>
+        <span class="k">if</span> <span class="s2">&quot;Time format:&quot;</span> <span class="ow">in</span> <span class="n">val</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s2">&quot;Modified Julian Date&quot;</span> <span class="ow">in</span> <span class="n">val</span><span class="p">:</span>
+                <span class="n">ans</span><span class="p">[</span><span class="s1">&#39;time_format&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;MJD&#39;</span>
+            <span class="k">elif</span> <span class="s2">&quot;Year, day_of_year.frac&quot;</span> <span class="ow">in</span> <span class="n">val</span><span class="p">:</span>
+                <span class="n">ans</span><span class="p">[</span><span class="s1">&#39;time_format&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;eDOY&#39;</span>
+            <span class="k">elif</span> <span class="s2">&quot;Year, Month, Day, Hour, Minute, Seconds&quot;</span> <span class="ow">in</span> <span class="n">val</span><span class="p">:</span>
+                <span class="n">ans</span><span class="p">[</span><span class="s1">&#39;time_format&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;UTC&#39;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="p">(</span><span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Sorry can&#39;t read that time format yet: {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">val</span><span class="p">)))</span>
+        <span class="k">elif</span> <span class="s2">&quot;Coordinate system:&quot;</span> <span class="ow">in</span> <span class="n">val</span><span class="p">:</span>
+            <span class="n">coord_sys</span> <span class="o">=</span> <span class="n">val</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">if</span> <span class="s2">&quot;in Earth radii&quot;</span> <span class="ow">in</span> <span class="n">val</span><span class="p">:</span>
+                <span class="n">ans</span><span class="p">[</span><span class="s1">&#39;coord_system&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">coord_sys</span><span class="p">,</span> <span class="s1">&#39;Re&#39;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">ans</span><span class="p">[</span><span class="s1">&#39;coord_system&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">coord_sys</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="s2">&quot;Data Delimiter:&quot;</span> <span class="ow">in</span> <span class="n">val</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s2">&quot;comma&quot;</span> <span class="ow">in</span> <span class="n">val</span><span class="p">:</span>
+                <span class="n">ans</span><span class="p">[</span><span class="s1">&#39;delimiter&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="p">(</span><span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Sorry can&#39;t read that delimiter yet&quot;</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="s2">&quot;Ae9Ap9 Software Version:&quot;</span> <span class="ow">in</span> <span class="n">val</span><span class="p">:</span>
+            <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s1">r&#39;^Ae9Ap9 Software Version:.*(\d\.\d\d\.\d\d\d)$&#39;</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span>
+            <span class="n">version</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="n">ans</span><span class="p">[</span><span class="s1">&#39;software_version&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">version</span>
+        <span class="k">elif</span> <span class="s2">&quot;Model type:&quot;</span> <span class="ow">in</span> <span class="n">val</span><span class="p">:</span>
+            <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s1">r&#39;^Model type:(.*)$&#39;</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span>
+            <span class="n">mtype</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="n">ans</span><span class="p">[</span><span class="s1">&#39;model_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mtype</span>
+        <span class="k">elif</span> <span class="s2">&quot;CRRESELE Software Version:&quot;</span> <span class="ow">in</span> <span class="n">val</span><span class="p">:</span>
+            <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s1">r&#39;^CRRESELE Software Version:.*(\d\.\d\d\.\d\d\d)$&#39;</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span>
+            <span class="n">version</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="n">ans</span><span class="p">[</span><span class="s1">&#39;software_version&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">version</span>
+            <span class="n">ans</span><span class="p">[</span><span class="s1">&#39;model_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;CRRESELE/PRO&#39;</span>
+        <span class="k">elif</span> <span class="s2">&quot;Flux type:&quot;</span> <span class="ow">in</span> <span class="n">val</span><span class="p">:</span>
+            <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s1">r&#39;^Flux type:(.*)$&#39;</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span>
+            <span class="n">ftype</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="n">ans</span><span class="p">[</span><span class="s1">&#39;flux_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ftype</span>
+        <span class="k">elif</span> <span class="s2">&quot;Flux direction:&quot;</span> <span class="ow">in</span> <span class="n">val</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s1">&#39;=&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">val</span><span class="p">:</span>
+                <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s1">r&#39;^Flux direction:(.*)$&#39;</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span>
+                <span class="n">fdir</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">pa</span> <span class="o">=</span> <span class="n">val</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                <span class="n">fdir</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">pa</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+            <span class="n">ans</span><span class="p">[</span><span class="s1">&#39;flux_direction&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fdir</span>
+        <span class="k">elif</span> <span class="s2">&quot;Energy levels&quot;</span> <span class="ow">in</span> <span class="n">val</span><span class="p">:</span>
+            <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s1">r&#39;^Energy levels.*\((.*)\):(.*)$&#39;</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span>
+            <span class="n">ans</span><span class="p">[</span><span class="s1">&#39;energy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">),</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+        <span class="k">elif</span> <span class="s2">&quot;generated from specified elements&quot;</span> <span class="ow">in</span> <span class="n">val</span><span class="p">:</span>
+            <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">r&#39;^generated from specified elements.*:\ (.*)$&#39;</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span>
+            <span class="n">ans</span><span class="p">[</span><span class="s1">&#39;propagator&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">ans</span>
+
+
+<span class="k">def</span> <span class="nf">_readHeader</span><span class="p">(</span><span class="n">fname</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    read only the header from a Ae9Ap9 file</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">dat</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="n">fname</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.gz&#39;</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">fp</span> <span class="o">=</span> <span class="n">gzip</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s1">&#39;rt&#39;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span> <span class="c1">#Python 2.7 (Windows) compatibility</span>
+            <span class="n">fp</span> <span class="o">=</span> <span class="n">gzip</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">fp</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s1">&#39;rt&#39;</span><span class="p">)</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">tmp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="p">,</span> <span class="mi">35</span><span class="p">):</span>
+            <span class="k">break</span>
+        <span class="n">dat</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tmp</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+    <span class="n">dat</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">dat</span><span class="p">]</span>
+    <span class="n">fp</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">dat</span>
+
+
+<div class="viewcode-block" id="parseHeader"><a class="viewcode-back" href="../../autosummary/spacepy.ae9ap9.parseHeader.html#spacepy.ae9ap9.parseHeader">[docs]</a><span class="k">def</span> <span class="nf">parseHeader</span><span class="p">(</span><span class="n">fname</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    given an AE9AP9 output test file parse the header and return the information in a</span>
+<span class="sd">    dictionary</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+<span class="sd">    fname : str</span>
+<span class="sd">        filename of the file</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    =======</span>
+<span class="sd">    out : dict</span>
+<span class="sd">        Dictionary of the header information in the file</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">ans</span> <span class="o">=</span> <span class="p">{</span> <span class="p">}</span>
+    <span class="n">ans</span><span class="p">[</span><span class="s1">&#39;filename&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+
+    <span class="n">header</span> <span class="o">=</span> <span class="n">_readHeader</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+    <span class="c1"># get the information</span>
+    <span class="n">ans</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">_parseInfo</span><span class="p">(</span><span class="n">header</span><span class="p">))</span>
+
+    <span class="n">columns</span> <span class="o">=</span> <span class="n">header</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">ans</span><span class="p">[</span><span class="s1">&#39;delimiter&#39;</span><span class="p">])</span>
+    <span class="n">columns_unq</span> <span class="o">=</span> <span class="n">_unique_elements_order</span><span class="p">(</span><span class="n">columns</span><span class="p">)</span>
+    <span class="n">len_columns_unq</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">columns</span><span class="p">)</span>
+
+    <span class="c1"># pull the units off the column headings</span>
+    <span class="n">cols</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">while</span> <span class="n">columns_unq</span><span class="p">:</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">columns_unq</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">umatch</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s1">r&#39;(.*)\((.*)\).*&#39;</span><span class="p">,</span> <span class="n">tmp</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">umatch</span><span class="p">:</span>
+            <span class="n">cols</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">umatch</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">umatch</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">cols</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
+    <span class="c1"># now go through and see if any non-tuple entry has the same name as a tuple entry</span>
+    <span class="n">to_remove</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">ii</span><span class="p">,</span> <span class="n">c1</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">cols</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">c1</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">jj</span><span class="p">,</span> <span class="n">c2</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">cols</span><span class="p">[</span><span class="n">ii</span><span class="p">:]):</span>
+                <span class="k">if</span> <span class="n">c2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">c1</span><span class="p">:</span>
+                    <span class="n">to_remove</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ii</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">to_remove</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">to_remove</span><span class="p">:</span>
+            <span class="k">del</span> <span class="n">cols</span><span class="p">[</span><span class="n">v</span><span class="p">]</span>
+    <span class="c1"># and now replicate the last entry enough times to make it the right length</span>
+    <span class="n">cols</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">cols</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">*</span> <span class="p">(</span><span class="n">len_columns_unq</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">cols</span><span class="p">)))</span>
+
+    <span class="n">ans</span><span class="p">[</span><span class="s1">&#39;columns&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cols</span>
+
+    <span class="k">if</span> <span class="s1">&#39;pctile&#39;</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">fname</span><span class="p">):</span>  <span class="c1"># capture the percentile</span>
+        <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s1">r&#39;.*_(\d\d).txt&#39;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">fname</span><span class="p">))</span>
+        <span class="n">ans</span><span class="p">[</span><span class="s1">&#39;percentile&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">ans</span></div>
+
+
+<span class="k">def</span> <span class="nf">_unique_elements_order</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    see http://stackoverflow.com/questions/480214/how-do-you-remove-duplicates-from-a-list-in-python-whilst-preserving-order</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">seen</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="n">seen_add</span> <span class="o">=</span> <span class="n">seen</span><span class="o">.</span><span class="n">add</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">seq</span> <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">x</span> <span class="ow">in</span> <span class="n">seen</span> <span class="ow">or</span> <span class="n">seen_add</span><span class="p">(</span><span class="n">x</span><span class="p">))]</span>
+
+
+<span class="k">def</span> <span class="nf">combinePercentiles</span><span class="p">(</span><span class="n">files</span><span class="p">,</span> <span class="n">timeframe</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    combine files at different percentiles into one file with the spectra at different</span>
+<span class="sd">    percentiles for easy plotting and analysis</span>
+
+<span class="sd">    NOTE: Requires pandas for any timeframe other than &#39;all&#39;</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+<span class="sd">    files : str</span>
+<span class="sd">        Filenames of the percentile files</span>
+
+<span class="sd">    Other Parameters</span>
+<span class="sd">    ================</span>
+<span class="sd">    timeframe : str</span>
+<span class="sd">        Timeframe to average the input spectra over (either &#39;all&#39; or a pandas understoop resample() time</span>
+<span class="sd">    verbose : boolean</span>
+<span class="sd">        Print out information while reading the files</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    =======</span>
+<span class="sd">    out : :mod:`~spacepy.datamodel.SpaceData`</span>
+<span class="sd">        Combined output spectra of the file</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">files</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="p">(</span><span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Must input files&quot;</span><span class="p">))</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span> <span class="p">}</span>
+    <span class="k">for</span> <span class="n">fname</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span> <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Reading: {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fname</span><span class="p">))</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">readFile</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s1">&#39;percentile&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">tmp</span><span class="o">.</span><span class="n">attrs</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="p">(</span><span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;File {0} does not have a percentile key&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fname</span><span class="p">)))</span>
+        <span class="n">data</span><span class="p">[</span><span class="n">tmp</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;percentile&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">tmp</span>
+
+    <span class="n">varnames</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Flux&#39;</span><span class="p">,</span> <span class="s1">&#39;Fluence&#39;</span><span class="p">,</span> <span class="s1">&#39;Dose&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">varname</span> <span class="ow">in</span> <span class="n">varnames</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">varname</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]]:</span>
+            <span class="k">break</span>  <span class="c1"># this leaves it where it was found</span>
+    <span class="k">if</span> <span class="n">varname</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="p">(</span><span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Did not understand file type could not find one of {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">varnames</span><span class="p">)))</span>
+
+    <span class="c1"># now that they are all read in, we collapse them down to different time bases</span>
+    <span class="k">if</span> <span class="n">timeframe</span> <span class="o">==</span> <span class="s1">&#39;all&#39;</span><span class="p">:</span>
+        <span class="c1"># this is just a full collapse</span>
+        <span class="c1"># find the var to collapse</span>
+        <span class="n">d_comp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([])</span>
+        <span class="n">ps</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">())[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">ps</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span class="n">varname</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;DEPEND_0&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Epoch&#39;</span><span class="p">:</span>
+                <span class="n">d_comp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">d_comp</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span class="n">varname</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)))</span>  <span class="c1"># full time collapse</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">d_comp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">d_comp</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span class="n">varname</span><span class="p">]))</span>  <span class="c1"># full time collapse</span>
+        <span class="n">d_comp</span> <span class="o">=</span> <span class="n">d_comp</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ps</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+        <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="p">(</span><span class="ne">ImportError</span><span class="p">(</span><span class="s2">&quot;panads is required for timeframe other than &#39;all&#39;&quot;</span><span class="p">))</span>
+        <span class="k">raise</span> <span class="p">(</span><span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Timeframes other than &#39;all&#39; not yet implemented&quot;</span><span class="p">))</span>
+        <span class="c1"># make a dataframe</span>
+        <span class="c1"># resample to timeframe</span>
+        <span class="c1"># join everything</span>
+        <span class="c1"># meet up at same place for output</span>
+    <span class="c1"># now that we have all the data prep it to a spacedata</span>
+    <span class="n">ans</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">SpaceData</span><span class="p">()</span>
+    <span class="n">ans</span><span class="p">[</span><span class="n">varname</span><span class="p">]</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">dmarray</span><span class="p">(</span><span class="n">d_comp</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">timeframe</span> <span class="o">==</span> <span class="s1">&#39;all&#39;</span><span class="p">:</span>
+        <span class="n">ans</span><span class="p">[</span><span class="n">varname</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;DEPEND_0&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Energy&#39;</span>
+        <span class="n">ans</span><span class="p">[</span><span class="n">varname</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;DEPEND_1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Percentile&#39;</span>
+        <span class="n">ans</span><span class="p">[</span><span class="n">varname</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;DISPLAY_TYPE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;time_series&#39;</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span class="n">varname</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s1">&#39;DEPEND&#39;</span> <span class="ow">in</span> <span class="n">k</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ans</span><span class="p">[</span><span class="n">varname</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span class="n">varname</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+    <span class="n">ans</span><span class="p">[</span><span class="s1">&#39;Energy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span class="s1">&#39;Energy&#39;</span><span class="p">]</span>
+    <span class="n">ans</span><span class="p">[</span><span class="s1">&#39;Percentile&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">dmarray</span><span class="p">(</span><span class="n">ps</span><span class="p">)</span>
+    <span class="n">ans</span><span class="p">[</span><span class="s1">&#39;Percentile&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;FIELDNAM&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Percentile&#39;</span>
+    <span class="n">ans</span><span class="p">[</span><span class="s1">&#39;Percentile&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;LABLAXIS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Percentile&#39;</span>
+    <span class="n">ans</span><span class="p">[</span><span class="s1">&#39;Percentile&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;VALIDMIN&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">ans</span><span class="p">[</span><span class="s1">&#39;Percentile&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;VALIDMAX&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">100.0</span>
+    <span class="n">ans</span><span class="p">[</span><span class="s1">&#39;Percentile&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;SCALETYP&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;support_data&#39;</span>
+    <span class="k">return</span> <span class="n">ans</span>
+
+
+<span class="k">def</span> <span class="nf">_getData</span><span class="p">(</span><span class="n">fnames</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    helper routine for dm.toCDF and dm.toHDF5 and dm.toJSONheadedASCII since the data</span>
+<span class="sd">    prep is all the same</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">fnames</span><span class="p">,</span> <span class="s1">&#39;strip&#39;</span><span class="p">):</span>  <span class="c1"># it is a string</span>
+        <span class="k">return</span> <span class="n">readFile</span><span class="p">(</span><span class="n">fnames</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">combinePercentiles</span><span class="p">(</span><span class="n">fnames</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_grp2mathmode</span><span class="p">(</span><span class="n">matchobj</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Helper function to latex-ify the units for plotting&quot;&quot;&quot;</span>
+    <span class="n">unitstr</span> <span class="o">=</span> <span class="n">matchobj</span><span class="o">.</span><span class="n">group</span><span class="p">()</span>
+    <span class="n">unitstr</span> <span class="o">=</span> <span class="n">unitstr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;{&#39;</span> <span class="o">+</span> <span class="n">unitstr</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+    <span class="k">return</span> <span class="s1">&#39;$&#39;</span> <span class="o">+</span> <span class="n">unitstr</span> <span class="o">+</span> <span class="s1">&#39;}$&#39;</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../../search.html">search</a>|&nbsp;</li>
+       <li><a href="../../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2019, The SpacePy Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

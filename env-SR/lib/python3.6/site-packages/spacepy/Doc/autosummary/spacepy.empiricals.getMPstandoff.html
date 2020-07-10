@@ -1,0 +1,186 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>spacepy.empiricals.getMPstandoff &mdash; SpacePy v0.2.1 Manual</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="../_static/spacepy_favicon.ico"/>
+    <link rel="top" title="SpacePy v0.2.1 Manual" href="../index.html" />
+    <link rel="up" title="empiricals - module with heliospheric empirical modules" href="../empiricals.html" />
+    <link rel="next" title="spacepy.empiricals.getPlasmaPause" href="spacepy.empiricals.getPlasmaPause.html" />
+    <link rel="prev" title="spacepy.empiricals.getLmax" href="spacepy.empiricals.getLmax.html" /> 
+  </head>
+  <body role="document">
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../index.html"><img src="../_static/spacepy_logo.jpg" border="0" alt="spacepy_logo"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="spacepy.empiricals.getPlasmaPause.html" title="spacepy.empiricals.getPlasmaPause"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="spacepy.empiricals.getLmax.html" title="spacepy.empiricals.getLmax"
+             accesskey="P">previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+       <li><a href="../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../empiricals.html" accesskey="U">empiricals - module with heliospheric empirical modules</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="spacepy.empiricals.getLmax.html"
+                        title="previous chapter">spacepy.empiricals.getLmax</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="spacepy.empiricals.getPlasmaPause.html"
+                        title="next chapter">spacepy.empiricals.getPlasmaPause</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/autosummary/spacepy.empiricals.getMPstandoff.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="spacepy-empiricals-getmpstandoff">
+<h1>spacepy.empiricals.getMPstandoff<a class="headerlink" href="#spacepy-empiricals-getmpstandoff" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="spacepy.empiricals.getMPstandoff">
+<code class="descclassname">spacepy.empiricals.</code><code class="descname">getMPstandoff</code><span class="sig-paren">(</span><em>ticks</em>, <em>dbase='QDhourly'</em>, <em>alpha=[]</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/empiricals.html#getMPstandoff"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.empiricals.getMPstandoff" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the Shue et al. (1997) subsolar magnetopause radius</p>
+<p>Shue et al. (1997), A new functional form to study the solar wind 
+control of the magnetopause size and shape, J. Geophys. Res., 102(A5), 
+9497–9511, doi:10.1029/97JA00196.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>ticks</strong> : spacepy.time.Ticktock</p>
+<blockquote>
+<div><p>TickTock object of desired times (will be interpolated from hourly OMNI data)
+OR dictionary of form {&#8216;P&#8217;: [], &#8216;Bz&#8217;: []}
+Where P is SW ram pressure [nPa] and Bz is IMF Bz (GSM) [nT]</p>
+</div></blockquote>
+<p><strong>alpha</strong> : list</p>
+<blockquote>
+<div><p>Used as an optional return value to obtain the flaring angles. To use, assign
+an empty list and pass to this function through the keyword argument. The list 
+will be modified in place, adding the flaring angles for each time step.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>out</strong> : float</p>
+<blockquote class="last">
+<div><p>Magnetopause (sub-solar point) standoff distance [Re]</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">spacepy.time</span> <span class="kn">as</span> <span class="nn">spt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">spacepy.empiricals</span> <span class="kn">as</span> <span class="nn">emp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ticks</span> <span class="o">=</span> <span class="n">spt</span><span class="o">.</span><span class="n">tickrange</span><span class="p">(</span><span class="s1">&#39;2002-01-01T12:00:00&#39;</span><span class="p">,</span><span class="s1">&#39;2002-01-04T00:00:00&#39;</span><span class="p">,</span><span class="o">.</span><span class="mi">25</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">emp</span><span class="o">.</span><span class="n">getMPstandoff</span><span class="p">(</span><span class="n">ticks</span><span class="p">)</span>
+<span class="go">array([ 10.57319537,  10.91327764,  10.75086873,  10.77577207,</span>
+<span class="go">     9.78180261,  11.0374474 ,  11.4065    ,  11.27555451,</span>
+<span class="go">    11.47988573,  11.8202582 ,  11.23834814])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;P&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span> <span class="s1">&#39;Bz&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mf">2.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.4</span><span class="p">]}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">emp</span><span class="o">.</span><span class="n">getMPstandoff</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="go">array([ 9.96096838,  8.96790412])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="spacepy.empiricals.getPlasmaPause.html" title="spacepy.empiricals.getPlasmaPause"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="spacepy.empiricals.getLmax.html" title="spacepy.empiricals.getLmax"
+             >previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+       <li><a href="../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../empiricals.html" >empiricals - module with heliospheric empirical modules</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2019, The SpacePy Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

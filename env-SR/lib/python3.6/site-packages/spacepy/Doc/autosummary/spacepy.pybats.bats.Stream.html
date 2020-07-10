@@ -1,0 +1,262 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>spacepy.pybats.bats.Stream &mdash; SpacePy v0.2.1 Manual</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="../_static/spacepy_favicon.ico"/>
+    <link rel="top" title="SpacePy v0.2.1 Manual" href="../index.html" />
+    <link rel="up" title="spacepy.pybats.bats" href="spacepy.pybats.bats.html" />
+    <link rel="next" title="spacepy.pybats.bats.Bats2d" href="spacepy.pybats.bats.Bats2d.html" />
+    <link rel="prev" title="spacepy.pybats.bats.BatsLog" href="spacepy.pybats.bats.BatsLog.html" /> 
+  </head>
+  <body role="document">
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../index.html"><img src="../_static/spacepy_logo.jpg" border="0" alt="spacepy_logo"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="spacepy.pybats.bats.Bats2d.html" title="spacepy.pybats.bats.Bats2d"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="spacepy.pybats.bats.BatsLog.html" title="spacepy.pybats.bats.BatsLog"
+             accesskey="P">previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+       <li><a href="../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../pybats.html" >PyBats - SWMF &amp; BATS-R-US Analysis Tools</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="spacepy.pybats.bats.html" accesskey="U">spacepy.pybats.bats</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="spacepy.pybats.bats.BatsLog.html"
+                        title="previous chapter">spacepy.pybats.bats.BatsLog</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="spacepy.pybats.bats.Bats2d.html"
+                        title="next chapter">spacepy.pybats.bats.Bats2d</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/autosummary/spacepy.pybats.bats.Stream.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="spacepy-pybats-bats-stream">
+<h1>spacepy.pybats.bats.Stream<a class="headerlink" href="#spacepy-pybats-bats-stream" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="spacepy.pybats.bats.Stream">
+<em class="property">class </em><code class="descclassname">spacepy.pybats.bats.</code><code class="descname">Stream</code><span class="sig-paren">(</span><em>bats</em>, <em>xstart</em>, <em>ystart</em>, <em>xfield</em>, <em>yfield</em>, <em>style='mag'</em>, <em>type='streamline'</em>, <em>method='rk4'</em>, <em>var_list='all'</em>, <em>extract=False</em>, <em>maxPoints=20000</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/pybats/bats.html#Stream"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.pybats.bats.Stream" title="Permalink to this definition">¶</a></dt>
+<dd><p>A class for streamlines.  Contains all of the information about
+the streamline, including extracted variables.</p>
+<p>Upon instantiation, the object will trace through the vector
+field determined by the &#8220;[x/y]field&#8221; values and the Bats object
+&#8220;bats&#8221;.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>bats</strong> : Bats</p>
+<blockquote>
+<div><p><a class="reference internal" href="spacepy.pybats.bats.Bats2d.html#spacepy.pybats.bats.Bats2d" title="spacepy.pybats.bats.Bats2d"><code class="xref py py-class docutils literal"><span class="pre">Bats2d</span></code></a> object through which to trace.</p>
+</div></blockquote>
+<p><strong>xstart</strong> : float</p>
+<blockquote>
+<div><p>X value of location to start the trace.</p>
+</div></blockquote>
+<p><strong>ystart</strong> : float</p>
+<blockquote>
+<div><p>Y value of location to start the trace.</p>
+</div></blockquote>
+<p><strong>xfield</strong> : str</p>
+<blockquote>
+<div><p>Name of variable in <code class="docutils literal"><span class="pre">bats</span></code> which contains X values of the field</p>
+</div></blockquote>
+<p><strong>yfield</strong> : str</p>
+<blockquote>
+<div><p>Name of variable in <code class="docutils literal"><span class="pre">bats</span></code> which contains Y values of the field</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Other Parameters:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><p class="first"><strong>style</strong> : str</p>
+<blockquote>
+<div><p>Sets line style, including colors. See <a class="reference internal" href="#spacepy.pybats.bats.Stream.set_style" title="spacepy.pybats.bats.Stream.set_style"><code class="xref py py-meth docutils literal"><span class="pre">set_style()</span></code></a> for details.
+(Default &#8216;mag&#8217;)</p>
+</div></blockquote>
+<p><strong>type</strong> : str</p>
+<blockquote>
+<div><p>(Default &#8216;streamline&#8217;)</p>
+</div></blockquote>
+<p><strong>method</strong> : str</p>
+<blockquote>
+<div><p>Integration method. The default is Runge-Kutta 4 (&#8216;rk4&#8217;) which gives
+a good blend of speed and accuracy. See the test functions in
+<a class="reference internal" href="spacepy.pybats.trace2d.html#module-spacepy.pybats.trace2d" title="spacepy.pybats.trace2d"><code class="xref py py-mod docutils literal"><span class="pre">trace2d</span></code></a> for more info.  The other option is
+a simple Euler&#8217;s method approach (&#8216;eul&#8217;). (Default &#8216;rk4&#8217;)</p>
+</div></blockquote>
+<p><strong>extract</strong> : bool</p>
+<blockquote>
+<div><p>(Default: False) Extract variables along stream trace and save within
+object.</p>
+</div></blockquote>
+<p><strong>maxPoints</strong> : int</p>
+<blockquote>
+<div><p>(Default : 20000) Maximum number of integration steps to take.</p>
+</div></blockquote>
+<p><strong>var_list</strong> : string or sequence of strings</p>
+<blockquote class="last">
+<div><p>(Default : &#8216;all&#8217;) List of values to extract from <em>dataset</em>.  
+Defaults to &#8216;all&#8217;, for all values within <em>bats</em>.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#spacepy.pybats.bats.Stream.set_style" title="spacepy.pybats.bats.Stream.set_style"><code class="xref py py-obj docutils literal"><span class="pre">set_style</span></code></a>(style)</td>
+<td>Set the line style either using a simple matplotlib-type style string or using a preset style type.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#spacepy.pybats.bats.Stream.treetrace" title="spacepy.pybats.bats.Stream.treetrace"><code class="xref py py-obj docutils literal"><span class="pre">treetrace</span></code></a>(bats[,&nbsp;maxPoints])</td>
+<td>Trace through the vector field using the quad tree.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#spacepy.pybats.bats.Stream.trace" title="spacepy.pybats.bats.Stream.trace"><code class="xref py py-obj docutils literal"><span class="pre">trace</span></code></a>(bats)</td>
+<td>Trace through the vector field.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#spacepy.pybats.bats.Stream.plot" title="spacepy.pybats.bats.Stream.plot"><code class="xref py py-obj docutils literal"><span class="pre">plot</span></code></a>(ax,&nbsp;*args,&nbsp;**kwargs)</td>
+<td>Add streamline to axes object &#8220;ax&#8221;.</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="spacepy.pybats.bats.Stream.set_style">
+<code class="descname">set_style</code><span class="sig-paren">(</span><em>style</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/pybats/bats.html#Stream.set_style"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.pybats.bats.Stream.set_style" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the line style either using a simple matplotlib-type style
+string or using a preset style type.  Current types include:</p>
+<dl class="docutils">
+<dt>&#8216;mag&#8217; <span class="classifier-delimiter">:</span> <span class="classifier">treat line as a magnetic field line.  Closed lines are</span></dt>
+<dd>white, other lines are black.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="spacepy.pybats.bats.Stream.treetrace">
+<code class="descname">treetrace</code><span class="sig-paren">(</span><em>bats</em>, <em>maxPoints=20000</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/pybats/bats.html#Stream.treetrace"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.pybats.bats.Stream.treetrace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Trace through the vector field using the quad tree.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spacepy.pybats.bats.Stream.trace">
+<code class="descname">trace</code><span class="sig-paren">(</span><em>bats</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/pybats/bats.html#Stream.trace"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.pybats.bats.Stream.trace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Trace through the vector field.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spacepy.pybats.bats.Stream.plot">
+<code class="descname">plot</code><span class="sig-paren">(</span><em>ax</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/pybats/bats.html#Stream.plot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.pybats.bats.Stream.plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add streamline to axes object &#8220;ax&#8221;.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="spacepy.pybats.bats.Bats2d.html" title="spacepy.pybats.bats.Bats2d"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="spacepy.pybats.bats.BatsLog.html" title="spacepy.pybats.bats.BatsLog"
+             >previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+       <li><a href="../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../pybats.html" >PyBats - SWMF &amp; BATS-R-US Analysis Tools</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="spacepy.pybats.bats.html" >spacepy.pybats.bats</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2019, The SpacePy Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

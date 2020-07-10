@@ -1,0 +1,640 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>spacepy.pycdf.Var &mdash; SpacePy v0.2.1 Manual</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="../_static/spacepy_favicon.ico"/>
+    <link rel="top" title="SpacePy v0.2.1 Manual" href="../index.html" />
+    <link rel="up" title="pycdf - Python interface to CDF files" href="../pycdf.html" />
+    <link rel="next" title="spacepy.pycdf.gAttrList" href="spacepy.pycdf.gAttrList.html" />
+    <link rel="prev" title="spacepy.pycdf.CDF" href="spacepy.pycdf.CDF.html" /> 
+  </head>
+  <body role="document">
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../index.html"><img src="../_static/spacepy_logo.jpg" border="0" alt="spacepy_logo"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="spacepy.pycdf.gAttrList.html" title="spacepy.pycdf.gAttrList"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="spacepy.pycdf.CDF.html" title="spacepy.pycdf.CDF"
+             accesskey="P">previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+       <li><a href="../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../pycdf.html" accesskey="U">pycdf - Python interface to CDF files</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="spacepy.pycdf.CDF.html"
+                        title="previous chapter">spacepy.pycdf.CDF</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="spacepy.pycdf.gAttrList.html"
+                        title="next chapter">spacepy.pycdf.gAttrList</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/autosummary/spacepy.pycdf.Var.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="spacepy-pycdf-var">
+<h1>spacepy.pycdf.Var<a class="headerlink" href="#spacepy-pycdf-var" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="spacepy.pycdf.Var">
+<em class="property">class </em><code class="descclassname">spacepy.pycdf.</code><code class="descname">Var</code><span class="sig-paren">(</span><em>cdf_file</em>, <em>var_name</em>, <em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/pycdf.html#Var"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.pycdf.Var" title="Permalink to this definition">¶</a></dt>
+<dd><p>A CDF variable.</p>
+<p>This object does not directly store the data from the CDF; rather,
+it provides access to the data in a format that much like a Python
+list or numpy <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.17)"><code class="xref py py-class docutils literal"><span class="pre">ndarray</span></code></a>.
+General list information is available in the python docs:
+<a class="reference external" href="http://docs.python.org/tutorial/introduction.html#lists">1</a>,
+<a class="reference external" href="http://docs.python.org/tutorial/datastructures.html#more-on-lists">2</a>,
+<a class="reference external" href="http://docs.python.org/library/stdtypes.html#typesseq">3</a>.</p>
+<p>The CDF user&#8217;s guide, section 2.3, provides background on variables.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Not intended to be created directly; use methods of <a class="reference internal" href="spacepy.pycdf.CDF.html#spacepy.pycdf.CDF" title="spacepy.pycdf.CDF"><code class="xref py py-class docutils literal"><span class="pre">CDF</span></code></a> to gain access to a variable.</p>
+</div>
+<p>A record-varying variable&#8217;s data are viewed as a hypercube of dimensions
+n_dims+1 (the extra dimension is the record number). They are indexed in
+row-major fashion, i.e. the last index changes most frequently / is
+contiguous in memory. If the CDF is column-major, the data are
+transformed to row-major before return.</p>
+<p>Non record-varying variables are similar, but do not have the extra
+dimension of record number.</p>
+<p>Variables can be subscripted by a multidimensional index to return the
+data. Indices are in row-major order with the first dimension
+representing the record number. If the CDF is column major,
+the data are reordered to row major. Each dimension is specified
+by standard Python
+<a class="reference external" href="http://docs.python.org/tutorial/introduction.html#strings">slice</a>
+notation, with dimensions separated by commas. The ellipsis fills in
+any missing dimensions with full slices. The returned data are
+lists; Python represents multidimensional arrays as nested lists.
+The innermost set of lists represents contiguous data.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">numpy &#8216;fancy indexing&#8217; is <em>not</em> supported.</p>
+</div>
+<p>Degenerate dimensions are &#8216;collapsed&#8217;, i.e. no list of only one
+element will be returned if a single subscript is specified
+instead of a range. (To avoid this, specify a slice like 1:2,
+which starts with 1 and ends before 2).</p>
+<p>Two special cases:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>requesting a single-dimension slice for a
+record-varying variable will return all data for that
+record number (or those record numbers) for that variable.</li>
+<li>Requests for multi-dimensional variables may skip the record-number
+dimension and simply specify the slice on the array itself. In that
+case, the slice of the array will be returned for all records.</li>
+</ol>
+</div></blockquote>
+<p>In the event of ambiguity (e.g., single-dimension slice on a one-dimensional
+variable), case 1 takes priority.
+Otherwise, mismatch between the number of dimensions specified in
+the slice and the number of dimensions in the variable will cause
+an <code class="xref py py-exc docutils literal"><span class="pre">IndexError</span></code> to be thrown.</p>
+<p>This all sounds very complicated but it is essentially attempting
+to do the &#8216;right thing&#8217; for a range of slices.</p>
+<p>An unusual case is scalar (zero-dimensional) non-record-varying variables.
+Clearly they cannot be subscripted normally. In this case, use the
+<code class="docutils literal"><span class="pre">[...]</span></code> syntax meaning &#8216;access all data.&#8217;:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">spacepy</span> <span class="kn">import</span> <span class="n">pycdf</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">testcdf</span> <span class="o">=</span> <span class="n">pycdf</span><span class="o">.</span><span class="n">CDF</span><span class="p">(</span><span class="s1">&#39;test.cdf&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">variable</span> <span class="o">=</span> <span class="n">testcdf</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;variable&#39;</span><span class="p">,</span> <span class="n">recVary</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="nb">type</span><span class="o">=</span><span class="n">pycdf</span><span class="o">.</span><span class="n">const</span><span class="o">.</span><span class="n">CDF_INT4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">variable</span><span class="p">[</span><span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">variable</span>
+<span class="go">&lt;Var:</span>
+<span class="go">CDF_INT4 [] NRV</span>
+<span class="go">&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">variable</span><span class="p">[</span><span class="o">...</span><span class="p">]</span>
+<span class="go">10</span>
+</pre></div>
+</div>
+<p>Reading any empty non-record-varying variable will return an empty
+with the same <em>number</em> of dimensions, but all dimensions will be
+of zero length. The scalar is, again, a special case: due to the
+inability to have a numpy array which is both zero-dimensional and empty,
+reading an NRV scalar variable with no data will return an empty
+one-dimensional array. This is really not recommended.</p>
+<p>As a list type, variables are also <a class="reference external" href="http://docs.python.org/tutorial/classes.html#iterators">iterable</a>; iterating
+over a variable returns a single complete record at a time.</p>
+<p>This is all clearer with examples. Consider a variable <code class="docutils literal"><span class="pre">B_GSM</span></code>, with
+three elements per record (x, y, z components) and fifty records in
+the CDF. Then:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><code class="docutils literal"><span class="pre">B_GSM[0,</span> <span class="pre">1]</span></code> is the y component of the first record.</li>
+<li><code class="docutils literal"><span class="pre">B_GSM[10,</span> <span class="pre">:]</span></code> is a three-element list, containing x, y, and z
+components of the 11th record. As a shortcut, if only one dimension
+is specified, it is assumed to be the record number, so this
+could also be written <code class="docutils literal"><span class="pre">B_GSM[10]</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">B_GSM[...]</span></code> reads all data for <code class="docutils literal"><span class="pre">B_GSM</span></code> and returns it as a
+fifty-element list, each element itself being a three-element
+list of x, y, z components.</li>
+</ol>
+</div></blockquote>
+<p>Multidimensional example: consider fluxes stored as a function of
+pitch angle and energy. Such a variable may be called Flux and
+stored as a two-dimensional array, with the first dimension
+representing (say) ten energy steps and the second, eighteen
+pitch angle bins (ten degrees wide, centered from 5 to 175 degrees).
+Assume 100 records stored in the CDF (i.e. 100 different times).</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><code class="docutils literal"><span class="pre">Flux[4]</span></code> is a list of ten elements, one per energy step,
+each element being a list of 18 fluxes, one per pitch bin.
+All are taken from the fifth record in the CDF.</li>
+<li><code class="docutils literal"><span class="pre">Flux[4,</span> <span class="pre">:,</span> <span class="pre">0:4]</span></code> is the same record, all energies, but
+only the first four pitch bins (roughly, field-aligned).</li>
+<li><code class="docutils literal"><span class="pre">Flux[...,</span> <span class="pre">0:4]</span></code> is a 100-element list (one per record),
+each element being a ten-element list (one per energy step),
+each containing fluxes for the first four pitch bins.</li>
+</ol>
+</div></blockquote>
+<p>This slicing notation is very flexible and allows reading
+specifically the desired data from the CDF.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The C CDF library allows reading records which have not been
+written to a file, returning a pad value. pycdf checks the
+size of a variable and will raise <cite>IndexError</cite> for most
+attempts to read past the end. If these checks fail, a value
+is returned with a warning <code class="docutils literal"><span class="pre">VIRTUAL_RECORD_DATA</span></code>. Please
+<a class="reference external" href="https://github.com/spacepy/spacepy/issues/new">open an issue</a> if this
+occurs. See pg. 39 and following of the <a class="reference external" href="https://cdf.gsfc.nasa.gov/html/cdf_docs.html">CDF User&#8217;s Guide</a> for more on
+virtual records.</p>
+</div>
+<p>All data are, on read, converted to appropriate Python data
+types; EPOCH, EPOCH16, and TIME_TT2000 types are converted to
+<a class="reference external" href="https://docs.python.org/library/datetime.html#datetime.datetime" title="(in Python v3.7)"><code class="xref py py-class docutils literal"><span class="pre">datetime</span></code></a>. Data are returned in numpy arrays.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Although pycdf supports TIME_TT2000 variables, the Python
+<a class="reference external" href="https://docs.python.org/library/datetime.html#datetime.datetime" title="(in Python v3.7)"><code class="xref py py-class docutils literal"><span class="pre">datetime</span></code></a> object does not support leap
+seconds. Thus, on read, any seconds past 59 are truncated
+to 59.999999 (59 seconds, 999 milliseconds, 999 microseconds).</p>
+</div>
+<dl class="docutils">
+<dt>Potentially useful list methods and related functions:</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="http://docs.python.org/tutorial/datastructures.html#more-on-lists">count</a></li>
+<li><a class="reference external" href="http://docs.python.org/reference/expressions.html#in">in</a></li>
+<li><a class="reference external" href="http://docs.python.org/tutorial/datastructures.html#more-on-lists">index</a></li>
+<li><a class="reference external" href="http://docs.python.org/library/functions.html#len">len</a></li>
+<li><a class="reference external" href="http://docs.python.org/tutorial/datastructures.html#list-comprehensions">list comprehensions</a></li>
+<li><a class="reference external" href="http://docs.python.org/library/functions.html#sorted">sorted</a></li>
+</ul>
+</dd>
+</dl>
+<p>The topic of array majority can be very confusing; good background material
+is available at <a class="reference external" href="http://www.idlcoyote.com/misc_tips/colrow_major.html">IDL Array Storage and Indexing</a>. In brief,
+<em>regardless of the majority stored in the CDF</em>, pycdf will always present
+the data in the native Python majority, row-major order, also known as
+C order. This is the default order in <a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/arrays.ndarray.html#internal-memory-layout-of-an-ndarray">NumPy</a>.
+However, packages that render image data may expect it in column-major
+order. If the axes seem &#8216;swapped&#8217; this is likely the reason.</p>
+<p>The <a class="reference internal" href="#spacepy.pycdf.Var.attrs" title="spacepy.pycdf.Var.attrs"><code class="xref py py-attr docutils literal"><span class="pre">attrs</span></code></a> Python attribute acts as a dictionary referencing
+zAttributes (do not confuse the two); all the dictionary methods above
+also work on the attribute dictionary. See <a class="reference internal" href="spacepy.pycdf.zAttrList.html#spacepy.pycdf.zAttrList" title="spacepy.pycdf.zAttrList"><code class="xref py py-class docutils literal"><span class="pre">zAttrList</span></code></a> for more on
+the dictionary of attributes.</p>
+<p>With writing, as with reading, every attempt has been made to match the
+behavior of Python lists. You can write one record, many records, or even
+certain elements of all records. There is one restriction: only the record
+dimension (i.e. dimension 0) can be resized by write, as all records
+in a variable must have the same dimensions. Similarly, only whole
+records can be deleted.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Unusual error messages on writing data usually mean that pycdf is
+unable to interpret the data as a regular array of a single type
+matching the type and shape of the variable being written.
+A 5x4 array is supported; an irregular array where one row has
+five columns and a different row has six columns is not. Error messages
+of this type include:</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">Data</span> <span class="pre">must</span> <span class="pre">be</span> <span class="pre">well-formed,</span> <span class="pre">regular</span> <span class="pre">array</span> <span class="pre">of</span> <span class="pre">number,</span> <span class="pre">string,</span> <span class="pre">or</span> <span class="pre">datetime</span></code></li>
+<li><code class="docutils literal"><span class="pre">setting</span> <span class="pre">an</span> <span class="pre">array</span> <span class="pre">element</span> <span class="pre">with</span> <span class="pre">a</span> <span class="pre">sequence.</span></code></li>
+<li><code class="docutils literal"><span class="pre">shape</span> <span class="pre">mismatch:</span> <span class="pre">objects</span> <span class="pre">cannot</span> <span class="pre">be</span> <span class="pre">broadcast</span> <span class="pre">to</span> <span class="pre">a</span>
+<span class="pre">single</span> <span class="pre">shape</span></code></li>
+</ul>
+</div></blockquote>
+</div>
+<p>For these examples, assume Flux has 100 records and dimensions [2, 3].</p>
+<p>Rewrite the first record without changing the rest:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Flux</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p>Writes a new first record and delete all the rest:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Flux</span><span class="p">[</span><span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p>Write a new record in the last position and add a new record after:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Flux</span><span class="p">[</span><span class="mi">99</span><span class="p">:]</span> <span class="o">=</span> <span class="p">[[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]],</span>
+<span class="gp">... </span>             <span class="p">[[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">],</span> <span class="p">[</span><span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">]]]</span>
+</pre></div>
+</div>
+<p>Insert two new records between the current number 5 and 6:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Flux</span><span class="p">[</span><span class="mi">5</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="p">[[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]],</span>  <span class="p">[[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">],</span>
+<span class="gp">... </span>              <span class="p">[</span><span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">]]]</span>
+</pre></div>
+</div>
+<p>This operation can be quite slow, as it requires reading and
+rewriting the entire variable. (CDF does not directly support
+record insertion.)</p>
+<p>Change the first element of the first two records but leave other
+elements alone:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Flux</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Remove the first record:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">del</span> <span class="n">Flux</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Removes record 5 (the sixth):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">del</span> <span class="n">Flux</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Due to the need to work around a bug in the CDF library, this operation
+can be quite slow.</p>
+<p>Delete <em>all data</em> from <code class="docutils literal"><span class="pre">Flux</span></code>, but leave the variable definition intact:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">del</span> <span class="n">Flux</span><span class="p">[</span><span class="o">...</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Although this interface only directly supports zVariables, zMode is
+set on opening the CDF so rVars appear as zVars. See p.24 of the
+CDF user&#8217;s guide; pyCDF uses zMode 2.</p>
+</div>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#spacepy.pycdf.Var.attrs" title="spacepy.pycdf.Var.attrs"><code class="xref py py-obj docutils literal"><span class="pre">attrs</span></code></a></td>
+<td>zAttributes for this zVariable in a dict-like format.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#spacepy.pycdf.Var.compress" title="spacepy.pycdf.Var.compress"><code class="xref py py-obj docutils literal"><span class="pre">compress</span></code></a>([comptype,&nbsp;param])</td>
+<td>Set or check the compression of this variable</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#spacepy.pycdf.Var.copy" title="spacepy.pycdf.Var.copy"><code class="xref py py-obj docutils literal"><span class="pre">copy</span></code></a>()</td>
+<td>Copies all data and attributes from this variable</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#spacepy.pycdf.Var.dtype" title="spacepy.pycdf.Var.dtype"><code class="xref py py-obj docutils literal"><span class="pre">dtype</span></code></a></td>
+<td>Provide the numpy dtype equivalent to the CDF type of this variable.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#spacepy.pycdf.Var.dv" title="spacepy.pycdf.Var.dv"><code class="xref py py-obj docutils literal"><span class="pre">dv</span></code></a>([new_dv])</td>
+<td>Gets or sets dimension variance of each dimension of variable.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#spacepy.pycdf.Var.insert" title="spacepy.pycdf.Var.insert"><code class="xref py py-obj docutils literal"><span class="pre">insert</span></code></a>(index,&nbsp;data)</td>
+<td>Inserts a <em>single</em> record before an index</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#spacepy.pycdf.Var.name" title="spacepy.pycdf.Var.name"><code class="xref py py-obj docutils literal"><span class="pre">name</span></code></a>()</td>
+<td>Returns the name of this variable</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#spacepy.pycdf.Var.rename" title="spacepy.pycdf.Var.rename"><code class="xref py py-obj docutils literal"><span class="pre">rename</span></code></a>(new_name)</td>
+<td>Renames this variable</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#spacepy.pycdf.Var.rv" title="spacepy.pycdf.Var.rv"><code class="xref py py-obj docutils literal"><span class="pre">rv</span></code></a>([new_rv])</td>
+<td>Gets or sets whether this variable has record variance</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#spacepy.pycdf.Var.shape" title="spacepy.pycdf.Var.shape"><code class="xref py py-obj docutils literal"><span class="pre">shape</span></code></a></td>
+<td>Provides the numpy array-like shape of this variable.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#spacepy.pycdf.Var.type" title="spacepy.pycdf.Var.type"><code class="xref py py-obj docutils literal"><span class="pre">type</span></code></a>([new_type])</td>
+<td>Returns or sets the CDF type of this variable</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="spacepy.pycdf.Var.attrs">
+<code class="descname">attrs</code><a class="headerlink" href="#spacepy.pycdf.Var.attrs" title="Permalink to this definition">¶</a></dt>
+<dd><p>zAttributes for this zVariable in a dict-like format.
+See <a class="reference internal" href="spacepy.pycdf.zAttrList.html#spacepy.pycdf.zAttrList" title="spacepy.pycdf.zAttrList"><code class="xref py py-class docutils literal"><span class="pre">zAttrList</span></code></a> for details.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spacepy.pycdf.Var.compress">
+<code class="descname">compress</code><span class="sig-paren">(</span><em>comptype=None</em>, <em>param=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/pycdf.html#Var.compress"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.pycdf.Var.compress" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set or check the compression of this variable</p>
+<p>Compression may not be changeable on variables with data already
+written; even deleting the data may not permit the change.</p>
+<p>See section 2.6 of the CDF user&#8217;s guide for more information on
+compression.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>out</strong> : tuple</p>
+<blockquote>
+<div><p>the (comptype, param) currently in effect</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Other Parameters:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><p class="first"><strong>comptype</strong> : ctypes.c_long</p>
+<blockquote>
+<div><p>type of compression to change to, see CDF C reference
+manual section 4.10. Constants for this parameter
+are in <a class="reference internal" href="spacepy.pycdf.const.html#module-spacepy.pycdf.const" title="spacepy.pycdf.const"><code class="xref py py-mod docutils literal"><span class="pre">const</span></code></a>. If not specified, will not
+change compression.</p>
+</div></blockquote>
+<p><strong>param</strong> : ctypes.c_long</p>
+<blockquote class="last">
+<div><p>Compression parameter, see CDF CRM 4.10 and
+<a class="reference internal" href="spacepy.pycdf.const.html#module-spacepy.pycdf.const" title="spacepy.pycdf.const"><code class="xref py py-mod docutils literal"><span class="pre">const</span></code></a>.
+If not specified, will choose reasonable default (5 for
+gzip; other types have only one possible parameter.)</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="spacepy.pycdf.Var.copy">
+<code class="descname">copy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/pycdf.html#Var.copy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.pycdf.Var.copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Copies all data and attributes from this variable</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>out</strong> : <a class="reference internal" href="spacepy.pycdf.VarCopy.html#spacepy.pycdf.VarCopy" title="spacepy.pycdf.VarCopy"><code class="xref py py-class docutils literal"><span class="pre">VarCopy</span></code></a></p>
+<blockquote class="last">
+<div><p>list of all data in record order</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="spacepy.pycdf.Var.dtype">
+<code class="descname">dtype</code><a class="headerlink" href="#spacepy.pycdf.Var.dtype" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provide the numpy dtype equivalent to the CDF type of this variable.</p>
+<p>Data from this variable will be returned in numpy arrays of this type.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#spacepy.pycdf.Var.type" title="spacepy.pycdf.Var.type"><code class="xref py py-obj docutils literal"><span class="pre">type</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="spacepy.pycdf.Var.dv">
+<code class="descname">dv</code><span class="sig-paren">(</span><em>new_dv=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/pycdf.html#Var.dv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.pycdf.Var.dv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets or sets dimension variance of each dimension of variable.</p>
+<p>If the variance is unknown, True is assumed
+(this replicates the apparent behavior of the
+CDF library on variable creation).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>new_dv</strong> : list of boolean</p>
+<blockquote>
+<div><p>Each element True to change that dimension to dimension
+variance, False to change to not dimension variance.
+(Unspecified to simply check variance.)</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>out</strong> : list of boolean</p>
+<blockquote class="last">
+<div><p>True if that dimension has variance, else false.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="spacepy.pycdf.Var.insert">
+<code class="descname">insert</code><span class="sig-paren">(</span><em>index</em>, <em>data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/pycdf.html#Var.insert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.pycdf.Var.insert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inserts a <em>single</em> record before an index</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>index</strong> : int</p>
+<blockquote>
+<div><p>index before which to insert the new record</p>
+</div></blockquote>
+<p><strong>data :</strong></p>
+<blockquote class="last">
+<div><p>the record to insert</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="spacepy.pycdf.Var.name">
+<code class="descname">name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/pycdf.html#Var.name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.pycdf.Var.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the name of this variable</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>out</strong> : str</p>
+<blockquote class="last">
+<div><p>variable&#8217;s name</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="spacepy.pycdf.Var.rename">
+<code class="descname">rename</code><span class="sig-paren">(</span><em>new_name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/pycdf.html#Var.rename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.pycdf.Var.rename" title="Permalink to this definition">¶</a></dt>
+<dd><p>Renames this variable</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>new_name</strong> : str</p>
+<blockquote class="last">
+<div><p>the new name for this variable</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="spacepy.pycdf.Var.rv">
+<code class="descname">rv</code><span class="sig-paren">(</span><em>new_rv=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/pycdf.html#Var.rv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.pycdf.Var.rv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets or sets whether this variable has record variance</p>
+<p>If the variance is unknown, True is assumed
+(this replicates the apparent behavior of the CDF library on
+variable creation).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>out</strong> : Boolean</p>
+<blockquote>
+<div><p>True if record varying, False if NRV</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Other Parameters:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><p class="first"><strong>new_rv</strong> : boolean</p>
+<blockquote class="last">
+<div><p>True to change to record variance, False to change to NRV,
+unspecified to simply check variance.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="spacepy.pycdf.Var.shape">
+<code class="descname">shape</code><a class="headerlink" href="#spacepy.pycdf.Var.shape" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provides the numpy array-like shape of this variable.</p>
+<p>Returns a tuple; first element is number of records (RV variable
+only) And the rest provide the dimensionality of the variable.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Assigning to this attribute will not change the shape.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="spacepy.pycdf.Var.type">
+<code class="descname">type</code><span class="sig-paren">(</span><em>new_type=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/pycdf.html#Var.type"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.pycdf.Var.type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns or sets the CDF type of this variable</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>new_type</strong> : ctypes.c_long</p>
+<blockquote>
+<div><p>the new type from <a class="reference internal" href="spacepy.pycdf.const.html#module-spacepy.pycdf.const" title="spacepy.pycdf.const"><code class="xref py py-mod docutils literal"><span class="pre">const</span></code></a></p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>out</strong> : int</p>
+<blockquote class="last">
+<div><p>CDF type</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="spacepy.pycdf.gAttrList.html" title="spacepy.pycdf.gAttrList"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="spacepy.pycdf.CDF.html" title="spacepy.pycdf.CDF"
+             >previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+       <li><a href="../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../pycdf.html" >pycdf - Python interface to CDF files</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2019, The SpacePy Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

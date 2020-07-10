@@ -1,0 +1,983 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>spacepy.pycdf.istp &mdash; SpacePy v0.2.1 Manual</title>
+    
+    <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="../../../_static/spacepy_favicon.ico"/>
+    <link rel="top" title="SpacePy v0.2.1 Manual" href="../../../index.html" />
+    <link rel="up" title="spacepy.pycdf" href="../pycdf.html" /> 
+  </head>
+  <body role="document">
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../../../index.html"><img src="../../../_static/spacepy_logo.jpg" border="0" alt="spacepy_logo"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../../../search.html">search</a>|&nbsp;</li>
+       <li><a href="../../../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../pycdf.html" accesskey="U">spacepy.pycdf</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../index.html">
+              <img class="logo" src="../../../_static/logo.png" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for spacepy.pycdf.istp</h1><div class="highlight"><pre>
+<span class="ch">#!/usr/bin/env python</span>
+
+<span class="sd">&quot;&quot;&quot;Support for ISTP-compliant CDFs</span>
+
+<span class="sd">The `ISTP metadata standard  &lt;https://spdf.gsfc.nasa.gov/sp_use_of_cdf.html&gt;`_</span>
+<span class="sd">specifies the interpretation of the attributes in a CDF to describe</span>
+<span class="sd">relationships between the variables and their physical interpretation.</span>
+
+<span class="sd">This module supports that subset of CDFs.</span>
+
+<span class="sd">Authors: Jon Niehof</span>
+
+<span class="sd">Additional Contributors: Lorna Ellis, Asher Merrill</span>
+
+<span class="sd">Institution: University of New Hampshire</span>
+
+<span class="sd">Contact: Jonathan.Niehof@unh.edu</span>
+
+<span class="sd">.. rubric:: Classes</span>
+
+<span class="sd">.. autosummary::</span>
+<span class="sd">    :toctree: autosummary  </span>
+<span class="sd">    :template: clean_class.rst</span>
+
+<span class="sd">    FileChecks</span>
+<span class="sd">    VariableChecks</span>
+
+<span class="sd">.. rubric:: Functions</span>
+
+<span class="sd">.. autosummary::</span>
+<span class="sd">    :toctree: autosummary  </span>
+
+<span class="sd">    fillval</span>
+<span class="sd">    format</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">os.path</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">import</span> <span class="nn">spacepy.datamodel</span>
+<span class="kn">import</span> <span class="nn">spacepy.pycdf</span>
+<span class="kn">import</span> <span class="nn">spacepy.pycdf.const</span>
+
+
+<div class="viewcode-block" id="VariableChecks"><a class="viewcode-back" href="../../../autosummary/autosummary/spacepy.pycdf.istp.VariableChecks.html#spacepy.pycdf.istp.VariableChecks">[docs]</a><span class="k">class</span> <span class="nc">VariableChecks</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;ISTP compliance checks for a single variable.</span>
+
+<span class="sd">    Checks a variable&#39;s compliance with ISTP standards. This mostly</span>
+<span class="sd">    performs checks that are not currently performed by the `ISTP</span>
+<span class="sd">    skeleton editor &lt;https://spdf.gsfc.nasa.gov/skteditor/&gt;`_.  All</span>
+<span class="sd">    tests return a list, one error string for every noncompliance</span>
+<span class="sd">    found (empty list if compliant). :meth:`all` will perform all</span>
+<span class="sd">    tests and concatenate all errors.</span>
+
+<span class="sd">    .. autosummary::</span>
+
+<span class="sd">        all</span>
+<span class="sd">        depends</span>
+<span class="sd">        depsize</span>
+<span class="sd">        fieldnam</span>
+<span class="sd">        recordcount</span>
+<span class="sd">        validdisplaytype</span>
+<span class="sd">        validrange</span>
+<span class="sd">        validscale</span>
+<span class="sd">        </span>
+<span class="sd">    .. automethod:: all</span>
+<span class="sd">    .. automethod:: depends</span>
+<span class="sd">    .. automethod:: depsize</span>
+<span class="sd">    .. automethod:: fieldnam</span>
+<span class="sd">    .. automethod:: recordcount</span>
+<span class="sd">    .. automethod:: validdisplaytype</span>
+<span class="sd">    .. automethod:: validrange</span>
+<span class="sd">    .. automethod:: validscale</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1">#When adding new tests, add to list above, and the list in all()</span>
+    <span class="c1">#Validation failures should be formatted as a sentence (initial cap,</span>
+    <span class="c1">#closing period) and NOT include the variable name.</span>
+
+    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="VariableChecks.all"><a class="viewcode-back" href="../../../autosummary/autosummary/spacepy.pycdf.istp.VariableChecks.html#spacepy.pycdf.istp.VariableChecks.all">[docs]</a>    <span class="k">def</span> <span class="nf">all</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">catch</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Perform all variable tests</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        v : :class:`~spacepy.pycdf.Var`</span>
+<span class="sd">            Variable to check</span>
+<span class="sd">        catch : bool</span>
+<span class="sd">            Catch exceptions in tests (default False). If True, any</span>
+<span class="sd">            exceptions in subtests will result in an addition to the</span>
+<span class="sd">            validation failures of the form &quot;Test x did not complete.&quot;</span>
+<span class="sd">            Calling the individual test will reveal the full traceback.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list of str</span>
+<span class="sd">            Description of each validation failure.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; import spacepy.pycdf</span>
+<span class="sd">        &gt;&gt;&gt; import spacepy.pycdf.istp</span>
+<span class="sd">        &gt;&gt;&gt; f = spacepy.pycdf.CDF(&#39;foo.cdf&#39;, create=True)</span>
+<span class="sd">        &gt;&gt;&gt; v = f.new(&#39;Var&#39;, data=[1, 2, 3])</span>
+<span class="sd">        &gt;&gt;&gt; spacepy.pycdf.istp.VariableChecks.all(v)</span>
+<span class="sd">        [&#39;No FIELDNAM attribute.&#39;]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1">#Update this list when adding new test functions</span>
+        <span class="n">callme</span> <span class="o">=</span> <span class="p">(</span><span class="n">cls</span><span class="o">.</span><span class="n">depends</span><span class="p">,</span> <span class="n">cls</span><span class="o">.</span><span class="n">depsize</span><span class="p">,</span> <span class="n">cls</span><span class="o">.</span><span class="n">fieldnam</span><span class="p">,</span> <span class="n">cls</span><span class="o">.</span><span class="n">recordcount</span><span class="p">,</span>
+                  <span class="n">cls</span><span class="o">.</span><span class="n">validrange</span><span class="p">,</span> <span class="n">cls</span><span class="o">.</span><span class="n">validscale</span><span class="p">,</span> <span class="n">cls</span><span class="o">.</span><span class="n">validdisplaytype</span><span class="p">)</span>
+        <span class="n">errors</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">callme</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">errors</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">catch</span><span class="p">:</span>
+                    <span class="n">errors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Test {} did not complete.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                        <span class="n">f</span><span class="o">.</span><span class="n">__name__</span><span class="p">))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">raise</span>
+        <span class="k">return</span> <span class="n">errors</span></div>
+
+    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="VariableChecks.depends"><a class="viewcode-back" href="../../../autosummary/autosummary/spacepy.pycdf.istp.VariableChecks.html#spacepy.pycdf.istp.VariableChecks.depends">[docs]</a>    <span class="k">def</span> <span class="nf">depends</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Checks that DEPEND and LABL_PTR variables actually exist</span>
+
+<span class="sd">        Check that variables specified in the variable attributes for</span>
+<span class="sd">        `DEPEND</span>
+<span class="sd">        &lt;https://spdf.gsfc.nasa.gov/istp_guide/vattributes.html#DEPEND_0&gt;`_</span>
+<span class="sd">        and `LABL_PTR</span>
+<span class="sd">        &lt;https://spdf.gsfc.nasa.gov/istp_guide/vattributes.html#LABL_PTR_1&gt;`_</span>
+<span class="sd">        exist in the CDF.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        v : :class:`~spacepy.pycdf.Var`</span>
+<span class="sd">            Variable to check</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list of str</span>
+<span class="sd">            Description of each validation failure.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;{} variable {} missing&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">v</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="n">a</span><span class="p">])</span>
+                <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">attrs</span>
+                <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">startswith</span><span class="p">((</span><span class="s1">&#39;DEPEND_&#39;</span><span class="p">,</span> <span class="s1">&#39;LABL_PTR_&#39;</span><span class="p">))</span> <span class="ow">and</span>
+                <span class="ow">not</span> <span class="n">v</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">cdf_file</span><span class="p">]</span></div>
+
+    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="VariableChecks.depsize"><a class="viewcode-back" href="../../../autosummary/autosummary/spacepy.pycdf.istp.VariableChecks.html#spacepy.pycdf.istp.VariableChecks.depsize">[docs]</a>    <span class="k">def</span> <span class="nf">depsize</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Checks that DEPEND has same shape as that dim</span>
+
+<span class="sd">        Compares the size of variables specified in the variable</span>
+<span class="sd">        attributes for `DEPEND</span>
+<span class="sd">        &lt;https://spdf.gsfc.nasa.gov/istp_guide/vattributes.html#DEPEND_0&gt;`_</span>
+<span class="sd">        and compares to the size of the corresponding dimension in</span>
+<span class="sd">        this variable.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        v : :class:`~spacepy.pycdf.Var`</span>
+<span class="sd">            Variable to check</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list of str</span>
+<span class="sd">            Description of each validation failure.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">rv</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">rv</span><span class="p">())</span> <span class="c1">#RV is a leading dimension</span>
+        <span class="n">errs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c1"># Check that don&#39;t have invalid DEPEND_1</span>
+        <span class="k">if</span> <span class="n">v</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">0</span><span class="p">,):</span>
+            <span class="k">if</span> <span class="s1">&#39;DEPEND_1&#39;</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">attrs</span> <span class="ow">or</span> <span class="s1">&#39;DEPEND_2&#39;</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">attrs</span><span class="p">:</span>
+                <span class="n">errs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Do not expect DEPEND_1 or DEPEND_2 in 1 dimensional variable.&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rv</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">shape</span><span class="p">)):</span> <span class="c1">#This is index on shape (of var)</span>
+            <span class="n">depidx</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">rv</span> <span class="c1">#This is x in  DEPEND_x</span>
+            <span class="n">target</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="s1">&#39;DEPEND_{}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">depidx</span><span class="p">)</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">attrs</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;DEPEND_{}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">depidx</span><span class="p">)]</span>
+            <span class="k">if</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">cdf_file</span><span class="p">:</span>
+                <span class="n">dv</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">cdf_file</span><span class="p">[</span><span class="n">d</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">continue</span> <span class="c1">#this is a different error</span>
+            <span class="k">if</span> <span class="n">dv</span><span class="o">.</span><span class="n">rv</span><span class="p">()</span> <span class="o">!=</span> <span class="p">(</span><span class="s1">&#39;DEPEND_0&#39;</span> <span class="ow">in</span> <span class="n">dv</span><span class="o">.</span><span class="n">attrs</span><span class="p">):</span>
+                <span class="n">errs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;DEPEND_{} {} is RV but has no DEPEND_0.&#39;</span>
+                            <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">depidx</span><span class="p">,</span> <span class="n">d</span><span class="p">))</span>
+                <span class="k">continue</span>
+            <span class="c1">#We hope the only weirdness is whether the dependency</span>
+            <span class="c1">#is constant, or dependent on record. If it&#39;s dependent</span>
+            <span class="c1">#on another dependency, this gets really weird really fast</span>
+            <span class="c1"># If the dependency is dependent, remove the lower level</span>
+            <span class="c1"># dependency size from consideration</span>
+            <span class="c1"># eg. if counts [80,48], depends on energy [80,48],</span>
+            <span class="c1"># depends on look [80], remove 80 from the view of energy</span>
+            <span class="c1"># so that we accurately check 48==48.</span>
+            <span class="c1"># NB: This assumes max of two layers of dependency</span>
+            <span class="k">if</span> <span class="s1">&#39;DEPEND_2&#39;</span> <span class="ow">in</span> <span class="n">dv</span><span class="o">.</span><span class="n">attrs</span><span class="p">:</span>
+                <span class="n">errs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Do not expect three layers of dependency.&#39;</span><span class="p">)</span>
+                <span class="k">continue</span>
+            <span class="k">elif</span> <span class="s1">&#39;DEPEND_1&#39;</span> <span class="ow">in</span> <span class="n">dv</span><span class="o">.</span><span class="n">attrs</span><span class="p">:</span>
+                <span class="n">dd</span> <span class="o">=</span> <span class="n">dv</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;DEPEND_1&#39;</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">dd</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">cdf_file</span><span class="p">:</span>
+                    <span class="n">ddv</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">cdf_file</span><span class="p">[</span><span class="n">dd</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">continue</span> <span class="c1">#this is a different error</span>
+                <span class="n">actual</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">dv</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">actual</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">ddv</span><span class="o">.</span><span class="n">shape</span><span class="p">:</span>
+                        <span class="n">actual</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">ii</span><span class="p">)</span>
+                <span class="k">if</span> <span class="s1">&#39;DEPEND_0&#39;</span> <span class="ow">in</span> <span class="n">dv</span><span class="o">.</span><span class="n">attrs</span><span class="p">:</span>
+                    <span class="c1"># record varying</span>
+                    <span class="n">dd</span> <span class="o">=</span> <span class="n">dv</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;DEPEND_0&#39;</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="n">dd</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;Epoch&#39;</span><span class="p">:</span>
+                        <span class="n">errs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Expect DEPEND_0 to be Epoch.&#39;</span><span class="p">)</span>
+                        <span class="k">continue</span>
+                    <span class="k">if</span> <span class="n">dd</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">cdf_file</span><span class="p">:</span>
+                        <span class="n">ddv</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">cdf_file</span><span class="p">[</span><span class="n">dd</span><span class="p">]</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">continue</span> <span class="c1">#this is a different error</span>
+                    <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">actual</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">ddv</span><span class="o">.</span><span class="n">shape</span><span class="p">:</span>
+                            <span class="n">actual</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">ii</span><span class="p">)</span>
+                    
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">actual</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">errs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;More complicated double dependency than taken into account.&#39;</span><span class="p">)</span>
+                    <span class="k">continue</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">actual</span> <span class="o">=</span> <span class="n">actual</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">actual</span> <span class="o">=</span> <span class="n">dv</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">dv</span><span class="o">.</span><span class="n">rv</span><span class="p">())]</span>
+            <span class="k">if</span> <span class="n">target</span> <span class="o">!=</span> <span class="n">actual</span><span class="p">:</span>
+                <span class="n">errs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Dim {} sized {} but DEPEND_{} {} sized {}.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">i</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">depidx</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">actual</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">errs</span></div>
+
+    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="VariableChecks.recordcount"><a class="viewcode-back" href="../../../autosummary/autosummary/spacepy.pycdf.istp.VariableChecks.html#spacepy.pycdf.istp.VariableChecks.recordcount">[docs]</a>    <span class="k">def</span> <span class="nf">recordcount</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Check that the DEPEND_0 has same record count as variable</span>
+
+<span class="sd">        Checks the record count of the variable specified in the</span>
+<span class="sd">        variable attribute for `DEPEND_0</span>
+<span class="sd">        &lt;https://spdf.gsfc.nasa.gov/istp_guide/vattributes.html#DEPEND_0&gt;`_</span>
+<span class="sd">        and compares to the record count for this variable.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        v : :class:`~spacepy.pycdf.Var`</span>
+<span class="sd">            Variable to check</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list of str</span>
+<span class="sd">            Description of each validation failure.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">v</span><span class="o">.</span><span class="n">rv</span><span class="p">()</span> <span class="ow">or</span> <span class="ow">not</span> <span class="s1">&#39;DEPEND_0&#39;</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">attrs</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+        <span class="n">dep0</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;DEPEND_0&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">dep0</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">cdf_file</span><span class="p">:</span> <span class="c1">#This is a DIFFERENT error</span>
+            <span class="k">return</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">cdf_file</span><span class="p">[</span><span class="n">dep0</span><span class="p">]):</span>
+            <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;{} records; DEPEND_0 {} has {}.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">),</span> <span class="n">dep0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">cdf_file</span><span class="p">[</span><span class="n">dep0</span><span class="p">]))]</span>
+        <span class="k">return</span> <span class="p">[]</span></div>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">_validhelper</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">rng</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Helper function for checking SCALEMIN/MAX, VALIDMIN/MAX</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        v : :class:`~spacepy.pycdf.Var`</span>
+<span class="sd">            Variable to check</span>
+
+<span class="sd">        rng : bool</span>
+<span class="sd">            Do range check (True, default) or scale check (False)</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list of str</span>
+<span class="sd">            Description of each validation failure.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">validscale</span> <span class="o">=</span> <span class="s1">&#39;VALID&#39;</span> <span class="k">if</span> <span class="n">rng</span> <span class="k">else</span> <span class="s1">&#39;SCALE&#39;</span>
+        <span class="n">whichmin</span><span class="p">,</span> <span class="n">whichmax</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;VALIDMIN&#39;</span><span class="p">,</span> <span class="s1">&#39;VALIDMAX&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="n">rng</span> \
+                             <span class="k">else</span> <span class="p">(</span><span class="s1">&#39;SCALEMIN&#39;</span><span class="p">,</span> <span class="s1">&#39;SCALEMAX&#39;</span><span class="p">)</span>
+        <span class="n">errs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">vshape</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">shape</span>
+        <span class="n">minval</span><span class="p">,</span> <span class="n">maxval</span> <span class="o">=</span> <span class="n">spacepy</span><span class="o">.</span><span class="n">pycdf</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">get_minmax</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">type</span><span class="p">())</span>
+        <span class="k">if</span> <span class="n">rng</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="o">...</span><span class="p">]</span>
+            <span class="k">if</span> <span class="s1">&#39;FILLVAL&#39;</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">attrs</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">numpy</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">float</span><span class="p">):</span>
+                    <span class="n">is_fill</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">v</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;FILLVAL&#39;</span><span class="p">])</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">is_fill</span> <span class="o">=</span> <span class="n">data</span> <span class="o">==</span> <span class="n">v</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;FILLVAL&#39;</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">is_fill</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">vshape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">numpy</span><span class="o">.</span><span class="n">bool</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">which</span> <span class="ow">in</span> <span class="p">(</span><span class="n">whichmin</span><span class="p">,</span> <span class="n">whichmax</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">which</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">attrs</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">attrval</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="n">which</span><span class="p">]</span>
+            <span class="n">multidim</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">attrval</span><span class="p">))</span> <span class="c1">#multi-dimensional</span>
+            <span class="k">if</span> <span class="n">multidim</span><span class="p">:</span> <span class="c1">#Compare shapes, require only 1D var</span>
+                <span class="c1">#Match attribute dim to first non-record var dim</span>
+                <span class="n">firstdim</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">rv</span><span class="p">())</span>
+                <span class="k">if</span> <span class="n">vshape</span><span class="p">[</span><span class="n">firstdim</span><span class="p">]</span> <span class="o">!=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">attrval</span><span class="p">)[</span><span class="mi">0</span><span class="p">]:</span>
+                    <span class="n">errs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s1">&#39;{} element count {} does not match first data&#39;</span>
+                                 <span class="s1">&#39; dimension size {}.&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                                     <span class="n">which</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">attrval</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span>
+                                     <span class="n">v</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">firstdim</span><span class="p">]))</span>
+                    <span class="k">continue</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">vshape</span><span class="p">)</span> <span class="o">!=</span> <span class="n">firstdim</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span> <span class="c1">#only one non-record dim</span>
+                    <span class="n">errs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Multi-element {} only valid with 1D variable.&#39;</span>
+                                <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">which</span><span class="p">))</span>
+                    <span class="k">continue</span>
+                <span class="k">if</span> <span class="n">firstdim</span><span class="p">:</span> <span class="c1">#Add pseudo-record dim</span>
+                    <span class="n">attrval</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">attrval</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">numpy</span><span class="o">.</span><span class="n">any</span><span class="p">((</span><span class="n">attrval</span> <span class="o">&lt;</span> <span class="n">minval</span><span class="p">))</span> <span class="ow">or</span> <span class="n">numpy</span><span class="o">.</span><span class="n">any</span><span class="p">((</span><span class="n">attrval</span> <span class="o">&gt;</span> <span class="n">maxval</span><span class="p">)):</span>
+                <span class="n">errs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;{} ({}) outside data range ({},{}).&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">which</span><span class="p">,</span> <span class="n">attrval</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="k">if</span> <span class="n">multidim</span> <span class="k">else</span> <span class="n">attrval</span><span class="p">,</span>
+                    <span class="n">minval</span><span class="p">,</span> <span class="n">maxval</span><span class="p">))</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">rng</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">):</span> <span class="c1">#nothing to compare</span>
+                <span class="k">continue</span>
+            <span class="c1">#Always put numpy array on the left so knows to do element compare</span>
+            <span class="n">idx</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span> <span class="o">&lt;</span> <span class="n">attrval</span><span class="p">)</span> <span class="k">if</span> <span class="n">which</span> <span class="o">==</span> <span class="n">whichmin</span> \
+                  <span class="k">else</span> <span class="p">(</span><span class="n">data</span> <span class="o">&gt;</span> <span class="n">attrval</span><span class="p">)</span>
+            <span class="n">idx</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">logical_not</span><span class="p">(</span><span class="n">is_fill</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">idx</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+                <span class="n">direction</span> <span class="o">=</span> <span class="s1">&#39;under&#39;</span> <span class="k">if</span> <span class="n">which</span> <span class="o">==</span> <span class="n">whichmin</span> <span class="k">else</span> <span class="s1">&#39;over&#39;</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">vshape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c1">#Scalar</span>
+                    <span class="n">errs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Value {} {} {} {}.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                        <span class="n">data</span><span class="p">,</span> <span class="n">direction</span><span class="p">,</span> <span class="n">which</span><span class="p">,</span>
+                        <span class="n">attrval</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="k">if</span> <span class="n">multidim</span> <span class="k">else</span> <span class="n">attrval</span><span class="p">))</span>
+                    <span class="k">continue</span>
+                <span class="n">badidx</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
+                <span class="n">badvals</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">badidx</span><span class="p">]</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">badidx</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span> <span class="c1">#Multi-dimensional data</span>
+                    <span class="n">badidx</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">badidx</span><span class="p">)</span> <span class="c1">#Group by value not axis</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">badidx</span> <span class="o">=</span> <span class="n">badidx</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1">#Just recover the index value</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">badvals</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+                    <span class="n">badvalstr</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">badvals</span><span class="p">)</span>
+                    <span class="n">badidxstr</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">badidx</span><span class="p">)</span>
+                    <span class="n">errs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Value {} at index {} {} {} {}.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                        <span class="n">badvalstr</span><span class="p">,</span> <span class="n">badidxstr</span><span class="p">,</span>
+                        <span class="n">direction</span><span class="p">,</span> <span class="n">which</span><span class="p">,</span>
+                        <span class="n">attrval</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="k">if</span> <span class="n">multidim</span> <span class="k">else</span> <span class="n">attrval</span><span class="p">))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">errs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;{} values {} {} {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                        <span class="nb">len</span><span class="p">(</span><span class="n">badvals</span><span class="p">),</span> <span class="n">direction</span><span class="p">,</span> <span class="n">which</span><span class="p">,</span>
+                        <span class="n">attrval</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="k">if</span> <span class="n">multidim</span> <span class="k">else</span> <span class="n">attrval</span><span class="p">))</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">whichmin</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">attrs</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">whichmax</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">attrs</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">numpy</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="n">whichmin</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">v</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="n">whichmax</span><span class="p">]):</span>
+                <span class="n">errs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;{} &gt; {}.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">whichmin</span><span class="p">,</span> <span class="n">whichmax</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">errs</span>
+
+    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="VariableChecks.validrange"><a class="viewcode-back" href="../../../autosummary/autosummary/spacepy.pycdf.istp.VariableChecks.html#spacepy.pycdf.istp.VariableChecks.validrange">[docs]</a>    <span class="k">def</span> <span class="nf">validrange</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Check that all values are within VALIDMIN/VALIDMAX, or FILLVAL</span>
+
+<span class="sd">        Compare all values of this variable to `VALIDMIN</span>
+<span class="sd">        &lt;https://spdf.gsfc.nasa.gov/istp_guide/vattributes.html#VALIDMIN&gt;`_</span>
+<span class="sd">        and ``VALIDMAX``; fails validation if any values are below</span>
+<span class="sd">        VALIDMIN or above ``VALIDMAX`` unless equal to `FILLVAL</span>
+<span class="sd">        &lt;https://spdf.gsfc.nasa.gov/istp_guide/vattributes.html#FILLVAL&gt;`_.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        v : :class:`~spacepy.pycdf.Var`</span>
+<span class="sd">            Variable to check</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list of str</span>
+<span class="sd">            Description of each validation failure.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">cls</span><span class="o">.</span><span class="n">_validhelper</span><span class="p">(</span><span class="n">v</span><span class="p">)</span></div>
+
+    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="VariableChecks.validscale"><a class="viewcode-back" href="../../../autosummary/autosummary/spacepy.pycdf.istp.VariableChecks.html#spacepy.pycdf.istp.VariableChecks.validscale">[docs]</a>    <span class="k">def</span> <span class="nf">validscale</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Check SCALEMIN&lt;=SCALEMAX, and both in range for CDF datatype.</span>
+
+<span class="sd">        Compares `SCALEMIN</span>
+<span class="sd">        &lt;https://spdf.gsfc.nasa.gov/istp_guide/vattributes.html#SCALEMIN&gt;`_</span>
+<span class="sd">        to ``SCALEMAX`` to make sure it isn&#39;t larger and both are</span>
+<span class="sd">        within range of the variable CDF datatype.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        v : :class:`~spacepy.pycdf.Var`</span>
+<span class="sd">            Variable to check</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list of str</span>
+<span class="sd">            Description of each validation failure.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">cls</span><span class="o">.</span><span class="n">_validhelper</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span></div>
+
+    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="VariableChecks.validdisplaytype"><a class="viewcode-back" href="../../../autosummary/autosummary/spacepy.pycdf.istp.VariableChecks.html#spacepy.pycdf.istp.VariableChecks.validdisplaytype">[docs]</a>    <span class="k">def</span> <span class="nf">validdisplaytype</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Check that plottype matches dimensions.</span>
+
+<span class="sd">        Check `DISPLAYTYPE</span>
+<span class="sd">        &lt;https://spdf.gsfc.nasa.gov/istp_guide/vattributes.html#DISPLAY_TYPE&gt;`_</span>
+<span class="sd">        of this variable and makes sure it is reasonable for the</span>
+<span class="sd">        variable dimensions.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        v : :class:`~spacepy.pycdf.Var`</span>
+<span class="sd">            Variable to check</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list of str</span>
+<span class="sd">            Description of each validation failure.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">time_st</span> <span class="o">=</span> <span class="s1">&#39;time_series&#39;</span>
+        <span class="n">spec_st</span> <span class="o">=</span> <span class="s1">&#39;spectrogram&#39;</span>
+        <span class="n">errs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="s1">&#39;DISPLAY_TYPE&#39;</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">attrs</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;DISPLAY_TYPE&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="n">time_st</span><span class="p">):</span>
+                <span class="n">errs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;1 dim variable with {} display type.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">v</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;DISPLAY_TYPE&#39;</span><span class="p">]))</span>
+            <span class="k">elif</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;DISPLAY_TYPE&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="n">spec_st</span><span class="p">):</span>
+                <span class="n">errs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Multi dim variable with {} display type.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">v</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;DISPLAY_TYPE&#39;</span><span class="p">]))</span>
+        <span class="k">return</span> <span class="n">errs</span></div>
+
+    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="VariableChecks.fieldnam"><a class="viewcode-back" href="../../../autosummary/autosummary/spacepy.pycdf.istp.VariableChecks.html#spacepy.pycdf.istp.VariableChecks.fieldnam">[docs]</a>    <span class="k">def</span> <span class="nf">fieldnam</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Check that FIELDNAM attribute matches variable name.</span>
+
+<span class="sd">        Compare `FIELDNAM</span>
+<span class="sd">        &lt;https://spdf.gsfc.nasa.gov/istp_guide/vattributes.html#FIELDNAM&gt;`_</span>
+<span class="sd">        attribute to the variable name; fail validation if they don&#39;t</span>
+<span class="sd">        match.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        v : :class:`~spacepy.pycdf.Var`</span>
+<span class="sd">            Variable to check</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list of str</span>
+<span class="sd">            Description of each validation failure.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">errs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">vname</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">name</span><span class="p">()</span>
+        <span class="k">if</span> <span class="s1">&#39;FIELDNAM&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">attrs</span><span class="p">:</span>
+            <span class="n">errs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;No FIELDNAM attribute.&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">v</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;FIELDNAM&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="n">vname</span><span class="p">:</span>
+            <span class="n">errs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;FIELDNAM attribute {} does not match var name.&#39;</span>
+                        <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;FIELDNAM&#39;</span><span class="p">]))</span>
+        <span class="k">return</span> <span class="n">errs</span></div></div>
+
+
+<div class="viewcode-block" id="FileChecks"><a class="viewcode-back" href="../../../autosummary/autosummary/spacepy.pycdf.istp.FileChecks.html#spacepy.pycdf.istp.FileChecks">[docs]</a><span class="k">class</span> <span class="nc">FileChecks</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;ISTP compliance checks for a CDF file.</span>
+
+<span class="sd">    Checks a file&#39;s compliance with ISTP standards. This mostly</span>
+<span class="sd">    performs checks that are not currently performed by the `ISTP</span>
+<span class="sd">    skeleton editor &lt;https://spdf.gsfc.nasa.gov/skteditor/&gt;`_.  All</span>
+<span class="sd">    tests return a list, one error string for every noncompliance</span>
+<span class="sd">    found (empty list if compliant). :meth:`all` will perform all</span>
+<span class="sd">    tests and concatenate all errors.</span>
+
+<span class="sd">    .. autosummary::</span>
+
+<span class="sd">        all</span>
+<span class="sd">        filename</span>
+<span class="sd">        time_monoton</span>
+<span class="sd">        times</span>
+<span class="sd">        </span>
+<span class="sd">    .. automethod:: all</span>
+<span class="sd">    .. automethod:: filename</span>
+<span class="sd">    .. automethod:: time_monoton</span>
+<span class="sd">    .. automethod:: times</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1">#When adding new tests, add to list above, and the list in all()</span>
+    <span class="c1">#Validation failures should be formatted as a sentence (initial cap,</span>
+    <span class="c1">#closing period).</span>
+
+    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="FileChecks.all"><a class="viewcode-back" href="../../../autosummary/autosummary/spacepy.pycdf.istp.FileChecks.html#spacepy.pycdf.istp.FileChecks.all">[docs]</a>    <span class="k">def</span> <span class="nf">all</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">catch</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Perform all variable and file-level tests</span>
+
+<span class="sd">        In addition to calling every test in this class, will also call</span>
+<span class="sd">        :meth:`VariableChecks.all` for every variable in the file.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        f : :class:`~spacepy.pycdf.CDF`</span>
+<span class="sd">            Open CDF file to check</span>
+<span class="sd">        catch : bool</span>
+<span class="sd">            Catch exceptions in tests (default False). If True, any</span>
+<span class="sd">            exceptions in subtests will result in an addition to the</span>
+<span class="sd">            validation failures of the form &quot;Test x did not complete.&quot;</span>
+<span class="sd">            Calling the individual test will reveal the full traceback.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list of str</span>
+<span class="sd">            Description of each validation failure.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; import spacepy.pycdf</span>
+<span class="sd">        &gt;&gt;&gt; import spacepy.pycdf.istp</span>
+<span class="sd">        &gt;&gt;&gt; f = spacepy.pycdf.CDF(&#39;foo.cdf&#39;, create=True)</span>
+<span class="sd">        &gt;&gt;&gt; v = f.new(&#39;Var&#39;, data=[1, 2, 3])</span>
+<span class="sd">        &gt;&gt;&gt; spacepy.pycdf.istp.FileChecks.all(f)</span>
+<span class="sd">        [&#39;No Logical_source in global attrs.&#39;,</span>
+<span class="sd">        &#39;No Logical_file_id in global attrs.&#39;,</span>
+<span class="sd">        &#39;Cannot parse date from filename foo.cdf.&#39;,</span>
+<span class="sd">        &#39;Var: No FIELDNAM attribute.&#39;]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1">#Update this list when adding new test functions</span>
+        <span class="n">callme</span> <span class="o">=</span> <span class="p">(</span><span class="n">cls</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="n">cls</span><span class="o">.</span><span class="n">time_monoton</span><span class="p">,</span> <span class="n">cls</span><span class="o">.</span><span class="n">times</span><span class="p">,)</span>
+        <span class="n">errors</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">func</span> <span class="ow">in</span> <span class="n">callme</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">errors</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">func</span><span class="p">(</span><span class="n">f</span><span class="p">))</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">catch</span><span class="p">:</span>
+                    <span class="n">errors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Test {} did not complete.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                        <span class="n">f</span><span class="o">.</span><span class="n">__name__</span><span class="p">))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">raise</span>
+
+        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">errors</span><span class="o">.</span><span class="n">extend</span><span class="p">((</span><span class="s1">&#39;{}: {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+                           <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">VariableChecks</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">v</span><span class="p">],</span> <span class="n">catch</span><span class="o">=</span><span class="n">catch</span><span class="p">)))</span>
+        <span class="k">return</span> <span class="n">errors</span></div>
+                
+    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="FileChecks.filename"><a class="viewcode-back" href="../../../autosummary/autosummary/spacepy.pycdf.istp.FileChecks.html#spacepy.pycdf.istp.FileChecks.filename">[docs]</a>    <span class="k">def</span> <span class="nf">filename</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">f</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Compare filename to global attributes</span>
+
+<span class="sd">        Check global attribute `Logical_file_id</span>
+<span class="sd">        &lt;https://spdf.gsfc.nasa.gov/istp_guide/gattributes.html#Logical_file_id&gt;`_</span>
+<span class="sd">        and `Logical_source</span>
+<span class="sd">        &lt;https://spdf.gsfc.nasa.gov/istp_guide/gattributes.html#Logical_source&gt;`_</span>
+<span class="sd">        for consistency with CDF filename.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        f : :class:`~spacepy.pycdf.CDF`</span>
+<span class="sd">            Open CDF file to check</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list of str</span>
+<span class="sd">            Description of each validation failure.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">errs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;Logical_source&#39;</span><span class="p">,</span> <span class="s1">&#39;Logical_file_id&#39;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">attrs</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="n">a</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">errs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;No {} in global attrs.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">errs</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">errs</span>
+        <span class="n">fname</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">pathname</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">bytes</span> <span class="ow">is</span> <span class="nb">str</span><span class="p">:</span>
+            <span class="n">fname</span> <span class="o">=</span> <span class="n">fname</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">fname</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;Logical_source&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]):</span>
+            <span class="n">errs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;Logical_source {} doesn&#39;t match filename {}.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;Logical_source&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">fname</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">fname</span><span class="p">[:</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span> <span class="o">!=</span> <span class="n">f</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;Logical_file_id&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="n">errs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;Logical_file_id {} doesn&#39;t match filename {}.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;Logical_file_id&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">fname</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">errs</span></div>
+
+    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="FileChecks.time_monoton"><a class="viewcode-back" href="../../../autosummary/autosummary/spacepy.pycdf.istp.FileChecks.html#spacepy.pycdf.istp.FileChecks.time_monoton">[docs]</a>    <span class="k">def</span> <span class="nf">time_monoton</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">f</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Checks that times are monotonic</span>
+
+<span class="sd">        Check that all `Epoch</span>
+<span class="sd">        &lt;https://spdf.gsfc.nasa.gov/istp_guide/variables.html#support_data_eg1&gt;`_</span>
+<span class="sd">        variables are monotonically increasing.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        f : :class:`~spacepy.pycdf.CDF`</span>
+<span class="sd">            Open CDF file to check</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list of str</span>
+<span class="sd">            Description of each validation failure.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">errs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">f</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">type</span><span class="p">()</span> <span class="ow">in</span> <span class="p">(</span><span class="n">spacepy</span><span class="o">.</span><span class="n">pycdf</span><span class="o">.</span><span class="n">const</span><span class="o">.</span><span class="n">CDF_EPOCH</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                                   <span class="n">spacepy</span><span class="o">.</span><span class="n">pycdf</span><span class="o">.</span><span class="n">const</span><span class="o">.</span><span class="n">CDF_EPOCH16</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                                   <span class="n">spacepy</span><span class="o">.</span><span class="n">pycdf</span><span class="o">.</span><span class="n">const</span><span class="o">.</span><span class="n">CDF_TIME_TT2000</span><span class="o">.</span><span class="n">value</span><span class="p">):</span>
+                <span class="k">continue</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="o">...</span><span class="p">]</span>
+            <span class="n">idx</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="mi">0</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="n">idx</span><span class="p">):</span>
+                <span class="k">continue</span>
+            <span class="n">errs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;{}: Nonmonotonic time at record {}.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">v</span><span class="p">,</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">(</span><span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)))))</span>
+        <span class="k">return</span> <span class="n">errs</span></div>
+
+    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="FileChecks.times"><a class="viewcode-back" href="../../../autosummary/autosummary/spacepy.pycdf.istp.FileChecks.html#spacepy.pycdf.istp.FileChecks.times">[docs]</a>    <span class="k">def</span> <span class="nf">times</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">f</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Compare filename to times</span>
+
+<span class="sd">        Check that all `Epoch</span>
+<span class="sd">        &lt;https://spdf.gsfc.nasa.gov/istp_guide/variables.html#support_data_eg1&gt;`_</span>
+<span class="sd">        variables only contain times matching filename.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        f : :class:`~spacepy.pycdf.CDF`</span>
+<span class="sd">            Open CDF file to check</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list of str</span>
+<span class="sd">            Description of each validation failure.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        This function assumes daily files and should be extended based on the</span>
+<span class="sd">        File_naming_convention global attribute (which itself is another good</span>
+<span class="sd">        check to have.)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">errs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">fname</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">pathname</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">bytes</span> <span class="ow">is</span> <span class="nb">str</span><span class="p">:</span>
+            <span class="n">fname</span> <span class="o">=</span> <span class="n">fname</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;\d{8}&#39;</span><span class="p">,</span> <span class="n">fname</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">m</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;Cannot parse date from filename {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fname</span><span class="p">)]</span>
+        <span class="n">datestr</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">f</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">type</span><span class="p">()</span> <span class="ow">in</span> <span class="p">(</span><span class="n">spacepy</span><span class="o">.</span><span class="n">pycdf</span><span class="o">.</span><span class="n">const</span><span class="o">.</span><span class="n">CDF_EPOCH</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                               <span class="n">spacepy</span><span class="o">.</span><span class="n">pycdf</span><span class="o">.</span><span class="n">const</span><span class="o">.</span><span class="n">CDF_EPOCH16</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                               <span class="n">spacepy</span><span class="o">.</span><span class="n">pycdf</span><span class="o">.</span><span class="n">const</span><span class="o">.</span><span class="n">CDF_TIME_TT2000</span><span class="o">.</span><span class="n">value</span><span class="p">):</span>
+                <span class="n">datestrs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="n">d</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y%m</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">f</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="o">...</span><span class="p">])))</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">datestrs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="k">continue</span>
+                <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">datestrs</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">errs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;{}: multiple days {}.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                        <span class="n">v</span><span class="p">,</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">datestrs</span><span class="p">))))</span>
+                <span class="k">elif</span> <span class="n">datestrs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">datestr</span><span class="p">:</span>
+                    <span class="n">errs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;{}: date {} doesn</span><span class="se">\&#39;</span><span class="s1">t match file {}.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                        <span class="n">v</span><span class="p">,</span> <span class="n">datestrs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">fname</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">errs</span></div></div>
+
+
+<div class="viewcode-block" id="fillval"><a class="viewcode-back" href="../../../autosummary/autosummary/spacepy.pycdf.istp.fillval.html#spacepy.pycdf.istp.fillval">[docs]</a><span class="k">def</span> <span class="nf">fillval</span><span class="p">(</span><span class="n">v</span><span class="p">):</span> 
+    <span class="sd">&quot;&quot;&quot;Set ISTP-compliant FILLVAL on a variable</span>
+
+<span class="sd">    Sets a CDF variable&#39;s `FILLVAL</span>
+<span class="sd">    &lt;https://spdf.gsfc.nasa.gov/istp_guide/vattributes.html#FILLVAL&gt;`_</span>
+<span class="sd">    attribute to the value required by ISTP (based on variable type).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    v : :class:`~spacepy.pycdf.Var`</span>
+<span class="sd">        CDF variable to update</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import spacepy.pycdf</span>
+<span class="sd">    &gt;&gt;&gt; import spacepy.pycdf.istp</span>
+<span class="sd">    &gt;&gt;&gt; f = spacepy.pycdf.CDF(&#39;foo.cdf&#39;, create=True)</span>
+<span class="sd">    &gt;&gt;&gt; v = f.new(&#39;Var&#39;, data=[1, 2, 3])</span>
+<span class="sd">    &gt;&gt;&gt; spacepy.pycdf.istp.fillval(v)</span>
+<span class="sd">    &gt;&gt;&gt; v.attrs[&#39;FILLVAL&#39;]</span>
+<span class="sd">    -128</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1">#Fill value, indexed by the CDF type (numeric)</span>
+    <span class="n">fillvals</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="c1">#Integers</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">):</span>
+        <span class="n">fillvals</span><span class="p">[</span><span class="nb">getattr</span><span class="p">(</span><span class="n">spacepy</span><span class="o">.</span><span class="n">pycdf</span><span class="o">.</span><span class="n">const</span><span class="p">,</span> <span class="s1">&#39;CDF_INT{}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span><span class="o">.</span><span class="n">value</span><span class="p">]</span> <span class="o">=</span> \
+            <span class="o">-</span> <span class="mi">2</span> <span class="o">**</span> <span class="p">(</span><span class="mi">8</span><span class="o">*</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">8</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">fillvals</span><span class="p">[</span><span class="nb">getattr</span><span class="p">(</span><span class="n">spacepy</span><span class="o">.</span><span class="n">pycdf</span><span class="o">.</span><span class="n">const</span><span class="p">,</span> <span class="s1">&#39;CDF_UINT{}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span><span class="o">.</span><span class="n">value</span><span class="p">]</span> <span class="o">=</span> \
+            <span class="mi">2</span> <span class="o">**</span> <span class="p">(</span><span class="mi">8</span><span class="o">*</span><span class="n">i</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">fillvals</span><span class="p">[</span><span class="n">spacepy</span><span class="o">.</span><span class="n">pycdf</span><span class="o">.</span><span class="n">const</span><span class="o">.</span><span class="n">CDF_EPOCH16</span><span class="o">.</span><span class="n">value</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mf">1e31</span><span class="p">,</span> <span class="o">-</span><span class="mf">1e31</span><span class="p">)</span>
+    <span class="n">fillvals</span><span class="p">[</span><span class="n">spacepy</span><span class="o">.</span><span class="n">pycdf</span><span class="o">.</span><span class="n">const</span><span class="o">.</span><span class="n">CDF_REAL8</span><span class="o">.</span><span class="n">value</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1e31</span>
+    <span class="n">fillvals</span><span class="p">[</span><span class="n">spacepy</span><span class="o">.</span><span class="n">pycdf</span><span class="o">.</span><span class="n">const</span><span class="o">.</span><span class="n">CDF_REAL4</span><span class="o">.</span><span class="n">value</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1e31</span>
+    <span class="n">fillvals</span><span class="p">[</span><span class="n">spacepy</span><span class="o">.</span><span class="n">pycdf</span><span class="o">.</span><span class="n">const</span><span class="o">.</span><span class="n">CDF_CHAR</span><span class="o">.</span><span class="n">value</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span>
+    <span class="n">fillvals</span><span class="p">[</span><span class="n">spacepy</span><span class="o">.</span><span class="n">pycdf</span><span class="o">.</span><span class="n">const</span><span class="o">.</span><span class="n">CDF_UCHAR</span><span class="o">.</span><span class="n">value</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span>
+    <span class="c1">#Equivalent pairs</span>
+    <span class="k">for</span> <span class="n">cdf_t</span><span class="p">,</span> <span class="n">equiv</span> <span class="ow">in</span> <span class="p">(</span>
+            <span class="p">(</span><span class="n">spacepy</span><span class="o">.</span><span class="n">pycdf</span><span class="o">.</span><span class="n">const</span><span class="o">.</span><span class="n">CDF_TIME_TT2000</span><span class="p">,</span> <span class="n">spacepy</span><span class="o">.</span><span class="n">pycdf</span><span class="o">.</span><span class="n">const</span><span class="o">.</span><span class="n">CDF_INT8</span><span class="p">),</span>
+            <span class="p">(</span><span class="n">spacepy</span><span class="o">.</span><span class="n">pycdf</span><span class="o">.</span><span class="n">const</span><span class="o">.</span><span class="n">CDF_EPOCH</span><span class="p">,</span> <span class="n">spacepy</span><span class="o">.</span><span class="n">pycdf</span><span class="o">.</span><span class="n">const</span><span class="o">.</span><span class="n">CDF_REAL8</span><span class="p">),</span>
+            <span class="p">(</span><span class="n">spacepy</span><span class="o">.</span><span class="n">pycdf</span><span class="o">.</span><span class="n">const</span><span class="o">.</span><span class="n">CDF_BYTE</span><span class="p">,</span> <span class="n">spacepy</span><span class="o">.</span><span class="n">pycdf</span><span class="o">.</span><span class="n">const</span><span class="o">.</span><span class="n">CDF_INT1</span><span class="p">),</span>
+            <span class="p">(</span><span class="n">spacepy</span><span class="o">.</span><span class="n">pycdf</span><span class="o">.</span><span class="n">const</span><span class="o">.</span><span class="n">CDF_FLOAT</span><span class="p">,</span> <span class="n">spacepy</span><span class="o">.</span><span class="n">pycdf</span><span class="o">.</span><span class="n">const</span><span class="o">.</span><span class="n">CDF_REAL4</span><span class="p">),</span>
+            <span class="p">(</span><span class="n">spacepy</span><span class="o">.</span><span class="n">pycdf</span><span class="o">.</span><span class="n">const</span><span class="o">.</span><span class="n">CDF_DOUBLE</span><span class="p">,</span> <span class="n">spacepy</span><span class="o">.</span><span class="n">pycdf</span><span class="o">.</span><span class="n">const</span><span class="o">.</span><span class="n">CDF_REAL8</span><span class="p">),</span>
+    <span class="p">):</span>
+        <span class="n">fillvals</span><span class="p">[</span><span class="n">cdf_t</span><span class="o">.</span><span class="n">value</span><span class="p">]</span> <span class="o">=</span> <span class="n">fillvals</span><span class="p">[</span><span class="n">equiv</span><span class="o">.</span><span class="n">value</span><span class="p">]</span>
+    <span class="k">if</span> <span class="s1">&#39;FILLVAL&#39;</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">attrs</span><span class="p">:</span>
+        <span class="k">del</span> <span class="n">v</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;FILLVAL&#39;</span><span class="p">]</span>
+    <span class="n">v</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;FILLVAL&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">fillvals</span><span class="p">[</span><span class="n">v</span><span class="o">.</span><span class="n">type</span><span class="p">()],</span> <span class="nb">type</span><span class="o">=</span><span class="n">v</span><span class="o">.</span><span class="n">type</span><span class="p">())</span></div>
+
+
+<div class="viewcode-block" id="format"><a class="viewcode-back" href="../../../autosummary/autosummary/spacepy.pycdf.istp.format.html#spacepy.pycdf.istp.format">[docs]</a><span class="k">def</span> <span class="nf">format</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">use_scaleminmax</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">dryrun</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Set ISTP-compliant FORMAT on a variable</span>
+
+<span class="sd">    Sets a CDF variable&#39;s `FORMAT</span>
+<span class="sd">    &lt;https://spdf.gsfc.nasa.gov/istp_guide/vattributes.html#FORMAT&gt;`_</span>
+<span class="sd">    attribute, which provides a Fortran-like format string that should</span>
+<span class="sd">    be useable for printing any valid value in the variable. Sets</span>
+<span class="sd">    according to the VALIDMIN/VALIDMAX attributes (or, optionally,</span>
+<span class="sd">    SCALEMIN/SCALEMAX) if present, otherwise uses the full range of</span>
+<span class="sd">    the type.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    v : :class:`~spacepy.pycdf.Var`</span>
+<span class="sd">        Variable to update</span>
+<span class="sd">    use_scaleminmax : bool, optional</span>
+<span class="sd">        Use SCALEMIN/MAX instead of VALIDMIN/MAX (default False).</span>
+<span class="sd">        Note: istpchecks may complain about result.</span>
+<span class="sd">    dryrun : bool, optional</span>
+<span class="sd">        Print the decided format to stdout instead of modifying</span>
+<span class="sd">        the CDF (for use in command-line debugging) (default False).</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import spacepy.pycdf</span>
+<span class="sd">    &gt;&gt;&gt; import spacepy.pycdf.istp</span>
+<span class="sd">    &gt;&gt;&gt; f = spacepy.pycdf.CDF(&#39;foo.cdf&#39;, create=True)</span>
+<span class="sd">    &gt;&gt;&gt; v = f.new(&#39;Var&#39;, data=[1, 2, 3])</span>
+<span class="sd">    &gt;&gt;&gt; spacepy.pycdf.istp.format(v)</span>
+<span class="sd">    &gt;&gt;&gt; v.attrs[&#39;FORMAT&#39;]</span>
+<span class="sd">    &#39;I4&#39;</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">use_scaleminmax</span><span class="p">:</span>
+        <span class="n">minn</span> <span class="o">=</span> <span class="s1">&#39;SCALEMIN&#39;</span>
+        <span class="n">maxx</span> <span class="o">=</span> <span class="s1">&#39;SCALEMAX&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">minn</span> <span class="o">=</span> <span class="s1">&#39;VALIDMIN&#39;</span>
+        <span class="n">maxx</span> <span class="o">=</span> <span class="s1">&#39;VALIDMAX&#39;</span>
+    <span class="n">cdftype</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">type</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">cdftype</span> <span class="ow">in</span> <span class="p">(</span><span class="n">spacepy</span><span class="o">.</span><span class="n">pycdf</span><span class="o">.</span><span class="n">const</span><span class="o">.</span><span class="n">CDF_INT1</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                   <span class="n">spacepy</span><span class="o">.</span><span class="n">pycdf</span><span class="o">.</span><span class="n">const</span><span class="o">.</span><span class="n">CDF_INT2</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                   <span class="n">spacepy</span><span class="o">.</span><span class="n">pycdf</span><span class="o">.</span><span class="n">const</span><span class="o">.</span><span class="n">CDF_INT4</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                   <span class="n">spacepy</span><span class="o">.</span><span class="n">pycdf</span><span class="o">.</span><span class="n">const</span><span class="o">.</span><span class="n">CDF_INT8</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                   <span class="n">spacepy</span><span class="o">.</span><span class="n">pycdf</span><span class="o">.</span><span class="n">const</span><span class="o">.</span><span class="n">CDF_UINT1</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                   <span class="n">spacepy</span><span class="o">.</span><span class="n">pycdf</span><span class="o">.</span><span class="n">const</span><span class="o">.</span><span class="n">CDF_UINT2</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                   <span class="n">spacepy</span><span class="o">.</span><span class="n">pycdf</span><span class="o">.</span><span class="n">const</span><span class="o">.</span><span class="n">CDF_UINT4</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                   <span class="n">spacepy</span><span class="o">.</span><span class="n">pycdf</span><span class="o">.</span><span class="n">const</span><span class="o">.</span><span class="n">CDF_BYTE</span><span class="o">.</span><span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">minn</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">attrs</span><span class="p">:</span> <span class="c1">#Just use validmin or scalemin</span>
+            <span class="n">minval</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="n">minn</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="n">cdftype</span> <span class="ow">in</span> <span class="p">(</span><span class="n">spacepy</span><span class="o">.</span><span class="n">pycdf</span><span class="o">.</span><span class="n">const</span><span class="o">.</span><span class="n">CDF_UINT1</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                         <span class="n">spacepy</span><span class="o">.</span><span class="n">pycdf</span><span class="o">.</span><span class="n">const</span><span class="o">.</span><span class="n">CDF_UINT2</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                         <span class="n">spacepy</span><span class="o">.</span><span class="n">pycdf</span><span class="o">.</span><span class="n">const</span><span class="o">.</span><span class="n">CDF_UINT4</span><span class="o">.</span><span class="n">value</span><span class="p">):</span> <span class="c1">#unsigned, easy</span>
+            <span class="n">minval</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">elif</span> <span class="n">cdftype</span> <span class="o">==</span> <span class="n">spacepy</span><span class="o">.</span><span class="n">pycdf</span><span class="o">.</span><span class="n">const</span><span class="o">.</span><span class="n">CDF_BYTE</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
+            <span class="n">minval</span> <span class="o">=</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">**</span> <span class="mi">7</span>
+        <span class="k">else</span><span class="p">:</span> <span class="c1">#Signed, harder</span>
+            <span class="n">size</span> <span class="o">=</span> <span class="nb">next</span><span class="p">((</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span> <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span>
+                <span class="n">spacepy</span><span class="o">.</span><span class="n">pycdf</span><span class="o">.</span><span class="n">const</span><span class="p">,</span> <span class="s1">&#39;CDF_INT{}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span> <span class="n">cdftype</span><span class="p">))</span>
+            <span class="n">minval</span> <span class="o">=</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">**</span> <span class="p">(</span><span class="mi">8</span><span class="o">*</span><span class="n">size</span>  <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">maxx</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">attrs</span><span class="p">:</span> <span class="c1">#Just use max</span>
+            <span class="n">maxval</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="n">maxx</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="n">cdftype</span> <span class="o">==</span> <span class="n">spacepy</span><span class="o">.</span><span class="n">pycdf</span><span class="o">.</span><span class="n">const</span><span class="o">.</span><span class="n">CDF_BYTE</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
+            <span class="n">maxval</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="mi">7</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">size</span> <span class="o">=</span> <span class="nb">next</span><span class="p">((</span><span class="mi">8</span> <span class="o">*</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span>
+                <span class="n">spacepy</span><span class="o">.</span><span class="n">pycdf</span><span class="o">.</span><span class="n">const</span><span class="p">,</span> <span class="s1">&#39;CDF_UINT{}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span> <span class="n">cdftype</span><span class="p">),</span>
+                        <span class="bp">None</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">size</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">size</span> <span class="o">=</span> <span class="nb">next</span><span class="p">((</span><span class="mi">8</span> <span class="o">*</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span> <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span>
+                    <span class="n">spacepy</span><span class="o">.</span><span class="n">pycdf</span><span class="o">.</span><span class="n">const</span><span class="p">,</span> <span class="s1">&#39;CDF_INT{}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span>
+                             <span class="n">cdftype</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span>
+            <span class="n">maxval</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="n">size</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="c1">#Two tricks:</span>
+        <span class="c1">#-Truncate and add 1 rather than ceil so get</span>
+        <span class="c1">#powers of 10 (log10(10) = 1 but needs two digits)</span>
+        <span class="c1">#-Make sure not taking log of zero</span>
+        <span class="k">if</span> <span class="n">minval</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span> <span class="c1">#Need an extra space for the negative sign</span>
+            <span class="n">fmt</span> <span class="o">=</span> <span class="s1">&#39;I{}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span>
+                <span class="nb">abs</span><span class="p">(</span><span class="n">maxval</span><span class="p">),</span> <span class="nb">abs</span><span class="p">(</span><span class="n">minval</span><span class="p">),</span> <span class="mi">1</span><span class="p">)))</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">fmt</span> <span class="o">=</span> <span class="s1">&#39;I{}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span>
+                <span class="n">math</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">maxval</span><span class="p">)</span> <span class="k">if</span> <span class="n">maxval</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">cdftype</span> <span class="o">==</span> <span class="n">spacepy</span><span class="o">.</span><span class="n">pycdf</span><span class="o">.</span><span class="n">const</span><span class="o">.</span><span class="n">CDF_TIME_TT2000</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
+        <span class="n">fmt</span> <span class="o">=</span> <span class="s1">&#39;A{}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="s1">&#39;9999-12-31T23:59:59.999999999&#39;</span><span class="p">))</span>
+    <span class="k">elif</span> <span class="n">cdftype</span> <span class="o">==</span> <span class="n">spacepy</span><span class="o">.</span><span class="n">pycdf</span><span class="o">.</span><span class="n">const</span><span class="o">.</span><span class="n">CDF_EPOCH16</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
+        <span class="n">fmt</span> <span class="o">=</span> <span class="s1">&#39;A{}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="s1">&#39;31-Dec-9999 23:59:59.999.999.000.000&#39;</span><span class="p">))</span>
+    <span class="k">elif</span> <span class="n">cdftype</span> <span class="o">==</span> <span class="n">spacepy</span><span class="o">.</span><span class="n">pycdf</span><span class="o">.</span><span class="n">const</span><span class="o">.</span><span class="n">CDF_EPOCH</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
+        <span class="n">fmt</span> <span class="o">=</span> <span class="s1">&#39;A{}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="s1">&#39;31-Dec-9999 23:59:59.999&#39;</span><span class="p">))</span>
+    <span class="k">elif</span> <span class="n">cdftype</span> <span class="ow">in</span> <span class="p">(</span><span class="n">spacepy</span><span class="o">.</span><span class="n">pycdf</span><span class="o">.</span><span class="n">const</span><span class="o">.</span><span class="n">CDF_REAL8</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                     <span class="n">spacepy</span><span class="o">.</span><span class="n">pycdf</span><span class="o">.</span><span class="n">const</span><span class="o">.</span><span class="n">CDF_REAL4</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                     <span class="n">spacepy</span><span class="o">.</span><span class="n">pycdf</span><span class="o">.</span><span class="n">const</span><span class="o">.</span><span class="n">CDF_FLOAT</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                     <span class="n">spacepy</span><span class="o">.</span><span class="n">pycdf</span><span class="o">.</span><span class="n">const</span><span class="o">.</span><span class="n">CDF_DOUBLE</span><span class="o">.</span><span class="n">value</span><span class="p">):</span>
+        <span class="c1"># Prioritize SCALEMIN/MAX to find the number of decimals to include</span>
+        <span class="k">if</span> <span class="s1">&#39;SCALEMIN&#39;</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">attrs</span> <span class="ow">and</span> <span class="s1">&#39;SCALEMAX&#39;</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">attrs</span><span class="p">:</span>
+            <span class="nb">range</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;SCALEMAX&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">v</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;SCALEMIN&#39;</span><span class="p">]</span>
+        <span class="c1"># If not, use VALIDMIN/MAX</span>
+        <span class="k">elif</span> <span class="s1">&#39;VALIDMIN&#39;</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">attrs</span> <span class="ow">and</span> <span class="s1">&#39;VALIDMAX&#39;</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">attrs</span><span class="p">:</span>
+            <span class="nb">range</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;VALIDMAX&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">v</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;VALIDMIN&#39;</span><span class="p">]</span>
+        <span class="c1"># If not, just use nothing.</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">range</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="c1"># Find how many spaces we need for the &#39;integer&#39; part of the number</span>
+        <span class="c1"># (Use maxx-minn for this...effectively uses VALIDMIN/MAX for most</span>
+        <span class="c1"># cases.)</span>
+        <span class="k">if</span> <span class="nb">range</span> <span class="ow">and</span> <span class="p">(</span><span class="n">minn</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">attrs</span> <span class="ow">and</span> <span class="n">maxx</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">attrs</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="n">maxx</span><span class="p">])))</span> <span class="o">&gt;=</span>\
+               <span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="n">minn</span><span class="p">]))):</span>
+                <span class="n">ln</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="n">maxx</span><span class="p">]))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">ln</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="n">minn</span><span class="p">]))</span>
+        <span class="k">if</span> <span class="nb">range</span> <span class="ow">and</span> <span class="n">ln</span> <span class="ow">and</span> <span class="nb">range</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span> <span class="c1"># Cover all our bases:</span>
+            <span class="c1"># raise ValueError(&#39;Range ({} - {}) cannot be negative:&#39;</span>
+                <span class="c1"># &#39;\nVarname: {}\nRange: {}&#39;.format(maxx, minn, v, range))</span>
+            <span class="c1">### Instead of throwing an error, just use None</span>
+            <span class="c1"># There are old cases that for some reason have negative ranges, so</span>
+            <span class="c1"># this is really more of a compatibility choice than a good</span>
+            <span class="c1"># decision.</span>
+            <span class="nb">range</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="c1"># All of the lengths below (the +4, +3, +2, etc...) should be EXACTLY</span>
+        <span class="c1"># enough.  Consider adding 1, (4+1=5, 3+1=4, etc...) to possibly make</span>
+        <span class="c1"># this easier.</span>
+        <span class="c1"># elif range and ln and range &lt;= 11: # If range &lt;= 11, we want 2 decimal places:</span>
+        <span class="k">if</span> <span class="nb">range</span> <span class="ow">and</span> <span class="n">ln</span> <span class="ow">and</span> <span class="nb">range</span> <span class="o">&lt;=</span> <span class="mi">11</span><span class="p">:</span> <span class="c1"># If range &lt;= 11, we want 2 decimal places:</span>
+            <span class="c1"># Need extra for &#39;.&#39;, and 3 decimal places (4 extra)</span>
+            <span class="n">fmt</span> <span class="o">=</span> <span class="s1">&#39;F{}.3&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ln</span><span class="p">])</span> <span class="o">+</span> <span class="mi">4</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">range</span> <span class="ow">and</span> <span class="n">ln</span> <span class="ow">and</span> <span class="mi">11</span> <span class="o">&lt;</span> <span class="nb">range</span> <span class="o">&lt;=</span> <span class="mi">101</span><span class="p">:</span>
+            <span class="c1"># Need extra for &#39;.&#39; (1 extra)</span>
+            <span class="n">fmt</span> <span class="o">=</span> <span class="s1">&#39;F{}.2&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ln</span><span class="p">])</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">range</span> <span class="ow">and</span> <span class="n">ln</span> <span class="ow">and</span> <span class="mi">101</span> <span class="o">&lt;</span> <span class="nb">range</span> <span class="o">&lt;=</span> <span class="mi">1000</span><span class="p">:</span>
+            <span class="c1"># Need extra for &#39;.&#39; (1 extra)</span>
+            <span class="n">fmt</span> <span class="o">=</span> <span class="s1">&#39;F{}.1&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ln</span><span class="p">])</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># No range, must not be populated, copied from REAL4/8(s) above</span>
+            <span class="c1"># OR we don&#39;t care because it&#39;s a &#39;big&#39; number:</span>
+            <span class="n">fmt</span> <span class="o">=</span> <span class="s1">&#39;G10.2E3&#39;</span>
+    <span class="k">elif</span> <span class="n">cdftype</span> <span class="ow">in</span> <span class="p">(</span><span class="n">spacepy</span><span class="o">.</span><span class="n">pycdf</span><span class="o">.</span><span class="n">const</span><span class="o">.</span><span class="n">CDF_CHAR</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                     <span class="n">spacepy</span><span class="o">.</span><span class="n">pycdf</span><span class="o">.</span><span class="n">const</span><span class="o">.</span><span class="n">CDF_UCHAR</span><span class="o">.</span><span class="n">value</span><span class="p">):</span>
+        <span class="c1">#This is a bit weird but pycdf consider nelems private. Should change.</span>
+        <span class="n">fmt</span> <span class="o">=</span> <span class="s1">&#39;A{}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">_nelems</span><span class="p">())</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Couldn&#39;t find FORMAT for {} of type {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">v</span><span class="o">.</span><span class="n">name</span><span class="p">(),</span>
+            <span class="n">spacepy</span><span class="o">.</span><span class="n">pycdf</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">cdftypenames</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">cdftype</span><span class="p">,</span> <span class="s1">&#39;UNKNOWN&#39;</span><span class="p">)))</span>
+    <span class="k">if</span> <span class="n">dryrun</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">fmt</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s1">&#39;FORMAT&#39;</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">attrs</span><span class="p">:</span>
+            <span class="k">del</span> <span class="n">v</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;FORMAT&#39;</span><span class="p">]</span>
+        <span class="n">v</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;FORMAT&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">fmt</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">spacepy</span><span class="o">.</span><span class="n">pycdf</span><span class="o">.</span><span class="n">const</span><span class="o">.</span><span class="n">CDF_CHAR</span><span class="p">)</span></div>
+
+
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../../../search.html">search</a>|&nbsp;</li>
+       <li><a href="../../../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &raquo;</li>
+          <li class="nav-item nav-item-2"><a href="../pycdf.html" >spacepy.pycdf</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2019, The SpacePy Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

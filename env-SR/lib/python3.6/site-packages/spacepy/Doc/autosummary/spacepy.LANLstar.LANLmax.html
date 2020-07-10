@@ -1,0 +1,238 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>spacepy.LANLstar.LANLmax &mdash; SpacePy v0.2.1 Manual</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="../_static/spacepy_favicon.ico"/>
+    <link rel="top" title="SpacePy v0.2.1 Manual" href="../index.html" />
+    <link rel="up" title="lanlstar - module to calculate Lstar or Lmax using artificial neural network" href="../lanlstar.html" />
+    <link rel="next" title="omni - module to read and process NASA OMNIWEB data" href="../omni.html" />
+    <link rel="prev" title="spacepy.LANLstar.LANLstar" href="spacepy.LANLstar.LANLstar.html" /> 
+  </head>
+  <body role="document">
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../index.html"><img src="../_static/spacepy_logo.jpg" border="0" alt="spacepy_logo"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../omni.html" title="omni - module to read and process NASA OMNIWEB data"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="spacepy.LANLstar.LANLstar.html" title="spacepy.LANLstar.LANLstar"
+             accesskey="P">previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+       <li><a href="../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../lanlstar.html" accesskey="U">lanlstar - module to calculate Lstar or Lmax using artificial neural network</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="spacepy.LANLstar.LANLstar.html"
+                        title="previous chapter">spacepy.LANLstar.LANLstar</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../omni.html"
+                        title="next chapter">omni - module to read and process NASA OMNIWEB data</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/autosummary/spacepy.LANLstar.LANLmax.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="spacepy-lanlstar-lanlmax">
+<h1>spacepy.LANLstar.LANLmax<a class="headerlink" href="#spacepy-lanlstar-lanlmax" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="spacepy.LANLstar.LANLmax">
+<code class="descclassname">spacepy.LANLstar.</code><code class="descname">LANLmax</code><span class="sig-paren">(</span><em>inputdict</em>, <em>extMag</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/LANLstar.html#LANLmax"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.LANLstar.LANLmax" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate last closed drift shell (Lmax)</p>
+<p>Based on the L* artificial neural network (ANN) trained from 
+different magnetospheric field models.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>extMag</strong> : list of string(s)</p>
+<blockquote>
+<div><p>containing one or more of the following external Magnetic field models: 
+&#8216;OPDYN&#8217;, &#8216;OPQUIET&#8217;, &#8216;T89&#8217;, &#8216;T96&#8217;, &#8216;T01QUIET&#8217;, &#8216;T01STORM&#8217;, &#8216;T05&#8217;</p>
+</div></blockquote>
+<p><strong>inputdict</strong> : dictionary</p>
+<blockquote>
+<div><p>containing the following keys, each entry is a list or array. Note the keys for the above models are different.</p>
+<p class="attribution">&mdash;For OPDYN:  
+[&#8216;Year&#8217;, &#8216;DOY&#8217;, &#8216;Hr&#8217;, &#8216;Dst&#8217;, &#8216;dens&#8217;, &#8216;velo&#8217;, &#8216;BzIMF&#8217;, &#8216;PA&#8217;]</p>
+</div></blockquote>
+<blockquote>
+<div><dl class="docutils">
+<dt>&#8211; For OPQUIET:</dt>
+<dd><p class="first last">[&#8216;Year&#8217;, &#8216;DOY&#8217;, &#8216;Hr&#8217;, &#8216;Dst&#8217;, &#8216;dens&#8217;, &#8216;velo&#8217;, &#8216;BzIMF&#8217;, &#8216;PA&#8217;]</p>
+</dd>
+</dl>
+<p class="attribution">&mdash;For T89:
+[&#8216;Year&#8217;, &#8216;DOY&#8217;, &#8216;Hr&#8217;, &#8216;Kp&#8217;, &#8216;Pdyn&#8217;, &#8216;ByIMF&#8217;, &#8216;BzIMF&#8217;, &#8216;PA&#8217;]</p>
+</div></blockquote>
+<blockquote>
+<div><dl class="docutils">
+<dt>&#8211; For T96:</dt>
+<dd><p class="first last">[&#8216;Year&#8217;, &#8216;DOY&#8217;, &#8216;Hr&#8217;, &#8216;Dst&#8217;, &#8216;Pdyn&#8217;, &#8216;ByIMF&#8217;, &#8216;BzIMF&#8217;,&#8217;PA&#8217;]</p>
+</dd>
+</dl>
+<p class="attribution">&mdash;For T01QUIET:
+[&#8216;Year&#8217;, &#8216;DOY&#8217;, &#8216;Hr&#8217;, &#8216;Dst&#8217;, &#8216;Pdyn&#8217;, &#8216;ByIMF&#8217;, &#8216;BzIMF&#8217;, &#8216;G1&#8217;, &#8216;G2&#8217;,&#8217;PA&#8217;]</p>
+</div></blockquote>
+<blockquote>
+<div><dl class="docutils">
+<dt>&#8211; For T01STORM:</dt>
+<dd><p class="first last">[&#8216;Year&#8217;, &#8216;DOY&#8217;, &#8216;Hr&#8217;, &#8216;Dst&#8217;, &#8216;Pdyn&#8217;, &#8216;ByIMF&#8217;, &#8216;BzIMF&#8217;, &#8216;G2&#8217;, &#8216;G3&#8217;, &#8216;PA&#8217;]</p>
+</dd>
+</dl>
+<p class="attribution">&mdash;For T05:
+[&#8216;Year&#8217;, &#8216;DOY&#8217;, &#8216;Hr&#8217;, &#8216;Dst&#8217;, &#8216;Pdyn&#8217;, &#8216;ByIMF&#8217;, &#8216;BzIMF&#8217;, &#8216;W1&#8217;,&#8217;W2&#8217;,&#8217;W3&#8217;,&#8217;W4&#8217;,&#8217;W5&#8217;,&#8217;W6&#8217;, &#8216;PA&#8217;]</p>
+</div></blockquote>
+<blockquote>
+<div><p>Dictionaries with numpy vectors are allowed.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>out</strong> : dictionary</p>
+<blockquote class="last">
+<div><p>Lmax array for each key which corresponds to the specified magnetic field model.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">spacepy.LANLstar</span> <span class="kn">as</span> <span class="nn">LS</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">inputdict</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">inputdict</span><span class="p">[</span><span class="s1">&#39;Kp&#39;</span><span class="p">]</span>     <span class="o">=</span> <span class="p">[</span><span class="mf">2.7</span>      <span class="p">]</span>            <span class="c1"># Kp index</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">inputdict</span><span class="p">[</span><span class="s1">&#39;Dst&#39;</span><span class="p">]</span>    <span class="o">=</span> <span class="p">[</span><span class="mf">7.7777</span>   <span class="p">]</span>            <span class="c1"># Dst index (nT)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">inputdict</span><span class="p">[</span><span class="s1">&#39;dens&#39;</span><span class="p">]</span>   <span class="o">=</span> <span class="p">[</span><span class="mf">4.1011</span>   <span class="p">]</span>            <span class="c1"># solar wind density (/cc)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">inputdict</span><span class="p">[</span><span class="s1">&#39;velo&#39;</span><span class="p">]</span>   <span class="o">=</span> <span class="p">[</span><span class="mf">400.1011</span> <span class="p">]</span>            <span class="c1"># solar wind velocity (km/s)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">inputdict</span><span class="p">[</span><span class="s1">&#39;Pdyn&#39;</span><span class="p">]</span>   <span class="o">=</span> <span class="p">[</span><span class="mf">4.1011</span>   <span class="p">]</span>            <span class="c1"># solar wind dynamic pressure (nPa)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">inputdict</span><span class="p">[</span><span class="s1">&#39;ByIMF&#39;</span><span class="p">]</span>  <span class="o">=</span> <span class="p">[</span><span class="mf">3.7244</span>   <span class="p">]</span>            <span class="c1"># GSM y component of IMF magnetic field (nT)  </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">inputdict</span><span class="p">[</span><span class="s1">&#39;BzIMF&#39;</span><span class="p">]</span>  <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.1266</span>  <span class="p">]</span>            <span class="c1"># GSM z component of IMF magnetic field (nT)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">inputdict</span><span class="p">[</span><span class="s1">&#39;G1&#39;</span><span class="p">]</span>     <span class="o">=</span> <span class="p">[</span><span class="mf">1.029666</span> <span class="p">]</span>            <span class="c1"># as defined in Tsganenko 2003 </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">inputdict</span><span class="p">[</span><span class="s1">&#39;G2&#39;</span><span class="p">]</span>     <span class="o">=</span> <span class="p">[</span><span class="mf">0.549334</span> <span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">inputdict</span><span class="p">[</span><span class="s1">&#39;G3&#39;</span><span class="p">]</span>     <span class="o">=</span> <span class="p">[</span><span class="mf">0.813999</span> <span class="p">]</span>                
+<span class="gp">&gt;&gt;&gt; </span><span class="n">inputdict</span><span class="p">[</span><span class="s1">&#39;W1&#39;</span><span class="p">]</span>     <span class="o">=</span> <span class="p">[</span><span class="mf">0.122444</span> <span class="p">]</span>            <span class="c1"># as defined in Tsyganenko and Sitnov 2005</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">inputdict</span><span class="p">[</span><span class="s1">&#39;W2&#39;</span><span class="p">]</span>     <span class="o">=</span> <span class="p">[</span><span class="mf">0.2514</span>   <span class="p">]</span>                                                                                      
+<span class="gp">&gt;&gt;&gt; </span><span class="n">inputdict</span><span class="p">[</span><span class="s1">&#39;W3&#39;</span><span class="p">]</span>     <span class="o">=</span> <span class="p">[</span><span class="mf">0.0892</span>   <span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">inputdict</span><span class="p">[</span><span class="s1">&#39;W4&#39;</span><span class="p">]</span>     <span class="o">=</span> <span class="p">[</span><span class="mf">0.0478</span>   <span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">inputdict</span><span class="p">[</span><span class="s1">&#39;W5&#39;</span><span class="p">]</span>     <span class="o">=</span> <span class="p">[</span><span class="mf">0.2258</span>   <span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">inputdict</span><span class="p">[</span><span class="s1">&#39;W6&#39;</span><span class="p">]</span>     <span class="o">=</span> <span class="p">[</span><span class="mf">1.0461</span>   <span class="p">]</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">inputdict</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">]</span>   <span class="o">=</span> <span class="p">[</span><span class="mi">1996</span>     <span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">inputdict</span><span class="p">[</span><span class="s1">&#39;DOY&#39;</span><span class="p">]</span>    <span class="o">=</span> <span class="p">[</span><span class="mi">6</span>        <span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">inputdict</span><span class="p">[</span><span class="s1">&#39;Hr&#39;</span><span class="p">]</span>     <span class="o">=</span> <span class="p">[</span><span class="mf">1.2444</span>   <span class="p">]</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">inputdict</span><span class="p">[</span><span class="s1">&#39;PA&#39;</span><span class="p">]</span>     <span class="o">=</span> <span class="p">[</span><span class="mf">57.3874</span>  <span class="p">]</span>             <span class="c1"># pitch angle [deg]</span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">LS</span><span class="o">.</span><span class="n">LANLmax</span><span class="p">(</span><span class="n">inputdict</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;OPDYN&#39;</span><span class="p">,</span><span class="s1">&#39;OPQUIET&#39;</span><span class="p">,</span><span class="s1">&#39;T01QUIET&#39;</span><span class="p">,</span><span class="s1">&#39;T01STORM&#39;</span><span class="p">,</span><span class="s1">&#39;T89&#39;</span><span class="p">,</span><span class="s1">&#39;T96&#39;</span><span class="p">,</span><span class="s1">&#39;T05&#39;</span><span class="p">])</span>
+<span class="go">{&#39;OPDYN&#39;: array([10.6278]),</span>
+<span class="go"> &#39;OPQUIET&#39;: array([9.3352]),</span>
+<span class="go"> &#39;T01QUIET&#39;: array([10.0538]),</span>
+<span class="go"> &#39;T01STORM&#39;: array([9.9300]), </span>
+<span class="go"> &#39;T89&#39;: array([8.2888]),</span>
+<span class="go"> &#39;T96&#39;: array([9.2410]),</span>
+<span class="go"> &#39;T05&#39;: array([9.9295])}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../omni.html" title="omni - module to read and process NASA OMNIWEB data"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="spacepy.LANLstar.LANLstar.html" title="spacepy.LANLstar.LANLstar"
+             >previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+       <li><a href="../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../lanlstar.html" >lanlstar - module to calculate Lstar or Lmax using artificial neural network</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2019, The SpacePy Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

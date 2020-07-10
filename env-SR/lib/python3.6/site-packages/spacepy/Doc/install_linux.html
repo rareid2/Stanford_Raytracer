@@ -1,0 +1,300 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Linux Installation &mdash; SpacePy v0.2.1 Manual</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="_static/spacepy_favicon.ico"/>
+    <link rel="top" title="SpacePy v0.2.1 Manual" href="index.html" />
+    <link rel="up" title="Installing SpacePy" href="install.html" />
+    <link rel="next" title="MacOS Installation" href="install_mac.html" />
+    <link rel="prev" title="SpacePy Dependencies" href="dependencies.html" /> 
+  </head>
+  <body role="document">
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="index.html"><img src="_static/spacepy_logo.jpg" border="0" alt="spacepy_logo"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="install_mac.html" title="MacOS Installation"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="dependencies.html" title="SpacePy Dependencies"
+             accesskey="P">previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+       <li><a href="index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="install.html" accesskey="U">Installing SpacePy</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Linux Installation</a><ul>
+<li><a class="reference internal" href="#dependencies-via-conda">Dependencies via conda</a></li>
+<li><a class="reference internal" href="#dependencies-via-system-packages">Dependencies via system packages</a></li>
+<li><a class="reference internal" href="#cdf">CDF</a></li>
+<li><a class="reference internal" href="#ffnet">ffnet</a></li>
+<li><a class="reference internal" href="#compiling">Compiling</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="dependencies.html"
+                        title="previous chapter">SpacePy Dependencies</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="install_mac.html"
+                        title="next chapter">MacOS Installation</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/install_linux.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="linux-installation">
+<h1>Linux Installation<a class="headerlink" href="#linux-installation" title="Permalink to this headline">¶</a></h1>
+<p>Installation on Linux requires both a C and a Fortran compiler; a
+recent GCC is recommended (the C compiler is likely included with your
+distribution). On Debian and Ubuntu:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo apt-get install gfortran
+</pre></div>
+</div>
+<p>Once this is set up, <code class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">spacepy</span></code> should Just Work. If
+you&#8217;re installing as a single user (not in a virtual environment) then
+add the <code class="docutils literal"><span class="pre">--user</span></code> flag.</p>
+<p>You will also need the <a class="reference internal" href="#linux-cdf"><span>NASA CDF library</span></a> to use
+<a class="reference internal" href="pycdf.html#module-spacepy.pycdf" title="spacepy.pycdf"><code class="xref py py-mod docutils literal"><span class="pre">pycdf</span></code></a>.</p>
+<p>Our recommended (but not required) Python distribution is <a class="reference external" href="https://docs.anaconda.com/anaconda/">Anaconda</a> running 64-bit
+Python 3. Anaconda includes much of the scientific Python
+stack. Another excellent distribution is <a class="reference external" href="https://www.enthought.com/product/canopy/">Canopy</a>.</p>
+<p>You may need to install the dependencies some way other than pip; for
+example, if you are running an earlier version of Python. The latest
+version of many dependencies requires Python 3.6 and pip will not
+install older versions to get around this. See <a class="reference internal" href="#linux-dep-conda"><span>Dependencies via conda</span></a>
+and <a class="reference internal" href="#linux-dep-apt"><span>Dependencies via system packages</span></a>.</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#dependencies-via-conda" id="id1">Dependencies via conda</a></li>
+<li><a class="reference internal" href="#dependencies-via-system-packages" id="id2">Dependencies via system packages</a></li>
+<li><a class="reference internal" href="#cdf" id="id3">CDF</a></li>
+<li><a class="reference internal" href="#ffnet" id="id4">ffnet</a></li>
+<li><a class="reference internal" href="#compiling" id="id5">Compiling</a></li>
+</ul>
+</div>
+<div class="section" id="dependencies-via-conda">
+<span id="linux-dep-conda"></span><h2><a class="toc-backref" href="#id1">Dependencies via conda</a><a class="headerlink" href="#dependencies-via-conda" title="Permalink to this headline">¶</a></h2>
+<p>Installation via <code class="docutils literal"><span class="pre">pip</span></code> will automatically install most Python
+dependencies (but not the <a class="reference internal" href="#linux-cdf"><span>NASA CDF library</span></a>). They
+can also be installed from conda:</p>
+<div class="highlight-python"><div class="highlight"><pre>conda install numpy scipy matplotlib networkx h5py
+</pre></div>
+</div>
+</div>
+<div class="section" id="dependencies-via-system-packages">
+<span id="linux-dep-apt"></span><h2><a class="toc-backref" href="#id2">Dependencies via system packages</a><a class="headerlink" href="#dependencies-via-system-packages" title="Permalink to this headline">¶</a></h2>
+<p>SpacePy usually works with the system Python on Linux. To install dependencies via the package manager on Debian or Ubuntu:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo apt-get install python-dev python-h5py python-matplotlib python-networkx python-numpy python-scipy
+</pre></div>
+</div>
+<p>For Python 3, use:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo apt-get install python3-dev python3-h5py python3-matplotlib python3-networkx python3-numpy python3-scipy
+</pre></div>
+</div>
+<p>For other distributions, check <a class="reference internal" href="dependencies.html"><em>SpacePy Dependencies</em></a> and install by hand
+or via your package manager.</p>
+</div>
+<div class="section" id="cdf">
+<span id="linux-cdf"></span><h2><a class="toc-backref" href="#id3">CDF</a><a class="headerlink" href="#cdf" title="Permalink to this headline">¶</a></h2>
+<p>It is recommended to install the ncurses library; on Ubuntu and Debian:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo apt-get install ncurses-dev
+</pre></div>
+</div>
+<p>Download the latest <a class="reference external" href="http://cdf.gsfc.nasa.gov/">CDF library</a>. Choose
+the file ending in <code class="docutils literal"><span class="pre">-dist-all.tar.gz</span></code> from the <code class="docutils literal"><span class="pre">linux</span></code>
+directory. Untar and cd into the resulting directory. Then build:</p>
+<div class="highlight-python"><div class="highlight"><pre>make OS=linux ENV=gnu CURSES=yes FORTRAN=no UCOPTIONS=-O2 SHARED=yes all
+</pre></div>
+</div>
+<p>Use <code class="docutils literal"><span class="pre">CURSES=no</span></code> if the curses library is not installed. (The
+distribution-specific directions above will install curses.)</p>
+<p>Install:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo make install
+</pre></div>
+</div>
+<p>This will install the library into the default location <code class="docutils literal"><span class="pre">/usr/local/cdf</span></code>, where
+SpacePy can find it. If you choose to install elsewhere, see the CDF documentation,
+particularly the notes on the <code class="docutils literal"><span class="pre">CDF_BASE</span></code> and <code class="docutils literal"><span class="pre">CDF_LIB</span></code> environment variables.
+SpacePy uses these variables to find the library.</p>
+</div>
+<div class="section" id="ffnet">
+<span id="linux-ffnet"></span><h2><a class="toc-backref" href="#id4">ffnet</a><a class="headerlink" href="#ffnet" title="Permalink to this headline">¶</a></h2>
+<p>ffnet can be installed from <code class="docutils literal"><span class="pre">pip</span></code>; if the wrong Fortran compiler is
+found try:</p>
+<div class="highlight-python"><div class="highlight"><pre>FC_VENDOR=gfortran pip install ffnet
+</pre></div>
+</div>
+<p>It can also be installed from
+<a class="reference external" href="http://ffnet.sourceforge.net/install.html">sourcea</a>.
+Compilation requires f2py (from numpy), installed per the
+distribution-specific directions above. Untar and cd into the
+resulting directory. Then build:</p>
+<div class="highlight-python"><div class="highlight"><pre>python setup.py build
+</pre></div>
+</div>
+<p>Either install just for one user:</p>
+<div class="highlight-python"><div class="highlight"><pre>python setup.py install --user
+</pre></div>
+</div>
+<p>Or install for all users on the system:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo python setup.py install
+</pre></div>
+</div>
+<p>Normally the correct Fortran compiler will be found; if compilation
+fails, try specifying the older GNU compiler at the build step:</p>
+<div class="highlight-python"><div class="highlight"><pre>python setup.py build --fcompiler=gnu
+</pre></div>
+</div>
+</div>
+<div class="section" id="compiling">
+<h2><a class="toc-backref" href="#id5">Compiling</a><a class="headerlink" href="#compiling" title="Permalink to this headline">¶</a></h2>
+<p>With the dependencies installed, SpacePy can be built from source.
+This uses the same basic setup as ffnet (standard Python distutils).
+You can always get the latest source code for SpacePy from our <a class="reference external" href="https://github.com/spacepy/spacepy">github
+repository</a> and the latest
+release from <a class="reference external" href="https://pypi.org/project/SpacePy/#files">PyPI</a></p>
+<p>Build:</p>
+<div class="highlight-python"><div class="highlight"><pre>python setup.py build
+</pre></div>
+</div>
+<p>If this fails, specify a Fortran compiler:</p>
+<div class="highlight-python"><div class="highlight"><pre>python setup.py build --fcompiler=gnu95
+</pre></div>
+</div>
+<p><code class="docutils literal"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">build</span> <span class="pre">--help-fcompiler</span></code> will list options for
+Fortran compilers. Currently available compilers are <code class="docutils literal"><span class="pre">pg</span></code>,
+<code class="docutils literal"><span class="pre">gnu95</span></code>, <code class="docutils literal"><span class="pre">gnu</span></code>, <code class="docutils literal"><span class="pre">intelem</span></code>, <code class="docutils literal"><span class="pre">intel</span></code> or <code class="docutils literal"><span class="pre">none</span></code> (to skip all
+Fortran); <code class="docutils literal"><span class="pre">gnu95</span></code> (the GNU gfortran compiler) is recommended.</p>
+<p>Install for one user:</p>
+<div class="highlight-python"><div class="highlight"><pre>python setup.py install --user
+</pre></div>
+</div>
+<p>If you&#8217;re using conda, installation as user isn&#8217;t recommended:</p>
+<div class="highlight-python"><div class="highlight"><pre>python setup.py install
+</pre></div>
+</div>
+<p>Or install for all users on the system:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo python setup.py install
+</pre></div>
+</div>
+<p>If you want to build the documentation yourself (rather than using the
+documentation shipped with SpacePy), install sphinx and numpydoc. The
+easiest way is via pip:</p>
+<div class="highlight-python"><div class="highlight"><pre>pip install sphinx numpydoc
+</pre></div>
+</div>
+<p>They are also available via conda:</p>
+<div class="highlight-python"><div class="highlight"><pre>conda install sphinx numpydoc
+</pre></div>
+</div>
+<p>Or the package manager:</p>
+<blockquote>
+<div>sudo apt-get install python-sphinx python-numpydoc</div></blockquote>
+<p>For Python 3:</p>
+<blockquote>
+<div>sudo apt-get install python3-sphinx python3-numpydoc</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="install_mac.html" title="MacOS Installation"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="dependencies.html" title="SpacePy Dependencies"
+             >previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+       <li><a href="index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="install.html" >Installing SpacePy</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2019, The SpacePy Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

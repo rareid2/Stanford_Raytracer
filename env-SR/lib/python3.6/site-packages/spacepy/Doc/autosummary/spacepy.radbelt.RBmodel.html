@@ -1,0 +1,467 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>spacepy.radbelt.RBmodel &mdash; SpacePy v0.2.1 Manual</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="../_static/spacepy_favicon.ico"/>
+    <link rel="top" title="SpacePy v0.2.1 Manual" href="../index.html" />
+    <link rel="up" title="radbelt - Functions supporting radiation belt diffusion codes" href="../radbelt.html" />
+    <link rel="next" title="spacepy.radbelt.get_modelop_L" href="spacepy.radbelt.get_modelop_L.html" />
+    <link rel="prev" title="radbelt - Functions supporting radiation belt diffusion codes" href="../radbelt.html" /> 
+  </head>
+  <body role="document">
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../index.html"><img src="../_static/spacepy_logo.jpg" border="0" alt="spacepy_logo"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="spacepy.radbelt.get_modelop_L.html" title="spacepy.radbelt.get_modelop_L"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../radbelt.html" title="radbelt - Functions supporting radiation belt diffusion codes"
+             accesskey="P">previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+       <li><a href="../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../radbelt.html" accesskey="U">radbelt - Functions supporting radiation belt diffusion codes</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../radbelt.html"
+                        title="previous chapter">radbelt - Functions supporting radiation belt diffusion codes</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="spacepy.radbelt.get_modelop_L.html"
+                        title="next chapter">spacepy.radbelt.get_modelop_L</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/autosummary/spacepy.radbelt.RBmodel.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="spacepy-radbelt-rbmodel">
+<h1>spacepy.radbelt.RBmodel<a class="headerlink" href="#spacepy-radbelt-rbmodel" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="spacepy.radbelt.RBmodel">
+<em class="property">class </em><code class="descclassname">spacepy.radbelt.</code><code class="descname">RBmodel</code><span class="sig-paren">(</span><em>grid='L'</em>, <em>NL=91</em>, <em>const_kp=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/radbelt.html#RBmodel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.radbelt.RBmodel" title="Permalink to this definition">¶</a></dt>
+<dd><p>1-D Radial diffusion class</p>
+<p>This module contains a class for performing and visualizing 1-D radial
+diffusion simulations of the radiation belts.</p>
+<p>Here is an example using the default settings of the model.
+Each instance must be initialized with (assuming import radbelt as rb):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">rmod</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">RBmodel</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Next, set the start time, end time, and the size of the timestep:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">datetime</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">start</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2003</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">14</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">end</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2003</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">26</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">delta</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rmod</span><span class="o">.</span><span class="n">setup_ticks</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;UTC&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now, run the model over the entire time range using the evolve method:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">rmod</span><span class="o">.</span><span class="n">evolve</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Finally, visualize the results:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">rmod</span><span class="o">.</span><span class="n">plot_summary</span><span class="p">()</span>
+</pre></div>
+</div>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#spacepy.radbelt.RBmodel.Gaussian_source" title="spacepy.radbelt.RBmodel.Gaussian_source"><code class="xref py py-obj docutils literal"><span class="pre">Gaussian_source</span></code></a>()</td>
+<td>Gaussian source term added to radiation belt model.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#spacepy.radbelt.RBmodel.add_Lmax" title="spacepy.radbelt.RBmodel.add_Lmax"><code class="xref py py-obj docutils literal"><span class="pre">add_Lmax</span></code></a>(Lmax_model)</td>
+<td>add last closed drift shell Lmax</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#spacepy.radbelt.RBmodel.add_Lpp" title="spacepy.radbelt.RBmodel.add_Lpp"><code class="xref py py-obj docutils literal"><span class="pre">add_Lpp</span></code></a>(Lpp_model)</td>
+<td>add last closed drift shell Lmax</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#spacepy.radbelt.RBmodel.add_PSD_obs" title="spacepy.radbelt.RBmodel.add_PSD_obs"><code class="xref py py-obj docutils literal"><span class="pre">add_PSD_obs</span></code></a>([time,&nbsp;PSD,&nbsp;Lstar,&nbsp;satlist])</td>
+<td>add PSD observations</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#spacepy.radbelt.RBmodel.add_PSD_twin" title="spacepy.radbelt.RBmodel.add_PSD_twin"><code class="xref py py-obj docutils literal"><span class="pre">add_PSD_twin</span></code></a>([dt,&nbsp;Lt])</td>
+<td>add observations from PSD database using the ticks list</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#spacepy.radbelt.RBmodel.add_omni" title="spacepy.radbelt.RBmodel.add_omni"><code class="xref py py-obj docutils literal"><span class="pre">add_omni</span></code></a>([keylist])</td>
+<td>add omni data to instance according to the tickrange in ticks</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#spacepy.radbelt.RBmodel.add_source" title="spacepy.radbelt.RBmodel.add_source"><code class="xref py py-obj docutils literal"><span class="pre">add_source</span></code></a>([source,&nbsp;A,&nbsp;mu,&nbsp;sigma])</td>
+<td>add source parameters A, mu, and sigma for the Gaussian source function</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#spacepy.radbelt.RBmodel.assimilate" title="spacepy.radbelt.RBmodel.assimilate"><code class="xref py py-obj docutils literal"><span class="pre">assimilate</span></code></a>([method,&nbsp;inflation])</td>
+<td>Assimilates data for the radiation belt model using the Ensemble Kalman Filter.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#spacepy.radbelt.RBmodel.evolve" title="spacepy.radbelt.RBmodel.evolve"><code class="xref py py-obj docutils literal"><span class="pre">evolve</span></code></a>()</td>
+<td>calculate the diffusion in L at constant mu,K coordinates</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#spacepy.radbelt.RBmodel.get_DLL" title="spacepy.radbelt.RBmodel.get_DLL"><code class="xref py py-obj docutils literal"><span class="pre">get_DLL</span></code></a>(Lgrid,&nbsp;params[,&nbsp;DLL_model])</td>
+<td>Calculate DLL as a simple power law function (alpha*L**Bbta) using alpha/beta values from popular models found in the literature and chosen with the kwarg &#8220;DLL_model&#8221;.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#spacepy.radbelt.RBmodel.plot" title="spacepy.radbelt.RBmodel.plot"><code class="xref py py-obj docutils literal"><span class="pre">plot</span></code></a>([Lmax,&nbsp;Lpp,&nbsp;Kp,&nbsp;Dst,&nbsp;clims,&nbsp;title,&nbsp;values])</td>
+<td>Create a summary plot of the RadBelt object distribution function.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#spacepy.radbelt.RBmodel.plot_obs" title="spacepy.radbelt.RBmodel.plot_obs"><code class="xref py py-obj docutils literal"><span class="pre">plot_obs</span></code></a>([Lmax,&nbsp;Lpp,&nbsp;Kp,&nbsp;Dst,&nbsp;clims,&nbsp;title,&nbsp;...])</td>
+<td>Create a summary plot of the observations.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#spacepy.radbelt.RBmodel.set_lgrid" title="spacepy.radbelt.RBmodel.set_lgrid"><code class="xref py py-obj docutils literal"><span class="pre">set_lgrid</span></code></a>([NL])</td>
+<td>Using NL grid points, create grid in L.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#spacepy.radbelt.RBmodel.setup_ticks" title="spacepy.radbelt.RBmodel.setup_ticks"><code class="xref py py-obj docutils literal"><span class="pre">setup_ticks</span></code></a>(start,&nbsp;end,&nbsp;delta[,&nbsp;dtype])</td>
+<td>Add time information to the simulation by specifying a start and end time, timestep, and time type (optional).</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="spacepy.radbelt.RBmodel.Gaussian_source">
+<code class="descname">Gaussian_source</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/radbelt.html#RBmodel.Gaussian_source"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.radbelt.RBmodel.Gaussian_source" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gaussian source term added to radiation belt model. The source term is
+given by the equation:</p>
+<p>S = A exp{-(L-mu)^2/(2*sigma^2)}</p>
+<p>with A=10^(-8), mu=5.0, and sigma=0.5 as default values</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spacepy.radbelt.RBmodel.add_Lmax">
+<code class="descname">add_Lmax</code><span class="sig-paren">(</span><em>Lmax_model</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/radbelt.html#RBmodel.add_Lmax"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.radbelt.RBmodel.add_Lmax" title="Permalink to this definition">¶</a></dt>
+<dd><p>add last closed drift shell Lmax</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spacepy.radbelt.RBmodel.add_Lpp">
+<code class="descname">add_Lpp</code><span class="sig-paren">(</span><em>Lpp_model</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/radbelt.html#RBmodel.add_Lpp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.radbelt.RBmodel.add_Lpp" title="Permalink to this definition">¶</a></dt>
+<dd><p>add last closed drift shell Lmax</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spacepy.radbelt.RBmodel.add_PSD_obs">
+<code class="descname">add_PSD_obs</code><span class="sig-paren">(</span><em>time=None</em>, <em>PSD=None</em>, <em>Lstar=None</em>, <em>satlist=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/radbelt.html#RBmodel.add_PSD_obs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.radbelt.RBmodel.add_PSD_obs" title="Permalink to this definition">¶</a></dt>
+<dd><p>add PSD observations</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>time</strong> : Ticktock datetime array</p>
+<blockquote>
+<div><p>array of observation times</p>
+</div></blockquote>
+<p><strong>PSD</strong> : list of numpy arrays</p>
+<blockquote>
+<div><p>PSD observational data for each time. Each entry in the list is a
+numpy array with the observations for the corresponding time</p>
+</div></blockquote>
+<p><strong>Lstar</strong> : list of numpy arrays</p>
+<blockquote>
+<div><p>Lstar location of each PSD observations. Each entry in the list is
+a numpy array with the location of the observations for the
+corresponding time</p>
+</div></blockquote>
+<p><strong>satlist</strong> : list of satellite names</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>out</strong> : list of dicts</p>
+<blockquote>
+<div><p>Information of the observational data, where each entry
+contains the observations and locations of observations for each
+time specified in the time array. Each list entry is a dictionary
+with the following information:</p>
+</div></blockquote>
+<p><strong>Ticks</strong> : Ticktock array</p>
+<blockquote>
+<div><p>time of observations</p>
+</div></blockquote>
+<p><strong>Lstar</strong> : numpy array</p>
+<blockquote>
+<div><p>location of observations</p>
+</div></blockquote>
+<p><strong>PSD</strong> : numpy array</p>
+<blockquote>
+<div><p>PSD observation values</p>
+</div></blockquote>
+<p><strong>sat</strong> : list of strings</p>
+<blockquote>
+<div><p>satellite names</p>
+</div></blockquote>
+<p><strong>MU</strong> : scalar value</p>
+<blockquote>
+<div><p>Mu value for the observations</p>
+</div></blockquote>
+<p><strong>K</strong> : scalar value</p>
+<blockquote class="last">
+<div><p>K value for the observations</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="spacepy.radbelt.RBmodel.add_PSD_twin">
+<code class="descname">add_PSD_twin</code><span class="sig-paren">(</span><em>dt=0</em>, <em>Lt=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/radbelt.html#RBmodel.add_PSD_twin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.radbelt.RBmodel.add_PSD_twin" title="Permalink to this definition">¶</a></dt>
+<dd><p>add observations from PSD database using the ticks list
+the arguments are the following:</p>
+<blockquote>
+<div>dt = observation time delta in seconds
+Lt = observation space delta</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="spacepy.radbelt.RBmodel.add_omni">
+<code class="descname">add_omni</code><span class="sig-paren">(</span><em>keylist=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/radbelt.html#RBmodel.add_omni"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.radbelt.RBmodel.add_omni" title="Permalink to this definition">¶</a></dt>
+<dd><p>add omni data to instance according to the tickrange in ticks</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spacepy.radbelt.RBmodel.add_source">
+<code class="descname">add_source</code><span class="sig-paren">(</span><em>source=True</em>, <em>A=1e-08</em>, <em>mu=5.0</em>, <em>sigma=0.5</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/radbelt.html#RBmodel.add_source"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.radbelt.RBmodel.add_source" title="Permalink to this definition">¶</a></dt>
+<dd><p>add source parameters A, mu, and sigma for the Gaussian source function</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spacepy.radbelt.RBmodel.assimilate">
+<code class="descname">assimilate</code><span class="sig-paren">(</span><em>method='EnKF'</em>, <em>inflation=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/radbelt.html#RBmodel.assimilate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.radbelt.RBmodel.assimilate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assimilates data for the radiation belt model using the Ensemble
+Kalman Filter. The algorithm used is the SVD method presented by
+Evensen in 2003 (Evensen, G., Ocean dynamics, 53, pp.343&#8211;367, 2003).
+To compensate for model errors, three inflation algorithms are
+implemented. The inflation methodology is specified by the
+&#8216;inflation&#8217; argument, and the options are the following:</p>
+<blockquote>
+<div><p>inflation == 0: Add model error (perturbation for the ensemble)
+around model state values only where observations are available
+(DEFAULT).</p>
+<p>inflation == 1: Add model error (perturbation for the ensemble)
+around observation values only where observations are available.</p>
+<p>inflation == 2: Inflate around ensemble average for EnKF.</p>
+</div></blockquote>
+<p>Prior to assimilation, a set of data values has to be speficied by
+setting the start and end dates, and time step, using the setup_ticks
+funcion of the radiation belt model:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">spacepy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">datetime</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">spacepy</span> <span class="kn">import</span> <span class="n">radbelt</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">start</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2002</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">23</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">end</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2002</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">delta</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rmod</span><span class="o">.</span><span class="n">setup_ticks</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;UTC&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Once the dates and time step are specified, the data is added using the
+add_PSD function:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">rmod</span><span class="o">.</span><span class="n">add_PSD</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The observations are averaged over the time windows, whose interval is
+give by the time step.</p>
+<p>Once the dates and data are set, the assimiation is performed using the
+&#8216;assimilate&#8217; function:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">rmod</span><span class="o">.</span><span class="n">assimilate</span><span class="p">(</span><span class="n">inflation</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This function will add the PSDa values, which are the analysis state of
+the radiation belt using the observations within the dates. To plot the
+analysis simply use the plot funtion:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">rmod</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="n">rmod</span><span class="o">.</span><span class="n">PSDa</span><span class="p">,</span><span class="n">clims</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="o">-</span><span class="mi">6</span><span class="p">],</span><span class="n">Lmax</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span><span class="n">Kp</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span><span class="n">Dst</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="spacepy.radbelt.RBmodel.evolve">
+<code class="descname">evolve</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/radbelt.html#RBmodel.evolve"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.radbelt.RBmodel.evolve" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculate the diffusion in L at constant mu,K coordinates</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spacepy.radbelt.RBmodel.get_DLL">
+<code class="descname">get_DLL</code><span class="sig-paren">(</span><em>Lgrid</em>, <em>params</em>, <em>DLL_model='BA2000'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/radbelt.html#RBmodel.get_DLL"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.radbelt.RBmodel.get_DLL" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate DLL as a simple power law function (alpha*L**Bbta)
+using alpha/beta values from popular models found in the
+literature and chosen with the kwarg &#8220;DLL_model&#8221;.</p>
+<p>The calculated DLL is returned, as is the alpha and beta
+values used in the calculationp.</p>
+<p>The output DLL is in units of units/day.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spacepy.radbelt.RBmodel.plot">
+<code class="descname">plot</code><span class="sig-paren">(</span><em>Lmax=True, Lpp=False, Kp=True, Dst=True, clims=[0, 10], title=None, values=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/radbelt.html#RBmodel.plot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.radbelt.RBmodel.plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a summary plot of the RadBelt object distribution function.
+For reference, the last closed drift shell, Dst, and Kp are all
+included.  These can be disabled individually using the corresponding
+Boolean kwargs.</p>
+<p>The clims kwarg can be used to manually set the color bar range.
+To use, set it equal to a two-element list containing minimum and
+maximum Log_10 value to plot.  Default action is to use [0,10] as
+the log_10 of the color range.  This is good enough for most
+applications.</p>
+<p>The title of the top most plot defaults to &#8216;Summary Plot&#8217; but can be
+customized using the title kwarg.</p>
+<p>The figure object and all three axis objects (PSD axis, Dst axis,
+and Kp axis) are all returned to allow the user to further customize
+the plots as necessary.  If any of the plots are excluded, None is
+returned in their stead.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">rb</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Lmax</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">Kp</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">clims</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">10</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Good work!&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This command would create the summary plot with a color bar range
+of 100 to 10^10.  The Lmax line and Kp values would be excluded.
+The title of the topmost plot (phase space density) would be set to
+&#8216;Good work!&#8217;.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spacepy.radbelt.RBmodel.plot_obs">
+<code class="descname">plot_obs</code><span class="sig-paren">(</span><em>Lmax=True, Lpp=False, Kp=True, Dst=True, clims=[0, 10], title=None, values=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/radbelt.html#RBmodel.plot_obs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.radbelt.RBmodel.plot_obs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a summary plot of the observations.  For reference, the last
+closed drift shell, Dst, and Kp are all included.  These can be
+disabled individually using the corresponding boolean kwargs.</p>
+<p>The clims kwarg can be used to manually set the color bar range.
+To use, set it equal to a two-element list containing minimum and
+maximum Log_10 value to plot.  Default action is to use [0,10] as
+the log_10 of the color range.  This is good enough for most
+applications.</p>
+<p>The title of the top most plot defaults to &#8216;Summary Plot&#8217; but can be
+customized using the title kwarg.</p>
+<p>The figure object and all three axis objects (PSD axis, Dst axis,
+and Kp axis) are all returned to allow the user to further customize
+the plots as necessary.  If any of the plots are excluded, None is
+returned in their stead.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">rb</span><span class="o">.</span><span class="n">plot_obs</span><span class="p">(</span><span class="n">Lmax</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">Kp</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">clims</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">10</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Observations Plot&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This command would create the summary plot with a color bar range
+of 100 to 10^10.  The Lmax line and Kp values would be excluded.
+The title of the topmost plot (phase space density) would be set to
+&#8216;Good work!&#8217;.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spacepy.radbelt.RBmodel.set_lgrid">
+<code class="descname">set_lgrid</code><span class="sig-paren">(</span><em>NL=91</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/radbelt.html#RBmodel.set_lgrid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.radbelt.RBmodel.set_lgrid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Using NL grid points, create grid in L.
+Default number of points is 91 (dL=0.1).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spacepy.radbelt.RBmodel.setup_ticks">
+<code class="descname">setup_ticks</code><span class="sig-paren">(</span><em>start</em>, <em>end</em>, <em>delta</em>, <em>dtype='ISO'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/radbelt.html#RBmodel.setup_ticks"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.radbelt.RBmodel.setup_ticks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add time information to the simulation by specifying
+a start and end time, timestep, and time type (optional).</p>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">start</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2003</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">14</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">end</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2003</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">26</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">delta</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rmod</span><span class="o">.</span><span class="n">setup_ticks</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;UTC&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="spacepy.radbelt.get_modelop_L.html" title="spacepy.radbelt.get_modelop_L"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../radbelt.html" title="radbelt - Functions supporting radiation belt diffusion codes"
+             >previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+       <li><a href="../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../radbelt.html" >radbelt - Functions supporting radiation belt diffusion codes</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2019, The SpacePy Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

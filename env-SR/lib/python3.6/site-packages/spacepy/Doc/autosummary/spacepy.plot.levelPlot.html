@@ -1,0 +1,199 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>spacepy.plot.levelPlot &mdash; SpacePy v0.2.1 Manual</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="../_static/spacepy_favicon.ico"/>
+    <link rel="top" title="SpacePy v0.2.1 Manual" href="../index.html" />
+    <link rel="up" title="plot - Plot, various specialized plotting functions and associated utilities" href="../plot.html" />
+    <link rel="next" title="spacepy.plot.plot" href="spacepy.plot.plot.html" />
+    <link rel="prev" title="spacepy.plot.dual_half_circle" href="spacepy.plot.dual_half_circle.html" /> 
+  </head>
+  <body role="document">
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../index.html"><img src="../_static/spacepy_logo.jpg" border="0" alt="spacepy_logo"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="spacepy.plot.plot.html" title="spacepy.plot.plot"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="spacepy.plot.dual_half_circle.html" title="spacepy.plot.dual_half_circle"
+             accesskey="P">previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+       <li><a href="../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../plot.html" accesskey="U">plot - Plot, various specialized plotting functions and associated utilities</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="spacepy.plot.dual_half_circle.html"
+                        title="previous chapter">spacepy.plot.dual_half_circle</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="spacepy.plot.plot.html"
+                        title="next chapter">spacepy.plot.plot</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/autosummary/spacepy.plot.levelPlot.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="spacepy-plot-levelplot">
+<h1>spacepy.plot.levelPlot<a class="headerlink" href="#spacepy-plot-levelplot" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="spacepy.plot.levelPlot">
+<code class="descclassname">spacepy.plot.</code><code class="descname">levelPlot</code><span class="sig-paren">(</span><em>data</em>, <em>var=None</em>, <em>time=None</em>, <em>levels=(3</em>, <em>5)</em>, <em>target=None</em>, <em>colors=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/plot.html#levelPlot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.plot.levelPlot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draw a step-plot with up to 5 levels following a color cycle (e.g. Kp index &#8220;stoplight&#8221;)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>data</strong> : array-like, or dict-like</p>
+<blockquote>
+<div><p>Data for plotting. If dict-like, the key providing an array-like 
+to plot must be given to var keyword argument.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>binned</strong> : tuple</p>
+<blockquote>
+<div><p>Tuple of the binned data and bins</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Other Parameters:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><p class="first"><strong>var</strong> : string</p>
+<blockquote>
+<div><p>Name of key in dict-like input that contains data</p>
+</div></blockquote>
+<p><strong>time</strong> : array-like or string</p>
+<blockquote>
+<div><p>Name of key in dict-like that contains time, or arraylike of datetimes</p>
+</div></blockquote>
+<p><strong>levels</strong> : array-like, up to 5 levels</p>
+<blockquote>
+<div><p>Breaks between levels in data that should be shown as distinct colors</p>
+</div></blockquote>
+<p><strong>target</strong> : figure or axes</p>
+<blockquote>
+<div><p>Target axes or figure window</p>
+</div></blockquote>
+<p><strong>colors</strong> : array-like</p>
+<blockquote>
+<div><p>Colors to use for the color sequence (if insufficient colors, will use as a cycle)</p>
+</div></blockquote>
+<p><strong>**kwargs</strong> : other keywords</p>
+<blockquote class="last">
+<div><p>Other keywords to pass to spacepy.toolbox.binHisto</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">spacepy.plot</span> <span class="kn">as</span> <span class="nn">splot</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">spacepy.time</span> <span class="kn">as</span> <span class="nn">spt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">spacepy.omni</span> <span class="kn">as</span> <span class="nn">om</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tt</span> <span class="o">=</span> <span class="n">spt</span><span class="o">.</span><span class="n">tickrange</span><span class="p">(</span><span class="s1">&#39;2012/09/28&#39;</span><span class="p">,</span><span class="s1">&#39;2012/10/2&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="o">/</span><span class="mf">24.</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">omni</span> <span class="o">=</span> <span class="n">om</span><span class="o">.</span><span class="n">get_omni</span><span class="p">(</span><span class="n">tt</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">splot</span><span class="o">.</span><span class="n">levelPlot</span><span class="p">(</span><span class="n">omni</span><span class="p">,</span> <span class="n">var</span><span class="o">=</span><span class="s1">&#39;Kp&#39;</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="s1">&#39;UTC&#39;</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;seagreen&#39;</span><span class="p">,</span> <span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="s1">&#39;crimson&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="spacepy.plot.plot.html" title="spacepy.plot.plot"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="spacepy.plot.dual_half_circle.html" title="spacepy.plot.dual_half_circle"
+             >previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+       <li><a href="../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../plot.html" >plot - Plot, various specialized plotting functions and associated utilities</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2019, The SpacePy Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

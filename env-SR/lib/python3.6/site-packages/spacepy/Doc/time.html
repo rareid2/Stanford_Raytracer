@@ -1,0 +1,261 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>time - Time conversion, manipulation and implementation of Ticktock class &mdash; SpacePy v0.2.1 Manual</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="_static/spacepy_favicon.ico"/>
+    <link rel="top" title="SpacePy v0.2.1 Manual" href="index.html" />
+    <link rel="next" title="spacepy.time.Ticktock" href="autosummary/spacepy.time.Ticktock.html" />
+    <link rel="prev" title="spacepy.seapy.sea_signif" href="autosummary/spacepy.seapy.sea_signif.html" /> 
+  </head>
+  <body role="document">
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="index.html"><img src="_static/spacepy_logo.jpg" border="0" alt="spacepy_logo"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="autosummary/spacepy.time.Ticktock.html" title="spacepy.time.Ticktock"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="autosummary/spacepy.seapy.sea_signif.html" title="spacepy.seapy.sea_signif"
+             accesskey="P">previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+       <li><a href="index.html">documentation </a> &raquo;</li>
+ 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">time - Time conversion, manipulation and implementation of Ticktock class</a><ul>
+<li><a class="reference internal" href="#examples">Examples:</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="autosummary/spacepy.seapy.sea_signif.html"
+                        title="previous chapter">spacepy.seapy.sea_signif</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="autosummary/spacepy.time.Ticktock.html"
+                        title="next chapter">spacepy.time.Ticktock</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/time.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-spacepy.time">
+<span id="time-time-conversion-manipulation-and-implementation-of-ticktock-class"></span><h1>time - Time conversion, manipulation and implementation of Ticktock class<a class="headerlink" href="#module-spacepy.time" title="Permalink to this headline">¶</a></h1>
+<p>Time conversion, manipulation and implementation of Ticktock class</p>
+<div class="section" id="examples">
+<h2>Examples:<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">spacepy.time</span> <span class="kn">as</span> <span class="nn">spt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">datetime</span> <span class="kn">as</span> <span class="nn">dt</span>
+</pre></div>
+</div>
+<p>Day of year calculations</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">dts</span> <span class="o">=</span> <span class="n">spt</span><span class="o">.</span><span class="n">doy2date</span><span class="p">([</span><span class="mi">2002</span><span class="p">]</span><span class="o">*</span><span class="mi">4</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">186</span><span class="p">,</span><span class="mi">190</span><span class="p">),</span> <span class="n">dtobj</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dts</span>
+<span class="go">[datetime.datetime(2002, 7, 5, 0, 0),</span>
+<span class="go">datetime.datetime(2002, 7, 6, 0, 0),</span>
+<span class="go">datetime.datetime(2002, 7, 7, 0, 0),</span>
+<span class="go">datetime.datetime(2002, 7, 8, 0, 0)]</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">dts</span> <span class="o">=</span> <span class="n">spt</span><span class="o">.</span><span class="n">Ticktock</span><span class="p">(</span><span class="n">dts</span><span class="p">,</span><span class="s1">&#39;UTC&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dts</span><span class="o">.</span><span class="n">DOY</span>
+<span class="go">array([ 186.,  187.,  188.,  189.])</span>
+</pre></div>
+</div>
+<p>Ticktock object creation</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">isodates</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;2009-12-01T12:00:00&#39;</span><span class="p">,</span> <span class="s1">&#39;2009-12-04T00:00:00&#39;</span><span class="p">,</span> <span class="s1">&#39;2009-12-06T12:00:00&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dts</span> <span class="o">=</span> <span class="n">spt</span><span class="o">.</span><span class="n">Ticktock</span><span class="p">(</span><span class="n">isodates</span><span class="p">,</span> <span class="s1">&#39;ISO&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>OR</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">dtdates</span> <span class="o">=</span> <span class="p">[</span><span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2009</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">12</span><span class="p">),</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2009</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2009</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">12</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dts</span> <span class="o">=</span> <span class="n">spt</span><span class="o">.</span><span class="n">Ticktock</span><span class="p">(</span><span class="n">dtdates</span><span class="p">,</span> <span class="s1">&#39;UTC&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>ISO time formatting</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">dts</span> <span class="o">=</span> <span class="n">spt</span><span class="o">.</span><span class="n">tickrange</span><span class="p">(</span><span class="s1">&#39;2009-12-01T12:00:00&#39;</span><span class="p">,</span><span class="s1">&#39;2009-12-06T12:00:00&#39;</span><span class="p">,</span><span class="mf">2.5</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>OR</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">dts</span> <span class="o">=</span> <span class="n">spt</span><span class="o">.</span><span class="n">tickrange</span><span class="p">(</span><span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2009</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">12</span><span class="p">),</span><span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2009</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">12</span><span class="p">),</span>     <span class="n">dt</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">hours</span><span class="o">=</span><span class="mi">12</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">dts</span>
+<span class="go">Ticktock( [&#39;2009-12-01T12:00:00&#39;, &#39;2009-12-04T00:00:00&#39;, &#39;2009-12-06T12:00:00&#39;] ), dtype=ISO</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">dts</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span>
+<span class="go">Current ISO output format is %Y-%m-%dT%H:%M:%S</span>
+<span class="go">Options are: [(&#39;seconds&#39;, &#39;%Y-%m-%dT%H:%M:%S&#39;), (&#39;microseconds&#39;, &#39;%Y-%m-%dT%H:%M:%S.%f&#39;)]</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">dts</span><span class="o">.</span><span class="n">isoformat</span><span class="p">(</span><span class="s1">&#39;microseconds&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dts</span><span class="o">.</span><span class="n">ISO</span>
+<span class="go">[&#39;2009-12-01T12:00:00.000000&#39;,</span>
+<span class="go"> &#39;2009-12-04T00:00:00.000000&#39;,</span>
+<span class="go"> &#39;2009-12-06T12:00:00.000000&#39;]</span>
+</pre></div>
+</div>
+<p>Time manipulation</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">new_dts</span> <span class="o">=</span> <span class="n">dts</span> <span class="o">+</span> <span class="n">tdelt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">new_dts</span><span class="o">.</span><span class="n">UTC</span>
+<span class="go">[datetime.datetime(2009, 12, 2, 18, 0),</span>
+<span class="go"> datetime.datetime(2009, 12, 5, 6, 0),</span>
+<span class="go"> datetime.datetime(2009, 12, 7, 18, 0)]</span>
+</pre></div>
+</div>
+<p>Other time formats</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">dts</span><span class="o">.</span><span class="n">RDT</span>  <span class="c1"># Gregorian ordinal time</span>
+<span class="go">array([ 733742.5,  733745. ,  733747.5])</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">dts</span><span class="o">.</span><span class="n">GPS</span> <span class="c1"># GPS time</span>
+<span class="go">array([  9.43704015e+08,   9.43920015e+08,   9.44136015e+08])</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">dts</span><span class="o">.</span><span class="n">JD</span> <span class="c1"># Julian day</span>
+<span class="go">array([ 2455167. ,  2455169.5,  2455172. ])</span>
+</pre></div>
+</div>
+<p>And so on.</p>
+<p>Authors: Steve Morley, Josef Koller, Brian Larsen, Jon Niehof
+Institution: Los Alamos National Laboratory
+Contact: <a class="reference external" href="mailto:smorley&#37;&#52;&#48;lanl&#46;gov">smorley<span>&#64;</span>lanl<span>&#46;</span>gov</a>,</p>
+<p>Copyright 2010 Los Alamos National Security, LLC.</p>
+</div>
+<p class="rubric">Classes</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="autosummary/spacepy.time.Ticktock.html#spacepy.time.Ticktock" title="spacepy.time.Ticktock"><code class="xref py py-obj docutils literal"><span class="pre">Ticktock</span></code></a>(data,&nbsp;dtype)</td>
+<td>Ticktock class holding various time coordinate systems</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Functions</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="autosummary/spacepy.time.doy2date.html#spacepy.time.doy2date" title="spacepy.time.doy2date"><code class="xref py py-obj docutils literal"><span class="pre">doy2date</span></code></a>(year,&nbsp;doy[,&nbsp;dtobj,&nbsp;flAns])</td>
+<td>convert integer day-of-year doy into a month and day</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="autosummary/spacepy.time.leapyear.html#spacepy.time.leapyear" title="spacepy.time.leapyear"><code class="xref py py-obj docutils literal"><span class="pre">leapyear</span></code></a>(year[,&nbsp;numdays])</td>
+<td>return an array of boolean leap year,</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="autosummary/spacepy.time.randomDate.html#spacepy.time.randomDate" title="spacepy.time.randomDate"><code class="xref py py-obj docutils literal"><span class="pre">randomDate</span></code></a>(dt1,&nbsp;dt2[,&nbsp;N,&nbsp;tzinfo,&nbsp;sorted])</td>
+<td>Return a (or many) random datetimes between two given dates, this is done under the convention dt &lt;=1 rand &lt; dt2</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="autosummary/spacepy.time.sec2hms.html#spacepy.time.sec2hms" title="spacepy.time.sec2hms"><code class="xref py py-obj docutils literal"><span class="pre">sec2hms</span></code></a>(sec[,&nbsp;rounding,&nbsp;days,&nbsp;dtobj])</td>
+<td>Convert seconds of day to hours, minutes, seconds</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="autosummary/spacepy.time.tickrange.html#spacepy.time.tickrange" title="spacepy.time.tickrange"><code class="xref py py-obj docutils literal"><span class="pre">tickrange</span></code></a>(start,&nbsp;end,&nbsp;deltadays[,&nbsp;dtype])</td>
+<td>return a Ticktock range given the start, end, and delta</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="autosummary/spacepy.time.Ticktock.html" title="spacepy.time.Ticktock"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="autosummary/spacepy.seapy.sea_signif.html" title="spacepy.seapy.sea_signif"
+             >previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+       <li><a href="index.html">documentation </a> &raquo;</li>
+ 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2019, The SpacePy Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

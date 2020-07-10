@@ -1,0 +1,713 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>datamanager - easy access to and manipulation of data &mdash; SpacePy v0.2.1 Manual</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="_static/spacepy_favicon.ico"/>
+    <link rel="top" title="SpacePy v0.2.1 Manual" href="index.html" />
+    <link rel="next" title="datamodel - easy to use general data model" href="datamodel.html" />
+    <link rel="prev" title="spacepy.coordinates.Coords" href="autosummary/spacepy.coordinates.Coords.html" /> 
+  </head>
+  <body role="document">
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="index.html"><img src="_static/spacepy_logo.jpg" border="0" alt="spacepy_logo"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="datamodel.html" title="datamodel - easy to use general data model"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="autosummary/spacepy.coordinates.Coords.html" title="spacepy.coordinates.Coords"
+             accesskey="P">previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+       <li><a href="index.html">documentation </a> &raquo;</li>
+ 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">datamanager - easy access to and manipulation of data</a><ul>
+<li><a class="reference internal" href="#about-datamanager">About datamanager</a></li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="autosummary/spacepy.coordinates.Coords.html"
+                        title="previous chapter">spacepy.coordinates.Coords</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="datamodel.html"
+                        title="next chapter">datamodel - easy to use general data model</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/datamanager.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-spacepy.datamanager">
+<span id="datamanager-easy-access-to-and-manipulation-of-data"></span><h1>datamanager - easy access to and manipulation of data<a class="headerlink" href="#module-spacepy.datamanager" title="Permalink to this headline">¶</a></h1>
+<p>The datamanager classes and functions are useful for locating the correct
+data file for a particular day and manipulating data and subsets in a generic
+way.</p>
+<p>Authors: Jon Niehof</p>
+<p>Institution: University of New Hampshire</p>
+<p>Contact: <a class="reference external" href="mailto:Jonathan&#46;Niehof&#37;&#52;&#48;unh&#46;edu">Jonathan<span>&#46;</span>Niehof<span>&#64;</span>unh<span>&#46;</span>edu</a></p>
+<p>Copyright 2015</p>
+<div class="section" id="about-datamanager">
+<h2>About datamanager<a class="headerlink" href="#about-datamanager" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>Examples go here</p>
+<p class="rubric">Classes</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#spacepy.datamanager.DataManager" title="spacepy.datamanager.DataManager"><code class="xref py py-obj docutils literal"><span class="pre">DataManager</span></code></a>(directories,&nbsp;file_fmt[,&nbsp;...])</td>
+<td>THIS CLASS IS NOT YET COMPLETE, doesn&#8217;t do much useful.</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Functions</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#spacepy.datamanager.apply_index" title="spacepy.datamanager.apply_index"><code class="xref py py-obj docutils literal"><span class="pre">apply_index</span></code></a>(data,&nbsp;idx)</td>
+<td>Apply an array of indices to data.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#spacepy.datamanager.array_interleave" title="spacepy.datamanager.array_interleave"><code class="xref py py-obj docutils literal"><span class="pre">array_interleave</span></code></a>(array1,&nbsp;array2,&nbsp;idx)</td>
+<td>Create an array containing all elements of both array1 and array2</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#spacepy.datamanager.axis_index" title="spacepy.datamanager.axis_index"><code class="xref py py-obj docutils literal"><span class="pre">axis_index</span></code></a>(shape[,&nbsp;axis])</td>
+<td>Returns array of indices along axis, for all other axes</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#spacepy.datamanager.flatten_idx" title="spacepy.datamanager.flatten_idx"><code class="xref py py-obj docutils literal"><span class="pre">flatten_idx</span></code></a>(idx[,&nbsp;axis])</td>
+<td>Convert multidimensional index into index on flattened array.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#spacepy.datamanager.insert_fill" title="spacepy.datamanager.insert_fill"><code class="xref py py-obj docutils literal"><span class="pre">insert_fill</span></code></a>(times,&nbsp;data[,&nbsp;fillval,&nbsp;tol,&nbsp;...])</td>
+<td>Populate gaps in data with fill.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#spacepy.datamanager.rev_index" title="spacepy.datamanager.rev_index"><code class="xref py py-obj docutils literal"><span class="pre">rev_index</span></code></a>(idx[,&nbsp;axis])</td>
+<td>From an index, return an index that reverses the action of that index</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#spacepy.datamanager.values_to_steps" title="spacepy.datamanager.values_to_steps"><code class="xref py py-obj docutils literal"><span class="pre">values_to_steps</span></code></a>(array[,&nbsp;axis])</td>
+<td>Transform values along an axis to their order in a unique sequence.</td>
+</tr>
+</tbody>
+</table>
+<dl class="class">
+<dt id="spacepy.datamanager.DataManager">
+<em class="property">class </em><code class="descclassname">spacepy.datamanager.</code><code class="descname">DataManager</code><span class="sig-paren">(</span><em>directories</em>, <em>file_fmt</em>, <em>descend=False</em>, <em>period=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spacepy/datamanager.html#DataManager"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.datamanager.DataManager" title="Permalink to this definition">¶</a></dt>
+<dd><p>THIS CLASS IS NOT YET COMPLETE, doesn&#8217;t do much useful.</p>
+<p>Will have to do something that allows the config file to specify regex
+and other things, and then just the directory to be changed (since
+regex, etc.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>directories</strong> : list</p>
+<blockquote>
+<div><p>A list of directories that might contain the data</p>
+</div></blockquote>
+<p><strong>file_fmt</strong> : string</p>
+<blockquote>
+<div><p>Regular expression that matches the files desired. Will also recognize
+strftime parameters %w %d %m %y %Y %H %M %s %j %U %W, all zero-pad.
+<a class="reference external" href="https://docs.python.org/2/library/datetime.html#strftime-strptime-behavior">https://docs.python.org/2/library/datetime.html#strftime-strptime-behavior</a>
+Can have subdirectory reference, but separator should be unix-style,
+with no leading slash.</p>
+</div></blockquote>
+<p><strong>period</strong> : string</p>
+<blockquote>
+<div><p>Size of file; can be a number followed by one of d, m, y, H, M, s.
+Anything else is assumed to be &#8220;irregular&#8221; and files treated
+as if there are neither gaps nor overlaps in the sequence.
+If not specified, will be assumed to match one count of the
+smallest unit in the format string.</p>
+</div></blockquote>
+<p><strong>Examples</strong></p>
+<p class="last"><strong>=======</strong></p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="spacepy.datamanager.DataManager.files_matching">
+<code class="descname">files_matching</code><span class="sig-paren">(</span><em>dt=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spacepy/datamanager.html#DataManager.files_matching"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.datamanager.DataManager.files_matching" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return all the files matching this file format</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>dt</strong> : datetime</p>
+<blockquote>
+<div><p>Optional; if specified, match only files for this date.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>out</strong> : generator</p>
+<blockquote class="last">
+<div><p>Iterates over every file matching the format specified at
+creation. Note this is specified in native path format!</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="spacepy.datamanager.DataManager.get_filename">
+<code class="descname">get_filename</code><span class="sig-paren">(</span><em>dt</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spacepy/datamanager.html#DataManager.get_filename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.datamanager.DataManager.get_filename" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the filename corresponding to a particular point in time</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="spacepy.datamanager.apply_index">
+<code class="descclassname">spacepy.datamanager.</code><code class="descname">apply_index</code><span class="sig-paren">(</span><em>data</em>, <em>idx</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spacepy/datamanager.html#apply_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.datamanager.apply_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply an array of indices to data.</p>
+<p>Most useful in dealing with the output from <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.argsort.html#numpy.argsort" title="(in NumPy v1.17)"><code class="xref py py-func docutils literal"><span class="pre">numpy.argsort()</span></code></a>, and
+best explained by the example.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>data</strong> : array</p>
+<blockquote>
+<div><p>Input data, at least two dimensional. The 0th dimension is treated as
+a &#8220;time&#8221; or &#8220;record&#8221; dimension.</p>
+</div></blockquote>
+<p><strong>idx</strong> : sequence</p>
+<blockquote>
+<div><p>2D index to apply to the import data. The 0th dimension must be the 
+same size as <code class="docutils literal"><span class="pre">data</span></code>&#8216;s 0th dimension. Dimension 1 must be the same
+size as one other dimension in data (the first match found is used);
+this is referred to as the &#8220;index dimension.&#8221;</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>data</strong> : sequence</p>
+<blockquote>
+<div><p>View of <code class="docutils literal"><span class="pre">data</span></code>, with index applied. For each index of the 0th
+dimension, the values along the index dimension are obtained by applying
+the value of <code class="docutils literal"><span class="pre">idx</span></code> at the same index in the 0th dimension. This is
+repeated across any other dimensions in <code class="docutils literal"><span class="pre">data</span></code>.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">No guarantee is made whether the returned data is a copy
+of the input data. Modifying values in the input may change
+the values of the input. Call <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.copy.html#numpy.ndarray.copy" title="(in NumPy v1.17)"><code class="xref py py-meth docutils literal"><span class="pre">copy()</span></code></a> if
+a copy is required.</p>
+</div>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><strong>ValueError</strong> : if can&#8217;t match the shape of data and indices</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<p>Assume <code class="docutils literal"><span class="pre">flux</span></code> is a 3D array of fluxes, with a value for each of
+time, pitch angle, and energy. Assume energy is not necessarily 
+constant in time, nor is ordered in the energy dimension. If
+<code class="docutils literal"><span class="pre">energy</span></code> is a 2D array of the energies as a function of energy
+step for each time, then the following will sort the flux at each
+time and pitch angle in energy order.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">energy</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flux_sorted</span> <span class="o">=</span> <span class="n">spacepy</span><span class="o">.</span><span class="n">datamanager</span><span class="o">.</span><span class="n">apply_index</span><span class="p">(</span><span class="n">flux</span><span class="p">,</span> <span class="n">idx</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="spacepy.datamanager.array_interleave">
+<code class="descclassname">spacepy.datamanager.</code><code class="descname">array_interleave</code><span class="sig-paren">(</span><em>array1</em>, <em>array2</em>, <em>idx</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spacepy/datamanager.html#array_interleave"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.datamanager.array_interleave" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an array containing all elements of both array1 and array2</p>
+<p><code class="docutils literal"><span class="pre">idx</span></code> is an index on the output array which indicates which elements will
+be populated from <code class="docutils literal"><span class="pre">array1</span></code>, i.e., <code class="docutils literal"><span class="pre">out[idx]</span> <span class="pre">==</span> <span class="pre">array1</span></code> (in order.)
+The other elements of <code class="docutils literal"><span class="pre">out</span></code> will be filled, in order, from <code class="docutils literal"><span class="pre">array2</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>array1</strong> : array</p>
+<blockquote>
+<div><p>Input data.</p>
+</div></blockquote>
+<p><strong>array2</strong> : array</p>
+<blockquote>
+<div><p>Input data. Must have same number of dimensions as <code class="docutils literal"><span class="pre">array1</span></code>, and all
+dimensions except the zeroth must also have the same length.</p>
+</div></blockquote>
+<p><strong>idx</strong> : array</p>
+<blockquote>
+<div><p>A 1D array of indices on the zeroth dimension of the output array. Must
+have the same length as the zeroth dimension of <code class="docutils literal"><span class="pre">array1</span></code>.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>out</strong> : array</p>
+<blockquote class="last">
+<div><p>All elements from <code class="docutils literal"><span class="pre">array1</span></code> and <code class="docutils literal"><span class="pre">array2</span></code>, interleaved according
+to <code class="docutils literal"><span class="pre">idx</span></code>.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">spacepy.datamanager</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">spacepy</span><span class="o">.</span><span class="n">datamanager</span><span class="o">.</span><span class="n">array_interleave</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">idx</span><span class="p">)</span>
+<span class="go">array([ 1, 10, 20,  2, 30])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="spacepy.datamanager.axis_index">
+<code class="descclassname">spacepy.datamanager.</code><code class="descname">axis_index</code><span class="sig-paren">(</span><em>shape</em>, <em>axis=-1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spacepy/datamanager.html#axis_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.datamanager.axis_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns array of indices along axis, for all other axes</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>shape</strong> : tuple</p>
+<blockquote>
+<div><p>Shape of the output array</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>idx</strong> : array</p>
+<blockquote>
+<div><p>An array of indices. The value of each element is that element&#8217;s index
+along <code class="docutils literal"><span class="pre">axis</span></code>.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Other Parameters:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><p class="first"><strong>axis</strong> : int</p>
+<blockquote class="last">
+<div><p>Axis along which to return indices, defaults to the last axis.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<dl class="last docutils">
+<dt><a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.mgrid.html#numpy.mgrid" title="(in NumPy v1.17)"><code class="xref py py-obj docutils literal"><span class="pre">numpy.mgrid</span></code></a></dt>
+<dd>This function is a special case</dd>
+</dl>
+</div>
+<p class="rubric">Examples</p>
+<p>For a shape of <code class="docutils literal"><span class="pre">(i,</span> <span class="pre">j,</span> <span class="pre">k,</span> <span class="pre">l)</span></code> and <code class="docutils literal"><span class="pre">axis</span></code> = -1,
+<code class="docutils literal"><span class="pre">idx[i,</span> <span class="pre">j,</span> <span class="pre">k,</span> <span class="pre">:]</span> <span class="pre">=</span> <span class="pre">range(l)</span></code> for all <code class="docutils literal"><span class="pre">i</span></code>, <code class="docutils literal"><span class="pre">j</span></code>, <code class="docutils literal"><span class="pre">k</span></code>.</p>
+<p>Similarly, for the same shape and <code class="docutils literal"><span class="pre">axis</span> <span class="pre">=</span> <span class="pre">1</span></code>,
+<code class="docutils literal"><span class="pre">idx[i,</span> <span class="pre">:,</span> <span class="pre">k,</span> <span class="pre">l]</span> <span class="pre">=</span> <span class="pre">range(j)</span></code> for all <code class="docutils literal"><span class="pre">i</span></code>, <code class="docutils literal"><span class="pre">k</span></code>, <code class="docutils literal"><span class="pre">l</span></code>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">spacepy.datamanager</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">spacepy</span><span class="o">.</span><span class="n">datamanager</span><span class="o">.</span><span class="n">axis_index</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="go">array([[0, 1, 2],</span>
+<span class="go">       [0, 1, 2],</span>
+<span class="go">       [0, 1, 2],</span>
+<span class="go">       [0, 1, 2],</span>
+<span class="go">       [0, 1, 2]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">spacepy</span><span class="o">.</span><span class="n">datamanager</span><span class="o">.</span><span class="n">axis_index</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+<span class="go">    array([[0, 0, 0],</span>
+<span class="go">           [1, 1, 1],</span>
+<span class="go">           [2, 2, 2],</span>
+<span class="go">           [3, 3, 3],</span>
+<span class="go">           [4, 4, 4]])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="spacepy.datamanager.flatten_idx">
+<code class="descclassname">spacepy.datamanager.</code><code class="descname">flatten_idx</code><span class="sig-paren">(</span><em>idx</em>, <em>axis=-1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spacepy/datamanager.html#flatten_idx"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.datamanager.flatten_idx" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert multidimensional index into index on flattened array.</p>
+<p>Convert a multidimensional index, that is values along a particular axis,
+so that it can derefence the flattened array properly. Note this is not
+the same as <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ravel_multi_index.html#numpy.ravel_multi_index" title="(in NumPy v1.17)"><code class="xref py py-func docutils literal"><span class="pre">ravel_multi_index()</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>idx</strong> : array</p>
+<blockquote>
+<div><p>Input index, i.e. a list of elements along a particular axis,
+in the style of <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.argsort.html#numpy.argsort" title="(in NumPy v1.17)"><code class="xref py py-func docutils literal"><span class="pre">argsort()</span></code></a>.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>flat</strong> : array</p>
+<blockquote>
+<div><p>A 1D array of indices suitable for indexing the flat version of the
+array</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Other Parameters:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><p class="first"><strong>axis</strong> : int</p>
+<blockquote class="last">
+<div><p>Axis along which <code class="docutils literal"><span class="pre">idx</span></code> operates, defaults to the last axis.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#spacepy.datamanager.apply_index" title="spacepy.datamanager.apply_index"><code class="xref py py-obj docutils literal"><span class="pre">apply_index</span></code></a></p>
+</div>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">spacepy.datamanager</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">idx_flat</span> <span class="o">=</span> <span class="n">spacepy</span><span class="o">.</span><span class="n">datamanager</span><span class="o">.</span><span class="n">flatten_idx</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span> <span class="c1">#flat array</span>
+<span class="go">array([3, 1, 2, 3, 2, 1])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">idx_flat</span> <span class="c1">#indices into the flat array</span>
+<span class="go">array([1, 2, 0, 5, 4, 3])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="o">.</span><span class="n">ravel</span><span class="p">()[</span><span class="n">idx_flat</span><span class="p">]</span> <span class="c1">#index applied to the flat array</span>
+<span class="go">array([1, 2, 3, 1, 2, 3])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="spacepy.datamanager.insert_fill">
+<code class="descclassname">spacepy.datamanager.</code><code class="descname">insert_fill</code><span class="sig-paren">(</span><em>times</em>, <em>data</em>, <em>fillval=nan</em>, <em>tol=1.5</em>, <em>absolute=None</em>, <em>doTimes=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spacepy/datamanager.html#insert_fill"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.datamanager.insert_fill" title="Permalink to this definition">¶</a></dt>
+<dd><p>Populate gaps in data with fill.</p>
+<p>Continuous data are often treated differently from discontinuous data,
+e.g., matplotlib will draw lines connecting data points but break the line
+at fill. Often data will be irregularly sampled but also contain large
+gaps that are not explicitly marked as fill. This function adds a single
+record of explicit fill to each gap, defined as places where the spacing
+between input times is a certain multiple of the median spacing.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>times</strong> : sequence</p>
+<blockquote>
+<div><p>Values representing when the data were taken. Must be one-dimensional,
+i.e., each value must be scalar. Not modified</p>
+</div></blockquote>
+<p><strong>data</strong> : sequence</p>
+<blockquote>
+<div><p>Input data.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>times, data</strong> : tuple of sequence</p>
+<blockquote>
+<div><p>Copies of input times and data, fill added in gaps (<code class="docutils literal"><span class="pre">doTimes</span></code> True)</p>
+</div></blockquote>
+<p><strong>data</strong> : sequence</p>
+<blockquote>
+<div><p>Copy of input data, with fill added in gaps (<code class="docutils literal"><span class="pre">doTimes</span></code> False)</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Other Parameters:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><p class="first"><strong>fillval :</strong></p>
+<blockquote>
+<div><p>Fill value, same type as <code class="docutils literal"><span class="pre">data</span></code>. Default is <code class="docutils literal"><span class="pre">numpy.nan</span></code>. If scalar,
+will be repeated to match the shape of <code class="docutils literal"><span class="pre">data</span></code> (minus the time axis).</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The default value of <code class="docutils literal"><span class="pre">nan</span></code> will not produce good results with
+integer input.</p>
+</div>
+</div></blockquote>
+<p><strong>tol</strong> : float</p>
+<blockquote>
+<div><p>Tolerance. A single fill value is inserted between adjacent
+values where the spacing in <code class="docutils literal"><span class="pre">times</span></code> is strictly greater than
+<code class="docutils literal"><span class="pre">tol</span></code> times the median of the spacing across all
+<code class="docutils literal"><span class="pre">times</span></code>. The inserted time for fill is halfway between the
+time on each side. (Default 1.5)</p>
+</div></blockquote>
+<p><strong>absolute :</strong></p>
+<blockquote>
+<div><p>An absolute value for maximum spacing, of a type that would result from
+a difference in <code class="docutils literal"><span class="pre">times</span></code>. If specified, <code class="docutils literal"><span class="pre">tol</span></code> is ignored and any gap
+strictly larger than <code class="docutils literal"><span class="pre">absolute</span></code> will have fill inserted.</p>
+</div></blockquote>
+<p><strong>doTimes</strong> : boolean</p>
+<blockquote>
+<div><p>If True (default), will return a tuple of the times (with new values
+inserted for the fill records) and the data with new fill values.
+If False, will only return the data &#8211; useful for applying fill to
+multiple arrays of data on the same timebase.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first"><strong>ValueError</strong> : if can&#8217;t identify the time axis of data</p>
+<blockquote class="last">
+<div><p>Try using <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.rollaxis.html#numpy.rollaxis" title="(in NumPy v1.17)"><code class="xref py py-func docutils literal"><span class="pre">numpy.rollaxis()</span></code></a> to put the time axis first in both
+<code class="docutils literal"><span class="pre">data</span></code> and <code class="docutils literal"><span class="pre">times</span></code>.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<p>This example shows simple hourly data with a gap, populated with fill.
+Note that only a single fill value is inserted, to break the sequence
+of valid data rather than trying to match the existing cadence.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">datetime</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">spacepy.datamanager</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2012</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+<span class="go">         datetime.datetime(2012, 1, 1, 1),</span>
+<span class="go">         datetime.datetime(2012, 1, 1, 2),</span>
+<span class="go">         datetime.datetime(2012, 1, 1, 5),</span>
+<span class="go">         datetime.datetime(2012, 1, 1, 6)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">temp</span> <span class="o">=</span> <span class="p">[</span><span class="mf">30.0</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">35</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">filled_t</span><span class="p">,</span> <span class="n">filled_temp</span> <span class="o">=</span> <span class="n">spacepy</span><span class="o">.</span><span class="n">datamanager</span><span class="o">.</span><span class="n">insert_fill</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">temp</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">filled_t</span>
+<span class="go">array([datetime.datetime(2012, 1, 1, 0, 0),</span>
+<span class="go">       datetime.datetime(2012, 1, 1, 1, 0),</span>
+<span class="go">       datetime.datetime(2012, 1, 1, 2, 0),</span>
+<span class="go">       datetime.datetime(2012, 1, 1, 3, 30),</span>
+<span class="go">       datetime.datetime(2012, 1, 1, 5, 0),</span>
+<span class="go">       datetime.datetime(2012, 1, 1, 6, 0)], dtype=object)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">filled_temp</span>
+<span class="go">array([ 30.,  28.,  27.,  nan,  32.,  35.])</span>
+</pre></div>
+</div>
+<p>This example plots &#8220;gappy&#8221; data with and without explicit fill values.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">spacepy.datamanager</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span> <span class="n">numpy</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xf</span><span class="p">,</span> <span class="n">yf</span> <span class="o">=</span> <span class="n">spacepy</span><span class="o">.</span><span class="n">datamanager</span><span class="o">.</span><span class="n">insert_fill</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ax0</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ax0</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">212</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span> <span class="n">yf</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>(<a class="reference external" href=".//datamanager-1.py">Source code</a>, <a class="reference external" href=".//datamanager-1.png">png</a>, <a class="reference external" href=".//datamanager-1.hires.png">hires.png</a>, <a class="reference external" href=".//datamanager-1.pdf">pdf</a>)</p>
+<div class="figure">
+<img alt="_images/datamanager-1.png" src="_images/datamanager-1.png" />
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="spacepy.datamanager.rev_index">
+<code class="descclassname">spacepy.datamanager.</code><code class="descname">rev_index</code><span class="sig-paren">(</span><em>idx</em>, <em>axis=-1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spacepy/datamanager.html#rev_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.datamanager.rev_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>From an index, return an index that reverses the action of that index</p>
+<p>Essentially, <code class="docutils literal"><span class="pre">a[idx][rev_index(idx)]</span> <span class="pre">==</span> <span class="pre">a</span></code></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This becomes more complicated in multiple dimensions, due to the
+vagaries of applying a multidimensional index.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>idx</strong> : array</p>
+<blockquote>
+<div><p>Indices onto an array, often the output of <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.argsort.html#numpy.argsort" title="(in NumPy v1.17)"><code class="xref py py-func docutils literal"><span class="pre">argsort()</span></code></a>.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>rev_idx</strong> : array</p>
+<blockquote>
+<div><p>Indices that, when applied to an array after <code class="docutils literal"><span class="pre">idx</span></code>, will return
+the original array (before the application of <code class="docutils literal"><span class="pre">idx</span></code>).</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Other Parameters:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><p class="first"><strong>axis</strong> : int</p>
+<blockquote class="last">
+<div><p>Axis along which to return indices, defaults to the last axis.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#spacepy.datamanager.apply_index" title="spacepy.datamanager.apply_index"><code class="xref py py-obj docutils literal"><span class="pre">apply_index</span></code></a></p>
+</div>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">spacepy.datamanager</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="c1">#sorted</span>
+<span class="go">array([2, 3, 4, 6, 7])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="n">spacepy</span><span class="o">.</span><span class="n">datamanager</span><span class="o">.</span><span class="n">rev_index</span><span class="p">(</span><span class="n">idx</span><span class="p">)]</span> <span class="c1">#original</span>
+<span class="go">array([7, 2, 4, 6, 3])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="spacepy.datamanager.values_to_steps">
+<code class="descclassname">spacepy.datamanager.</code><code class="descname">values_to_steps</code><span class="sig-paren">(</span><em>array</em>, <em>axis=-1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spacepy/datamanager.html#values_to_steps"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.datamanager.values_to_steps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transform values along an axis to their order in a unique sequence.</p>
+<p>Useful in, e.g., converting a list of energies to their steps.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>array</strong> : array</p>
+<blockquote>
+<div><p>Input data.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>steps</strong> : array</p>
+<blockquote>
+<div><p>An array, the same size as <code class="docutils literal"><span class="pre">array</span></code>, with values along <code class="docutils literal"><span class="pre">axis</span></code>
+corresponding to the position of the value in <code class="docutils literal"><span class="pre">array</span></code> in a unique,
+sorted, set of the values in <code class="docutils literal"><span class="pre">array</span></code> along that axis. Differs from
+<a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.argsort.html#numpy.argsort" title="(in NumPy v1.17)"><code class="xref py py-func docutils literal"><span class="pre">argsort()</span></code></a> in that identical values will have identical
+step numbers in the output.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Other Parameters:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><p class="first"><strong>axis</strong> : int</p>
+<blockquote class="last">
+<div><p>Axis along which to find the steps.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">spacepy.datamanager</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">10.</span><span class="p">,</span> <span class="mf">12.</span><span class="p">,</span> <span class="mf">11.</span><span class="p">,</span> <span class="mf">9.</span><span class="p">,</span> <span class="mf">10.</span><span class="p">,</span> <span class="mf">12.</span><span class="p">,</span> <span class="mf">11.</span><span class="p">,</span> <span class="mf">9.</span><span class="p">],</span>
+<span class="go">            [10., 12., 11., 9., 14., 16., 15., 13.]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">spacepy</span><span class="o">.</span><span class="n">datamanager</span><span class="o">.</span><span class="n">values_to_steps</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="go">array([[1, 3, 2, 0, 1, 3, 2, 0],</span>
+<span class="go">       [1, 3, 2, 0, 5, 7, 6, 4]])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="datamodel.html" title="datamodel - easy to use general data model"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="autosummary/spacepy.coordinates.Coords.html" title="spacepy.coordinates.Coords"
+             >previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+       <li><a href="index.html">documentation </a> &raquo;</li>
+ 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2019, The SpacePy Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

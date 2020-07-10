@@ -1,0 +1,281 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>spacepy.coordinates.Coords &mdash; SpacePy v0.2.1 Manual</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="../_static/spacepy_favicon.ico"/>
+    <link rel="top" title="SpacePy v0.2.1 Manual" href="../index.html" />
+    <link rel="up" title="coordinates - module for coordinate transforms" href="../coordinates.html" />
+    <link rel="next" title="datamanager - easy access to and manipulation of data" href="../datamanager.html" />
+    <link rel="prev" title="coordinates - module for coordinate transforms" href="../coordinates.html" /> 
+  </head>
+  <body role="document">
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../index.html"><img src="../_static/spacepy_logo.jpg" border="0" alt="spacepy_logo"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../datamanager.html" title="datamanager - easy access to and manipulation of data"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../coordinates.html" title="coordinates - module for coordinate transforms"
+             accesskey="P">previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+       <li><a href="../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../coordinates.html" accesskey="U">coordinates - module for coordinate transforms</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../coordinates.html"
+                        title="previous chapter">coordinates - module for coordinate transforms</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../datamanager.html"
+                        title="next chapter">datamanager - easy access to and manipulation of data</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/autosummary/spacepy.coordinates.Coords.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="spacepy-coordinates-coords">
+<h1>spacepy.coordinates.Coords<a class="headerlink" href="#spacepy-coordinates-coords" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="spacepy.coordinates.Coords">
+<em class="property">class </em><code class="descclassname">spacepy.coordinates.</code><code class="descname">Coords</code><span class="sig-paren">(</span><em>data</em>, <em>dtype</em>, <em>carsph</em><span class="optional">[</span>, <em>units</em>, <em>ticks</em><span class="optional">]</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/coordinates.html#Coords"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.coordinates.Coords" title="Permalink to this definition">¶</a></dt>
+<dd><p>A class holding spatial coordinates in Cartesian/spherical
+in units of Re and degrees</p>
+<p>Coordinate transforms are based on the IRBEM library; <a class="reference external" href="http://svn.code.sf.net/p/irbem/code/trunk/manual/user_guide.html">its manual</a>
+may prove useful. For a good reference on heliospheric and magnetospheric
+coordinate systems, see Franz &amp; Harper, &#8220;Heliospheric Coordinate Systems&#8221;,
+Planet. Space Sci., 50, pp 217-233, 2002
+(<a class="reference external" href="https://doi.org/10.1016/S0032-0633(01)00119-2">https://doi.org/10.1016/S0032-0633(01)00119-2</a>).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>data</strong> : list or ndarray, dim = (n,3)</p>
+<blockquote>
+<div><p>coordinate points [X,Y,Z] or [rad, lat, lon]</p>
+</div></blockquote>
+<p><strong>dtype</strong> : string</p>
+<blockquote>
+<div><p>coordinate system; possible values are:</p>
+<ul class="simple">
+<li><strong>GDZ</strong> (Geodetic; WGS84),</li>
+<li><strong>GEO</strong> (Geographic Coordinate System),</li>
+<li><strong>GSM</strong> (Geocentric Solar Magnetospheric),</li>
+<li><strong>GSE</strong> (Geocentric Solar Ecliptic),</li>
+<li><strong>SM</strong> (Solar Magnetic),</li>
+<li><strong>GEI</strong> (Geocentric Equatorial Inertial; True-of-Date),</li>
+<li><strong>MAG</strong> (Geomagnetic Coordinate System),</li>
+<li><strong>SPH</strong> (Spherical Coordinate System),</li>
+<li><strong>RLL</strong> (Radius, Latitude, Longitude; Geodetic)</li>
+</ul>
+</div></blockquote>
+<p><strong>carsph</strong> : string</p>
+<blockquote>
+<div><p>Cartesian or spherical, &#8216;car&#8217; or &#8216;sph&#8217;</p>
+</div></blockquote>
+<p><strong>units</strong> : list of strings, optional</p>
+<blockquote>
+<div><p>standard are  [&#8216;Re&#8217;, &#8216;Re&#8217;, &#8216;Re&#8217;] or [&#8216;Re&#8217;, &#8216;deg&#8217;, &#8216;deg&#8217;] depending on the carsph content</p>
+</div></blockquote>
+<p><strong>ticks</strong> : Ticktock instance, optional</p>
+<blockquote>
+<div><p>used for coordinate transformations (see a.convert)</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>out</strong> : Coords instance</p>
+<blockquote class="last">
+<div><p>instance with a.data, a.carsph, etc.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="spacepy.time.Ticktock.html#spacepy.time.Ticktock" title="spacepy.time.Ticktock"><code class="xref py py-obj docutils literal"><span class="pre">spacepy.time.Ticktock</span></code></a></p>
+</div>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">spacepy</span> <span class="kn">import</span> <span class="n">coordinates</span> <span class="k">as</span> <span class="n">coord</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cvals</span> <span class="o">=</span> <span class="n">coord</span><span class="o">.</span><span class="n">Coords</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">]],</span> <span class="s1">&#39;GEO&#39;</span><span class="p">,</span> <span class="s1">&#39;car&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cvals</span><span class="o">.</span><span class="n">x</span>  <span class="c1"># returns all x coordinates</span>
+<span class="go">array([1, 1])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">spacepy.time</span> <span class="kn">import</span> <span class="n">Ticktock</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cvals</span><span class="o">.</span><span class="n">ticks</span> <span class="o">=</span> <span class="n">Ticktock</span><span class="p">([</span><span class="s1">&#39;2002-02-02T12:00:00&#39;</span><span class="p">,</span> <span class="s1">&#39;2002-02-02T12:00:00&#39;</span><span class="p">],</span> <span class="s1">&#39;ISO&#39;</span><span class="p">)</span> <span class="c1"># add ticks</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">newcoord</span> <span class="o">=</span> <span class="n">cvals</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;GSM&#39;</span><span class="p">,</span> <span class="s1">&#39;sph&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">newcoord</span>
+</pre></div>
+</div>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#spacepy.coordinates.Coords.append" title="spacepy.coordinates.Coords.append"><code class="xref py py-obj docutils literal"><span class="pre">append</span></code></a>(other)</td>
+<td>Append another Coords instance to the current one</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#spacepy.coordinates.Coords.convert" title="spacepy.coordinates.Coords.convert"><code class="xref py py-obj docutils literal"><span class="pre">convert</span></code></a>(returntype,&nbsp;returncarsph)</td>
+<td>Create a new Coords instance with new coordinate types</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="spacepy.coordinates.Coords.append">
+<code class="descname">append</code><span class="sig-paren">(</span><em>other</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/coordinates.html#Coords.append"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.coordinates.Coords.append" title="Permalink to this definition">¶</a></dt>
+<dd><p>Append another Coords instance to the current one</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>other</strong> : Coords instance</p>
+<blockquote class="last">
+<div><p>Coords instance to append</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="spacepy.coordinates.Coords.convert">
+<code class="descname">convert</code><span class="sig-paren">(</span><em>returntype</em>, <em>returncarsph</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/coordinates.html#Coords.convert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.coordinates.Coords.convert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new Coords instance with new coordinate types</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>returntype</strong> : string</p>
+<blockquote>
+<div><p>coordinate system, possible are GDZ, GEO, GSM, GSE, SM, GEI, MAG, SPH, RLL</p>
+</div></blockquote>
+<p><strong>returncarsph</strong> : string</p>
+<blockquote>
+<div><p>coordinate type, possible &#8216;car&#8217; for Cartesian and &#8216;sph&#8217; for spherical</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>out</strong> : Coords object</p>
+<blockquote class="last">
+<div><p>Coords object in the new coordinate system</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">spacepy.coordinates</span> <span class="kn">import</span> <span class="n">Coords</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">Coords</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">]],</span> <span class="s1">&#39;GEO&#39;</span><span class="p">,</span> <span class="s1">&#39;car&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">spacepy.time</span> <span class="kn">import</span> <span class="n">Ticktock</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span><span class="o">.</span><span class="n">ticks</span> <span class="o">=</span> <span class="n">Ticktock</span><span class="p">([</span><span class="s1">&#39;2002-02-02T12:00:00&#39;</span><span class="p">,</span> <span class="s1">&#39;2002-02-02T12:00:00&#39;</span><span class="p">],</span> <span class="s1">&#39;ISO&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;SM&#39;</span><span class="p">,</span><span class="s1">&#39;car&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span>
+<span class="go">Coords( [[ 0.81134097  2.6493305   3.6500375 ]</span>
+<span class="go"> [ 0.92060408  2.30678864  1.68262126]] ), dtype=SM,car, units=[&#39;Re&#39;, &#39;Re&#39;, &#39;Re&#39;]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../datamanager.html" title="datamanager - easy access to and manipulation of data"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../coordinates.html" title="coordinates - module for coordinate transforms"
+             >previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+       <li><a href="../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../coordinates.html" >coordinates - module for coordinate transforms</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2019, The SpacePy Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

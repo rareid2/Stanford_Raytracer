@@ -1,0 +1,514 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>spacepy.plot &mdash; SpacePy v0.2.1 Manual</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="../../_static/spacepy_favicon.ico"/>
+    <link rel="top" title="SpacePy v0.2.1 Manual" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+  </head>
+  <body role="document">
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../../index.html"><img src="../../_static/spacepy_logo.jpg" border="0" alt="spacepy_logo"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../../search.html">search</a>|&nbsp;</li>
+       <li><a href="../../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/logo.png" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for spacepy.plot</h1><div class="highlight"><pre>
+<span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">plot: SpacePy plotting routines</span>
+
+<span class="sd">This package aims to make getting publication ready plots easier.</span>
+<span class="sd">It provides classes and functions for different types of plot </span>
+<span class="sd">(e.g. Spectrogram, levelPlot), for helping make plots more cleanly </span>
+<span class="sd">(e.g. set_target, dual_half_circle), and for making plots convey </span>
+<span class="sd">information more cleanly, with less effort </span>
+<span class="sd">(e.g. applySmartTimeTicks, style).</span>
+
+<span class="sd">This plot module now provides style sheets. For most standard plotting </span>
+<span class="sd">we recommend the *default* style sheet (aka *spacepy*). To auto-apply the</span>
+<span class="sd">default plot style the following should be added to your spacepy.rc file::</span>
+
+<span class="sd">    apply_plot_styles: True</span>
+
+<span class="sd">Different plot types may not work well with this style, so we have provided</span>
+<span class="sd">alternatives. For polar plots, spectrograms, or anything with larger blocks </span>
+<span class="sd">of color, it may be better to use one of the alternatives::</span>
+
+<span class="sd">    import spacepy.plot as splot</span>
+<span class="sd">    splot.style(&#39;altgrid&#39;) # inverts background from default so it&#39;s white</span>
+<span class="sd">    splot.style(&#39;polar&#39;) # designed for filled polar plots</span>
+<span class="sd">    splot.revert_style() # put the style back to matplotlib defaults</span>
+
+<span class="sd">For those constrained by institutional computing, we also provide the</span>
+<span class="sd">new colormaps developed for matplotlib v2. These colormaps are designed </span>
+<span class="sd">to be perceptually uniform, and hence colorblind-friendly.</span>
+
+<span class="sd">Authors: Brian Larsen and Steve Morley</span>
+<span class="sd">Institution: Los Alamos National Laboratory</span>
+<span class="sd">Contact: balarsen@lanl.gov</span>
+
+
+<span class="sd">Copyright 2011-2016 Los Alamos National Security, LLC.</span>
+
+<span class="sd">.. autosummary::</span>
+<span class="sd">   :template: clean_function.rst</span>
+<span class="sd">   :toctree: autosummary</span>
+
+<span class="sd">   add_logo</span>
+<span class="sd">   annotate_xaxis</span>
+<span class="sd">   applySmartTimeTicks</span>
+<span class="sd">   available</span>
+<span class="sd">   collapse_vertical</span>
+<span class="sd">   dual_half_circle</span>
+<span class="sd">   levelPlot</span>
+<span class="sd">   plot</span>
+<span class="sd">   revert_style</span>
+<span class="sd">   set_target</span>
+<span class="sd">   shared_ylabel</span>
+<span class="sd">   solarRotationPlot</span>
+<span class="sd">   spectrogram</span>
+<span class="sd">   style</span>
+<span class="sd">   timestamp</span>
+
+<span class="sd">Most of the functionality in the plot module is made available directly </span>
+<span class="sd">through the *plot* namespace. However, the plot module does contain</span>
+<span class="sd">several submodules listed below</span>
+
+<span class="sd">.. autosummary::</span>
+<span class="sd">    :template: clean_module.rst</span>
+
+<span class="sd">    carrington</span>
+<span class="sd">    colourmaps</span>
+<span class="sd">    spectrogram</span>
+<span class="sd">    utils</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Mapping</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Mapping</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="kn">as</span> <span class="nn">mpl</span>
+<span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">Wedge</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">__version__</span> <span class="k">as</span> <span class="n">mplv</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">spacepy</span> <span class="kn">import</span> <span class="n">__path__</span> <span class="k">as</span> <span class="n">basepath</span>
+<span class="kn">from</span> <span class="nn">spacepy.datamodel</span> <span class="kn">import</span> <span class="n">dmcopy</span>
+<span class="kn">import</span> <span class="nn">spacepy.datamanager</span> <span class="kn">as</span> <span class="nn">dman</span>
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">config</span>
+<span class="kn">from</span> <span class="nn">.spectrogram</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">.utils</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">.carrington</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">.colourmaps</span> <span class="kn">import</span> <span class="n">plasma</span> <span class="k">as</span> <span class="n">_plasma</span>
+<span class="kn">from</span> <span class="nn">.colourmaps</span> <span class="kn">import</span> <span class="n">plasma_r</span> <span class="k">as</span> <span class="n">_plasma_r</span>
+<span class="kn">from</span> <span class="nn">.colourmaps</span> <span class="kn">import</span> <span class="n">viridis</span> <span class="k">as</span> <span class="n">_viridis</span>
+<span class="kn">from</span> <span class="nn">.colourmaps</span> <span class="kn">import</span> <span class="n">viridis_r</span> <span class="k">as</span> <span class="n">_viridis_r</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">register_cmap</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;plasma&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">_plasma</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">register_cmap</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;plasma_r&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">_plasma_r</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">register_cmap</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">_viridis</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">register_cmap</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;viridis_r&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">_viridis_r</span><span class="p">)</span>
+
+<div class="viewcode-block" id="plot"><a class="viewcode-back" href="../../autosummary/spacepy.plot.plot.html#spacepy.plot.plot">[docs]</a><span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Convenience wrapper for matplotlib&#39;s plot function</span>
+
+<span class="sd">    As with matplotlib&#39;s plot function, *args* is a variable length</span>
+<span class="sd">    argument, allowing for multiple *x*, *y* pairs, each with optional </span>
+<span class="sd">    format string. For full details, see matplotlib.pyplot.plot</span>
+
+<span class="sd">    Other Parameters</span>
+<span class="sd">    ----------------</span>
+<span class="sd">    smartTimeTicks : boolean</span>
+<span class="sd">        If True then use applySmartTimeTicks to set x-axis labeling</span>
+<span class="sd">    figsize : array-like, 2 elements</span>
+<span class="sd">        Set figure size directly on call to plot, (width, height)</span>
+<span class="sd">    **kwargs : other keywords</span>
+<span class="sd">        Other keywords to pass to matplotlib.pyplot.plot</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="s1">&#39;smartTimeTicks&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="n">sTT</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;smartTimeTicks&#39;</span><span class="p">]</span>
+        <span class="k">del</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;smartTimeTicks&#39;</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">sTT</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="k">if</span> <span class="s1">&#39;figsize&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;figsize&#39;</span><span class="p">])</span>
+        <span class="k">del</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;figsize&#39;</span><span class="p">]</span>
+    <span class="n">pobj</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">sTT</span> <span class="ow">is</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+        <span class="n">applySmartTimeTicks</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dolimit</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">dolabel</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pobj</span></div>
+
+<div class="viewcode-block" id="available"><a class="viewcode-back" href="../../autosummary/spacepy.plot.available.html#spacepy.plot.available">[docs]</a><span class="k">def</span> <span class="nf">available</span><span class="p">(</span><span class="n">returnvals</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;List the available plot styles provided by spacepy.plot</span>
+
+<span class="sd">    Note that some of the available styles have multiple aliases.</span>
+<span class="sd">    To apply an available style, use `spacepy.plot.style`.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">spacepystyle</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;{0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">basepath</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;spacepy.mplstyle&#39;</span><span class="p">)</span>
+    <span class="n">spacepyaltstyle</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;{0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">basepath</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;spacepy_altgrid.mplstyle&#39;</span><span class="p">)</span>
+    <span class="n">polarstyle</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;{0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">basepath</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;spacepy_polar.mplstyle&#39;</span><span class="p">)</span>
+    <span class="n">lookdict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="n">spacepystyle</span><span class="p">,</span>
+                <span class="s1">&#39;spacepy&#39;</span><span class="p">:</span> <span class="n">spacepystyle</span><span class="p">,</span>
+                <span class="s1">&#39;spacepy_altgrid&#39;</span><span class="p">:</span> <span class="n">spacepyaltstyle</span><span class="p">,</span>
+                <span class="s1">&#39;altgrid&#39;</span><span class="p">:</span> <span class="n">spacepyaltstyle</span><span class="p">,</span>
+                <span class="s1">&#39;spacepy_polar&#39;</span><span class="p">:</span> <span class="n">polarstyle</span><span class="p">,</span>
+                <span class="s1">&#39;polar&#39;</span><span class="p">:</span> <span class="n">polarstyle</span>
+               <span class="p">}</span>
+    <span class="k">if</span> <span class="n">returnvals</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">lookdict</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">lookdict</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span></div>
+
+<div class="viewcode-block" id="style"><a class="viewcode-back" href="../../autosummary/spacepy.plot.style.html#spacepy.plot.style">[docs]</a><span class="k">def</span> <span class="nf">style</span><span class="p">(</span><span class="n">look</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;plasma&#39;</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Apply SpacePy&#39;s matplotlib style settings from a known style sheet.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    look : str</span>
+<span class="sd">    Name of style. For a list of available style names, see `spacepy.plot.available`.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">lookdict</span> <span class="o">=</span> <span class="n">available</span><span class="p">(</span><span class="n">returnvals</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">usestyle</span> <span class="o">=</span> <span class="n">lookdict</span><span class="p">[</span><span class="n">look</span><span class="p">]</span>
+    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+        <span class="n">usestyle</span> <span class="o">=</span> <span class="n">lookdict</span><span class="p">[</span><span class="s1">&#39;default&#39;</span><span class="p">]</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="n">usestyle</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span> <span class="c1">#plt.style.use not available, old matplotlib?</span>
+        <span class="kn">import</span> <span class="nn">warnings</span>
+        <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+            <span class="n">dum</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rc_params_from_file</span><span class="p">(</span><span class="n">usestyle</span><span class="p">)</span>
+            <span class="n">styapply</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+            <span class="c1">#remove None values as these seem to cause issues...</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">dum</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">dum</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span> <span class="n">styapply</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">dum</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">styapply</span><span class="p">:</span>
+                <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">styapply</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+    <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;image.cmap&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cmap</span></div>
+
+<span class="c1">#save current rcParams before applying spacepy style</span>
+<span class="n">oldParams</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">oldParams</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">dmcopy</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;apply_plot_styles&#39;</span><span class="p">]:</span>
+    <span class="n">style</span><span class="p">()</span>
+
+<div class="viewcode-block" id="revert_style"><a class="viewcode-back" href="../../autosummary/spacepy.plot.revert_style.html#spacepy.plot.revert_style">[docs]</a><span class="k">def</span> <span class="nf">revert_style</span><span class="p">():</span>
+    <span class="sd">&#39;&#39;&#39;Revert plot style settings to those in use prior to importing spacepy.plot</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="kn">import</span> <span class="nn">warnings</span>
+    <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">oldParams</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">oldParams</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="dual_half_circle"><a class="viewcode-back" href="../../autosummary/spacepy.plot.dual_half_circle.html#spacepy.plot.dual_half_circle">[docs]</a><span class="k">def</span> <span class="nf">dual_half_circle</span><span class="p">(</span><span class="n">center</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">radius</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+                     <span class="n">sun_direction</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;w&#39;</span><span class="p">,</span><span class="s1">&#39;k&#39;</span><span class="p">),</span>
+                     <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Plot two half circles to a plot with the specified face colors and</span>
+<span class="sd">    rotation. This is normal to use to denote the sun direction in</span>
+<span class="sd">    magnetospheric science plots.</span>
+
+<span class="sd">    Other Parameters</span>
+<span class="sd">    ----------------</span>
+<span class="sd">    center : array-like, 2 elements</span>
+<span class="sd">        Center in data coordinates of the circles, default (0,0)</span>
+<span class="sd">    radius : float</span>
+<span class="sd">        Radius of the circles, defualt 1.0</span>
+<span class="sd">    sun_direction : string or float</span>
+<span class="sd">        The rotation direction of the first (white) circle. Options are [&#39;down&#39;,</span>
+<span class="sd">        &#39;down right&#39;, &#39;right&#39;, &#39;up left&#39;, &#39;up right&#39;, &#39;up&#39;, &#39;down left&#39;, &#39;left&#39;]</span>
+<span class="sd">        or an angle in degrees counter-clockwise from up. Default right.</span>
+<span class="sd">    ax : matplotlib.axes</span>
+<span class="sd">        Axis to plot the circles on.</span>
+<span class="sd">    colors : array-like, 2 elements</span>
+<span class="sd">        The two colors for the circle fill. The First number is the light and</span>
+<span class="sd">        second is the dark.</span>
+<span class="sd">    **kwargs : other keywords</span>
+<span class="sd">        Other keywords to pass to matplotlib.patches.Wedge</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    out : tuple</span>
+<span class="sd">        Tuple of the two wedge objects</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import spacepy.plot</span>
+<span class="sd">    &gt;&gt;&gt; spacepy.plot.dual_half_circle()</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">sun_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;left&#39;</span><span class="p">:</span><span class="mi">90</span><span class="p">,</span>
+                <span class="s1">&#39;right&#39;</span><span class="p">:</span><span class="o">-</span><span class="mi">90</span><span class="p">,</span>
+                <span class="s1">&#39;up&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+                <span class="s1">&#39;down&#39;</span><span class="p">:</span><span class="mi">180</span><span class="p">,</span>
+                <span class="s1">&#39;up right&#39;</span><span class="p">:</span><span class="o">-</span><span class="mi">45</span><span class="p">,</span>
+                <span class="s1">&#39;up left&#39;</span><span class="p">:</span><span class="mi">45</span><span class="p">,</span>
+                <span class="s1">&#39;down right&#39;</span><span class="p">:</span><span class="mi">45</span><span class="o">+</span><span class="mi">180</span><span class="p">,</span>
+                <span class="s1">&#39;down left&#39;</span><span class="p">:</span><span class="o">-</span><span class="mi">45</span><span class="o">+</span><span class="mi">180</span><span class="p">,</span>
+                <span class="p">}</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">angle</span> <span class="o">=</span> <span class="n">sun_dict</span><span class="p">[</span><span class="n">sun_direction</span><span class="p">]</span>
+    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">angle</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">sun_direction</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="k">raise</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Sun_direction was not understood, must be a float or {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sun_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">())))</span>
+                
+    <span class="n">theta1</span><span class="p">,</span> <span class="n">theta2</span> <span class="o">=</span> <span class="n">angle</span><span class="p">,</span> <span class="n">angle</span> <span class="o">+</span> <span class="mi">180</span>
+    <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+        
+    <span class="n">w1</span> <span class="o">=</span> <span class="n">Wedge</span><span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">theta1</span><span class="p">,</span> <span class="n">theta2</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transData</span><span class="o">.</span><span class="n">_b</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">w2</span> <span class="o">=</span> <span class="n">Wedge</span><span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">theta2</span><span class="p">,</span> <span class="n">theta1</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transData</span><span class="o">.</span><span class="n">_b</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">wedge</span> <span class="ow">in</span> <span class="p">[</span><span class="n">w1</span><span class="p">,</span> <span class="n">w2</span><span class="p">]:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span><span class="n">wedge</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">w1</span><span class="p">,</span> <span class="n">w2</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="levelPlot"><a class="viewcode-back" href="../../autosummary/spacepy.plot.levelPlot.html#spacepy.plot.levelPlot">[docs]</a><span class="k">def</span> <span class="nf">levelPlot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">var</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">target</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Draw a step-plot with up to 5 levels following a color cycle (e.g. Kp index &quot;stoplight&quot;)</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : array-like, or dict-like</span>
+<span class="sd">        Data for plotting. If dict-like, the key providing an array-like </span>
+<span class="sd">        to plot must be given to var keyword argument.</span>
+
+<span class="sd">    Other Parameters</span>
+<span class="sd">    ----------------</span>
+<span class="sd">    var    : string</span>
+<span class="sd">        Name of key in dict-like input that contains data</span>
+<span class="sd">    time   : array-like or string</span>
+<span class="sd">        Name of key in dict-like that contains time, or arraylike of datetimes</span>
+<span class="sd">    levels : array-like, up to 5 levels</span>
+<span class="sd">        Breaks between levels in data that should be shown as distinct colors</span>
+<span class="sd">    target : figure or axes</span>
+<span class="sd">        Target axes or figure window</span>
+<span class="sd">    colors : array-like</span>
+<span class="sd">        Colors to use for the color sequence (if insufficient colors, will use as a cycle)</span>
+<span class="sd">    **kwargs : other keywords</span>
+<span class="sd">        Other keywords to pass to spacepy.toolbox.binHisto</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    binned : tuple</span>
+<span class="sd">        Tuple of the binned data and bins</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import spacepy.plot as splot</span>
+<span class="sd">    &gt;&gt;&gt; import spacepy.time as spt</span>
+<span class="sd">    &gt;&gt;&gt; import spacepy.omni as om</span>
+<span class="sd">    &gt;&gt;&gt; tt = spt.tickrange(&#39;2012/09/28&#39;,&#39;2012/10/2&#39;, 3/24.)</span>
+<span class="sd">    &gt;&gt;&gt; omni = om.get_omni(tt)</span>
+<span class="sd">    &gt;&gt;&gt; splot.levelPlot(omni, var=&#39;Kp&#39;, time=&#39;UTC&#39;, colors=[&#39;seagreen&#39;, &#39;orange&#39;, &#39;crimson&#39;])</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1">#assume dict-like/key-access, before moving to array-like</span>
+    <span class="k">if</span> <span class="n">var</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">usearr</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">var</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s1">&#39;Key &quot;{1}&quot; not present in data&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">var</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1">#var is None, so make sure we don&#39;t have a dict-like</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">):</span>
+            <span class="n">usearr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;Data appears to be dict-like without a key being given&#39;</span><span class="p">)</span>
+    <span class="n">tflag</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="k">if</span> <span class="n">time</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">mode</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">times</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">time</span><span class="p">]</span>
+        <span class="k">except</span> <span class="p">(</span><span class="ne">KeyError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">,</span> <span class="ne">IndexError</span><span class="p">):</span>
+            <span class="n">times</span> <span class="o">=</span> <span class="n">time</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">times</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">dates</span><span class="o">.</span><span class="n">date2num</span><span class="p">(</span><span class="n">times</span><span class="p">)</span>
+            <span class="n">tflag</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="c1">#the x-data are a non-datetime</span>
+            <span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+        <span class="c1">#now add the end-point</span>
+        <span class="n">stepsize</span><span class="p">,</span> <span class="n">dum</span> <span class="o">=</span> <span class="n">mode</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">times</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+        <span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">times</span><span class="p">,</span> <span class="n">times</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">stepsize</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">usearr</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">colors</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">levels</span><span class="p">)</span><span class="o">&lt;=</span><span class="mi">3</span><span class="p">:</span>
+            <span class="c1">#traffic light colours that are distinct to protanopes and deuteranopes</span>
+            <span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;lime&#39;</span><span class="p">,</span> <span class="s1">&#39;yellow&#39;</span><span class="p">,</span> <span class="s1">&#39;crimson&#39;</span><span class="p">,</span> <span class="s1">&#39;saddlebrown&#39;</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">colors</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.color_cycle&#39;</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">colors</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">levels</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">AssertionError</span><span class="p">:</span>
+            <span class="c1">#cycle the given colors, if not enough are given</span>
+            <span class="n">colors</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">colors</span><span class="p">)</span><span class="o">*</span><span class="nb">int</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="n">levels</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">colors</span><span class="p">))</span>
+    <span class="k">if</span> <span class="s1">&#39;alpha&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">]</span><span class="o">=</span><span class="mf">0.75</span>
+    <span class="k">if</span> <span class="s1">&#39;legend&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="n">legend</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">legend</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;legend&#39;</span><span class="p">]</span>
+        <span class="k">del</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;legend&#39;</span><span class="p">]</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">set_target</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+    <span class="n">subset</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">dmcopy</span><span class="p">(</span><span class="n">usearr</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">fill_between_steps</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">y2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">y1</span><span class="p">)</span>
+        <span class="n">stepsxx</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">2</span><span class="p">)[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">stepsyy</span> <span class="o">=</span> <span class="n">y1</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">y2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">stepsyy</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">stepsxx</span><span class="p">,</span> <span class="n">stepsyy</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">mpl</span><span class="o">.</span><span class="n">__version__</span><span class="o">&lt;</span><span class="s1">&#39;1.5.0&#39;</span><span class="p">:</span>
+            <span class="c1">#pre-v1.5.0, need to manually add an artist for the legend</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+    
+    <span class="c1">#below threshold 1</span>
+    <span class="n">idx</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">inds</span> <span class="o">=</span> <span class="n">usearr</span><span class="o">&gt;</span><span class="n">levels</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">subset</span><span class="p">[</span><span class="n">inds</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+    <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">u&#39;≤{0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">levels</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span>
+    <span class="n">fill_between_steps</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">times</span><span class="p">,</span> <span class="n">subset</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="c1">#for each of the &quot;between&quot; thresholds</span>
+    <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">levels</span><span class="p">)):</span>
+        <span class="n">subset</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">dmcopy</span><span class="p">(</span><span class="n">usearr</span><span class="p">))</span>
+        <span class="n">inds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">bitwise_or</span><span class="p">(</span><span class="n">usearr</span><span class="o">&lt;=</span><span class="n">levels</span><span class="p">[</span><span class="n">idx</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">usearr</span><span class="o">&gt;</span><span class="n">levels</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span>
+        <span class="n">subset</span><span class="p">[</span><span class="n">inds</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">u&#39;&gt;{0},≤{1}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">levels</span><span class="p">[</span><span class="n">idx</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">levels</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span>
+        <span class="n">fill_between_steps</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">times</span><span class="p">,</span> <span class="n">subset</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">30</span><span class="o">-</span><span class="p">(</span><span class="n">idx</span><span class="o">*</span><span class="mi">2</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="c1">#last</span>
+    <span class="n">idx</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">inds</span> <span class="o">=</span> <span class="n">usearr</span><span class="o">&lt;=</span><span class="n">levels</span><span class="p">[</span><span class="n">idx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">subset</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">dmcopy</span><span class="p">(</span><span class="n">usearr</span><span class="p">))</span>
+        <span class="n">subset</span><span class="p">[</span><span class="n">inds</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&gt;{0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">levels</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">fill_between_steps</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">times</span><span class="p">,</span> <span class="n">subset</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">30</span><span class="o">-</span><span class="p">(</span><span class="n">idx</span><span class="o">*</span><span class="mi">2</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+    <span class="c1">#if required, set x axis to times</span>
+    <span class="k">if</span> <span class="n">tflag</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">applySmartTimeTicks</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="n">time</span><span class="p">])</span>
+        <span class="k">except</span> <span class="p">(</span><span class="ne">IndexError</span><span class="p">,</span> <span class="ne">KeyError</span><span class="p">):</span>
+            <span class="c1">#using data array to index, so should just use time</span>
+            <span class="n">applySmartTimeTicks</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">time</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;minor&#39;</span><span class="p">)</span> <span class="c1">#minor grid usually looks bad on these...</span>
+
+    <span class="k">if</span> <span class="n">legend</span><span class="p">:</span>
+        <span class="n">ncols</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">levels</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span>
+        <span class="k">if</span> <span class="n">ncols</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span> <span class="n">ncols</span> <span class="o">=</span> <span class="n">ncols</span><span class="o">//</span><span class="mi">2</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">ncol</span><span class="o">=</span><span class="n">ncols</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">ax</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../../search.html">search</a>|&nbsp;</li>
+       <li><a href="../../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2019, The SpacePy Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

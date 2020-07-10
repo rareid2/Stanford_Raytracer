@@ -1,0 +1,195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>spacepy.pybats.LogFile &mdash; SpacePy v0.2.1 Manual</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="../_static/spacepy_favicon.ico"/>
+    <link rel="top" title="SpacePy v0.2.1 Manual" href="../index.html" />
+    <link rel="up" title="PyBats - SWMF &amp; BATS-R-US Analysis Tools" href="../pybats.html" />
+    <link rel="next" title="spacepy.pybats.NgdcIndex" href="spacepy.pybats.NgdcIndex.html" />
+    <link rel="prev" title="spacepy.pybats.ImfInput" href="spacepy.pybats.ImfInput.html" /> 
+  </head>
+  <body role="document">
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../index.html"><img src="../_static/spacepy_logo.jpg" border="0" alt="spacepy_logo"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="spacepy.pybats.NgdcIndex.html" title="spacepy.pybats.NgdcIndex"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="spacepy.pybats.ImfInput.html" title="spacepy.pybats.ImfInput"
+             accesskey="P">previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+       <li><a href="../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../pybats.html" accesskey="U">PyBats - SWMF &amp; BATS-R-US Analysis Tools</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="spacepy.pybats.ImfInput.html"
+                        title="previous chapter">spacepy.pybats.ImfInput</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="spacepy.pybats.NgdcIndex.html"
+                        title="next chapter">spacepy.pybats.NgdcIndex</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/autosummary/spacepy.pybats.LogFile.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="spacepy-pybats-logfile">
+<h1>spacepy.pybats.LogFile<a class="headerlink" href="#spacepy-pybats-logfile" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="spacepy.pybats.LogFile">
+<em class="property">class </em><code class="descclassname">spacepy.pybats.</code><code class="descname">LogFile</code><span class="sig-paren">(</span><em>filename</em>, <em>starttime=(2000</em>, <em>1</em>, <em>1</em>, <em>0</em>, <em>0</em>, <em>0)</em>, <em>keep_case=True</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/pybats.html#LogFile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.pybats.LogFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>An object to read and handle SWMF-type logfiles.</p>
+<p><em>LogFile</em> objects read and hold all information in an SWMF
+ascii time-varying logfile.  The file is read upon instantiation.  
+Many SWMF codes
+produce flat ascii files that can be read by this class; the most
+frequently used ones have their own classes that inherit from this.</p>
+<p>See <a class="reference internal" href="spacepy.pybats.PbData.html#spacepy.pybats.PbData" title="spacepy.pybats.PbData"><code class="xref py py-class docutils literal"><span class="pre">spacepy.pybats.PbData</span></code></a> for information on how to explore
+data contained within the returned object.</p>
+<p>Usage:
+&gt;&gt;&gt;data = spacepy.pybats.LogFile(&#8216;filename.log&#8217;)</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="83%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>kwarg</td>
+<td>Description</td>
+</tr>
+<tr class="row-even"><td>starttime</td>
+<td>Manually set the start time of the data.</td>
+</tr>
+</tbody>
+</table>
+<p>Time is handled by Python&#8217;s datetime package.  Given that time
+may or may not be given in the logfile, there are three options
+for how time is returned:</p>
+<blockquote>
+<div><p>1. if the full date and time are listed in the file, <code class="docutils literal"><span class="pre">self['time']</span></code>
+is an array of datetime objects corresponding to the entries.  The
+starttime kwarg is ignored.</p>
+<p>2. If only the runtime (seconds from start of simulation) is given,
+self[&#8216;time&#8217;] is an array of datetime objects that starts from
+the given <em>starttime</em> kwarg which defaults to  1/1/1 00:00UT.</p>
+<p>3. If neither of the above are given, the time is assumed to 
+advance one second per line starting from either the starttime kwarg
+or from 2000/1/1 00:00UT + the first iteration (if given in file.)
+As you can imagine, this is sketchy at best.</p>
+</div></blockquote>
+<p>This time issue is output dependent: some SWMF models place the full date
+and time into the log by default while others will almost never include the
+full date and time.  The variable <code class="docutils literal"><span class="pre">self['runtime']</span></code> contains the more
+generic seconds from simulation start values.</p>
+<p>Example usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">spacepy.pybats</span> <span class="kn">as</span> <span class="nn">pb</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pylab</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">datetime</span> <span class="kn">as</span> <span class="nn">dt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">time1</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2009</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">file1</span> <span class="o">=</span> <span class="n">pb</span><span class="o">.</span><span class="n">logfile</span><span class="p">(</span><span class="s1">&#39;satfile_n000000.dat&#39;</span><span class="p">,</span> <span class="n">starttime</span><span class="o">=</span><span class="n">time1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">file1</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">],</span> <span class="n">file1</span><span class="p">[</span><span class="s1">&#39;dst&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="spacepy.pybats.NgdcIndex.html" title="spacepy.pybats.NgdcIndex"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="spacepy.pybats.ImfInput.html" title="spacepy.pybats.ImfInput"
+             >previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+       <li><a href="../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../pybats.html" >PyBats - SWMF &amp; BATS-R-US Analysis Tools</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2019, The SpacePy Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

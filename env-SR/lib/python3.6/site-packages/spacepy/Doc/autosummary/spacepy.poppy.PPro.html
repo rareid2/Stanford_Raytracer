@@ -1,0 +1,415 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>spacepy.poppy.PPro &mdash; SpacePy v0.2.1 Manual</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="../_static/spacepy_favicon.ico"/>
+    <link rel="top" title="SpacePy v0.2.1 Manual" href="../index.html" />
+    <link rel="up" title="PoPPy - Point Processes in Python" href="../poppy.html" />
+    <link rel="next" title="spacepy.poppy.plot_two_ppro" href="spacepy.poppy.plot_two_ppro.html" />
+    <link rel="prev" title="PoPPy - Point Processes in Python" href="../poppy.html" /> 
+  </head>
+  <body role="document">
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../index.html"><img src="../_static/spacepy_logo.jpg" border="0" alt="spacepy_logo"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="spacepy.poppy.plot_two_ppro.html" title="spacepy.poppy.plot_two_ppro"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../poppy.html" title="PoPPy - Point Processes in Python"
+             accesskey="P">previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+       <li><a href="../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../poppy.html" accesskey="U">PoPPy - Point Processes in Python</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../poppy.html"
+                        title="previous chapter">PoPPy - Point Processes in Python</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="spacepy.poppy.plot_two_ppro.html"
+                        title="next chapter">spacepy.poppy.plot_two_ppro</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/autosummary/spacepy.poppy.PPro.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="spacepy-poppy-ppro">
+<h1>spacepy.poppy.PPro<a class="headerlink" href="#spacepy-poppy-ppro" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="spacepy.poppy.PPro">
+<em class="property">class </em><code class="descclassname">spacepy.poppy.</code><code class="descname">PPro</code><span class="sig-paren">(</span><em>process1</em>, <em>process2</em>, <em>lags=None</em>, <em>winhalf=None</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/poppy.html#PPro"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.poppy.PPro" title="Permalink to this definition">¶</a></dt>
+<dd><p>PoPPy point process object</p>
+<p>Initialize object with series1 and series2. These should be timeseries of
+events, given as lists, arrays, or lists of datetime objects.
+Includes method to perform association analysis of input series</p>
+<p>Output can be nicely plotted with <a class="reference internal" href="#spacepy.poppy.PPro.plot" title="spacepy.poppy.PPro.plot"><code class="xref py py-meth docutils literal"><span class="pre">plot()</span></code></a>.</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#spacepy.poppy.PPro.aa_ci" title="spacepy.poppy.PPro.aa_ci"><code class="xref py py-obj docutils literal"><span class="pre">aa_ci</span></code></a>(inter[,&nbsp;n_boots,&nbsp;seed])</td>
+<td>Get bootstrap confidence intervals for association number</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#spacepy.poppy.PPro.assoc" title="spacepy.poppy.PPro.assoc"><code class="xref py py-obj docutils literal"><span class="pre">assoc</span></code></a>([u,&nbsp;h])</td>
+<td>Perform association analysis on input series</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#spacepy.poppy.PPro.assoc_mult" title="spacepy.poppy.PPro.assoc_mult"><code class="xref py py-obj docutils literal"><span class="pre">assoc_mult</span></code></a>(windows[,&nbsp;inter,&nbsp;n_boots,&nbsp;seed])</td>
+<td>Association analysis w/confidence interval on multiple windows</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#spacepy.poppy.PPro.ci" title="spacepy.poppy.PPro.ci"><code class="xref py py-obj docutils literal"><span class="pre">ci</span></code></a></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#spacepy.poppy.PPro.conf_above" title="spacepy.poppy.PPro.conf_above"><code class="xref py py-obj docutils literal"><span class="pre">conf_above</span></code></a></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#spacepy.poppy.PPro.plot" title="spacepy.poppy.PPro.plot"><code class="xref py py-obj docutils literal"><span class="pre">plot</span></code></a>([figsize,&nbsp;dpi,&nbsp;asympt,&nbsp;show,&nbsp;norm,&nbsp;...])</td>
+<td>Create basic plot of association analysis.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#spacepy.poppy.PPro.plot_mult" title="spacepy.poppy.PPro.plot_mult"><code class="xref py py-obj docutils literal"><span class="pre">plot_mult</span></code></a>(windows,&nbsp;data[,&nbsp;min,&nbsp;max,&nbsp;...])</td>
+<td>Plots a 2D function of window size and lag</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#spacepy.poppy.PPro.swap" title="spacepy.poppy.PPro.swap"><code class="xref py py-obj docutils literal"><span class="pre">swap</span></code></a>()</td>
+<td>Swaps process 1 and process 2</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="spacepy.poppy.PPro.aa_ci">
+<code class="descname">aa_ci</code><span class="sig-paren">(</span><em>inter</em>, <em>n_boots=1000</em>, <em>seed=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/poppy.html#PPro.aa_ci"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.poppy.PPro.aa_ci" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get bootstrap confidence intervals for association number</p>
+<dl class="docutils">
+<dt>Requires input of desired confidence interval, e.g.:</dt>
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span><span class="o">.</span><span class="n">aa_ci</span><span class="p">(</span><span class="mi">95</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<p>Upper and lower confidence limits are added to <a class="reference internal" href="#spacepy.poppy.PPro.ci" title="spacepy.poppy.PPro.ci"><code class="xref py py-attr docutils literal"><span class="pre">ci</span></code></a>.</p>
+<p>After calling, <a class="reference internal" href="#spacepy.poppy.PPro.conf_above" title="spacepy.poppy.PPro.conf_above"><code class="xref py py-attr docutils literal"><span class="pre">conf_above</span></code></a> will contain the confidence
+(in percent) that
+the association number at that lag is <em>above</em> the asymptotic
+association number. (The confidence of being below is 100 - conf_above)
+For minor variations in conf_above to be meaningful, a <em>large</em> number
+of bootstraps is required. (Rougly, 1000 to be meaningful to the
+nearest percent; 10000 to be meaningful to a tenth of a percent.) A
+conf_above of 100 usually indicates an insufficient sample size to
+resolve, <em>not</em> perfect certainty.</p>
+<p>Note also that a 95% chance of being above indicates an exclusion
+from the <em>90%</em> confidence interval!</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>inter</strong> : float</p>
+<blockquote>
+<div><p>percentage confidence interval to calculate</p>
+</div></blockquote>
+<p><strong>n_boots</strong> : int, optional</p>
+<blockquote>
+<div><p>number of bootstrap iterations to run</p>
+</div></blockquote>
+<p><strong>seed</strong> : int, optional</p>
+<blockquote class="last">
+<div><p>seed for the random number generator. If not specified,
+Python code will use numpy&#8217;s RNG and its current seed;
+C code will seed from the clock.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">If <code class="docutils literal"><span class="pre">seed</span></code> is specified, results may not be reproducible between
+systems with different sizes for C long type. Note that 64-bit
+Windows uses a 32-bit long and so results will be the same between
+64 and 32-bit Windows, but not between 64-bit Windows and other 64-bit
+operating systems. If <code class="docutils literal"><span class="pre">seed</span></code> is not specified, results are
+not reproducible anyhow.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="spacepy.poppy.PPro.assoc">
+<code class="descname">assoc</code><span class="sig-paren">(</span><em>u=None</em>, <em>h=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/poppy.html#PPro.assoc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.poppy.PPro.assoc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform association analysis on input series</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>u</strong> : list, optional</p>
+<blockquote>
+<div><p>the time lags to use</p>
+</div></blockquote>
+<p><strong>h :</strong></p>
+<blockquote class="last">
+<div><p>association window half-width, same type as process1</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="spacepy.poppy.PPro.assoc_mult">
+<code class="descname">assoc_mult</code><span class="sig-paren">(</span><em>windows</em>, <em>inter=95</em>, <em>n_boots=1000</em>, <em>seed=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/poppy.html#PPro.assoc_mult"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.poppy.PPro.assoc_mult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Association analysis w/confidence interval on multiple windows</p>
+<p>Using the time sequence and lags stored in this object, perform
+full association analysis, including bootstrapping of confidence
+intervals, for every listed window half-size</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>windows</strong> : sequence</p>
+<blockquote>
+<div><p>window half-size for each analysis</p>
+</div></blockquote>
+<p><strong>inter</strong> : float, optional</p>
+<blockquote>
+<div><p>desired confidence interval, default 95</p>
+</div></blockquote>
+<p><strong>n_boots</strong> : int, optional</p>
+<blockquote>
+<div><p>number of bootstrap iterations, default 1000</p>
+</div></blockquote>
+<p><strong>seed</strong> : int, optional</p>
+<blockquote>
+<div><p>Random number generator seed. It is STRONGLY
+recommended not to specify (i.e. leave None) to permit
+multithreading.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>out</strong> : three numpy array</p>
+<blockquote class="last">
+<div><p>Three numpy arrays, (windows x lags), containing (in order)
+low values of confidence interval, high values of ci,
+percentage confidence above the asymptotic association number</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This function is likely to take a LOT of time.</p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="spacepy.poppy.PPro.ci">
+<code class="descname">ci</code><a class="headerlink" href="#spacepy.poppy.PPro.ci" title="Permalink to this definition">¶</a></dt>
+<dd><p>Contains the upper and lower confidence limits for the association
+number as a function of lag. The first element is the array of lower
+limits; the second, the array of upper limits. Not available until
+after calling <a class="reference internal" href="#spacepy.poppy.PPro.aa_ci" title="spacepy.poppy.PPro.aa_ci"><code class="xref py py-meth docutils literal"><span class="pre">aa_ci()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="spacepy.poppy.PPro.conf_above">
+<code class="descname">conf_above</code><a class="headerlink" href="#spacepy.poppy.PPro.conf_above" title="Permalink to this definition">¶</a></dt>
+<dd><p>Contains the confidence that the association number, as a function
+of lag, is above the asymptotic association number. (The confidence
+of being below is 100 - <code class="docutils literal"><span class="pre">conf_above</span></code>.)  Not available until
+after calling <a class="reference internal" href="#spacepy.poppy.PPro.aa_ci" title="spacepy.poppy.PPro.aa_ci"><code class="xref py py-meth docutils literal"><span class="pre">aa_ci()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spacepy.poppy.PPro.plot">
+<code class="descname">plot</code><span class="sig-paren">(</span><em>figsize=None</em>, <em>dpi=80</em>, <em>asympt=True</em>, <em>show=True</em>, <em>norm=True</em>, <em>xlabel='Time lag'</em>, <em>xscale=None</em>, <em>ylabel=None</em>, <em>title=None</em>, <em>transparent=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/poppy.html#PPro.plot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.poppy.PPro.plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create basic plot of association analysis.</p>
+<p>Uses object attributes created by <a class="reference internal" href="#spacepy.poppy.PPro.assoc" title="spacepy.poppy.PPro.assoc"><code class="xref py py-meth docutils literal"><span class="pre">assoc()</span></code></a> and,
+optionally, <a class="reference internal" href="#spacepy.poppy.PPro.aa_ci" title="spacepy.poppy.PPro.aa_ci"><code class="xref py py-meth docutils literal"><span class="pre">aa_ci()</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>figsize</strong> : , optional</p>
+<blockquote>
+<div><p>passed through to matplotlib.pyplot.figure</p>
+</div></blockquote>
+<p><strong>dpi</strong> : int, optional</p>
+<blockquote>
+<div><p>passed through to matplotlib.pyplot.figure</p>
+</div></blockquote>
+<p><strong>asympt</strong> : boolean, optional</p>
+<blockquote>
+<div><p>True to overplot the line of asymptotic association number</p>
+</div></blockquote>
+<p><strong>show</strong> : boolean, optional</p>
+<blockquote>
+<div><p>Show the plot? (if false, will create without showing)</p>
+</div></blockquote>
+<p><strong>norm</strong> : boolean, optional</p>
+<blockquote>
+<div><p>Normalize plot to the asymptotic association number</p>
+</div></blockquote>
+<p><strong>title</strong> : string, optional</p>
+<blockquote>
+<div><p>label/title for the plot</p>
+</div></blockquote>
+<p><strong>xlabel</strong> : string, optional</p>
+<blockquote>
+<div><p>label to put on the X axis of the resulting plot</p>
+</div></blockquote>
+<p><strong>xscale</strong> : float, optional</p>
+<blockquote>
+<div><p>scale x-axis by this factor (e.g. 60.0 to convert seconds to minutes)</p>
+</div></blockquote>
+<p><strong>ylabel</strong> : string, optional</p>
+<blockquote>
+<div><p>label to put on the Y axis of the resulting plot</p>
+</div></blockquote>
+<p><strong>transparent</strong> : boolean, optional</p>
+<blockquote class="last">
+<div><p>make c.i. patch transparent (default)</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="spacepy.poppy.PPro.plot_mult">
+<code class="descname">plot_mult</code><span class="sig-paren">(</span><em>windows</em>, <em>data</em>, <em>min=None</em>, <em>max=None</em>, <em>cbar_label=None</em>, <em>figsize=None</em>, <em>dpi=80</em>, <em>xlabel='Lag'</em>, <em>ylabel='Window Size'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/poppy.html#PPro.plot_mult"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.poppy.PPro.plot_mult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots a 2D function of window size and lag</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>windows</strong> : list</p>
+<blockquote>
+<div><p>list of window sizes (y axis)</p>
+</div></blockquote>
+<p><strong>data</strong> : list</p>
+<blockquote>
+<div><p>list of data, dimensioned (windows x lags)</p>
+</div></blockquote>
+<p><strong>min</strong> : float, optional</p>
+<blockquote>
+<div><p>clip L{data} to this minimum value</p>
+</div></blockquote>
+<p><strong>max</strong> : float, optional</p>
+<blockquote class="last">
+<div><p>clip L{data} to this maximum value</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="spacepy.poppy.PPro.swap">
+<code class="descname">swap</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/spacepy/poppy.html#PPro.swap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#spacepy.poppy.PPro.swap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Swaps process 1 and process 2</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="spacepy.poppy.plot_two_ppro.html" title="spacepy.poppy.plot_two_ppro"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../poppy.html" title="PoPPy - Point Processes in Python"
+             >previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+       <li><a href="../index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="../poppy.html" >PoPPy - Point Processes in Python</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2019, The SpacePy Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

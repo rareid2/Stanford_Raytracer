@@ -1,0 +1,258 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Windows Installation &mdash; SpacePy v0.2.1 Manual</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="_static/spacepy_favicon.ico"/>
+    <link rel="top" title="SpacePy v0.2.1 Manual" href="index.html" />
+    <link rel="up" title="Installing SpacePy" href="install.html" />
+    <link rel="next" title="SpacePy - A Quick Start Documentation" href="quickstart.html" />
+    <link rel="prev" title="MacOS Installation" href="install_mac.html" /> 
+  </head>
+  <body role="document">
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="index.html"><img src="_static/spacepy_logo.jpg" border="0" alt="spacepy_logo"/></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="quickstart.html" title="SpacePy - A Quick Start Documentation"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="install_mac.html" title="MacOS Installation"
+             accesskey="P">previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+       <li><a href="index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="install.html" accesskey="U">Installing SpacePy</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Windows Installation</a><ul>
+<li><a class="reference internal" href="#fortran-and-ffnet">Fortran and ffnet</a></li>
+<li><a class="reference internal" href="#compiling">Compiling</a></li>
+<li><a class="reference internal" href="#nasa-cdf">NASA CDF</a></li>
+<li><a class="reference internal" href="#standalone-installers">Standalone installers</a></li>
+<li><a class="reference internal" href="#dependencies-via-conda">Dependencies via conda</a></li>
+<li><a class="reference internal" href="#standalone-dependencies">Standalone dependencies</a></li>
+<li><a class="reference internal" href="#developers">Developers</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="install_mac.html"
+                        title="previous chapter">MacOS Installation</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="quickstart.html"
+                        title="next chapter">SpacePy - A Quick Start Documentation</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/install_windows.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="windows-installation">
+<h1>Windows Installation<a class="headerlink" href="#windows-installation" title="Permalink to this headline">¶</a></h1>
+<p>The SpacePy team currently provides binary &#8220;wheels&#8221; via PyPI so it can
+be installed on Windows without a compiler. Binaries are provided for
+Python 2.7, 3.6, and 3.7 in 64-bit and 32-bit variants for each. <code class="docutils literal"><span class="pre">pip</span>
+<span class="pre">install</span> <span class="pre">spacepy</span></code> should find and install these binaries.</p>
+<p>Our recommended (but not required) Python distribution is <a class="reference external" href="https://docs.anaconda.com/anaconda/">Anaconda</a> running 64-bit
+Python 3. Anaconda includes much of the scientific Python
+stack. Another excellent distribution is <a class="reference external" href="https://www.enthought.com/product/canopy/">Canopy</a>.</p>
+<p>You may need to install the dependencies some way other than pip; for
+example, if you are running an earlier version of Python. The latest
+version of many dependencies requires Python 3.6 and pip will not
+install older versions to get around this. See <a class="reference internal" href="#win-dep-conda"><span>Dependencies via conda</span></a>.</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#fortran-and-ffnet" id="id1">Fortran and ffnet</a></li>
+<li><a class="reference internal" href="#compiling" id="id2">Compiling</a></li>
+<li><a class="reference internal" href="#nasa-cdf" id="id3">NASA CDF</a></li>
+<li><a class="reference internal" href="#standalone-installers" id="id4">Standalone installers</a></li>
+<li><a class="reference internal" href="#dependencies-via-conda" id="id5">Dependencies via conda</a></li>
+<li><a class="reference internal" href="#standalone-dependencies" id="id6">Standalone dependencies</a></li>
+<li><a class="reference internal" href="#developers" id="id7">Developers</a></li>
+</ul>
+</div>
+<div class="section" id="fortran-and-ffnet">
+<span id="windows-fortran"></span><h2><a class="toc-backref" href="#id1">Fortran and ffnet</a><a class="headerlink" href="#fortran-and-ffnet" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://ffnet.sourceforge.net/download.html">ffnet</a> is required for
+<a class="reference internal" href="lanlstar.html#module-spacepy.LANLstar" title="spacepy.LANLstar"><code class="xref py py-mod docutils literal"><span class="pre">LANLstar</span></code></a>. It can be installed either before or after
+SpacePy. Binary wheels are not provided, so a Fortran compiler is
+required</p>
+<p>With Anaconda, the compiler and ffnet can be installed with:</p>
+<div class="highlight-python"><div class="highlight"><pre>conda install m2w64-gcc-fortran libpython
+SET FC_VENDOR=gfortran
+pip install ffnet
+</pre></div>
+</div>
+<p>The <cite>FC_VENDOR</cite> line is necessary because ffnet defaults to the
+Microsoft compiler.</p>
+<p>Some standalone binary installers (no <code class="docutils literal"><span class="pre">pip</span></code> support) are also
+available on the <a class="reference external" href="http://ffnet.sourceforge.net/download.html">ffnet site</a>. These do not require a
+compiler but support only a limited set of Python versions.</p>
+</div>
+<div class="section" id="compiling">
+<h2><a class="toc-backref" href="#id2">Compiling</a><a class="headerlink" href="#compiling" title="Permalink to this headline">¶</a></h2>
+<p>If a binary wheel is not available for your version of Python, <code class="docutils literal"><span class="pre">pip</span></code>
+will try to compile SpacePy. The only supported compiler is
+<code class="docutils literal"><span class="pre">mingw32</span></code>. Install it with:</p>
+<div class="highlight-python"><div class="highlight"><pre>conda install m2w64-gcc-fortran libpython
+</pre></div>
+</div>
+<p>This is also required if installing from a source distribution or git checkout.</p>
+<p><a class="reference internal" href="irbempy.html#module-spacepy.irbempy" title="spacepy.irbempy"><code class="xref py py-mod docutils literal"><span class="pre">irbempy</span></code></a> requires Fortran to compile and the only
+supported compiler is <code class="docutils literal"><span class="pre">gnu95</span></code>; this is the default and provided
+by <code class="docutils literal"><span class="pre">m2w64-gcc-fortran</span></code>.</p>
+<p>If you have difficulties, it may be useful to reference the <cite>build
+scripts
+&lt;https://github.com/spacepy/spacepy/tree/master/developer/scripts&gt;</cite>
+the SpacePy developers use.</p>
+</div>
+<div class="section" id="nasa-cdf">
+<span id="windows-cdf"></span><h2><a class="toc-backref" href="#id3">NASA CDF</a><a class="headerlink" href="#nasa-cdf" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="pycdf.html#module-spacepy.pycdf" title="spacepy.pycdf"><code class="xref py py-mod docutils literal"><span class="pre">pycdf</span></code></a> requires the <a class="reference external" href="https://cdf.gsfc.nasa.gov/html/sw_and_docs.html">NASA CDF library</a> . Binary
+installers are available for Windows; be sure to pick the version
+that matches your Python installation. The current 32-bit version
+is <a class="reference external" href="https://spdf.gsfc.nasa.gov/pub/software/cdf/dist/cdf37_1/windows/cdf37_1_0-setup-32.exe">cdf37_1_0-setup-32.exe</a>;
+for 64-bit, <a class="reference external" href="https://spdf.gsfc.nasa.gov/pub/software/cdf/dist/cdf37_1/windows/cdf37_1_0-setup-64.exe">cdf37_1_0-setup-64.exe</a>.</p>
+<p>This is a simple self-extracting installer that can be installed either before or after installing SpacePy.</p>
+</div>
+<div class="section" id="standalone-installers">
+<h2><a class="toc-backref" href="#id4">Standalone installers</a><a class="headerlink" href="#standalone-installers" title="Permalink to this headline">¶</a></h2>
+<p>Self-extracting and self-installing executables are also available for
+download direct from <a class="reference external" href="https://github.com/spacepy/spacepy/releases">our github</a>. Be sure to choose the
+file that matches your Python installation, both in Python version and
+word size (64-bit vs. 32-bit.)
+E.g. <code class="docutils literal"><span class="pre">spacepy-0.2.0.win-amd64.py36.exe</span></code> is the installer for Python
+3.6 on 64-bit Windows and <code class="docutils literal"><span class="pre">spacepy-0.2.0.win32.py27.exe</span></code> is the
+installer for Python 2.7 on 32-bit Windows.</p>
+<p>Once downloaded, these can be installed without an internet connection.</p>
+<p>If using these installers, the <a class="reference internal" href="dependencies.html"><em>SpacePy Dependencies</em></a> will not be
+installed automatically.</p>
+</div>
+<div class="section" id="dependencies-via-conda">
+<span id="win-dep-conda"></span><h2><a class="toc-backref" href="#id5">Dependencies via conda</a><a class="headerlink" href="#dependencies-via-conda" title="Permalink to this headline">¶</a></h2>
+<p>Installation via <code class="docutils literal"><span class="pre">pip</span></code> will automatically install most Python
+dependencies (but not <a class="reference internal" href="#windows-fortran"><span>ffnet</span></a> or the <a class="reference internal" href="#windows-cdf"><span>NASA
+CDF library</span></a>). They can also be installed from conda:</p>
+<div class="highlight-python"><div class="highlight"><pre>conda install numpy scipy matplotlib networkx h5py
+</pre></div>
+</div>
+</div>
+<div class="section" id="standalone-dependencies">
+<h2><a class="toc-backref" href="#id6">Standalone dependencies</a><a class="headerlink" href="#standalone-dependencies" title="Permalink to this headline">¶</a></h2>
+<p>Most of the <a class="reference internal" href="dependencies.html"><em>SpacePy Dependencies</em></a> have Windows installers available via
+their pages, but <code class="docutils literal"><span class="pre">pip</span></code> or <code class="docutils literal"><span class="pre">conda</span></code> are recommended instead.</p>
+</div>
+<div class="section" id="developers">
+<h2><a class="toc-backref" href="#id7">Developers</a><a class="headerlink" href="#developers" title="Permalink to this headline">¶</a></h2>
+<p>If you want to build the documentation yourself (rather than using the
+documentation shipped with SpacePy), install sphinx and numpydoc. The
+easiest way is via pip:</p>
+<div class="highlight-python"><div class="highlight"><pre>pip install sphinx numpydoc
+</pre></div>
+</div>
+<p>They are also available via conda:</p>
+<div class="highlight-python"><div class="highlight"><pre>conda install sphinx numpydoc
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="quickstart.html" title="SpacePy - A Quick Start Documentation"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="install_mac.html" title="MacOS Installation"
+             >previous</a> |</li>
+        <li><a href="https://github.com/spacepy/spacepy">homepage</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+       <li><a href="index.html">documentation </a> &raquo;</li>
+
+          <li class="nav-item nav-item-1"><a href="install.html" >Installing SpacePy</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2019, The SpacePy Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>
