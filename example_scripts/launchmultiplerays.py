@@ -21,17 +21,34 @@ from haversine import haversine, Unit
 from multiprocessing import Pool, cpu_count
 import tempfile, shutil, time, pickle
 
+# -------------------------------- EASY SETTINGS--------------------------------
+# how long are we launching rays for?? IN SECONDS
+plen = 30*60  # seconds
+# how often to send the rays? for every second, set to 0
+time_int = 100 
+# how many rays per launch?
+rayn = 1000
+# what is the freq of the rays?
+freq = [28e3] # Hz
+# are we doing a MC sim?
+MCsim = 1 # if not, the rays will just be random
+# where to save data (directory)? 
+datadir = '/home/rileyannereid/workspace/SR-output/'
+# do we want theta and phi output? 
+anglefiles = 1 # 1 for yes
+# finally... set start time!
+
 # -------------------------------- SET TIME --------------------------------
 # change time information here - use UTC -
 year = 2020
-month = 5
-day = 21
-hours = 2
-minutes = 50
+month = 6
+day = 12
+hours = 8
+minutes = 40
 seconds = 0
 
 ray_datenum = dt.datetime(year, month, day, hours, minutes, seconds)
-
+datadir = datadir + str(freq[0]/1e3) + 'kHz' str(ray_datenum) + '/' 
 # -------------------------------- GET POSITIONS --------------------------------
 # these will be in ECI coordinates (GEI) in km
 # last updated 6/22
@@ -47,8 +64,6 @@ lines1 = [l11, l12]
 lines2 = [l21, l22]
 satnames = ['DSX', 'VPM']
 
-# get DSX and VPM positions for... 
-plen = 30*60  # seconds
 r, tvec = TLE2pos(lines1, lines2, satnames, plen, ray_datenum)
 
 # convert to meters
@@ -60,59 +75,21 @@ GEIcar_dsx = coord.Coords(dsx, 'GEI', 'car', units=['m', 'm', 'm'])
 GEIcar_dsx.ticks = Ticktock(tvec, 'UTC') # add ticks
 SMcar_dsx = GEIcar_dsx.convert('SM', 'car')
 
-# convert vpm to MAG sph
+# convert vpm to GEO sph
 GEIcar_vpm = coord.Coords(vpm, 'GEI', 'car', units=['m', 'm', 'm'])
 GEIcar_vpm.ticks = Ticktock(tvec, 'UTC') # add ticks
-MAGsph_vpm = GEIcar_vpm.convert('MAG', 'sph')
+GEOsph_vpm = GEIcar_vpm.convert('GEO', 'sph')
 
-# -------------------------------- DEFINE RAY DIRECTIONS --------------------------------
+# -------------------------------- DEFINE RAY POS --------------------------------
 dsxpositions = np.column_stack((SMcar_dsx.x, SMcar_dsx.y, SMcar_dsx.z))
-vpmpositions = np.column_stack((MAGsph_vpm.radi, MAGsph_vpm.lati, MAGsph_vpm.long))
+vpmpositions = np.column_stack((GEOsph_vpm.radi, GEOsph_vpm.lati, GEOsph_vpm.long))
 
-dsxpositions = dsxpositions[0::100]
-vpmpositions = vpmpositions[0::100]
-tvec = tvec[0::100]
+if time_int > 0:
+    dsxpositions = dsxpositions[0::time_int]
+    vpmpositions = vpmpositions[0::time_int]
+    tvec = tvec[0::time_int]
 
-freq = [28e3] # Hz
-
-# how many rays? 
-rayn = 1000
-thetalist = []
-
-# generate random angles from a sin theta distribution
-for i in range(int(rayn)):
-    xi = random.random()
-    th = np.arccos(1-2*xi)
-    pxi = random.random()
-    thetalist.append(R2D*th)
-
-philist = []
-
-# generate random angles from a sin theta distribution
-for i in range(int(rayn)):
-    xi = random.random()
-    ph = np.arccos(1-2*xi)
-    philist.append(R2D*ph)
-
-# rotate to be defined w respect to B0
-thetalist = [th - 90 for th in thetalist]
-philist = [ph - 90 for ph in philist]
-
-# save those angles to parse later
-fname = str(freq[0]/1e3) + 'kray' + str(ray_datenum) + 'thetalist.txt'
-with open(fname, "w") as outfile:
-    outfile.write("\n".join(str(item) for item in thetalist))
-
-outfile.close()
-
-# save those angles to parse later
-fname = str(freq[0]/1e3) + 'kray' + str(ray_datenum) + 'philist.txt'
-with open(fname, "w") as outfile:
-    outfile.write("\n".join(str(item) for item in philist))
-
-outfile.close()
-
-# start running rays!
+# start running some loops!
 
 def launchmanyrays(position, vpmpos, rayt):
 
@@ -120,7 +97,6 @@ def launchmanyrays(position, vpmpos, rayt):
     SMcar_dsxpos = coord.Coords(position, 'SM', 'car', units=['m', 'm', 'm'])
     SMcar_dsxpos.ticks = Ticktock(rayt)
     GEOcar_dsx = SMcar_dsxpos.convert('GEO', 'car')
-    GEOsph_dsx = SMcar_dsxpos.convert('GEO', 'sph')
 
     # check with hemi we are in
     # lets just go to whichever hemisphere VPM is
@@ -144,6 +120,44 @@ def launchmanyrays(position, vpmpos, rayt):
     # fill for raytracer call
     positions = []
     directions = []
+
+    # -------------------------------- DEFINE RAY DIRECS --------------------------------
+    thetalist = []
+    philist = []
+    if MCsim == 1:
+        # generate random polar angles from a sin theta distribution
+        for i in range(int(rayn)):
+            xi = random.random()
+            th = np.arccos(1-2*xi)
+            pxi = random.random()
+            thetalist.append(R2D*th)
+        # generate random azimuth angles uniformly btwn 0 and pi (forward hemi)
+        for i in range(int(rayn)):
+            ph = np.pi * random.random()
+            philist.append(R2D*ph)
+    else: 
+        # genereate random between 0 and pi
+        for i in range(int(rayn)):
+            th = np.pi * random.random()
+            ph = np.pi * random.random()
+            thetalist.append(R2D*th)
+            philist.append(R2D*ph)
+
+    # rotate to be defined w respect to B0
+    thetalist = [th - 90 for th in thetalist]
+    philist = [ph - 90 for ph in philist]
+
+    # save those angles to parse later
+    if anglefiles == 1:
+        fname = datadir + str(freq[0]/1e3) + 'kHz' + str(rayt) + 'thetalist.txt'
+        with open(fname, "w") as outfile:
+            outfile.write("\n".join(str(item) for item in thetalist))
+        outfile.close()
+
+        fname = datadir + str(freq[0]/1e3) + 'kHz' + str(rayt) + 'philist.txt'
+        with open(fname, "w") as outfile:
+            outfile.write("\n".join(str(item) for item in philist))
+        outfile.close()
 
     # rotate directions
     for theta, phi in zip(thetalist, philist):
@@ -194,14 +208,6 @@ def launchmanyrays(position, vpmpos, rayt):
         if '.damp' in filename:
             damplist += read_damp(os.path.join(ray_out_dir, filename))
 
-    # quick check: did the rays propagate?
-    # raylist = [checkray for checkray in raylist if not len(checkray["time"]) < 2]
-    #for r in raylist:
-    #    if len(r['time']) < 2:
-    #        dravg = 'nan'
-    #        df = 'nan'
-    #        #return dravg, df, rayt
-
     # -------------------------------- CONVERT COORDINATES --------------------------------
     # convert to desired coordinate system into vector list rays
     rays = []
@@ -211,7 +217,7 @@ def launchmanyrays(position, vpmpos, rayt):
         tvec_datetime = [rayt + dt.timedelta(seconds=s) for s in r['time']]
         tmp_coords.ticks = Ticktock(tvec_datetime, 'UTC')  # add ticks
         tmp_coords.sim_time = r['time']
-        new_coords = tmp_coords.convert('MAG', 'sph')
+        new_coords = tmp_coords.convert('GEO', 'sph')
         rays.append(new_coords)
 
     #initialize
@@ -235,10 +241,10 @@ def launchmanyrays(position, vpmpos, rayt):
     GDZsph_foot = findFootprints(rayt, Bstart, dirstr)
     GDZsph_foot.units = ['km', 'deg', 'deg']
     GDZsph_foot.ticks = Ticktock(rayt, 'UTC')
-    MAGsph_foot = GDZsph_foot.convert('MAG', 'sph')
+    GEOsph_foot = GDZsph_foot.convert('GEO', 'sph')
 
-    # -------------------------------- FIND DISTANCE --------------------------------
-    foot = (float(MAGsph_foot.lati), float(MAGsph_foot.long))
+    # -------------------------------- CLEANUP --------------------------------
+    foot = (float(GEOsph_foot.lati), float(GEOsph_foot.long))
     vpmf = (vpmpos[1], vpmpos[2])
 
     # find rayend points
@@ -255,10 +261,11 @@ def launchmanyrays(position, vpmpos, rayt):
     shutil.rmtree(tmpdir)
 
     rayt = rayt.strftime("%Y-%m-%d %H:%M:%S")
+    print(rayt)
 
     return rayendls, vpmf, foot, rayt
 
-# -------------------------------- RUN --------------------------------
+# -------------------------------- PARALLELIZEEEE --------------------------------
 
 # parallel
 nmbrcores = cpu_count()
@@ -271,10 +278,14 @@ with Pool(nmbrcores) as p:
 end = time.time()
 # print(f'time is with 2 cores {end-start}')
 
-fname = str(freq[0]/1e3) + 'kray' + str(ray_datenum.year) + str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.hour) + str(ray_datenum.minute) + 'MCsim.txt'
+if MCsim == 1:
+    addon = 'MCsim'
+else:
+    addon = ''
+
+fname = datadir + str(freq[0]/1e3) + 'kHz' + str(ray_datenum) + addon + '.txt'
 with open(fname, "w") as outfile:
     outfile.write("\n".join(str(item) for item in results))
-
 outfile.close()
 
 # -------------------------------- END --------------------------------

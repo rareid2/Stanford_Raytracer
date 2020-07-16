@@ -37,6 +37,7 @@ seconds = 0
 
 ray_datenum = dt.datetime(year, month, day, hours, minutes, seconds)
 
+checkdir = 0
 # -------------------------------- GET POSITIONS --------------------------------
 # these will be in ECI coordinates (GEI) in km
 # last updated 6/22
@@ -56,7 +57,7 @@ satnames = ['DSX', 'VPM']
 r, tvec = TLE2pos(lines1, lines2, satnames, 1, ray_datenum)
 
 # redefine time here -- more accurate
-# ray_datenum = tvec[0]
+ray_datenum = tvec[0]
 
 # convert to meters
 dsx = [rpos*1e3 for rpos in r[0]]
@@ -70,11 +71,13 @@ vpm = [vpm[0]]
 GEIcar_dsx = coord.Coords(dsx, 'GEI', 'car', units=['m', 'm', 'm'])
 GEIcar_dsx.ticks = Ticktock(ray_datenum, 'UTC') # add ticks
 SMcar_dsx = GEIcar_dsx.convert('SM', 'car')
+GEOcar_dsx = GEIcar_dsx.convert('GEO', 'car')
+GEOsph_dsx = GEIcar_dsx.convert('GEO', 'sph')
 
 # convert vpm to MAG sph for plotting
 GEIcar_vpm = coord.Coords(vpm, 'GEI', 'car', units=['m', 'm', 'm'])
 GEIcar_vpm.ticks = Ticktock(ray_datenum, 'UTC') # add ticks
-MAGsph_vpm = GEIcar_vpm.convert('MAG', 'sph')
+GEOsph_vpm = GEIcar_vpm.convert('GEO', 'sph')
 
 # -------------------------------- DEFINE RAY DIRECTIONS --------------------------------
 # start position of raytracer
@@ -82,13 +85,9 @@ position = [float(SMcar_dsx.x), float(SMcar_dsx.y), float(SMcar_dsx.z)]
 
 freq = [28e3] # Hz
 thetalist = [0] # in deg -- what angles to launch at? 
-#thetalist = [0]
-# grab position and find direction of local bfield
-GEOcar_dsx = GEIcar_dsx.convert('GEO', 'car')
 
 # check with hemi we are in
-GEOsph_dsx = GEIcar_dsx.convert('GEO', 'sph')
-if MAGsph_vpm.lati > 0:
+if GEOsph_vpm.lati > 0:
     dir = 1   # north
     dirstr = 'north'
 else:
@@ -103,7 +102,8 @@ dirB = np.reshape(np.array([Bx, By, Bz]), (1, 3))
 dirB = coord.Coords(dirB[0], 'GEO', 'car', units=['Re', 'Re', 'Re'])
 dirB.ticks = Ticktock(ray_datenum, 'UTC') # add ticks
 SMsph_dirB = dirB.convert('SM', 'sph')
-MAGcardirB = dirB.convert('MAG', 'car')
+GEOcar_dirB = dirB.convert('GEO', 'car')
+
 # fill for raytracer call
 positions = []
 directions = []
@@ -118,15 +118,15 @@ for theta in thetalist:
     Rot_dirB.ticks = Ticktock(ray_datenum, 'UTC') # add ticks
     SMcar_dirB = Rot_dirB.convert('SM', 'car')
 
-    MAGcar_dirB = Rot_dirB.convert('MAG', 'car')
-    fig, ax = plt.subplots(1,1, sharex=True, sharey=True)
-    # Make the direction data for the arrows
-    ax.quiver(0, 0, MAGcar_dirB.x, MAGcar_dirB.z, label='th', color = 'r')
-    ax.quiver(0, 0, MAGcardirB.x, MAGcardirB.z, label='B0', color = 'b')
-    plt.legend()
-    plt.title(str(theta) + ' deg from B0')
-    plt.show()
-    plt.close()
+    if checkdir == 1:
+        GEOcar_dirBrot = Rot_dirB.convert('GEO', 'car')
+        fig, ax = plt.subplots(1,1, sharex=True, sharey=True)
+        ax.quiver(0, 0, GEOcar_dirBrot.x, GEOcar_dirBrot.z, label='th', color = 'r')
+        ax.quiver(0, 0, GEOcar_dirB.x, GEOcar_dirB.z, label='B0', color = 'b')
+        plt.legend()
+        plt.title(str(theta) + ' deg from B0')
+        plt.show()
+        plt.close()
 
     direction = [float(SMcar_dirB.x), float(SMcar_dirB.y), float(SMcar_dirB.z)]
     
@@ -174,7 +174,7 @@ for r in raylist:
     tvec_datetime = [ray_datenum + dt.timedelta(seconds=s) for s in r['time']]
     tmp_coords.ticks = Ticktock(tvec_datetime, 'UTC')  # add ticks
     tmp_coords.sim_time = r['time']
-    new_coords = tmp_coords.convert('MAG', 'sph')
+    new_coords = tmp_coords.convert('GEO', 'sph')
     rays.append(new_coords)
 
 dlist = []
@@ -189,19 +189,19 @@ fig, ax = plt.subplots(1,1, sharex=True, sharey=True)
 lw = 2  # linewidth
 
 # rotate plot to be in plane of view
-MAGsph_dsx = GEIcar_dsx.convert('MAG', 'sph')
-th = -MAGsph_dsx.long
+th = -GEOsph_dsx.long
 
 # rotate long to be at prime merid
-Rot_dsx = coord.Coords([float(MAGsph_dsx.radi), float(MAGsph_dsx.lati), float(MAGsph_dsx.long + th)], 'MAG', 'sph', units=['m', 'deg', 'deg'])
-Rot_vpm = coord.Coords([float(MAGsph_vpm.radi), float(MAGsph_vpm.lati), float(MAGsph_vpm.long + th)], 'MAG', 'sph', units=['m', 'deg', 'deg'])
-MAGcar_dsx = Rot_dsx.convert('MAG', 'car')
-MAGcar_vpm = Rot_vpm.convert('MAG', 'car')
-print(MAGsph_vpm)
+Rot_dsx = coord.Coords([float(GEOsph_dsx.radi), float(GEOsph_dsx.lati), float(GEOsph_dsx.long + th)], 'GEO', 'sph', units=['m', 'deg', 'deg'])
+Rot_vpm = coord.Coords([float(GEOsph_vpm.radi), float(GEOsph_vpm.lati), float(GEOsph_vpm.long + th)], 'GEO', 'sph', units=['m', 'deg', 'deg'])
+Rot_dsx.ticks = Ticktock(ray_datenum)
+Rot_vpm.ticks = Ticktock(ray_datenum)
+GEOcar_dsx = Rot_dsx.convert('GEO', 'car')
+GEOcar_vpm = Rot_vpm.convert('GEO', 'car')
 
 # plot sat locations
-plt.plot(MAGcar_dsx.x / R_E, MAGcar_dsx.z / R_E, '-go', zorder=105, label='DSX')
-plt.plot(MAGcar_vpm.x / R_E, MAGcar_vpm.z / R_E, '-yo', zorder=104, label='VPM')
+plt.plot(GEOcar_dsx.x / R_E, GEOcar_dsx.z / R_E, '-go', zorder=105, label='DSX')
+plt.plot(GEOcar_vpm.x / R_E, GEOcar_vpm.z / R_E, '-yo', zorder=104, label='VPM')
 
 # rotate rays to be at prime merid also and plot
 #for r, d in zip(rays, dlist):
@@ -216,12 +216,14 @@ for r in rays:
     rrlon = [rl + th for rl in rlon]
     rcoords = [np.column_stack([rr, rl, rrl]) for rr, rl, rrl in zip(rrad, rlat, rrlon)]
 
-    Rot_ray = coord.Coords(rcoords[0], 'MAG', 'sph', units=['m', 'deg', 'deg'])
-    MAGcar_ray = Rot_ray.convert('MAG', 'car')
+    Rot_ray = coord.Coords(rcoords[0], 'GEO', 'sph', units=['m', 'deg', 'deg'])
+    Rot_ray.ticks = Ticktock(tvec_datetime, 'UTC')
+    GEOcar_ray = Rot_ray.convert('GEO', 'car')
 
-    if len(MAGcar_ray.x) > 1:
+    if len(GEOcar_ray.x) > 1:
         # plotp = ax.scatter(MAGcar_ray.x / R_E, MAGcar_ray.z / R_E, c=d, s = 1, cmap = 'Reds', vmin = 0, vmax = 1.5, zorder = 103)
-        plotp = ax.scatter(MAGcar_ray.x / R_E, MAGcar_ray.z / R_E, c = 'Red', s = 1, zorder = 103)
+        plotp = ax.scatter(GEOcar_ray.x / R_E, GEOcar_ray.z / R_E, c = 'Red', s = 1, zorder = 103)
+
 # add in color bar - will be just for the last ray, but bounds are set
 # plt.colorbar(plotp, label = 'Normalized wave power')
 
@@ -233,7 +235,7 @@ ax.add_artist(iono)
 
 # -------------------------------- PLASMASPHERE --------------------------------
 # bad pls change this
-path2plasma = '/Users/rileyannereid/workspace/Stanford_Raytracer/example_scripts/modeldumps/'
+path2plasma = '/home/rileyannereid/workspace/Stanford_Raytracer/example_scripts/modeldumps/'
 plasma_model_dump = os.path.join(path2plasma, 'model_dump_mode_1_XZ.dat')
 d_xz = readdump(plasma_model_dump)
 Ne_xz = d_xz['Ns'][0, :, :, :].squeeze().T * 1e-6
@@ -252,7 +254,6 @@ g = plt.pcolormesh(px, py, np.log(Ne_xz), cmap = 'twilight')
 #fig.colorbar(g, ax=ax, orientation="horizontal", pad = 0.2, label= 'Plasmasphere density')
 
 # ---------------------------------- BFIELD -----------------------------------
-
 # (from IGRF13 model)
 L_shells = [2, 3, 4]  # Field lines to draw
 #why dont we convert here? 
@@ -284,33 +285,35 @@ for blinex, bliney, blinez in Blines:
     bpos = np.column_stack((blinex, bliney, blinez))
     bpos = coord.Coords(bpos, 'GEO', 'car', units=['Re', 'Re', 'Re'])
     bpos.ticks = Ticktock(raytime, 'UTC') # add ticks
-    MAGsph_bline = bpos.convert('MAG', 'sph')
-    
+    GEOsph_bline = bpos.convert('GEO', 'sph')
+
     btemp_rad = []
     btemp_lat = []
     btemp_lon = []
-    btemp_rad.append(MAGsph_bline.radi)
-    btemp_lat.append(MAGsph_bline.lati)
-    btemp_lon.append(MAGsph_bline.long)
+    btemp_rad.append(GEOsph_bline.radi)
+    btemp_lat.append(GEOsph_bline.lati)
+    btemp_lon.append(GEOsph_bline.long)
 
-    brlon = [bl + th for bl in btemp_lon]
+    brlon = [bl * 0 for bl in btemp_lon]
+    print(brlon)
     bcoords = [np.column_stack([br, bl, brl]) for br, bl, brl in zip(btemp_rad, btemp_lat, brlon)]
-
-    Rot_bline = coord.Coords(bcoords[0], 'MAG', 'sph', units=['Re', 'deg', 'deg'])
-    MAGcar_bline = Rot_bline.convert('MAG', 'car')
-    plt.plot(MAGcar_bline.x, MAGcar_bline.z, color='r', linewidth=1, linestyle='dashed')
+    Rot_bline = coord.Coords(bcoords[0], 'GEO', 'sph', units=['Re', 'deg', 'deg'])
+    Rot_bline.ticks = Ticktock(raytime, 'UTC') # add ticks
+    GEOcar_bline = Rot_bline.convert('GEO', 'car')
+    plt.plot(GEOcar_bline.x, GEOcar_bline.z, color='r', linewidth=1, linestyle='dashed')
 
 # -------------------------------- GET FOOTPRINT --------------------------------
 # also in GEO car, so need to use bstart 
 GDZsph_foot = findFootprints(ray_datenum, Bstart, dirstr)
 GDZsph_foot.units = ['km', 'deg', 'deg']
 GDZsph_foot.ticks = Ticktock(ray_datenum, 'UTC')
-MAGsph_foot = GDZsph_foot.convert('MAG', 'sph')
+GEOsph_foot = GDZsph_foot.convert('GEO', 'sph')
 
 # rotate and plot
-Rot_foot = coord.Coords([float(MAGsph_foot.radi), float(MAGsph_foot.lati), float(MAGsph_foot.long + th)], 'MAG', 'sph', units=['Re', 'deg', 'deg'])
-MAGcar_foot = Rot_foot.convert('MAG', 'car')
-plt.plot(MAGcar_foot.x, MAGcar_foot.z, '-ro', label='Bfield footpoint')
+Rot_foot = coord.Coords([float(GEOsph_foot.radi), float(GEOsph_foot.lati), float(GEOsph_foot.long + th)], 'GEO', 'sph', units=['Re', 'deg', 'deg'])
+Rot_foot.ticks = Ticktock(ray_datenum, 'UTC')
+GEOcar_foot = Rot_foot.convert('GEO', 'car')
+plt.plot(GEOcar_foot.x, GEOcar_foot.z, '-ro', label='Bfield footpoint')
 
 # -------------------------------- FORMATTING --------------------------------
 ax.set_aspect('equal')
@@ -327,27 +330,28 @@ mytitle = str(freq[0]/1e3) + 'kHz rays at ' + str(ray_datenum)
 plt.title(mytitle)
 ax.legend(loc = 'lower center', fontsize =  'x-small')
 
-savename = '/Users/rileyannereid/Desktop/' + str(freq[0]/1e3) + 'kray' + str(ray_datenum.year) + str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.hour) + str(ray_datenum.minute) + '.png'
+savename = '/home/rileyannereid/workspace/SR-output/' + str(freq[0]/1e3) + 'kHz' + str(ray_datenum.year) + str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.hour) + str(ray_datenum.minute) + '2Dview.png'
 #plt.savefig(savename, format='svg')
 plt.savefig(savename, format='png')
-plt.close()
-#plt.show()
-
-fig, ax = plt.subplots(1,1, sharex=True, sharey=True)
-
-MAGcarray = [pos for pos in MAGcar_ray]
-
-loopstop = len(MAGcarray) - 2
-
-for posind, pos in enumerate(MAGcarray):
-    if posind > loopstop:
-        break
-    plt.quiver(pos.x/R_E, pos.z/R_E, (MAGcarray[posind+1].x - pos.x) / R_E, (MAGcarray[posind+1].z - pos.z) / R_E)
-
-plt.plot(MAGcar_bline.x, MAGcar_bline.z, color='r', linewidth=1, linestyle='dashed', label='bfieldline')
-earth = plt.Circle((0, 0), 1, color='b')
-ax.add_artist(earth)
-plt.title('ray launched at ' + str(ray_datenum) + ' at ' + str(thetalist[0]) + ' deg from B0')
+#plt.close()
 plt.show()
+
+if checkdir==1:
+    fig, ax = plt.subplots(1,1, sharex=True, sharey=True)
+
+    MAGcarray = [pos for pos in MAGcar_ray]
+
+    loopstop = len(MAGcarray) - 2
+
+    for posind, pos in enumerate(MAGcarray):
+        if posind > loopstop:
+            break
+        plt.quiver(pos.x/R_E, pos.z/R_E, (MAGcarray[posind+1].x - pos.x) / R_E, (MAGcarray[posind+1].z - pos.z) / R_E)
+
+    plt.plot(MAGcar_bline.x, MAGcar_bline.z, color='r', linewidth=1, linestyle='dashed', label='bfieldline')
+    earth = plt.Circle((0, 0), 1, color='b')
+    ax.add_artist(earth)
+    plt.title('ray launched at ' + str(ray_datenum) + ' at ' + str(thetalist[0]) + ' deg from B0')
+    plt.show()
 
 # -------------------------------- END --------------------------------

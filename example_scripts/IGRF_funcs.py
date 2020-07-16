@@ -67,7 +67,7 @@ def trace_fieldline_ODE(p0, bmodel, extfield, direction, ray_datenum):
 
 
 # takes in datetime object in UTC and GEO car coordinates in earth raddi
-# returns unit vec of B field direction
+# returns unit vec of B field direction in cartestian
 def B_direasy(t, x, thatdir):
 
     bmodel = 0       # IGRF13
@@ -90,7 +90,7 @@ def findFootprints(t, x, hemis):
 
     bmodel = 0      # IGRF13
     extfield = '0'
-    stopalt = 400   # km
+    stopalt = 450   # km
 
     pos = coord.Coords([x[0], x[1], x[2]], 'GEO', 'car')
     tv = Ticktock(t, 'UTC')
