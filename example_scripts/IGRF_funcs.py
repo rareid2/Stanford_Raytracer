@@ -69,14 +69,14 @@ def trace_fieldline_ODE(p0, bmodel, extfield, direction, ray_datenum):
 # takes in datetime object in UTC and GEO car coordinates in earth raddi
 # returns unit vec of B field direction in cartestian
 def B_direasy(t, x, thatdir):
-
+    # geo car was in the documentation
     bmodel = 0       # IGRF13
     extfield = '0'
     direction = thatdir 
 
     pos = coord.Coords([x[0], x[1], x[2]], 'GEO', 'car')
     tv = Ticktock(t, 'UTC')
-    B = irbem.get_Bfield(tv, pos, extMag=extfield, options=[1, 0, 0, 0, bmodel], omnivals=None)
+    B = irbem.get_Bfield(tv, pos, extMag=extfield, options=[0, 0, 0, 0, bmodel], omnivals=None)
     Bmags = direction * B['Bvec'] / B['Blocal']
     
     return [Bmags[0][0], Bmags[0][1], Bmags[0][2]]
