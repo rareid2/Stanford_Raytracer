@@ -4,13 +4,26 @@ plot refractive surface @ ray starting point!
 
 import numpy as np
 import datetime as dt
+import os
+import sys
+import tempfile
+
 from spacepy import coordinates as coord
 from spacepy.time import Ticktock
+from spacepy import irbempy
+
 import matplotlib.pyplot as plt
+import matplotlib
 import matplotlib.patches as Patch
 import seaborn as sns
 sns.set(style="whitegrid")
+
 from raytracer_utils import readdump, read_rayfile, read_rayfiles
+from run_rays import run_rays
+from raytracer_settings import *
+from IGRF_funcs import B_dir, trace_fieldline_ODE, findFootprints, B_direasy
+from TLE_funcs import TLE2pos
+
 
 # --------------- CONSTANTS --------------------------
 R2D = 180./np.pi
@@ -34,7 +47,26 @@ minutes = 6
 seconds = 40
 
 ray_datenum = dt.datetime(year, month, day, hours, minutes, seconds)
-# --------------- CONSTANTS --------------------------
+
+freq = [28e3]
+
+datadir = '/home/rileyannereid/workspace/SR-output/'
+datadir = datadir + str(freq[0]/1e3) + 'kHz' + str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.year) + '/'
+try:
+    os.mkdir(datadir)
+except OSError:
+    print ("Creation of the directory %s failed" % datadir)
+else:
+    print ("Successfully created the directory %s" % datadir)
+
+datadir = datadir + str(freq[0]/1e3) + 'kHz' + str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.year) + str(ray_datenum.hour) + str(ray_datenum.minute) + '/'
+try:
+    os.mkdir(datadir)
+except OSError:
+    print ("Creation of the directory %s failed" % datadir)
+else:
+    print ("Successfully created the directory %s" % datadir)
+
 
 # ---------------------------------------- STIX PARAM --------------------------------------------
 def stix_parameters(ray, t, w):
@@ -69,8 +101,50 @@ def getLshell(ray, t, ray_datenum):
 
 # ---------------------------------------------------------------------------------------------
 
+# get DSX and VPM positions for... 
+r, tvec = TLE2pos(1, ray_datenum)
+
+# redefine time here -- more accurate
+ray_datenum = tvec[0]
+
+# convert to meters
+dsx = [rpos*1e3 for rpos in r[0]]
+
+# only grab first one - weird bug fix with JD dates
+dsx = [dsx[0]]
+
+# convert startpoint to SM car for raytracer
+GEIcar_dsx = coord.Coords(dsx, 'GEI', 'car', units=['m', 'm', 'm'])
+GEIcar_dsx.ticks = Ticktock(ray_datenum, 'UTC') # add ticks
+SMcar_dsx = GEIcar_dsx.convert('SM', 'car') # needed for raytracer
+
+# start position of raytracer
+position = [float(SMcar_dsx.x), float(SMcar_dsx.y), float(SMcar_dsx.z)]
+
+# -------------------------------- RUN RAYS --------------------------------
+# convert for raytracer settings
+days_in_the_year = ray_datenum.timetuple().tm_yday
+days_in_the_year = format(days_in_the_year, '03d')
+
+# yearday and miliseconds day are used by raytracer
+yearday = str(year)+ str(days_in_the_year)   # YYYYDDD
+milliseconds_day = hours*3.6e6 + minutes*6e4 + seconds*1e3
+
+# run it!
+tmpdir = tempfile.mkdtemp() 
+run_rays(freq, [position], [np.zeros(3)], yearday, milliseconds_day, tmpdir)
+
+# Load all the rayfiles in the output directory
+ray_out_dir = tmpdir
+file_titles = os.listdir(ray_out_dir)
+
+# create empty lists to fill with ray files
+raylist = []
+
 # Read in a rayfile -- get the plasma density parameters from within
-rf = read_rayfile('/var/folders/51/h992wgvj4kld4w4yhw1vx5600000gn/T/tmpxxlbu1g8/example_ray_mode1.ray')
+for filename in file_titles:
+    if '.ray' in filename:
+        rf = read_rayfile(os.path.join(ray_out_dir, filename))
 
 # get an entire ray lets just try one for now
 ray = rf[0]
@@ -91,7 +165,7 @@ Lshell = getLshell(ray, t, ray_datenum)
 # get stix param
 R, L, P, S, D = stix_parameters(ray, t, w)
 
-root = -1 # why ??
+root = -1 # why ?? CAUSE WHISTLER
 
 k_vec = np.zeros_like(phi_vec)
 eta_vec=np.zeros_like(phi_vec)
@@ -206,7 +280,7 @@ resonanceangle = float(R2D*resangle)
 
 ax.annotate('${\Theta}$ < ' + str(round(resonanceangle, 2)) + 'deg', xy=(xlim2 - (scale*200), scale*50))
 
-ax.set_title(str(round(f/1e3, 2)) + ' kHz Refractive Surface at ' + str(ray_datenum))
+ax.set_title(str(freq[0]/1e3) + ' kHz Refractive Surface at ' + str(ray_datenum))
 plt.legend()
-plt.savefig('/Users/rileyannereid/Desktop/refractivesurface' + str(round(f/1e3, 2)) + 'kHz.png', format='png')
+plt.savefig(datadir + str(freq[0]/1e3) + 'kHz' + str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.year) + str(ray_datenum.hour) + str(ray_datenum.minute) + 'refractivesurface.png', format='png')
 plt.show()

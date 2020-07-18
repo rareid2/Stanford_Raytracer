@@ -32,6 +32,7 @@ rayn = 1000
 freq = [28e3] # Hz
 # are we doing a MC sim?
 MCsim = 1 # if not, the rays will just be random
+crs_out = 'GEO' #what coord sys to save in? 
 # where to save data (directory)? 
 datadir = '/home/rileyannereid/workspace/SR-output/'
 # do we want theta and phi output? 
@@ -48,23 +49,27 @@ minutes = 40
 seconds = 0
 
 ray_datenum = dt.datetime(year, month, day, hours, minutes, seconds)
-datadir = datadir + str(freq[0]/1e3) + 'kHz' str(ray_datenum) + '/' 
+
+# file setup
+datadir = datadir + str(freq[0]/1e3) + 'kHz' + str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.year) + '/'
+try:
+    os.mkdir(datadir)
+except OSError:
+    print ("Creation of the directory %s failed" % datadir)
+else:
+    print ("Successfully created the directory %s" % datadir)
+
+if MCsim == 1:
+    datadir = datadir + str(freq[0]/1e3) + 'kHz' + str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.year) + str(ray_datenum.hour) + str(ray_datenum.minute) + '/'
+    try:
+        os.mkdir(datadir)
+    except OSError:
+        print ("Creation of the directory %s failed" % datadir)
+    else:
+        print ("Successfully created the directory %s" % datadir)
+ 
 # -------------------------------- GET POSITIONS --------------------------------
-# these will be in ECI coordinates (GEI) in km
-# last updated 6/22
-
-# DSX TLE
-l11 = '1 44344U 19036F   20173.14565688 -.00000031  00000-0  00000-0 0  9999'
-l21 = '2 44344  42.2760  71.1855 1973524 155.6114 215.1832  4.54371095 16448'
-# VPM TLE
-l12 = '1 45120U 19071K   20173.93473231  .00003239  00000-0  10800-3 0  9994'
-l22 = '2 45120  51.6437 341.3758 0012446  71.4995 288.7339 15.34053724 21707'
-
-lines1 = [l11, l12]
-lines2 = [l21, l22]
-satnames = ['DSX', 'VPM']
-
-r, tvec = TLE2pos(lines1, lines2, satnames, plen, ray_datenum)
+r, tvec = TLE2pos(plen, ray_datenum)
 
 # convert to meters
 dsx = [rpos*1e3 for rpos in r[0]]
@@ -75,14 +80,14 @@ GEIcar_dsx = coord.Coords(dsx, 'GEI', 'car', units=['m', 'm', 'm'])
 GEIcar_dsx.ticks = Ticktock(tvec, 'UTC') # add ticks
 SMcar_dsx = GEIcar_dsx.convert('SM', 'car')
 
-# convert vpm to GEO sph
+# convert vpm to out coords sph
 GEIcar_vpm = coord.Coords(vpm, 'GEI', 'car', units=['m', 'm', 'm'])
 GEIcar_vpm.ticks = Ticktock(tvec, 'UTC') # add ticks
-GEOsph_vpm = GEIcar_vpm.convert('GEO', 'sph')
+outsph_vpm = GEIcar_vpm.convert(crs_out, 'sph')
 
 # -------------------------------- DEFINE RAY POS --------------------------------
 dsxpositions = np.column_stack((SMcar_dsx.x, SMcar_dsx.y, SMcar_dsx.z))
-vpmpositions = np.column_stack((GEOsph_vpm.radi, GEOsph_vpm.lati, GEOsph_vpm.long))
+vpmpositions = np.column_stack((outsph_vpm.radi, outsph_vpm.lati, outsph_vpm.long))
 
 if time_int > 0:
     dsxpositions = dsxpositions[0::time_int]
@@ -148,13 +153,14 @@ def launchmanyrays(position, vpmpos, rayt):
     philist = [ph - 90 for ph in philist]
 
     # save those angles to parse later
+    
     if anglefiles == 1:
-        fname = datadir + str(freq[0]/1e3) + 'kHz' + str(rayt) + 'thetalist.txt'
+        fname = datadir + str(freq[0]/1e3) + 'kHz' + str(rayt.month) + str(rayt.day) + str(rayt.year) + str(rayt.hour) + str(rayt.minute) + str(rayt.second) + 'thetalist.txt'
         with open(fname, "w") as outfile:
             outfile.write("\n".join(str(item) for item in thetalist))
         outfile.close()
 
-        fname = datadir + str(freq[0]/1e3) + 'kHz' + str(rayt) + 'philist.txt'
+        fname = datadir + str(freq[0]/1e3) + 'kHz' + str(rayt.month) + str(rayt.day) + str(rayt.year) + str(rayt.hour) + str(rayt.minute) + str(rayt.second) + 'philist.txt'
         with open(fname, "w") as outfile:
             outfile.write("\n".join(str(item) for item in philist))
         outfile.close()
@@ -217,7 +223,7 @@ def launchmanyrays(position, vpmpos, rayt):
         tvec_datetime = [rayt + dt.timedelta(seconds=s) for s in r['time']]
         tmp_coords.ticks = Ticktock(tvec_datetime, 'UTC')  # add ticks
         tmp_coords.sim_time = r['time']
-        new_coords = tmp_coords.convert('GEO', 'sph')
+        new_coords = tmp_coords.convert(crs_out, 'sph')
         rays.append(new_coords)
 
     #initialize
@@ -241,10 +247,10 @@ def launchmanyrays(position, vpmpos, rayt):
     GDZsph_foot = findFootprints(rayt, Bstart, dirstr)
     GDZsph_foot.units = ['km', 'deg', 'deg']
     GDZsph_foot.ticks = Ticktock(rayt, 'UTC')
-    GEOsph_foot = GDZsph_foot.convert('GEO', 'sph')
+    outsph_foot = GDZsph_foot.convert(crs_out, 'sph')
 
     # -------------------------------- CLEANUP --------------------------------
-    foot = (float(GEOsph_foot.lati), float(GEOsph_foot.long))
+    foot = (float(outsph_foot.lati), float(outsph_foot.long))
     vpmf = (vpmpos[1], vpmpos[2])
 
     # find rayend points
@@ -261,7 +267,7 @@ def launchmanyrays(position, vpmpos, rayt):
     shutil.rmtree(tmpdir)
 
     rayt = rayt.strftime("%Y-%m-%d %H:%M:%S")
-    print(rayt)
+    print(rayt) # fix this
 
     return rayendls, vpmf, foot, rayt
 
@@ -283,7 +289,7 @@ if MCsim == 1:
 else:
     addon = ''
 
-fname = datadir + str(freq[0]/1e3) + 'kHz' + str(ray_datenum) + addon + '.txt'
+fname = datadir + str(freq[0]/1e3) + 'kHz' + str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.year) + str(ray_datenum.hour) + str(ray_datenum.minute) + addon + '.txt'
 with open(fname, "w") as outfile:
     outfile.write("\n".join(str(item) for item in results))
 outfile.close()

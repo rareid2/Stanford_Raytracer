@@ -31,8 +31,8 @@ import tempfile
 year = 2020
 month = 5
 day = 21
-hours = 3
-minutes = 10
+hours = 2
+minutes = 50
 seconds = 0
 
 ray_datenum = dt.datetime(year, month, day, hours, minutes, seconds)
@@ -43,23 +43,16 @@ thetalist = [0] # in deg -- what angles to launch at?
 checkdir = 0
 crs_out = 'MAG'  # theres a bug with MAG coords -- maybe its the fieldlines? 
 datadir = '/home/rileyannereid/workspace/SR-output/'
+datadir = datadir + str(freq[0]/1e3) + 'kHz' + str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.year) + '/'
+try:
+    os.mkdir(datadir)
+except OSError:
+    print ("Creation of the directory %s failed" % datadir)
+else:
+    print ("Successfully created the directory %s" % datadir)
 # -------------------------------- GET POSITIONS --------------------------------
-# these will be in ECI coordinates (GEI) in km
-# last updated 6/22
-
-# DSX TLE
-l11 = '1 44344U 19036F   20173.14565688 -.00000031  00000-0  00000-0 0  9999'
-l21 = '2 44344  42.2760  71.1855 1973524 155.6114 215.1832  4.54371095 16448'
-# VPM TLE
-l12 = '1 45120U 19071K   20173.93473231  .00003239  00000-0  10800-3 0  9994'
-l22 = '2 45120  51.6437 341.3758 0012446  71.4995 288.7339 15.34053724 21707'
-
-lines1 = [l11, l12]
-lines2 = [l21, l22]
-satnames = ['DSX', 'VPM']
-
 # get DSX and VPM positions for... 
-r, tvec = TLE2pos(lines1, lines2, satnames, 1, ray_datenum)
+r, tvec = TLE2pos(1, ray_datenum)
 
 # redefine time here -- more accurate
 ray_datenum = tvec[0]

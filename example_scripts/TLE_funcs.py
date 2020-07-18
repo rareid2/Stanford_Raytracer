@@ -27,7 +27,19 @@ OUTPUTS: orbital position in ECI cart km and time vector corresponding to orbit 
 
 """
 
-def TLE2pos(lines1, lines2, satnames, plen, ray_datenum):
+def TLE2pos(plen, ray_datenum):
+    # 6/22 updated
+
+    # DSX TLE
+    l11 = '1 44344U 19036F   20173.14565688 -.00000031  00000-0  00000-0 0  9999'
+    l21 = '2 44344  42.2760  71.1855 1973524 155.6114 215.1832  4.54371095 16448'
+    # VPM TLE
+    l12 = '1 45120U 19071K   20173.93473231  .00003239  00000-0  10800-3 0  9994'
+    l22 = '2 45120  51.6437 341.3758 0012446  71.4995 288.7339 15.34053724 21707'
+
+    lines1 = [l11, l12]
+    lines2 = [l21, l22]
+    satnames = ['DSX', 'VPM']
 
     # fast function uses Julian time (weird)
     jd, fr = jday(ray_datenum.year, ray_datenum.month, ray_datenum.day, ray_datenum.hour, ray_datenum.minute,
