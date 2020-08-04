@@ -54,6 +54,7 @@ clean:
 	${RM} *.o
 	${RM} *.mod
 	${RM} *.a
+	${RM} ../bin/raytracer${EXT}
 
 ../bin/dumpmodel${EXT}: dumpmodel.f95 ${OBJECTS}
 	${G95} ${FLAGS} ${INCLUDES} -o ../bin/dumpmodel${EXT} dumpmodel.f95 ${OBJECTS} ${LIBS}

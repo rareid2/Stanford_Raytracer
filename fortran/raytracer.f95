@@ -340,7 +340,7 @@ function raytracer_stopconditions(pos, k, w, vprel, vgrel, dt, nstep, &
     raytracer_stopconditions = 3
     print *, '  Stopping integration.  Nonsensical group velocity = ', &
          sqrt(dot_product(vgrel,vgrel))
-  elseif( dt < 1e-12 ) then
+  elseif( dt < 1e-14 ) then
   ! elseif( dt < 1e-10 ) then
     ! dt too small
     print *, '  Stopping integration.  dt too small.'
@@ -759,7 +759,7 @@ subroutine raytracer_run( pos,time,vprel,vgrel,n,&
                                     vgrel(:,size(vgrel,2)), dt, &
                                     nstep, maxsteps, minalt ) 
      if( stopcond /= 0 ) then
-        print *, 'stopped at t=', t
+        ! print *, 'stopped at t=', t
         exit
      end if
 
@@ -792,7 +792,7 @@ subroutine raytracer_run( pos,time,vprel,vgrel,n,&
           ! if ( dt > 1e-6) then
            ! retry
            ! (Constraining to a minimum timestep... 2.2017)
-           !print *, 'Refine down'
+           ! print *, 'Refine down'
            dt=0.8_DP*dt
            ! Prevent refinement loops
            lastrefinedown = 1
@@ -806,7 +806,7 @@ subroutine raytracer_run( pos,time,vprel,vgrel,n,&
            ! err < maxerr/10.0_DP .and. &
            err < maxerr/100.0_DP .and. &     ! Trying 100 instead of 10 -- 1.6.2018 -- hopefully the larger error tolerance will still have a generally small error in the healthy regions
            dt*1.25_DP < dtmax ) then
-           !print *, 'Refine up'
+           ! print *, 'Refine up'
            ! Refine up
            dt=dt*1.25_DP
            lastrefinedown = 0
@@ -893,9 +893,9 @@ subroutine raytracer_run( pos,time,vprel,vgrel,n,&
            lastrefinedown = 1
            cycle
         else
-           print *, &
-                'Cannot continue with fixed timestep - outside resonance cone.'
-           print *, 'Try reducing timestep or using adaptive timestepping.'
+           ! print *, &
+               ! 'Cannot continue with fixed timestep - outside resonance cone.'
+           ! print *, 'Try reducing timestep or using adaptive timestepping.'
            return
         end if
      end if

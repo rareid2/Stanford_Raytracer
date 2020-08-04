@@ -21,82 +21,17 @@ from haversine import haversine, Unit
 from multiprocessing import Pool, cpu_count
 import tempfile, shutil, time, pickle
 
-# -------------------------------- EASY SETTINGS--------------------------------
-# how long are we launching rays for?? IN SECONDS
-plen = 30*60  # seconds
-# how often to send the rays? for every second, set to 0
-time_int = 100 
-# how many rays per launch?
-rayn = 1000
-# what is the freq of the rays?
-freq = [28e3] # Hz
-# are we doing a MC sim?
-MCsim = 1 # if not, the rays will just be random
-crs_out = 'GEO' #what coord sys to save in? 
-# where to save data (directory)? 
-datadir = '/home/rileyannereid/workspace/SR-output/'
-# do we want theta and phi output? 
-anglefiles = 1 # 1 for yes
-# finally... set start time!
-
-# -------------------------------- SET TIME --------------------------------
-# change time information here - use UTC -
-year = 2020
-month = 6
-day = 12
-hours = 8
-minutes = 40
-seconds = 0
-
-ray_datenum = dt.datetime(year, month, day, hours, minutes, seconds)
-
-# file setup
-datadir = datadir + str(freq[0]/1e3) + 'kHz' + str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.year) + '/'
-try:
-    os.mkdir(datadir)
-except OSError:
-    print ("Creation of the directory %s failed" % datadir)
-else:
-    print ("Successfully created the directory %s" % datadir)
-
-if MCsim == 1:
-    datadir = datadir + str(freq[0]/1e3) + 'kHz' + str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.year) + str(ray_datenum.hour) + str(ray_datenum.minute) + '/'
-    try:
-        os.mkdir(datadir)
-    except OSError:
-        print ("Creation of the directory %s failed" % datadir)
-    else:
-        print ("Successfully created the directory %s" % datadir)
- 
-# -------------------------------- GET POSITIONS --------------------------------
-r, tvec = TLE2pos(plen, ray_datenum)
-
-# convert to meters
-dsx = [rpos*1e3 for rpos in r[0]]
-vpm = [rpos*1e3 for rpos in r[1]]
-
-# convert startpoint to SM car for raytracer
-GEIcar_dsx = coord.Coords(dsx, 'GEI', 'car', units=['m', 'm', 'm'])
-GEIcar_dsx.ticks = Ticktock(tvec, 'UTC') # add ticks
-SMcar_dsx = GEIcar_dsx.convert('SM', 'car')
-
-# convert vpm to out coords sph
-GEIcar_vpm = coord.Coords(vpm, 'GEI', 'car', units=['m', 'm', 'm'])
-GEIcar_vpm.ticks = Ticktock(tvec, 'UTC') # add ticks
-outsph_vpm = GEIcar_vpm.convert(crs_out, 'sph')
-
-# -------------------------------- DEFINE RAY POS --------------------------------
-dsxpositions = np.column_stack((SMcar_dsx.x, SMcar_dsx.y, SMcar_dsx.z))
-vpmpositions = np.column_stack((outsph_vpm.radi, outsph_vpm.lati, outsph_vpm.long))
-
-if time_int > 0:
-    dsxpositions = dsxpositions[0::time_int]
-    vpmpositions = vpmpositions[0::time_int]
-    tvec = tvec[0::time_int]
+from run_model_dump import modeldump
 
 # start running some loops!
 
-def launchmanyrays(position, vpmpos, rayt):
+def launchmanyrays(position, vpmpos, rayt, opts):
+
+    # unpack opts
+    datadir = opts[3]
+    crs_out = opts[4]
+    MCsim = opts[5]
+    anglefiles = opts[6]
 
     # grab position and find direction of local bfield
     SMcar_dsxpos = coord.Coords(position, 'SM', 'car', units=['m', 'm', 'm'])
@@ -186,6 +121,7 @@ def launchmanyrays(position, vpmpos, rayt):
    
     # -------------------------------- RUN RAYS --------------------------------
     # convert for raytracer settings
+    year = rayt.year
     days_in_the_year = rayt.timetuple().tm_yday
     days_in_the_year = format(days_in_the_year, '03d')
 
@@ -232,9 +168,10 @@ def launchmanyrays(position, vpmpos, rayt):
     rlong = []
 
     for r in rays:
-        rrad.append(r.radi)
-        rlat.append(r.lati)
-        rlong.append(r.long)
+        if r.radi[-1] < (minalt + 1e3): # get rid of rays that didnt make it
+            rrad.append(r.radi)
+            rlat.append(r.lati)
+            rlong.append(r.long)
         
     dlist = []
     for d in damplist:
@@ -271,27 +208,174 @@ def launchmanyrays(position, vpmpos, rayt):
 
     return rayendls, vpmf, foot, rayt
 
+
+# -------------------------------- GET POSITIONS --------------------------------
+def getpos(ray_datenum, opts):
+    plen = opts[1]
+    time_int = opts[2]
+
+    r, tvec = TLE2pos(plen, ray_datenum)
+
+    # convert to meters
+    dsx = [rpos*1e3 for rpos in r[0]]
+    vpm = [rpos*1e3 for rpos in r[1]]
+
+    # convert startpoint to SM car for raytracer
+    GEIcar_dsx = coord.Coords(dsx, 'GEI', 'car', units=['m', 'm', 'm'])
+    GEIcar_dsx.ticks = Ticktock(tvec, 'UTC') # add ticks
+    SMcar_dsx = GEIcar_dsx.convert('SM', 'car')
+
+    # convert vpm to out coords sph
+    GEIcar_vpm = coord.Coords(vpm, 'GEI', 'car', units=['m', 'm', 'm'])
+    GEIcar_vpm.ticks = Ticktock(tvec, 'UTC') # add ticks
+    outsph_vpm = GEIcar_vpm.convert(crs_out, 'sph')
+
+    # -------------------------------- DEFINE RAY POS --------------------------------
+    dsxpositions = np.column_stack((SMcar_dsx.x, SMcar_dsx.y, SMcar_dsx.z))
+    vpmpositions = np.column_stack((outsph_vpm.radi, outsph_vpm.lati, outsph_vpm.long))
+
+    if time_int > 0:
+        dsxpositions = dsxpositions[0::time_int]
+        vpmpositions = vpmpositions[0::time_int]
+        tvec = tvec[0::time_int]
+        
+    return dsxpositions, vpmpositions, tvec
+
+
 # -------------------------------- PARALLELIZEEEE --------------------------------
+def parallelrun(dsxpositions, vpmpositions, tvec, opts):
 
-# parallel
-nmbrcores = cpu_count()
-lstarg = zip(dsxpositions, vpmpositions, tvec)
+    MCsim = opts[5]
 
-start = time.time()
-with Pool(nmbrcores) as p:
-    results = p.starmap(launchmanyrays, lstarg)
+    # parallel
+    nmbrcores = cpu_count()
+    ops = [opts for s in range(len(tvec))]
+    lstarg = zip(dsxpositions, vpmpositions, tvec, ops)
+    
+    start = time.time()
+    with Pool(nmbrcores) as p:
+        results = p.starmap(launchmanyrays, lstarg)
 
-end = time.time()
-# print(f'time is with 2 cores {end-start}')
+    end = time.time()
+    # print(f'time is with 2 cores {end-start}')
 
-if MCsim == 1:
-    addon = 'MCsim'
-else:
-    addon = ''
+    if MCsim == 1:
+        addon = 'MCsim'
+    else:
+        addon = 'fullday'
 
-fname = datadir + str(freq[0]/1e3) + 'kHz' + str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.year) + str(ray_datenum.hour) + str(ray_datenum.minute) + addon + '.txt'
-with open(fname, "w") as outfile:
-    outfile.write("\n".join(str(item) for item in results))
-outfile.close()
+    fname = datadir + str(freq[0]/1e3) + 'kHz' + str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.year) + str(ray_datenum.hour) + str(ray_datenum.minute) + addon + '.txt'
+    with open(fname, "w") as outfile:
+        outfile.write("\n".join(str(item) for item in results))
+    outfile.close()
 
 # -------------------------------- END --------------------------------
+
+# RUN IT
+
+
+# change time information here - use UTC -
+#year = 2020
+#month = 4
+#day = 17
+#hours = 20
+#minutes = 40
+#seconds = 0
+"""
+# lets just manually make a list
+dates = []
+fs = []
+bs = []
+
+infile = open('DSXlogs.txt','r')
+
+# goes thru line by line
+for line in infile:
+    out = line
+    year = 2020
+    if out[0] == 'b':
+        bs.append('burst/')
+    elif out[0] == 's':
+        bs.append('survey/')
+    elif out[0] =='F':
+        bs.append('survey/')
+        
+    month = int(out[8])
+    if out[10] == '0':
+        day = int(out[11])
+    else:
+        day = int(out[10:12])
+
+    if out[18] == '0':
+        hour = int(out[19])
+    else:
+        hour = int(out[18:20])
+    
+    minute = int(out[21:23])
+    dates.append(dt.datetime(year, month, day, hour, minute))
+
+    if out[30] == '8':
+        fs.append(8.2e3)
+    elif out[30] == '2':
+        fs.append(28e3)
+    elif out[30] == 'H':
+        fs.append(25e3)
+
+
+
+infile.close()
+
+#for i in range(3):
+#    dates.append(dt.datetime(2020, 7, 15, 8, 30))
+#    fs.append(Hf[i])
+"""
+dates = [dt.datetime(2020, 8, 6, 0, 0)]
+fs = [28e3]
+bs = ['fullday']
+
+for cdate, cf, bsstr in zip(dates, fs, bs):
+    year = cdate.year
+    month = cdate.month
+    day = cdate.day
+    hours = cdate.hour
+    minutes = cdate.minute
+    seconds = cdate.second
+
+    rayn = 100
+    plen = 24*3600  # seconds
+    time_int = 100
+
+    datadir = '/home/rileyannereid/workspace/SR-output/' + bsstr
+    crs_out = 'GEO' #what coord sys to save in?
+    MCsim = 0 # if not, the rays will just be random
+    anglefiles = 0 # 1 for yes
+
+    freq = [cf]
+    ray_datenum = dt.datetime(year, month, day, hours, minutes, seconds) # get the raydatenum
+    modeldump(year, month, day, hours, minutes, seconds) # run model dump to update plasmasphere
+
+
+    # file setup
+    datadir = datadir + str(freq[0]/1e3) + 'kHz' + str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.year) + '/'
+    try:
+        os.mkdir(datadir)
+    except OSError:
+        print ("Creation of the directory %s failed" % datadir)
+    else:
+        print ("Successfully created the directory %s" % datadir)
+
+    if MCsim == 1:
+        datadir = datadir + str(freq[0]/1e3) + 'kHz' + str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.year) + str(ray_datenum.hour) + str(ray_datenum.minute) + '/'
+        try:
+            os.mkdir(datadir)
+        except OSError:
+            print ("Creation of the directory %s failed" % datadir)
+        else:
+            print ("Successfully created the directory %s" % datadir)
+
+    opts = [rayn, plen, time_int, datadir, crs_out, MCsim, anglefiles]
+
+    # run funcs 
+    dsxpositions, vpmpositions, tvec = getpos(ray_datenum, opts)
+    parallelrun(dsxpositions, vpmpositions, tvec, opts)
+    

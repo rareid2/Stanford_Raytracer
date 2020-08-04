@@ -25,23 +25,12 @@ import time
 from raytracer_settings import *
 
 # change time information here - use UTC -
-year = 2020
-month = 6
-day = 25
-hours = 0
-minutes = 0
-seconds = 0
-
-# used for plotting the ray
-ray_datenum = dt.datetime(year, month, day, hours, minutes, seconds)
-
-# convert for raytracer settings
-days_in_the_year = ray_datenum.timetuple().tm_yday
-days_in_the_year = format(days_in_the_year, '03d')
-
-# yearday and miliseconds day are used by raytracer
-yearday = str(year)+ str(days_in_the_year)   # YYYYDDD
-milliseconds_day = hours*3.6e6 + minutes*6e4 + seconds*1e3
+#year = 2020
+#month = 4
+#day = 13
+#hours = 21
+#minutes = 14
+#seconds = 0
 
 # ------------------------------------ GEN NGO CONFIG FILE -----------------------------------------
 
@@ -352,105 +341,115 @@ def gen_ngofile(Kp, configfile):
 # ---------------------------------- END GEN NGO CONFIG FILE --------------------------------------
 
 #  -------------------------------    INITIALIZE MODEL DUMP   --------------------------------------
+def modeldump(year, month, day, hours, minutes, seconds):
+  # used for plotting the ray
+  ray_datenum = dt.datetime(year, month, day, hours, minutes, seconds)
 
-# GCPM model and damping code needs to be run in the same directory
-# as the binary file (and all the misc data files)
+  # convert for raytracer settings
+  days_in_the_year = ray_datenum.timetuple().tm_yday
+  days_in_the_year = format(days_in_the_year, '03d')
 
-# had to add this in to fix issues with current directory
-cwd = os.getcwd()
-os.chdir('../bin')
+  # yearday and miliseconds day are used by raytracer
+  yearday = str(year)+ str(days_in_the_year)   # YYYYDDD
+  milliseconds_day = hours*3.6e6 + minutes*6e4 + seconds*1e3
+  # GCPM model and damping code needs to be run in the same directory
+  # as the binary file (and all the misc data files)
 
-mag_dump = False  # True for mag dipole coords, false for SM
+  # had to add this in to fix issues with current directory
+  cwd = os.getcwd()
+  os.chdir('../bin')
 
-# generate config file for set Kp
-gen_ngofile(Kp, configfile)
+  mag_dump = False  # True for mag dipole coords, false for SM
 
-ray_out_dir = cwd + '/modeldumps'
+  # generate config file for set Kp
+  gen_ngofile(Kp, configfile)
 
-# Dump plasmasphere models
+  ray_out_dir = cwd + '/modeldumps'
 
-print("Dumping plasmasphere models")
+  # Dump plasmasphere models
 
-for mode in modes_to_do:
-    for plane in ['XZ', 'XY', 'YZ']:
+  print("Dumping plasmasphere models")
 
-        print("doing model %d, %s plane" % (mode, plane))
-        maxD = 10.0 * R_E
-        if plane == 'XZ':
-            minx = -maxD
-            maxx = maxD
-            miny = 0
-            maxy = 0
-            minz = -maxD
-            maxz = maxD
-            nx = 200
-            ny = 1
-            nz = 200
-        if plane == 'XY':
-            minx = -maxD
-            maxx = maxD
-            miny = -maxD
-            maxy = maxD
-            minz = 0
-            maxz = 0
-            nx = 200
-            ny = 200
-            nz = 1
-        if plane == 'YZ':
-            minx = 0
-            maxx = 0
-            miny = -maxD
-            maxy = maxD
-            minz = -maxD
-            maxz = maxD
-            nx = 1
-            ny = 200
-            nz = 200
+  for mode in modes_to_do:
+      for plane in ['XZ', 'XY', 'YZ']:
 
-        # model_outfile='model_dump_mode%d_%d_%s.dat'%(modelnum, use_IGRF, plane)
-        if mag_dump:
-            model_outfile = os.path.join(ray_out_dir, 'model_dump_mode_%d_%s_MAG.dat' % (mode, plane))
-        else:
-            model_outfile = os.path.join(ray_out_dir, 'model_dump_mode_%d_%s.dat' % (mode, plane))
+          print("doing model %d, %s plane" % (mode, plane))
+          maxD = 10.0 * R_E
+          if plane == 'XZ':
+              minx = -maxD
+              maxx = maxD
+              miny = 0
+              maxy = 0
+              minz = -maxD
+              maxz = maxD
+              nx = 200
+              ny = 1
+              nz = 200
+          if plane == 'XY':
+              minx = -maxD
+              maxx = maxD
+              miny = -maxD
+              maxy = maxD
+              minz = 0
+              maxz = 0
+              nx = 200
+              ny = 200
+              nz = 1
+          if plane == 'YZ':
+              minx = 0
+              maxx = 0
+              miny = -maxD
+              maxy = maxD
+              minz = -maxD
+              maxz = maxD
+              nx = 1
+              ny = 200
+              nz = 200
 
-        cmd = './dumpmodel' + \
-              ' --modelnum=%d --yearday=%s --milliseconds_day=%d ' % (mode, yearday, milliseconds_day) + \
-              '--minx=%g --maxx=%g ' % (minx, maxx) + \
-              '--miny=%g --maxy=%g ' % (miny, maxy) + \
-              '--minz=%g --maxz=%g ' % (minz, maxz) + \
-              '--nx=%g --ny=%g --nz=%g ' % (nx, ny, nz) + \
-              '--filename="%s" ' % (model_outfile) + \
-              '--use_igrf=%g --use_tsyganenko=%g ' % (use_IGRF, use_tsyg) + \
-              '--tsyganenko_Pdyn=%g ' % (Pdyn) + \
-              '--tsyganenko_Dst=%g ' % (Dst) + \
-              '--tsyganenko_ByIMF=%g ' % (ByIMF) + \
-              '--tsyganenko_BzIMF=%g ' % (BzIMF) + \
-              '--tsyganenko_W1=%g ' % (W[0]) + \
-              '--tsyganenko_W2=%g ' % (W[1]) + \
-              '--tsyganenko_W3=%g ' % (W[2]) + \
-              '--tsyganenko_W4=%g ' % (W[3]) + \
-              '--tsyganenko_W5=%g ' % (W[4]) + \
-              '--tsyganenko_W6=%g ' % (W[5]) + \
-              '--gcpm_kp=%g ' % (Kp) + \
-              '--ngo_configfile="%s" ' % configfile
+          # model_outfile='model_dump_mode%d_%d_%s.dat'%(modelnum, use_IGRF, plane)
+          if mag_dump:
+              model_outfile = os.path.join(ray_out_dir, 'model_dump_mode_%d_%s_MAG.dat' % (mode, plane))
+          else:
+              model_outfile = os.path.join(ray_out_dir, 'model_dump_mode_%d_%s.dat' % (mode, plane))
 
-        if mode == 3:
-            cmd += ' --interp_interpfile="%s"' % mode3_modelfile
+          cmd = './dumpmodel' + \
+                ' --modelnum=%d --yearday=%s --milliseconds_day=%d ' % (mode, yearday, milliseconds_day) + \
+                '--minx=%g --maxx=%g ' % (minx, maxx) + \
+                '--miny=%g --maxy=%g ' % (miny, maxy) + \
+                '--minz=%g --maxz=%g ' % (minz, maxz) + \
+                '--nx=%g --ny=%g --nz=%g ' % (nx, ny, nz) + \
+                '--filename="%s" ' % (model_outfile) + \
+                '--use_igrf=%g --use_tsyganenko=%g ' % (use_IGRF, use_tsyg) + \
+                '--tsyganenko_Pdyn=%g ' % (Pdyn) + \
+                '--tsyganenko_Dst=%g ' % (Dst) + \
+                '--tsyganenko_ByIMF=%g ' % (ByIMF) + \
+                '--tsyganenko_BzIMF=%g ' % (BzIMF) + \
+                '--tsyganenko_W1=%g ' % (W[0]) + \
+                '--tsyganenko_W2=%g ' % (W[1]) + \
+                '--tsyganenko_W3=%g ' % (W[2]) + \
+                '--tsyganenko_W4=%g ' % (W[3]) + \
+                '--tsyganenko_W5=%g ' % (W[4]) + \
+                '--tsyganenko_W6=%g ' % (W[5]) + \
+                '--gcpm_kp=%g ' % (Kp) + \
+                '--ngo_configfile="%s" ' % configfile
 
-        if mode == 4:
-            cmd += '--interp_interpfile=%s ' % (mode4_modelfile) + \
-                   '--scattered_interp_window_scale=%d ' % (scattered_interp_window_scale) + \
-                   '--scattered_interp_order=%d ' % (scattered_interp_order) + \
-                   '--scattered_interp_exact=%d ' % (scattered_interp_exact) + \
-                   '--scattered_interp_local_window_scale=%d ' % (scattered_interp_local_window_scale)
+          if mode == 3:
+              cmd += ' --interp_interpfile="%s"' % mode3_modelfile
 
-        if mode == 6:
-            cmd += ' --kp=%g ' % (Kp)
-            if mag_dump:
-                cmd += ' --mag_coords=1 '
-        print(cmd)
+          if mode == 4:
+              cmd += '--interp_interpfile=%s ' % (mode4_modelfile) + \
+                    '--scattered_interp_window_scale=%d ' % (scattered_interp_window_scale) + \
+                    '--scattered_interp_order=%d ' % (scattered_interp_order) + \
+                    '--scattered_interp_exact=%d ' % (scattered_interp_exact) + \
+                    '--scattered_interp_local_window_scale=%d ' % (scattered_interp_local_window_scale)
 
-        os.system(cmd)
+          if mode == 6:
+              cmd += ' --kp=%g ' % (Kp)
+              if mag_dump:
+                  cmd += ' --mag_coords=1 '
+          print(cmd)
 
-# Move back to the working directory
-os.chdir(cwd)
+          os.system(cmd)
+
+  # Move back to the working directory
+  os.chdir(cwd)

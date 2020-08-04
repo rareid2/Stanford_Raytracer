@@ -1024,7 +1024,7 @@ program raytracer_driver
 
   open(unit=infile, file=inputraysfile, status="old")
   open(unit=outfile, file=outputfile, status="replace")
-  print *, ''
+  ! print *, ''
   raynum = 1
   do
      ! Read in the next ray starting point and direction
@@ -1033,7 +1033,7 @@ program raytracer_driver
         ! end of file or error, abort the loop
         exit
      end if
-     print *, 'ray ', raynum, ', pos0=', pos0, ', dir0=', dir0, ', w=', w
+     ! print *, 'ray ', raynum, ', pos0=', pos0, ', dir0=', dir0, ', w=', w
      flush(OUTPUT_UNIT)
      if( modelnum == 1 ) then
         call raytracer_run( &
