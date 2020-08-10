@@ -28,7 +28,10 @@ import os
 from run_model_dump import modeldump
 
 # where do we ACTUALLY need to launch from? 
+# set date and transmitter loc
 rayt = dt.datetime(2020, 6, 14, 6, 59)
+
+# for WSMR
 GEOsph_wsmrpt = coord.Coords([R_E, 32.943896, -106.41965], 'GEO', 'sph', units=['m', 'deg', 'deg'])
 GEOsph_wsmrpt.ticks = Ticktock(rayt, 'UTC')
 GEOcar_wsmrpt = GEOsph_wsmrpt.convert('GEO', 'car')

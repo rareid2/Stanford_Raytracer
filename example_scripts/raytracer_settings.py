@@ -19,7 +19,7 @@ H_IONO = 1000e3
 
 #  --------------------------- CHANGE ENV SETTINGS HERE  --------------------------
 # Environmental parameters
-Kp = 2
+Kp = 4
 AE = 1.6
 Pdyn = 4
 Dst = 1.0
@@ -40,7 +40,7 @@ maxerr = 5.0e-4  # Error bound for adaptive timestepping
 maxsteps = 2e3   # Max number of timesteps (abort if reached)
 use_IGRF = 1     # Magnetic field model (1 for IGRF, 0 for dipole)
 use_tsyg = 1     # Use the Tsyganenko magnetic field model corrections
-minalt = R_E + 450e3   # cutoff altitude in meters
+minalt = R_E + 465e3   # cutoff altitude in meters
 # TODO: make a max cutoff alt or check if inside the plasmasphere
 
 # Which plasmasphere models should we run?

@@ -90,7 +90,7 @@ def findFootprints(t, x, hemis):
 
     bmodel = 0      # IGRF13
     extfield = '0'
-    stopalt = 450   # km
+    stopalt = 465   # km
 
     pos = coord.Coords([x[0], x[1], x[2]], 'GEO', 'car')
     tv = Ticktock(t, 'UTC')

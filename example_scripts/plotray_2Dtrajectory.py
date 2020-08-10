@@ -29,48 +29,91 @@ from run_model_dump import modeldump
 
 # -------------------------------- SET TIME and OTHER SETTINGS --------------------------------
 # change time information here - use UTC -
-# lets just manually make a list
-dates = []
+
+#dates = [dt.datetime(2020, 7, 25, 0, 6, 0)]
+#fs = [8.2e3]
+#bs = ['burst']
+
+
+def readconjlog(fnameconj):
+    dates = []
+
+    infile = open(fnameconj,'r')
+    chdatel = 0
+
+    # goes thru line by line
+    for line in infile:
+        out = line
+        # skip if empty
+        if not out.strip():
+            continue
+
+        year = 2020
+            
+        month = int(out[5:7])
+        day = int(out[8:10])
+        hour = int(out[11:13])
+        minute = int(out[14:16])
+        second = int(out[17:19])
+        
+        # convert to fractions of a day
+        minphr = 60
+        
+        chmin = minute/minphr
+        chdate = hour + chmin
+
+        if np.abs(chdate - chdatel) > 30/minphr: # if more than 30 minutes apart, this is a new conjunction!
+            dates.append(dt.datetime(year, month, day, hour, minute))
+        chdatel = chdate
+
+    infile.close()
+    return dates
+weekstart = 17
+stdates = [dt.datetime(2020, 8, d, 0, 0) for d in range(weekstart, weekstart+8)]
+
+# conj list? 
+clist = 1
+
+condtime = []
 fs = []
 bs = []
 
-infile = open('DSXlogs.txt','r')
-
-# goes thru line by line
-for line in infile:
-    out = line
-    year = 2020
-    if out[0] == 'b':
-        bs.append('burst/')
-    elif out[0] == 's':
-        bs.append('survey/')
-    elif out[0] =='F':
-        bs.append('survey/')
+if clist == 1: 
+    for cdate in stdates:
         
-    month = int(out[8])
-    if out[10] == '0':
-        day = int(out[11])
-    else:
-        day = int(out[10:12])
+        year = cdate.year
+        month = cdate.month
+        day = cdate.day
+        hours = cdate.hour
+        minutes = cdate.minute
+        seconds = cdate.second
+        ray_datenum = cdate
 
-    if out[18] == '0':
-        hour = int(out[19])
-    else:
-        hour = int(out[18:20])
-    
-    minute = int(out[21:23])
-    dates.append(dt.datetime(year, month, day, hour, minute))
+        datadir = '/home/rileyannereid/workspace/SR-output/' + 'fullday' + '/'
+        datadir = datadir + str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.year) + '/'
+        fname = datadir + str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.year) + 'conjlist.txt'
+        newdates = readconjlog(fname)
 
-    if out[30] == '8':
-        fs.append(8.2e3)
-    elif out[30] == '2':
-        fs.append(28e3)
-    elif out[30] == 'H':
-        fs.append(25e3)
-
+        condtime.extend(newdates)
+        for ii in condtime:
+            fs.append(28e3)
+            bs.append('fullday')
+        for ii in condtime:
+            fs.append(8.2e3)
+            bs.append('fullday')
+        condtime.extend(newdates)
 
 
-infile.close()
+
+    dates = condtime
+
+
+else:
+    weekstart = 17
+    dates = [dt.datetime(2020, 8, d, 0, 0) for d in range(weekstart, weekstart+8)]
+    fs = [28e3 for d in range(weekstart, weekstart+8)] # arbitrary
+    bs = ['fullday' for d in range(weekstart, weekstart+8)]
+
 
 
 for cdate, cf, bsstr in zip(dates, fs, bs):
@@ -82,22 +125,17 @@ for cdate, cf, bsstr in zip(dates, fs, bs):
     seconds = cdate.second
 
     freq = [cf]
-    #year = 2020
-    #month = 7
-    #day = 4
-    #hours = 12
-    #minutes = 30
-    #seconds = 0
 
     ray_datenum = dt.datetime(year, month, day, hours, minutes, seconds)
     modeldump(year, month, day, hours, minutes, seconds) # run model dump to update plasmasphere
-    #freq = [8.2e3] # Hz
-    thetalist = [0] # in deg -- what angles to launch at? 
+    thetalist = [45] # in deg -- what angles to launch at? 
 
     checkdir = 0
-    crs_out = 'MAG'  # theres a bug with MAG coords -- maybe its the fieldlines? 
-    datadir = '/home/rileyannereid/workspace/SR-output/' + bsstr
-    datadir = datadir + str(freq[0]/1e3) + 'kHz' + str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.year) + '/'
+    crs_out = 'MAG'  # theres a bug with GEO coords -- maybe its the fieldlines? 
+    datadir = '/home/rileyannereid/workspace/SR-output/' + bsstr + '/'
+    rename = str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.year)
+
+    datadir = datadir + rename + '/' + str(freq[0]/1e3) + 'kHz' + rename + str(ray_datenum.hour) + str(ray_datenum.minute) + '/'
     try:
         os.mkdir(datadir)
     except OSError:
@@ -106,7 +144,7 @@ for cdate, cf, bsstr in zip(dates, fs, bs):
         print ("Successfully created the directory %s" % datadir)
     # -------------------------------- GET POSITIONS --------------------------------
     # get DSX and VPM positions for... 
-    r, tvec = TLE2pos(1, ray_datenum)
+    r, tvec = TLE2pos(1, ray_datenum, 1)
 
     # redefine time here -- more accurate
     ray_datenum = tvec[0]

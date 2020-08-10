@@ -27,19 +27,45 @@ OUTPUTS: orbital position in ECI cart km and time vector corresponding to orbit 
 
 """
 
-def TLE2pos(plen, ray_datenum):
-    # 8/4 updated
+import requests 
 
-    # DSX TLE
-    l11 = '1 44344U 19036F   20215.16596338 -.00000042  00000-0  00000-0 0  9996'
-    l21 = '2 44344  42.2998  55.8100 1972853 173.6353 189.3571  4.54372144 18352'
+def newTLES(catnmbr):
+    catnmbr = str(catnmbr)
+    myurl = 'https://celestrak.com/satcat/tle.php?CATNR=' + catnmbr
+    response = requests.get(myurl) 
+    myTLES = response.text
+    # where is vpm? 
+    for ttind, tt in enumerate(myTLES):
+        if tt == '1':
 
-    # VPM TLE
-    l12 = '1 45120U 19071K   20215.81983866  .00002378  00000-0  81874-4 0  9991'
-    l22 = '2 45120  51.6427 138.7941 0011154 219.0879 140.9298 15.34245306 28130'
+            l1 = str(myTLES[ttind:ttind+69])
+            l2 = str(myTLES[ttind+71:-2])
+            break
+             
+    return [l1, l2]
 
-    lines1 = [l11, l12]
-    lines2 = [l21, l22]
+
+def TLE2pos(plen, ray_datenum, getnewTLE):
+    
+    if getnewTLE == 1:
+        # update DSX
+        linesdsx = newTLES(44344)
+        # update VPM
+        linesvpm = newTLES(45120)
+
+        lines1 = [linesdsx[0], linesvpm[0]]
+        lines2 = [linesdsx[1], linesvpm[1]]
+    else:
+        # 8/4 updated
+        # DSX TLE
+        l11 = '1 44344U 19036F   20216.48596516 -.00000043  00000-0  00000-0 0  9991'
+        l21 = '2 44344  42.3005  55.3274 1972852 174.2017 188.5336  4.54372151 18417'
+        # VPM TLE
+        l12 = '1 45120U 19071K   20217.18769428  .00003990  00000-0  12957-3 0  9995'
+        l22 = '2 45120  51.6424 132.1779 0011131 224.0306 135.9790 15.34255225 28345'
+        lines1 = [l11, l12]
+        lines2 = [l21, l22]
+    
     satnames = ['DSX', 'VPM']
 
     # fast function uses Julian time (weird)
@@ -79,8 +105,20 @@ def TLE2pos(plen, ray_datenum):
     return r, tvec # returned in km from Earth center in ECI coordinates
 
 # --------------------------------- END FUNCTION -------------------------------------
-
 """
+# change time information here - use UTC -
+year = 2020
+month = 6
+day = 11
+hours = 21
+minutes = 55
+seconds = 0
+
+ray_datenum = dt.datetime(year, month, day, hours, minutes, seconds)
+
+r, tvec = TLE2pos(100, ray_datenum, 1)
+print(r)
+
 
 # example call
 
