@@ -28,10 +28,12 @@ from run_model_dump import modeldump
 def launchmanyrays(position, vpmpos, rayt, opts):
 
     # unpack opts
-    datadir = opts[3]
-    crs_out = opts[4]
-    MCsim = opts[5]
-    anglefiles = opts[6]
+    freq = opts[0] # has to be list format
+    rayn = opts[1]
+    datadir = opts[4]
+    crs_out = opts[5]
+    MCsim = opts[6]
+    anglefiles = opts[7]
 
     # grab position and find direction of local bfield
     SMcar_dsxpos = coord.Coords(position, 'SM', 'car', units=['m', 'm', 'm'])
@@ -40,7 +42,7 @@ def launchmanyrays(position, vpmpos, rayt, opts):
 
     # check with hemi we are in
     # lets just go to whichever hemisphere VPM is
-
+    
     if vpmpos[1] > 0:
         dir = 1   # north
         dirstr = 'north'
@@ -211,9 +213,9 @@ def launchmanyrays(position, vpmpos, rayt, opts):
 
 # -------------------------------- GET POSITIONS --------------------------------
 def getpos(ray_datenum, opts):
-    plen = opts[1]
-    time_int = opts[2]
-    crs_out = opts[4]
+    plen = opts[2]
+    time_int = opts[3]
+    crs_out = opts[5]
 
     r, tvec = TLE2pos(plen, ray_datenum, 1)
 
@@ -245,9 +247,15 @@ def getpos(ray_datenum, opts):
 
 # -------------------------------- PARALLELIZEEEE --------------------------------
 def parallelrun(dsxpositions, vpmpositions, tvec, opts):
+    ray_datenum = tvec[0]
 
-    MCsim = opts[5]
-    datadir = opts[3]
+    roundeds = int(round(ray_datenum.minute + ray_datenum.second/60,0))
+    
+    fr = opts[0]
+    freq = fr[0]
+    rayn = opts[1]
+    MCsim = opts[6]
+    datadir = opts[4]
 
     # parallel
     nmbrcores = cpu_count()
@@ -263,7 +271,7 @@ def parallelrun(dsxpositions, vpmpositions, tvec, opts):
 
     if MCsim == 1:
         addon = 'MCsim'
-        fname = datadir + str(freq[0]/1e3) + 'kHz' + str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.year) + str(ray_datenum.hour) + str(ray_datenum.minute) + addon + '.txt'
+        fname = datadir + str(freq/1e3) + 'kHz' + str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.year) + str(ray_datenum.hour) + str(roundeds) + addon + '.txt'
     else:
         addon = 'fullday'
         fname = datadir + str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.year) + addon + '.txt'
@@ -273,183 +281,3 @@ def parallelrun(dsxpositions, vpmpositions, tvec, opts):
     outfile.close()
 
 # -------------------------------- END --------------------------------
-
-# RUN IT
-
-def readDSXlog(fnameDSX):
-    dates = []
-    fs = []
-    bs = []
-
-    infile = open(fnameDSX,'r')
-
-    # goes thru line by line
-    for line in infile:
-        out = line
-        year = 2020
-        if out[0] == 'b':
-            bs.append('burst')
-        elif out[0] == 's':
-            bs.append('survey')
-        elif out[0] =='F':
-            bs.append('survey')
-            
-        month = int(out[8])
-        if out[10] == '0':
-            day = int(out[11])
-        else:
-            day = int(out[10:12])
-
-        if out[18] == '0':
-            hour = int(out[19])
-        else:
-            hour = int(out[18:20])
-        
-        minute = int(out[21:23])
-        dates.append(dt.datetime(year, month, day, hour, minute))
-
-        if out[30] == '8':
-            fs.append(8.2e3)
-        elif out[30] == '2':
-            fs.append(28e3)
-        elif out[30] == 'H':
-            fs.append(25e3)
-
-    infile.close()
-    return dates, fs, bs
-
-def readconjlog(fnameconj):
-    dates = []
-
-    infile = open(fnameconj,'r')
-    chdatel = 0
-
-    # goes thru line by line
-    for line in infile:
-        out = line
-        # skip if empty
-        if not out.strip():
-            continue
-
-        year = 2020
-            
-        month = int(out[5:7])
-        day = int(out[8:10])
-        hour = int(out[11:13])
-        minute = int(out[14:16])
-        second = int(out[17:19])
-        
-        # convert to fractions of a day
-        minphr = 60
-        
-        chmin = minute/minphr
-        chdate = hour + chmin
-
-        if np.abs(chdate - chdatel) > 30/minphr: # if more than 30 minutes apart, this is a new conjunction!
-            dates.append(dt.datetime(year, month, day, hour, minute))
-        chdatel = chdate
-
-    infile.close()
-    return dates
-
-
-###############################################################################################
-
-weekstart = 17
-stdates = [dt.datetime(2020, 8, d, 0, 0) for d in range(weekstart, weekstart+8)]
-
-# conj list? 
-clist = 0
-
-condtime = []
-fs = []
-bs = []
-
-if clist == 1: 
-    for cdate in stdates:
-        
-        year = cdate.year
-        month = cdate.month
-        day = cdate.day
-        hours = cdate.hour
-        minutes = cdate.minute
-        seconds = cdate.second
-        ray_datenum = cdate
-
-        datadir = '/home/rileyannereid/workspace/SR-output/' + 'fullday' + '/'
-        datadir = datadir + str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.year) + '/'
-        fname = datadir + str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.year) + 'conjlist.txt'
-        newdates = readconjlog(fname)
-
-        condtime.extend(newdates)
-        for ii in condtime:
-            fs.append(28e3)
-            bs.append('fullday')
-        for ii in condtime:
-            fs.append(8.2e3)
-            bs.append('fullday')
-        condtime.extend(newdates)
-
-
-
-    dates = condtime
-
-
-else:
-    weekstart = 17
-    dates = [dt.datetime(2020, 8, d, 0, 0) for d in range(weekstart, weekstart+8)]
-    fs = [28e3 for d in range(weekstart, weekstart+8)] # arbitrary
-    bs = ['fullday' for d in range(weekstart, weekstart+8)]
-
-dates = [dt.datetime(2020,7,25,0,3,0)]
-fs = [8.2e3]
-bs = ['burst']
-
-# RUN
-for cdate, cf, bsstr in zip(dates, fs, bs):
-    year = cdate.year
-    month = cdate.month
-    day = cdate.day
-    hours = cdate.hour
-    minutes = cdate.minute
-    seconds = cdate.second
-
-    rayn = 1000
-    plen = 6*60  # seconds
-    time_int = 60
-
-    datadir = '/home/rileyannereid/workspace/SR-output/' + bsstr + '/'
-    crs_out = 'GEO' #what coord sys to save in?
-    MCsim = 1 # if not, the rays will just be random
-    anglefiles = 1 # 1 for yes
-
-    freq = [cf]
-    ray_datenum = dt.datetime(year, month, day, hours, minutes, seconds) # get the raydatenum
-    modeldump(year, month, day, hours, minutes, seconds) # run model dump to update plasmasphere
-
-
-    # file setup
-    datadir = datadir + str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.year) + '/'
-
-    try:
-        os.mkdir(datadir)
-    except OSError:
-        print ("Creation of the directory %s failed" % datadir)
-    else:
-        print ("Successfully created the directory %s" % datadir)
-
-    if MCsim == 1:
-        datadir = datadir + str(freq[0]/1e3) + 'kHz' + str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.year) + str(ray_datenum.hour) + str(ray_datenum.minute) + '/'
-        try:
-            os.mkdir(datadir)
-        except OSError:
-            print ("Creation of the directory %s failed" % datadir)
-        else:
-            print ("Successfully created the directory %s" % datadir)
-
-    opts = [rayn, plen, time_int, datadir, crs_out, MCsim, anglefiles]
-
-    # run funcs 
-    dsxpositions, vpmpositions, tvec = getpos(ray_datenum, opts)
-
-    parallelrun(dsxpositions, vpmpositions, tvec, opts)

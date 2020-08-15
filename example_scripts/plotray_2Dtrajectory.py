@@ -72,7 +72,7 @@ weekstart = 17
 stdates = [dt.datetime(2020, 8, d, 0, 0) for d in range(weekstart, weekstart+8)]
 
 # conj list? 
-clist = 1
+clist = 0
 
 condtime = []
 fs = []
@@ -115,6 +115,10 @@ else:
     bs = ['fullday' for d in range(weekstart, weekstart+8)]
 
 
+dates = [dt.datetime(2020,8,23,23,35,0)]
+
+fs = [8.2e3]
+bs = ['fullday' for i in range(len(dates))]
 
 for cdate, cf, bsstr in zip(dates, fs, bs):
     year = cdate.year
@@ -128,7 +132,7 @@ for cdate, cf, bsstr in zip(dates, fs, bs):
 
     ray_datenum = dt.datetime(year, month, day, hours, minutes, seconds)
     modeldump(year, month, day, hours, minutes, seconds) # run model dump to update plasmasphere
-    thetalist = [45] # in deg -- what angles to launch at? 
+    thetalist = [45 for i in range(1)] # in deg -- what angles to launch at? 
 
     checkdir = 0
     crs_out = 'MAG'  # theres a bug with GEO coords -- maybe its the fieldlines? 
@@ -229,6 +233,8 @@ for cdate, cf, bsstr in zip(dates, fs, bs):
 
     # yearday and miliseconds day are used by raytracer
     yearday = str(year)+ str(days_in_the_year)   # YYYYDDD
+    
+    minutes = minutes + 5
     milliseconds_day = hours*3.6e6 + minutes*6e4 + seconds*1e3
 
     # run it!
@@ -444,15 +450,16 @@ for cdate, cf, bsstr in zip(dates, fs, bs):
     plt.xlim([-max_lim, max_lim])
     plt.ylim([-2.5, 2.5])
 
-    mytitle = str(freq[0]/1e3) + 'kHz rays at ' + str(ray_datenum) + ' in ' + crs_out + ' coords'
+    mytitle = str(freq[0]/1e3) + 'kHz rays at ' + str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.year) + str(ray_datenum.hour) + str(minutes) + ' in ' + crs_out + ' coords'
     plt.title(mytitle)
     ax.legend(loc = 'lower center', fontsize =  'x-small')
 
-    savename = datadir + str(freq[0]/1e3) + 'kHz' + str(ray_datenum.year) + str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.hour) + str(ray_datenum.minute) + '2Dview.png'
+    savename = datadir + str(freq[0]/1e3) + 'kHz' + str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.year) + str(ray_datenum.hour) + str(minutes) + '2Dview.png'
     #plt.savefig(savename, format='svg')
     plt.savefig(savename, format='png')
     #plt.close()
-    #plt.show()
+    plt.show()
+    plt.close()
 
 # final plot
 """

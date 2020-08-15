@@ -19,7 +19,7 @@ H_IONO = 1000e3
 
 #  --------------------------- CHANGE ENV SETTINGS HERE  --------------------------
 # Environmental parameters
-Kp = 4
+Kp = 2
 AE = 1.6
 Pdyn = 4
 Dst = 1.0

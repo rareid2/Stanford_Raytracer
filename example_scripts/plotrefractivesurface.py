@@ -37,37 +37,6 @@ M_EL = 9.1e-31     # kg
 M_P = 1.67e-27     # kg
 R_E = 6371e3  # m
 
-# -------------------------------- SET TIME --------------------------------
-# change time information here - use UTC -
-year = 2020
-month = 5
-day = 21
-hours = 3
-minutes = 6
-seconds = 40
-
-ray_datenum = dt.datetime(year, month, day, hours, minutes, seconds)
-
-freq = [28e3]
-
-datadir = '/home/rileyannereid/workspace/SR-output/'
-datadir = datadir + str(freq[0]/1e3) + 'kHz' + str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.year) + '/'
-try:
-    os.mkdir(datadir)
-except OSError:
-    print ("Creation of the directory %s failed" % datadir)
-else:
-    print ("Successfully created the directory %s" % datadir)
-
-datadir = datadir + str(freq[0]/1e3) + 'kHz' + str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.year) + str(ray_datenum.hour) + str(ray_datenum.minute) + '/'
-try:
-    os.mkdir(datadir)
-except OSError:
-    print ("Creation of the directory %s failed" % datadir)
-else:
-    print ("Successfully created the directory %s" % datadir)
-
-
 # ---------------------------------------- STIX PARAM --------------------------------------------
 def stix_parameters(ray, t, w):
 
@@ -101,186 +70,209 @@ def getLshell(ray, t, ray_datenum):
 
 # ---------------------------------------------------------------------------------------------
 
-# get DSX and VPM positions for... 
-r, tvec = TLE2pos(1, ray_datenum)
 
-# redefine time here -- more accurate
-ray_datenum = tvec[0]
+# -------------------------------- SET TIME --------------------------------
+dates = [dt.datetime(2020,8,20,13,58,0)]
+fs = [8.2e3]
+bs = ['fullday']
 
-# convert to meters
-dsx = [rpos*1e3 for rpos in r[0]]
+for cdate, cf, bsstr in zip(dates, fs, bs):
+    year = cdate.year
+    month = cdate.month
+    day = cdate.day
+    hours = cdate.hour
+    minutes = cdate.minute
+    seconds = cdate.second
 
-# only grab first one - weird bug fix with JD dates
-dsx = [dsx[0]]
+    freq = [cf]
 
-# convert startpoint to SM car for raytracer
-GEIcar_dsx = coord.Coords(dsx, 'GEI', 'car', units=['m', 'm', 'm'])
-GEIcar_dsx.ticks = Ticktock(ray_datenum, 'UTC') # add ticks
-SMcar_dsx = GEIcar_dsx.convert('SM', 'car') # needed for raytracer
+    datadir = '/home/rileyannereid/workspace/SR-output/' + bsstr + '/'
 
-# start position of raytracer
-position = [float(SMcar_dsx.x), float(SMcar_dsx.y), float(SMcar_dsx.z)]
+    ray_datenum = dt.datetime(year, month, day, hours, minutes, seconds)
 
-# -------------------------------- RUN RAYS --------------------------------
-# convert for raytracer settings
-days_in_the_year = ray_datenum.timetuple().tm_yday
-days_in_the_year = format(days_in_the_year, '03d')
+    rename = str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.year)
 
-# yearday and miliseconds day are used by raytracer
-yearday = str(year)+ str(days_in_the_year)   # YYYYDDD
-milliseconds_day = hours*3.6e6 + minutes*6e4 + seconds*1e3
+    # get DSX and VPM positions for... 
+    r, tvec = TLE2pos(1, ray_datenum, 1)
 
-# run it!
-tmpdir = tempfile.mkdtemp() 
-run_rays(freq, [position], [np.zeros(3)], yearday, milliseconds_day, tmpdir)
+    # redefine time here -- more accurate
+    #ray_datenum = tvec[0]
 
-# Load all the rayfiles in the output directory
-ray_out_dir = tmpdir
-file_titles = os.listdir(ray_out_dir)
+    # convert to meters
+    dsx = [rpos*1e3 for rpos in r[0]]
 
-# create empty lists to fill with ray files
-raylist = []
+    # only grab first one - weird bug fix with JD dates
+    dsx = [dsx[0]]
 
-# Read in a rayfile -- get the plasma density parameters from within
-for filename in file_titles:
-    if '.ray' in filename:
-        rf = read_rayfile(os.path.join(ray_out_dir, filename))
+    # convert startpoint to SM car for raytracer
+    GEIcar_dsx = coord.Coords(dsx, 'GEI', 'car', units=['m', 'm', 'm'])
+    GEIcar_dsx.ticks = Ticktock(ray_datenum, 'UTC') # add ticks
+    SMcar_dsx = GEIcar_dsx.convert('SM', 'car') # needed for raytracer
 
-# get an entire ray lets just try one for now
-ray = rf[0]
-w = ray['w']
+    # start position of raytracer
+    position = [float(SMcar_dsx.x), float(SMcar_dsx.y), float(SMcar_dsx.z)]
 
-f = w/(2*np.pi)
-print('frequency of ray is:', w/(2*np.pi), ' Hz')
+    # -------------------------------- RUN RAYS --------------------------------
+    # convert for raytracer settings
+    days_in_the_year = ray_datenum.timetuple().tm_yday
+    days_in_the_year = format(days_in_the_year, '03d')
 
-# set up phi vec
-phi_vec = np.linspace(0,360,int(1e5))*D2R
+    # yearday and miliseconds day are used by raytracer
+    yearday = str(year)+ str(days_in_the_year)   # YYYYDDD
+    milliseconds_day = hours*3.6e6 + minutes*6e4 + seconds*1e3
 
-# grab only t = 0
-t = 0
+    # run it!
+    tmpdir = tempfile.mkdtemp() 
+    run_rays(freq, [position], [np.zeros(3)], yearday, milliseconds_day, tmpdir)
 
-# for earlier use
-Lshell = getLshell(ray, t, ray_datenum)
+    # Load all the rayfiles in the output directory
+    ray_out_dir = tmpdir
+    file_titles = os.listdir(ray_out_dir)
 
-# get stix param
-R, L, P, S, D = stix_parameters(ray, t, w)
+    # create empty lists to fill with ray files
+    raylist = []
 
-root = -1 # why ?? CAUSE WHISTLER
+    # Read in a rayfile -- get the plasma density parameters from within
+    for filename in file_titles:
+        if '.ray' in filename:
+            rf = read_rayfile(os.path.join(ray_out_dir, filename))
 
-k_vec = np.zeros_like(phi_vec)
-eta_vec=np.zeros_like(phi_vec)
+    # get an entire ray lets just try one for now
+    ray = rf[0]
+    print(rf)
+    w = ray['w']
 
-# solution from antenna white paper!
-resangle = np.arctan(np.sqrt(-P/S))
+    f = w/(2*np.pi)
+    print('frequency of ray is:', w/(2*np.pi), ' Hz')
 
-# cone = []
+    # set up phi vec
+    phi_vec = np.linspace(0,360,int(1e5))*D2R
 
-for phi_ind, phi  in enumerate(phi_vec):
+    # grab only t = 0
+    t = 0
 
-    # Solve the cold plasma dispersion relation
-    cos2phi = pow(np.cos(phi),2)
-    sin2phi = pow(np.sin(phi),2)
+    # for earlier use
+    Lshell = getLshell(ray, t, ray_datenum)
 
-    A = S*sin2phi + P*cos2phi
-    B = R*L*sin2phi + P*S*(1.0+cos2phi)
+    # get stix param
+    R, L, P, S, D = stix_parameters(ray, t, w)
 
-    discriminant = B*B - 4.0*A*R*L*P
+    root = -1 # why ?? CAUSE WHISTLER
 
-    n1sq = (B + np.sqrt(discriminant))/(2.0*A)
-    n2sq = (B - np.sqrt(discriminant))/(2.0*A)
+    k_vec = np.zeros_like(phi_vec)
+    eta_vec=np.zeros_like(phi_vec)
 
-    # negative refers to the fact that ^^^ B - sqrt
-    n1 = np.sqrt(n1sq)
-    #if n2sq < 0:
-    #    cone.append(phi)
-    # only get whistler solution from minus root ( i think)
-    # important to call these plus and minus roots! NOT POS AND NEG
-    n2 = np.sqrt(n2sq)
-    # Order the roots -- ?
-    """
-    if abs(n1) > abs(n2):
-        k2 = w*n1/c
-        k1 = w*n2/c
-    else:
-        k1 = w*n1/c
-        k2 = w*n2/c
+    # solution from antenna white paper!
+    resangle = np.arctan(np.sqrt(-P/S))
 
-    if root==1.0:
-        k = k1
-        eta = n1
-    else:
-        k = k2
-        eta = n2
-    """
-    k_vec[phi_ind] = w*n2/c
-    eta_vec[phi_ind] = n2
+    # cone = []
 
-# repeat for only AH solution
+    for phi_ind, phi  in enumerate(phi_vec):
 
-# grab for ONLY electrons -- should I assume electron fill ENTIRE population...?
-Ns = float(ray['Ns'].iloc[t,0])
-Q = float(ray['qs'].iloc[t,0])
-M = float(ray['ms'].iloc[t,0])
-B   =  ray['B0'].iloc[t]
-Bmag = np.linalg.norm(B)
+        # Solve the cold plasma dispersion relation
+        cos2phi = pow(np.cos(phi),2)
+        sin2phi = pow(np.sin(phi),2)
 
-# makes it easier to square here
-w2 = w*w
-wp2 = Ns*pow(Q,2)/(eo*M)
-wh = Q*Bmag/M
-wh2 = wh*wh
+        A = S*sin2phi + P*cos2phi
+        B = R*L*sin2phi + P*S*(1.0+cos2phi)
 
-root = 1
+        discriminant = B*B - 4.0*A*R*L*P
 
-# solve appleton-hartree eq
-numerator = wp2/w2
-denom1 = (wh2*pow(np.sin(phi_vec),2))/(2*(w2 - wp2))
-denom2 = np.sqrt(pow(denom1, 2) + wh2*pow(np.cos(phi_vec), 2)/w2)
-eta2_AH   = 1 - (numerator/(1 - denom1 + root*denom2))
-eta_AH = np.sqrt(-eta2_AH)
+        n1sq = (B + np.sqrt(discriminant))/(2.0*A)
+        n2sq = (B - np.sqrt(discriminant))/(2.0*A)
 
-# plot it 
-fig, ax = plt.subplots(1,1)
+        # negative refers to the fact that ^^^ B - sqrt
+        n1 = np.sqrt(n1sq)
+        #if n2sq < 0:
+        #    cone.append(phi)
+        # only get whistler solution from minus root ( i think)
+        # important to call these plus and minus roots! NOT POS AND NEG
+        n2 = np.sqrt(n2sq)
+        # Order the roots -- ?
+        """
+        if abs(n1) > abs(n2):
+            k2 = w*n1/c
+            k1 = w*n2/c
+        else:
+            k1 = w*n1/c
+            k2 = w*n2/c
 
-#ax.plot(eta_AH*np.sin(phi_vec), eta_AH*np.cos(phi_vec), LineWidth = 1, label = 'e only')
-ax.plot(eta_vec*np.sin(phi_vec), eta_vec*np.cos(phi_vec), LineWidth = 1, label = 'e + ions')
+        if root==1.0:
+            k = k1
+            eta = n1
+        else:
+            k = k2
+            eta = n2
+        """
+        k_vec[phi_ind] = w*n2/c
+        eta_vec[phi_ind] = n2
 
-# lol dont do this
-#findcone = eta_vec*np.sin(phi_vec)
-#for cone in findcone:
-    #if cone > 100:
-    #    wherecone = np.where(findcone == cone)
-    #    conetheta = phi_vec[wherecone]
-    #    conetheta = conetheta * R2D
-    #    break
+    # repeat for only AH solution
 
-#archeight = float(eta_vec[wherecone])
+    # grab for ONLY electrons -- should I assume electron fill ENTIRE population...?
+    Ns = float(ray['Ns'].iloc[t,0])
+    Q = float(ray['qs'].iloc[t,0])
+    M = float(ray['ms'].iloc[t,0])
+    B   =  ray['B0'].iloc[t]
+    Bmag = np.linalg.norm(B)
 
-# formatting
-xlim1 = -100
-xlim2 = -xlim1
-ylim1 = xlim1
-ylim2 = -ylim1
+    # makes it easier to square here
+    w2 = w*w
+    wp2 = Ns*pow(Q,2)/(eo*M)
+    wh = Q*Bmag/M
+    wh2 = wh*wh
 
-scale = xlim2/500
+    root = 1
 
-ax.set_xlim([xlim1, xlim2])
-ax.set_ylim([ylim1, ylim2])
-ax.set_xlabel('Transverse Refractive Component')
+    # solve appleton-hartree eq
+    numerator = wp2/w2
+    denom1 = (wh2*pow(np.sin(phi_vec),2))/(2*(w2 - wp2))
+    denom2 = np.sqrt(pow(denom1, 2) + wh2*pow(np.cos(phi_vec), 2)/w2)
+    eta2_AH   = 1 - (numerator/(1 - denom1 + root*denom2))
+    eta_AH = np.sqrt(-eta2_AH)
 
-ax.arrow(0, ylim1, 0, 2*ylim2-1, length_includes_head=True, head_width=3, head_length=5, color = 'grey', ls = '--')
-ax.annotate('B0', xy=(scale*10,ylim2-(scale*50)))
+    # plot it 
+    fig, ax = plt.subplots(1,1)
 
-ax.annotate('fp = ' + str(float(round((np.sqrt(wp2)/(2*np.pi))/1e3, 1))) + ' kHz', xy=(xlim1+(scale*100),ylim2-(scale*200)))
+    #ax.plot(eta_AH*np.sin(phi_vec), eta_AH*np.cos(phi_vec), LineWidth = 1, label = 'e only')
+    ax.plot(eta_vec*np.sin(phi_vec), eta_vec*np.cos(phi_vec), LineWidth = 1, label = 'e + ions')
 
-resonanceangle = float(R2D*resangle)
+    # lol dont do this
+    #findcone = eta_vec*np.sin(phi_vec)
+    #for cone in findcone:
+        #if cone > 100:
+        #    wherecone = np.where(findcone == cone)
+        #    conetheta = phi_vec[wherecone]
+        #    conetheta = conetheta * R2D
+        #    break
 
-#pac = Patch.Arc([0, 0], archeight, archeight, angle=0, theta1=0, theta2=float(resonanceangle), edgecolor = 'r')
-#ax.add_patch(pac)
+    #archeight = float(eta_vec[wherecone])
 
-ax.annotate('${\Theta}$ < ' + str(round(resonanceangle, 2)) + 'deg', xy=(xlim2 - (scale*200), scale*50))
+    # formatting
+    xlim1 = -100
+    xlim2 = -xlim1
+    ylim1 = xlim1
+    ylim2 = -ylim1
 
-ax.set_title(str(freq[0]/1e3) + ' kHz Refractive Surface at ' + str(ray_datenum))
-plt.legend()
-plt.savefig(datadir + str(freq[0]/1e3) + 'kHz' + str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.year) + str(ray_datenum.hour) + str(ray_datenum.minute) + 'refractivesurface.png', format='png')
-plt.show()
+    scale = xlim2/500
+
+    ax.set_xlim([xlim1, xlim2])
+    ax.set_ylim([ylim1, ylim2])
+    ax.set_xlabel('Transverse Refractive Component')
+
+    ax.arrow(0, ylim1, 0, 2*ylim2-1, length_includes_head=True, head_width=3, head_length=5, color = 'grey', ls = '--')
+    ax.annotate('B0', xy=(scale*10,ylim2-(scale*50)))
+
+    ax.annotate('fp = ' + str(float(round((np.sqrt(wp2)/(2*np.pi))/1e3, 1))) + ' kHz', xy=(xlim1+(scale*100),ylim2-(scale*200)))
+
+    resonanceangle = float(R2D*resangle)
+
+    #pac = Patch.Arc([0, 0], archeight, archeight, angle=0, theta1=0, theta2=float(resonanceangle), edgecolor = 'r')
+    #ax.add_patch(pac)
+
+    ax.annotate('${\Theta}$ < ' + str(round(resonanceangle, 2)) + 'deg', xy=(xlim2 - (scale*200), scale*50))
+
+    ax.set_title(str(freq[0]/1e3) + ' kHz Refractive Surface at ' + str(ray_datenum))
+    plt.legend()
+    plt.savefig(datadir + rename + '/' + str(freq[0]/1e3) + 'kHz' + rename + str(ray_datenum.hour) + str(ray_datenum.minute) + '/' + str(freq[0]/1e3) + 'kHz' + rename + str(ray_datenum.hour) + str(ray_datenum.minute) + 'refractivesurface.png', format='png')
+    plt.close()

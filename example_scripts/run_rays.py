@@ -31,7 +31,7 @@ def run_rays(freq, positions, directions, yearday, milliseconds_day, tmpdir):
     # Set input file path
     ray_inpfile = os.path.join(tempdirectory, radstr)
     # uncomment this if you want to be able to traceback the input and output files
-    print(f'tempfile is {ray_inpfile}')
+    #print(f'tempfile is {ray_inpfile}')
 
     # Set config file for Ngo Model (Mode 1) -- see raytracer settings
 
@@ -140,7 +140,7 @@ def run_rays(freq, positions, directions, yearday, milliseconds_day, tmpdir):
 
         #print("------- Running mode %d -------" % mode)
         #print("Command is:")
-        print(ray_cmd)
+        #print(ray_cmd)
         #print()
 
         os.system(ray_cmd)
