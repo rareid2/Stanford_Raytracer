@@ -204,9 +204,10 @@ def launchmanyrays(position, vpmpos, rayt, opts):
 
     # clear temp directories
     shutil.rmtree(tmpdir)
+    #os.remove('/tmp/tmp*') ___ NEED TO DO THIS A LOT 
 
     rayt = rayt.strftime("%Y-%m-%d %H:%M:%S")
-    print(rayt) # fix this
+    print(rayt)
 
     return rayendls, vpmf, foot, rayt
 
