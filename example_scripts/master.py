@@ -12,9 +12,9 @@ from rayoutput_parser import readrayout
 # check the Kp index!
 
 # full week of predictions
-startday = 1
+startday = 21
 mo = 9
-weeklen = 8 # add 1 more than you think (8 days for a week)
+weeklen = 2 # add 1 more than you think (8 days for a week)
 clist = 0
 
 dates, fs, bs = fullweeksetup(startday, mo, clist, weeklen)
@@ -27,7 +27,7 @@ MCsim = 0
 angfiles = 0
 
 runopts = [rayn, plen, timeint, MCsim, angfiles]
-runsomerays(dates, fs, bs, runopts)
+#runsomerays(dates, fs, bs, runopts)
 print('finished running full day')
 
 ###################################### STEP 2 ######################################
@@ -62,7 +62,7 @@ for cdate, cf, bsstr in zip(dates, fs, bs):
 
     for dffi, dff in enumerate(df):
         checkd = tvec[dffi].hour*3600 + tvec[dffi].minute*60 + tvec[dffi].second
-        if dff < 1000: # try to keep it loose enough to find opposite hemisphere cases -- look into this
+        if dff < 800: # try to keep it loose enough to find opposite hemisphere cases -- look into this
             if np.abs(lastt - checkd) > 30*60: # new conj!
                 outfile.write(str(tvec[dffi]))
                 outfile.write("\n")
@@ -79,10 +79,14 @@ dates, fs, bs = fullweeksetup(startday, mo, clist, weeklen)
 
 # set opts
 rayn = 5000
-plen = 5*60
-timeint = 100
+plen = 10*60
+timeint = 180
 MCsim = 1
 angfiles = 1
+
+dates = [dt.datetime(2020, 9, 15, 20, 40), dt.datetime(2020,9,17,19,35), dt.datetime(2020, 9, 20, 21, 5)]
+fs = [28e3, 8.2e3, 28e3]
+bs = ['fullday', 'fullday', 'fullday', 'fullday', 'fullday', 'fullday']
 
 print('est. run time: ', len(dates) * rayn * plen/timeint * (1/3000), ' min')
 
