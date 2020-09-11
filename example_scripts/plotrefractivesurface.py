@@ -23,7 +23,7 @@ from run_rays import run_rays
 from raytracer_settings import *
 from IGRF_funcs import B_dir, trace_fieldline_ODE, findFootprints, B_direasy
 from TLE_funcs import TLE2pos
-
+from run_model_dump import modeldump 
 
 # --------------- CONSTANTS --------------------------
 R2D = 180./np.pi
@@ -69,12 +69,13 @@ def getLshell(ray, t, ray_datenum):
     return Lshell
 
 # ---------------------------------------------------------------------------------------------
-
+"""
 
 # -------------------------------- SET TIME --------------------------------
-dates = [dt.datetime(2020,8,20,13,58,0)]
+dates = [dt.datetime(2020,9,14,22,53), dt.datetime(2020,9,14,22,53)]
+
 fs = [8.2e3]
-bs = ['fullday']
+bs = ['fullday' for i in range(len(dates))]
 
 for cdate, cf, bsstr in zip(dates, fs, bs):
     year = cdate.year
@@ -86,9 +87,10 @@ for cdate, cf, bsstr in zip(dates, fs, bs):
 
     freq = [cf]
 
-    datadir = '/home/rileyannereid/workspace/SR-output/' + bsstr + '/'
+    datadir = '/home/rileyannereid/workspace/SR-output/kvecs/'
 
     ray_datenum = dt.datetime(year, month, day, hours, minutes, seconds)
+    modeldump(year, month, day, hours, minutes, seconds) # run model dump to update plasmasphere
 
     rename = str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.year)
 
@@ -111,6 +113,13 @@ for cdate, cf, bsstr in zip(dates, fs, bs):
 
     # start position of raytracer
     position = [float(SMcar_dsx.x), float(SMcar_dsx.y), float(SMcar_dsx.z)]
+
+    #quick check real quick
+    #jbpos = coord.Coords([1000e3+R_E, 30, 0], 'MAG', 'sph', units=['m', 'deg', 'deg'])
+    #jbpos.ticks = Ticktock(ray_datenum, 'UTC')
+    #newjbos = jbpos.convert('SM', 'car')
+    #newjbosGEO = jbpos.convert('GEO', 'car')
+    #position = [float(newjbos.x), float(newjbos.y), float(newjbos.z)]
 
     # -------------------------------- RUN RAYS --------------------------------
     # convert for raytracer settings
@@ -139,8 +148,7 @@ for cdate, cf, bsstr in zip(dates, fs, bs):
 
     # get an entire ray lets just try one for now
     ray = rf[0]
-    print(rf)
-    w = ray['w']
+    w = ray['w']           
 
     f = w/(2*np.pi)
     print('frequency of ray is:', w/(2*np.pi), ' Hz')
@@ -148,131 +156,140 @@ for cdate, cf, bsstr in zip(dates, fs, bs):
     # set up phi vec
     phi_vec = np.linspace(0,360,int(1e5))*D2R
 
-    # grab only t = 0
-    t = 0
+    # grab every 10 seconds
+    for tti,tt in enumerate(ray['time']):
+        if tti % 10 == 0:
+            # grab only t = 0
+            t = tti
 
-    # for earlier use
-    Lshell = getLshell(ray, t, ray_datenum)
+            bb = ray['B0'].iloc[t]
+            bbdir = [bb.x / np.sqrt(bb.x**2 + bb.y**2 + bb.z**2), bb.y / np.sqrt(bb.x**2 + bb.y**2 + bb.z**2), bb.z /  np.sqrt(bb.x**2 + bb.y**2 + bb.z**2)]
+            kk = (w/c) * ray['n'].iloc[t]
+            kkdir = [kk.x / np.sqrt(kk.x**2 + kk.y**2 + kk.z**2), kk.y / np.sqrt(kk.x**2 + kk.y**2 + kk.z**2), kk.z /  np.sqrt(kk.x**2 + kk.y**2 + kk.z**2)]
+            print(kkdir)
+            print(bbdir)
+            # for earlier use
+            Lshell = getLshell(ray, t, ray_datenum)
 
-    # get stix param
-    R, L, P, S, D = stix_parameters(ray, t, w)
+            # get stix param
+            R, L, P, S, D = stix_parameters(ray, t, w)
 
-    root = -1 # why ?? CAUSE WHISTLER
+            root = -1 # why ?? CAUSE WHISTLER
 
-    k_vec = np.zeros_like(phi_vec)
-    eta_vec=np.zeros_like(phi_vec)
+            k_vec = np.zeros_like(phi_vec)
+            eta_vec=np.zeros_like(phi_vec)
 
-    # solution from antenna white paper!
-    resangle = np.arctan(np.sqrt(-P/S))
+            # solution from antenna white paper!
+            resangle = np.arctan(np.sqrt(-P/S))
 
-    # cone = []
+            # cone = []
 
-    for phi_ind, phi  in enumerate(phi_vec):
+            for phi_ind, phi  in enumerate(phi_vec):
 
-        # Solve the cold plasma dispersion relation
-        cos2phi = pow(np.cos(phi),2)
-        sin2phi = pow(np.sin(phi),2)
+                # Solve the cold plasma dispersion relation
+                cos2phi = pow(np.cos(phi),2)
+                sin2phi = pow(np.sin(phi),2)
 
-        A = S*sin2phi + P*cos2phi
-        B = R*L*sin2phi + P*S*(1.0+cos2phi)
+                A = S*sin2phi + P*cos2phi
+                B = R*L*sin2phi + P*S*(1.0+cos2phi)
 
-        discriminant = B*B - 4.0*A*R*L*P
+                discriminant = B*B - 4.0*A*R*L*P
 
-        n1sq = (B + np.sqrt(discriminant))/(2.0*A)
-        n2sq = (B - np.sqrt(discriminant))/(2.0*A)
+                n1sq = (B + np.sqrt(discriminant))/(2.0*A)
+                n2sq = (B - np.sqrt(discriminant))/(2.0*A)
 
-        # negative refers to the fact that ^^^ B - sqrt
-        n1 = np.sqrt(n1sq)
-        #if n2sq < 0:
-        #    cone.append(phi)
-        # only get whistler solution from minus root ( i think)
-        # important to call these plus and minus roots! NOT POS AND NEG
-        n2 = np.sqrt(n2sq)
-        # Order the roots -- ?
-        """
-        if abs(n1) > abs(n2):
-            k2 = w*n1/c
-            k1 = w*n2/c
-        else:
-            k1 = w*n1/c
-            k2 = w*n2/c
+                # negative refers to the fact that ^^^ B - sqrt
+                n1 = np.sqrt(n1sq)
+                #if n2sq < 0:
+                #    cone.append(phi)
+                # only get whistler solution from minus root ( i think)
+                # important to call these plus and minus roots! NOT POS AND NEG
+                n2 = np.sqrt(n2sq)
+                # Order the roots -- ?
+                if abs(n1) > abs(n2):
+                    k2 = w*n1/c
+                    k1 = w*n2/c
+                else:
+                    k1 = w*n1/c
+                    k2 = w*n2/c
 
-        if root==1.0:
-            k = k1
-            eta = n1
-        else:
-            k = k2
-            eta = n2
-        """
-        k_vec[phi_ind] = w*n2/c
-        eta_vec[phi_ind] = n2
+                if root==1.0:
+                    k = k1
+                    eta = n1
+                else:
+                    k = k2
+                    eta = n2
+                k_vec[phi_ind] = w*n2/c
+                eta_vec[phi_ind] = n2
 
-    # repeat for only AH solution
+            # repeat for only AH solution
 
-    # grab for ONLY electrons -- should I assume electron fill ENTIRE population...?
-    Ns = float(ray['Ns'].iloc[t,0])
-    Q = float(ray['qs'].iloc[t,0])
-    M = float(ray['ms'].iloc[t,0])
-    B   =  ray['B0'].iloc[t]
-    Bmag = np.linalg.norm(B)
+            # grab for ONLY electrons -- should I assume electron fill ENTIRE population...?
+            Ns = float(ray['Ns'].iloc[t,0])
+            Q = float(ray['qs'].iloc[t,0])
+            M = float(ray['ms'].iloc[t,0])
+            B   =  ray['B0'].iloc[t]
+            Bmag = np.linalg.norm(B)
 
-    # makes it easier to square here
-    w2 = w*w
-    wp2 = Ns*pow(Q,2)/(eo*M)
-    wh = Q*Bmag/M
-    wh2 = wh*wh
+            # makes it easier to square here
+            w2 = w*w
+            wp2 = Ns*pow(Q,2)/(eo*M)
+            wh = Q*Bmag/M
+            wh2 = wh*wh
 
-    root = 1
+            root = 1
 
-    # solve appleton-hartree eq
-    numerator = wp2/w2
-    denom1 = (wh2*pow(np.sin(phi_vec),2))/(2*(w2 - wp2))
-    denom2 = np.sqrt(pow(denom1, 2) + wh2*pow(np.cos(phi_vec), 2)/w2)
-    eta2_AH   = 1 - (numerator/(1 - denom1 + root*denom2))
-    eta_AH = np.sqrt(-eta2_AH)
+            # solve appleton-hartree eq
+            numerator = wp2/w2
+            denom1 = (wh2*pow(np.sin(phi_vec),2))/(2*(w2 - wp2))
+            denom2 = np.sqrt(pow(denom1, 2) + wh2*pow(np.cos(phi_vec), 2)/w2)
+            eta2_AH   = 1 - (numerator/(1 - denom1 + root*denom2))
+            eta_AH = np.sqrt(-eta2_AH)
 
-    # plot it 
-    fig, ax = plt.subplots(1,1)
+            # plot it 
+            fig, ax = plt.subplots(1,1)
 
-    #ax.plot(eta_AH*np.sin(phi_vec), eta_AH*np.cos(phi_vec), LineWidth = 1, label = 'e only')
-    ax.plot(eta_vec*np.sin(phi_vec), eta_vec*np.cos(phi_vec), LineWidth = 1, label = 'e + ions')
+            #ax.plot(eta_AH*np.sin(phi_vec), eta_AH*np.cos(phi_vec), LineWidth = 1, label = 'e only')
+            ax.plot(eta_vec*np.sin(phi_vec), eta_vec*np.cos(phi_vec), LineWidth = 1, label = 'e + ions')
 
-    # lol dont do this
-    #findcone = eta_vec*np.sin(phi_vec)
-    #for cone in findcone:
-        #if cone > 100:
-        #    wherecone = np.where(findcone == cone)
-        #    conetheta = phi_vec[wherecone]
-        #    conetheta = conetheta * R2D
-        #    break
+            # lol dont do this
+            #findcone = eta_vec*np.sin(phi_vec)
+            #for cone in findcone:
+                #if cone > 100:
+                #    wherecone = np.where(findcone == cone)
+                #    conetheta = phi_vec[wherecone]
+                #    conetheta = conetheta * R2D
+                #    break
 
-    #archeight = float(eta_vec[wherecone])
+            #archeight = float(eta_vec[wherecone])
 
-    # formatting
-    xlim1 = -100
-    xlim2 = -xlim1
-    ylim1 = xlim1
-    ylim2 = -ylim1
+            # formatting
+            xlim1 = -100
+            xlim2 = -xlim1
+            ylim1 = xlim1
+            ylim2 = -ylim1
 
-    scale = xlim2/500
+            scale = xlim2/500
 
-    ax.set_xlim([xlim1, xlim2])
-    ax.set_ylim([ylim1, ylim2])
-    ax.set_xlabel('Transverse Refractive Component')
+            ax.set_xlim([xlim1, xlim2])
+            ax.set_ylim([ylim1, ylim2])
+            ax.set_xlabel('Transverse Refractive Component')
 
-    ax.arrow(0, ylim1, 0, 2*ylim2-1, length_includes_head=True, head_width=3, head_length=5, color = 'grey', ls = '--')
-    ax.annotate('B0', xy=(scale*10,ylim2-(scale*50)))
+            ax.arrow(0, ylim1, 0, 2*ylim2-1, length_includes_head=True, head_width=3, head_length=5, color = 'grey', ls = '--')
+            ax.annotate('B0', xy=(scale*10,ylim2-(scale*50)))
 
-    ax.annotate('fp = ' + str(float(round((np.sqrt(wp2)/(2*np.pi))/1e3, 1))) + ' kHz', xy=(xlim1+(scale*100),ylim2-(scale*200)))
+            ax.annotate('fp = ' + str(float(round((np.sqrt(wp2)/(2*np.pi))/1e3, 1))) + ' kHz', xy=(xlim1+(scale*100),ylim2-(scale*200)))
 
-    resonanceangle = float(R2D*resangle)
+            resonanceangle = float(R2D*resangle)
 
-    #pac = Patch.Arc([0, 0], archeight, archeight, angle=0, theta1=0, theta2=float(resonanceangle), edgecolor = 'r')
-    #ax.add_patch(pac)
+            #pac = Patch.Arc([0, 0], archeight, archeight, angle=0, theta1=0, theta2=float(resonanceangle), edgecolor = 'r')
+            #ax.add_patch(pac)
 
-    ax.annotate('${\Theta}$ < ' + str(round(resonanceangle, 2)) + 'deg', xy=(xlim2 - (scale*200), scale*50))
+            ax.annotate('${\Theta}$ < ' + str(round(resonanceangle, 2)) + 'deg', xy=(xlim2 - (scale*200), scale*50))
 
-    ax.set_title(str(freq[0]/1e3) + ' kHz Refractive Surface at ' + str(ray_datenum))
-    plt.legend()
-    plt.savefig(datadir + rename + '/' + str(freq[0]/1e3) + 'kHz' + rename + str(ray_datenum.hour) + str(ray_datenum.minute) + '/' + str(freq[0]/1e3) + 'kHz' + rename + str(ray_datenum.hour) + str(ray_datenum.minute) + 'refractivesurface.png', format='png')
-    plt.close()
+            ax.set_title(str(freq[0]/1e3) + ' kHz Refractive Surface at ' + str(ray_datenum))
+            plt.legend()
+            plt.savefig(datadir + str(freq[0]/1e3) + 'kHz' + rename + str(ray_datenum.hour) + str(ray_datenum.minute) + 'refractivesurface.png' + str(tti), format='png')
+            #plt.show()
+            plt.close()
+"""

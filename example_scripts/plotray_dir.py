@@ -19,8 +19,18 @@ from spacepy.time import Ticktock
 from TLE_funcs import TLE2pos
 import tempfile
 from run_model_dump import modeldump 
+from plotrefractivesurface import getLshell, stix_parameters
 
-c = 2.998e8 # m/s
+R2D = 180./np.pi
+D2R = np.pi/180.
+Hz2Rad = 2.*np.pi
+Rad2Hz = 1./Hz2Rad
+eo   = 8.854e-12   # C^2/Nm^2 
+c    = 2.998e8     # m/s
+Q_EL = 1.602e-19   # C
+M_EL = 9.1e-31     # kg
+M_P = 1.67e-27     # kg
+R_E = 6371e3  # m
 
 def plotraydir(dates, fs, bs):
 
@@ -33,9 +43,10 @@ def plotraydir(dates, fs, bs):
         seconds = cdate.second
 
         freq = [cf]
+        intcheck = 10
 
         ray_datenum = dt.datetime(year, month, day, hours, minutes, seconds)
-        #modeldump(year, month, day, hours, minutes, seconds) # run model dump to update plasmasphere
+        modeldump(year, month, day, hours, minutes, seconds) # run model dump to update plasmasphere
         #thetalist = [0, 15, 30, 45, -15, -30, -45] # in deg -- what angles to launch at? 
 
         checkdir = 0
@@ -72,6 +83,12 @@ def plotraydir(dates, fs, bs):
         # -------------------------------- DEFINE RAY DIRECTIONS --------------------------------
         # start position of raytracer
         position = [float(SMcar_dsx.x), float(SMcar_dsx.y), float(SMcar_dsx.z)]
+        #quick check real quick
+        #jbpos = coord.Coords([1000e3+R_E, 30, 0], 'MAG', 'sph', units=['m', 'deg', 'deg'])
+        #jbpos.ticks = Ticktock(ray_datenum, 'UTC')
+        #newjbos = jbpos.convert('SM', 'car')
+        #newjbosGEO = jbpos.convert('GEO', 'car')
+        #position = [float(newjbos.x), float(newjbos.y), float(newjbos.z)]
 
         # check with hemi we are in
         if outsph_vpm.lati > 0:
@@ -81,7 +98,11 @@ def plotraydir(dates, fs, bs):
             dir = -1  # south
             dirstr = 'south'
 
+        #dir = -1
+        #dirstr = 'south'
+
         Bstart = [float(GEOcar_dsx.x)/R_E, float(GEOcar_dsx.y)/R_E, float(GEOcar_dsx.z)/R_E]
+        #Bstart =  [float(newjbosGEO.x)/R_E, float(newjbosGEO.y)/R_E, float(newjbosGEO.z)/R_E]
         Bx, By, Bz = B_direasy(ray_datenum, Bstart, dir)
 
         # convert direction to SM coordinates for raytracer
@@ -93,8 +114,7 @@ def plotraydir(dates, fs, bs):
         # fill for raytracer call
         positions = []
         directions = []
-        #thetalist = [75]
-        thetalist = [0, 30, 60, -30, -60]
+        thetalist = [30]
 
         # rotate directions
         for theta in thetalist:
@@ -105,17 +125,6 @@ def plotraydir(dates, fs, bs):
             Rot_dirB.ticks = Ticktock(ray_datenum, 'UTC') # add ticks
             SMcar_dirB = Rot_dirB.convert('SM', 'car')
 
-            if checkdir == 1:
-                outcar_dirB = dirB.convert(crs_out, 'car') # before theta addition
-                outcar_dirBrot = Rot_dirB.convert(crs_out, 'car')
-                fig, ax = plt.subplots(1,1, sharex=True, sharey=True)
-                ax.quiver(0, 0, outcar_dirB.x, outcar_dirB.z, label='th', color = 'r')
-                ax.quiver(0, 0, outcar_dirBrot.x, outcar_dirBrot.z, label='B0', color = 'b')
-                plt.legend()
-                plt.title(str(theta) + ' deg from B0 in ' + crs_out + ' coords')
-                plt.show()
-                plt.close()
-
             direction = [float(SMcar_dirB.x), float(SMcar_dirB.y), float(SMcar_dirB.z)]
             
             # add the normalized direction (or zeros)
@@ -123,6 +132,12 @@ def plotraydir(dates, fs, bs):
 
             # make sure position list matches direction list
             positions.append(position)
+        
+        #quick check
+        #direction = coord.Coords([1,0,0], 'MAG', 'sph', units = ['m', 'm', 'm'])
+        #direction.ticks = Ticktock(ray_datenum, 'UTC')
+        #newdir = direction.convert('SM', 'car')
+        #directions = [[float(newdir.x), float(newdir.y), float(newdir.z)]]
 
         # -------------------------------- RUN RAYS --------------------------------
         # convert for raytracer settings
@@ -165,7 +180,7 @@ def plotraydir(dates, fs, bs):
 
             tmp_coords = coord.Coords(list(zip(r['pos'].x, r['pos'].y, r['pos'].z)), 'SM', 'car', units=['m', 'm', 'm'])
             tmp_kcoords = coord.Coords(list(zip((w/c) * r['n'].x, (w/c) * r['n'].y, (w/c) * r['n'].z)), 'SM', 'car', units=['m', 'm', 'm'])
-
+            
             # convert to a unit vector first
             unitk = [(float(tmp_kcoords[s].x), float(tmp_kcoords[s].y), float(tmp_kcoords[s].z)) / np.sqrt(tmp_kcoords[s].x**2 + tmp_kcoords[s].y**2 + tmp_kcoords[s].z**2) for s in range(len(tmp_kcoords))]
             unitk_coords = coord.Coords(unitk, 'SM', 'car', units=['m', 'm', 'm'])
@@ -188,6 +203,7 @@ def plotraydir(dates, fs, bs):
         # rotate plot to be in plane of view
         outsph_dsx = GEIcar_dsx.convert(crs_out, 'sph') # add ticks
         th = -outsph_dsx.long
+        #th = 0
 
         # rotate long to be at prime merid
         Rot_dsx = coord.Coords([float(outsph_dsx.radi), float(outsph_dsx.lati), float(outsph_dsx.long + th)], crs_out, 'sph', units=['m', 'deg', 'deg'])
@@ -223,7 +239,10 @@ def plotraydir(dates, fs, bs):
             if len(outcar_ray.x) > 1:
                 # plotp = ax.scatter(MAGcar_ray.x / R_E, MAGcar_ray.z / R_E, c=d, s = 1, cmap = 'Reds', vmin = 0, vmax = 1.5, zorder = 103)
                 plotp = ax.scatter(outcar_ray.x / R_E, outcar_ray.z / R_E, c = 'Black', s = 1, zorder = 103)
-                ax.quiver(outcar_ray.x[::10] / R_E, outcar_ray.z[::10] / R_E, k.x[::10], k.z[::10], zorder=104)
+                ax.quiver(outcar_ray.x[::intcheck] / R_E, outcar_ray.z[::intcheck] / R_E, k.x[::intcheck], k.z[::intcheck], zorder=104)
+            for tti, tt in enumerate(r.radi): 
+                if tti % intcheck == 0:   
+                    ax.text(outcar_ray.x[tti] / R_E, (outcar_ray.z[tti] - 100e3) / R_E, str(int(tti/intcheck)), fontsize=10)
 
         # -------------------------------- EARTH AND IONO --------------------------------
         earth = plt.Circle((0, 0), 1, color='b', alpha=0.5, zorder=100)
@@ -308,6 +327,17 @@ def plotraydir(dates, fs, bs):
             outcar_bline = Rot_bline.convert(crs_out, 'car')
             plt.plot(outcar_bline.x, outcar_bline.z, color='r', linewidth=1, linestyle='dashed')
 
+        # get an entire ray lets just try one for now
+        for r in raylist:
+            ray = r
+            
+        w = ray['w']           
+
+        f = w/(2*np.pi)
+        print('frequency of ray is:', w/(2*np.pi), ' Hz')
+
+        # set up phi vec
+        phi_vec = np.linspace(0,360,int(1e5))*D2R
 
         # -------------------------------- FORMATTING --------------------------------
         ax.set_aspect('equal')
@@ -320,7 +350,7 @@ def plotraydir(dates, fs, bs):
         plt.xlim([0, max_lim])
         plt.ylim([-2, 2])
 
-        mytitle = str(freq[0]/1e3) + 'kHz rays at ' + str(ray_datenum.month) + '-' + str(ray_datenum.day) + '-' + str(ray_datenum.hour) + ':' + str(minutes)
+        mytitle = str(freq[0]/1e3) + 'kHz rays at ' + str(ray_datenum.month) + '-' + str(ray_datenum.day) + '-' + str(ray_datenum.hour) + ':' + str(minutes) + '\n' + str(thetalist[0]) + 'intial angle'
         plt.title(mytitle)
         ax.legend(loc = 'lower center', fontsize =  'x-small')
 
@@ -329,7 +359,153 @@ def plotraydir(dates, fs, bs):
         #plt.show()
         plt.close()
 
+        # grab every 10 seconds
+        for tti,tt in enumerate(ray['time']):
+            
+            if tti % intcheck == 0:
+                # grab only t = 0
+                t = tti
+
+                bb = ray['B0'].iloc[t]
+                bbdir = [bb.x / np.sqrt(bb.x**2 + bb.y**2 + bb.z**2), bb.y / np.sqrt(bb.x**2 + bb.y**2 + bb.z**2), bb.z /  np.sqrt(bb.x**2 + bb.y**2 + bb.z**2)]
+                kk = (w/c) * ray['n'].iloc[t]
+                kkdir = [kk.x / np.sqrt(kk.x**2 + kk.y**2 + kk.z**2), kk.y / np.sqrt(kk.x**2 + kk.y**2 + kk.z**2), kk.z /  np.sqrt(kk.x**2 + kk.y**2 + kk.z**2)]
+
+                ang = math.acos((bbdir[0] * kkdir[0]) + (bbdir[2] * kkdir[2]) / (np.sqrt(kkdir[0]**2 + kkdir[2]**2) + np.sqrt(bbdir[0]**2 + bbdir[2]**2)))
+                
+                # for earlier use
+                Lshell = getLshell(ray, t, ray_datenum)
+
+                # get stix param
+                R, L, P, S, D = stix_parameters(ray, t, w)
+
+                root = -1 # why ?? CAUSE WHISTLER
+
+                k_vec = np.zeros_like(phi_vec)
+                eta_vec=np.zeros_like(phi_vec)
+
+                # solution from antenna white paper!
+                resangle = np.arctan(np.sqrt(-P/S))
+
+                # cone = []
+                for phi_ind, phi  in enumerate(phi_vec):
+
+                    # Solve the cold plasma dispersion relation
+                    cos2phi = pow(np.cos(phi),2)
+                    sin2phi = pow(np.sin(phi),2)
+
+                    A = S*sin2phi + P*cos2phi
+                    B = R*L*sin2phi + P*S*(1.0+cos2phi)
+
+                    discriminant = B*B - 4.0*A*R*L*P
+
+                    n1sq = (B + np.sqrt(discriminant))/(2.0*A)
+                    n2sq = (B - np.sqrt(discriminant))/(2.0*A)
+
+                    # negative refers to the fact that ^^^ B - sqrt
+                    n1 = np.sqrt(n1sq)
+                    #if n2sq < 0:
+                    #    cone.append(phi)
+                    # only get whistler solution from minus root ( i think)
+                    # important to call these plus and minus roots! NOT POS AND NEG
+                    n2 = np.sqrt(n2sq)
+                    # Order the roots -- ?
+                    """
+                    if abs(n1) > abs(n2):
+                        k2 = w*n1/c
+                        k1 = w*n2/c
+                    else:
+                        k1 = w*n1/c
+                        k2 = w*n2/c
+
+                    if root==1.0:
+                        k = k1
+                        eta = n1
+                    else:
+                        k = k2
+                        eta = n2
+                    """
+                    k_vec[phi_ind] = w*n2/c
+                    eta_vec[phi_ind] = n2
+
+                # repeat for only AH solution
+
+                # grab for ONLY electrons -- should I assume electron fill ENTIRE population...?
+                Ns = float(ray['Ns'].iloc[t,0])
+                Q = float(ray['qs'].iloc[t,0])
+                M = float(ray['ms'].iloc[t,0])
+                B   =  ray['B0'].iloc[t]
+                Bmag = np.linalg.norm(B)
+
+                # makes it easier to square here
+                w2 = w*w
+                wp2 = Ns*pow(Q,2)/(eo*M)
+                wh = Q*Bmag/M
+                wh2 = wh*wh
+
+                root = 1
+
+                # solve appleton-hartree eq
+                numerator = wp2/w2
+                denom1 = (wh2*pow(np.sin(phi_vec),2))/(2*(w2 - wp2))
+                denom2 = np.sqrt(pow(denom1, 2) + wh2*pow(np.cos(phi_vec), 2)/w2)
+                eta2_AH   = 1 - (numerator/(1 - denom1 + root*denom2))
+                eta_AH = np.sqrt(-eta2_AH)
+
+                # plot it 
+                fig, ax = plt.subplots(1,1)
+
+                #ax.plot(eta_AH*np.sin(phi_vec), eta_AH*np.cos(phi_vec), LineWidth = 1, label = 'e only')
+                ax.plot(eta_vec*np.sin(phi_vec), eta_vec*np.cos(phi_vec), LineWidth = 1, label = 'e + ions')
+                
+                #figure out how to get correct eta
+                ax.plot([0, 30*np.cos((np.pi/2)-ang)], [0, 30*np.sin((np.pi/2)-ang)])
+
+
+                # lol dont do this
+                #findcone = eta_vec*np.sin(phi_vec)
+                #for cone in findcone:
+                    #if cone > 100:
+                    #    wherecone = np.where(findcone == cone)
+                    #    conetheta = phi_vec[wherecone]
+                    #    conetheta = conetheta * R2D
+                    #    break
+
+                #archeight = float(eta_vec[wherecone])
+
+                # formatting
+                xlim1 = -100
+                xlim2 = -xlim1
+                ylim1 = xlim1
+                ylim2 = -ylim1
+
+                scale = xlim2/500
+
+                ax.set_xlim([xlim1, xlim2])
+                ax.set_ylim([ylim1, ylim2])
+                ax.set_xlabel('Transverse Refractive Component')
+
+                ax.arrow(0, ylim1, 0, 2*ylim2-1, length_includes_head=True, head_width=3, head_length=5, color = 'grey', ls = '--')
+                ax.annotate('B0', xy=(scale*10,ylim2-(scale*50)))
+
+                ax.annotate('fp = ' + str(float(round((np.sqrt(wp2)/(2*np.pi))/1e3, 1))) + ' kHz', xy=(xlim1+(scale*100),ylim2-(scale*200)))
+
+                resonanceangle = float(R2D*resangle)
+
+                #pac = Patch.Arc([0, 0], archeight, archeight, angle=0, theta1=0, theta2=float(resonanceangle), edgecolor = 'r')
+                #ax.add_patch(pac)
+
+                ax.annotate('${\Theta}$ < ' + str(round(resonanceangle, 2)) + 'deg', xy=(xlim2 - (scale*200), scale*50))
+                rename = str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.year)
+
+                ax.set_title(str(freq[0]/1e3) + ' kHz Refractive Surface at ' + str(ray_datenum) + ' ' + str(float(tti / intcheck)) + ' pos')
+                plt.legend()
+                plt.savefig(datadir + str(freq[0]/1e3) + 'kHz' + rename + str(ray_datenum.hour) + str(ray_datenum.minute) + 'refractivesurface' + str(tti) + '.png', format='png')
+                #plt.show()
+                plt.close()
+
         # ------------------------------------------- END --------------------------------------------
+        """
         fig, ax = plt.subplots(1,1, sharex=True, sharey=True)
         lw = 2  # linewidth
 
@@ -383,11 +559,12 @@ def plotraydir(dates, fs, bs):
         plt.savefig(savename, format='png')
         #plt.show()
         plt.close()
+    """
 
 
 
-dates = [dt.datetime(2020,9,14,7,15), dt.datetime(2020,9,14,7,15)]
+dates = [dt.datetime(2020,9,14,22,53)]
 
-fs = [8.2e3, 28e3]
+fs = [8.2e3]
 bs = ['fullday' for i in range(len(dates))]
 plotraydir(dates, fs, bs)
