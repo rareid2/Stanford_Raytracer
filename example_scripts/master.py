@@ -78,15 +78,25 @@ clist = 1
 dates, fs, bs = fullweeksetup(startday, mo, clist, weeklen)
 
 # set opts
-rayn = 5000
-plen = 10*60
-timeint = 180
+rayn = 3000
+plen = 5*60
+timeint = 150
 MCsim = 1
 angfiles = 1
+dates = [dt.datetime(2020, 9, 26, 1, 50)]
+fsl = []
+fsh = []
+for dd in dates:
+    fsl.append(8.2e3)
+    fsh.append(28e3)
 
-dates = [dt.datetime(2020, 9, 15, 20, 40), dt.datetime(2020,9,17,19,35), dt.datetime(2020, 9, 20, 21, 5)]
-fs = [28e3, 8.2e3, 28e3]
-bs = ['fullday', 'fullday', 'fullday', 'fullday', 'fullday', 'fullday']
+fsl.extend(fsh)
+fs = fsl
+dates.extend(dates)
+bs = []
+
+for dd in dates:
+    bs.append('additional')
 
 print('est. run time: ', len(dates) * rayn * plen/timeint * (1/3000), ' min')
 

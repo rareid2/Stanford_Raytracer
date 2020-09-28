@@ -1,5 +1,3 @@
-
-
 # import needed packages
 import numpy as np
 import matplotlib
@@ -32,6 +30,14 @@ M_EL = 9.1e-31     # kg
 M_P = 1.67e-27     # kg
 R_E = 6371e3  # m
 
+sys.path.insert(1, '/home/rileyannereid/workspace/scratches/')
+from simplegifs import simplegifs
+
+# Define tangent line
+# y = m*(x - x1) + y1
+def tanline(x, x1, y1, m):
+    return m*(x - x1) + y1
+
 def plotraydir(dates, fs, bs):
 
     for cdate, cf, bsstr in zip(dates, fs, bs):
@@ -51,7 +57,7 @@ def plotraydir(dates, fs, bs):
 
         checkdir = 0
         crs_out = 'MAG'  # theres a bug with GEO coords -- maybe its the fieldlines? -- DONT CAHNGE THINS
-        datadir = '/home/rileyannereid/workspace/SR-output/' + 'kvecs/'
+        datadir = '/home/rileyannereid/workspace/SR-output/' + 'kvecs2/'
 
         # -------------------------------- GET POSITIONS --------------------------------
         # get DSX and VPM positions for... 
@@ -84,11 +90,12 @@ def plotraydir(dates, fs, bs):
         # start position of raytracer
         position = [float(SMcar_dsx.x), float(SMcar_dsx.y), float(SMcar_dsx.z)]
         #quick check real quick
-        #jbpos = coord.Coords([1000e3+R_E, 30, 0], 'MAG', 'sph', units=['m', 'deg', 'deg'])
-        #jbpos.ticks = Ticktock(ray_datenum, 'UTC')
-        #newjbos = jbpos.convert('SM', 'car')
-        #newjbosGEO = jbpos.convert('GEO', 'car')
-        #position = [float(newjbos.x), float(newjbos.y), float(newjbos.z)]
+
+        jbpos = coord.Coords([1000e3+R_E, 30, 0], 'MAG', 'sph', units=['m', 'deg', 'deg'])
+        jbpos.ticks = Ticktock(ray_datenum, 'UTC')
+        newjbos = jbpos.convert('SM', 'car')
+        newjbosGEO = jbpos.convert('GEO', 'car')
+        position = [float(newjbos.x), float(newjbos.y), float(newjbos.z)]
 
         # check with hemi we are in
         if outsph_vpm.lati > 0:
@@ -98,11 +105,11 @@ def plotraydir(dates, fs, bs):
             dir = -1  # south
             dirstr = 'south'
 
-        #dir = -1
-        #dirstr = 'south'
+        dir = -1
+        dirstr = 'south'
 
         Bstart = [float(GEOcar_dsx.x)/R_E, float(GEOcar_dsx.y)/R_E, float(GEOcar_dsx.z)/R_E]
-        #Bstart =  [float(newjbosGEO.x)/R_E, float(newjbosGEO.y)/R_E, float(newjbosGEO.z)/R_E]
+        Bstart =  [float(newjbosGEO.x)/R_E, float(newjbosGEO.y)/R_E, float(newjbosGEO.z)/R_E]
         Bx, By, Bz = B_direasy(ray_datenum, Bstart, dir)
 
         # convert direction to SM coordinates for raytracer
@@ -114,7 +121,7 @@ def plotraydir(dates, fs, bs):
         # fill for raytracer call
         positions = []
         directions = []
-        thetalist = [30]
+        thetalist = [0]
 
         # rotate directions
         for theta in thetalist:
@@ -134,10 +141,10 @@ def plotraydir(dates, fs, bs):
             positions.append(position)
         
         #quick check
-        #direction = coord.Coords([1,0,0], 'MAG', 'sph', units = ['m', 'm', 'm'])
-        #direction.ticks = Ticktock(ray_datenum, 'UTC')
-        #newdir = direction.convert('SM', 'car')
-        #directions = [[float(newdir.x), float(newdir.y), float(newdir.z)]]
+        direction = coord.Coords([1,0,0], 'MAG', 'sph', units = ['m', 'm', 'm'])
+        direction.ticks = Ticktock(ray_datenum, 'UTC')
+        newdir = direction.convert('SM', 'car')
+        directions = [[float(newdir.x), float(newdir.y), float(newdir.z)]]
 
         # -------------------------------- RUN RAYS --------------------------------
         # convert for raytracer settings
@@ -152,6 +159,7 @@ def plotraydir(dates, fs, bs):
 
         # run it!
         tmpdir = tempfile.mkdtemp() 
+        
         run_rays(freq, positions, directions, yearday, milliseconds_day, tmpdir)
 
         # -------------------------------- LOAD OUTPUT --------------------------------
@@ -203,7 +211,7 @@ def plotraydir(dates, fs, bs):
         # rotate plot to be in plane of view
         outsph_dsx = GEIcar_dsx.convert(crs_out, 'sph') # add ticks
         th = -outsph_dsx.long
-        #th = 0
+        th = 0
 
         # rotate long to be at prime merid
         Rot_dsx = coord.Coords([float(outsph_dsx.radi), float(outsph_dsx.lati), float(outsph_dsx.long + th)], crs_out, 'sph', units=['m', 'deg', 'deg'])
@@ -220,6 +228,7 @@ def plotraydir(dates, fs, bs):
         # rotate rays
 
         for r, k in zip(rays, kvecs):
+            print(k)
             rrad = []
             rlat = []
             rlon = []
@@ -255,17 +264,18 @@ def plotraydir(dates, fs, bs):
         for L in L_shells:
             Blines = []
             if L < 0:
-                rot = th
+                rot = 1
             else:
-                rot = -th
+                rot = -1
 
             Lstart = [L, 0, rot]
+            
             Lcoords = coord.Coords(Lstart, crs_out, 'sph', units=['Re', 'deg', 'deg'])
             Lcoords.ticks = Ticktock(ray_datenum, 'UTC')
             GEO_Lcoords = Lcoords.convert('GEO', 'car')
             Blines.append(trace_fieldline_ODE([float(GEO_Lcoords.x),float(GEO_Lcoords.y),float(GEO_Lcoords.z)], 0, '0', 1, ray_datenum))
             Blines.append(trace_fieldline_ODE([float(GEO_Lcoords.x),float(GEO_Lcoords.y),float(GEO_Lcoords.z)], 0, '0', -1, ray_datenum))
-
+            
             for blinex, bliney, blinez in Blines:
                 raytime = []
                 # create list of the same times
@@ -290,6 +300,7 @@ def plotraydir(dates, fs, bs):
                 Rot_bline = coord.Coords(bcoords[0], crs_out, 'sph', units=['Re', 'deg', 'deg'])
                 Rot_bline.ticks = Ticktock(raytime, 'UTC') # add ticks
                 outcar_bline = Rot_bline.convert(crs_out, 'car')
+                
                 plt.plot(np.sign(rot) * outcar_bline.x, np.sign(rot) * outcar_bline.z, color='b', linewidth=1, linestyle='dashed')
 
         print('finished plotting field lines')
@@ -341,7 +352,7 @@ def plotraydir(dates, fs, bs):
 
         # -------------------------------- FORMATTING --------------------------------
         ax.set_aspect('equal')
-        max_lim = 4
+        max_lim = 3
 
         plt.xticks(np.arange(-max_lim, max_lim, step=1))
         plt.yticks(np.arange(-max_lim, max_lim, step=1))
@@ -359,7 +370,8 @@ def plotraydir(dates, fs, bs):
         #plt.show()
         plt.close()
 
-        # grab every 10 seconds
+        # grab every xseconds seconds
+        savenames = []
         for tti,tt in enumerate(ray['time']):
             
             if tti % intcheck == 0:
@@ -459,8 +471,19 @@ def plotraydir(dates, fs, bs):
                 ax.plot(eta_vec*np.sin(phi_vec), eta_vec*np.cos(phi_vec), LineWidth = 1, label = 'e + ions')
                 
                 #figure out how to get correct eta
-                ax.plot([0, 30*np.cos((np.pi/2)-ang)], [0, 30*np.sin((np.pi/2)-ang)])
+                etaind = min(range(len(phi_vec)), key=lambda i: abs(phi_vec[i]-ang))
+                etaang = eta_vec[etaind]
+                ax.plot([0, etaang*np.sin(ang)], [0, etaang*np.cos(ang)]) # plots the kvec
 
+                # find normal at that point
+                f1 = eta_vec[etaind-1]*np.cos(phi_vec[etaind-1])
+                f2 = eta_vec[etaind+1]*np.cos(phi_vec[etaind+1])
+                dx = phi_vec[etaind+1] - phi_vec[etaind-1]
+                taneta = (f2-f1)/dx
+                normeta = -1/taneta
+
+                #xrange = np.linspace(eta_vec[etaind-1000]*np.sin(phi_vec[etaind-1000]), eta_vec[etaind+1000]*np.sin(phi_vec[etaind+1000]), 10)
+                #ax.quiver(etaang*np.sin(ang), etaang*np.cos(ang), 1/np.sqrt(1+normeta**2), normeta/np.sqrt(1+normeta**2))
 
                 # lol dont do this
                 #findcone = eta_vec*np.sin(phi_vec)
@@ -474,7 +497,7 @@ def plotraydir(dates, fs, bs):
                 #archeight = float(eta_vec[wherecone])
 
                 # formatting
-                xlim1 = -100
+                xlim1 = -300
                 xlim2 = -xlim1
                 ylim1 = xlim1
                 ylim2 = -ylim1
@@ -500,9 +523,21 @@ def plotraydir(dates, fs, bs):
 
                 ax.set_title(str(freq[0]/1e3) + ' kHz Refractive Surface at ' + str(ray_datenum) + ' ' + str(float(tti / intcheck)) + ' pos')
                 plt.legend()
-                plt.savefig(datadir + str(freq[0]/1e3) + 'kHz' + rename + str(ray_datenum.hour) + str(ray_datenum.minute) + 'refractivesurface' + str(tti) + '.png', format='png')
+
+                imgdir = datadir + str(freq[0]/1e3) + 'kHz' + rename + str(ray_datenum.hour) + str(ray_datenum.minute) + 'refractivesurfaces/'
+                try:
+                    os.mkdir(imgdir)
+                except OSError:
+                    pass
+                else:
+                    pass
+                
+                plt.savefig(imgdir + str(freq[0]/1e3) + 'kHz' + rename + str(ray_datenum.hour) + str(ray_datenum.minute) + 'refractivesurface' + str(tti) + '.png', format='png')
                 #plt.show()
+                savenames.append(imgdir + str(freq[0]/1e3) + 'kHz' + rename + str(ray_datenum.hour) + str(ray_datenum.minute) + 'refractivesurface' + str(tti) + '.png')
                 plt.close()
+
+        simplegifs(savenames, datadir + str(freq[0]/1e3) + 'kHz' + rename + str(ray_datenum.hour) + str(ray_datenum.minute) + '.gif')
 
         # ------------------------------------------- END --------------------------------------------
         """
@@ -561,10 +596,8 @@ def plotraydir(dates, fs, bs):
         plt.close()
     """
 
-
-
 dates = [dt.datetime(2020,9,14,22,53)]
 
-fs = [8.2e3]
-bs = ['fullday' for i in range(len(dates))]
+fs = [3e3]
+bs = ['kvecs2' for i in range(len(dates))]
 plotraydir(dates, fs, bs)
