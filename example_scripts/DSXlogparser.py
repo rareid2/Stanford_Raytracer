@@ -25,45 +25,26 @@ from launchmultiplerays import parallelrun, getpos
 ###############################################################################################
 def readDSXlog(fnameDSX):
     dates = []
-    fs = []
-    bs = []
-
+    
     infile = open(fnameDSX,'r')
 
     # goes thru line by line
     for line in infile:
         out = line
         year = 2020
-        if out[0] == 'b':
-            bs.append('burst')
-        elif out[0] == 's':
-            bs.append('survey')
-        elif out[0] =='F':
-            bs.append('survey')
+        day = int(out[0:2])
 
-        month = int(out[8])
-        if out[10] == '0':
-            day = int(out[11])
+        if out[3] == 'S':
+            month = 9
         else:
-            day = int(out[10:12])
+            month = 10
 
-        if out[18] == '0':
-            hour = int(out[19])
-        else:
-            hour = int(out[18:20])
-        
-        minute = int(out[21:23])
+        hour = int(out[12:14])
+        minute = int(out[15:17])
+
         dates.append(dt.datetime(year, month, day, hour, minute))
-
-        if out[30] == '8':
-            fs.append(8.2e3)
-        elif out[30] == '2':
-            fs.append(28e3)
-        elif out[30] == 'H':
-            fs.append(25e3)
-
     infile.close()
-    return dates, fs, bs
+    return dates
 
 ###############################################################################################
 

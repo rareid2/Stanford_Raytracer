@@ -2,7 +2,7 @@
 import numpy as np
 import datetime as dt
 from haversine import haversine, Unit
-from DSXlogparser import runsomerays, fullweeksetup
+from DSXlogparser import runsomerays, fullweeksetup, readDSXlog
 
 import sys
 sys.path.insert(1, '/home/rileyannereid/workspace/scratches/')
@@ -78,23 +78,24 @@ clist = 1
 dates, fs, bs = fullweeksetup(startday, mo, clist, weeklen)
 
 # set opts
-rayn = 3000
-plen = 5*60
-timeint = 150
+rayn = 5000
+plen = 30
+timeint = 30
 MCsim = 1
 angfiles = 1
-dates = [dt.datetime(2020, 9, 26, 1, 50)]
+
+dates = readDSXlog('DSXlogs.txt')
+
 fsl = []
 fsh = []
 for dd in dates:
-    fsl.append(8.2e3)
-    fsh.append(28e3)
+    fsl.append(28e3)
+    fsh.append(8.2e3)
 
-fsl.extend(fsh)
-fs = fsl
-dates.extend(dates)
+fs = fsl.extend(fsh)
 bs = []
 
+dates = dates.extend(dates)
 for dd in dates:
     bs.append('additional')
 

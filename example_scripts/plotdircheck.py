@@ -384,28 +384,11 @@ def plotrefractive(ray, ray_datenum, intcheck):
             else:
                 bang = bang
 
+            # plot the surface
             ax.plot(eta_vec*np.sin(phi_vec + bang), eta_vec*np.cos(phi_vec + bang), LineWidth = 1, label = 'e + ions')
 
-            # get eta at ang
-            if MAGcar_bb.x < 0:
-                newphi = ang - (np.pi/2)
-            else:
-                newphi = (np.pi/2 - ang)
-            rotphi_vec = [phi + bang for phi in phi_vec]
-
-
-            rang = np.arccos(MAGcar_kk.x / np.sqrt(MAGcar_kk.x**2 + MAGcar_kk.z**2))
-            if MAGcar_kk.z < 0:
-                rang = 2*np.pi - rang 
-            else:
-                rang = rang 
-
-            if rang < np.pi/2:
-                rphi = (3*np.pi/2) + rang
-            else:
-                rphi = rang - np.pi/2
-
-            etaind = min(range(len(rotphi_vec)), key=lambda i: abs(rotphi_vec[i]-rphi))
+            # find eta at kvec
+            etaind = min(range(len(phi_vec)), key=lambda i: abs(phi_vec[i]-ang))
             etaang = eta_vec[etaind]
 
             # note to self -- left off correctly plotting the kvector (yay! ) but still  not getting the line crossing
@@ -413,18 +396,36 @@ def plotrefractive(ray, ray_datenum, intcheck):
             # next, get the wavenormal figured out, but this is looking CORRECT!
 
             # plot the kvec
-            ax.plot([0, etaang*np.cos(rang)], [0, etaang*np.sin(rang)]) # plots the kvec
-            ax.plot([0, 1e5*MAGcar_bb.x], [0, 1e5*MAGcar_bb.z], 'b', label = 'B0')
-            ax.quiver(0, 0, MAGcar_kk.x, MAGcar_kk.z)
-            # find normal at that point
-            f1 = eta_vec[etaind-1]*np.cos(phi_vec[etaind-1])
-            f2 = eta_vec[etaind+1]*np.cos(phi_vec[etaind+1])
-            dx = phi_vec[etaind+1] - phi_vec[etaind-1]
-            taneta = (f2-f1)/dx
-            normeta = -1/taneta
+            ax.plot([0, 1e5*MAGcar_bb.x], [0, 1e5*MAGcar_bb.z], 'r', label = 'B0')
+            ax.plot([0, etaang*np.sin(ang + bang)], [0, etaang*np.cos(ang + bang)], 'g', label = 'kvec')
+            #ax.quiver(0, 0, MAGcar_kk.x, MAGcar_kk.z)
 
-            #xrange = np.linspace(eta_vec[etaind-1000]*np.sin(phi_vec[etaind-1000]), eta_vec[etaind+1000]*np.sin(phi_vec[etaind+1000]), 10)
-            #ax.quiver(etaang*np.sin(ang), etaang*np.cos(ang), 1/np.sqrt(1+normeta**2), normeta/np.sqrt(1+normeta**2))
+            # find normal at that point
+            f1 = eta_vec[etaind-1]*np.cos(phi_vec[etaind-1]+bang)
+            f2 = eta_vec[etaind+1]*np.cos(phi_vec[etaind+1]+bang)
+            x1 = eta_vec[etaind-1]*np.sin(phi_vec[etaind-1]+bang)
+            x2 = eta_vec[etaind+1]*np.sin(phi_vec[etaind+1]+bang)
+            
+            # this was all Sam
+            taneta = (f2-f1)/(x2-x1)
+            normeta = -1/taneta
+            ntheta = np.arctan2(x1-x2, f2-f1)
+            if ntheta < 0: 
+                ntheta = ntheta + np.pi
+
+
+            pp = ntheta
+            if ang > np.pi/2:
+                ntheta = ntheta + np.pi
+            
+            # make a line
+            # y = mx + b
+            intercept = (etaang * np.cos(ang + bang)) - (normeta * etaang * np.sin(ang + bang))
+            #ax.scatter(x1, f1, label='1')
+            #ax.scatter(x2, f2, label='2')
+            #ax.plot([etaang * np.sin(ang + bang), etaang * np.cos(ang + bang), 1, normeta * 1 + intercept) 
+            ax.quiver(etaang*np.sin(ang + bang), etaang*np.cos(ang + bang), np.cos(ntheta),  np.sin(ntheta))
+            #ax.quiver(etaang*np.sin(ang + bang), etaang*np.cos(ang + bang)
 
             # ------------------------------------ formatting ----------------------------------------
             xlim1 = -300
@@ -436,8 +437,6 @@ def plotrefractive(ray, ray_datenum, intcheck):
             ax.set_xlim([xlim1, xlim2])
             ax.set_ylim([ylim1, ylim2])
             ax.set_xlabel('Transverse Refractive Component')
-            
-            ax.annotate('B0', xy=(scale*10,ylim2-(scale*50)))
 
             #ax.annotate('fp = ' + str(float(round((np.sqrt(wp2)/(2*np.pi))/1e3, 1))) + ' kHz', xy=(xlim1+(scale*100),ylim2-(scale*200)))
 
@@ -460,7 +459,12 @@ def plotrefractive(ray, ray_datenum, intcheck):
                 pass
             
             plt.savefig(imgdir + str(round(w/(2*np.pi*1e3),1)) + 'kHz' + rename + str(ray_datenum.hour) + str(ray_datenum.minute) + 'refractivesurface' + str(tti) + '.png', format='png')
-            #plt.show()
+            
+            # debug
+            #if tti / 10 == 14.0:
+            #    print(ntheta)
+            #    print('pp=', pp)
+            #    plt.show()
             savenames.append(imgdir + str(round(w/(2*np.pi*1e3),1)) + 'kHz' + rename + str(ray_datenum.hour) + str(ray_datenum.minute) + 'refractivesurface' + str(tti) + '.png')
             plt.close()
 
@@ -475,4 +479,3 @@ ray_datenum = dt.datetime(2020,9,14,22,53)
 fs = 3e3
 ray = plotray2Ddir(ray_datenum, fs, intcheck)
 plotrefractive(ray, ray_datenum, intcheck)
-
