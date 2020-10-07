@@ -105,16 +105,17 @@ def getDIR(dir, ray_datenum, GEOposition, theta):
 #---------------------------------------------------------------------------
 def rotateplane(th, MAGsphpos, ray_datenum):
     # rotate long to be at prime merid
-    Rotpos = coord.Coords([float(MAGsphpos.radi), float(MAGsphpos.lati), float(MAGsphpos.long + th)], crs_out, 'sph', units=['m', 'deg', 'deg'])
+    Rotpos = coord.Coords([float(MAGsphpos.radi), float(MAGsphpos.lati), float(MAGsphpos.long + th)], 'MAG', 'sph', units=['m', 'deg', 'deg'])
     Rotpos.ticks = Ticktock(ray_datenum, 'UTC')
-    MAGcarpos = Rot_dsx.convert('MAG', 'car')
+    MAGcarpos = Rotpos.convert('MAG', 'car')
     return MAGcarpos
 #---------------------------------------------------------------------------
 
 
 #---------------------------------------------------------------------------
 # plot field line from orbital position
-def getDSXfieldline(Bstart, ray_datenum):
+def getDSXfieldline(GEOposition, ray_datenum, th):
+    Bstart =  [float(GEOposition.x)/R_E, float(GEOposition.y)/R_E, float(GEOposition.z)/R_E]
     bline_dsx = []
     Blines = []
 
@@ -127,10 +128,13 @@ def getDSXfieldline(Bstart, ray_datenum):
         # convert
         bpos = np.column_stack((blinex, bliney, blinez))
         bpos = coord.Coords(bpos, 'GEO', 'car', units=['Re', 'Re', 'Re'])
-        bpos.ticks = Ticktock(raytime, 'UTC') # add ticks
+        bpos.ticks = Ticktock(raytimes, 'UTC') # add ticks
         MAGsph_bline = bpos.convert('MAG', 'sph')
-        MAGcar_bline_dsx = rotateplot(th, MAGsph_bline, ray_datenum)
-        bline_dsx.append(MAGcar_bline_dsx)
+        mc_bline = []
+        for msph_bline in MAGsph_bline:
+            MAGcar_bline_dsx = rotateplane(th, msph_bline, ray_datenum)
+            mc_bline.append(MAGcar_bline_dsx)
+        bline_dsx.append(mc_bline)
 
     return bline_dsx
 #---------------------------------------------------------------------------
@@ -147,27 +151,27 @@ def plotray2Ddir(ray_datenum, fs, intcheck):
 
     freq = [fs]
 
-    #modeldump(year, month, day, hours, minutes, seconds) # run model dump to update plasmasphe
+    modeldump(year, month, day, hours, minutes, seconds) # run model dump to update plasmasphe
 
     datadir = '/home/rileyannereid/workspace/SR-output/' + 'kvecs2/'
 
     # -------------------------------- DEFINE RAY PARAMS --------------------------------
     # start position of raytracer
-    #SMcar_dsx, GEOcar_dsx, MAGsph_vpm, dir, dirstr = getDSXVPMpos(ray_datenum, 1)
-    #position = [float(SMcar_dsx.x), float(SMcar_dsx.y), float(SMcar_dsx.z)]
-    #direction = usetheta(dir, ray_datenum, GEOcar_dsx, theta)
+    SMcar_dsx, GEOcar_dsx, MAGsph_vpm, dir, dirstr = getDSXVPMpos(ray_datenum, 1)
+    position = [float(SMcar_dsx.x), float(SMcar_dsx.y), float(SMcar_dsx.z)]
 
-    jbpos = coord.Coords([1000e3+R_E, 30, 0], 'MAG', 'sph', units=['m', 'deg', 'deg'])
-    jbpos.ticks = Ticktock(ray_datenum, 'UTC')
-    newjbos = jbpos.convert('SM', 'car')
-    position = [float(newjbos.x), float(newjbos.y), float(newjbos.z)]
+    theta = 45
+    direction = getDIR(dir, ray_datenum, GEOcar_dsx, theta)
 
-    direction = coord.Coords([1,0,0], 'MAG', 'sph', units = ['m', 'm', 'm'])
-    direction.ticks = Ticktock(ray_datenum, 'UTC')
-    newdir = direction.convert('SM', 'car')
-    direction = [float(newdir.x), float(newdir.y), float(newdir.z)]
-
-    direction = np.zeros(3)
+    # testing for fig in J. Bortnik thesis
+    #jbpos = coord.Coords([1000e3+R_E, 30, 0], 'MAG', 'sph', units=['m', 'deg', 'deg'])
+    #jbpos.ticks = Ticktock(ray_datenum, 'UTC')
+    #newjbos = jbpos.convert('SM', 'car')
+    #position = [float(newjbos.x), float(newjbos.y), float(newjbos.z)]
+    #direction = coord.Coords([1,0,0], 'MAG', 'sph', units = ['m', 'm', 'm'])
+    #direction.ticks = Ticktock(ray_datenum, 'UTC')
+    #newdir = direction.convert('SM', 'car')
+    #direction = [float(newdir.x), float(newdir.y), float(newdir.z)]
     
     # -------------------------------- RUN RAYS --------------------------------
     # convert for raytracer settings
@@ -222,33 +226,45 @@ def plotray2Ddir(ray_datenum, fs, intcheck):
         MAGcar_ray = new_coords
         
     # -------------------------------- PLOTTING --------------------------------
-    fig, ax = plt.subplots(1,1, sharex=True, sharey=True)
+    fig, ax = plt.subplots(1,1,  figsize=(5, 10), sharex=True, sharey=True)
+
     lw = 2  # linewidth
 
     # rotate plot to be in plane of view
-    #MAGsph_dsx = GEOcar_dsx.convert('MAG', 'sph') # add ticks
-    #th = -MAGsph_dsx.long
+    MAGsph_dsx = GEOcar_dsx.convert('MAG', 'sph') # add ticks
+    th = -MAGsph_dsx.long
 
-    #MAGcar_dsx = rotateplot(th, MAGsph_dsx, ray_datenum)
-    #MAGcar_vpm = rotateplot(th, MAGsph_vpm, ray_datenum)
+    MAGcar_dsx = rotateplane(th, MAGsph_dsx, ray_datenum)
+    MAGcar_vpm = rotateplane(th, MAGsph_vpm, ray_datenum)
 
     # plot sat locations
-    #plt.plot(MAGcar_dsx.x / R_E, MAGcar_dsx.z / R_E, '-go', zorder=105, label='DSX')
-    #plt.plot(MAGcar_vpm.x / R_E, MAGcar_vpm.z / R_E, '-yo', zorder=104, label='VPM')
+    plt.plot(MAGcar_dsx.x / R_E, MAGcar_dsx.z / R_E, '-go', zorder=105, label='DSX')
+    plt.plot(MAGcar_vpm.x / R_E, MAGcar_vpm.z / R_E, '-yo', zorder=104, label='VPM')
 
     # rotate rays
-    #MAGsph_ray = MAGcar_ray.convert('MAG', 'sph')
-    #MAGsph_k = MAGcar_k.convert('MAG', 'sph')
+    MAGsph_ray = MAGcar_ray.convert('MAG', 'sph')
+    MAGsph_k = MAGcar_k.convert('MAG', 'sph')
     
-    #MAGcar_ray = rotateplot(th, MAGsph_ray, ray_datenum)
-    #MAGcar_k = rotateplot(th, MAGsph_k, ray_datenum)
+    # have to loop to use rotate func
+    mc_rayx = []
+    mc_kx = []
+    mc_rayz = []
+    mc_kz = []
 
-    ax.scatter(MAGcar_ray.x / R_E, MAGcar_ray.z / R_E, c = 'Black', s = 1, zorder = 103)
-    ax.quiver(MAGcar_ray.x[::intcheck] / R_E, MAGcar_ray.z[::intcheck] / R_E, MAGcar_k.x[::intcheck], MAGcar_k.z[::intcheck], zorder=104)
+    for msph_ray, msph_k in zip(MAGsph_ray, MAGsph_k):
+        MAGcar_ray = rotateplane(th, msph_ray, ray_datenum)
+        mc_rayx.append(MAGcar_ray.x / R_E)
+        mc_rayz.append(MAGcar_ray.z / R_E)
+        MAGcar_k = rotateplane(th, msph_k, ray_datenum)
+        mc_kx.append(MAGcar_k.x / R_E)
+        mc_kz.append(MAGcar_k.z / R_E)
+
+    ax.scatter(mc_rayx, mc_rayz, c = 'Black', s = 1, zorder = 103)
+    #ax.quiver(MAGcar_ray.x[::intcheck] / R_E, MAGcar_ray.z[::intcheck] / R_E, MAGcar_k.x[::intcheck], MAGcar_k.z[::intcheck], color='black', zorder=104)
     
-    for tti, tt in enumerate(MAGcar_ray.x): # just a nice way to get # of steps 
+    for tti, tt in enumerate(mc_rayx): # just a nice way to get # of steps 
         if tti % intcheck == 0:   
-            ax.text(MAGcar_ray.x[tti] / R_E, (MAGcar_ray.z[tti] - 100e3) / R_E, str(int(tti/intcheck)), fontsize=10)
+            ax.text(mc_rayx[tti] - 0.1, mc_rayz[tti] - 0.05, str(int(tti/intcheck)), fontsize=10)
 
     # -------------------------------- EARTH AND IONO --------------------------------
     earth = plt.Circle((0, 0), 1, color='b', alpha=0.5, zorder=100)
@@ -282,9 +298,10 @@ def plotray2Ddir(ray_datenum, fs, intcheck):
 
     print('finished plotting field lines')
 
-    #bline_dsx = DSXfieldline(Bstart, ray_datenum)
-    #for bb in bline_dsx:
-    #    ax.plot(bb.x, bb.z, color='r', linewidth=1, linestyle='dashed')
+    bline_dsx = getDSXfieldline(GEOcar_dsx, ray_datenum, th)
+    bline_dsx = bline_dsx[0]
+    for bb in bline_dsx:
+        ax.plot(bb.x, bb.z, color='r', linewidth=1, linestyle='dashed')
 
     # -------------------------------- FORMATTING --------------------------------
     ax.set_aspect('equal')
@@ -297,13 +314,12 @@ def plotray2Ddir(ray_datenum, fs, intcheck):
     plt.xlim([0, max_lim])
     plt.ylim([-2, 2])
 
-    theta = 'out'
-    mytitle = str(freq[0]/1e3) + 'kHz rays at ' + str(ray_datenum.month) + '-' + str(ray_datenum.day) + '-' + str(ray_datenum.hour) + ':' + str(minutes) + '\n' + str(theta) + 'intial angle'
+    mytitle = str(freq[0]/1e3) + 'kHz rays at ' + str(ray_datenum.month) + '-' + str(ray_datenum.day) + '-' + str(ray_datenum.hour) + ':' + str(minutes) + '\n' + str(theta) + ' intial angle'
     plt.title(mytitle)
     ax.legend(loc = 'lower center', fontsize =  'x-small')
 
-    savename = datadir + str(freq[0]/1e3) + 'kHz_' + str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.year) + str(ray_datenum.hour) + str(minutes) + '_' + str(theta) + 'initialangle' + '.png'
-    plt.savefig(savename, format='png')
+    savename = datadir + str(freq[0]/1e3) + 'kHz_' + str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.year) + str(ray_datenum.hour) + str(minutes) + '_' + str(theta) + 'initialangle' + '.svg'
+    plt.savefig(savename, format='svg')
     #plt.show()
     plt.close()
 
@@ -385,7 +401,7 @@ def plotrefractive(ray, ray_datenum, intcheck):
                 bang = bang
 
             # plot the surface
-            ax.plot(eta_vec*np.sin(phi_vec + bang), eta_vec*np.cos(phi_vec + bang), LineWidth = 1, label = 'e + ions')
+            ax.plot(eta_vec*np.sin(phi_vec + bang), eta_vec*np.cos(phi_vec + bang), 'gray', LineWidth = 1, label = 'e + ions')
 
             # find eta at kvec
             etaind = min(range(len(phi_vec)), key=lambda i: abs(phi_vec[i]-ang))
@@ -395,9 +411,8 @@ def plotrefractive(ray, ray_datenum, intcheck):
             # correct - maybe try a different method or use an intersection method? 
             # next, get the wavenormal figured out, but this is looking CORRECT!
 
-            # plot the kvec
-            ax.plot([0, 1e5*MAGcar_bb.x], [0, 1e5*MAGcar_bb.z], 'r', label = 'B0')
-            ax.plot([0, etaang*np.sin(ang + bang)], [0, etaang*np.cos(ang + bang)], 'g', label = 'kvec')
+            ax.plot([-1e5*MAGcar_bb.x, 1e5*MAGcar_bb.x], [-1e5*MAGcar_bb.z, 1e5*MAGcar_bb.z], 'b', linestyle='--', label = 'B0')
+            ax.plot([0, etaang*np.sin(ang + bang)], [0, etaang*np.cos(ang + bang)], 'r', label = 'kvec')
             #ax.quiver(0, 0, MAGcar_kk.x, MAGcar_kk.z)
 
             # find normal at that point
@@ -413,9 +428,12 @@ def plotrefractive(ray, ray_datenum, intcheck):
             if ntheta < 0: 
                 ntheta = ntheta + np.pi
 
-
             pp = ntheta
-            if ang > np.pi/2:
+            # bottom surface
+            #if ang > np.pi/2:
+            #    ntheta = ntheta + np.pi
+
+            if ntheta > np.pi/2 and ang < np.pi/2:
                 ntheta = ntheta + np.pi
             
             # make a line
@@ -445,8 +463,8 @@ def plotrefractive(ray, ray_datenum, intcheck):
             
             rename = str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.year)
 
-            ax.set_title(str(round(w/(2*np.pi*1e3),1)) + ' kHz Refractive Surface at ' + str(ray_datenum) + ' ' + str(float(tti / intcheck)) + ' pos')
-            plt.legend()
+            ax.set_title(str(round(w/(2*np.pi*1e3),1)) + ' kHz Refractive Surface at ' + str(ray_datenum) + '\n' + r"$\bf{" + str(int(tti / intcheck)) + "}$")
+            plt.legend(loc='upper right')
             datadir = '/home/rileyannereid/workspace/SR-output/' + 'kvecs2/'
 
             imgdir = datadir + str(round(w/(2*np.pi*1e3),1)) + 'kHz' + rename + str(ray_datenum.hour) + str(ray_datenum.minute) + 'refractivesurfaces/'
@@ -461,10 +479,10 @@ def plotrefractive(ray, ray_datenum, intcheck):
             plt.savefig(imgdir + str(round(w/(2*np.pi*1e3),1)) + 'kHz' + rename + str(ray_datenum.hour) + str(ray_datenum.minute) + 'refractivesurface' + str(tti) + '.png', format='png')
             
             # debug
-            #if tti / 10 == 14.0:
-            #    print(ntheta)
-            #    print('pp=', pp)
-            #    plt.show()
+            if tti / intcheck > 70:
+                print(ntheta)
+                print('pp=', pp)
+                #plt.show()
             savenames.append(imgdir + str(round(w/(2*np.pi*1e3),1)) + 'kHz' + rename + str(ray_datenum.hour) + str(ray_datenum.minute) + 'refractivesurface' + str(tti) + '.png')
             plt.close()
 
@@ -474,8 +492,8 @@ def plotrefractive(ray, ray_datenum, intcheck):
 
 # ------------------------------------------- END --------------------------------------------
 
-intcheck = 10
+intcheck = 1
 ray_datenum = dt.datetime(2020,9,14,22,53)
-fs = 3e3
+fs = 8.2e3
 ray = plotray2Ddir(ray_datenum, fs, intcheck)
 plotrefractive(ray, ray_datenum, intcheck)
