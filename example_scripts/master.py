@@ -2,7 +2,8 @@
 import numpy as np
 import datetime as dt
 from haversine import haversine, Unit
-from DSXlogparser import runsomerays, fullweeksetup, readDSXlog
+from DSXlogparser import runsomerays, fullweeksetup, readDSXlog, get_ramp, readTNTlog
+import matplotlib.pyplot as plt
 
 import sys
 sys.path.insert(1, '/home/rileyannereid/workspace/scratches/')
@@ -10,7 +11,7 @@ from rayoutput_parser import readrayout
 
 ###################################### STEP 1 ######################################
 # check the Kp index!
-
+"""
 # full week of predictions
 startday = 21
 mo = 9
@@ -76,32 +77,49 @@ print('finished conjuring the conjunctions')
 # FINALLY narrow down the output and run some longer ones!
 clist = 1
 dates, fs, bs = fullweeksetup(startday, mo, clist, weeklen)
-
+"""
 # set opts
-rayn = 5000
-plen = 30
-timeint = 30
+rayn = 10
+plen = 1
+timeint = 1
 MCsim = 1
-angfiles = 1
+angfiles = 0
+tx = readTNTlog('/home/rileyannereid/Downloads/TNT_HPT_Catalog_2020-07-27_204500-2020-07-27_211457.txt')
+sttime = dt.datetime(2020,7,27,20,53,30)
+endtime = dt.datetime(2020,7,27,20,56)  
+tstamp =[]
+freq = []
 
+for ind,tx_n in enumerate(tx):
+    if tx[tx_n]['timestamp'] > sttime and tx[tx_n]['timestamp'] < endtime:
+        f,t = get_ramp(tx[tx_n]['timestamp'], tx[tx_n]['duration'], tx[tx_n]['startfreq'], tx[tx_n]['stopfreq'])
+        freq.extend(f)
+        tstamp.extend(t)
+
+bs = ['testing' for i in range(len(tstamp))]
+dates = tstamp
+fs = freq
+
+plt.plot(tstamp, fs)
+plt.title('7-27 Burst at 20:53')
+plt.xlabel('time stamp')
+plt.ylabel('freq Hz')
+#plt.show()
+plt.close()
 dates = readDSXlog('DSXlogs.txt')
-
-fsl = []
-fsh = []
-for dd in dates:
-    fsl.append(28e3)
-    fsh.append(8.2e3)
-
-fs = fsl.extend(fsh)
+dates = dates[:1]
+print(dates)
+fs = []
 bs = []
-
-dates = dates.extend(dates)
 for dd in dates:
-    bs.append('additional')
+    fs.append(28e3)
+    bs.append('testing')
 
 print('est. run time: ', len(dates) * rayn * plen/timeint * (1/3000), ' min')
 
 runopts = [rayn, plen, timeint, MCsim, angfiles] # FULL runs -- takes a WHILE ! 3-4hrs (start the night before or early in the morn!)
+print(runopts)
 runsomerays(dates, fs, bs, runopts)
 
 ################################# MOVE TO PLOTTING #################################
+# why is this NOT running rays? 

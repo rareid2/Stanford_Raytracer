@@ -112,6 +112,31 @@ def readcloseconjlog(fnameconj):
     infile.close()
     return dates, freq
 
+###############################################################################################
+def readTNTlog(fnameTNT):
+    #Timestamp[SUT] Duration StartFreq StopFreq +Vmax -vMax +FRes -FRes
+    infile = open(fnameTNT,'r')
+
+    tx_dict = {}
+    tx_n = 0
+
+    # goes thru line by line
+    for line in infile:
+        out = line
+        if out[0]=='#':
+            pass
+        else:
+            tx_n += 1
+            tx_n_str = 'tx ' + str(tx_n)
+            tx_dict[tx_n_str] = {}
+
+            tx_dict[tx_n_str]['timestamp'] = dt.datetime.strptime(out[:23], "%Y-%m-%d %H:%M:%S.%f")
+            tx_dict[tx_n_str]['duration'] = int(out[28:33])
+            tx_dict[tx_n_str]['startfreq'] = int(out[37:45])
+            tx_dict[tx_n_str]['stopfreq'] = int(out[46:51])
+            
+    infile.close()
+    return tx_dict
 
 ###############################################################################################
 
@@ -218,3 +243,17 @@ def runsomerays(dates, fs, bs, runopts):
 #runsomerays(dates, fs, bs, runopts)
 
 ###############################################################################################
+
+def get_ramp(tstamp, duration, startf, stopf):
+    df = startf - stopf
+    f = [startf]
+    t = [tstamp]
+    new_tstamp = tstamp
+    if df!=0:
+        for i in range(1):
+        # every 15 ms drop by 10
+            f.append(stopf)
+            new_tstamp += dt.timedelta(microseconds=duration*1000)
+            t.append(new_tstamp)
+    return f, t
+    # fix this

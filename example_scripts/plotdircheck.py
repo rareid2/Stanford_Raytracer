@@ -139,6 +139,19 @@ def getDSXfieldline(GEOposition, ray_datenum, th):
     return bline_dsx
 #---------------------------------------------------------------------------
 
+def testJBthesis(ray_datenum):
+    # testing for fig in J. Bortnik thesis
+    jbpos = coord.Coords([1000e3+R_E, 30, 0], 'MAG', 'sph', units=['m', 'deg', 'deg'])
+    jbpos.ticks = Ticktock(ray_datenum, 'UTC')
+    newjbos = jbpos.convert('SM', 'car')
+    position = [float(newjbos.x), float(newjbos.y), float(newjbos.z)]
+    direction = coord.Coords([1,0,0], 'MAG', 'sph', units = ['m', 'm', 'm'])
+    direction.ticks = Ticktock(ray_datenum, 'UTC')
+    newdir = direction.convert('SM', 'car')
+    direction = [float(newdir.x), float(newdir.y), float(newdir.z)]
+    return position, direction
+
+
 #---------------------------------------------------------------------------
 def plotray2Ddir(ray_datenum, fs, intcheck):
 
@@ -163,16 +176,8 @@ def plotray2Ddir(ray_datenum, fs, intcheck):
     theta = 45
     direction = getDIR(dir, ray_datenum, GEOcar_dsx, theta)
 
-    # testing for fig in J. Bortnik thesis
-    #jbpos = coord.Coords([1000e3+R_E, 30, 0], 'MAG', 'sph', units=['m', 'deg', 'deg'])
-    #jbpos.ticks = Ticktock(ray_datenum, 'UTC')
-    #newjbos = jbpos.convert('SM', 'car')
-    #position = [float(newjbos.x), float(newjbos.y), float(newjbos.z)]
-    #direction = coord.Coords([1,0,0], 'MAG', 'sph', units = ['m', 'm', 'm'])
-    #direction.ticks = Ticktock(ray_datenum, 'UTC')
-    #newdir = direction.convert('SM', 'car')
-    #direction = [float(newdir.x), float(newdir.y), float(newdir.z)]
-    
+    #position, direction = testJBthesis(ray_datenum)
+
     # -------------------------------- RUN RAYS --------------------------------
     # convert for raytracer settings
     days_in_the_year = ray_datenum.timetuple().tm_yday
@@ -233,6 +238,8 @@ def plotray2Ddir(ray_datenum, fs, intcheck):
     # rotate plot to be in plane of view
     MAGsph_dsx = GEOcar_dsx.convert('MAG', 'sph') # add ticks
     th = -MAGsph_dsx.long
+    # for JB thesis
+    # th = 0
 
     MAGcar_dsx = rotateplane(th, MAGsph_dsx, ray_datenum)
     MAGcar_vpm = rotateplane(th, MAGsph_vpm, ray_datenum)
@@ -430,6 +437,7 @@ def plotrefractive(ray, ray_datenum, intcheck):
 
             pp = ntheta
             # bottom surface
+            # for JB thesis, uncomment this and comment out the next condition
             #if ang > np.pi/2:
             #    ntheta = ntheta + np.pi
 
@@ -492,8 +500,8 @@ def plotrefractive(ray, ray_datenum, intcheck):
 
 # ------------------------------------------- END --------------------------------------------
 
-intcheck = 1
+intcheck = 10
 ray_datenum = dt.datetime(2020,9,14,22,53)
-fs = 8.2e3
+fs = 3e3
 ray = plotray2Ddir(ray_datenum, fs, intcheck)
 plotrefractive(ray, ray_datenum, intcheck)
