@@ -78,6 +78,7 @@ def run_rays(freq, positions, directions, yearday, milliseconds_day, tmpdir):
         # damp_outfile = os.path.join(ray_out_dir, 'example_ray_mode%d.damp' % mode)
 
         # The base command -- with parameters common for all modes
+        # what is outputper? 
         base_cmd = './raytracer --outputper=%d --dt0=%g --dtmax=%g' % (1, dt0, dtmax) + \
                    ' --tmax=%g --root=%d --fixedstep=%d --maxerr=%g' % (t_max, root, fixedstep, maxerr) + \
                    ' --modelnum=%d --maxsteps=%d --minalt=%d --inputraysfile="%s"' % (

@@ -114,6 +114,7 @@ def launchmanyrays(position, vpmpos, rayt, opts):
         SMcar_dirB = Rot_dirB.convert('SM', 'car')
 
         direction = [float(SMcar_dirB.x), float(SMcar_dirB.y), float(SMcar_dirB.z)]
+        direction = [1,0,0]
         
         # add the normalized direction (or zeros)
         directions.append(np.squeeze(direction))

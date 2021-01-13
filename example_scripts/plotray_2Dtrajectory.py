@@ -44,7 +44,7 @@ def plotray2D(dates, fs, bs):
 
         ray_datenum = dt.datetime(year, month, day, hours, minutes, seconds)
         modeldump(year, month, day, hours, minutes, seconds) # run model dump to update plasmasphere
-        thetalist = [0, 15, 30, 45, -15, -30, -45] # in deg -- what angles to launch at? 
+        thetalist = [0] # in deg -- what angles to launch at? 
 
         checkdir = 0
         crs_out = 'MAG'  # theres a bug with GEO coords -- maybe its the fieldlines? -- DONT CAHNGE THINS
@@ -374,7 +374,9 @@ def plotray2D(dates, fs, bs):
 
         savename = datadir + str(freq[0]/1e3) + 'kHz' + str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.year) + str(ray_datenum.hour) + str(minutes) + '2Dview.png'
         #plt.savefig(savename, format='svg')
-        plt.savefig(savename, format='png')
+        #plt.savefig(savename, format='png')
+        thatdir = '/home/rileyannereid/workspace/SR-output/testing/'
+        plt.savefig(thatdir+'test.png')
         #plt.show()
         plt.close()
 
@@ -398,10 +400,10 @@ def plotray2D(dates, fs, bs):
         plt.show()
     """
 # ------------------------------------------- END --------------------------------------------
-#dates = [dt.datetime(2020,8,28,10,5,0)]
+dates = [dt.datetime(2020,9,14,22,55,0)]
 
-#fs = [8.2e3]
-#bs = ['fullday' for i in range(len(dates))]
-#plotray2D(dates, fs, bs)
+fs = [8.2e3]
+bs = ['testing' for i in range(len(dates))]
+plotray2D(dates, fs, bs)
 
   

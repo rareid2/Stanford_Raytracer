@@ -166,14 +166,14 @@ def plotray2Ddir(ray_datenum, fs, intcheck):
 
     modeldump(year, month, day, hours, minutes, seconds) # run model dump to update plasmasphe
 
-    datadir = '/home/rileyannereid/workspace/SR-output/' + 'kvecs2/'
+    datadir = '/home/rileyannereid/workspace/SR-output/' + 'testing/'
 
     # -------------------------------- DEFINE RAY PARAMS --------------------------------
     # start position of raytracer
     SMcar_dsx, GEOcar_dsx, MAGsph_vpm, dir, dirstr = getDSXVPMpos(ray_datenum, 1)
     position = [float(SMcar_dsx.x), float(SMcar_dsx.y), float(SMcar_dsx.z)]
 
-    theta = 45
+    theta = 0
     direction = getDIR(dir, ray_datenum, GEOcar_dsx, theta)
 
     #position, direction = testJBthesis(ray_datenum)
@@ -268,6 +268,7 @@ def plotray2Ddir(ray_datenum, fs, intcheck):
 
     ax.scatter(mc_rayx, mc_rayz, c = 'Black', s = 1, zorder = 103)
     #ax.quiver(MAGcar_ray.x[::intcheck] / R_E, MAGcar_ray.z[::intcheck] / R_E, MAGcar_k.x[::intcheck], MAGcar_k.z[::intcheck], color='black', zorder=104)
+    ax.quiver(mc_rayx[::intcheck], mc_rayz[::intcheck], mc_kx[::intcheck], mc_kz[::intcheck], color='black', zorder=104)
     
     for tti, tt in enumerate(mc_rayx): # just a nice way to get # of steps 
         if tti % intcheck == 0:   
@@ -473,7 +474,7 @@ def plotrefractive(ray, ray_datenum, intcheck):
 
             ax.set_title(str(round(w/(2*np.pi*1e3),1)) + ' kHz Refractive Surface at ' + str(ray_datenum) + '\n' + r"$\bf{" + str(int(tti / intcheck)) + "}$")
             plt.legend(loc='upper right')
-            datadir = '/home/rileyannereid/workspace/SR-output/' + 'kvecs2/'
+            datadir = '/home/rileyannereid/workspace/SR-output/' + 'testing/'
 
             imgdir = datadir + str(round(w/(2*np.pi*1e3),1)) + 'kHz' + rename + str(ray_datenum.hour) + str(ray_datenum.minute) + 'refractivesurfaces/'
             
@@ -502,6 +503,6 @@ def plotrefractive(ray, ray_datenum, intcheck):
 
 intcheck = 10
 ray_datenum = dt.datetime(2020,9,14,22,53)
-fs = 3e3
+fs = 8.2e3
 ray = plotray2Ddir(ray_datenum, fs, intcheck)
 plotrefractive(ray, ray_datenum, intcheck)

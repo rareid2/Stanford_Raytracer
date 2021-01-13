@@ -43,7 +43,7 @@ from raytracer_settings import *
 # Open the card file for writing
 def gen_ngofile(Kp, configfile):
 
-  print('Kp is set at = ', Kp)
+  #print('Kp is set at = ', Kp)
 
   with open(configfile, "w") as card:
 
@@ -334,7 +334,7 @@ def gen_ngofile(Kp, configfile):
       (PSTALT, PALT1, PALT2, PLATIT, PSTLAT, PLAT1, PLAT2, PALTIT))
 
   card.close()
-  print('finished writing Ngo config file')
+  #print('finished writing Ngo config file')
 
   return
 
@@ -368,12 +368,12 @@ def modeldump(year, month, day, hours, minutes, seconds):
 
   # Dump plasmasphere models
 
-  print("Dumping plasmasphere models")
+  #print("Dumping plasmasphere models")
 
   for mode in modes_to_do:
       for plane in ['XZ', 'XY', 'YZ']:
 
-          print("doing model %d, %s plane" % (mode, plane))
+          #print("doing model %d, %s plane" % (mode, plane))
           maxD = 10.0 * R_E
           if plane == 'XZ':
               minx = -maxD
@@ -447,7 +447,7 @@ def modeldump(year, month, day, hours, minutes, seconds):
               cmd += ' --kp=%g ' % (Kp)
               if mag_dump:
                   cmd += ' --mag_coords=1 '
-          print(cmd)
+          #print(cmd)
 
           os.system(cmd)
 

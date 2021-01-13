@@ -79,47 +79,52 @@ clist = 1
 dates, fs, bs = fullweeksetup(startday, mo, clist, weeklen)
 """
 # set opts
-rayn = 10
+rayn = 1
 plen = 1
 timeint = 1
-MCsim = 1
+MCsim = 0
 angfiles = 0
-tx = readTNTlog('/home/rileyannereid/Downloads/TNT_HPT_Catalog_2020-07-27_204500-2020-07-27_211457.txt')
-sttime = dt.datetime(2020,7,27,20,53,30)
-endtime = dt.datetime(2020,7,27,20,56)  
-tstamp =[]
-freq = []
 
-for ind,tx_n in enumerate(tx):
-    if tx[tx_n]['timestamp'] > sttime and tx[tx_n]['timestamp'] < endtime:
-        f,t = get_ramp(tx[tx_n]['timestamp'], tx[tx_n]['duration'], tx[tx_n]['startfreq'], tx[tx_n]['stopfreq'])
-        freq.extend(f)
-        tstamp.extend(t)
+#tx = readTNTlog('/home/rileyannereid/Downloads/TNT_HPT_Catalog_2020-07-27_204500-2020-07-27_211457.txt')
+#sttime = dt.datetime(2020,7,27,20,53,30)
+#endtime = dt.datetime(2020,7,27,20,56)  
+#tstamp =[]
+#freq = []
 
-bs = ['testing' for i in range(len(tstamp))]
-dates = tstamp
-fs = freq
+#for ind,tx_n in enumerate(tx):
+#    if tx[tx_n]['timestamp'] > sttime and tx[tx_n]['timestamp'] < endtime:
+#        f,t = get_ramp(tx[tx_n]['timestamp'], tx[tx_n]['duration'], tx[tx_n]['startfreq'], tx[tx_n]['stopfreq'])
+#        freq.extend(f)
+#        tstamp.extend(t)
 
-plt.plot(tstamp, fs)
-plt.title('7-27 Burst at 20:53')
-plt.xlabel('time stamp')
-plt.ylabel('freq Hz')
+#bs = ['testing' for i in range(len(tstamp))]
+#dates = tstamp
+#fs = freq
+
+#for ii, (that_time, that_freq) in enumerate(zip(tstamp,fs)):
+#    print(that_freq)
+#    if ii%2==0: # if even
+#        plt.plot([that_time, tstamp[ii+1]], [that_freq, fs[ii+1]],'b')
+
+#plt.title('7-27 Burst at 20:53')
+#plt.xlabel('time stamp')
+#plt.ylabel('freq Hz')
 #plt.show()
-plt.close()
-dates = readDSXlog('DSXlogs.txt')
-dates = dates[:1]
-print(dates)
+#plt.close()
+
+
+dates = [dt.datetime(2020, 9, 14, 22, 55)]
+#print(dates)
 fs = []
 bs = []
 for dd in dates:
-    fs.append(28e3)
+    fs.append(8.2e3)
     bs.append('testing')
 
-print('est. run time: ', len(dates) * rayn * plen/timeint * (1/3000), ' min')
+#print('est. run time: ', len(dates) * rayn * plen/timeint * (1/3000), ' min')
 
 runopts = [rayn, plen, timeint, MCsim, angfiles] # FULL runs -- takes a WHILE ! 3-4hrs (start the night before or early in the morn!)
-print(runopts)
+#print(runopts)
 runsomerays(dates, fs, bs, runopts)
 
 ################################# MOVE TO PLOTTING #################################
-# why is this NOT running rays? 
