@@ -91,11 +91,11 @@ def plotraydir(dates, fs, bs):
         position = [float(SMcar_dsx.x), float(SMcar_dsx.y), float(SMcar_dsx.z)]
         #quick check real quick
 
-        jbpos = coord.Coords([1000e3+R_E, 30, 0], 'MAG', 'sph', units=['m', 'deg', 'deg'])
-        jbpos.ticks = Ticktock(ray_datenum, 'UTC')
-        newjbos = jbpos.convert('SM', 'car')
-        newjbosGEO = jbpos.convert('GEO', 'car')
-        position = [float(newjbos.x), float(newjbos.y), float(newjbos.z)]
+        #jbpos = coord.Coords([1000e3+R_E, 30, 0], 'MAG', 'sph', units=['m', 'deg', 'deg'])
+        #jbpos.ticks = Ticktock(ray_datenum, 'UTC')
+        #newjbos = jbpos.convert('SM', 'car')
+        #newjbosGEO = jbpos.convert('GEO', 'car')
+        #position = [float(newjbos.x), float(newjbos.y), float(newjbos.z)]
 
         # check with hemi we are in
         if outsph_vpm.lati > 0:
@@ -105,11 +105,11 @@ def plotraydir(dates, fs, bs):
             dir = -1  # south
             dirstr = 'south'
 
-        dir = -1
-        dirstr = 'south'
+        #dir = -1
+        #dirstr = 'south'
 
         Bstart = [float(GEOcar_dsx.x)/R_E, float(GEOcar_dsx.y)/R_E, float(GEOcar_dsx.z)/R_E]
-        Bstart =  [float(newjbosGEO.x)/R_E, float(newjbosGEO.y)/R_E, float(newjbosGEO.z)/R_E]
+        #Bstart =  [float(newjbosGEO.x)/R_E, float(newjbosGEO.y)/R_E, float(newjbosGEO.z)/R_E]
         Bx, By, Bz = B_direasy(ray_datenum, Bstart, dir)
 
         # convert direction to SM coordinates for raytracer
@@ -141,10 +141,10 @@ def plotraydir(dates, fs, bs):
             positions.append(position)
         
         #quick check
-        direction = coord.Coords([1,0,0], 'MAG', 'sph', units = ['m', 'm', 'm'])
-        direction.ticks = Ticktock(ray_datenum, 'UTC')
-        newdir = direction.convert('SM', 'car')
-        directions = [[float(newdir.x), float(newdir.y), float(newdir.z)]]
+        #direction = coord.Coords([1,0,0], 'MAG', 'sph', units = ['m', 'm', 'm'])
+        #direction.ticks = Ticktock(ray_datenum, 'UTC')
+        #newdir = direction.convert('SM', 'car')
+        #directions = [[float(newdir.x), float(newdir.y), float(newdir.z)]]
 
         # -------------------------------- RUN RAYS --------------------------------
         # convert for raytracer settings
@@ -211,7 +211,7 @@ def plotraydir(dates, fs, bs):
         # rotate plot to be in plane of view
         outsph_dsx = GEIcar_dsx.convert(crs_out, 'sph') # add ticks
         th = -outsph_dsx.long
-        th = 0
+        #th = 0
 
         # rotate long to be at prime merid
         Rot_dsx = coord.Coords([float(outsph_dsx.radi), float(outsph_dsx.lati), float(outsph_dsx.long + th)], crs_out, 'sph', units=['m', 'deg', 'deg'])
@@ -228,7 +228,7 @@ def plotraydir(dates, fs, bs):
         # rotate rays
 
         for r, k in zip(rays, kvecs):
-            print(k)
+            #print(k)
             rrad = []
             rlat = []
             rlon = []
@@ -366,10 +366,10 @@ def plotraydir(dates, fs, bs):
         ax.legend(loc = 'lower center', fontsize =  'x-small')
 
         savename = datadir + str(freq[0]/1e3) + 'kHz_' + str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.year) + str(ray_datenum.hour) + str(minutes) + '_' + str(thetalist[0]) + 'initialangle' + '.png'
-        plt.savefig(savename, format='png')
-        #plt.show()
+        #plt.savefig(savename, format='png')
+        plt.show()
         plt.close()
-
+        """
         # grab every xseconds seconds
         savenames = []
         for tti,tt in enumerate(ray['time']):
@@ -422,7 +422,7 @@ def plotraydir(dates, fs, bs):
                     # important to call these plus and minus roots! NOT POS AND NEG
                     n2 = np.sqrt(n2sq)
                     # Order the roots -- ?
-                    """
+                    
                     if abs(n1) > abs(n2):
                         k2 = w*n1/c
                         k1 = w*n2/c
@@ -436,7 +436,7 @@ def plotraydir(dates, fs, bs):
                     else:
                         k = k2
                         eta = n2
-                    """
+                    
                     k_vec[phi_ind] = w*n2/c
                     eta_vec[phi_ind] = n2
 
@@ -540,7 +540,7 @@ def plotraydir(dates, fs, bs):
         simplegifs(savenames, datadir + str(freq[0]/1e3) + 'kHz' + rename + str(ray_datenum.hour) + str(ray_datenum.minute) + '.gif')
 
         # ------------------------------------------- END --------------------------------------------
-        """
+        
         fig, ax = plt.subplots(1,1, sharex=True, sharey=True)
         lw = 2  # linewidth
 
@@ -598,6 +598,6 @@ def plotraydir(dates, fs, bs):
 
 dates = [dt.datetime(2020,9,14,22,53)]
 
-fs = [3e3]
+fs = [8.2e3]
 bs = ['kvecs2' for i in range(len(dates))]
 plotraydir(dates, fs, bs)
