@@ -1,6 +1,3 @@
-
-# RUN IT
-
 import numpy as np
 import matplotlib.pyplot as plt
 import os
@@ -243,17 +240,3 @@ def runsomerays(dates, fs, bs, runopts):
 #runsomerays(dates, fs, bs, runopts)
 
 ###############################################################################################
-
-def get_ramp(tstamp, duration, startf, stopf):
-    df = startf - stopf
-    f = [startf]
-    t = [tstamp]
-    new_tstamp = tstamp
-    if df!=0:
-        for i in range(1):
-        # every 15 ms drop by 10
-            f.append(stopf)
-            new_tstamp += dt.timedelta(microseconds=duration*1000)
-            t.append(new_tstamp)
-    return f, t
-    # fix this
