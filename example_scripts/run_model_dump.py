@@ -23,14 +23,7 @@ import time
 
 # import settings
 from constants_settings import *
-
-# change time information here - use UTC -
-#year = 2020
-#month = 4
-#day = 13
-#hours = 21
-#minutes = 14
-#seconds = 0
+from raytracer_utils import get_yearmiliday
 
 # ------------------------------------ GEN NGO CONFIG FILE -----------------------------------------
 
@@ -341,17 +334,10 @@ def gen_ngofile(Kp, configfile):
 # ---------------------------------- END GEN NGO CONFIG FILE --------------------------------------
 
 #  -------------------------------    INITIALIZE MODEL DUMP   --------------------------------------
-def modeldump(year, month, day, hours, minutes, seconds):
-  # used for plotting the ray
-  ray_datenum = dt.datetime(year, month, day, hours, minutes, seconds)
+def modeldump(ray_datenum):
 
-  # convert for raytracer settings
-  days_in_the_year = ray_datenum.timetuple().tm_yday
-  days_in_the_year = format(days_in_the_year, '03d')
+  yearday, milliseconds_day = get_yearmiliday(ray_datenum)
 
-  # yearday and miliseconds day are used by raytracer
-  yearday = str(year)+ str(days_in_the_year)   # YYYYDDD
-  milliseconds_day = hours*3.6e6 + minutes*6e4 + seconds*1e3
   # GCPM model and damping code needs to be run in the same directory
   # as the binary file (and all the misc data files)
 

@@ -1,9 +1,18 @@
 import numpy as np
 import pandas as pd
 import os
-# from spacepy import coordinates as coord
-# from spacepy.time import Ticktock
 
+
+def get_yearmiliday(ray_datenum):
+    # convert for raytracer settings for convenience
+    days_in_the_year = ray_datenum.timetuple().tm_yday
+    days_in_the_year = format(days_in_the_year, '03d')
+
+    # yearday and miliseconds day are used by raytracer
+    yearday = str(ray_datenum.year)+ str(days_in_the_year)   # YYYYDDD
+    milliseconds_day = ray_datenum.hour*3.6e6 + ray_datenum.minute*6.0e4 + ray_datenum.second*1.0e3
+
+    return yearday, milliseconds_day
 
 
 def read_rayfiles(directory, freq, latmin, latmax, lonmin, lonmax):

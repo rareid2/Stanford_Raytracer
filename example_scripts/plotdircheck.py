@@ -7,7 +7,7 @@ import math
 import sys
 import aacgmv2
 import datetime as dt
-from raytracer_utils import readdump, read_rayfile, read_rayfiles, read_damp
+from raytracer_utils import readdump, read_rayfile, read_rayfiles, read_damp, get_yearmiliday
 from run_rays import run_rays
 from constants_settings import *
 from IGRF_funcs import B_dir, trace_fieldline_ODE, findFootprints, B_direasy
@@ -25,6 +25,9 @@ from coordinates import create_spc, convert_spc
 
 #sys.path.insert(1, '/home/rileyannereid/workspace/scratches/')
 #from simplegifs import simplegifs
+
+
+
 
 #-------------------------------- GET SAT POS --------------------------------
 
@@ -73,10 +76,10 @@ def getDSXVPMpos(ray_datenum, duration):
 # theta is deg from fieldline
 # dir is direction along fieldline
 
-def getDIR(dir, ray_datenum, GEOposition, theta):
+def getDIR(dir1, ray_datenum, GEOposition, theta):
     Bstart =  [float(GEOposition.x)/R_E, float(GEOposition.y)/R_E, float(GEOposition.z)/R_E]
 
-    Bx, By, Bz = B_direasy(ray_datenum, Bstart, dir)
+    Bx, By, Bz = B_direasy(ray_datenum, Bstart, dir1)
 
     # convert direction to SM coordinates for raytracer
     dirB = np.reshape(np.array([Bx, By, Bz]), (1, 3))
@@ -150,16 +153,9 @@ def testJBthesis(ray_datenum):
 #---------------------------------------------------------------------------
 def plotray2Ddir(ray_datenum, fs, intcheck):
 
-    year = ray_datenum.year
-    month = ray_datenum.month
-    day = ray_datenum.day
-    hours = ray_datenum.hour
-    minutes = ray_datenum.minute
-    seconds = ray_datenum.second
-
     freq = [fs]
 
-    modeldump(year, month, day, hours, minutes, seconds) # run model dump to update plasmasphe
+    modeldump(ray_datenum) # run model dump to update plasmasphe
 
     datadir = '/home/rileyannereid/workspace/SR-output/' + 'fix_kvec/'
 
@@ -182,24 +178,18 @@ def plotray2Ddir(ray_datenum, fs, intcheck):
     MAGsph_vpm = vpm.pos
 
     SMcar_dsx = dsx.pos
-    GEOcar_dsx = convert_spc(SMcar_dsx, ray_datenum, 'GEO', 'car' ,['m','m','m'])
+    GEOcar_dsx = convert_spc(SMcar_dsx, ray_datenum, 'GEO', 'car',['m','m','m'])
     position = [float(SMcar_dsx.x), float(SMcar_dsx.y), float(SMcar_dsx.z)]
+    dir1 = 1
+    dirstr = 'north'
 
     theta = 0
-    direction = getDIR(dir, ray_datenum, GEOcar_dsx, theta)
+    direction = getDIR(dir1, ray_datenum, GEOcar_dsx, theta)
 
     #position, direction = testJBthesis(ray_datenum)
 
     # -------------------------------- RUN RAYS --------------------------------
-    # convert for raytracer settings
-    days_in_the_year = ray_datenum.timetuple().tm_yday
-    days_in_the_year = format(days_in_the_year, '03d')
-
-    # yearday and miliseconds day are used by raytracer
-    yearday = str(year)+ str(days_in_the_year)   # YYYYDDD
-    
-    minutes = minutes + 2
-    milliseconds_day = hours*3.6e6 + minutes*6e4 + seconds*1e3
+    yearday, milliseconds_day = get_yearmiliday(ray_datenum)
 
     # run it!
     tmpdir = tempfile.mkdtemp() 
@@ -225,7 +215,7 @@ def plotray2Ddir(ray_datenum, fs, intcheck):
         w = r['w']
 
         tmp_coords = coord.Coords(list(zip(r['pos'].x, r['pos'].y, r['pos'].z)), 'SM', 'car', units=['m', 'm', 'm'])
-        tmp_kcoords = coord.Coords(list(zip((w/c) * r['n'].x, (w/c) * r['n'].y, (w/c) * r['n'].z)), 'SM', 'car', units=['m', 'm', 'm'])
+        tmp_kcoords = coord.Coords(list(zip((w/C) * r['n'].x, (w/C) * r['n'].y, (w/C) * r['n'].z)), 'SM', 'car', units=['m', 'm', 'm'])
         
         # convert to a unit vector first
         unitk = [(float(tmp_kcoords[s].x), float(tmp_kcoords[s].y), float(tmp_kcoords[s].z)) / np.sqrt(tmp_kcoords[s].x**2 + tmp_kcoords[s].y**2 + tmp_kcoords[s].z**2) for s in range(len(tmp_kcoords))]
@@ -334,11 +324,11 @@ def plotray2Ddir(ray_datenum, fs, intcheck):
     plt.xlim([0, max_lim])
     plt.ylim([-2, 2])
 
-    mytitle = str(freq[0]/1e3) + 'kHz rays at ' + str(ray_datenum.month) + '-' + str(ray_datenum.day) + '-' + str(ray_datenum.hour) + ':' + str(minutes) + '\n' + str(theta) + ' intial angle'
+    mytitle = str(freq[0]/1e3) + 'kHz rays at ' + dt.datetime.strftime(ray_datenum, '%Y-%M-%d %H:%m:%s') + '\n' + str(theta) + ' intial angle'
     plt.title(mytitle)
     ax.legend(loc = 'lower center', fontsize =  'x-small')
 
-    savename = datadir + str(freq[0]/1e3) + 'kHz_' + str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.year) + str(ray_datenum.hour) + str(minutes) + '_' + str(theta) + 'initialangle' + '.svg'
+    savename = datadir + str(freq[0]/1e3) + 'kHz_' + str(theta) + 'initialangle' + '.svg'
     plt.savefig(savename, format='svg')
     #plt.show()
     plt.close()
