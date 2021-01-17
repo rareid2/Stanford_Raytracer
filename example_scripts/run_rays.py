@@ -17,7 +17,7 @@ import numpy as np
 import os                        
 
 # get settings
-from raytracer_settings import *
+from constants_settings import *
 
 def run_rays(freq, positions, directions, yearday, milliseconds_day, tmpdir):
 

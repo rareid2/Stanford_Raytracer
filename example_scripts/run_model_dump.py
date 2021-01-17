@@ -22,7 +22,7 @@ import string
 import time
 
 # import settings
-from raytracer_settings import *
+from constants_settings import *
 
 # change time information here - use UTC -
 #year = 2020

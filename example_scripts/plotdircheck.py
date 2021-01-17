@@ -9,34 +9,28 @@ import aacgmv2
 import datetime as dt
 from raytracer_utils import readdump, read_rayfile, read_rayfiles, read_damp
 from run_rays import run_rays
-from raytracer_settings import *
+from constants_settings import *
 from IGRF_funcs import B_dir, trace_fieldline_ODE, findFootprints, B_direasy
 from spacepy import coordinates as coord
 from spacepy import irbempy
 from spacepy.time import Ticktock
-from TLE_funcs import TLE2pos
+#from TLE_funcs import TLE2pos
 import tempfile
 from run_model_dump import modeldump 
 from plotrefractivesurface import getLshell, stix_parameters
 
-R2D = 180./np.pi
-D2R = np.pi/180.
-Hz2Rad = 2.*np.pi
-Rad2Hz = 1./Hz2Rad
-eo   = 8.854e-12   # C^2/Nm^2 
-c    = 2.998e8     # m/s
-Q_EL = 1.602e-19   # C
-M_EL = 9.1e-31     # kg
-M_P = 1.67e-27     # kg
-R_E = 6371e3  # m
 
-sys.path.insert(1, '/home/rileyannereid/workspace/scratches/')
-from simplegifs import simplegifs
+from satellites import sat
+from coordinates import create_spc, convert_spc
+
+#sys.path.insert(1, '/home/rileyannereid/workspace/scratches/')
+#from simplegifs import simplegifs
 
 #-------------------------------- GET SAT POS --------------------------------
+
 def getDSXVPMpos(ray_datenum, duration):
     # get DSX and VPM positions for... 
-    r, tvec = TLE2pos(duration, ray_datenum, 1)
+    r, tvec = TLE2pos(duration, ray_datenum, 0)
 
     # redefine time here -- more accurate
     ray_datenum = tvec[0]
@@ -70,6 +64,7 @@ def getDSXVPMpos(ray_datenum, duration):
         dirstr = 'south'
 
     return SMcar_dsx, GEOcar_dsx, MAGsph_vpm, dir, dirstr
+
 #---------------------------------------------------------------------------
 
 
@@ -170,9 +165,25 @@ def plotray2Ddir(ray_datenum, fs, intcheck):
 
     # -------------------------------- DEFINE RAY PARAMS --------------------------------
     # start position of raytracer
-    SMcar_dsx, GEOcar_dsx, MAGsph_vpm, dir, dirstr = getDSXVPMpos(ray_datenum, 1)
+    #SMcar_dsx, GEOcar_dsx, MAGsph_vpm, dir, dirstr = getDSXVPMpos(ray_datenum, 1)
+    
+    dsx = sat()
+    dsx.catnmbr = 44344
+    dsx.time = ray_datenum
+    dsx.getTLE_ephem()
+    dsx.propagatefromTLE(0,'future','SM','car', ['m','m','m'])
+
+    vpm = sat()
+    vpm.catnmbr = 45120
+    vpm.time = ray_datenum
+    vpm.getTLE_ephem()
+    vpm.propagatefromTLE(0,'future','MAG','sph',['m','deg','deg'])
+
+    MAGsph_vpm = vpm.pos
+
+    SMcar_dsx = dsx.pos
+    GEOcar_dsx = convert_spc(SMcar_dsx, ray_datenum, 'GEO', 'car' ,['m','m','m'])
     position = [float(SMcar_dsx.x), float(SMcar_dsx.y), float(SMcar_dsx.z)]
-    #print(position)
 
     theta = 0
     direction = getDIR(dir, ray_datenum, GEOcar_dsx, theta)
@@ -266,7 +277,7 @@ def plotray2Ddir(ray_datenum, fs, intcheck):
         MAGcar_k = rotateplane(th, msph_k, ray_datenum)
         mc_kx.append(MAGcar_k.x / R_E)
         mc_kz.append(MAGcar_k.z / R_E)
-    print('k x', mc_kx)
+
     ax.scatter(mc_rayx, mc_rayz, c = 'Black', s = 1, zorder = 103)
     #ax.quiver(MAGcar_ray.x[::intcheck] / R_E, MAGcar_ray.z[::intcheck] / R_E, MAGcar_k.x[::intcheck], MAGcar_k.z[::intcheck], color='black', zorder=104)
     ax.quiver(mc_rayx[::intcheck], mc_rayz[::intcheck], mc_kx[::intcheck], mc_kz[::intcheck], color='black', zorder=104)
@@ -503,7 +514,7 @@ def plotrefractive(ray, ray_datenum, intcheck):
 # ------------------------------------------- END --------------------------------------------
 
 intcheck = 10
-ray_datenum = dt.datetime(2020,9,14,22,53)
+ray_datenum = dt.datetime(2020,9,14,22,53).replace(tzinfo=dt.timezone.utc)
 fs = 8.2e3
 ray = plotray2Ddir(ray_datenum, fs, intcheck)
 #plotrefractive(ray, ray_datenum, intcheck)

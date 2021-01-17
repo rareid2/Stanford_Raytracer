@@ -20,9 +20,9 @@ sns.set(style="whitegrid")
 
 from raytracer_utils import readdump, read_rayfile, read_rayfiles
 from run_rays import run_rays
-from raytracer_settings import *
+from constants_settings import *
 from IGRF_funcs import B_dir, trace_fieldline_ODE, findFootprints, B_direasy
-from TLE_funcs import TLE2pos
+#from TLE_funcs import TLE2pos
 from run_model_dump import modeldump 
 
 # --------------- CONSTANTS --------------------------

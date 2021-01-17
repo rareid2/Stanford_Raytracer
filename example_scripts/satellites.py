@@ -78,7 +78,7 @@ class sat:
                 tle_time = dt.datetime.strptime(retData[n]['EPOCH'],'%Y-%m-%d %H:%M:%S').replace(tzinfo=dt.timezone.utc)
                 tle_us = dt.timedelta(microseconds=float(retData[n]['EPOCH_MICROSECONDS']))
                 tle_fulltime = tle_time + tle_us
-                epoch_dt.append(self.time - tle_fulltime)
+                epoch_dt.append(np.abs((self.time - tle_fulltime).total_seconds()))
             
             epoch_n = epoch_dt.index(min(epoch_dt))
             # get the data!
@@ -87,7 +87,7 @@ class sat:
         session.close()
         print("retrieved TLE from SpaceTrak for " + retData[epoch_n]['EPOCH'])
     
-    def propagatefromTLE(self, sec, orbit_dir, crs, carsph):
+    def propagatefromTLE(self, sec, orbit_dir, crs, carsph, units):
         if self.TLE == None:
             print('need TLE')
             return
@@ -110,15 +110,16 @@ class sat:
             vel_array[ti,:] = velocity
 
         # finally, convert!
-        pos_spc = create_spc(pos_array, dt_array, ['km','km','km'], 'GEI', 'car')
-        vel_spc = create_spc(vel_array, dt_array, ['km','km','km'], 'GEI', 'car')
-
-        self.pos = convert_spc(pos_spc, crs, carsph)
-        self.vel = convert_spc(vel_spc, crs, carsph)
+        pos_spc = create_spc(pos_array, dt_array, 'GEI', 'car', ['km','km','km'])
+        #vel_spc = create_spc(vel_array, dt_array, 'GEI', 'car', ['km','km','km'])
+    
+        self.pos = convert_spc(pos_spc, dt_array, crs, carsph, units)
+        #self.vel = convert_spc(vel_spc, dt_array, crs, carsph, units)
 
 # ---------------------------------------------------------------------
 
-# Example Call!
+"""
+# Example Call!        # spacepy defaulted to Re despite me asking it not to
 # define an obj called dsx
 dsx = sat()
 
@@ -132,7 +133,7 @@ dsx.time = dt.datetime.now().replace(tzinfo=dt.timezone.utc)
 dsx.getTLE_ephem()
 
 # propagate for 10 seconds
-psec = 60
+psec = 60.0
 
 # propagate into the future
 # alternatively, use 'past' for previous
@@ -142,10 +143,12 @@ pdir = 'past'
 # select desired coordinate system
 crs = 'GEO'
 carsph = 'sph'
+units = ['m','m','m']
 
 # propagate
-dsx.propagatefromTLE(psec, pdir, crs, carsph)
+dsx.propagatefromTLE(psec, pdir, crs, carsph, units)
 
 # look @ updated position and velocity vectors
 #print(dsx.pos)
 #dsx.vel
+"""
