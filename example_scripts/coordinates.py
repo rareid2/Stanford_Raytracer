@@ -21,6 +21,10 @@ from constants_settings import *
 # carsph:
 # car or sph 
 
+# units
+# Re, km, m 
+# (spherical defaults to degrees)
+
 # create a spacepy coordinate object
 def create_spc(cor_array, dt_array, crs, carsph, units):
     cvals = coord.Coords(cor_array, crs, carsph, units=units)
@@ -32,6 +36,8 @@ def convert_spc(cvals, dt_array, crs, carsph, units):
 
     # convert coords here
     newcoord = cvals.convert(crs, carsph)
+    if units == None:
+        return newcoord
 
     # there's a bug in spacepy coordinates
     # spacepy defaulted to Re despite me asking it not to

@@ -1,4 +1,3 @@
-# import packages
 import numpy as np
 import matplotlib.pyplot as plt
 import datetime as dt
@@ -21,7 +20,7 @@ from coordinates import create_spc, convert_spc
 # and get velocity interesting for doppler
 
 # see end of script for example call
-# --------------------------------- SAT CLASS ---------------------------------------
+# -------------------------------------------------------------------------------------
 
 class sat:
     def __init__(self, TLE=None, time=None, pos=None, vel=None):
@@ -119,7 +118,7 @@ class sat:
 # ---------------------------------------------------------------------
 
 """
-# Example Call!        # spacepy defaulted to Re despite me asking it not to
+# Example Call! 
 # define an obj called dsx
 dsx = sat()
 
