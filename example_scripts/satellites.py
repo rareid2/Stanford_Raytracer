@@ -117,37 +117,35 @@ class sat:
 
 # ---------------------------------------------------------------------
 
-"""
 # Example Call! 
 # define an obj called dsx
-dsx = sat()
+#dsx = sat()
 
 # set the NORAD ID for dsx
-dsx.catnmbr = 44344
+#dsx.catnmbr = 44344
 
 # set the time we want orbit info
-dsx.time = dt.datetime.now().replace(tzinfo=dt.timezone.utc)
+#dsx.time = dt.datetime.now().replace(tzinfo=dt.timezone.utc)
 
 # get TLE
-dsx.getTLE_ephem()
+#dsx.getTLE_ephem()
 
 # propagate for 10 seconds
-psec = 60.0
+#psec = 60.0
 
 # propagate into the future
 # alternatively, use 'past' for previous
 # or 'both' for propagating in both directions in time
-pdir = 'past'
+#pdir = 'past'
 
 # select desired coordinate system
-crs = 'GEO'
-carsph = 'sph'
-units = ['m','m','m']
+#crs = 'GEO'
+#carsph = 'sph'
+#units = ['m','m','m']
 
 # propagate
-dsx.propagatefromTLE(psec, pdir, crs, carsph, units)
+#dsx.propagatefromTLE(psec, pdir, crs, carsph, units)
 
 # look @ updated position and velocity vectors
 #print(dsx.pos)
 #dsx.vel
-"""

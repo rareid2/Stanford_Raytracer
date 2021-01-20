@@ -29,47 +29,6 @@ from coordinates import create_spc, convert_spc
 
 
 
-#-------------------------------- GET SAT POS --------------------------------
-
-def getDSXVPMpos(ray_datenum, duration):
-    # get DSX and VPM positions for... 
-    r, tvec = TLE2pos(duration, ray_datenum, 0)
-
-    # redefine time here -- more accurate
-    ray_datenum = tvec[0]
-
-    # convert to meters
-    dsx = [rpos*1e3 for rpos in r[0]]
-    vpm = [rpos*1e3 for rpos in r[1]]
-
-    # only grab first one - weird bug fix with JD dates
-    dsx = [dsx[0]]
-    vpm = [vpm[0]]
-
-    # convert startpoint to SM car for raytracer
-    GEIcar_dsx = coord.Coords(dsx, 'GEI', 'car', units=['m', 'm', 'm'])
-    GEIcar_dsx.ticks = Ticktock(ray_datenum, 'UTC') # add ticks
-
-    SMcar_dsx = GEIcar_dsx.convert('SM', 'car') # needed for raytracer
-    GEOcar_dsx = GEIcar_dsx.convert('GEO', 'car') # needed for Bfield calcs
-
-    # convert vpm -- to check which hemi and plot later
-    GEIcar_vpm = coord.Coords(vpm, 'GEI', 'car', units=['m', 'm', 'm'])
-    GEIcar_vpm.ticks = Ticktock(ray_datenum, 'UTC') # add ticks
-    MAGsph_vpm = GEIcar_vpm.convert('MAG', 'sph')
-
-    # check with hemi we are in
-    if MAGsph_vpm.lati > 0:
-        dir = 1   # north
-        dirstr = 'north'
-    else:
-        dir = -1  # south
-        dirstr = 'south'
-
-    return SMcar_dsx, GEOcar_dsx, MAGsph_vpm, dir, dirstr
-
-#---------------------------------------------------------------------------
-
 
 #-----------------------------------DEF DIRECS ------------------------------
 # input is a GEO cartesian position in m
@@ -86,6 +45,7 @@ def getDIR(dir1, ray_datenum, GEOposition, theta):
     dirB = coord.Coords(dirB[0], 'GEO', 'car', units=['Re', 'Re', 'Re'])
     dirB.ticks = Ticktock(ray_datenum, 'UTC') # add ticks
     SMsph_dirB = dirB.convert('SM', 'sph')
+    print('smdir',SMsph_dirB)
 
     # increase (or decrease) polar angle
     newth = float(SMsph_dirB.lati) + theta
@@ -159,23 +119,21 @@ def plotray2Ddir(ray_datenum, fs, intcheck):
 
     datadir = '/home/rileyannereid/workspace/SR-output/' + 'fix_kvec/'
 
-    # -------------------------------- DEFINE RAY PARAMS --------------------------------
-    # start position of raytracer
-    #SMcar_dsx, GEOcar_dsx, MAGsph_vpm, dir, dirstr = getDSXVPMpos(ray_datenum, 1)
-    
-    dsx = sat()
-    dsx.catnmbr = 44344
-    dsx.time = ray_datenum
-    dsx.getTLE_ephem()
-    dsx.propagatefromTLE(0,'future','SM','car', ['m','m','m'])
+    #MAGsph_vpm = vpm.pos
+    # use the datetime package to define the start time -- make sure to use UTC timezone
+    ray_datenum = dt.datetime(2020, 5, 5, 10, 11, tzinfo=dt.timezone.utc)
 
-    vpm = sat()
-    vpm.catnmbr = 45120
-    vpm.time = ray_datenum
-    vpm.getTLE_ephem()
-    vpm.propagatefromTLE(0,'future','MAG','sph',['m','deg','deg'])
+    # first, we need the positions of the satellites -- use the sat class
+    dsx = sat()             # define a satellite object
+    dsx.catnmbr = 44344     # prove NORAD ID
+    dsx.time = ray_datenum  # set time
+    dsx.getTLE_ephem()      # get TLEs nearest to this time -- sometimes this will lag
 
-    MAGsph_vpm = vpm.pos
+    # propagate the orbit! setting sec=0 will give you just the position at that time
+    dsx.propagatefromTLE(sec=0, orbit_dir='future', crs='SM', carsph='car', units=['m','m','m'])
+
+    # now we have ray start point in the correct coordinates (SM cartesian in m)
+    #ray_start = dsx.pos
 
     SMcar_dsx = dsx.pos
     GEOcar_dsx = convert_spc(SMcar_dsx, ray_datenum, 'GEO', 'car',['m','m','m'])
@@ -183,8 +141,9 @@ def plotray2Ddir(ray_datenum, fs, intcheck):
     dir1 = 1
     dirstr = 'north'
 
-    theta = 0
+    theta = 45
     direction = getDIR(dir1, ray_datenum, GEOcar_dsx, theta)
+    print('dir', direction)
 
     #position, direction = testJBthesis(ray_datenum)
 
@@ -504,7 +463,7 @@ def plotrefractive(ray, ray_datenum, intcheck):
 # ------------------------------------------- END --------------------------------------------
 
 intcheck = 10
-ray_datenum = dt.datetime(2020,9,14,22,53).replace(tzinfo=dt.timezone.utc)
+ray_datenum = dt.datetime(2020, 5, 5, 10, 11, tzinfo=dt.timezone.utc)
 fs = 8.2e3
 ray = plotray2Ddir(ray_datenum, fs, intcheck)
 #plotrefractive(ray, ray_datenum, intcheck)

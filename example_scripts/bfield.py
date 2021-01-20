@@ -2,13 +2,11 @@ import numpy as np
 import spacepy.irbempy as irbem
 import spacepy.coordinates as coord
 from spacepy.time import Ticktock
-import matplotlib.pyplot as plt
 import datetime as dt
 from scipy.integrate import ode
 
 from coordinates import create_spc, convert_spc
 from constants_settings import *
-
 
 # -------------------------------- Bfieldinfo CLASS -----------------------------------------
 # just a nice way to mangage getting bfield info
@@ -159,6 +157,7 @@ class Bfieldinfo:
         footpoint_coords = convert_spc(gdz, self.time, crs, carsph, units)
 
         self.footpoint = footpoint_coords
+# ---------------------------------------------------------------------
 
 # EXAMPLE CALL
 

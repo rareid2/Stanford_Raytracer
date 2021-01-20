@@ -5,11 +5,6 @@ import datetime as dt            # for coordinate transforms
 import tempfile
 import random, string
 
-"""
-here is a script to define ALL settings for the ray tracer and models
-to keep everything central
-"""
-
 # Constants (matching the original Fortran code)
 EPS0 = 8.854187817e-12        # C^2/Nm^2 
 MU0 = np.pi * 4e-7              
@@ -48,7 +43,6 @@ maxsteps = 2e3   # Max number of timesteps (abort if reached)
 use_IGRF = 1     # Magnetic field model (1 for IGRF, 0 for dipole)
 use_tsyg = 1     # Use the Tsyganenko magnetic field model corrections
 minalt = R_E + 475e3   # cutoff altitude in meters
-# TODO: make a max cutoff alt or check if inside the plasmasphere
 
 # Which plasmasphere models should we run?
 #   1 - Legacy (Ngo) model
@@ -69,7 +63,7 @@ scattered_interp_order = 2
 scattered_interp_exact = 0  # Try 0 if there's weirdness at discontinuities
 scattered_interp_local_window_scale = 5
 
-# change this someday
+# ngo config
 configfile = 'ngoconfig.in'
 
 #  --------------------------- END CHANGE ENV SETTINGS HERE  --------------------------
