@@ -3,7 +3,6 @@ import numpy as np
 import os
 import sys
 import datetime as dt
-
 from multiprocessing import Pool, cpu_count
 
 from constants_settings import *

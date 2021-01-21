@@ -1,11 +1,14 @@
 import numpy as np
 import datetime as dt
+import os
 
 from constants_settings import *
 from coordinates import create_spc, convert_spc
 from satellites import sat
 from bfield import Bfieldinfo, trace_fieldline_ODE
 from run_rays import single_run_rays, parallel_run_rays
+from raytracer_utils import read_rayfile
+from ray_plots import plotray2D
 
 # example call to ray tracer!
 # FIRST, navigate to constants_settings and make sure the settings are correct for the run
@@ -13,7 +16,7 @@ from run_rays import single_run_rays, parallel_run_rays
 # let's look at a conjunction between DSX and VPM:
 
 # use the datetime package to define the start time -- make sure to use UTC timezone
-ray_datenum = dt.datetime(2020, 5, 5, 10, 11, 2, tzinfo=dt.timezone.utc)
+ray_datenum = dt.datetime(2020, 9, 14, 22, 53, tzinfo=dt.timezone.utc)
 
 # first, we need the positions of the satellites -- use the sat class
 dsx = sat()             # define a satellite object
@@ -39,7 +42,7 @@ bfield_ray_start.Bfield_direction(hemis='north', crs='SM', carsph='sph')
 bfield_dir = bfield_ray_start.unit_vec
 
 # we're going to change the polar angle - let's rotate to be 45 deg
-alpha = 45
+alpha = 0
 ray_start_dir_c = create_spc(cor_array=[float(bfield_dir.radi[0]), float(bfield_dir.lati[0]) + alpha, float(bfield_dir.long[0])], dt_array=ray_datenum, crs='SM', carsph='sph', units=['Re','deg','deg'])
 # convert back to SM car -- keep in Re units
 ray_start_dir = convert_spc(cvals=ray_start_dir_c, dt_array=ray_datenum, crs='SM', carsph='car', units=['Re','Re','Re'])
@@ -49,7 +52,7 @@ ray_start_dir = convert_spc(cvals=ray_start_dir_c, dt_array=ray_datenum, crs='SM
 # run at a single time -- use run_rays and input a list of positions, directions, and freqs (ALL SAME LENGTH)
 # generates one input file and one output file with all rays in it
 
-nrays = 100 # how many rays
+nrays = 2 # how many rays
 freq = 8.2e3  # Hz
 rayfile_directory = '/home/rileyannereid/workspace/SR-output/rayfiles'
 
@@ -63,16 +66,31 @@ for n in range(nrays):
     freqs.append(freq)
 
 # time to run is about 1 sec every 10 rays 
-#single_run_rays(ray_datenum, positions, directions, freqs, rayfile_directory)
+single_run_rays(ray_datenum, positions, directions, freqs, rayfile_directory)
 
 # OR run parallel at different times -- use parallel_run_rays and input a list of times, and LIST OF LISTS with positions, 
 # directions, and frequencies
 
 # let's say we want to re-run this every 10 seconds in time for a minute
-tvec = [ray_datenum + dt.timedelta(seconds=i) for i in range(0,60,10)]
-positions_list = [positions for i in range(len(tvec))]
-directions_list = [directions for i in range(len(tvec))]
-freqs_list = [freqs for i in range(len(tvec))]
-directory_list = [rayfile_directory for i in range(len(tvec))]
+#tvec = [ray_datenum + dt.timedelta(seconds=i) for i in range(0,60,10)]
+#positions_list = [positions for i in range(len(tvec))]
+#directions_list = [directions for i in range(len(tvec))]
+#freqs_list = [freqs for i in range(len(tvec))]
+#directory_list = [rayfile_directory for i in range(len(tvec))]
 
-parallel_run_rays(tvec, positions_list, directions_list, freqs_list, directory_list)
+#parallel_run_rays(tvec, positions_list, directions_list, freqs_list, directory_list)
+
+# that's it! let's look at output
+
+# Load all the rayfiles in the output directory
+ray_out_dir = rayfile_directory + '/'+ dt.datetime.strftime(ray_datenum, '%Y-%m-%d %H:%M:%S')
+file_titles = os.listdir(ray_out_dir)
+
+# create empty lists to fill with ray files and damp files
+raylist = []
+
+for filename in file_titles:
+    if '.ray' in filename:
+        raylist += read_rayfile(os.path.join(ray_out_dir, filename))
+
+plotray2D(ray_datenum, raylist, ray_out_dir, 'GEO', 'car', units=['Re','Re','Re'])

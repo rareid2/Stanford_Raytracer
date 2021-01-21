@@ -97,17 +97,6 @@ def getDSXfieldline(GEOposition, ray_datenum, th):
     return bline_dsx
 #---------------------------------------------------------------------------
 
-def testJBthesis(ray_datenum):
-    # testing for fig in J. Bortnik thesis
-    jbpos = coord.Coords([1000e3+R_E, 30, 0], 'MAG', 'sph', units=['m', 'deg', 'deg'])
-    jbpos.ticks = Ticktock(ray_datenum, 'UTC')
-    newjbos = jbpos.convert('SM', 'car')
-    position = [float(newjbos.x), float(newjbos.y), float(newjbos.z)]
-    direction = coord.Coords([1,0,0], 'MAG', 'sph', units = ['m', 'm', 'm'])
-    direction.ticks = Ticktock(ray_datenum, 'UTC')
-    newdir = direction.convert('SM', 'car')
-    direction = [float(newdir.x), float(newdir.y), float(newdir.z)]
-    return position, direction
 
 
 #---------------------------------------------------------------------------
@@ -121,7 +110,7 @@ def plotray2Ddir(ray_datenum, fs, intcheck):
 
     #MAGsph_vpm = vpm.pos
     # use the datetime package to define the start time -- make sure to use UTC timezone
-    ray_datenum = dt.datetime(2020, 5, 5, 10, 11, tzinfo=dt.timezone.utc)
+    #ray_datenum = dt.datetime(2020, 5, 5, 10, 11, tzinfo=dt.timezone.utc)
 
     # first, we need the positions of the satellites -- use the sat class
     dsx = sat()             # define a satellite object
