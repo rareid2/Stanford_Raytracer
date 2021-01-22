@@ -95,7 +95,7 @@ def trace_fieldline_ODE(bfieldinfo_obj, hemis, crs, carsph, units):
 
 
 class Bfieldinfo:
-    def __init__(self, time=None, pos=None, extfield=None, opts=None, unit_vec=None, fieldline=None, footpoint=None):
+    def __init__(self, time=None, pos=None, extfield=None, opts=None, unit_vec=None, bvec=None, fieldline=None, footpoint=None):
         self.time = None
         self.pos = None
 
@@ -110,6 +110,7 @@ class Bfieldinfo:
             self.opts = [0,0,0,0,5]
 
         self.unit_vec = None
+        self.bvec = None
         self.fieldline = None 
         self.footpoint = None 
 
@@ -138,8 +139,12 @@ class Bfieldinfo:
         B_dir = dir_val * B['Bvec'] / B['Blocal'] # in geo car units are in nT
         B_dir_spc = create_spc(B_dir, self.time, 'GEO', 'car', units=None)
         B_dir_con = convert_spc(B_dir_spc, self.time, crs, carsph, units=None)
-        
+
+        B_vec_spc = create_spc(B['Bvec'], self.time, 'GEO', 'car', units=None)
+        B_vec_con = convert_spc(B_vec_spc, self.time, crs, carsph, units=None)
+
         self.unit_vec = B_dir_con
+        self.bvec = B_vec_con
 
     def findFootpoints(self, hemis, stopalt, crs, carsph, units):
 

@@ -80,7 +80,7 @@ def plotray2D(ray_datenum, raylist, ray_out_dir, crs, carsph, units, plot_kvec=T
 
         tmp_coords = coord.Coords(list(zip(r['pos'].x, r['pos'].y, r['pos'].z)), 'SM', 'car', units=['m', 'm', 'm'])
         tmp_kcoords = coord.Coords(list(zip((w/C) * r['n'].x, (w/C) * r['n'].y, (w/C) * r['n'].z)), 'SM', 'car', units=['m', 'm', 'm'])
-        
+        print(tmp_kcoords)
         # convert to a unit vector first
         unitk = [(float(tmp_kcoords[s].x), float(tmp_kcoords[s].y), float(tmp_kcoords[s].z)) / np.sqrt(tmp_kcoords[s].x**2 + tmp_kcoords[s].y**2 + tmp_kcoords[s].z**2) for s in range(len(tmp_kcoords))]
 
@@ -120,6 +120,8 @@ def plotray2D(ray_datenum, raylist, ray_out_dir, crs, carsph, units, plot_kvec=T
     if plot_kvec:
         int_plt = len(rotated_rcoords)//10
         ax.quiver(rotated_rcoords.x[::int_plt], rotated_rcoords.z[::int_plt], kc.x[::int_plt], kc.z[::int_plt], color='Black', zorder=104)
+        #for ii,i in enumerate(range(0,len(rotated_rcoords),int_plt)): # not the prettiest but it will work, just trying to annoate
+            #ax.text(rotated_rcoords.x[ii], rotated_rcoords.z[ii], str(ii))
     else:
         ax.scatter(rotated_rcoords.x, rotated_rcoords.z, c = 'Black', s = 1, zorder = 103)
 
@@ -141,42 +143,68 @@ def plotray2D(ray_datenum, raylist, ray_out_dir, crs, carsph, units, plot_kvec=T
     return fig
 # --------------------------------------------------------------------------------------
 
+# ---------------------------------------- STIX PARAM --------------------------------------------
+def stix_parameters(ray, t, w, tvec_datetime, rspot,crs,carsph):
+
+    rb = Bfieldinfo()
+    rb.time = tvec_datetime[t]
+    rb.pos = rspot
+    rb.Bfield_direction('north',crs,carsph)
+    newb = rb.bvec
+    Bmag = np.sqrt(newb.x**2+newb.y**2+newb.z**2) * 1e-9
+
+    B   =  ray['B0'].iloc[t]
+    Bmag2 = np.linalg.norm(B)
+
+    print(Bmag, Bmag2)
+    Q    = np.abs(np.array(ray['qs'].iloc[t,:]))
+    M    = np.array(ray['ms'].iloc[t,:])
+    Ns   = np.array(ray['Ns'].iloc[t,:])
+
+    Wcs   = Q*Bmag/M
+    Wps2  = Ns*pow(Q,2)/EPS0/M
+
+    R = 1.0 - np.sum(Wps2/(w*(w + Wcs)))
+    L = 1.0 - np.sum(Wps2/(w*(w - Wcs)))
+    P = 1.0 - np.sum(Wps2/(w*w))
+    S = (R+L)/2.0
+    D = (R-L)/2.0
+
+    return R, L, P, S, D
+# ---------------------------------------------------------------------------------------------
 
 # --------------------------------------------------------------------------------------
-def plotrefractive(ray, ray_datenum, intcheck):
+def plotrefractivesurface(ray_datenum, ray,crs, carsph, units):
     # set up phi vec
     phi_vec = np.linspace(0,360,int(1e5))*D2R
-    w= ray['w']
-    
-    savenames = []
-    for tti,tt in enumerate(ray['time']):
+    w = ray['w']
+
+    tmp_kcoords = coord.Coords(list(zip((w/C) * ray['n'].x, (w/C) * ray['n'].y, (w/C) * ray['n'].z)), 'SM', 'car', units=['m', 'm', 'm'])
         
-        if tti % intcheck == 0:
-            t = tti
+    # convert to a unit vector first
+    unitk = [(float(tmp_kcoords[s].x), float(tmp_kcoords[s].y), float(tmp_kcoords[s].z)) / np.sqrt(tmp_kcoords[s].x**2 + tmp_kcoords[s].y**2 + tmp_kcoords[s].z**2) for s in range(len(tmp_kcoords))]
 
-            bb = ray['B0'].iloc[t]
-            bbdir = [bb.x / np.sqrt(bb.x**2 + bb.y**2 + bb.z**2), bb.y / np.sqrt(bb.x**2 + bb.y**2 + bb.z**2), bb.z /  np.sqrt(bb.x**2 + bb.y**2 + bb.z**2)]
-            SMcar_bb = coord.Coords(bbdir, 'SM', 'car')
-            SMcar_bb.ticks = Ticktock([ray_datenum for i in range(len(SMcar_bb.x))], 'UTC')
-            MAGcar_bb = SMcar_bb.convert('MAG', 'car') 
-            
-            kk = (w/c) * ray['n'].iloc[t]
-            kkdir = [kk.x / np.sqrt(kk.x**2 + kk.y**2 + kk.z**2), kk.y / np.sqrt(kk.x**2 + kk.y**2 + kk.z**2), kk.z /  np.sqrt(kk.x**2 + kk.y**2 + kk.z**2)]
-            SMcar_kk = coord.Coords(kkdir, 'SM', 'car')
-            SMcar_kk.ticks = Ticktock([ray_datenum for i in range(len(SMcar_bb.x))], 'UTC')
-            MAGcar_kk = SMcar_kk.convert('MAG', 'car') 
+    tvec_datetime = [ray_datenum + dt.timedelta(seconds=s) for s in ray['time']]
+    kcoords = create_spc(unitk, tvec_datetime, 'SM', 'car', units=['m','m','m'])
+    kcoords.ticks = Ticktock(tvec_datetime)
+    kcoords_rot = convert_spc(kcoords, tvec_datetime, crs, carsph, units)
 
-            # anooying way of getting dot product but oh well need to check everything am tired
-            vector_1 = [float(MAGcar_bb.x), float(MAGcar_bb.z)]
-            vector_2 = [float(MAGcar_kk.x), float(MAGcar_kk.z)]
-            unit_vector_1 = vector_1 / np.linalg.norm(vector_1)
-            unit_vector_2 = vector_2 / np.linalg.norm(vector_2)
-            dot_product = np.dot(unit_vector_1, unit_vector_2)
-            ang = np.arccos(dot_product)
+    tmp_coords = coord.Coords(list(zip(ray['pos'].x, ray['pos'].y, ray['pos'].z)), 'SM', 'car', units=['m', 'm', 'm'])
 
+    tvec_datetime = [ray_datenum + dt.timedelta(seconds=s) for s in ray['time']]
+
+    tmp_coords.ticks = Ticktock(tvec_datetime, 'UTC')  # add ticks
+    tmp_coords.sim_time = ray['time']
+    r_coords = convert_spc(tmp_coords, tvec_datetime, crs, carsph, units)
+    
+    int_plt = len(kcoords)//10
+
+    for ti, t in enumerate(ray['time']):
+        if ti % int_plt == 0:
+            print('plotting a refractive surface')
             # get stix param
-            R, L, P, S, D = stix_parameters(ray, t, w)
-            root = -1 # why ?? CAUSE WHISTLER
+            R, L, P, S, D = stix_parameters(ray, ti, w, tvec_datetime, r_coords[ti],crs,carsph)
+            root = -1 # whistler solution
 
             k_vec = np.zeros_like(phi_vec)
             eta_vec = np.zeros_like(phi_vec)
@@ -194,7 +222,6 @@ def plotrefractive(ray, ray_datenum, intcheck):
                 B = R*L*sin2phi + P*S*(1.0+cos2phi)
 
                 discriminant = B*B - 4.0*A*R*L*P
-
                 n1sq = (B + np.sqrt(discriminant))/(2.0*A)
                 n2sq = (B - np.sqrt(discriminant))/(2.0*A)
 
@@ -202,108 +229,91 @@ def plotrefractive(ray, ray_datenum, intcheck):
                 n1 = np.sqrt(n1sq)
                 n2 = np.sqrt(n2sq)
                 
-                k_vec[phi_ind] = w*n2/c
+                k_vec[phi_ind] = w*n2/C
                 eta_vec[phi_ind] = n2
 
             # plot it --------------------------
             fig, ax = plt.subplots(1,1)
 
-            # rotate with bfield
-            bang = np.arccos(MAGcar_bb.z / np.sqrt(MAGcar_bb.x**2 + MAGcar_bb.z**2))
-            if MAGcar_bb.x < 0:
-                bang = -bang
-            else:
-                bang = bang
-
             # plot the surface
-            ax.plot(eta_vec*np.sin(phi_vec + bang), eta_vec*np.cos(phi_vec + bang), 'gray', LineWidth = 1, label = 'e + ions')
+            ax.plot(eta_vec*np.sin(phi_vec), eta_vec*np.cos(phi_vec), 'gray', LineWidth = 1, label = 'e + ions')
 
-            # find eta at kvec
-            etaind = min(range(len(phi_vec)), key=lambda i: abs(phi_vec[i]-ang))
-            etaang = eta_vec[etaind]
+            B   =  ray['B0'].iloc[ti]
+            Bmag = np.linalg.norm(B)
 
-            # note to self -- left off correctly plotting the kvector (yay! ) but still  not getting the line crossing
-            # correct - maybe try a different method or use an intersection method? 
-            # next, get the wavenormal figured out, but this is looking CORRECT!
-
-            ax.plot([-1e5*MAGcar_bb.x, 1e5*MAGcar_bb.x], [-1e5*MAGcar_bb.z, 1e5*MAGcar_bb.z], 'b', linestyle='--', label = 'B0')
-            ax.plot([0, etaang*np.sin(ang + bang)], [0, etaang*np.cos(ang + bang)], 'r', label = 'kvec')
-            #ax.quiver(0, 0, MAGcar_kk.x, MAGcar_kk.z)
-
-            # find normal at that point
-            f1 = eta_vec[etaind-1]*np.cos(phi_vec[etaind-1]+bang)
-            f2 = eta_vec[etaind+1]*np.cos(phi_vec[etaind+1]+bang)
-            x1 = eta_vec[etaind-1]*np.sin(phi_vec[etaind-1]+bang)
-            x2 = eta_vec[etaind+1]*np.sin(phi_vec[etaind+1]+bang)
+            rb = Bfieldinfo()
+            rb.time = tvec_datetime[ti]
+            rb.pos = r_coords[ti]
+            rb.Bfield_direction('north',crs,carsph)
+            newb = rb.unit_vec
             
-            # this was all Sam
-            taneta = (f2-f1)/(x2-x1)
-            normeta = -1/taneta
-            ntheta = np.arctan2(x1-x2, f2-f1)
-            if ntheta < 0: 
-                ntheta = ntheta + np.pi
-
-            pp = ntheta
-            # bottom surface
-            # for JB thesis, uncomment this and comment out the next condition
-            #if ang > np.pi/2:
-            #    ntheta = ntheta + np.pi
-
-            if ntheta > np.pi/2 and ang < np.pi/2:
-                ntheta = ntheta + np.pi
+            kmag = np.sqrt(kcoords_rot.x[ti]**2 + kcoords_rot.z[ti]**2)
+            kunit = [kcoords_rot.x[ti]/kmag, kcoords_rot.z[ti]/kmag]
+            print(kcoords_rot.y[ti])
             
-            # make a line
-            # y = mx + b
-            intercept = (etaang * np.cos(ang + bang)) - (normeta * etaang * np.sin(ang + bang))
-            #ax.scatter(x1, f1, label='1')
-            #ax.scatter(x2, f2, label='2')
-            #ax.plot([etaang * np.sin(ang + bang), etaang * np.cos(ang + bang), 1, normeta * 1 + intercept) 
-            ax.quiver(etaang*np.sin(ang + bang), etaang*np.cos(ang + bang), np.cos(ntheta),  np.sin(ntheta))
-            #ax.quiver(etaang*np.sin(ang + bang), etaang*np.cos(ang + bang)
+            bmag = np.sqrt(newb.x**2 + newb.z**2)
+            bunit = [newb.x/bmag, newb.z/bmag]
 
-            # ------------------------------------ formatting ----------------------------------------
-            xlim1 = -300
+            alpha = np.arccos(bunit[0]*kunit[0]+bunit[1]*kunit[1])
+            alphaedg = float(alpha)*R2D
+
+            ax.quiver(0,0, 50*np.sin(float(alpha)), 50*np.cos(float(alpha)))
+            #ax.quiver(0,0,bunit[0], bunit[1])
+
+
+            xlim1 = -100
             xlim2 = -xlim1
             ylim1 = xlim1
             ylim2 = -ylim1
-            scale = xlim2/500
 
             ax.set_xlim([xlim1, xlim2])
             ax.set_ylim([ylim1, ylim2])
             ax.set_xlabel('Transverse Refractive Component')
-
-            #ax.annotate('fp = ' + str(float(round((np.sqrt(wp2)/(2*np.pi))/1e3, 1))) + ' kHz', xy=(xlim1+(scale*100),ylim2-(scale*200)))
-
-            resonanceangle = float(R2D*resangle)
-            ax.annotate('${\Theta}$ < ' + str(round(resonanceangle, 2)) + 'deg', xy=(xlim2 - (scale*200), scale*50))
-            
-            rename = str(ray_datenum.month) + str(ray_datenum.day) + str(ray_datenum.year)
-
-            ax.set_title(str(round(w/(2*np.pi*1e3),1)) + ' kHz Refractive Surface at ' + str(ray_datenum) + '\n' + r"$\bf{" + str(int(tti / intcheck)) + "}$")
             plt.legend(loc='upper right')
-            datadir = '/home/rileyannereid/workspace/SR-output/' + 'fix_kvec/'
+            resonanceangle = float(R2D*resangle)
+            ax.text(25, -75,'resonance cone < '+ str(round(resonanceangle,2)))
+            ax.text(25, 70, 'theta = '+ str(round(alphaedg,2)))
 
-            imgdir = datadir + str(round(w/(2*np.pi*1e3),1)) + 'kHz' + rename + str(ray_datenum.hour) + str(ray_datenum.minute) + 'refractivesurfaces/'
             
-            try:
-                os.mkdir(imgdir)
-            except OSError:
-                pass
-            else:
-                pass
-            
-            plt.savefig(imgdir + str(round(w/(2*np.pi*1e3),1)) + 'kHz' + rename + str(ray_datenum.hour) + str(ray_datenum.minute) + 'refractivesurface' + str(tti) + '.png', format='png')
-            
-            # debug
-            if tti / intcheck > 70:
-                print(ntheta)
-                print('pp=', pp)
-                #plt.show()
-            savenames.append(imgdir + str(round(w/(2*np.pi*1e3),1)) + 'kHz' + rename + str(ray_datenum.hour) + str(ray_datenum.minute) + 'refractivesurface' + str(tti) + '.png')
-            plt.close()
+            rayfile_directory = '/home/rileyannereid/workspace/SR-output/rayfiles'
+            ray_out_dir = rayfile_directory + '/'+ dt.datetime.strftime(ray_datenum, '%Y-%m-%d %H:%M:%S')
+            plt.savefig(ray_out_dir+'/refractive_surface'+str(ti)+'.png')
 
-    simplegifs(savenames, datadir + str(round(w/(2*np.pi*1e3),1)) + 'kHz' + rename + str(ray_datenum.hour) + str(ray_datenum.minute) + '.gif')
-    
+        # note to self -- left off correctly plotting the kvector (yay! ) but still  not getting the line crossing
+        # correct - maybe try a different method or use an intersection method? 
+        # next, get the wavenormal figured out, but this is looking good
+
+        # find normal at that point
+        #f1 = eta_vec[etaind-1]*np.cos(phi_vec[etaind-1]+bang)
+        #f2 = eta_vec[etaind+1]*np.cos(phi_vec[etaind+1]+bang)
+        #x1 = eta_vec[etaind-1]*np.sin(phi_vec[etaind-1]+bang)
+        #x2 = eta_vec[etaind+1]*np.sin(phi_vec[etaind+1]+bang)
+
+        # this was all Sam
+        #taneta = (f2-f1)/(x2-x1)
+        #normeta = -1/taneta
+        #ntheta = np.arctan2(x1-x2, f2-f1)
+        #if ntheta < 0: 
+        #    ntheta = ntheta + np.pi
+
+        #pp = ntheta
+        # bottom surface
+        # for JB thesis, uncomment this and comment out the next condition
+        #if ang > np.pi/2:
+        #    ntheta = ntheta + np.pi
+
+        #if ntheta > np.pi/2 and ang < np.pi/2:
+        #    ntheta = ntheta + np.pi
+
+        # make a line
+        # y = mx + b
+        #intercept = (etaang * np.cos(ang + bang)) - (normeta * etaang * np.sin(ang + bang))
+        #ax.scatter(x1, f1, label='1')
+        #ax.scatter(x2, f2, label='2')
+        #ax.plot([etaang * np.sin(ang + bang), etaang * np.cos(ang + bang), 1, normeta * 1 + intercept) 
+        #ax.quiver(etaang*np.sin(ang + bang), etaang*np.cos(ang + bang), np.cos(ntheta),  np.sin(ntheta))
+        #ax.quiver(etaang*np.sin(ang + bang), etaang*np.cos(ang + bang)
+
     return
 
 # ------------------------------------------- END --------------------------------------------

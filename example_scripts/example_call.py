@@ -8,7 +8,7 @@ from satellites import sat
 from bfield import Bfieldinfo, trace_fieldline_ODE
 from run_rays import single_run_rays, parallel_run_rays
 from raytracer_utils import read_rayfile
-from ray_plots import plotray2D
+from ray_plots import plotray2D, plotrefractivesurface
 
 # example call to ray tracer!
 # FIRST, navigate to constants_settings and make sure the settings are correct for the run
@@ -16,7 +16,7 @@ from ray_plots import plotray2D
 # let's look at a conjunction between DSX and VPM:
 
 # use the datetime package to define the start time -- make sure to use UTC timezone
-ray_datenum = dt.datetime(2020, 9, 14, 22, 53, tzinfo=dt.timezone.utc)
+ray_datenum = dt.datetime(2020, 9, 14, 22, 55, tzinfo=dt.timezone.utc)
 
 # first, we need the positions of the satellites -- use the sat class
 dsx = sat()             # define a satellite object
@@ -52,7 +52,7 @@ ray_start_dir = convert_spc(cvals=ray_start_dir_c, dt_array=ray_datenum, crs='SM
 # run at a single time -- use run_rays and input a list of positions, directions, and freqs (ALL SAME LENGTH)
 # generates one input file and one output file with all rays in it
 
-nrays = 2 # how many rays
+nrays = 1 # how many rays
 freq = 8.2e3  # Hz
 rayfile_directory = '/home/rileyannereid/workspace/SR-output/rayfiles'
 
@@ -94,3 +94,4 @@ for filename in file_titles:
         raylist += read_rayfile(os.path.join(ray_out_dir, filename))
 
 plotray2D(ray_datenum, raylist, ray_out_dir, 'GEO', 'car', units=['Re','Re','Re'])
+plotrefractivesurface(ray_datenum, raylist[0],'GEO', 'car', units=['Re','Re','Re'])
