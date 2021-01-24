@@ -1,32 +1,29 @@
-FROM python:3.7-slim-buster
+FROM debian:buster AS build
 
 WORKDIR /usr/src/app
 
 # Update packages and say yes to everything
-RUN apt update -y
+RUN apt update -y && apt install -y \
+    build-essential \
+    gfortran
 
-# Install GCC and say yes to everything
-RUN apt install build-essential -y
+# make a bin folder for the raytracer binary
+RUN mkdir -p bin
 
-# Verify that GCC is installed
-RUN gcc --version
-
-# install gfortran
-RUN apt install gfortran -y
-
-# Install pipenv so we can pull from the Pipfile
-RUN pip install pipenv
-
-# Snag git so we can install git-based pip packages (i.e. Spacepy fork)
-RUN apt install git -y
-
-# Copy project over to the docker image
+# copy everything from our local directory into the container's current directory
+# the container's current directory was set at the WORKDIR instruction
 COPY . .
-
-# Download required python packages from the Pipfile
-RUN pipenv update
 
 # build!
 RUN make
 
-CMD ["sh", "-c", "python ./example_scripts/launch_multiplerays.py"]
+FROM debian:buster
+
+RUN apt-get update && apt-get install -y \
+    libgfortran-8-dev
+
+WORKDIR /usr/src/app
+
+COPY --from=build /usr/src/app/bin/raytracer .
+
+ENTRYPOINT [ "/usr/src/app/raytracer" ]

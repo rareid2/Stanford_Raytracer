@@ -1,15 +1,4 @@
-.DS_Store
-
-# Object Files
-*.a
-*.o
-*.mod
-
-# Exclude all files in the bin and env and idea folder
-bin/*
-SR-env/*
-docs/*
-.idea/*
-
-# Make sure we include the folder itself tho
-!bin/.gitkeep
+Dockerfile
+README.md
+.git
+.gitignore
