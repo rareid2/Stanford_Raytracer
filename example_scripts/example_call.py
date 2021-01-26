@@ -14,7 +14,6 @@ from ray_plots import plotray2D, plotrefractivesurface
 # FIRST, navigate to constants_settings and make sure the settings are correct for the run
 
 # let's look at a conjunction between DSX and VPM:
-
 # use the datetime package to define the start time -- make sure to use UTC timezone
 ray_datenum = dt.datetime(2020, 9, 14, 22, 55, tzinfo=dt.timezone.utc)
 
@@ -42,7 +41,8 @@ bfield_ray_start.Bfield_direction(hemis='north', crs='SM', carsph='sph')
 bfield_dir = bfield_ray_start.unit_vec
 
 # we're going to change the polar angle - let's rotate to be 45 deg
-alpha = 0
+# NOTE THAT THIS IS 1-2 degree OFF of what the ray tracer will read -- for exactly field aligned, set ray_start_dir = np.zeros(3)
+alpha = 30
 ray_start_dir_c = create_spc(cor_array=[float(bfield_dir.radi[0]), float(bfield_dir.lati[0]) + alpha, float(bfield_dir.long[0])], dt_array=ray_datenum, crs='SM', carsph='sph', units=['Re','deg','deg'])
 # convert back to SM car -- keep in Re units
 ray_start_dir = convert_spc(cvals=ray_start_dir_c, dt_array=ray_datenum, crs='SM', carsph='car', units=['Re','Re','Re'])
@@ -53,7 +53,7 @@ ray_start_dir = convert_spc(cvals=ray_start_dir_c, dt_array=ray_datenum, crs='SM
 # generates one input file and one output file with all rays in it
 
 nrays = 1 # how many rays
-freq = 8.2e3  # Hz
+freq = 25e3  # Hz
 rayfile_directory = '/home/rileyannereid/workspace/SR-output/rayfiles'
 
 # simplest call
@@ -80,6 +80,8 @@ single_run_rays(ray_datenum, positions, directions, freqs, rayfile_directory)
 
 #parallel_run_rays(tvec, positions_list, directions_list, freqs_list, directory_list)
 
+
+# -------------------------------------------------------------------------
 # that's it! let's look at output
 
 # Load all the rayfiles in the output directory
@@ -93,5 +95,5 @@ for filename in file_titles:
     if '.ray' in filename:
         raylist += read_rayfile(os.path.join(ray_out_dir, filename))
 
-plotray2D(ray_datenum, raylist, ray_out_dir, 'GEO', 'car', units=['Re','Re','Re'])
-plotrefractivesurface(ray_datenum, raylist[0],'GEO', 'car', units=['Re','Re','Re'])
+#plotray2D(ray_datenum, raylist, ray_out_dir, 'GEO', 'car', units=['Re','Re','Re'])
+#plotrefractivesurface(ray_datenum, raylist[0])

@@ -144,19 +144,11 @@ def plotray2D(ray_datenum, raylist, ray_out_dir, crs, carsph, units, plot_kvec=T
 # --------------------------------------------------------------------------------------
 
 # ---------------------------------------- STIX PARAM --------------------------------------------
-def stix_parameters(ray, t, w, tvec_datetime, rspot,crs,carsph):
-
-    rb = Bfieldinfo()
-    rb.time = tvec_datetime[t]
-    rb.pos = rspot
-    rb.Bfield_direction('north',crs,carsph)
-    newb = rb.bvec
-    Bmag = np.sqrt(newb.x**2+newb.y**2+newb.z**2) * 1e-9
+def stix_parameters(ray, t, w):
 
     B   =  ray['B0'].iloc[t]
-    Bmag2 = np.linalg.norm(B)
+    Bmag = np.linalg.norm(B)
 
-    print(Bmag, Bmag2)
     Q    = np.abs(np.array(ray['qs'].iloc[t,:]))
     M    = np.array(ray['ms'].iloc[t,:])
     Ns   = np.array(ray['Ns'].iloc[t,:])
@@ -174,7 +166,7 @@ def stix_parameters(ray, t, w, tvec_datetime, rspot,crs,carsph):
 # ---------------------------------------------------------------------------------------------
 
 # --------------------------------------------------------------------------------------
-def plotrefractivesurface(ray_datenum, ray,crs, carsph, units):
+def plotrefractivesurface(ray_datenum, ray):
     # set up phi vec
     phi_vec = np.linspace(0,360,int(1e5))*D2R
     w = ray['w']
@@ -187,30 +179,32 @@ def plotrefractivesurface(ray_datenum, ray,crs, carsph, units):
     tvec_datetime = [ray_datenum + dt.timedelta(seconds=s) for s in ray['time']]
     kcoords = create_spc(unitk, tvec_datetime, 'SM', 'car', units=['m','m','m'])
     kcoords.ticks = Ticktock(tvec_datetime)
-    kcoords_rot = convert_spc(kcoords, tvec_datetime, crs, carsph, units)
 
-    tmp_coords = coord.Coords(list(zip(ray['pos'].x, ray['pos'].y, ray['pos'].z)), 'SM', 'car', units=['m', 'm', 'm'])
-
-    tvec_datetime = [ray_datenum + dt.timedelta(seconds=s) for s in ray['time']]
-
-    tmp_coords.ticks = Ticktock(tvec_datetime, 'UTC')  # add ticks
-    tmp_coords.sim_time = ray['time']
-    r_coords = convert_spc(tmp_coords, tvec_datetime, crs, carsph, units)
-    
     int_plt = len(kcoords)//10
 
     for ti, t in enumerate(ray['time']):
         if ti % int_plt == 0:
             print('plotting a refractive surface')
             # get stix param
-            R, L, P, S, D = stix_parameters(ray, ti, w, tvec_datetime, r_coords[ti],crs,carsph)
+            R, L, P, S, D = stix_parameters(ray, ti, w)
             root = -1 # whistler solution
 
-            k_vec = np.zeros_like(phi_vec)
             eta_vec = np.zeros_like(phi_vec)
 
             # solution from antenna white paper!
-            resangle = np.arctan(np.sqrt(-P/S))
+            # resangle = np.arctan(np.sqrt(-P/S)) -- not accurate
+
+            # find phi
+            B   =  ray['B0'].iloc[ti]
+            Bmag = np.linalg.norm(B)
+            bunit = B/Bmag
+
+            kunit = np.array([float(kcoords[ti].x), float(kcoords[ti].y), float(kcoords[ti].z)])
+
+            alpha = np.arccos(np.dot(kunit, bunit))
+            alphaedg = float(alpha)*R2D
+
+            alpha_diff_last = 1
 
             for phi_ind, phi  in enumerate(phi_vec):
 
@@ -228,38 +222,23 @@ def plotrefractivesurface(ray_datenum, ray,crs, carsph, units):
                 # negative refers to the fact that ^^^ B - sqrt
                 n1 = np.sqrt(n1sq)
                 n2 = np.sqrt(n2sq)
-                
-                k_vec[phi_ind] = w*n2/C
+
                 eta_vec[phi_ind] = n2
 
+                # save the angle near alpha (easier for plotting)
+                alpha_diff = np.abs(alpha - phi)
+                if alpha_diff < alpha_diff_last:
+                    phi_ind_save = phi_ind
+                alpha_diff_last = alpha_diff
+
             # plot it --------------------------
-            fig, ax = plt.subplots(1,1)
+            fig, ax = plt.subplots(1,1, figsize=(6,4))
 
             # plot the surface
             ax.plot(eta_vec*np.sin(phi_vec), eta_vec*np.cos(phi_vec), 'gray', LineWidth = 1, label = 'e + ions')
-
-            B   =  ray['B0'].iloc[ti]
-            Bmag = np.linalg.norm(B)
-
-            rb = Bfieldinfo()
-            rb.time = tvec_datetime[ti]
-            rb.pos = r_coords[ti]
-            rb.Bfield_direction('north',crs,carsph)
-            newb = rb.unit_vec
             
-            kmag = np.sqrt(kcoords_rot.x[ti]**2 + kcoords_rot.z[ti]**2)
-            kunit = [kcoords_rot.x[ti]/kmag, kcoords_rot.z[ti]/kmag]
-            print(kcoords_rot.y[ti])
-            
-            bmag = np.sqrt(newb.x**2 + newb.z**2)
-            bunit = [newb.x/bmag, newb.z/bmag]
-
-            alpha = np.arccos(bunit[0]*kunit[0]+bunit[1]*kunit[1])
-            alphaedg = float(alpha)*R2D
-
-            ax.quiver(0,0, 50*np.sin(float(alpha)), 50*np.cos(float(alpha)))
-            #ax.quiver(0,0,bunit[0], bunit[1])
-
+            quiver_mag = eta_vec[phi_ind_save]
+            ax.plot([0, quiver_mag*np.sin(float(alpha))], [0, quiver_mag*np.cos(float(alpha))], 'r--')
 
             xlim1 = -100
             xlim2 = -xlim1
@@ -270,49 +249,13 @@ def plotrefractivesurface(ray_datenum, ray,crs, carsph, units):
             ax.set_ylim([ylim1, ylim2])
             ax.set_xlabel('Transverse Refractive Component')
             plt.legend(loc='upper right')
-            resonanceangle = float(R2D*resangle)
-            ax.text(25, -75,'resonance cone < '+ str(round(resonanceangle,2)))
-            ax.text(25, 70, 'theta = '+ str(round(alphaedg,2)))
+            ax.text(60, 65, r'$\alpha$' +  ' = ' + str(round(alphaedg,2)))
 
             
             rayfile_directory = '/home/rileyannereid/workspace/SR-output/rayfiles'
             ray_out_dir = rayfile_directory + '/'+ dt.datetime.strftime(ray_datenum, '%Y-%m-%d %H:%M:%S')
-            plt.savefig(ray_out_dir+'/refractive_surface'+str(ti)+'.png')
-
-        # note to self -- left off correctly plotting the kvector (yay! ) but still  not getting the line crossing
-        # correct - maybe try a different method or use an intersection method? 
-        # next, get the wavenormal figured out, but this is looking good
-
-        # find normal at that point
-        #f1 = eta_vec[etaind-1]*np.cos(phi_vec[etaind-1]+bang)
-        #f2 = eta_vec[etaind+1]*np.cos(phi_vec[etaind+1]+bang)
-        #x1 = eta_vec[etaind-1]*np.sin(phi_vec[etaind-1]+bang)
-        #x2 = eta_vec[etaind+1]*np.sin(phi_vec[etaind+1]+bang)
-
-        # this was all Sam
-        #taneta = (f2-f1)/(x2-x1)
-        #normeta = -1/taneta
-        #ntheta = np.arctan2(x1-x2, f2-f1)
-        #if ntheta < 0: 
-        #    ntheta = ntheta + np.pi
-
-        #pp = ntheta
-        # bottom surface
-        # for JB thesis, uncomment this and comment out the next condition
-        #if ang > np.pi/2:
-        #    ntheta = ntheta + np.pi
-
-        #if ntheta > np.pi/2 and ang < np.pi/2:
-        #    ntheta = ntheta + np.pi
-
-        # make a line
-        # y = mx + b
-        #intercept = (etaang * np.cos(ang + bang)) - (normeta * etaang * np.sin(ang + bang))
-        #ax.scatter(x1, f1, label='1')
-        #ax.scatter(x2, f2, label='2')
-        #ax.plot([etaang * np.sin(ang + bang), etaang * np.cos(ang + bang), 1, normeta * 1 + intercept) 
-        #ax.quiver(etaang*np.sin(ang + bang), etaang*np.cos(ang + bang), np.cos(ntheta),  np.sin(ntheta))
-        #ax.quiver(etaang*np.sin(ang + bang), etaang*np.cos(ang + bang)
+            plt.title(dt.datetime.strftime(ray_datenum, '%Y-%m-%d %H:%M:%S') + ' ' + str(round(w/(1e3*np.pi*2), 1)) + 'kHz \n refractive surface ' + str(ti//int_plt))
+            plt.savefig(ray_out_dir+'/refractive_surface'+str(ti//int_plt)+'.png')
 
     return
 
