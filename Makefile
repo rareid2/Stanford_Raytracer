@@ -31,11 +31,10 @@ test:
 	$(MAKE) -C xform
 	$(MAKE) -C xform_double
 	$(MAKE) -C iri2007
+	$(MAKE) -C fortran
 # 	$(MAKE) -C tsyganenko
 # 	$(MAKE) -C tricubic-for
 # 	$(MAKE) -C gcpm
-# 	$(MAKE) -C fortran
-
 
 clean:
 	$(MAKE) -C lapack-3.2.1 clean
@@ -54,5 +53,5 @@ tidy:
 	$(MAKE) -C iri2007 clean
 	# $(MAKE) -C tsyganenko clean
 	# $(MAKE) -C tricubic-for clean
-	$(MAKE) -C gcpm clean
+	# $(MAKE) -C gcpm clean
 	$(MAKE) -C fortran clean
