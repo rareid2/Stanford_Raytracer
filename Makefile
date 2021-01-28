@@ -24,7 +24,7 @@ all:
 	$(MAKE) -C tricubic-for
 	$(MAKE) -C gcpm
 	$(MAKE) -C fortran
-	$(MAKE) -C damping
+#	$(MAKE) -C damping
 
 test:
 	$(MAKE) -C lapack-3.2.1

@@ -1,8 +1,29 @@
 # Stanford_Raytracer
 
-This repo contains all of the Stanford Raytracer files for propagating VLF waves in the plasmasphere.
-Under the 'manual' folder is a nice overview of the subdirectories in this folder.
-In addition, inside this repo is the damping submodule.
-It calculates Landau damping independently from the raytracer.
+Instructions for building:  
+First, clone the repo 
+```terminal
+git clone url
+``` 
 
-Instructions for building: 
+Next, inside the repo, run the following to update the damping submodule
+
+``` terminal
+git submodule init  
+git submodule update  
+``` 
+
+The damping submodule also has submodules..
+run:
+``` terminal
+cd damping
+git submodule init  
+git submodule update  
+``` 
+
+
+Finally, build:
+``` terminal
+cd ..
+make
+```
