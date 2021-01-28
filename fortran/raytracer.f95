@@ -98,6 +98,7 @@ subroutine stix_parameters(w, qs, Ns, ms, nus, B0mag, &
   P = 1.0_DP-sum(wps2/w**2)
   S = 1.0_DP/2.0_DP*(R+L)
   D = 1.0_DP/2.0_DP*(R-L)
+  ! print *, 'res cone', P, S
 end subroutine stix_parameters
 
 ! Evaluate the gradient of the dispersion relation with respect to k.
@@ -325,7 +326,7 @@ function raytracer_stopconditions(pos, k, w, vprel, vgrel, dt, nstep, &
   real(kind=DP) :: pos(3), k(3), w, vprel(3), vgrel(3), dt, minalt
   integer :: raytracer_stopconditions, nstep, maxsteps
 
-  !print *,' k=', k, ', w=', w, ', vprel=', vprel, ', vgrel=', vgrel
+  ! print *,' k=', k, ', w=', w, ', vprel=', vprel, ', vgrel=', vgrel
   raytracer_stopconditions = 0
   if( sqrt(dot_product(pos,pos)) < minalt ) then
     ! Minimum altitude reached
@@ -448,7 +449,7 @@ subroutine solve_dispersion_relation(k, w, x, k1, k2, &
   cos2phi = (dot_product(k, B0)*dot_product(k, B0)) / &
             (dot_product(k, k)*dot_product(B0, B0))
   sin2phi = 1.0_DP - cos2phi
-  phi = acos(sqrt(cos2phi))
+  phi = acos(sqrt(cos2phi))*R2D
   ! print *, 'phi is: ', phi
 
   ! Magnitude of B0
@@ -820,6 +821,8 @@ subroutine raytracer_run( pos,time,vprel,vgrel,n,&
      cur_pos = est2(1:3)
      k = est2(4:6)
      w = est2(7)
+
+     ! print *, k
      ! Refine both estimates based on the physics (must satisfy dispersion
      ! relation)
      call solve_dispersion_relation(real(k,kind=DP), w, cur_pos,k1mag,k2mag, &
@@ -885,10 +888,12 @@ subroutine raytracer_run( pos,time,vprel,vgrel,n,&
 !-----------------------------------------
 
      ! refine timestep if outside resonance cone
+     ! this never actually gets called!!
+     ! print *, dot_product(imag(k),imag(k))
      if( dot_product(imag(k),imag(k)) > 0.0_DP ) then
         if( fixedstep == 0 ) then
            ! Force a refinement if we've popped outside the resonance cone.
-           !print *, 'Refine down: outside of resonance cone'
+           print *, 'Refine down: outside of resonance cone'
            dt=dt/2.0_DP
            lastrefinedown = 1
            cycle
