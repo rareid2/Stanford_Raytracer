@@ -2,8 +2,11 @@ FROM debian:buster AS build
 
 WORKDIR /usr/src/app
 
+# a fix for apt-get to ensure it can properly run update
+#RUN printf "deb http://archive.debian.org/debian/ buster main\ndeb-src http://archive.debian.org/buster/ buster main\ndeb http://security.debian.org buster/updates main\ndeb-src http://security.debian.org buster/updates main" > /etc/apt/sources.list
+
 # Update packages and say yes to everything
-RUN apt update -y && apt install -y \
+RUN apt-get update -y && apt-get install -y \
     build-essential \
     gfortran
 
@@ -20,7 +23,7 @@ RUN make
 FROM debian:buster
 
 RUN apt-get update && apt-get install -y \
-    libgfortran-8-dev
+    libgfortran4
 
 WORKDIR /usr/src/app
 
