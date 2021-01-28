@@ -10,4 +10,3 @@ bin/*
 
 # Make sure we include the folder itself tho
 !bin/.gitkeep
-

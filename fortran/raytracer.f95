@@ -889,7 +889,7 @@ subroutine raytracer_run( pos,time,vprel,vgrel,n,&
 
      ! refine timestep if outside resonance cone
      ! this never actually gets called!!
-     print *, dot_product(imag(k),imag(k))
+     ! print *, dot_product(imag(k),imag(k))
      if( dot_product(imag(k),imag(k)) > 0.0_DP ) then
         if( fixedstep == 0 ) then
            ! Force a refinement if we've popped outside the resonance cone.
