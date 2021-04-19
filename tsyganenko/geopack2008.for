@@ -1758,13 +1758,15 @@ c     AD is defined in order to initialize the value of RR (radial distance at p
       RR=SQRT(X**2+Y**2+Z**2)+AD
 c
   1   L=L+1
-      IF(L.GT.LMAX) GOTO 7
+c      print *, L.GT.LMAX
+c      IF(L.GT.LMAX) GOTO 7
       XX(L)=X
       YY(L)=Y
       ZZ(L)=Z
       RYZ=Y**2+Z**2
       R2=X**2+RYZ
       R=SQRT(R2)
+c      print *, 'R', R
 C
 c  check if the line hit the outer tracing boundary; if yes, then terminate
 c   the tracing (label 8). The outer boundary is assumed reached, when the line
@@ -1818,8 +1820,8 @@ c
       Y=Y-(Y-YR)*R1
       Z=Z-(Z-ZR)*R1
       GOTO 8
-  7   WRITE (*,10)
-      L=LMAX
+C  7   WRITE (*,10)
+  7   L=LMAX
   8   XF=X
       YF=Y
       ZF=Z

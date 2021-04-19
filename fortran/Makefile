@@ -16,6 +16,7 @@ EXT =
 endif
 
 sources = \
+	AT64ThCh_adapter.f95 \
 	bmodel_dipole.f95 \
 	pp_profile_d.f95 \
 	switch_d.f95 \

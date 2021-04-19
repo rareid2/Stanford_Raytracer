@@ -50,7 +50,7 @@ tidy:
 	# $(MAKE) -C lapack-3.2.1 clean
 	# $(MAKE) -C xform clean
 	# $(MAKE) -C xform_double clean
-	$(MAKE) -C iri2007 clean
+	# $(MAKE) -C iri2007 clean
 	# $(MAKE) -C tsyganenko clean
 	# $(MAKE) -C tricubic-for clean
 	# $(MAKE) -C gcpm clean

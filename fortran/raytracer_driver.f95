@@ -14,9 +14,10 @@ program raytracer_driver
        gcpmStateData, gcpmStateDataP
   use interp_dens_model_adapter, only : finterp=>funcPlasmaParams, &
        interpStateData, interpStateDataP, interpsetup=>setup
+
+  use AT64ThCh_adapter, only : fAT64ThCh=>funcPlasmaParams, &
+       AT64ThChStateData, AT64ThChStateDataP
   
-
-
   use raytracer, only : raytracer_run, raytracer_stopconditions
 
   ! Temporary file for me to safely fuck with the gradients
@@ -55,6 +56,9 @@ program raytracer_driver
 
   type(gcpmStateData),target :: gcpm_state_data
   type(gcpmStateDataP) :: gcpm_state_datap
+
+  type(AT64ThChStateData),target :: AT64ThCh_state_data
+  type(AT64ThChStateDataP) :: AT64ThCh_state_datap
 
   type(simpleStateData),target :: simple_state_data
   type(simpleStateDataP),target :: simple_state_datap
@@ -1017,8 +1021,119 @@ program raytracer_driver
      print *, '   tsyganenko_W6:    ', simple_state_data%W6
      flush(OUTPUT_UNIT)
 
+  elseif( modelnum == 7 ) then
+     !!!!!!!!!!!!!!!!!!!!!!! AT64ThCh SETUP
+     ! we need to set up the model paramaters and marshall the setup data
+     ! Read the arguments
+     call getopt_named( 'gcpm_kp', buffer, foundopt )
+     if( foundopt == 1 ) then
+        read (buffer,*) AT64ThCh_state_data%gcpm_kp
+     end if
+     ! yearday
+     call getopt_named( 'yearday', buffer, foundopt )
+     if( foundopt == 1 ) then
+        read (buffer,*) tmpinput
+        AT64ThCh_state_data%itime(1) = floor(tmpinput)
+     end if
+     ! milliseconds_day
+     call getopt_named( 'milliseconds_day', buffer, foundopt )
+     if( foundopt == 1 ) then
+        read (buffer,*) tmpinput
+        AT64ThCh_state_data%itime(2) = floor(tmpinput)
+     end if
+     ! use_tsyganenko
+     call getopt_named( 'use_tsyganenko', buffer, foundopt )
+     if( foundopt == 1 ) then
+        read (buffer,*) tmpinput
+        AT64ThCh_state_data%use_tsyganenko = floor(tmpinput)
+     end if
+     ! use_igrf
+     call getopt_named( 'use_igrf', buffer, foundopt )
+     if( foundopt == 1 ) then
+        read (buffer,*) tmpinput
+        AT64ThCh_state_data%use_igrf = floor(tmpinput)
+     end if
+     ! tsyganenko_Pdyn
+     call getopt_named( 'tsyganenko_Pdyn', buffer, foundopt )
+     if( foundopt == 1 ) then
+        read (buffer,*) AT64ThCh_state_data%Pdyn
+     end if
+     ! tsyganenko_Dst
+     call getopt_named( 'tsyganenko_Dst', buffer, foundopt )
+     if( foundopt == 1 ) then
+        read (buffer,*) AT64ThCh_state_data%Dst
+     end if
+     ! tsyganenko_ByIMF
+     call getopt_named( 'tsyganenko_ByIMF', buffer, foundopt )
+     if( foundopt == 1 ) then
+        read (buffer,*) AT64ThCh_state_data%ByIMF
+     end if
+     ! tsyganenko_BzIMF
+     call getopt_named( 'tsyganenko_BzIMF', buffer, foundopt )
+     if( foundopt == 1 ) then
+        read (buffer,*) AT64ThCh_state_data%BzIMF
+     end if
+     ! tsyganenko_W1
+     call getopt_named( 'tsyganenko_W1', buffer, foundopt )
+     if( foundopt == 1 ) then
+        read (buffer,*) AT64ThCh_state_data%W1
+     end if
+     ! tsyganenko_W2
+     call getopt_named( 'tsyganenko_W2', buffer, foundopt )
+     if( foundopt == 1 ) then
+        read (buffer,*) AT64ThCh_state_data%W2
+     end if
+     ! tsyganenko_W3
+     call getopt_named( 'tsyganenko_W3', buffer, foundopt )
+     if( foundopt == 1 ) then
+        read (buffer,*) AT64ThCh_state_data%W3
+     end if
+     ! tsyganenko_W4
+     call getopt_named( 'tsyganenko_W4', buffer, foundopt )
+     if( foundopt == 1 ) then
+        read (buffer,*) AT64ThCh_state_data%W4
+     end if
+     ! tsyganenko_W5
+     call getopt_named( 'tsyganenko_W5', buffer, foundopt )
+     if( foundopt == 1 ) then
+        read (buffer,*) AT64ThCh_state_data%W5
+     end if
+     ! tsyganenko_W6
+     call getopt_named( 'tsyganenko_W6', buffer, foundopt )
+     if( foundopt == 1 ) then
+        read (buffer,*) AT64ThCh_state_data%W6
+     end if
 
 
+     ! Marshall our data to the callback
+     ! associate a pointer to the state data provided by the user
+     AT64ThCh_state_dataP%p => AT64ThCh_state_data
+     ! marshall the data pointer to our function
+     sz = size(transfer(AT64ThCh_state_datap, data))
+     allocate(data(sz))
+     data = transfer(AT64ThCh_state_dataP, data)
+     
+     ! print *, 'GCPM model parameters:'
+     ! print *, '   gcpm_kp:          ', gcpm_state_data%akp
+     ! print *, '   yearday:          ', gcpm_state_data%itime(1)
+     ! print *, '   milliseconds_day: ', gcpm_state_data%itime(2)
+     ! print *, '   use_tsyganenko:   ', gcpm_state_data%use_tsyganenko
+     ! print *, '   use_igrf:         ', gcpm_state_data%use_igrf
+     ! print *, '   tsyganenko_Pdyn:  ', gcpm_state_data%Pdyn
+     ! print *, '   tsyganenko_Dst:   ', gcpm_state_data%Dst
+     ! print *, '   tsyganenko_ByIMF: ', gcpm_state_data%ByIMF
+     ! print *, '   tsyganenko_BzIMF: ', gcpm_state_data%BzIMF
+     ! print *, '   tsyganenko_W1:    ', gcpm_state_data%W1
+     ! print *, '   tsyganenko_W2:    ', gcpm_state_data%W2
+     ! print *, '   tsyganenko_W3:    ', gcpm_state_data%W3
+     ! print *, '   tsyganenko_W4:    ', gcpm_state_data%W4
+     ! print *, '   tsyganenko_W5:    ', gcpm_state_data%W5
+     ! print *, '   tsyganenko_W6:    ', gcpm_state_data%W6
+     ! print *, '   fixed_MLT:        ', gcpm_state_data%fixed_MLT
+     ! print *, '   MLT:              ', gcpm_state_data%MLT
+
+
+     flush(OUTPUT_UNIT)
 
   end if
 
@@ -1071,6 +1186,12 @@ program raytracer_driver
              B0, qs, ms, Ns, nus, stopcond, &
              pos0, dir0, w, dt0, dtmax, maxerr, maxsteps, minalt, root, tmax, &
              fixedstep, delDP, fsimple, data, raytracer_stopconditions)
+     elseif( modelnum == 7 ) then
+        call raytracer_run( &
+             pos,time,vprel,vgrel,n, &
+             B0, qs, ms, Ns, nus, stopcond, &
+             pos0, dir0, w, dt0, dtmax, maxerr, maxsteps, minalt, root, tmax, &
+             fixedstep, delSP, fAT64ThCh, data, raytracer_stopconditions)
      end if
      ! Write the data to the output file
      do i=1,size(time,1),outputper

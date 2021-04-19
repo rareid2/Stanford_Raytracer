@@ -708,7 +708,7 @@ subroutine raytracer_run( pos,time,vprel,vgrel,n,&
   ! Find the plasma parameters at our starting point
   call funcPlasmaParams(x(1:3), qstmp, Nstmp, mstmp, nustmp, B0tmp, &
                         funcPlasmaParamsData)
-
+  ! print *, 'starting plasma params', Nstmp, x(1:3)
   ! Initialize the output variables
   allocate(pos(3,1))
   pos(:,1) = x(1:3)
