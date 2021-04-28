@@ -1,0 +1,10 @@
+EPS0 = 8.854187817e-12;
+MU0 = pi* 4e-7;
+c=sqrt(1/EPS0/MU0);
+clight=c;
+R_E = 6370e3; % radius of earth in m
+kBoltzmann = 1.3806503e-23;
+kB = kBoltzmann;
+Q_F = 1.60217646e-19;
+M_E =  9.10938188e-31;
+M_P = 1.67262158e-27;

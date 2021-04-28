@@ -108,16 +108,16 @@ contains
 
     ! Allocate data if not already
     if (.not.(allocated(qs))) then
-       allocate(qs(4))
+       allocate(qs(3))
     end if
     if (.not.(allocated(Ns))) then
-       allocate(Ns(4))
+       allocate(Ns(3))
     end if
     if (.not.(allocated(ms))) then
-       allocate(ms(4))
+       allocate(ms(3))
     end if
     if (.not.(allocated(nus))) then
-       allocate(nus(4))
+       allocate(nus(3))
     end if
     
     ! Convert from SM x,y,z to GSM x,y,z needed by 
@@ -163,7 +163,7 @@ contains
     
     ! geocentric ratio
     R = radial_dist / r0
-
+   
     ! we need B now (mag) 
     ! Necessary call for the Tsyganenko geopack tools.  Also updates
     ! the common variable psi
@@ -193,6 +193,9 @@ contains
     RLIM = 60
     R0s = (OH_transition_height+R_E)/R_E
 
+    ! check to make sure the ray is above the transition height
+    if (h > 400e3_DP) then
+
     ! use geopack tools to trace to northern hemisphere 
     ! output coordinates at fieldline footprint at OH transition height
     CALL TRACE_08 (real(x_gsm(1)/R_E),real(x_gsm(2)/R_E),real(x_gsm(3)/R_E), &
@@ -202,8 +205,12 @@ contains
     ! find B here
     call IGRF_GSM (real(XF), real(YF), real(ZF), B0xoh, B0yoh, B0zoh)
     b_oh = sqrt(B0xoh*B0xoh + B0yoh*B0yoh + B0zoh*B0zoh)
-    
+
     zbrat = real(bmag/b_oh)
+    ! if it's not, just set the zbrat to 1
+    else
+    zbrat = 1
+    end if
 
     ! very simple dipole implementation to get Lshell
     lat_angle = atan(x_geo(3),x_geo(1))
@@ -231,8 +238,8 @@ contains
     c_p = 1.0_DP / ((Rp * (1.0_DP + a) - a ) * Rp)
     neutral_temp = 1000.0_DP 
     ! mass of a proton times grav acceleration [ kg m / s^2 ] -- varying w alt
-    g0 = 9.80665_DP
-    gh = g0*(R_E/radial_dist)
+    gh = 9.80665_DP
+    ! gh = g0*(R_E/radial_dist)
     mpg = 1.6726219e-27_DP * gh
     
     ! neutral 0 scale height in Mm

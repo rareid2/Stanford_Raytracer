@@ -326,7 +326,6 @@ function raytracer_stopconditions(pos, k, w, vprel, vgrel, dt, nstep, &
   real(kind=DP) :: pos(3), k(3), w, vprel(3), vgrel(3), dt, minalt
   integer :: raytracer_stopconditions, nstep, maxsteps
 
-  ! print *,' k=', k, ', w=', w, ', vprel=', vprel, ', vgrel=', vgrel
   raytracer_stopconditions = 0
   if( sqrt(dot_product(pos,pos)) < minalt ) then
     ! Minimum altitude reached
@@ -751,6 +750,7 @@ subroutine raytracer_run( pos,time,vprel,vgrel,n,&
   do
      if( t >= tmax ) then
         ! Normal exit
+        print *, 'exceeded max time in seconds'
         stopcond = 0
         exit
      end if
@@ -896,6 +896,8 @@ subroutine raytracer_run( pos,time,vprel,vgrel,n,&
            print *, 'Refine down: outside of resonance cone'
            dt=dt/2.0_DP
            lastrefinedown = 1
+           ! stopcond = 2
+           ! exit
            cycle
         else
            ! print *, &

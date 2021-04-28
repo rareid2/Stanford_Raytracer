@@ -1228,6 +1228,7 @@ program raytracer_driver
      deallocate(nus)
 
      raynum = raynum+1
+     print *, raynum
   end do
   flush(outfile)
   flush(infile)
