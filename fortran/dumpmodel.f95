@@ -17,6 +17,8 @@ program dumpmodel
        fscatteredinterp=>funcPlasmaParams, &
        scatteredinterpStateData, scatteredinterpStateDataP, &
        scatteredinterpsetup=>setup
+  use AT64ThCh_adapter, only : fAT64ThCh=>funcPlasmaParams, &
+       AT64ThChStateData, AT64ThChStateDataP
   USE ISO_FORTRAN_ENV ! for OUTPUT_UNIT definition, from 2003 standard
   implicit none
   
@@ -47,6 +49,9 @@ program dumpmodel
 
   type(scatteredinterpStateData),target :: scattered_interp_state_data
   type(scatteredinterpStateDataP) :: scattered_interp_state_datap
+
+  type(AT64ThChStateData),target :: AT64ThCh_state_data
+  type(AT64ThChStateDataP) :: AT64ThCh_state_datap
 
   real(kind=DP), allocatable :: qs(:), Ns(:), ms(:), nus(:)
   real(kind=DP) :: B0(3)
@@ -1144,9 +1149,134 @@ program dumpmodel
            end do
         end do
      end do
+  
+  elseif( modelnum == 7 ) then
+     !!! diffusive eq.
+     call getopt_named( 'ngo_configfile', buffer, foundopt )
+     if( foundopt == 1 ) then
+        read (buffer,'(a)') ngo_configfile
+     end if
+     ! yearday
+     call getopt_named( 'yearday', buffer, foundopt )
+     if( foundopt == 1 ) then
+        read (buffer,*) tmpinput
+        AT64ThCh_state_data%itime(1) = floor(tmpinput)
+     end if
+     ! milliseconds_day
+     call getopt_named( 'milliseconds_day', buffer, foundopt )
+     if( foundopt == 1 ) then
+        read (buffer,*) tmpinput
+        AT64ThCh_state_data%itime(2) = floor(tmpinput)
+     end if
+     ! use_tsyganenko
+     call getopt_named( 'use_tsyganenko', buffer, foundopt )
+     if( foundopt == 1 ) then
+        read (buffer,*) tmpinput
+        AT64ThCh_state_data%use_tsyganenko = floor(tmpinput)
+     end if
+     ! use_igrf
+     call getopt_named( 'use_igrf', buffer, foundopt )
+     if( foundopt == 1 ) then
+        read (buffer,*) tmpinput
+        AT64ThCh_state_data%use_igrf = floor(tmpinput)
+     end if
+     call getopt_named( 'gcpm_kp', buffer, foundopt )
+     if( foundopt == 1 ) then
+        read (buffer,*) tmpinput
+        AT64ThCh_state_data%gcpm_kp = floor(tmpinput)
+     end if
+     ! tsyganenko_Pdyn
+     call getopt_named( 'tsyganenko_Pdyn', buffer, foundopt )
+     if( foundopt == 1 ) then
+        read (buffer,*) AT64ThCh_state_data%Pdyn
+     end if
+     ! tsyganenko_Dst
+     call getopt_named( 'tsyganenko_Dst', buffer, foundopt )
+     if( foundopt == 1 ) then
+        read (buffer,*) AT64ThCh_state_data%Dst
+     end if
+     ! tsyganenko_ByIMF
+     call getopt_named( 'tsyganenko_ByIMF', buffer, foundopt )
+     if( foundopt == 1 ) then
+        read (buffer,*) AT64ThCh_state_data%ByIMF
+     end if
+     ! tsyganenko_BzIMF
+     call getopt_named( 'tsyganenko_BzIMF', buffer, foundopt )
+     if( foundopt == 1 ) then
+        read (buffer,*) AT64ThCh_state_data%BzIMF
+     end if
+     ! tsyganenko_W1
+     call getopt_named( 'tsyganenko_W1', buffer, foundopt )
+     if( foundopt == 1 ) then
+        read (buffer,*) AT64ThCh_state_data%W1
+     end if
+     ! tsyganenko_W2
+     call getopt_named( 'tsyganenko_W2', buffer, foundopt )
+     if( foundopt == 1 ) then
+        read (buffer,*) AT64ThCh_state_data%W2
+     end if
+     ! tsyganenko_W3
+     call getopt_named( 'tsyganenko_W3', buffer, foundopt )
+     if( foundopt == 1 ) then
+        read (buffer,*) AT64ThCh_state_data%W3
+     end if
+     ! tsyganenko_W4
+     call getopt_named( 'tsyganenko_W4', buffer, foundopt )
+     if( foundopt == 1 ) then
+        read (buffer,*) AT64ThCh_state_data%W4
+     end if
+     ! tsyganenko_W5
+     call getopt_named( 'tsyganenko_W5', buffer, foundopt )
+     if( foundopt == 1 ) then
+        read (buffer,*) AT64ThCh_state_data%W5
+     end if
+     ! tsyganenko_W6
+     call getopt_named( 'tsyganenko_W6', buffer, foundopt )
+     if( foundopt == 1 ) then
+        read (buffer,*) AT64ThCh_state_data%W6
+     end if
+    call getopt_named( 'mag_coords', buffer, foundopt )
+     if( foundopt == 1 ) then
+        read (buffer,*) mag_coords
+
+     end if
+
+
+     ! Marshall our data to the callback
+     ! associate a pointer to the state data provided by the user
+     AT64ThCh_state_dataP%p => AT64ThCh_state_data
+     ! marshall the data pointer to our function
+     sz = size(transfer(AT64ThCh_state_dataP, data))
+     allocate(data(sz))
+     data = transfer(AT64ThCh_state_dataP, data)
+
+     flush(OUTPUT_UNIT)
 
 
 
+     ! Allocate space for the data
+     ! number of species, times 4 (charge, number density, mass, 
+     ! collision frequency), plus 3 (3 components of B0)
+     nspec = 3 
+     allocate(f(nspec*4+3, nx, ny, nz))
+     
+     ! Grab the data
+     do k=1,nz
+        flush(OUTPUT_UNIT)
+        do j=1,ny
+           do i=1,nx
+              if (mag_coords==1) then
+                ! geomag coordinates
+                call SM_TO_MAG_D(AT64ThCh_state_data%itime, (/x(i),y(j),z(k)/), x_mag)
+                call fAT64ThCh(x_mag, qs, Ns, ms, nus, B0, data)
+              else
+                ! SM coordinates
+                call fAT64ThCh((/x(i),y(j),z(k)/), qs, Ns, ms, nus, B0, data)
+              end if
+              f(:,i,j,k) = (/qs, Ns, Ms, nus, B0/)
+           end do
+        end do
+     end do
 
 
   end if

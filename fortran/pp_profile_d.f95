@@ -25,13 +25,12 @@ contains
 !  An average Kpmax dependence for the plasmapause slope is also included in
 !  a9.
     function pp_profile(al,amlt,akp,a8)
-        real(kind=DP) :: pp_profile,al,amlt,a8,a9,factor
+        real(kind=DP) :: pp_profile,al,amlt,a8,a9,factor,zero_check
         real(kind=DP) :: centroid,akp_old,akp,amlt_old
         data akp_old/-99.0/,amlt_old/-99.0/
-    !     print *,'into pp_profile:',al,amlt,akp,a8
     !
     !  Allow for mlt rotation of the buldge with Kpmax
-        if((akp.ne.akp_old) .or. (amlt.ne.amlt_old)) then 
+        if((akp.ne.akp_old) .or. (amlt.ne.amlt_old) .or. (a8.eq.zero_check)) then 
             call bulge(amlt,akp,a8,a9,centroid)
         end if
     !   print *,'Recalled subroutine bulge'

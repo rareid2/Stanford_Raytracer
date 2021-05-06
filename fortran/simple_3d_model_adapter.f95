@@ -211,6 +211,7 @@ contains
       integer(kind=DP) :: icount
       real(kind=DP) :: iyear, doy
       stepl=0.5
+      ! print *, 'inside check crossing', a8
       zl= a8
       b = pp_profile(zl,amlt,akp,a8)
       a = ne_ps(zl, a8, b, iyear, doy, akp)
@@ -736,8 +737,9 @@ real(kind=DP), parameter :: PN(72, 10) =reshape(&
     ! Location of the plasmapause (Lpp = a8).
     ! a9 is a dropoff rate used in the expression
     ! for H.
+    ! print *, 'before pp', a8
     a9=pp_profile(r/REkm,amlt,akp,a8)
-
+    ! print *, 'after pp', a8
     iyear=datap%p%itime(1)/1000
     doy=real(datap%p%itime(1) - iyear*1000, kind=DP)
 
@@ -757,7 +759,9 @@ real(kind=DP), parameter :: PN(72, 10) =reshape(&
     ! find the transition point between the two models
     ! (either the plasmapause, or the point at which
     ! the two curves cross)
+    ! print *, 'before check crossiong', a8
     zl = check_crossing(a8, amlt, akp, iyear, doy)
+    ! print *, 'zl found is', zl
 
 
  
@@ -765,10 +769,9 @@ real(kind=DP), parameter :: PN(72, 10) =reshape(&
       ! ! ------- Main plasmasphere profile -------------
       ! This includes Carpenter/Anderson PS model, trough model, and cap model
       ne_eq_ps = main_ps_density(L, a8, a9, iyear, doy, akp, amlt, lam, r)
-
       ! Get altitude where ionosphere and plasmasphere intersect:
       call find_intersection_iono_ps(a8, a9, iyear, doy, akp, lamr, amlt, iono_merge_altitude)
-
+      ! print *, 'after main call', a8
       ne_eq_iono = ne_iono(lamr*R2D, amlt, r - REkm)
       switch_iono2ps = 1.0 - switch(r - REkm, iono_merge_altitude - iono_merge_radius/2.0, iono_merge_radius)
       ne_eq_ps = ne_eq_iono*switch_iono2ps + (1.0 - switch_iono2ps)*ne_eq_ps

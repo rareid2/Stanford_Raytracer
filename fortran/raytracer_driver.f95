@@ -1002,23 +1002,23 @@ program raytracer_driver
      ! ! Call the setup routine to open a source file
      ! call ngo3dsetup(ngo3d_state_data, ngo_configfile)
 
-     print *, 'Ngo Model parameters:'
+     ! print *, 'Ngo Model parameters:'
      ! print *, '   ngo_configfile:   ', trim(ngo_configfile)
-     print *, '   yearday:          ', simple_state_data%itime(1)
-     print *, '   milliseconds_day: ', simple_state_data%itime(2)
-     print *, '   use_tsyganenko:   ', simple_state_data%use_tsyganenko
-     print *, '   use_igrf:         ', simple_state_data%use_igrf
-     print *, '   ngo_kp:           ', simple_state_data%kp
-     print *, '   tsyganenko_Pdyn:  ', simple_state_data%Pdyn
-     print *, '   tsyganenko_Dst:   ', simple_state_data%Dst
-     print *, '   tsyganenko_ByIMF: ', simple_state_data%ByIMF
-     print *, '   tsyganenko_BzIMF: ', simple_state_data%BzIMF
-     print *, '   tsyganenko_W1:    ', simple_state_data%W1
-     print *, '   tsyganenko_W2:    ', simple_state_data%W2
-     print *, '   tsyganenko_W3:    ', simple_state_data%W3
-     print *, '   tsyganenko_W4:    ', simple_state_data%W4
-     print *, '   tsyganenko_W5:    ', simple_state_data%W5
-     print *, '   tsyganenko_W6:    ', simple_state_data%W6
+     ! print *, '   yearday:          ', simple_state_data%itime(1)
+     ! print *, '   milliseconds_day: ', simple_state_data%itime(2)
+     ! print *, '   use_tsyganenko:   ', simple_state_data%use_tsyganenko
+     ! print *, '   use_igrf:         ', simple_state_data%use_igrf
+     ! print *, '   ngo_kp:           ', simple_state_data%kp
+     ! print *, '   tsyganenko_Pdyn:  ', simple_state_data%Pdyn
+     ! print *, '   tsyganenko_Dst:   ', simple_state_data%Dst
+     ! print *, '   tsyganenko_ByIMF: ', simple_state_data%ByIMF
+     ! print *, '   tsyganenko_BzIMF: ', simple_state_data%BzIMF
+     ! print *, '   tsyganenko_W1:    ', simple_state_data%W1
+     ! print *, '   tsyganenko_W2:    ', simple_state_data%W2
+     ! print *, '   tsyganenko_W3:    ', simple_state_data%W3
+     ! print *, '   tsyganenko_W4:    ', simple_state_data%W4
+     ! print *, '   tsyganenko_W5:    ', simple_state_data%W5
+     ! print *, '   tsyganenko_W6:    ', simple_state_data%W6
      flush(OUTPUT_UNIT)
 
   elseif( modelnum == 7 ) then

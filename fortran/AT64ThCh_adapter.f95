@@ -79,7 +79,7 @@ contains
     character :: funcPlasmaParamsData(:)
 
     real(kind=DP) :: ce,ch,che,co, g0, gh
-    real(kind=DP) :: x(3),x_gsm(3),x_geo(3)
+    real(kind=DP) :: x(3),x_gsm(3)
     real(kind=DP) :: tt, T, mpg, radial_dist, Rp, SN, temp_gradient, tran, z, zg
     real(kind=DP) :: R, L, a, c_p, cos_lat, etrans_dens, h, H0, H1, H3, Lpp, Lw
     real(kind=DP) :: n10, n30, ne, ne_tmp, neutral_temp, nh, noh
@@ -124,8 +124,6 @@ contains
     ! the Tsyganenko model
     call SM_TO_GSM_d(datap%p%itime,x,x_gsm)
     
-    call SM_TO_GEO_D(datap%p%itime, x, x_geo)
-
     ! Convert the itime parameter into the Tsyganenko parameters
     year = datap%p%itime(1)/1000
     day = mod(datap%p%itime(1),1000)
@@ -151,7 +149,7 @@ contains
     ! of interest
 
     ! think we need radial distance first -- should be in meter
-    radial_dist = sqrt(x_geo(1)*x_geo(1) + x_geo(2)*x_geo(2) + x_geo(3)*x_geo(3))
+    radial_dist = sqrt(x(1)*x(1) + x(2)*x(2) + x(3)*x(3))
 
     ! hope this is in m - height from earth
     h = radial_dist - R_E 
@@ -213,7 +211,7 @@ contains
     end if
 
     ! very simple dipole implementation to get Lshell
-    lat_angle = atan(x_geo(3),x_geo(1))
+    lat_angle = atan(x(3),x(1))
     ! maybe in radians but honestly no clue
     cos_lat = cos(lat_angle)
     L = (radial_dist / R_E) / (cos_lat*cos_lat)

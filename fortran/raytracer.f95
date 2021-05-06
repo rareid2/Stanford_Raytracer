@@ -442,7 +442,6 @@ subroutine solve_dispersion_relation(k, w, x, k1, k2, &
   real(kind=DP) :: phi
 
   call funcPlasmaParams(x, qs, Ns, ms, nus, B0, funcPlasmaParamsData)
-  ! print *, 'The B0 right now is: ', B0
   ! Find the angle the k vector makes with B0
   ! cos^2(phi)
   cos2phi = (dot_product(k, B0)*dot_product(k, B0)) / &
@@ -657,7 +656,6 @@ subroutine raytracer_run( pos,time,vprel,vgrel,n,&
   real(kind=DP) :: kmag, kmag_prev, k_err
   real(kind=DP) :: cur_dir(3), prev_dir(3)
   real(kind=DP) :: angle_error, n_angle_refines
-
 
   ! Convention: If dir0 is all zeroes, start aligned with the field:
   if ((dir0(1).eq.0).and.(dir0(2).eq.0).and.(dir0(3).eq.0)) then
