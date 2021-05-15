@@ -113,7 +113,7 @@ contains
     ! ---------- Carpenter / Anderson plasmasphere -------------
     h = (1.0_DP + (L/a8)**(2.0_DP*(a9 - 1)))**(-a9/(a9 - 1.0_DP))
     doy_factor=pi*(doy+9.0_DP)/365.0_DP
-    x234=( 0.1_DP*(cos(2.0_DP*doy_factor) - 0.5_DP*cos(4.0_DP*doy_factor))+ &
+    x234=( 0.15_DP*(cos(2.0_DP*doy_factor) - 0.5_DP*cos(4.0_DP*doy_factor))+ &
          &(0.00127_DP*rz12-0.0635_DP) ) * exp(-(L-2.0_DP)/1.5_DP)
 
     ne_ps = 10_DP**(a6*L+a7 + x234)

@@ -30,12 +30,14 @@ contains
         data akp_old/-99.0/,amlt_old/-99.0/
     !
     !  Allow for mlt rotation of the buldge with Kpmax
-        if((akp.ne.akp_old) .or. (amlt.ne.amlt_old) .or. (a8.eq.zero_check)) then 
-            call bulge(amlt,akp,a8,a9,centroid)
+	    if((akp.ne.akp_old) .or. (amlt.ne.amlt_old) .or. (a8 == zero_check)) then
+         call bulge(amlt,akp,a8,a9,centroid)
         end if
     !   print *,'Recalled subroutine bulge'
         akp_old=akp
         amlt_old=amlt
+        
+
     !
     !  compute 10**factor in such a way to avoid floating overflow
         factor=min(27.75,2.0*(a9-1.0)*log10(al/a8))
