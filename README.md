@@ -6,8 +6,12 @@ First, clone the repo
 git clone url
 ``` 
 
-Next, inside the repo, run the following to update the damping submodule
+Next, navigate inside the repo: 
+``` terminal
+cd Stanford_Raytracer
+```
 
+Next, run the following line to update the damping submodule:
 ``` terminal
 git submodule init  
 git submodule update  
@@ -21,9 +25,10 @@ git submodule init
 git submodule update  
 ``` 
 
-
 Finally, build:
 ``` terminal
 cd ..
 make
 ```
+
+That's it! Reach out if something breaks...
