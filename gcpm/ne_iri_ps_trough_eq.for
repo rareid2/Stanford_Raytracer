@@ -51,8 +51,6 @@
 !  topside ionosphere to the plasmasphere
 	  call iri_ps_eq_bridge(al,amlt,itime,transh,
      &              alpha,ano,am1,b1,x234,rintercept)
-!     print *,'from iri_ps_eq_bridge:',
-!    &       r,amlt,itime,transh,alpha,ano,rintercept
 
 	  amlt_o=amlt
 	  akp_o=akp
@@ -62,7 +60,7 @@
 !    print *,'values 1:',a8,am1,b1
 
 	  ps_bridge=ano*aheight**(-alpha)
-!       print *,'bridge-ps n:',ps_inner,ps_bridge
+	!  print *,'bridge-ps n:',rintercept,ano,aheight,alpha
         off=0.0
         transwidth=0.02
 	  swtch2=switchon(al,rintercept+off,transwidth)
@@ -75,7 +73,7 @@
 	    swtch1=switchon(aheight,transh,5.0_DP)
 	! print *,'entering ne_eq_trough:',swtch1,aheight,transh
           ne_eq_trough_den=ne_eq_trough(al,amlt,akp)
-	! print *,'entering check_crossing:',ne_eq_trough_den
+    !      print *,'entering check_crossing:',ne_eq_trough_den
           zl=check_crossing(a8,am1,b1,x234,amlt,akp)
           diff=a8-zl
           offset=(0.0166513 
@@ -84,6 +82,7 @@
 !          print *,'offset:',akp,a8,zl,(a8-zl),offset
 	    swtch4=switchon(al,zl+offset,0.3_DP)
 	    swtch5=switchon(al,zl-offset,0.3_DP)
+!		print *, 'hey',ps_bridge,swtch2,swtch3
 	    ne_iri_ps_trough_eq=outf(1,1)*(1.0-swtch1) +
      &  ((ps_bridge*(1.0-swtch2)*swtch1 +
      &	ps_inner*swtch3)*pp_factor)*(1.0-swtch4) +
@@ -91,7 +90,7 @@
 !	print *,'** ',swtch1,swtch2,swtch3,swtch4,swtch5
 !	print *,al,rintercept,off,aheight,transh,pp_factor
 	! print *,'end of trough_eq:',outf(1,1),ps_bridge,ps_inner,ne_eq_trough_den
-!     print *,ne_iri_ps_trough_eq
+    !      print *,ne_iri_ps_trough_eq
 !
 
 	return

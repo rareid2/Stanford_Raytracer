@@ -59,7 +59,7 @@ c  get height and densiy of the f2 peak
 d	  print *,'iri_ps_eq_bridge calling iri_sm @r',r,along
 	call iri_sm(alatr,along,r,itime,outf,oarr)
 	rf2=oarr(2)/re+1.0
-d     print *,'f2:',rf2
+	print *,'f2:',rf2
 
 c In an effort to reduce the cals to iri2007 the following is used
 c to approximate the point of maximum negative slope in the topside
@@ -93,12 +93,13 @@ d     print *,'power law foder:',an1old,an2old,ah1,ah2
 
 c calculate the initial equatorial power law transition function
 	alphao=-log(an1old/an2old)/log(ah1/ah2)
+d  	 print *, 'alphoa', an1old,an2old,ah1,ah2
 	ano=dens/transh**(-alphao)
-d     print *,'bridge init:',alphao,ano,dens,transh
+d	 print *,'bridge init:',alphao,ano,dens,transh
 c calculate where this initial power law intersects the plasmasphere profile
       psh=2000.0
       do ii=1,5
-d       print *,'psh interation:',ii,psh,ano,alphao,am1,b1
+d     print *,'psh interation:',ii,psh,ano,alphao,am1,b1
         psh=10.0**((am1*(psh/re+1.0)+b1+x234+6.0_DP-log10(ano))/(-alphao))
                           ! inner plasmasphere density calculation
       enddo
@@ -109,19 +110,18 @@ c intersect and we have to force a more steep topside ionosphere.
       if (psh .ge.0.5*re) then
 c Instead calculate the location along the equator where this power law function
 c matches the slope of the interior plasmaspheric density
-        psL=1.0 - alphao/am1/alog(10.0)
+		psL=1.0 - alphao/am1/alog(10.0)
         psh=(psL-1.0)*re
       endif
-d     print *,'psh final:',psh
-      psden=10.0**(am1*psL+b1+x234+6.0) !inner plasmasphere density calculation
 
+      psden=10.0**(am1*psL+b1+x234+6.0) !inner plasmasphere density calculation
 c new power law value, alpha, needs to match the ionosphere at the point
 c of maximum slope and the interior plasmaspheric density where the initial
 c power law slope matches the plasmasphere interior density slope
       alpha=-log10(dens/psden)/log10(transh/psh)
       ano=dens/transh**(-alpha)
 d     print *,'reworked bridge:',psL,psh,psden,am1,b1
-d	print *,'leaving iri_ps_eq_bridge',alpha,ano,dens,ro,transh
+d	  print *,'leaving iri_ps_eq_bridge',alpha,ano,dens,ro,transh
 
 	return
 	end

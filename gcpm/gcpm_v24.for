@@ -274,7 +274,7 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 !  execute this section if we are equatorward of the polar cap
 	  edensity=ne_iri_ps_trough(r,al,alatr,amlt,akp,itime)
        ! edensity = 0.0_DP
-!     print *,'low n:',edensity
+!	  print *,'low n:',edensity
 	else
 	  if(al.le.tranhigh) then
 !  execute this section if we are in the transition region between
@@ -284,7 +284,7 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 	    switch=switchon(al,alcrit,altrans)
 	    edensity=ps_edensity*(1.0-switch)+
      &		cap_edensity*switch
-	! print *,'mid n:',r,ps_edensity,cap_edensity,edensity,switch
+!	  print *,'mid n:',r,ps_edensity,cap_edensity,edensity,switch
 	  else
  ! execute this section if we are polarward of the trough
 	    edensity=ne_iri_cap(r,alatr,amlt,itime)

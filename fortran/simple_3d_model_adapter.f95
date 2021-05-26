@@ -733,7 +733,7 @@ real(kind=DP), parameter :: PN(72, 10) =reshape(&
 
     ! geocentric radii for all (L,lam) pairs
     r = (REkm) * L * cos(lamr)**2 
-  
+
     ! Location of the plasmapause (Lpp = a8).
     ! a9 is a dropoff rate used in the expression
     ! for H.
@@ -771,7 +771,7 @@ real(kind=DP), parameter :: PN(72, 10) =reshape(&
       ne_eq_ps = main_ps_density(L, a8, a9, iyear, doy, akp, amlt, lam, r)
       ! Get altitude where ionosphere and plasmasphere intersect:
       call find_intersection_iono_ps(a8, a9, iyear, doy, akp, lamr, amlt, iono_merge_altitude)
-      ! print *, 'after main call', a8
+      ! print *, 'merge alt', iono_merge_altitude
       ne_eq_iono = ne_iono(lamr*R2D, amlt, r - REkm)
       switch_iono2ps = 1.0 - switch(r - REkm, iono_merge_altitude - iono_merge_radius/2.0, iono_merge_radius)
       ne_eq_ps = ne_eq_iono*switch_iono2ps + (1.0 - switch_iono2ps)*ne_eq_ps
@@ -806,7 +806,7 @@ real(kind=DP), parameter :: PN(72, 10) =reshape(&
       che= alphaHe*ce     ! Helium
       co = alphaO*ce      ! Oxygen
       ch = ce - che - co  ! Hydrogen (whatever's left)
-      
+
     ! end if
     ! species charge and mass
     ! (Electrons, Hydrogen, Helium, Oxygen)

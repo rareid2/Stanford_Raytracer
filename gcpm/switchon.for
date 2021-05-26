@@ -10,6 +10,7 @@
 !
 	c=3.4534/da
 	switchon=tanh(c*(x-a))/2+0.5
+	!print *, 'i am groot', switchon,c,x,a
 	return
 	end
 	
