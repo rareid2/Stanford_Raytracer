@@ -53,5 +53,5 @@ tidy:
 	# $(MAKE) -C iri2007 clean
 	# $(MAKE) -C tsyganenko clean
 	# $(MAKE) -C tricubic-for clean
-	# $(MAKE) -C gcpm clean
+	$(MAKE) -C gcpm clean
 	$(MAKE) -C fortran clean

@@ -23,7 +23,7 @@
 	real(kind=DP) :: pp_profile,al,amlt,a8,a9,factor
 	real(kind=DP) :: centroid,akp_old,akp,amlt_old
 	data akp_old/-99.0/,amlt_old/-99.0/
-!     print *,'into pp_profile:',al,amlt,akp,a8
+	print *,'into pp_profile:',al,amlt,akp,a8
 !
 !  Allow for mlt rotation of the buldge with Kpmax
 	if((akp.ne.akp_old) .or. (amlt.ne.amlt_old)) 
