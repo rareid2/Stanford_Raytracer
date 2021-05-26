@@ -217,6 +217,7 @@ program dumpmodel
   allocate(z(nz))
 
   ! equivalent to linspace
+  ! so I guess this is solar magnetic??
   delx = (maxx-minx)/(nx-1.0_DP)
   dely = (maxy-miny)/(ny-1.0_DP)
   delz = (maxz-minz)/(nz-1.0_DP)
@@ -515,6 +516,7 @@ program dumpmodel
            do i=1,nx
               ! print *, 'i=',i, '/', nx, 'j=',j, '/', ny, 'k=',k, '/', nz
               flush(OUTPUT_UNIT)
+              ! print *, 'input coords', x(i), y(i), z(k)
               call fgcpm((/x(i),y(j),z(k)/), qs, Ns, ms, nus, B0, data)
               f(:,i,j,k) = (/qs, Ns, Ms, nus, B0/)
            end do

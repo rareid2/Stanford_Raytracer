@@ -118,7 +118,7 @@ contains
     ! Convert from SM x,y,z to GSM x,y,z needed by 
     ! the Tsyganenko model
     call SM_TO_GSM_d(datap%p%itime,x,x_gsm)
-    
+
     ! convert to spherical coordinates
     p_sm = cartesian_to_spherical(x)
     ! Convert magnetic r,theta,phi to SM local time in hours

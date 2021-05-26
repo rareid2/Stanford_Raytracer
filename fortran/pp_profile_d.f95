@@ -30,9 +30,9 @@ contains
         data akp_old/-99.0/,amlt_old/-99.0/
     !
     !  Allow for mlt rotation of the buldge with Kpmax
-	    !if((akp.ne.akp_old) .or. (amlt.ne.amlt_old)) then ! .or. (a8 == zero_check)) then
+	    if((akp.ne.akp_old) .or. (amlt.ne.amlt_old)) then ! .or. (a8 == zero_check)) then
         call bulge(amlt,akp,a8,a9,centroid)
-        !end if
+        end if
     !   print *,'Recalled subroutine bulge'
         akp_old=akp
         amlt_old=amlt
