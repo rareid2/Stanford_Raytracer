@@ -733,6 +733,7 @@ real(kind=DP), parameter :: PN(72, 10) =reshape(&
 
     ! geocentric radii for all (L,lam) pairs
     r = (REkm) * L * cos(lamr)**2 
+    ! print *, 'r=', r, 'x=', x
 
     ! Location of the plasmapause (Lpp = a8).
     ! a9 is a dropoff rate used in the expression
@@ -769,6 +770,7 @@ real(kind=DP), parameter :: PN(72, 10) =reshape(&
       ! ! ------- Main plasmasphere profile -------------
       ! This includes Carpenter/Anderson PS model, trough model, and cap model
       ne_eq_ps = main_ps_density(L, a8, a9, iyear, doy, akp, amlt, lam, r)
+
       ! Get altitude where ionosphere and plasmasphere intersect:
       call find_intersection_iono_ps(a8, a9, iyear, doy, akp, lamr, amlt, iono_merge_altitude)
       ! print *, 'merge alt', iono_merge_altitude
@@ -801,6 +803,11 @@ real(kind=DP), parameter :: PN(72, 10) =reshape(&
       else
         alphaHe=0.0
       end if
+
+    ! lets see what happens when we set to 0 inside the earth
+    !  if (r.le.REkm) then
+    !    ce = 0.0_DP
+    !  end if
 
       ce = ce             ! Electrons
       che= alphaHe*ce     ! Helium

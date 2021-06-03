@@ -323,11 +323,13 @@ end function raytracer_evalrhs
 !
 function raytracer_stopconditions(pos, k, w, vprel, vgrel, dt, nstep, &
                                   maxsteps, minalt)
-  real(kind=DP) :: pos(3), k(3), w, vprel(3), vgrel(3), dt, minalt
+  real(kind=DP) :: pos(3), k(3), w, vprel(3), vgrel(3), dt, minalt, radial_dist, lat_angle
   integer :: raytracer_stopconditions, nstep, maxsteps
 
   raytracer_stopconditions = 0
-  if( sqrt(dot_product(pos,pos)) < minalt ) then
+  radial_dist = sqrt(pos(1)*pos(1) + pos(2)*pos(2) + pos(3)*pos(3))
+  lat_angle = asin(pos(3)/radial_dist)
+  if(( sqrt(dot_product(pos,pos)) < minalt).and.(lat_angle > 0.0_DP)) then
     ! Minimum altitude reached
     raytracer_stopconditions = 1
     print *, '  Stopping integration.  Specified minimum altitude reached.'

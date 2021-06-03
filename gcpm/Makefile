@@ -34,6 +34,6 @@ libgcpm.a: ${OBJECTS}
 	ar rc libgcpm.a ${OBJECTS}
 
 .for.o:
-	${G95} ${FLAGS} -c $<
+	f77 -Wall -fno-automatic -ffixed-line-length-132 -ffree-line-length-132 -fd-lines-as-comments -finit-local-zero -c $<
 
 %.o : %.mod  

@@ -16,30 +16,23 @@ c	ne_eq_trough = trough density in the equatorial plane
 c					in cm-3 units (real*4)
 c
 	function ne_eq_trough(al,amlt,akp)
-	implicit none
-	integer, parameter :: SP = selected_real_kind(p=6,r=37)
-	integer, parameter :: DP = selected_real_kind(p=13,r=200)
 c
-	real(kind=DP) :: ne_eq_trough,al,amlt,akp
-	real(kind=DP) :: phitp,antp,damping_time,damping
-	real(kind=DP) :: dendamp,dengrow,rz12,f107
-	real(kind=DP) :: switch0,switch1,switch2,switch3
-	real(kind=DP) :: down_time,del,center,diff,aminden,width,denmin
-	real(kind=DP) :: sdel,shift,switchon
-	real(kind=DP) :: ne_inner_ps,a6,a7,x234,doy
-	real(kind=DP) :: dummy,am1,b1,trough_density
-	real(kind=DP) :: zl,oldl,a8,trough
-	real(kind=DP) :: outf(20,100),oarr(50),alatr,along
-	real(kind=DP) :: geosync_trough, r, doy_factor, stepl
-	real(kind=DP) :: a, b, pp_profile, c, temp, check_crossing
-	integer(kind=SP) :: icount,itime(2),iyear,itime1_o,itime2_o
-    
-	real(kind=DP) :: a6old, a7old, a8old, pi, re
-	data a6old/0.0/,a7old/0.0/,a8old/0.0/
+	real ne_eq_trough,al,amlt,akp
+	real phitp,antp,damping_time,damping
+	real dendamp,dengrow,rz12,f107
+	real switch0,switch1,switch2,switch3
+	real down_time,del,center,diff,aminden,width,denmin
+	real sdel,shift,switchon
+	real ne_inner_ps,a6,a7,x234,doy
+	real dummy,am1,b1,trough_density
+      real zl,oldl,a8,trough
+	real outf(20,100),oarr(50),alatr,along
+      integer*4 icount,itime(2),iyear,itime1_o,itime2_o
+      data a6old/0.0/,a7old/0.0/,a8old/0.0/
 
 	common /irioutput/ rz12,f107
 
-d     print *,'ne_eq_trough caled with',al,amlt,akp
+d     type *,'ne_eq_trough caled with',al,amlt,akp
 
 c
 c  compute MLT where trough density peaks assuming constant Kp
@@ -75,26 +68,26 @@ c  must deal with computation differently based on current mlt
 	sdel=0.4
 	shift=0.5
 	switch1=switchon(amlt,3.5+shift,sdel)
-	switch2=switchon(amlt,phitp,0.5_DP)
+	switch2=switchon(amlt,phitp,0.5)
 	if(amlt.lt.8.0) then
 	  dendamp=antp+damping*(amlt+24.0-phitp)
 	  switch0=switchon(amlt,down_time-24.0-shift,sdel)
 	  geosync_trough= denmin*switch0*(1.0-switch1) 
      &		+ dendamp*(1.0-switch0)
      &	           + dengrow*switch1*(1.0-switch2)
-d     print *,'lt.8.0:',denmin,switch0,switch1,dendamp,dengrow
+d     type *,'lt.8.0:',denmin,switch0,switch1,dendamp,dengrow
 	else
 	  dendamp=antp+damping*(amlt-phitp)
 	  switch3=switchon(amlt,down_time-shift,sdel)
 	  geosync_trough= denmin*switch3 + dengrow*switch1*(1.0-switch2)
      &	           + dendamp*switch2*(1.0-switch3)
-d     print *,'ge.8.0:',denmin,switch3,dengrow,switch1,switch2,dendamp
+d     type *,'ge.8.0:',denmin,switch3,dengrow,switch1,switch2,dendamp
 	end if
 c scale density from trough density at geosynchronous orbit
 c to L-shell of interest "l" using a power law of -4.5 in L
 c	    =ne_trough[at L=6.6]*al**(-4.5)/6.6**(-4.5)
 	trough_density=geosync_trough*al**(-4.5)/2.0514092e-4
-d     print *,'trough:',geosync_trough,trough_density,al
+d     type *,'trough:',geosync_trough,trough_density,al
 	ne_eq_trough=trough_density
 c
 	return
@@ -167,7 +160,7 @@ c  call IRI to get the value of rz12 loaded
      &    + (0.00127*rz12-0.0635) ) * exp(-(al-2.0)/1.5)
 	  itime1_o=itime(1)
 	  itime2_o=itime(2)
-c      print *,'season_cycle factor: ',doy,rz12,al,x234
+c      type *,'season_cycle factor: ',doy,rz12,al,x234
 	end if
 
 c calculate the inner plasmaspheric equatorial density
@@ -186,7 +179,7 @@ c no plasmapause. If a8 is beyond that point, then the crossing point is
 c substituted for a8.
       entry check_crossing(a8,am1,b1,x234,amlt,akp)
 
-d      print *,'initial crossing=',a8,am1,b1,amlt,akp
+d      type *,'initial crossing=',a8,am1,b1,amlt,akp
 c Determine where the inner plasmasphere plus plasmapause profile
 c intersects with the trough density profile.
       stepl=0.5
@@ -195,7 +188,7 @@ c intersects with the trough density profile.
       b=pp_profile(zl,amlt,akp,a8)
       c=geosync_trough*zl**(-4.5)/2.0514092e-4
       diff=a*b - c
-d     print *,'crossing:',zl,stepl,diff,a,b,c,geosync_trough,a8,akp,amlt
+d     type *,'crossing:',zl,stepl,diff,a,b,c,geosync_trough,a8,akp,amlt
       icount=0
       do while (abs(stepl).gt.0.05)
         if ((diff.lt.0.0).and.(stepl.gt.0.0) .or.
@@ -204,12 +197,14 @@ d     print *,'crossing:',zl,stepl,diff,a,b,c,geosync_trough,a8,akp,amlt
 c same calculation done in ne_inner_ps
         diff=10**(am1*zl+b1 + x234)*pp_profile(zl,amlt,akp,a8) 
      &     -geosync_trough*zl**(-4.5)/2.0514092e-4
-d     print *,'crossing:',zl,stepl,diff
+d     type *,'crossing:',zl,stepl,diff
         icount=icount+1
         if (icount.gt.100) then
           temp=pp_profile(zl,amlt,akp,a8)
-d          print *,'check_crossing is loop-bound:',am1,b1,zl,x234,amlt,akp,a8, temp,geosync_trough,stepl
-d          print *,'STOPPING***********'
+d         type *,'check_crossing is loop-bound:',
+d     &                am1,b1,zl,x234,amlt,akp,a8,
+d     &                temp,geosync_trough,stepl
+d          type *,'STOPPING***********'
           stop
         endif
       enddo
