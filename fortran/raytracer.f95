@@ -329,7 +329,7 @@ function raytracer_stopconditions(pos, k, w, vprel, vgrel, dt, nstep, &
   raytracer_stopconditions = 0
   radial_dist = sqrt(pos(1)*pos(1) + pos(2)*pos(2) + pos(3)*pos(3))
   lat_angle = asin(pos(3)/radial_dist)
-  if(( sqrt(dot_product(pos,pos)) < minalt).and.(lat_angle > 0.0_DP)) then
+  if(( sqrt(dot_product(pos,pos)) < minalt).and.(lat_angle < 0.0_DP)) then
     ! Minimum altitude reached
     raytracer_stopconditions = 1
     print *, '  Stopping integration.  Specified minimum altitude reached.'
@@ -657,7 +657,7 @@ subroutine raytracer_run( pos,time,vprel,vgrel,n,&
 
   real(kind=DP) :: kmag, kmag_prev, k_err
   real(kind=DP) :: cur_dir(3), prev_dir(3)
-  real(kind=DP) :: angle_error, n_angle_refines
+  real(kind=DP) :: angle_error, n_angle_refines, rf
 
   ! Convention: If dir0 is all zeroes, start aligned with the field:
   if ((dir0(1).eq.0).and.(dir0(2).eq.0).and.(dir0(3).eq.0)) then
@@ -747,6 +747,8 @@ subroutine raytracer_run( pos,time,vprel,vgrel,n,&
   ! print *,'Starting kay: ',x(4:6)
 
   nstep = 1
+  rf = 0
+
   do
      if( t >= tmax ) then
         ! Normal exit
@@ -893,11 +895,17 @@ subroutine raytracer_run( pos,time,vprel,vgrel,n,&
      if( dot_product(imag(k),imag(k)) > 0.0_DP ) then
         if( fixedstep == 0 ) then
            ! Force a refinement if we've popped outside the resonance cone.
-           print *, 'Refine down: outside of resonance cone'
+           print *, 'Refine down: outside of resonance cone', rf
            dt=dt/2.0_DP
            lastrefinedown = 1
            ! stopcond = 2
            ! exit
+           rf = rf + 1
+           if (rf > 3) then
+              stopcond = 1
+              print *, 'too many refines'
+              exit
+           end if
            cycle
         else
            ! print *, &

@@ -805,9 +805,9 @@ real(kind=DP), parameter :: PN(72, 10) =reshape(&
       end if
 
     ! lets see what happens when we set to 0 inside the earth
-    !  if (r.le.REkm) then
-    !    ce = 0.0_DP
-    !  end if
+      if (r.le.REkm) then
+        ce = 0.0_DP
+      end if
 
       ce = ce             ! Electrons
       che= alphaHe*ce     ! Helium

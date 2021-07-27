@@ -18,6 +18,7 @@ endif
 sources = \
 	AT64ThCh_adapter.f95 \
 	bmodel_dipole.f95 \
+	dipole_fieldline_trace.f95 \
 	pp_profile_d.f95 \
 	switch_d.f95 \
 	constants.f95 \
@@ -71,6 +72,8 @@ clean:
 
 bmodel_dipole.f95 : util.o constants.o types.o
 
+dipole_fieldline_trace.f95 : util.o constants.o bmodel_dipole.o types.o
+
 gcpm_dens_model_adapter.f95 : util.o constants.o bmodel_dipole.o types.o
 
 gcpm_dens_model_buildgrid_random_helpermod.f95 : util.o constants.o bmodel_dipole.o types.o
@@ -100,6 +103,8 @@ gcpm_dens_model_buildgrid_random.f95 : constants.o util.o kdtree_mod.o gcpm_dens
 kdtree_mod.f95 : types.o
 
 lsinterp_mod.f95 : kdtree_mod.o types.o util.o constants.o bmodel_dipole.o kdtree_mod.o blas.o
+
+AT64ThCh_adapter.f95 : util.o constants.o bmodel_dipole.o types.o dipole_fieldline_trace.o
 
 %.o : %.mod
 
