@@ -1,7 +1,9 @@
+# this sets the subdirectories so their makefiles get built
 SUBDIRS = xform xform_double iri2007 tsyganenko tricubic-for gcpm fortran
 # export G95 = g95
 export G95 = gfortran
 
+# USE GFORTRAN (gcpm builds better with it)
 ifeq "${G95}" "g95"
 export FLAGS = -Wall -fstatic -ffixed-line-length-132 -ffree-line-length-huge
 endif
@@ -13,7 +15,7 @@ ifeq "${G95}" "gcc"
 export FLAGS = -Wall
 endif
 
-
+# different types of make calls
 .PHONY: all
 all:
 	$(MAKE) -C lapack-3.2.1
@@ -27,10 +29,10 @@ all:
 #	$(MAKE) -C damping
 
 test:
-	$(MAKE) -C lapack-3.2.1
-	$(MAKE) -C xform
-	$(MAKE) -C xform_double
-	$(MAKE) -C iri2007
+#	$(MAKE) -C lapack-3.2.1
+#	$(MAKE) -C xform
+#	$(MAKE) -C xform_double
+#	$(MAKE) -C iri2007
 	$(MAKE) -C fortran
 # 	$(MAKE) -C tsyganenko
 # 	$(MAKE) -C tricubic-for
@@ -47,11 +49,11 @@ clean:
 	$(MAKE) -C fortran clean
 
 tidy:
-	# $(MAKE) -C lapack-3.2.1 clean
-	# $(MAKE) -C xform clean
-	# $(MAKE) -C xform_double clean
-	# $(MAKE) -C iri2007 clean
-	# $(MAKE) -C tsyganenko clean
-	# $(MAKE) -C tricubic-for clean
+# 	$(MAKE) -C lapack-3.2.1 clean
+# 	$(MAKE) -C xform clean
+# 	$(MAKE) -C xform_double clean
+#	$(MAKE) -C iri2007 clean
+#	$(MAKE) -C tsyganenko clean
+#	$(MAKE) -C tricubic-for clean
 	$(MAKE) -C gcpm clean
 	$(MAKE) -C fortran clean
