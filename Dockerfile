@@ -35,6 +35,7 @@ RUN git submodule init
 
 RUN ls
 # build!
-#RUN make
 
-# 
+RUN make
+
+CMD ["python3 python_setup/ray_input.py"] 
