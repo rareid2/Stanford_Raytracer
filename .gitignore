@@ -8,5 +8,8 @@
 # Exclude all files in the bin
 bin/*
 
+# and pycache ugh
+python_setup/__pycache__/*
+
 # Make sure we include the folder itself tho
 !bin/.gitkeep
