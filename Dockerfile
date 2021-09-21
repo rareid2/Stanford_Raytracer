@@ -19,19 +19,22 @@ RUN apt install gfortran -y
 RUN apt install git -y
 
 # now we need python3
-RUN apt-get install python3
+RUN apt-get install python3 -y
 
-RUN pip install -r requirements.txt
+# we need pip also
+RUN apt install python3-pip -y
 
 # Copy project over to the docker image
 COPY . .
 
-# now we need to add in the git submodule
+# get the needed python packages
+RUN pip3 install -r python_setup/requirements.txt
+
+# now we need to add in the git submodule for coordinate transforms
 RUN git submodule init
 
-
-
+RUN ls
 # build!
 #RUN make
-RUN python
-#CMD ["/bin/bash"]
+
+# 
