@@ -1,5 +1,12 @@
 # Stanford_Raytracer
 
+Welcome to the Stanford Raytracer. This ray tracing program computes VLF ray paths in the magnetosphere.
+This ray tracer has been moved to run on CU's supercomputer (Blanca via Summit -- see more info here).
+
+I would strongly recommend following the instructions below to running this repo on the supercomputer. 
+If you need to make changes to the source code (all Fortran based) then follow the instructions at the very end to
+install this repo on your local machine and modify it. 
+
 Firstly, this requires gfortran-8. A lot of new systems are using gfortran-9, so you might need to install the earlier version and make sure to update your priorities. Follow this link (change everywhere you see gcc to gfortran)
 https://wiki.usask.ca/display/MESH/How-to+install+and+run+multiple+versions+of+GNU+compilers+in+an+Ubuntu+environment
 
