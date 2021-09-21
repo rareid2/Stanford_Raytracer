@@ -11,6 +11,7 @@ bin/*
 # and pycache ugh
 python_setup/libxformd/
 python_setup/__pycache__/*
+python_setup/test_env/
 
 # Make sure we include the folder itself tho
 !bin/.gitkeep

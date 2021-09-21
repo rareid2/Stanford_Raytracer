@@ -9,7 +9,9 @@ from convert_coords import convert2
 from helper_funcs import get_yearmiliday,getBdir,parallel_run_rays,read_rayfile
 
 # Opening JSON file
-f = open('config.json')
+cwd = os.getcwd()
+print(cwd)
+f = open(cwd+'/config.json')
 # returns JSON object as a dictionary
 settings = json.load(f)
 
@@ -35,7 +37,7 @@ root = settings['root']
 fixedstep = settings['fixedstep']
 maxerr = settings['maxerr']
 maxsteps = settings['maxsteps']
-mode = settings['md']
+mode = settings['mode']
 
 if mode == 'GCPM':
     md = 6
