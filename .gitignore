@@ -4,6 +4,7 @@
 *.a
 *.o
 *.mod
+*.pyc
 
 # Exclude all files in the bin
 bin/*
