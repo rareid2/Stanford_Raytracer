@@ -1,7 +1,6 @@
 
 {
-    "raytracer_dir": "/bin",
-    "rayfile_directory": "output/",
+    "rayfile_directory": "/home/rileyannereid/workspace/output",
 
     "date_time_iso_utc":"2021-09-21T14:12:0.0Z",
 

@@ -10,33 +10,12 @@ from helper_funcs import get_yearmiliday,getBdir,parallel_run_rays,read_rayfile
 
 # Opening JSON file
 cwd = os.getcwd()
-print(cwd)
 f = open(cwd+'/config.json')
 # returns JSON object as a dictionary
 settings = json.load(f)
 
 #  -------------------------- import settings from config file -----------------------------
-raytracer_dir = settings['raytracer_dir']
 rayfile_directory = settings['rayfile_directory']
-
-minalt = settings["minalt"]+R_E
-Kp = settings['Kp']
-AE = settings['AE']
-Pdyn = settings['Pdyn']
-Dst = settings['Dst']
-ByIMF = settings['ByIMF']
-BzIMF = settings['BzIMF']
-W = settings['W']
-use_tsyg = settings['use_tsyg']
-use_IGRF = settings['use_IGRF']
-
-t_max = settings['t_max']
-dt0 = settings['dt0']
-dtmax = settings['dtmax']
-root = settings['root']
-fixedstep = settings['fixedstep']
-maxerr = settings['maxerr']
-maxsteps = settings['maxsteps']
 mode = settings['mode']
 
 if mode == 'GCPM':

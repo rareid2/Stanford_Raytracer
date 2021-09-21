@@ -7,7 +7,7 @@ from constants import *
 # point to coordinate transform library
 from libxformd import xflib
 cwd = os.getcwd()
-xf = xflib.xflib(lib_path=cwd+'/libxformd/libxformd.so')
+xf = xflib.xflib(lib_path=cwd+'/python_setup/libxformd/libxformd.so')
 
 def convert2(pos_array, dt_array, crs1, carsph1, units1, crs2, carsph2, units2):
     # supports SM, GEI, and GEO cartesian/spherical

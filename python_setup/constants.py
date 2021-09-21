@@ -1,5 +1,7 @@
 # import packages needed to define settings
 import numpy as np
+import os
+import json 
 
 # Constants (matching the Fortran raytracer)
 EPS0 = 8.854187817e-12        # C^2/Nm^2 
@@ -14,3 +16,29 @@ Rad2Hz = 1./Hz2Rad            # Hz
 Q_EL = 1.602e-19              # C
 M_EL = 9.1e-31                # kg
 M_P = 1.67e-27                # kg
+
+cwd = os.getcwd()
+raytracer_dir = cwd+'/bin'
+# Opening JSON file
+f = open(cwd+'/config.json')
+# returns JSON object as a dictionary
+settings = json.load(f)
+
+minalt = settings["minalt"]+R_E
+Kp = settings['Kp']
+AE = settings['AE']
+Pdyn = settings['Pdyn']
+Dst = settings['Dst']
+ByIMF = settings['ByIMF']
+BzIMF = settings['BzIMF']
+W = settings['W']
+use_tsyg = settings['use_tsyg']
+use_IGRF = settings['use_IGRF']
+
+t_max = settings['t_max']
+dt0 = settings['dt0']
+dtmax = settings['dtmax']
+root = settings['root']
+fixedstep = settings['fixedstep']
+maxerr = settings['maxerr']
+maxsteps = settings['maxsteps']
