@@ -18,8 +18,8 @@ Q_EL = 1.602e-19              # C
 M_EL = 9.1e-31                # kg
 M_P = 1.67e-27                # kg
 
-cwd = os.getcwd()
-raytracer_dir = cwd+'/bin'
+file_location = os.path.dirname(__file__)
+raytracer_dir = os.path.join(file_location, '../bin')
 
 # Opening JSON file
 fpath = sys.argv[1]
