@@ -8,12 +8,6 @@ from constants import *
 from convert_coords import convert2
 from helper_funcs import get_yearmiliday,getBdir,parallel_run_rays,read_rayfile
 
-# Opening JSON file
-cwd = os.getcwd()
-f = open(cwd+'/config.json')
-# returns JSON object as a dictionary
-settings = json.load(f)
-
 #  -------------------------- import settings from config file -----------------------------
 rayfile_directory = settings['rayfile_directory']
 mode = settings['mode']

@@ -33,9 +33,8 @@ RUN pip3 install -r python_setup/requirements.txt
 # now we need to add in the git submodule for coordinate transforms
 RUN git submodule init
 
-RUN ls
 # build!
-
 RUN make
 
-CMD ["python3 python_setup/ray_input.py"] 
+# default command? 
+CMD ["echo", "Hello im the stanford raytracer"]

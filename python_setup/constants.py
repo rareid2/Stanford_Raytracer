@@ -1,6 +1,7 @@
 # import packages needed to define settings
 import numpy as np
 import os
+import sys
 import json 
 
 # Constants (matching the Fortran raytracer)
@@ -19,8 +20,10 @@ M_P = 1.67e-27                # kg
 
 cwd = os.getcwd()
 raytracer_dir = cwd+'/bin'
+
 # Opening JSON file
-f = open(cwd+'/config.json')
+fpath = sys.argv[1]
+f = open(fpath)
 # returns JSON object as a dictionary
 settings = json.load(f)
 
