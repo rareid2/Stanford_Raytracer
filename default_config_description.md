@@ -1,12 +1,11 @@
 # Raytracer settings 
 In this file is a list of all of the settings that go in to the raytracer and a description of each.
 
-For most, I'd reccommend just starting from the default. Note that for ranges with (reccommended), you could technically go outside that range, but I have no clue what might happen.
+For most, I'd reccommend just starting from the default. Note that for ranges with (reccommended), you could technically go outside that range.
 
 ## User settings 
-*rayfile_directory*: "/projects/<username>"
-
-This is where you want the output of the raytracer to go. I'd stick with your projects directory on the supercomputer. 
+- *rayfile_directory*: "/projects/<username>"
+  - This is where you want the output of the raytracer to go. I'd stick with your projects directory on the supercomputer. 
 
 ## Environment settings
 *date_time_iso_utc*: "2019-04-21T12:00:0.0Z"
