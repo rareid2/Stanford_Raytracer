@@ -101,7 +101,7 @@ def single_run_rays(ray_datenum, positions, directions, freqs, rayfile_directory
     ray_outfile = os.path.join(ray_out_dir, 'ray_out_mode%d_%s.ray' % (md,fp))
 
     # The base command -- with parameters common for all modes
-    base_cmd = './raytracer --outputper=%d --dt0=%g --dtmax=%g' % (1, dt0, dtmax) + \
+    base_cmd = './raytracer --outputper=%d --dt0=%g --dtmax=%g' % (outputper, dt0, dtmax) + \
                 ' --tmax=%g --root=%d --fixedstep=%d --maxerr=%g' % (t_max, root, fixedstep, maxerr) + \
                 ' --modelnum=%d --maxsteps=%d --minalt=%d --inputraysfile="%s"' % (
                     md, maxsteps, minalt, ray_inpfile) + \

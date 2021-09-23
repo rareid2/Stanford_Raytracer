@@ -8,15 +8,37 @@ install this repo on your local machine and modify it.
 
 ## First a quick tour of the folders in here 
 bin - executables (the docker image pulls the ./raytracer from here)
+
 fortran - all fortran source code (raytracer, plasmasphere model adapters, etc.)
+
 gcpm - GCPM (a plasmasphere model, the simplification to create mode 6 occurs in fortran source code)
+
 iri2007 - IRI (an ionosphere model, required by GCPM)
+
 lapack-3.2.1 - Lapack and BLAS, used for solving Ax=b
+
 matlab - a raytracer written in matlab. i think it works, but I've never used it...
+
 tricubic-for - Tricubic interpolator
+
 tsyganenko - Tsyganenko magnetosphere model
+
 xform - coordinate transformation tools (single precision)
+
 xform_double - coordinate transformation tools (double precision), this is also used inside of python_setup for coordinate transforms with a python wrapper... might be redudant but oh well
+
+and the files:
+
+Makefile - this runs the make command to build the raytracer
+
+Dockerfile - buils the raytracer into an image
+
+.dockerignore, .gitignore, .gitmodules - docker and git specific files to keep it nice
+
+config.json - an example of a raytracer input file
+
+raytracer_settings.txt - a description of every single parameter in more detail than you likely want for the config.json file
+
 
 ## Getting the raytracer on summit
 1. First, you need an account. Follow the instructions here to get one.
