@@ -16,7 +16,7 @@ def getBdir(ray_start, ray_datenum, rayfile_directory, thetas, phis, md, freq):
     directions = [(0,0,0)]
     freqs = [freq]
     # going to run a ray real quick
-    single_run_rays(ray_datenum, positions, directions, freqs, rayfile_directory, md)
+    single_run_rays(ray_datenum, positions, directions, freqs, rayfile_directory, md, 0)
 
     # Load all the rayfiles in the output directory
     ray_out_dir = rayfile_directory + '/'+dt.datetime.strftime(ray_datenum, '%Y-%m-%d_%H_%M_%S')
@@ -25,7 +25,7 @@ def getBdir(ray_start, ray_datenum, rayfile_directory, thetas, phis, md, freq):
     # create empty lists to fill with ray files and damp files
     raylist = []
     for filename in file_titles:
-        if '.ray' in filename and str(md) in filename and str('Main') in filename:
+        if '.ray' in filename and str(md) in filename and '0' in filename:
             print(filename)
             raylist += read_rayfile(os.path.join(ray_out_dir, filename))
 
@@ -63,14 +63,11 @@ def get_yearmiliday(ray_datenum):
 
 
 # ----------------------------- run -----------------------------------------------
-def single_run_rays(ray_datenum, positions, directions, freqs, rayfile_directory, md):
+def single_run_rays(ray_datenum, positions, directions, freqs, rayfile_directory, md, wid):
 
     # this is just a silly way to get the names of the workers to keep everyone separate
-    fp = str(multiprocessing.current_process())[19:36]
-    fp = fp.replace("'",'')
-    if len(fp) < 17:
-        fp = fp[:-1] + '0' + fp[-1]
-    # make numbers double digit
+    fp = '_worker_'+str(wid)
+    # TODO test this out!
 
     yearday, milliseconds_day = get_yearmiliday(ray_datenum)
 
@@ -151,8 +148,11 @@ def parallel_run_rays(ray_datenum, positions, directions, freqs, output_director
     position_list = [positions[int(i * (nrays/nmbrcores)):int((i+1)*nrays/nmbrcores)] for i in range(nmbrcores)]
     freq_list = [freqs[int(i * (nrays/nmbrcores)):int((i+1)*nrays/nmbrcores)] for i in range(nmbrcores)]
 
+    # unique name
+    worker_id = [i for i in range(1, nmbrcores+1)]
+
     # send in all the arguments
-    lstarg = zip(time_list, position_list, direction_list, freq_list, output_directory_list, mds)
+    lstarg = zip(time_list, position_list, direction_list, freq_list, output_directory_list, mds, worker_id)    
     
     with Pool(nmbrcores) as p:
         results = p.starmap(single_run_rays, lstarg)
