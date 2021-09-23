@@ -25,7 +25,7 @@ def getBdir(ray_start, ray_datenum, rayfile_directory, thetas, phis, md, freq):
     # create empty lists to fill with ray files and damp files
     raylist = []
     for filename in file_titles:
-        if '.ray' in filename and str(md) in filename and '0' in filename:
+        if '.ray' in filename and str(md) in filename and 'worker_0.' in filename:
             print(filename)
             raylist += read_rayfile(os.path.join(ray_out_dir, filename))
 
@@ -66,7 +66,7 @@ def get_yearmiliday(ray_datenum):
 def single_run_rays(ray_datenum, positions, directions, freqs, rayfile_directory, md, wid):
 
     # this is just a silly way to get the names of the workers to keep everyone separate
-    fp = '_worker_'+str(wid)
+    fp = 'worker_'+str(wid)
     # TODO test this out!
 
     yearday, milliseconds_day = get_yearmiliday(ray_datenum)
@@ -80,7 +80,7 @@ def single_run_rays(ray_datenum, positions, directions, freqs, rayfile_directory
         os.makedirs(ray_out_dir)
 
     # Set input file path
-    ray_inpfile = os.path.join(ray_out_dir, 'ray_inpfile'+fp+'.txt')
+    ray_inpfile = os.path.join(ray_out_dir, 'ray_inpfile_'+fp+'.txt')
 
     # Write the ray input file
     f = open(ray_inpfile, 'w')

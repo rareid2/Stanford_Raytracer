@@ -41,32 +41,46 @@ raytracer_settings.txt - a description of every single parameter in more detail 
 
 
 ## Getting the raytracer on summit
-1. First, you need an account. Follow the instructions here to get one.
-If you have on, log in from terminal, `ssh username@login.rc.colorado.edu`
+1. First, you need an account. Follow the instructions [here](https://rcamp.rc.colorado.edu/accounts/account-request/create/organization) to get one.
+If you have on, log in from terminal, 
+`ssh username@login.rc.colorado.edu`
 
-Learn a little about the file structure here. You have a home directory, projects directory, and a scratch directory. I'd reccommend installing the raytracer image into the projects directory, and keeping your job scripts and config files in here too. 
+Learn a little about the file structure [here](https://curc.readthedocs.io/en/latest/compute/filesystems.html). You have a home directory, projects directory, and a scratch directory. I'd reccommend installing the raytracer image into the projects directory, and keeping your job scripts and config files in here too. 
 
 2. We need to pull the latest image of the raytracer into summit. We have to do this from a compile node, so go ahead and run: 
 `ssh scompile`
 
 Note that when you run this, it will take you right back to your home directory. Let's move over to projects:
-`cd \projects\username` 
+`cd /projects/username` 
 
-Now let's get singularity module loaded (a containerization software supported by summit - more information here):
+Now let's get singularity module loaded (a containerization software supported by summit - more information [here](https://curc.readthedocs.io/en/latest/software/ContainerizationonSummit.html?highlight=singularity#singularity)):
 `module load singularity/3.6.4`
 
 And finally, let's get the image (this might take a sec, it's about 1GB):
 `singularity pull docker://rareid/raytracer:latest`
 
-3. Now we have the raytracer image, and we are logged into summit. Our last two steps are to set up the config file and the job script.
-The job script sumbits to blanca or summit. If you'd like an example job script, there's one included in this repo that you can download and move into the supercomputer. 
+If you've got a lot of images, or you re-ran this command a lot, you may encounter an error that says you don't have enough space for this image. If that happens, try to purge your singularity cache:
+`singularity cache clean` 
 
+3. Now we have the raytracer image, and we are logged into summit. Our last two steps are to set up the config file and the job script.
+
+Let's start with the config file. It's easier to create this on your local machine and then copy it over. 
+
+First, wherever you like to work on code, make a file called `config.json.` 
+
+This will have all the settings for your raytracer run. There is a `default_config.json` in this repo that you can copy from and re-work as you like. You can copy over the default settings in the top of the file, and then edit the rays section as you please. 
+
+If you're running lots of rays, I'd reccommend generating this part with your coding language of choice. To generate the rays section from python, see [here](https://www.kite.com/python/answers/how-to-dump-a-dictionary-to-a-json-file-in-python). For matlab, see [here](https://www.mathworks.com/help/matlab/ref/jsonencode.html). I chose json because it's compatible with a lot of languages and easy to edit from a text editor (and bc a software developer told me too).
+
+For details 
+
+
+The job script sumbits to blanca or summit. There's an example for both blanca and summit included in this repo. 
 To do that, first download the file `raytracer_job.sh`. I'd reccommend editing locally before moving to the supercomputer. Open any text editor and open the recently downloaded `raytracer_job.sh`.
 
 
 For testing locally: (just for riley)
 `docker build -t rareid/raytracer:latest` and `docker push rareid/raytracer:latest`
-`singularity cache clean` 
 
 
 ## Running the raytracer locally using docker
