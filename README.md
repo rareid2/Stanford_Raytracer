@@ -34,74 +34,70 @@ If you don't already have a supercomputing account, skip to step 3 to start that
 
 1. *Create config file:* Let's start with the config file. It's easier to create this on your local machine and then copy it over. 
 
-  First, wherever you like to work on code, make a file called config.json.
+  - First, wherever you like to work on code, make a file called config.json.
 
-  This will have all the settings for your raytracer run. There is a [default_config.json](https://github.com/rareid2/Stanford_Raytracer/blob/master/default_config.json) in this repo that you can copy from and re-work as you like. You can copy over the default settings in the top of the file, and then edit the rays section. Details on these settings can be found here: [default_config_description.md](https://github.com/rareid2/Stanford_Raytracer/blob/master/default_config_description.md)
+  - This will have all the settings for your raytracer run. There is a [default_config.json](https://github.com/rareid2/Stanford_Raytracer/blob/master/default_config.json) in this repo that you can copy from and re-work as you like. You can copy over the default settings in the top of the file, and then edit the rays section. Details on these settings can be found here: [default_config_description.md](https://github.com/rareid2/Stanford_Raytracer/blob/master/default_config_description.md)
 
-  If you're running lots of rays, I'd reccommend generating this section with your language of choice. To generate the rays section from python, see [here](https://www.kite.com/python/answers/how-to-dump-a-dictionary-to-a-json-file-in-python). For matlab, see [here](https://www.mathworks.com/help/matlab/ref/jsonencode.html). I chose json format because it's compatible with a lot of languages and easy to edit from a text editor (and bc a software developer told me too).
+  - If you're running lots of rays, I'd reccommend generating this section with your language of choice. To generate the rays section from python, see [here](https://www.kite.com/python/answers/how-to-dump-a-dictionary-to-a-json-file-in-python). For matlab, see [here](https://www.mathworks.com/help/matlab/ref/jsonencode.html). I chose json format because it's compatible with a lot of languages and easy to edit from a text editor (and bc a software developer told me too).
 
-  Once you are happy with the config file, move on to the job script file. 
+  - Once you are happy with the config file, move on to the job script file. 
 
 2. *Create job script:* If you're running on blanca, take a look at [example_blanca_run.sh](https://github.com/rareid2/Stanford_Raytracer/blob/master/example_blanca_run.sh) and for summit take a look at [example_summit_run.sh](https://github.com/rareid2/Stanford_Raytracer/blob/master/example_summit_run.sh).
 
-  Make any edits you see fit (name, date, title of run). Finally, make sure your config file is titled 'config.json'. If it's not, you're going to need to change the run command to the correct name of the config file and path. This run script assumes you're going to put it in the projects directory, so let's do that next. 
+  - Make any edits you see fit (name, date, title of run). Finally, make sure your config file is titled 'config.json'. If it's not, you're going to need to change the run command to the correct name of the config file and path. This run script assumes you're going to put it in the projects directory, so let's do that next. 
 
 ## Getting the raytracer on summit
 3. *Get an account:* You need an account. Follow the instructions [here](https://rcamp.rc.colorado.edu/accounts/account-request/create/organization) to get one.
 
 4. *File transfer:* Next, move the run script and config file to supercomputer. 
 
-  Run this command from terminal to move it (you'll need log in info) `scp <path_to_config> <path_to_job_script> <username>@login.rc.colorado.edu:/projects/<username>/` 
+  - Run this command from terminal to move it (you'll need log in info) `scp <path_to_config> <path_to_job_script> <username>@login.rc.colorado.edu:/projects/<username>/` 
 
 5. *Log in:* Now, actually log in to the supercomputer:
 
-  `ssh <username>@login.rc.colorado.edu`
+  - `ssh <username>@login.rc.colorado.edu`
 
-  Learn a little about the file structure [here](https://curc.readthedocs.io/en/latest/compute/filesystems.html). You have a home directory, projects directory, and a scratch directory. I'd reccommend installing the raytracer image into the projects directory and keeping your job scripts and config files in here too.
+  - Learn a little about the file structure [here](https://curc.readthedocs.io/en/latest/compute/filesystems.html). You have a home directory, projects directory, and a scratch directory. I'd reccommend installing the raytracer image into the projects directory and keeping your job scripts and config files in here too.
 
-  Make sure the files are where they are supposed to be: 
+  - Make sure the files are where they are supposed to be: 
 
-  `cd /projects/<username>/`
+  - `cd /projects/<username>/`
 
-  `ls` 
+  - `ls` 
 
-  If you see a config file here and a job script you're good to go!
+  - If you see a config file here and a job script you're good to go!
 
-  6. *Load needed modules:* We now need to pull the latest image of the raytracer into summit. We have to do this from a compile node, so go ahead and run: 
+6. *Load needed modules:* We now need to pull the latest image of the raytracer into summit. We have to do this from a compile node, so go ahead and run: 
 
-  `ssh scompile`
+  - `ssh scompile`
 
-  Note that when you run this, it will take you right back to your home directory. Let's move over to projects again:
+   - Note that when you run this, it will take you right back to your home directory. Let's move over to projects again:
 
-  `cd /projects/<username>/` 
+  - `cd /projects/<username>/` 
 
-  Now let's get singularity module loaded (a containerization software supported by summit - more information [here](https://curc.readthedocs.io/en/latest/software/ContainerizationonSummit.html?highlight=singularity#singularity)):
+  - Now let's get singularity module loaded (a containerization software supported by summit - more information [here](https://curc.readthedocs.io/en/latest/software/ContainerizationonSummit.html?highlight=singularity#singularity)):
 
-  `module load singularity/3.6.4`
+  - `module load singularity/3.6.4`
 
-  7. *Pull latest image:* And finally, let's get the image (this might take a sec, it's about 1GB):
+7. *Pull latest image:* And finally, let's get the image (this might take a sec, it's about 1GB):
 
-  `singularity pull docker://rareid/raytracer:latest`
+  - `singularity pull docker://rareid/raytracer:latest`
 
-  If you've got a lot of images, or you re-ran this command a lot, you may encounter an error that says you don't have enough space for this image. If that happens, try to purge your singularity cache:
+  - If you've got a lot of images, or you re-ran this command a lot, you may encounter an error that says you don't have enough space for this image. If that happens, try to purge your singularity cache:
 
-  `singularity cache clean` 
+  - `singularity cache clean` 
 
-  8. *Submit job:* That's everything we need! Let's submit the job. 
+8. *Submit job:* That's everything we need! Let's submit the job. 
 
-  Type `cntrl+d` to exit out of the compile node. 
+  - Type `cntrl+d` to exit out of the compile node. 
 
-  If you're running on blanca, you need to load that module real quick: 
+  - If you're running on blanca, you need to load that module real quick: 
 
-  `module load slurm/blanca` 
+  - `module load slurm/blanca` 
 
-  Now, run:
+  - Now, run `sbatch <jobfile.sh>` to submit your job.
 
-   `sbatch <jobfile.sh>` 
-   
-   to submit your job.
-
-  And you're done! Terminal output (ray exit code, etc.) will be in the `REPORT` file when the job finishes, in your project directory. The actual ray output will be in a folder created where you specificed in the config file (likely in your project directory as well). For some fun plotting tools, and output file parsing, check out this repo [here](https://github.com/rareid2/SR_interface).
+  - And you're done! Terminal output (ray exit code, etc.) will be in the `REPORT` file when the job finishes, in your project directory. The actual ray output will be in a folder created where you specificed in the config file (likely in your project directory as well). For some fun plotting tools, and output file parsing, check out this repo [here](https://github.com/rareid2/SR_interface).
 
 ## Running the raytracer locally using docker
 
