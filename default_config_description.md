@@ -23,7 +23,8 @@ For most, I'd reccommend just starting from the default. Note that for ranges wi
   - Plasmasphere model to run in. Modes that are working right now: Diffusive Eqiulbrium ("DE") and simplified GCPM ("GCPM"). DE seems to work a little better, or atleast the results are more explainable. 
   - Diffusive Eqiulbrium is described by this paper: 
     - Angerami, J., & Thomas, J. (1964). Studies of planetary atmospheres: 1. the distribution of electrons and ions in the Earth’s exosphere Journal of Geophysical Research, 69 (21), 4537–4560.
-  - GCPM by this paper: Gallagher, D. L., Craven, P. D., & Comfort, R. H.(2000). Global core plasma model. Journal of Geophysical Research: Space Physics, 105 (A8), 18819–18833.
+  - GCPM by this paper: 
+    - Gallagher, D. L., Craven, P. D., & Comfort, R. H.(2000). Global core plasma model. Journal of Geophysical Research: Space Physics, 105 (A8), 18819–18833.
     - The simplified version of GCPM that is implemented is described in Austin Sousa's thesis: 
       - Sousa, A. P. (2018). Global and seasonal effects of lightning-induced electron precipitation. Stanford University.
   - Unit = string

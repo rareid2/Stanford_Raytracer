@@ -67,7 +67,6 @@ def single_run_rays(ray_datenum, positions, directions, freqs, rayfile_directory
 
     # this is just a silly way to get the names of the workers to keep everyone separate
     fp = 'worker_'+str(wid)
-    # TODO test this out!
 
     yearday, milliseconds_day = get_yearmiliday(ray_datenum)
 
