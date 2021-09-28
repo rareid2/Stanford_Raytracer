@@ -27,7 +27,7 @@ positions = []
 freqs = []
 directions = []
 
-for r in settings['rays']:
+for ri,r in enumerate(settings['rays']):
     alt = r['alt']
     lat = r['lat']
     lon = r['lon']
@@ -40,8 +40,10 @@ for r in settings['rays']:
     alpha = r['alpha'] 
     phi = r['phi']
 
-    direc = getBdir(ray_start, ray_datenum, rayfile_directory, [alpha], [phi], md, freq)
-    directions.append(direc[0])
+    #direc = getBdir(ray_start, ray_datenum, rayfile_directory, [alpha], [phi], md, freq)
+    #directions.append(direc[0])
+    directions.append([0,0,0])
+    print('ray #', ri)
 
 # run the rays
 parallel_run_rays(ray_datenum, positions, directions, freqs, rayfile_directory, md)

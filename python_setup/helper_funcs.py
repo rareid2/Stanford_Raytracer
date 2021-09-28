@@ -72,14 +72,8 @@ def single_run_rays(ray_datenum, positions, directions, freqs, rayfile_directory
 
     project_root = os.getcwd()  # grabs current full path
 
-    # Create directory for inputs/outputs if doesn't already exist
-    ray_out_dir = rayfile_directory + '/'+ dt.datetime.strftime(ray_datenum, '%Y-%m-%d_%H_%M_%S')
-
-    if not os.path.exists(ray_out_dir):
-        os.makedirs(ray_out_dir)
-
     # Set input file path
-    ray_inpfile = os.path.join(ray_out_dir, 'ray_inpfile_'+fp+'.txt')
+    ray_inpfile = os.path.join(rayfile_directory, 'ray_inpfile_'+fp+'.txt')
 
     # Write the ray input file
     f = open(ray_inpfile, 'w')
@@ -97,7 +91,11 @@ def single_run_rays(ray_datenum, positions, directions, freqs, rayfile_directory
     os.chdir(raytracer_dir)
 
     # Set output file path
-    ray_outfile = os.path.join(ray_out_dir, 'ray_out_mode%d_%s.ray' % (md,fp))
+    ray_outfile = os.path.join(rayfile_directory, 'ray_out_mode%d_%s.ray' % (md,fp))
+
+    # set output differently for the first ray (samples the bfield)
+    if wid == 0:
+        outputper = 100
 
     # The base command -- with parameters common for all modes
     base_cmd = './raytracer --outputper=%d --dt0=%g --dtmax=%g' % (outputper, dt0, dtmax) + \
@@ -132,6 +130,12 @@ def single_run_rays(ray_datenum, positions, directions, freqs, rayfile_directory
 # -------------------------------- PARALLELIZE --------------------------------
 def parallel_run_rays(ray_datenum, positions, directions, freqs, output_directory, md):
 
+    # only need to run this once! not in parallel!
+    # Create directory for inputs/outputs if doesn't already exist
+    ray_out_dir = os.path.join(output_directory,dt.datetime.strftime(ray_datenum, '%Y-%m-%d_%H_%M_%S'))
+    if not os.path.exists(ray_out_dir):
+        os.makedirs(ray_out_dir)
+
     # parallel
     nmbrcores = cpu_count()
     nrays = len(positions) # same as length of directions and freqs
@@ -139,7 +143,7 @@ def parallel_run_rays(ray_datenum, positions, directions, freqs, output_director
 
     # lists the same length as the number of cores
     time_list = [ray_datenum for i in range(nmbrcores)]
-    output_directory_list = [output_directory for i in range(nmbrcores)]
+    output_directory_list = [ray_out_dir for i in range(nmbrcores)]
     mds = [md for i in range(nmbrcores)]
 
     # break up all the arguments 

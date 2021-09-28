@@ -100,9 +100,7 @@ If you don't already have a supercomputing account, skip to step 3 to start that
 
     And you're done! Terminal output (ray exit code, etc.) will be in the `REPORT` file when the job finishes, in your project directory. The actual ray output will be in a folder created where you specificed in the config file (likely in your project directory as well). For some fun plotting tools, and output file parsing, check out this repo [here](https://github.com/rareid2/SR_interface).
 
-## Running the raytracer locally using docker
-
-*tbd*
+    To get your files off the supercomputer, (`scpr -r` copies an entire directory) run on your local computer: `scp -r <username>@login.rc.colorado.edu:/projects/<username>/<rayoutput> <path_local>`
 
 ## Building the raytracer locally -- do not reccommend
 
