@@ -1,6 +1,6 @@
 # Stanford_Raytracer
 
-![an ex img](ex_rays_VPMDSX.png)
+![an ex img](examples/ex_rays_VPMDSX.png)
 
 Welcome to the Stanford Raytracer. This ray tracing program computes VLF ray paths in the magnetosphere.
 This ray tracer has been moved to run on CU's supercomputer (Blanca and Summit -- see more info [here](https://curc.readthedocs.io/en/latest/index.html)).
@@ -37,13 +37,13 @@ If you don't already have a supercomputing account, skip to step 3 to start that
 
 1. *Create config file:* Let's start with the config file. It's easier to create this on your local machine and then copy it over. First, wherever you like to work on code, make a file called config.json. This will have all the settings for your raytracer run. 
 
-    There is a [default_config.json](https://github.com/rareid2/Stanford_Raytracer/blob/master/default_config.json) in this repo that you can copy from and re-work as you like. You can copy over the default settings in the top of the file, and then edit the rays section. Details on these settings can be found here: [default_config_description.md](https://github.com/rareid2/Stanford_Raytracer/blob/master/default_config_description.md)
+    There is a [default_config.json](https://github.com/rareid2/Stanford_Raytracer/blob/master/examples/default_config.json) in this repo that you can copy from and re-work as you like. You can copy over the default settings in the top of the file, and then edit the rays section. Details on these settings can be found here: [default_config_description.md](https://github.com/rareid2/Stanford_Raytracer/blob/master/examples/default_config_description.md)
 
     If you're running lots of rays, I'd reccommend generating this section with your language of choice. To generate the rays section from python, see [here](https://www.kite.com/python/answers/how-to-dump-a-dictionary-to-a-json-file-in-python). For matlab, see [here](https://www.mathworks.com/help/matlab/ref/jsonencode.html). I chose json format because it's compatible with a lot of languages and easy to edit from a text editor (and bc a software developer told me too).
 
     Once you are happy with the config file, move on to the job script file. 
 
-2. *Create job script:* If you're running on blanca, take a look at [example_blanca_run.sh](https://github.com/rareid2/Stanford_Raytracer/blob/master/example_blanca_run.sh) and for summit take a look at [example_summit_run.sh](https://github.com/rareid2/Stanford_Raytracer/blob/master/example_summit_run.sh).
+2. *Create job script:* If you're running on blanca, take a look at [example_blanca_run.sh](https://github.com/rareid2/Stanford_Raytracer/blob/master/examples/example_blanca_run.sh) and for summit take a look at [example_summit_run.sh](https://github.com/rareid2/Stanford_Raytracer/blob/master/examples/example_summit_run.sh).
 
     Make any edits you see fit (name, date, title of run). Finally, make sure your config file is titled 'config.json'. If it's not, you're going to need to change the run command to the correct name of the config file and path. This run script assumes you're going to put it in the projects directory, so let's do that next. 
 

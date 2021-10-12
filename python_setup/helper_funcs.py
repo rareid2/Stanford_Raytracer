@@ -26,7 +26,7 @@ def getBdir_src(ray_datenum, positions, thetas, phis, rayfile_directory):
 
     yearday, milliseconds_day = get_yearmiliday(ray_datenum)
 
-    # need bfield binary
+    # get over to where the binary is
     cwd = os.getcwd()
     os.chdir(raytracer_dir)
 
@@ -69,7 +69,7 @@ def getBdir_src(ray_datenum, positions, thetas, phis, rayfile_directory):
     converted_dirs = []
 
     # intermediate output
-    sph_dirs = []   
+    Bunits = []   
 
     # open the file and save stuff
     f = open(model_outfile,'r')
@@ -89,20 +89,47 @@ def getBdir_src(ray_datenum, positions, thetas, phis, rayfile_directory):
             # reset, that means we have the direc
             Bmag = np.sqrt(B0[0]**2 + B0[1]**2 + B0[2]**2)
             Bunit = [B0[0]/Bmag, B0[1]/Bmag, B0[2]/Bmag]
-            # now we have Bunit in SM car
-            # let's put it in spherical (easier for changing the wavenormal)
-            sph_dir = convert2([Bunit], ray_datenum, 'SM', 'car', ['Re','Re','Re'], 'SM', 'sph', ['Re','deg','deg'])     
-            sph_dirs.append(sph_dir[0])
+            Bunits.append(Bunit)
+
     f.close()
 
     # now change to new directions with thetas and phis
-    for sph_dir, theta, phi in zip(sph_dirs,thetas,phis):
-        new_dir = [sph_dir[0],sph_dir[1]+theta, sph_dir[2]+phi]
-        # convert back to SM car
-        converted_dir = convert2([new_dir], ray_datenum, 'SM', 'sph', ['Re','deg','deg'], 'SM', 'car', ['Re','Re','Re']) 
-        
-        converted_dirs.append(converted_dir[0])
+    # theta is alpha
+    for Bunit, theta, phi in zip(Bunits,thetas,phis):
 
+        if Bunit[0] == 0 or Bunit[2] == 0:
+            r1 = [1,(-1*Bunit[0]-Bunit[2])/Bunit[1],1]
+        else:
+            r1 = [1,1,(-1*Bunit[1]-Bunit[0])/Bunit[2]]
+
+        r1 = np.array(r1)/np.linalg.norm(np.array(r1))
+        r2  = np.cross(r1,Bunit)
+        T_rotate = np.column_stack((r1,r2,Bunit))
+
+        r = 1/(np.cos(theta*D2R))
+        cone_vec = np.array([r*np.sin(theta*D2R)*np.cos(phi*D2R),r*np.sin(theta*D2R)*np.sin(phi*D2R),r*np.cos(theta*D2R)]) 
+        cone_vec = np.matmul(T_rotate,np.transpose(cone_vec))
+    
+        cone_vec = cone_vec/np.linalg.norm(cone_vec)
+        if theta > 90 and theta < 270:
+            zsign = -1
+        elif theta < 90 and theta > -90:
+            zsign = 1 
+        else:
+            print('ERROR INPUT THETA IS NOT BETWEEN -90 and 90 or 90 and 270 deg')
+        converted_dirs.append(zsign*cone_vec)
+
+    # for plotting 
+    
+    #ax = plt.axes(projection='3d')
+    #ax.quiver(0,0,0,converted_dirs[0][0],converted_dirs[0][1],converted_dirs[0][2],length=1)
+    #ax.quiver(0,0,0,Bunit[0],Bunit[1],Bunit[2],length=1,color='g')
+    #ax.axes.set_xlim3d(left=0, right=1.5) 
+    #ax.axes.set_ylim3d(bottom=0, top=1.5) 
+    #ax.axes.set_zlim3d(bottom=0, top=1.5) 
+    #plt.show()
+    #plt.close()
+    
     return converted_dirs
 
 # ----------------------------- run -----------------------------------------------

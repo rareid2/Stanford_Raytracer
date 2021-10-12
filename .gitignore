@@ -9,8 +9,6 @@
 # Exclude all files in the bin
 bin/*
 
-*.png
-
 # and pycache ugh
 python_setup/libxformd/
 python_setup/__pycache__/*

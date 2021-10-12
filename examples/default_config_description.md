@@ -145,26 +145,25 @@ Each ray is added with the following input parameters:
 
 - *freq*: 5e3
   - Frequency of the ray.
-  - Unit = Hertz
+  - Unit = hertz
   - Range = 1 to 50e3 (reccommended)
 
+- *alpha*: 180 
+  - Wavenormal angle of the ray (angle between k and B)
+  - Unit = degrees
+  - Range = -90 to 90 (if going towards the northern hemisphere) or 90 to 270 (if going towrds the southern hemisphere)
 
-*alpha*: 180 need to fix this section and add an image
-Initial wavenormal angle in degrees (angle between the magnetic field and the ray direction). the ray tracer is in 3 dimensions
-so this angle means the same wavenormal actually traces out a cone around the magnetic field line
-an alpha of 10 degrees would be a small 10 degree cone around the bfield line, while 50 degrees is a much larger cone. 
-the ray could be anywhere on the surface of this cone, with phi (degrees) setting the azimuthal angle on that cone.
-a phi of 0 is in the meridional plane.
-This is from 0 to 360, but keep in mind that anything from 90 deg to 270 deg is going to go the other way. 
-Keep in mind that the Bfield points from south geographic pole to north geographic pole. So if you're starting a ray in the northern hemisphere and 
-you want it to go south with a wavenormal of 10 degrees, set the 
+- *phi*: 0
+  - Azimuthal angle on surface of cone created by wavenormal angle
+  - Unit = degrees
+  - Range = 0 to 360
 
-field-aligned (going south): alpha = 0, phi = 0
-field-aligned (going north): alpha = 180, phi = 0
- 
+The Bfield points from south geographic pole to north geographic pole. So if you're starting a ray in the northern hemisphere and you want it to go south with a wavenormal of 10 degrees, set alpha = 190 and phi = 0. The diagram below helps visualize these two angles. You can think if these two angles in two steps: alpha creates a right cone around the magnetic field line with the opening angle equal to alpha. Phi is then the azimuthal angle around the magnetic field line. Gernally, I leave phi = 0 so that the wavenormal angle is in plane with the Bfield. There is a commneted-out section of code in the helper functions script that allos you to plot your direction vector with respect to Bfield, if you want to check. 
 
-phi: 0
-see above 
+field-aligned (going north): alpha = 0, phi = 0
+field-aligned (going south): alpha = 180, phi = 0
+
+ ![an ex img](../examples/ray_initialization.png)
 
 ## Stop condition list.
 The raytracer will stop if: 
