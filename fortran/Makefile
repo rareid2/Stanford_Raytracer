@@ -50,7 +50,7 @@ LIBS = -L../xform_double -lxformd -L../xform -lxform -L../gcpm -lgcpm -L../iri20
 
 OBJECTS = ${sources:.f95=.o}
 
-all: ../bin/raytracer${EXT} ../bin/gcpm_dens_model_buildgrid${EXT} ../bin/dumpmodel${EXT} ../bin/gcpm_dens_model_buildgrid_random${EXT}
+all: ../bin/raytracer${EXT} ../bin/gcpm_dens_model_buildgrid${EXT} ../bin/dumpmodel${EXT} ../bin/gcpm_dens_model_buildgrid_random${EXT} ../bin/getBfield${EXT}
 
 clean:
 	${RM} *.o
@@ -60,6 +60,9 @@ clean:
 
 ../bin/dumpmodel${EXT}: dumpmodel.f95 ${OBJECTS}
 	${G95} ${FLAGS} ${INCLUDES} -o ../bin/dumpmodel${EXT} dumpmodel.f95 ${OBJECTS} ${LIBS}
+
+../bin/getBfield${EXT}: getBfield.f95 ${OBJECTS}
+	${G95} ${FLAGS} ${INCLUDES} -o ../bin/getBfield${EXT} getBfield.f95 ${OBJECTS} ${LIBS}
 
 ../bin/gcpm_dens_model_buildgrid${EXT}: gcpm_dens_model_buildgrid.f95 ${OBJECTS}
 	${G95} ${FLAGS} ${INCLUDES} -o ../bin/gcpm_dens_model_buildgrid${EXT} gcpm_dens_model_buildgrid.f95 ${OBJECTS} ${LIBS}
@@ -91,6 +94,8 @@ raytracer.f95 : util.o constants.o types.o
 raytracer_driver.f95 : types.o util.o constants.o ngo_dens_model_adapter.o gcpm_dens_model_adapter.o interp_dens_model_adapter.o scattered_interp_dens_model_adapter.o raytracer.o
 
 dumpmodel.f95 : types.o util.o constants.o ngo_dens_model_adapter.o gcpm_dens_model_adapter.o interp_dens_model_adapter.o scattered_interp_dens_model_adapter.o
+
+getBfield.f95 : util.o constants.o bmodel_dipole.o types.o
 
 constants.f95 : types.o
 

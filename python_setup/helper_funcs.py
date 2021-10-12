@@ -4,50 +4,10 @@ import os
 import json
 from multiprocessing import Pool, cpu_count
 import multiprocessing
-import pandas as pd
 from constants import *
 from convert_coords import convert2
 
 # HERE ARE HELPER FUNCS TO RUN rayinput.py----------------------------------------------------------
-
-# -------------------------------------- getting the bdir! ---------------------------------
-def getBdir(ray_start, ray_datenum, rayfile_directory, thetas, phis, md, freq):
-    positions = ray_start
-    directions = [(0,0,0)]
-    freqs = [freq]
-    # going to run a ray real quick
-    single_run_rays(ray_datenum, positions, directions, freqs, rayfile_directory, md, 0)
-
-    # Load all the rayfiles in the output directory
-    ray_out_dir = rayfile_directory + '/'+dt.datetime.strftime(ray_datenum, '%Y-%m-%d_%H_%M_%S')
-    file_titles = os.listdir(ray_out_dir)
-
-    # create empty lists to fill with ray files and damp files
-    raylist = []
-    for filename in file_titles:
-        if '.ray' in filename and str(md) in filename and 'worker_0.' in filename:
-            print(filename)
-            raylist += read_rayfile(os.path.join(ray_out_dir, filename))
-
-    # get b direction for this ray
-    for r in raylist:
-        B0 = [r['B0'].x[0], r['B0'].y[0], r['B0'].z[0]]
-        # vec in T in SM car coordinates
-        # create unit vector 
-        Bmag = np.sqrt(r['B0'].x[0]**2 + r['B0'].y[0]**2 + r['B0'].z[0]**2)
-        Bunit = [r['B0'].x[0]/Bmag, r['B0'].y[0]/Bmag, r['B0'].z[0]/Bmag]
-
-    # now we have Bunit in SM car
-    # let's put it in spherical (easier for changing the wavenormal)
-    sph_dir = convert2([Bunit], ray_datenum, 'SM', 'car', ['Re','Re','Re'], 'SM', 'sph', ['Re','deg','deg'])     
-    converted_dirs = []
-    for theta, phi in zip(thetas,phis):
-        new_dir = [sph_dir[0][0],sph_dir[0][1]+theta, sph_dir[0][2]+phi]
-        converted_dir = convert2([new_dir], ray_datenum, 'SM', 'sph', ['Re','deg','deg'], 'SM', 'car', ['Re','Re','Re']) 
-        
-        converted_dirs.append(converted_dir[0])
-
-    return converted_dirs
 
 # ------------------- helper func for the datetimes ---------------------
 def get_yearmiliday(ray_datenum):
@@ -61,6 +21,89 @@ def get_yearmiliday(ray_datenum):
 
     return yearday, milliseconds_day
 
+# -------------------------------------- getting the bdir! ---------------------------------
+def getBdir_src(ray_datenum, positions, thetas, phis, rayfile_directory):
+
+    yearday, milliseconds_day = get_yearmiliday(ray_datenum)
+
+    # need bfield binary
+    cwd = os.getcwd()
+    os.chdir(raytracer_dir)
+
+    model_outfile = os.path.join(rayfile_directory, 'bmodel_dump.dat')
+    model_inpfile = os.path.join(rayfile_directory, 'bmodel_input.in')
+
+    # Write input positions file
+    f = open(model_inpfile, 'w')
+
+    # Go through list of positions, write a new line for each
+    for pos0 in positions:
+        f.write('%1.15e %1.15e %1.15e\n' % (
+            pos0[0], pos0[1], pos0[2]))
+    f.close()
+
+    # get number of rays for memory allocation
+    nrays = len(positions)
+
+    cmd = './getBfield ' + \
+        '--filename="%s" ' % (model_outfile) + \
+        '--infilename="%s" ' % (model_inpfile) + \
+        ' --yearday=%s --milliseconds_day=%d ' % (yearday, milliseconds_day) + \
+        '--use_igrf=%g --use_tsyganenko=%g ' % (use_IGRF, use_tsyg) + \
+        '--tsyganenko_Pdyn=%g ' % (Pdyn) + \
+        '--tsyganenko_Dst=%g ' % (Dst) + \
+        '--tsyganenko_ByIMF=%g ' % (ByIMF) + \
+        '--tsyganenko_BzIMF=%g ' % (BzIMF) + \
+        '--tsyganenko_W1=%g ' % (W[0]) + \
+        '--tsyganenko_W2=%g ' % (W[1]) + \
+        '--tsyganenko_W3=%g ' % (W[2]) + \
+        '--tsyganenko_W4=%g ' % (W[3]) + \
+        '--tsyganenko_W5=%g ' % (W[4]) + \
+        '--tsyganenko_W6=%g ' % (W[5]) + \
+        '--nrays=%g' % nrays
+    
+    # execute the command
+    os.system(cmd)
+
+    # save the outputs - converted directions
+    converted_dirs = []
+
+    # intermediate output
+    sph_dirs = []   
+
+    # open the file and save stuff
+    f = open(model_outfile,'r')
+    three_count = 0
+    # read output file with all the directions
+    for line in f.readlines():
+        # comes out line by line, need to read in directions one at a time
+        if three_count==0:
+            B0 = []
+        if three_count<2:
+            B0.append(float(line))
+            three_count+=1
+        else:
+            B0.append(float(line))
+            three_count=0
+
+            # reset, that means we have the direc
+            Bmag = np.sqrt(B0[0]**2 + B0[1]**2 + B0[2]**2)
+            Bunit = [B0[0]/Bmag, B0[1]/Bmag, B0[2]/Bmag]
+            # now we have Bunit in SM car
+            # let's put it in spherical (easier for changing the wavenormal)
+            sph_dir = convert2([Bunit], ray_datenum, 'SM', 'car', ['Re','Re','Re'], 'SM', 'sph', ['Re','deg','deg'])     
+            sph_dirs.append(sph_dir[0])
+    f.close()
+
+    # now change to new directions with thetas and phis
+    for sph_dir, theta, phi in zip(sph_dirs,thetas,phis):
+        new_dir = [sph_dir[0],sph_dir[1]+theta, sph_dir[2]+phi]
+        # convert back to SM car
+        converted_dir = convert2([new_dir], ray_datenum, 'SM', 'sph', ['Re','deg','deg'], 'SM', 'car', ['Re','Re','Re']) 
+        
+        converted_dirs.append(converted_dir[0])
+
+    return converted_dirs
 
 # ----------------------------- run -----------------------------------------------
 def single_run_rays(ray_datenum, positions, directions, freqs, rayfile_directory, md, wid):
@@ -69,8 +112,6 @@ def single_run_rays(ray_datenum, positions, directions, freqs, rayfile_directory
     fp = 'worker_'+str(wid)
 
     yearday, milliseconds_day = get_yearmiliday(ray_datenum)
-
-    project_root = os.getcwd()  # grabs current full path
 
     # Set input file path
     ray_inpfile = os.path.join(rayfile_directory, 'ray_inpfile_'+fp+'.txt')
@@ -92,11 +133,7 @@ def single_run_rays(ray_datenum, positions, directions, freqs, rayfile_directory
 
     # Set output file path
     ray_outfile = os.path.join(rayfile_directory, 'ray_out_mode%d_%s.ray' % (md,fp))
-
-    # set output differently for the first ray (samples the bfield)
-    if wid == 0:
-        outputper = 100
-
+    
     # The base command -- with parameters common for all modes
     base_cmd = './raytracer --outputper=%d --dt0=%g --dtmax=%g' % (outputper, dt0, dtmax) + \
                 ' --tmax=%g --root=%d --fixedstep=%d --maxerr=%g' % (t_max, root, fixedstep, maxerr) + \
@@ -130,12 +167,6 @@ def single_run_rays(ray_datenum, positions, directions, freqs, rayfile_directory
 # -------------------------------- PARALLELIZE --------------------------------
 def parallel_run_rays(ray_datenum, positions, directions, freqs, output_directory, md):
 
-    # only need to run this once! not in parallel!
-    # Create directory for inputs/outputs if doesn't already exist
-    ray_out_dir = os.path.join(output_directory,dt.datetime.strftime(ray_datenum, '%Y-%m-%d_%H_%M_%S'))
-    if not os.path.exists(ray_out_dir):
-        os.makedirs(ray_out_dir)
-
     # parallel
     nmbrcores = cpu_count()
     nrays = len(positions) # same as length of directions and freqs
@@ -143,7 +174,7 @@ def parallel_run_rays(ray_datenum, positions, directions, freqs, output_director
 
     # lists the same length as the number of cores
     time_list = [ray_datenum for i in range(nmbrcores)]
-    output_directory_list = [ray_out_dir for i in range(nmbrcores)]
+    output_directory_list = [output_directory for i in range(nmbrcores)]
     mds = [md for i in range(nmbrcores)]
 
     # break up all the arguments 
@@ -155,68 +186,7 @@ def parallel_run_rays(ray_datenum, positions, directions, freqs, output_director
     worker_id = [i for i in range(1, nmbrcores+1)]
 
     # send in all the arguments
-    lstarg = zip(time_list, position_list, direction_list, freq_list, output_directory_list, mds, worker_id)    
+    lstarg = zip(time_list, position_list, direction_list, freq_list, output_directory_list, mds, worker_id) 
     
     with Pool(nmbrcores) as p:
         results = p.starmap(single_run_rays, lstarg)
-
-# ---------------------------- read output using pandas -------------------------
-def read_rayfile(rayfile):
-    ''' Load output from Forest's raytracer'''
-    x = pd.read_csv(rayfile,delim_whitespace=True, header=None)
-    # % fields: raynum, stopcond, time, pos(3), vprel(3), vgrel(3), n(3),
-    # % B0(3), Nspec, qs(Nspec), ms(Nspec), Ns(Nspec), nus(Nspec)
-
-    raynums = np.unique(x[0])
-    numrays = len(raynums)
-
-    out = []
-    for ii in range(numrays):
-        tmp = x[x[0]==raynums[ii]]
-        tmp.reset_index(drop=True)
-        #data = pd.DataFrame(columns=['raynum','time','pos','vprel','vgrel','n','B0','qs','ms','Ns','nus'])
-        data = dict()
-        data['time'] = tmp[2]
-        data['pos'] = tmp.loc[:,3:5]
-        data['pos'].columns=['x','y','z']
-        data['vprel'] = tmp.loc[:,6:8]
-        data['vprel'].columns=['x','y','z']
-        data['vgrel'] = tmp.loc[:,9:11]
-        data['vgrel'].columns=['x','y','z']
-        data['n'] = tmp.loc[:,12:14]
-        data['n'].columns=['x','y','z']
-        data['B0'] = tmp.loc[:,15:17]
-        data['B0'].columns=['x','y','z']
-        
-        # #data = pd.DataFrame(columns=['raynum','time','pos','vprel','vgrel','n','B0','qs','ms','Ns','nus'])
-        # data = dict()
-        # data['time'] = tmp[2]
-
-        # data['pos']   = coord.Coords(zip(tmp.loc[:,3], tmp.loc[:,4],  tmp.loc[:,5]), 'SM','car')
-
-        # data['pos']   = data['pos'].
-        # data['vprel'] = tmp.loc[:,6:8]
-        # data['vprel'].columns=['x','y','z']
-        # data['vgrel'] = tmp.loc[:,9:11]
-        # data['vgrel'].columns=['x','y','z']
-        # data['n'] = tmp.loc[:,12:14]
-        # data['n'].columns=['x','y','z']
-        # data['B0'] = tmp.loc[:,15:17]
-        # data['B0'].columns=['x','y','z']
-
-        data['w'] = tmp.iloc[0,18]       # Frequency
-        data['Nspec'] = tmp.iloc[0,19]   # Number of species
-        data['stopcond'] = tmp.iloc[0,1] # Stop condition
-        data['qs'] =  tmp.loc[:,20 + 0*data['Nspec']:20 + 1*data['Nspec'] - 1]
-        data['ms'] =  tmp.loc[:,20 + 1*data['Nspec']:20 + 2*data['Nspec'] - 1]
-        data['Ns'] =  tmp.loc[:,20 + 2*data['Nspec']:20 + 3*data['Nspec'] - 1]
-        data['nus']=  tmp.loc[:,20 + 3*data['Nspec']:20 + 4*data['Nspec'] - 1]
-
-        # read damping data too, if we have it:
-        if (tmp.shape[1] > 20+4*data['Nspec']):
-            print('we have it')
-            data['damping'] = tmp.loc[:,20+4*data['Nspec']]
-
-            
-        out.append(data)
-    return out
