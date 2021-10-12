@@ -55,6 +55,7 @@ COPY --from=XFORM-BUILDER /usr/src/app/libxformd/libxformd.a python_setup/libxfo
 COPY --from=XFORM-BUILDER /usr/src/app/libxformd/libxformd.so python_setup/libxformd/libxformd.so
 COPY --from=XFORM-BUILDER /usr/src/app/libxformd/xflib.py python_setup/libxformd/xflib.py
 
+COPY --from=RT-BUILDER /usr/src/app/bin/getBfield bin/getBfield
 COPY --from=RT-BUILDER /usr/src/app/bin/raytracer bin/raytracer
 
 CMD ["/bin/echo", "hI I aM raYTracEr"]
