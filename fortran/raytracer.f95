@@ -329,7 +329,7 @@ function raytracer_stopconditions(pos, k, w, vprel, vgrel, dt, nstep, &
   raytracer_stopconditions = 0
   radial_dist = sqrt(pos(1)*pos(1) + pos(2)*pos(2) + pos(3)*pos(3))
   lat_angle = asin(pos(3)/radial_dist)
-  if( sqrt(dot_product(pos,pos)) < minalt) then ! .and.(lat_angle < 0.0_DP)) then
+  if(sqrt(dot_product(pos,pos)) < minalt) then ! .and.(lat_angle > 0.0_DP)) then
     ! Minimum altitude reached
     raytracer_stopconditions = 1
     print *, '  Stopping integration.  Specified minimum altitude reached.'
