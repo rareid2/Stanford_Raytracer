@@ -167,9 +167,10 @@ field-aligned (going south): alpha = 180, phi = 0
 
 ## Stop condition list.
 The raytracer will stop if: 
+0. max time hit (t_max). Again, not simulation time, but ray time.
 1. min altitude reached (minalt)
-2. dt too small (less than 1e-14 seconds). Try adjusting maxerr (lower) and dt0 (lower), or use fixed steps. 
+2. k=0. nonsensical k vector. this is not phyiscal.
 3. nonsensical group velocity - faster than speed of light. sometimes happens outside the plasmapause.
-4. k=0. nonsensical k vector. this is not phyiscal.
-5. maxsteps hit (maxsteps)
-6. max time hit (t_max). Again, not simulation time, but ray time.
+---- there is no #4 -----------
+5. dt too small (less than 1e-14 seconds). Try adjusting maxerr (lower) and dt0 (lower), or use fixed steps. 
+6. maxsteps hit (maxsteps)
