@@ -167,6 +167,7 @@ field-aligned (going south): alpha = 180, phi = 0
 
 ## Stop condition list.
 The raytracer will stop if: 
+
 0. max time hit (t_max). Again, not simulation time, but ray time.
 1. min altitude reached (minalt)
 2. k=0. nonsensical k vector. this is not phyiscal.
