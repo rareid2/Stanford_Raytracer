@@ -322,8 +322,8 @@ end function raytracer_evalrhs
 ! by c) group velocity vgrel, and the current timestep dt.
 !
 function raytracer_stopconditions(pos, k, w, vprel, vgrel, dt, nstep, &
-                                  maxsteps, minalt)
-  real(kind=DP) :: pos(3), k(3), w, vprel(3), vgrel(3), dt, minalt, radial_dist, lat_angle
+                                  maxsteps, minalt, rf)
+  real(kind=DP) :: pos(3), k(3), w, vprel(3), vgrel(3), dt, minalt, radial_dist, lat_angle, rf
   integer :: raytracer_stopconditions, nstep, maxsteps
 
   raytracer_stopconditions = 0
@@ -342,6 +342,9 @@ function raytracer_stopconditions(pos, k, w, vprel, vgrel, dt, nstep, &
     raytracer_stopconditions = 3
     print *, '  Stopping integration.  Nonsensical group velocity = ', &
          sqrt(dot_product(vgrel,vgrel))
+  elseif( rf > 10) then
+    raytracer_stopconditions = 4
+    print *, ' Stopping integration. too many time step refines'
   elseif( dt < 1e-14 ) then
   ! elseif( dt < 1e-10 ) then
     ! dt too small
@@ -635,9 +638,9 @@ subroutine raytracer_run( pos,time,vprel,vgrel,n,&
   end interface
   interface
      integer function funcStopConditions( pos, k, w, vprel, vgrel, dt, &
-          nstep, maxsteps, minalt)
+          nstep, maxsteps, minalt, rf)
        use types
-       real(kind=DP) :: pos(3), k(3), w, vprel(3), vgrel(3), dt, minalt
+       real(kind=DP) :: pos(3), k(3), w, vprel(3), vgrel(3), dt, minalt, rf
        integer :: nstep, maxsteps
      end function funcStopConditions
   end interface
@@ -760,7 +763,7 @@ subroutine raytracer_run( pos,time,vprel,vgrel,n,&
      stopcond = funcStopConditions( x(1:3), x(4:6), x(7), &
                                     vprel(:,size(vprel,2)), &
                                     vgrel(:,size(vgrel,2)), dt, &
-                                    nstep, maxsteps, minalt ) 
+                                    nstep, maxsteps, minalt, rf) 
      if( stopcond /= 0 ) then
         ! print *, 'stopped at t=', t
         exit
@@ -901,11 +904,11 @@ subroutine raytracer_run( pos,time,vprel,vgrel,n,&
            ! stopcond = 2
            ! exit
            rf = rf + 1
-           if (rf > 10) then
-              stopcond = 4
-              print *, 'too many refines'
-              exit
-           end if
+           !if (rf > 10) then
+           !   stopcond = 4
+           !   print *, 'too many refines'
+           !   exit
+           !end if
            cycle
         else
            ! print *, &
