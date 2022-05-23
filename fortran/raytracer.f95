@@ -902,7 +902,7 @@ subroutine raytracer_run( pos,time,vprel,vgrel,n,&
            ! exit
            rf = rf + 1
            if (rf > 10) then
-              stopcond = 1
+              stopcond = 4
               print *, 'too many refines'
               exit
            end if

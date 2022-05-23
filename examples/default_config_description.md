@@ -172,6 +172,6 @@ The raytracer will stop if:
 1. min altitude reached (minalt)
 2. k=0. nonsensical k vector. this is not phyiscal.
 3. nonsensical group velocity - faster than speed of light. sometimes happens outside the plasmapause.
-4. there is no #4
+4. too many refines - the ray popped out of the resonance cone and tried to refine the step size > 10 times. try decreasing maxerr and dtmax or change initial wavenormal.
 5. dt too small (less than 1e-14 seconds). Try adjusting maxerr (lower) and dt0 (lower), or use fixed steps. 
 6. maxsteps hit (maxsteps)
