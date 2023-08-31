@@ -51,4 +51,4 @@ MLT = settings['MLT']
 
 # the name of the json config file
 # runName = test_rays if file is test_rays.json
-runName = __file__.split('/')[-1].split('.')[0]
+runName = fpath.split('/')[-1].split('.')[0]

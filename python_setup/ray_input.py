@@ -234,9 +234,7 @@ if __name__ == '__main__':
     thetas = []
     phis = []
 
-    rays = settings['rays'][0::40]
-    badRay = [rays[236]]
-    for ri,r in enumerate(settings['rays'][0::60]):
+    for ri,r in enumerate(settings['rays']):
         alt = r['alt']
         lat = r['lat']
         lon = r['lon']
