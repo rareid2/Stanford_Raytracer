@@ -2,9 +2,6 @@ import numpy as np
 import datetime as dt
 import os
 import json
-from multiprocessing import Pool, cpu_count
-import multiprocessing
-from constants import *
 from convert_coords import convert2
 
 # HERE ARE HELPER FUNCS TO RUN rayinput.py----------------------------------------------------------
@@ -61,7 +58,7 @@ def getBdir_src(ray_datenum, positions, thetas, phis, rayfile_directory):
         '--tsyganenko_W5=%g ' % (W[4]) + \
         '--tsyganenko_W6=%g ' % (W[5]) + \
         '--nrays=%g' % nrays
-    
+
     # execute the command
     os.system(cmd)
 
@@ -69,7 +66,7 @@ def getBdir_src(ray_datenum, positions, thetas, phis, rayfile_directory):
     converted_dirs = []
 
     # intermediate output
-    Bunits = []   
+    Bunits = []
 
     # open the file and save stuff
     f = open(model_outfile,'r')
@@ -107,37 +104,37 @@ def getBdir_src(ray_datenum, positions, thetas, phis, rayfile_directory):
         T_rotate = np.column_stack((r1,r2,Bunit))
 
         r = 1/(np.cos(theta*D2R))
-        cone_vec = np.array([r*np.sin(theta*D2R)*np.cos(phi*D2R),r*np.sin(theta*D2R)*np.sin(phi*D2R),r*np.cos(theta*D2R)]) 
+        cone_vec = np.array([r*np.sin(theta*D2R)*np.cos(phi*D2R),r*np.sin(theta*D2R)*np.sin(phi*D2R),r*np.cos(theta*D2R)])
         cone_vec = np.matmul(T_rotate,np.transpose(cone_vec))
-    
+
         cone_vec = cone_vec/np.linalg.norm(cone_vec)
         if theta > 90 and theta < 270:
             zsign = -1
         elif theta < 90 and theta > -90:
-            zsign = 1 
+            zsign = 1
         else:
             print('ERROR INPUT THETA IS NOT BETWEEN -90 and 90 or 90 and 270 deg')
         converted_dirs.append(zsign*cone_vec)
 
-    # for plotting 
-    
+    # for plotting
+
     #ax = plt.axes(projection='3d')
     #ax.quiver(0,0,0,converted_dirs[0][0],converted_dirs[0][1],converted_dirs[0][2],length=1)
     #ax.quiver(0,0,0,Bunit[0],Bunit[1],Bunit[2],length=1,color='g')
-    #ax.axes.set_xlim3d(left=0, right=1.5) 
-    #ax.axes.set_ylim3d(bottom=0, top=1.5) 
-    #ax.axes.set_zlim3d(bottom=0, top=1.5) 
+    #ax.axes.set_xlim3d(left=0, right=1.5)
+    #ax.axes.set_ylim3d(bottom=0, top=1.5)
+    #ax.axes.set_zlim3d(bottom=0, top=1.5)
     #plt.show()
     #plt.close()
-    
+
     return converted_dirs
 
 # ----------------------------- run -----------------------------------------------
-def single_run_rays(ray_datenum, positions, directions, freqs, rayfile_directory, md, wid):
+def single_run_rays(ray_datenum, positions, directions, freqs, raytracer_dir, rayfile_directory, md, wid):
 
+    print(f"Here is core: {wid}")
     # this is just a silly way to get the names of the workers to keep everyone separate
     fp = 'worker_'+str(wid)
-
     yearday, milliseconds_day = get_yearmiliday(ray_datenum)
 
     # Set input file path
@@ -160,7 +157,7 @@ def single_run_rays(ray_datenum, positions, directions, freqs, rayfile_directory
 
     # Set output file path
     ray_outfile = os.path.join(rayfile_directory, 'ray_out_mode%d_%s.ray' % (md,fp))
-    
+
     # The base command -- with parameters common for all modes
     base_cmd = './raytracer --outputper=%d --dt0=%g --dtmax=%g' % (outputper, dt0, dtmax) + \
                 ' --tmax=%g --root=%d --fixedstep=%d --maxerr=%g' % (t_max, root, fixedstep, maxerr) + \
@@ -174,37 +171,34 @@ def single_run_rays(ray_datenum, positions, directions, freqs, rayfile_directory
 
     if md == 6:
         # Test the Simplified GCPM model
-        MLT = 0
-        fixed_MLT = 0 # Force the raytracer to stay in the meridonal plane?
+        # MLT = settings['MLT']
+        fixed_MLT = 1 # Force the raytracer to stay in the meridonal plane?
 
         ray_cmd = base_cmd + ' --MLT="%g" --fixed_MLT=%g --kp=%g' % (MLT, fixed_MLT, Kp)
-    
+
     if md == 7:
         ray_cmd = base_cmd + ' --gcpm_kp=%g' % (Kp)
 
-    os.system(ray_cmd)
+    print('Running da raytracer')
+#    os.system(ray_cmd)
 
     # Move back to the working directory
     os.chdir(cwd)
 
     print('raytracer done')
 
-    return 
-
+    return fp
 # -------------------------------- PARALLELIZE --------------------------------
-def parallel_run_rays(ray_datenum, positions, directions, freqs, output_directory, md):
+def GetArgs(nmbrcores, nrays, ray_datenum, positions, directions, freqs, raytracer_dir, output_directory, md):
 
-    # parallel
-    nmbrcores = cpu_count()
-    nrays = len(positions) # same as length of directions and freqs
-    print(nmbrcores, ' cores running ', nrays, ' total')
 
     # lists the same length as the number of cores
     time_list = [ray_datenum for i in range(nmbrcores)]
     output_directory_list = [output_directory for i in range(nmbrcores)]
+    raytracer_dir_list = [raytracer_dir for i in range(nmbrcores)]
     mds = [md for i in range(nmbrcores)]
 
-    # break up all the arguments 
+    # break up all the arguments
     direction_list = [directions[int(i * (nrays/nmbrcores)):int((i+1)*nrays/nmbrcores)] for i in range(nmbrcores)]
     position_list = [positions[int(i * (nrays/nmbrcores)):int((i+1)*nrays/nmbrcores)] for i in range(nmbrcores)]
     freq_list = [freqs[int(i * (nrays/nmbrcores)):int((i+1)*nrays/nmbrcores)] for i in range(nmbrcores)]
@@ -213,7 +207,6 @@ def parallel_run_rays(ray_datenum, positions, directions, freqs, output_director
     worker_id = [i for i in range(1, nmbrcores+1)]
 
     # send in all the arguments
-    lstarg = zip(time_list, position_list, direction_list, freq_list, output_directory_list, mds, worker_id) 
-    
-    with Pool(nmbrcores) as p:
-        results = p.starmap(single_run_rays, lstarg)
+    lstarg = zip(time_list, position_list, direction_list, freq_list, raytracer_dir_list, output_directory_list, mds, worker_id)
+
+    return lstarg

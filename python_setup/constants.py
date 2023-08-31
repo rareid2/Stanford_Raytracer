@@ -2,13 +2,13 @@
 import numpy as np
 import os
 import sys
-import json 
+import json
 
 # Constants (matching the Fortran raytracer)
-EPS0 = 8.854187817e-12        # C^2/Nm^2 
-MU0 = np.pi * 4e-7              
+EPS0 = 8.854187817e-12        # C^2/Nm^2
+MU0 = np.pi * 4e-7
 C = np.sqrt(1.0/(EPS0*MU0))   # m/s
-R_E = 6371.2e3                # m 
+R_E = 6371.2e3                # m
 D2R = np.pi / 180.0           # rad
 R2D = 180.0 / np.pi           # deg
 H_IONO = 1000e3               # m
@@ -23,9 +23,10 @@ raytracer_dir = os.path.join(file_location, '../bin')
 
 # Opening JSON file
 fpath = sys.argv[1]
-f = open(fpath)
 # returns JSON object as a dictionary
-settings = json.load(f)
+with open(fpath) as f:
+    settings = json.load(f)
+
 
 minalt = settings["minalt"]+R_E
 Kp = settings['Kp']
@@ -46,3 +47,8 @@ fixedstep = settings['fixedstep']
 maxerr = settings['maxerr']
 maxsteps = settings['maxsteps']
 outputper = settings['outputper']
+MLT = settings['MLT']
+
+# the name of the json config file
+# runName = test_rays if file is test_rays.json
+runName = __file__.split('/')[-1].split('.')[0]
