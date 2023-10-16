@@ -143,7 +143,7 @@ contains
     tt = (R* ( 1.0_DP + a ) - a) / R
 
     ! very simple dipole implementation to get Lshell, matches!
-    lat_angle = asin(x_geo(3)/radial_dist)
+    lat_angle = asin(x(3)/radial_dist)
     cos_lat = cos(lat_angle)
     L = (radial_dist / R_E) / (cos_lat*cos_lat)
 
