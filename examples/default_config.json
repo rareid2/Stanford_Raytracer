@@ -23,6 +23,7 @@
     "maxerr": 5.0e-3,
     "maxsteps": 5e3,
     "outputper": 1,
+    "MLT": 0,
 
     "rays": [
       {
