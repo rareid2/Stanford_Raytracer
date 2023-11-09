@@ -700,7 +700,6 @@ subroutine raytracer_run( pos,time,vprel,vgrel,n,&
   dt = dt0
   x = x0
   t = 0.0_DP
-  lastrefinedown = 0
 
   dfdk = dispersion_relation_dFdk(x(4:6), w0, x(1:3), 1.0e-8_DP, &
                                   funcPlasmaParams, funcPlasmaParamsData)
@@ -782,9 +781,9 @@ subroutine raytracer_run( pos,time,vprel,vgrel,n,&
         dtincr = dt
     
         ! Compute the derivatives with respect to k too
-        dfdk_est1 = dispersion_relation_dFdk(est1(4:6), w, est1(1:3), &
+        dfdk_est1 = dispersion_relation_dFdk(est1(4:6), w0, est1(1:3), &
              1.0e-8_DP, funcPlasmaParams, funcPlasmaParamsData)
-        dfdk_est2 = dispersion_relation_dFdk(est2(4:6), w, est2(1:3), &
+        dfdk_est2 = dispersion_relation_dFdk(est2(4:6), w0, est2(1:3), &
              1.0e-8_DP, funcPlasmaParams, funcPlasmaParamsData)
 
         ! Error term is the max of the relative errors in dfdk AND k
@@ -794,29 +793,26 @@ subroutine raytracer_run( pos,time,vprel,vgrel,n,&
              sum(abs(est1(4:6)-est2(4:6))) / sum(abs(est2(4:6))), &
              sum(abs(dfdk_est1-dfdk_est2))/sum(abs(dfdk_est2)))
 
+        ! Added by Alex Shane (2023) 
+        ! New adaptive time step 
+        dt = 0.9_DP * dt * (maxerr / err)**(0.2_DP)
+        
         if( err > maxerr ) then
-          ! if ( dt > 1e-6) then
-           ! retry
-           ! (Constraining to a minimum timestep... 2.2017)
-           ! print *, 'Refine down'
-           dt=0.8_DP*dt
-           ! Prevent refinement loops
+           ! dt = 0.8_DP * dt
            lastrefinedown = 1
            cycle
-          ! else
-            ! print *, "dt at minimum"
-            ! dt=1e-6
-          ! end if
         end if
-        if( lastrefinedown==0 .and. &
-           ! err < maxerr/10.0_DP .and. &
-           err < maxerr/100.0_DP .and. &     ! Trying 100 instead of 10 -- 1.6.2018 -- hopefully the larger error tolerance will still have a generally small error in the healthy regions
-           dt*1.25_DP < dtmax ) then
-           ! print *, 'Refine up'
-           ! Refine up
-           dt=dt*1.25_DP
-           lastrefinedown = 0
-        end if
+        
+        if (dt > dtmax) then
+          dt = dtmax
+        end if 
+
+        ! if( lastrefinedown==0 .and. &
+        !    err < maxerr/100.0_DP .and. &     ! Trying 100 instead of 10 -- 1.6.2018 -- hopefully the larger error tolerance will still have a generally small error in the healthy regions
+        !    dt*1.25_DP < dtmax ) then
+        !    dt=dt*1.25_DP
+        !    lastrefinedown = 0
+        ! end if
      else
         ! Fixed timesteps
         est2 = rk4(t, x, del, dt, funcPlasmaParams, funcPlasmaParamsData)
