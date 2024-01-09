@@ -19,3 +19,6 @@ python_setup/test_env/
 
 # ignore this -- too big
 config.json
+
+container_data/*
+!container_data/.gitkeep

@@ -30,6 +30,7 @@ and the files:
 - default_config_description.md - a description of every single parameter in more detail than you likely want for the config.json file
 - exmaple_blanca_run.sh - an example job script to run on blanca nodes
 - exmaple_summit_run.sh - an example job script to run on summit nodes
+- run.sh - a bash script to fun the raytracer using Docker, on your local machine
 
 ## Getting your rays ready to run
 
@@ -102,16 +103,78 @@ If you don't already have a supercomputing account, skip to step 3 to start that
 
     To get your files off the supercomputer, (`scpr -r` copies an entire directory) run on your local computer: `scp -r <username>@login.rc.colorado.edu:/projects/<username>/<rayoutput> <path_local>`
 
-## Building the raytracer locally -- do not reccommend
+## Building the raytracer locally
 
-*in progress* 
+The ray tracer uses an old version of gfortran to compile some pretty old code (fortran 77!). As everyone's computers are continuously updating, this version of gfortran is quickly becomeing out of date. That's why we use Docker to effectively "freeze" and run the raytracer with the needed compiler. A great future project would be updating the source code to be compatible with new compilers (or newer software languages...). 
 
-1. Make sure you have gfortran-8 installed and update your priority list (decides which gfortran install to use). Here's some help on that here (change gcc to gfortran). 
+But for now, here's how to buid the docker image and run the raytracter locally:
 
-2. Double check your default version is now gfortran-8: `gfortran --version` 
+### Installs:
 
-3. Clone this repo where you'd like it (`<path_to_raytracer>`). I reccommend a folder on your computer that you code in. If you have a github account or want to use github, you could instead fork this repo and clone from your own remote repo rather than this one. 
+1. *Docker:* Download and install Docker Desktop for your machine [here](https://www.docker.com/products/docker-desktop/)
 
-4. Next, head on in to the raytracer wherever you put it. `cd <path_to_raytracer>/Stanford_Raytracer` 
+2. Sign up for a dockerhub account, especially if you intend to make changes to the raytracer source code. 
 
-5. Next, we just need to build it. run `make clean` and `make` 
+### Building:
+
+1. *Getting the raytracer code:* Clone this repo where you'd like it (`<path_to_raytracer>`). I reccommend a folder on your computer that you code in. If you have a github account or want to use github, you could instead fork this repo and clone from your own remote repo rather than this one. 
+
+2. *Navigate inside the raytracer:* Next, head on in to the raytracer wherever you put it. `cd <path_to_raytracer>/Stanford_Raytracer` 
+
+3. *Grab `libxformd` submodule:*
+
+    Run the following command in terminal: `git submodule init`
+
+    Run the following command in terminal: `git submodule update`
+
+4. *Start Docker:* Now we have all the code we need, we need to build it with docker. Make sure docker is running. You can check if there is a small whale icon (if on a Mac), or run this in terminal: `docker info`. If docker is running you will see some text output. If not, it should return an error similar to ` Error response from daemon: Bad response from Docker engine`, so you need to start Docker. On a Mac just click the docker app you just installed.
+
+5. *Build the image:* With Docker running, you need to build the container with the command: 
+`docker build -t <dockerusername>/<tag> .` 
+
+    Make sure to replace username with your actual Docker username. You should be able to see your username in the upper right of the Docker desktop app. The `-t` command tells Docker we are giving the container a tag. You can use a colon if you want to keep the same name, but might update with a version or a date. For example, I often use the tag `raytracer:latest`. You can change this to whatever you like, maybe a version number for example: `raytracer:v1` or `rays:Feb-24`. 
+
+    For example, my command would look like:
+    `docker build -t rareid/raytracer:latest .`
+
+    `rareid` is my username for Dockerhub, and the tag is `raytracer:latest`. The `.` at the end tells Docker to look in the current directory for the Dockerfile. 
+
+    Give this a second to finish building. If you don't see an ERROR message you're good to go.
+
+### Running: 
+
+1. *Open run script:* Open the file called `run.sh`. This file has two lines and contains the command that mounts the `config.json` file to the raytracer, and mounts any output back to your local machine. 
+
+    MAKE SURE TO CHANGE ONLY THE FOLLOWING: the part on line 2 that says `<dockerusername>/<tag>` should become whatver username and tag you used in the building step.  
+
+    For example, the line for my code would become: 
+    `docker run -v ./container_data:/projects/$USER rareid/raytracer:latest /projects/$USER/config.json`
+
+    Make sure you update this everytime you build the Docker container and give it a new name. If you use the same name each time, you do not need to change this line after this initial time.
+
+    Do NOT chnage the `$USER` parts. This is so the file mounting behaves the same on your local machine as it does on the supercomputer.
+
+2. *Get config file:* Now make sure you have a config file in the folder called `container_data/`. To start, you can copy the `default_config.json` from `examples/` into the `container_data/` folder. Or you can generate your own, see # 1 under "Getting Your Rays Ready To Run". Make sure that you name your config file the same as it appears at the end of line 2 in `run.sh`. For example, currently the line says: `docker run -v ./container_data:/projects/$USER rareid/raytracer:latest /projects/$USER/config.json`
+
+    So the config file needs to be called `config.json`. This is important so that Docker can find the right file. If you copied over the `default_config.json` to start, make sure you rename it to `config.json`, OR change line in `run.sh` to: `docker run -v ./container_data:/projects/$USER rareid/raytracer:latest /projects/$USER/default_config.json`
+
+3. *Change directory name in config:* Confirm that your config file has the correct name for output. It should be the first setting in the file, called `"rayfile_directory": "/projects/<username>"`. When running this on the supercomputer, this username will be your supercomputer username. When running locally, this will be your local machine username. If you're unsure what that is, run `echo $USER` and your username is the output. Mine returns: `rileyannereid`, so I will change the setting in the `config.json` to `"rayfile_directory": "/projects/rileyannereid"` since I am running locally. This folder does not need to actually exist, its just a link right now for Docker.
+
+    It's a bit confusing with all the usernames so just to recap: 
+
+    - Local machine username (found using `echo $USER` in terminal). Used only when building locally, only inside the `config.json` in the `"rayfile_directory"` setting.
+
+    - Your dockerhub username (found in the upper right of Docker desktop - what you used to sign up / sign in). Used when naming the raytracer build, `docker build -t rareid/raytracer:latest .`
+
+    - Supercomputer username (probably assigned by the University). Not used in this section. When running on the supercomputer (see above) you will use this for inside the `config.json` in the `"rayfile_directory"` setting instead of your local username.
+
+4. *Run:* To run, all you need to do is: `./run.sh` from the `Stanford_Raytracer` folder. If you get an error about permissions, run this: `sudo chmod +x ./run.sh` to give yourself permissions, then try the command again: `./run.sh`
+
+    You'll know it worked if you see `raytracer done`, and in the `container_data` folder, some files should pop up. These are the raytracer input and output files. Often there will be a lot of them because the raytracer runs with parallel computing, so they will be labelled with a worker number. Some may be empty. The total number of input and output rays in the files should sum to the number you put in with your `config.json` file. You can use python to read the output files. Check out the function `read_rayfile` in this repo [here](https://github.com/rareid2/SR_interface/blob/master/raytracer_utils.py) for an example of how to read the output.
+
+5. A final step, if you'd like to use your own docker build on the supercomputer (you made changes to the code, etc.), then first push it to your dockerhub with: 
+`docker push <dockerusername>/<tag>` and make sure to change to whatever your docker username is and what tag you used. 
+
+    Once that's updated (check your docker account to be sure, you should see the time under "Created" update), you can jump up to the supercomputer instructions and when you get to #7, change to `singularity pull docker://<dockerusername>/<tag>`
+
+    Before you submit your supercomputing job, you will also need to change your run script to reflect the new docker image name. 

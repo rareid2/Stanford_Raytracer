@@ -58,4 +58,5 @@ COPY --from=XFORM-BUILDER /usr/src/app/libxformd/xflib.py python_setup/libxformd
 COPY --from=RT-BUILDER /usr/src/app/bin/getBfield bin/getBfield
 COPY --from=RT-BUILDER /usr/src/app/bin/raytracer bin/raytracer
 
-CMD ["/bin/echo", "hI I aM raYTracEr"]
+#CMD ["/bin/echo", "hI I aM raYTracEr"]
+ENTRYPOINT ["python3", "/usr/src/app/python_setup/ray_input.py"]

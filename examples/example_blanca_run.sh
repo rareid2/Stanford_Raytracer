@@ -16,4 +16,4 @@ module load singularity/3.6.4
 # go to projects directory! where this image and the config.json should be
 cd /projects/$USER/
 # execute the image using the python script which reads the config file and calls the raytracer binary 
-singularity exec raytracer_latest.sif python3 /usr/src/app/python_setup/ray_input.py config.json
+singularity exec raytracer_latest.sif config.json
