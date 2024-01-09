@@ -238,9 +238,17 @@ if __name__ == '__main__':
         alt = r['alt']
         lat = r['lat']
         lon = r['lon']
-        ray_start = convert2([[alt+R_E,lat,lon]], [ray_datenum],'GEO','sph',['m','deg','deg'], 'SM', 'car', ['m','m','m'])
-        positions.append(ray_start[0])
+        
+        ray_start = convert2([[alt+R_E,lat,lon]], [ray_datenum],'GEO','sph',['m','deg','deg'], 'SM', 'car', ['m','m','m'])[0]
 
+        # Initial vertical propagation
+        ray_end = convert2([[alt+R_E+R_E,lat,lon]], [ray_datenum],'GEO','sph',['m','deg','deg'], 'SM', 'car', ['m','m','m'])[0]
+        directionVector = np.array(ray_end) - np.array(ray_start)
+        directionVector = directionVector / np.linalg.norm(directionVector)
+
+        directions.append(list(directionVector))        
+        positions.append(ray_start)
+        
         freq = r['freq']
         freqs.append(freq)
 
@@ -251,11 +259,12 @@ if __name__ == '__main__':
         phis.append(phi)
 
     # get directions as a batch
-    directions = getBdir_src(ray_datenum, positions, thetas, phis, rayfile_directory)
+    # directions = getBdir_src(ray_datenum, positions, thetas, phis, rayfile_directory)
+    # print(directions)
 
     print('initialized all rays')
-
-    nmbrcores = os.cpu_count() - 1
+    
+    nmbrcores = os.cpu_count()
     #nmbrcores = 7
     nrays = len(positions) # same as length of directions and freqs
     print(nmbrcores, ' cores running ', nrays, ' total')
